@@ -875,3 +875,128 @@
   .essentiel { padding: 20px 20px; }
   .prospectif { padding: 28px 24px; }
 }
+
+/* ── Motion placeholder (visuels en cours) ── */
+.motion-placeholder {
+  border: 1px dashed var(--bord);
+  border-left: 3px solid var(--concept);
+  background: var(--papier);
+  margin: 32px 0;
+}
+
+.motion-placeholder-inner {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.motion-placeholder-tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--concept);
+}
+
+.motion-placeholder-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--encre);
+}
+
+.motion-placeholder-desc {
+  font-size: 12px;
+  color: var(--gris-l);
+  font-style: italic;
+}
+
+/* ── art-section-title (h2 dans fiscalite, lecture) ── */
+.art-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--encre);
+  margin-top: 48px;
+  margin-bottom: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.art-section-title em {
+  font-style: normal;
+  color: var(--or);
+}
+
+/* ── art-chart (graphiques SVG inline dans lecture) ── */
+.art-chart-wrap {
+  margin: 40px 0;
+  padding: 28px 32px;
+  background: var(--papier);
+  border: 1px solid var(--bord);
+}
+
+.art-chart-eyebrow {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin-bottom: 8px;
+}
+
+.art-chart-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--encre);
+  margin-bottom: 4px;
+}
+
+.art-chart-sub {
+  font-size: 12px;
+  color: var(--gris-m);
+  font-style: italic;
+}
+
+.art-chart-note {
+  font-size: 11px;
+  color: var(--gris-l);
+  margin-top: 12px;
+  font-style: italic;
+}
+
+/* ── art-signature ── */
+.art-signature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 0;
+  border-top: 1px solid var(--bord);
+  margin-top: 40px;
+}
+
+.art-sig-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.art-sig-info { display: flex; flex-direction: column; gap: 4px; }
+
+.art-sig-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--encre);
+}
+
+.art-sig-bio {
+  font-size: 13px;
+  color: var(--gris-m);
+  font-style: italic;
+  line-height: 1.5;
+}

@@ -150,3 +150,19 @@
   .articleHeader { padding: 40px 20px 32px; border-left: none; border-top: 3px solid; }
   .articleBody { padding: 40px 20px 60px; }
 }
+
+/* ── Responsive complet ── */
+@media (max-width: 860px) {
+  .heroWrap { max-height: 300px; }
+  .heroImg { height: 300px; }
+  .articleHeader {
+    padding: 36px 20px 28px;
+    border-left: none;
+    border-top: 3px solid;
+    margin: 0;
+  }
+  .title { font-size: clamp(24px, 6vw, 36px); }
+  .description { font-size: 19px; }
+  .articleBody { padding: 36px 20px 60px; }
+  .articleBodyFull { padding: 0; }
+}
