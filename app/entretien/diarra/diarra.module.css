@@ -1,0 +1,241 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px 80px;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 0 0;
+  border-bottom: 1px solid var(--bord);
+  padding-bottom: 20px;
+}
+
+.tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+  border: 1px solid var(--or);
+  padding: 5px 14px;
+}
+
+.num {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 80px;
+  padding: 56px 0;
+  border-bottom: 2px solid var(--encre);
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+}
+
+.name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 5.5vw, 80px);
+  font-weight: 300;
+  letter-spacing: -3px;
+  line-height: 0.95;
+  color: var(--encre);
+}
+
+.name em { font-style: italic; color: var(--or); }
+
+.role {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  line-height: 2;
+  border-left: 2px solid var(--or);
+  padding-left: 16px;
+}
+
+.bio {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: var(--gris);
+  line-height: 1.75;
+}
+
+.heroPortrait {
+  overflow: hidden;
+  height: 520px;
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.questionsSection {
+  padding: 52px 0;
+  border-bottom: 1px solid var(--bord);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.questionsLabel {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.question {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--bord-l);
+}
+
+.questionNum {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--or);
+  letter-spacing: 1px;
+}
+
+.questionText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--encre);
+  line-height: 1.4;
+}
+
+.coming {
+  background: var(--papier);
+  border: 1px solid var(--bord);
+  border-top: 3px solid var(--or);
+  margin-top: 48px;
+}
+
+.comingInner {
+  padding: 52px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.comingLabel {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+.comingDesc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--gris-m);
+}
+
+.comingActions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.comingBtn {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--encre);
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.comingBtn:hover { background: var(--geo); }
+
+.comingLink {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.comingLink:hover { color: var(--encre); }
+
+.footer {
+  background: var(--encre);
+  padding: 48px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footerLogo {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: rgba(255,255,255,0.8);
+}
+
+.footerLogo em { font-style: italic; font-weight: 300; }
+.footerLinks { display: flex; gap: 32px; }
+
+.footerLinks a {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footerLinks a:hover { color: rgba(255,255,255,0.7); }
+.footerCopy { font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+
+@media (max-width: 900px) {
+  .page { padding: 0 24px 60px; }
+  .hero { grid-template-columns: 1fr; gap: 40px; }
+  .heroPortrait { height: 340px; }
+  .comingInner { padding: 40px 24px; }
+  .footer { padding: 40px 24px; }
+}
