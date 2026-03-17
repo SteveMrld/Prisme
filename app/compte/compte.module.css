@@ -1,0 +1,284 @@
+.page {
+  min-height: 80vh;
+  background: var(--papier);
+}
+
+.successBanner {
+  background: #2D6B4A;
+  color: #fff;
+  font-size: 13px;
+  padding: 14px 64px;
+  letter-spacing: 0.3px;
+}
+
+.inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 56px 64px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--encre);
+  padding-bottom: 24px;
+}
+
+.headerLeft { display: flex; flex-direction: column; gap: 8px; }
+
+.eyebrow {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 300;
+  letter-spacing: -1.5px;
+  color: var(--encre);
+  line-height: 1;
+}
+
+.title em { font-style: italic; color: var(--or); }
+
+.signout {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  background: transparent;
+  border: 1px solid var(--bord);
+  padding: 9px 18px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.signout:hover { color: var(--encre); border-color: var(--encre); }
+
+.section { display: flex; flex-direction: column; gap: 20px; }
+
+.sectionTitle {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  border-bottom: 1px solid var(--bord);
+  padding-bottom: 12px;
+}
+
+/* Statut card */
+.statusCard {
+  background: var(--blanc);
+  border: 1px solid var(--bord);
+  display: flex;
+  flex-direction: column;
+}
+
+.statusRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--bord-l);
+}
+
+.statusRow:last-child { border-bottom: none; }
+
+.statusLabel {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+
+.statusValue {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--encre);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--encre);
+  border: none;
+  padding: 13px 28px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s, opacity 0.2s;
+  align-self: flex-start;
+}
+
+.btn:hover:not(:disabled) { background: var(--geo); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+
+.btnLink {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--geo);
+  padding: 13px 28px;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: background 0.2s;
+}
+
+.btnLink:hover { background: var(--encre); }
+
+/* Alert */
+.alertCard {
+  background: rgba(184,106,26,0.07);
+  border-left: 3px solid var(--eco);
+  padding: 16px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--eco);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.alertBtn {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--eco);
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  flex-shrink: 0;
+}
+
+/* Quick links */
+.quickLinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--bord);
+}
+
+.quickLink {
+  background: var(--blanc);
+  padding: 20px 24px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.15s;
+  position: relative;
+}
+
+.quickLink:hover { background: var(--papier); }
+
+.quickLinkLabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--encre);
+}
+
+.quickLinkDesc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--gris-m);
+}
+
+.quickLinkArrow {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  color: var(--gris-l);
+  font-size: 13px;
+}
+
+/* Entretien card */
+.entretienCard {
+  background: var(--encre);
+  padding: 32px 36px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 0.2s;
+}
+
+.entretienCard:hover { background: #1A1A1A; }
+
+.entretienEyebrow {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(196,162,101,0.7);
+}
+
+.entretienName {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 300;
+  color: rgba(236,231,221,0.92);
+  letter-spacing: -1px;
+}
+
+.entretienName em { font-style: italic; color: var(--or); }
+
+.entretienRole {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.8;
+}
+
+.entretienCta {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 36px 24px 60px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .quickLinks { grid-template-columns: 1fr; }
+  .successBanner { padding: 14px 24px; }
+}

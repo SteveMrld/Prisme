@@ -258,3 +258,17 @@
   .reassuranceItem { padding: 32px 24px; }
   .footer { padding: 40px 24px; }
 }
+
+.banner {
+  background: rgba(184,106,26,0.08);
+  border-left: 3px solid var(--eco);
+  color: var(--eco);
+  font-size: 13px;
+  padding: 14px 64px;
+  line-height: 1.5;
+}
+
+.planBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

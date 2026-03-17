@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import { createClient } from '../lib/supabase'
 import styles from './Header.module.css'
 
 const navItems = [
@@ -17,11 +18,21 @@ const navItems = [
 
 export default function Header({ activeNav }: { activeNav?: string }) {
   const [date, setDate] = useState('')
+  const [user, setUser] = useState<any>(undefined) // undefined = loading
+  const supabase = createClient()
 
   useEffect(() => {
     const d = new Date()
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }
-    setDate(d.toLocaleDateString('fr-FR', options))
+    setDate(d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))
+
+    // Auth state
+    supabase.auth.getUser().then(({ data }) => setUser(data.user ?? null))
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+
+    return () => subscription.unsubscribe()
   }, [])
 
   return (
@@ -32,8 +43,19 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           <Link href="/" className={styles.logo}>Pris<em>me</em></Link>
         </div>
         <div className={styles.actions}>
-          <Link href="/connexion" className={styles.btnLogin}>Connexion</Link>
-          <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
+          {user === undefined ? (
+            <div className={styles.actionsPlaceholder} />
+          ) : user ? (
+            <>
+              <Link href="/compte" className={styles.btnLogin}>Mon compte</Link>
+              <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
+            </>
+          ) : (
+            <>
+              <Link href="/connexion" className={styles.btnLogin}>Connexion</Link>
+              <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
+            </>
+          )}
         </div>
       </div>
       <nav className={styles.nav}>
