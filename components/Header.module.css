@@ -1,0 +1,149 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  background: rgba(250, 250, 248, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bord);
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 64px;
+  height: 56px;
+  border-bottom: 1px solid var(--bord-l);
+}
+
+.date {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  min-width: 200px;
+}
+
+.logoWrap {
+  text-align: center;
+  flex: 1;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: var(--encre);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.logo em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 200px;
+}
+
+.btnLogin {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.btnLogin:hover { color: var(--encre); }
+
+.btnSubscribe {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blanc);
+  background: var(--encre);
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btnSubscribe:hover { background: var(--geo); }
+
+.nav {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  height: 36px;
+}
+
+.nav::-webkit-scrollbar { display: none; }
+
+.navItem {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  text-decoration: none;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-right: 1px solid var(--bord-l);
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.15s;
+}
+
+.navItem:first-child { border-left: 1px solid var(--bord-l); }
+
+.navItem::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.navItem.active::after,
+.navItem:hover::after { transform: scaleX(1); }
+
+.geo::after, .geo:hover, .geo.active { background: var(--geo); color: var(--geo); }
+.eco::after, .eco:hover, .eco.active { background: var(--eco); color: var(--eco); }
+.tech::after, .tech:hover, .tech.active { background: var(--tech); color: var(--tech); }
+.env::after, .env:hover, .env.active { background: var(--env); color: var(--env); }
+.soc::after, .soc:hover, .soc.active { background: var(--soc); color: var(--soc); }
+.culture::after, .culture:hover, .culture.active { background: var(--culture); color: var(--culture); }
+.portrait::after, .portrait:hover, .portrait.active { background: var(--portrait); color: var(--portrait); }
+.concept::after, .concept:hover, .concept.active { background: var(--concept); color: var(--concept); }
+
+.signalDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #E53E3E;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@media (max-width: 860px) {
+  .headerTop { padding: 0 20px; }
+  .date { display: none; }
+  .actions { min-width: auto; }
+}

@@ -1,0 +1,146 @@
+.heroWrap {
+  position: relative;
+  overflow: hidden;
+  max-height: 520px;
+  border-bottom: 1px solid var(--bord);
+}
+
+.heroImg {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.92);
+}
+
+.articleHeader {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 40px;
+  border-left: 3px solid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.tag {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 4px 12px;
+}
+
+.readTime {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--encre);
+  margin-bottom: 20px;
+}
+
+.description {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 0;
+  border-top: 1px solid var(--bord);
+}
+
+.bylineAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.bylineName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--encre);
+}
+
+.bylineRole {
+  font-size: 11px;
+  color: var(--gris-l);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.bylineLi {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--or);
+  text-decoration: none;
+  margin-top: 4px;
+  display: block;
+}
+
+.articleBody {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.articleBody p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 21px;
+  line-height: 1.85;
+  color: #222;
+  margin-bottom: 28px;
+}
+
+.articleBody h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--encre);
+  margin-bottom: 28px;
+  margin-top: 56px;
+}
+
+.footer {
+  background: var(--encre);
+  color: rgba(255,255,255,0.3);
+  font-size: 9px;
+  text-align: center;
+  padding: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+  .articleHeader { padding: 40px 20px 32px; border-left: none; border-top: 3px solid; }
+  .articleBody { padding: 40px 20px 60px; }
+}
