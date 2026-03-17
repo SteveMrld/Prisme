@@ -1,0 +1,108 @@
+.page {
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 64px;
+  background: var(--papier);
+  border-bottom: 1px solid var(--bord);
+}
+
+.inner {
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(100px, 16vw, 160px);
+  font-weight: 300;
+  letter-spacing: -8px;
+  color: var(--bord);
+  line-height: 1;
+  margin-bottom: -16px;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300;
+  letter-spacing: -1.5px;
+  color: var(--encre);
+  line-height: 1.1;
+}
+
+.title em { font-style: italic; color: var(--or); }
+
+.desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--gris-m);
+  line-height: 1.65;
+  max-width: 460px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btnPrimary {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--encre);
+  padding: 13px 28px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btnPrimary:hover { background: var(--geo); }
+
+.btnSecondary {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  text-decoration: none;
+  border: 1px solid var(--bord);
+  padding: 12px 20px;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btnSecondary:hover { border-color: var(--encre); color: var(--encre); }
+
+.footer {
+  background: var(--encre);
+  padding: 36px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerLogo {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: rgba(255,255,255,0.7);
+}
+
+.footerLogo em { font-style: italic; font-weight: 300; }
+
+.footerCopy { font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+
+@media (max-width: 768px) {
+  .page { padding: 60px 24px; }
+  .footer { padding: 32px 24px; }
+}

@@ -95,9 +95,26 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { category: string } }) {
   const config = CATEGORIES[params.category]
   if (!config) return {}
+  const url = `https://prisme-peach.vercel.app/${params.category}`
   return {
-    title: `${config.labelLong} — Prisme`,
+    title: config.labelLong,
     description: config.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'website',
+      url,
+      title: `${config.labelLong} — Prisme`,
+      description: config.description,
+      siteName: 'Prisme',
+      locale: 'fr_FR',
+      images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: config.labelLong }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${config.labelLong} — Prisme`,
+      description: config.description,
+      images: ['/og-default.jpg'],
+    },
   }
 }
 
