@@ -1,72 +1,45 @@
 import Header from '../components/Header'
 import styles from './page.module.css'
 import Link from 'next/link'
+import articlesData from '../lib/articles.json'
 
-// Données articles en dur — sera dynamique plus tard
+const categoryLabels: Record<string, string> = {
+  geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
+  env: 'Environnement', soc: 'Société', culture: 'Culture',
+  portrait: 'Portrait', concept: 'Concept',
+}
+
+function getArticle(slug: string) {
+  const a = articlesData.find((x: any) => x.slug === slug)!
+  return { ...a, categoryLabel: categoryLabels[a.category] || a.category }
+}
+
+const heroArticleRaw = getArticle('chine')
 const heroArticle = {
-  slug: 'chine',
+  ...heroArticleRaw,
   title: 'La Chine, stratégie<br>d\'une <em>conquête</em>',
-  description: 'En quatre décennies, Pékin a transformé une économie agraire en première puissance commerciale mondiale, et prépare maintenant la prochaine étape : devenir la première puissance technologique.',
-  image: 'https://i.ibb.co/qLtNzNZP/img-chine.jpg',
-  category: 'geo',
-  categoryLabel: 'Géopolitique',
-  readTime: '12',
   format: 'Grand format',
 }
 
-const heroAside = [
-  {
-    slug: 'afrique',
-    title: 'La France en Afrique : la fin d\'un monde',
-    excerpt: 'Coups d\'État au Sahel, retrait militaire. La France n\'a pas perdu l\'Afrique par accident.',
-    category: 'geo',
-    categoryLabel: 'Géopolitique',
-    image: 'https://i.ibb.co/twCGQsPB/img-afrique.jpg',
-  },
-  {
-    slug: 'rushkoff',
-    title: 'Quand les bâtisseurs fuient leur propre création',
-    excerpt: 'Les architectes de la Silicon Valley rêvent de bunkers. Ce n\'est pas anodin.',
-    category: 'tech',
-    categoryLabel: 'Technologie · Société',
-    image: '',
-  },
-  {
-    slug: 'ia_ecriture',
-    title: 'Ce que l\'IA ne pourra jamais écrire',
-    excerpt: 'Camus, Césaire et l\'imperfection nécessaire. Ce que la littérature contient d\'irréductible.',
-    category: 'culture',
-    categoryLabel: 'Culture · Technologie',
-    image: '',
-  },
-]
+const heroAsideSlugs = ['afrique', 'rushkoff', 'ia_ecriture']
+const heroAside = heroAsideSlugs.map(slug => {
+  const a = getArticle(slug)
+  return { ...a, excerpt: a.description }
+})
 
-const grandsFormats = [
-  {
-    slug: 'chine',
-    title: 'La Chine, stratégie d\'une <em>conquête</em>',
-    description: 'De l\'atelier du monde à l\'intelligence artificielle, de la Belt and Road aux terres rares.',
-    image: 'https://i.ibb.co/qLtNzNZP/img-chine.jpg',
-    categories: [{ label: 'Géopolitique', color: 'geo' }, { label: 'Économie', color: 'eco' }],
-    readTime: '13', sections: '8 sections · 14 sources',
-  },
-  {
-    slug: 'technosolutionnisme',
-    title: 'Les limites du <em>techno-solutionnisme</em>',
-    description: 'Theranos, Sidewalk Toronto, COMPAS, les biais algorithmiques. Ce que la croyance que la technologie résout tout produit quand elle rencontre la réalité.',
-    image: 'https://i.ibb.co/VpYfCtzB/img-technosolutionnisme.jpg',
-    categories: [{ label: 'Technologie', color: 'tech' }],
-    readTime: '16', sections: '8 sections · 18 sources',
-  },
-  {
-    slug: 'eau',
-    title: 'L\'eau : la prochaine grande <em>fracture géopolitique</em>',
-    description: 'Des glaciers himalayens aux barrages africains. Comment la maîtrise de l\'eau redessine silencieusement les rapports de puissance.',
-    image: 'https://i.ibb.co/mVBDmC2j/img-eau.png',
-    categories: [{ label: 'Environnement', color: 'env' }, { label: 'Géopolitique', color: 'geo' }],
-    readTime: '18', sections: '8 sections · 11 sources',
-  },
+const grandsFormatsSlugs = [
+  { slug: 'chine',              extraCategories: [{ label: 'Économie', color: 'eco' }], sections: '8 sections · 14 sources' },
+  { slug: 'technosolutionnisme', extraCategories: [],                                   sections: '8 sections · 18 sources' },
+  { slug: 'eau',                extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '8 sections · 11 sources' },
 ]
+const grandsFormats = grandsFormatsSlugs.map(({ slug, extraCategories, sections }) => {
+  const a = getArticle(slug)
+  return {
+    ...a,
+    categories: [{ label: a.categoryLabel, color: a.category }, ...extraCategories],
+    sections,
+  }
+})
 
 const categoryColors: Record<string, string> = {
   geo: 'var(--geo)', eco: 'var(--eco)', tech: 'var(--tech)',
