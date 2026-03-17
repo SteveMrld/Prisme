@@ -19,11 +19,499 @@
   </div>
   <div class="sw" id="sw"><div class="si" id="sc"></div></div>
   <div class="mnav">
-    <button class="mb pp" id="bPrev" onclick="go(-1)" disabled>Précédent</button>
-    <button class="mb pa" id="bPause" onclick="togglePause()">Pause</button>
-    <button class="mb nx" id="bNext" onclick="go(1)">Suivant</button>
+    <button class="mb pp" id="bPrev" onclick="go(-1)" disabled>← Précédent</button>
+    <button class="mb pa" id="bPause" onclick="togglePause()">⏸ Pause</button>
+    <button class="mb nx" id="bNext" onclick="go(1)">Suivant →</button>
   </div>
 </div>
+
+<style>
+.mzone {
+  background: var(--encre);
+  padding: 0;
+  margin: 40px 0;
+  overflow: hidden;
+}
+
+.mmeta {
+  padding: 16px 24px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mlbl {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(196,162,101,0.7);
+  white-space: nowrap;
+}
+
+.ptrack {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.pfill {
+  height: 100%;
+  background: #C4A265;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.mctr {
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.sw {
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+}
+
+.si {
+  width: 100%;
+  max-width: 580px;
+  animation: siIn 0.35s ease;
+}
+
+@keyframes siIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mnav {
+  padding: 14px 24px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mb {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.mb:hover:not(:disabled) { border-color: #C4A265; color: #C4A265; }
+.mb:disabled { opacity: 0.2; cursor: default; }
+.mb.nx { border-color: rgba(196,162,101,0.4); color: #C4A265; }
+
+/* Slide types */
+.sl-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: rgba(196,162,101,0.12);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: -8px;
+}
+
+.sl-tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(196,162,101,0.7);
+  margin-bottom: 12px;
+}
+
+.sl-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 300;
+  color: rgba(236,231,221,0.92);
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.sl-title em { font-style: italic; color: #C4A265; }
+
+.sl-body {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(14px, 2vw, 17px);
+  font-style: italic;
+  color: rgba(236,231,221,0.55);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.sl-box {
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid rgba(196,162,101,0.35);
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: clamp(12px, 1.8vw, 14px);
+  color: rgba(236,231,221,0.4);
+  line-height: 1.65;
+}
+
+.sl-box strong { color: rgba(236,231,221,0.7); font-weight: 500; }
+
+/* Token viz */
+.sl-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.tok {
+  padding: 5px 10px;
+  border: 1px solid;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.tok-a { border-color: rgba(74,126,199,0.5); color: rgba(74,126,199,0.9); background: rgba(74,126,199,0.06); }
+.tok-b { border-color: rgba(196,162,101,0.5); color: rgba(196,162,101,0.9); background: rgba(196,162,101,0.06); }
+.tok-c { border-color: rgba(45,107,74,0.5); color: rgba(45,107,74,0.9); background: rgba(45,107,74,0.08); }
+.tok-d { border-color: rgba(199,90,90,0.5); color: rgba(199,90,90,0.9); background: rgba(199,90,90,0.06); }
+
+/* Probability bars */
+.sl-probs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.prob-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+}
+
+.prob-word {
+  font-size: 12px;
+  color: rgba(236,231,221,0.6);
+  font-family: 'DM Sans', sans-serif;
+  text-align: right;
+}
+
+.prob-bar-bg {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.prob-bar-fill {
+  height: 100%;
+  background: #C4A265;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+}
+
+.prob-pct {
+  font-size: 11px;
+  color: rgba(196,162,101,0.7);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Step flow */
+.sl-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 18px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  align-items: start;
+}
+
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: rgba(196,162,101,0.5);
+  font-weight: 300;
+}
+
+.step-text {
+  font-size: 13px;
+  color: rgba(236,231,221,0.5);
+  line-height: 1.55;
+}
+
+.step-text strong { color: rgba(236,231,221,0.8); font-weight: 500; }
+
+/* Stat */
+.sl-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.sl-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 300;
+  color: #C4A265;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.sl-stat-label {
+  font-size: 15px;
+  color: rgba(236,231,221,0.45);
+  line-height: 1.4;
+  max-width: 280px;
+}
+</style>
+
+<script>
+(function() {
+  var slides = [
+    {
+      num: '01', tag: 'Point de départ',
+      title: 'L\'IA ne <em>comprend</em> pas le langage',
+      body: 'Un grand modèle de langage comme ChatGPT, Claude ou Gemini ne comprend pas ce que vous écrivez. Il prédit le prochain token le plus probable étant donné tous ceux qui précèdent. C\'est tout. C\'est suffisant pour produire des textes qui semblent intelligents.',
+      box: null
+    },
+    {
+      num: '02', tag: 'Tokenisation',
+      title: 'Le texte est découpé en <em>fragments</em>',
+      body: 'Avant tout traitement, le texte est découpé en tokens — des fragments sub-lexicaux. "Intelligence artificielle" devient trois tokens.',
+      tokens: [
+        {t:'Intel', c:'a'},{t:'lig', c:'a'},{t:'ence', c:'a'},
+        {t:'▁art', c:'b'},{t:'ific', c:'b'},{t:'ielle', c:'b'},
+        {t:'▁est', c:'c'},
+        {t:'▁une', c:'c'},
+        {t:'▁préd', c:'d'},{t:'iction', c:'d'},
+      ]
+    },
+    {
+      num: '03', tag: 'Embeddings',
+      title: 'Chaque token devient un <em>vecteur</em>',
+      body: 'Chaque token est converti en un vecteur de haute dimension — une liste de milliers de nombres. Ces nombres encodent les relations sémantiques entre les mots : "roi" et "reine" sont proches dans cet espace, "pomme" et "banane" aussi.',
+      box: '<strong>roi − homme + femme ≈ reine</strong><br>Cette arithmétique vectorielle fonctionne réellement dans les espaces d\'embedding des LLMs modernes.'
+    },
+    {
+      num: '04', tag: 'Attention',
+      title: 'Le mécanisme d\'<em>attention</em>',
+      body: 'La révolution des transformers (2017) : chaque token peut "regarder" tous les autres tokens de la séquence simultanément. Pour prédire le mot après "La tour Eiffel se trouve à", le modèle peut peser l\'importance de chaque mot précédent.',
+      box: 'Vaswani et al., <em>Attention Is All You Need</em>, Google Brain, 2017. L\'article le plus cité en IA de la dernière décennie.'
+    },
+    {
+      num: '05', tag: 'Prédiction',
+      title: 'Compléter "La capitale de la France est…"',
+      body: 'Pour chaque position, le modèle produit une distribution de probabilité sur l\'ensemble du vocabulaire. Voici les candidats pour la suite de cette phrase :',
+      probs: [
+        {word: 'Paris', pct: 94},
+        {word: 'Lyon', pct: 3},
+        {word: 'une', pct: 1},
+        {word: 'la', pct: 1},
+        {word: 'connue', pct: 1},
+      ]
+    },
+    {
+      num: '06', tag: 'Entraînement',
+      title: 'Des milliards de <em>prédictions</em> ratées',
+      body: 'Le modèle est entraîné en lui donnant des milliards de phrases et en lui demandant de prédire chaque mot suivant. À chaque erreur, les poids du réseau sont ajustés pour qu\'il se trompe moins la prochaine fois.',
+      box: 'GPT-4 : entraîné sur ~13 000 milliards de tokens. Si vous lisiez à 250 mots/minute sans jamais dormir, il vous faudrait 100 000 ans pour lire autant.'
+    },
+    {
+      num: '07', tag: 'RLHF',
+      title: 'Rendre le modèle <em>utile</em>',
+      body: 'Un modèle pré-entraîné prédit du texte statistiquement probable — pas nécessairement utile, honnête ou inoffensif. Le RLHF (Reinforcement Learning from Human Feedback) ajuste le modèle pour qu\'il réponde bien aux questions humaines.',
+      steps: [
+        {n:'1', t:'<strong>Collecte</strong> — des humains écrivent des réponses exemplaires'},
+        {n:'2', t:'<strong>Classement</strong> — des humains comparent des paires de réponses'},
+        {n:'3', t:'<strong>Reward model</strong> — un modèle apprend à prédire les préférences humaines'},
+        {n:'4', t:'<strong>Fine-tuning</strong> — le LLM est ajusté pour maximiser ce reward model'},
+      ]
+    },
+    {
+      num: '08', tag: 'Hallucinations',
+      title: 'Pourquoi l\'IA <em>invente</em>',
+      body: 'Le modèle ne sait pas ce qu\'il ne sait pas. Il génère toujours le token le plus probable — même quand la réponse correcte serait "je ne sais pas". Le résultat : des faits fabriqués présentés avec la même fluidité que des faits réels.',
+      box: '<strong>Règle pratique</strong> : un LLM est fiable pour les raisonnements et les synthèses. Il est risqué pour les faits précis, les dates, les citations, les statistiques. Toujours vérifier les affirmations factuelles spécifiques.'
+    },
+    {
+      num: '09', tag: 'Contexte',
+      title: 'La fenêtre de <em>contexte</em>',
+      body: 'Le modèle ne peut traiter qu\'une quantité limitée de texte simultanément — sa "fenêtre de contexte". Tout ce qui précède cette limite est oublié. Il n\'existe pas de mémoire persistante entre deux conversations.',
+      stat: {num: '200K', label: 'tokens de contexte pour Claude 3 — soit ~150 000 mots, un roman entier.'}
+    },
+    {
+      num: '10', tag: 'Température',
+      title: 'Contrôler la <em>créativité</em>',
+      body: 'La température est un paramètre qui contrôle à quel point le modèle choisit des tokens improbables. Température basse → réponses prévisibles et précises. Température haute → réponses créatives mais moins fiables.',
+      probs: [
+        {word: 'Paris (T=0.1)', pct: 99},
+        {word: 'Paris (T=0.7)', pct: 72},
+        {word: 'Montréal (T=0.7)', pct: 14},
+        {word: 'aléatoire (T=1.5)', pct: 35},
+      ]
+    },
+    {
+      num: '11', tag: 'Prompt',
+      title: 'Pourquoi le <em>prompt</em> change tout',
+      body: 'Le modèle n\'a pas d\'objectif propre — il continue ce que vous avez commencé. La façon dont vous formulez une demande conditionne radicalement la distribution des réponses possibles.',
+      steps: [
+        {n:'▸', t:'"Explique-moi X" → explication générale, souvent approximative'},
+        {n:'▸', t:'"Tu es expert en X. Explique à un professionnel…" → bien plus précis'},
+        {n:'▸', t:'"Raisonne étape par étape avant de répondre" → moins d\'erreurs'},
+        {n:'▸', t:'"Quelles informations te manquent pour répondre ?" → diagnostic fiable'},
+      ]
+    },
+    {
+      num: '12', tag: 'Ce qu\'il fait bien',
+      title: 'Les forces <em>réelles</em> des LLMs',
+      body: 'Ce n\'est pas parce qu\'un LLM ne "comprend" pas qu\'il n\'est pas utile. Certaines tâches correspondent exactement à ce qu\'il fait naturellement bien.',
+      steps: [
+        {n:'✓', t:'<strong>Synthèse</strong> — résumer, reformuler, condenser de l\'information'},
+        {n:'✓', t:'<strong>Génération de variantes</strong> — brainstorm, reformulations, traductions'},
+        {n:'✓', t:'<strong>Raisonnement structuré</strong> — si le contexte est fourni explicitement'},
+        {n:'✓', t:'<strong>Codage</strong> — proche de la prédiction statistique sur corpus massif'},
+      ]
+    },
+    {
+      num: '13', tag: 'Ce qu\'il fait mal',
+      title: 'Les limites <em>structurelles</em>',
+      body: 'Ces limites ne sont pas des bugs — elles sont inhérentes à l\'architecture.',
+      steps: [
+        {n:'✗', t:'<strong>Faits précis sans vérification</strong> — hallucinations non détectées'},
+        {n:'✗', t:'<strong>Maths complexes</strong> — calcule sur des tokens, pas sur des nombres'},
+        {n:'✗', t:'<strong>Cohérence longue distance</strong> — oublie ce qui dépasse le contexte'},
+        {n:'✗', t:'<strong>Mise à jour en temps réel</strong> — ne sait pas ce qui s\'est passé après sa coupure'},
+      ]
+    },
+    {
+      num: '14', tag: 'Impact',
+      title: 'Ce que ça <em>change vraiment</em>',
+      body: 'L\'IA ne remplace pas les emplois qui nécessitent du jugement humain. Elle dévalue la compétence technique pure et amplifie le jugement.',
+      stat: {num: '40%', label: 'des emplois mondiaux exposés à l\'IA générative selon le FMI, 2024 — mais "exposé" ne signifie pas "supprimé".'}
+    },
+    {
+      num: '15', tag: 'Conclusion',
+      title: 'Prédiction ≠ <em>compréhension</em><br>mais prédiction = <em>puissance</em>',
+      body: 'Un LLM est une machine à prédire le langage humain avec une précision statistique vertigineuse. Ce n\'est pas une conscience. Ce n\'est pas une intelligence générale. C\'est un outil d\'amplification — de votre pensée, de vos angles morts, de votre efficacité. L\'utiliser bien, c\'est comprendre ce qu\'il est.',
+      box: null
+    },
+  ]
+
+  var cur = 0
+  var timer = null
+  var paused = false
+  var DELAY = 8000
+
+  function render(animate) {
+    var s = slides[cur]
+    var el = document.getElementById('sc')
+    el.parentNode.replaceChild(el.cloneNode(false), el)
+    el = document.getElementById('sc')
+
+    var html = '<div class="sl-num">' + s.num + '</div>'
+    html += '<div class="sl-tag">' + s.tag + '</div>'
+    html += '<div class="sl-title">' + s.title + '</div>'
+    if (s.body) html += '<div class="sl-body">' + s.body + '</div>'
+
+    if (s.tokens) {
+      html += '<div class="sl-tokens">'
+      s.tokens.forEach(function(t) {
+        html += '<span class="tok tok-' + t.c + '">' + t.t + '</span>'
+      })
+      html += '</div>'
+    }
+
+    if (s.probs) {
+      html += '<div class="sl-probs">'
+      s.probs.forEach(function(p) {
+        html += '<div class="prob-row">'
+        html += '<div class="prob-word">' + p.word + '</div>'
+        html += '<div class="prob-bar-bg"><div class="prob-bar-fill" style="width:' + p.pct + '%"></div></div>'
+        html += '<div class="prob-pct">' + p.pct + '%</div>'
+        html += '</div>'
+      })
+      html += '</div>'
+    }
+
+    if (s.steps) {
+      html += '<div class="sl-steps">'
+      s.steps.forEach(function(st) {
+        html += '<div class="step"><div class="step-num">' + st.n + '</div><div class="step-text">' + st.t + '</div></div>'
+      })
+      html += '</div>'
+    }
+
+    if (s.stat) {
+      html += '<div class="sl-stat"><div class="sl-stat-num">' + s.stat.num + '</div><div class="sl-stat-label">' + s.stat.label + '</div></div>'
+    }
+
+    if (s.box) {
+      html += '<div class="sl-box">' + s.box + '</div>'
+    }
+
+    el.innerHTML = html
+
+    var pct = ((cur + 1) / slides.length * 100).toFixed(2)
+    document.getElementById('prog').style.width = pct + '%'
+    document.getElementById('ctr').textContent = (cur + 1) + ' / ' + slides.length
+    document.getElementById('bPrev').disabled = cur === 0
+    document.getElementById('bNext').disabled = cur === slides.length - 1
+
+    if (!paused && cur < slides.length - 1) {
+      clearTimeout(timer)
+      timer = setTimeout(function() { go(1) }, DELAY)
+    }
+  }
+
+  window.go = function(d) {
+    var next = cur + d
+    if (next < 0 || next >= slides.length) return
+    cur = next
+    render(true)
+  }
+
+  window.togglePause = function() {
+    paused = !paused
+    var btn = document.getElementById('bPause')
+    if (paused) {
+      clearTimeout(timer)
+      btn.textContent = '▶ Reprendre'
+    } else {
+      btn.textContent = '⏸ Pause'
+      if (cur < slides.length - 1) timer = setTimeout(function() { go(1) }, DELAY)
+    }
+  }
+
+  render(false)
+})()
+</script>
+
 
 <div class="tbr"></div>
 
@@ -131,12 +619,16 @@ function copyLink(btn){navigator.clipboard.writeText(window.location.href).then(
     </div>
   </div>
 </div>
-    <div class="art-nav-title">Quand les bâtisseurs fuient leur propre création</div>
-    <div class="art-nav-tag">Technologie · Société</div>
+
+<div class="anav">
+  <a href="/articles/rushkoff" class="anavitem">
+    <div class="anavdir">Précédent</div>
+    <div class="anavtitle">Quand les bâtisseurs fuient leur propre création</div>
+    <div class="anavtag">Technologie</div>
   </a>
-  <a href="/articles/ia_ecriture" class="art-nav-item" style="text-align:right">
-    <div class="art-nav-dir">Article suivant</div>
-    <div class="art-nav-title">Ce que l'IA ne pourra jamais écrire</div>
-    <div class="art-nav-tag">Culture · Technologie</div>
+  <a href="/articles/ia_ecriture" class="anavitem" style="text-align:right">
+    <div class="anavdir">Suivant</div>
+    <div class="anavtitle">Ce que l'IA ne pourra jamais écrire</div>
+    <div class="anavtag">Culture</div>
   </a>
 </div>
