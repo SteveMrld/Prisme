@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const article = articlesData.find((a: any) => a.slug === params.slug)
   if (!article) return {}
   return {
-    title: `${article.title} — Prisme`,
+    title: `${article.title.replace(/<[^>]+>/g, '').replace(/\n/g, ' ')} — Prisme`,
     description: article.description,
   }
 }
@@ -27,7 +27,6 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   const article = articlesData.find((a: any) => a.slug === params.slug)
   if (!article) notFound()
 
-  // Lire le contenu HTML
   const contentPath = path.join(process.cwd(), 'lib', 'content', `${params.slug}.html`)
   let content = ''
   try {
@@ -35,6 +34,12 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   } catch {
     content = '<p>Contenu à venir.</p>'
   }
+
+  // Détecte si le HTML embarque son propre en-tête
+  const hasInternalHeader =
+    content.includes('class="atop"') ||
+    content.includes('class="article-header"') ||
+    content.includes('class="essentiel"')
 
   return (
     <ArticleLayout
@@ -44,6 +49,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       category={article.category}
       categoryLabel={categoryLabels[article.category] || 'Article'}
       readTime={article.readTime}
+      hasInternalHeader={hasInternalHeader}
     >
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </ArticleLayout>

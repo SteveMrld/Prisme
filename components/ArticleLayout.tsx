@@ -8,12 +8,8 @@ interface ArticleLayoutProps {
   category: string
   categoryLabel: string
   readTime: string
-  author?: {
-    name: string
-    role: string
-    avatar: string
-    linkedin?: string
-  }
+  /** Si true, le HTML injecté contient déjà son propre en-tête (atop / article-header / essentiel) */
+  hasInternalHeader?: boolean
   children: React.ReactNode
 }
 
@@ -25,7 +21,7 @@ const categoryColors: Record<string, string> = {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, author, children
+  readTime, hasInternalHeader = false, children
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
 
@@ -33,38 +29,27 @@ export default function ArticleLayout({
     <>
       <Header activeNav={category} />
 
-      {/* IMAGE HERO */}
-      {image && (
+      {/* IMAGE HERO — uniquement si l'article n'a pas son propre art-hero-wrap interne */}
+      {image && !hasInternalHeader && (
         <div className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg} />
         </div>
       )}
 
-      {/* EN-TÊTE */}
-      <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
-        <div className={styles.eyebrow}>
-          <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
-          <span className={styles.readTime}>{readTime} min</span>
-        </div>
-        <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
-        <p className={styles.description}>{description}</p>
-
-        {author && (
-          <div className={styles.byline}>
-            <img src={author.avatar} alt={author.name} className={styles.bylineAvatar} />
-            <div>
-              <div className={styles.bylineName}>{author.name}</div>
-              <div className={styles.bylineRole}>{author.role}</div>
-              {author.linkedin && (
-                <a href={author.linkedin} className={styles.bylineLi} target="_blank" rel="noopener">LinkedIn →</a>
-              )}
-            </div>
+      {/* EN-TÊTE — uniquement si le HTML n'en a pas un lui-même */}
+      {!hasInternalHeader && (
+        <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
+          <div className={styles.eyebrow}>
+            <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
+            <span className={styles.readTime}>{readTime} min</span>
           </div>
-        )}
-      </div>
+          <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
+          <p className={styles.description}>{description}</p>
+        </div>
+      )}
 
       {/* CORPS */}
-      <div className={styles.articleBody}>
+      <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         {children}
       </div>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import './article-content.css'
 
 export const metadata: Metadata = {
   title: 'Prisme — Voir autrement',

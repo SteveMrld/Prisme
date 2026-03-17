@@ -112,6 +112,12 @@
   padding: 56px 24px 80px;
 }
 
+/* Pour les articles avec header interne — on laisse le HTML gérer ses propres marges */
+.articleBodyFull {
+  width: 100%;
+  padding: 0;
+}
+
 .articleBody p {
   font-family: 'Cormorant Garamond', serif;
   font-size: 21px;
