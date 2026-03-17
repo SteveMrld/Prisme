@@ -3,6 +3,12 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
 
+function todayFr() {
+  return new Date().toLocaleDateString('fr-FR', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  })
+}
+
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
@@ -69,7 +75,7 @@ export default function HomePage() {
             <span className={styles.liveDot}></span>
             LIVE
           </span>
-          <span className={styles.tickerDate}>17 mars 2026</span>
+          <span className={styles.tickerDate}>{todayFr()}</span>
         </div>
         <div className={styles.tickerWrap}>
           <div className={styles.tickerTrack}>
