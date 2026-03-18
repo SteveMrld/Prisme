@@ -2,6 +2,7 @@ import Header from '../components/Header'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
+import { FadeSection, FadeCard, StaggerGrid, StaggerItem } from './HomeClient'
 
 function todayFr() {
   return new Date().toLocaleDateString('fr-FR', {
@@ -92,6 +93,7 @@ export default function HomePage() {
       </div>
 
       {/* GRAND ENTRETIEN */}
+      <FadeSection>
       <section className={styles.ge}>
         <div className={styles.geContent}>
           <div className={styles.geEyebrow}>
@@ -126,8 +128,10 @@ export default function HomePage() {
           />
         </div>
       </section>
+      </FadeSection>
 
       {/* HERO */}
+      <FadeSection delay={0.1}>
       <section className={styles.hero}>
         <Link href={`/articles/${heroArticle.slug}`} className={styles.heroMain}>
           <div className={styles.heroImgWrap}>
@@ -165,16 +169,19 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      </FadeSection>
 
       {/* GRANDS FORMATS */}
+      <FadeSection delay={0.05}>
       <section className={styles.gfSection}>
         <div className={styles.gfHeader}>
           <span className={styles.gfLabel}>Grands formats</span>
           <span className={styles.gfSub}>Lectures de fond · 12–18 min</span>
         </div>
-        <div className={styles.gfGrid}>
+        <StaggerGrid className={styles.gfGrid}>
           {grandsFormats.map((article) => (
-            <Link key={article.slug} href={`/articles/${article.slug}`} className={`${styles.gfCard} ${styles[article.categories[0].color]}`}>
+            <StaggerItem key={article.slug}>
+            <Link href={`/articles/${article.slug}`} className={`${styles.gfCard} ${styles[article.categories[0].color]}`}>
               {article.image && (
                 <div className={styles.gfImgWrap}>
                   <img src={article.image} alt={article.title} className={styles.gfImg} />
@@ -198,9 +205,11 @@ export default function HomePage() {
                 </span>
               </div>
             </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGrid>
       </section>
+      </FadeSection>
 
       <footer className={styles.footer}>
         <div className={styles.footerLogo}>Pris<em>me</em></div>
