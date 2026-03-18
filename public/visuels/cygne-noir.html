@@ -148,6 +148,33 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   color:rgba(196,162,101,0.22);
 }
 
+/* ── ANIMATIONS TITRE ── */
+.t-word{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+             transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.t-word.in{opacity:1;transform:translateY(0)}
+
+/* ── TRANSITIONS SLIDES ── */
+/* Slides événements entrent par le bas */
+.slide-ev{transition:opacity 700ms ease, transform 700ms cubic-bezier(0.22,1,0.36,1) !important}
+.slide-ev:not(.visible){transform:translateY(30px)}
+.slide-ev.visible{transform:translateY(0)}
+
+/* Slides cygne : zoom doux */
+#slide-1,#slide-2{transition:opacity 900ms ease, transform 900ms ease !important}
+#slide-1:not(.visible),#slide-2:not(.visible){transform:scale(0.97)}
+#slide-1.visible,#slide-2.visible{transform:scale(1)}
+
+/* Slide finale : fondu pur, plus lent */
+#slide-11{transition:opacity 1200ms ease !important}
+
+/* Slide packshot : pur */
+#slide-12{transition:opacity 1000ms ease !important}
+
 .back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;z-index:200;transition:color .2s}
 .back:hover{color:#C4A265}
 
@@ -216,7 +243,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="ev-tag">Finance · New York · 19 octobre</span>
     <div class="ev-title">Black Monday</div>
     <p class="ev-body">Le Dow Jones s'effondre de 22,6% en une seule séance. La plus grande chute boursière de l'histoire en un jour. Aucun modèle ne l'avait prédit. La cause reste débattue 40 ans après.</p>
-    <span class="ev-num" style="color:#E8C84A">−22,6%</span>
+    <span class="ev-num" style="color:#E8C84A"><span class="counter" data-target="-22.6" data-suffix="%" data-prefix="−" data-decimals="1">−22,6%</span></span>
     <span class="ev-unit">en une seule journée · record historique</span>
   </div>
   <div class="ev-right">
@@ -248,7 +275,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="ev-tag">Finance · Systémique · Wall Street</span>
     <div class="ev-title">LTCM — Quand les génies perdent</div>
     <p class="ev-body">Deux prix Nobel d'économie. Un fonds "infaillible" selon leurs propres modèles mathématiques. Il a failli emporter l'ensemble du système financier mondial. La Fed a organisé un sauvetage en une nuit.</p>
-    <span class="ev-num" style="color:#E87A4A">90%</span>
+    <span class="ev-num" style="color:#E87A4A"><span class="counter" data-target="90" data-suffix="%" data-prefix="">90%</span></span>
     <span class="ev-unit">du capital perdu · 4,6 Mds$ évaporés en 4 mois</span>
   </div>
   <div class="ev-right">
@@ -276,7 +303,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="ev-tag">Géopolitique · Terrorisme · New York</span>
     <div class="ev-title">11 Septembre</div>
     <p class="ev-body">L'impensable. Deux tours, quatre avions, 3 000 morts. La CIA avait des signaux. Les enquêteurs avaient des suspects. Personne ne pouvait imaginer cette configuration précise. Le monde d'avant et d'après sont deux mondes différents.</p>
-    <span class="ev-num" style="color:#E85A5A">2 Tn$</span>
+    <span class="ev-num" style="color:#E85A5A"><span class="counter" data-target="2" data-suffix=" Tn$" data-prefix="">2 Tn$</span></span>
     <span class="ev-unit">coût économique total · guerres incluses</span>
   </div>
   <div class="ev-right">
@@ -313,7 +340,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="ev-tag">Finance · Mondial · Lehman Brothers</span>
     <div class="ev-title">La crise des subprimes</div>
     <p class="ev-body">Des prêts titrisés, notés AAA, vendus à travers la planète. Quand la bulle éclate, le système bancaire vacille. Les agences de notation n'avaient rien vu. Un modèle mathématique censé supprimer le risque l'avait concentré.</p>
-    <span class="ev-num" style="color:#E85A5A">−57%</span>
+    <span class="ev-num" style="color:#E85A5A"><span class="counter" data-target="-57" data-suffix="%" data-prefix="−" data-decimals="0">−57%</span></span>
     <span class="ev-unit">S&amp;P 500 entre octobre 2007 et mars 2009</span>
   </div>
   <div class="ev-right">
@@ -344,7 +371,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="ev-tag">Économie · Planétaire · 2020</span>
     <div class="ev-title">Covid-19 — L'arrêt du monde</div>
     <p class="ev-body">Des pandémies étaient prévues — mais pas comme ça. En 12 semaines, l'économie mondiale s'arrête. Le PIB mondial recule de 3,5% en 2020 — la pire contraction depuis la Seconde Guerre mondiale. 100 millions de personnes replongent dans l'extrême pauvreté.</p>
-    <span class="ev-num" style="color:#E8C84A">−3,5%</span>
+    <span class="ev-num" style="color:#E8C84A"><span class="counter" data-target="-3.5" data-suffix="%" data-prefix="−" data-decimals="1">−3,5%</span></span>
     <span class="ev-unit">PIB mondial 2020 · pire depuis 1945</span>
   </div>
   <div class="ev-right">
@@ -368,7 +395,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="ev-tag">Technologie · Semi-conducteurs · 2012–2024</span>
     <div class="ev-title">Nvidia — La carte graphique<br>qui a changé le monde</div>
     <p class="ev-body">En 2012, Nvidia vend des cartes graphiques pour joueurs. Valorisation : 4 milliards. Personne ne prédit que CUDA — son langage de programmation GPU — deviendra l'infrastructure mondiale de l'intelligence artificielle. En 2024 : 3 300 milliards de dollars.</p>
-    <span class="ev-num" style="color:#C4A265">×825</span>
+    <span class="ev-num" style="color:#C4A265"><span class="counter" data-target="825" data-suffix="" data-prefix="×" data-decimals="0">×825</span></span>
     <span class="ev-unit">en capitalisation boursière · 2012 → 2024</span>
   </div>
   <div class="ev-right">
@@ -602,10 +629,52 @@ function animSlide(idx){
   if(mw&&mb){mw.style.opacity="0";mb.style.opacity=idx===2?"0.7":"0";}
 }
 
+// ── COMPTEUR ANIMÉ ──
+function animateCounter(el, duration){
+  var target=parseFloat(el.dataset.target)||0;
+  var prefix=el.dataset.prefix||"";
+  var suffix=el.dataset.suffix||"";
+  var decimals=parseInt(el.dataset.decimals)||0;
+  var abs=Math.abs(target);
+  var start=0, startTime=null;
+  function step(ts){
+    if(!startTime)startTime=ts;
+    var progress=Math.min((ts-startTime)/duration,1);
+    var ease=1-Math.pow(1-progress,4); // easeOutQuart
+    var val=start+(abs-start)*ease;
+    el.textContent=prefix+val.toFixed(decimals).replace(".",",")+suffix;
+    if(progress<1)requestAnimationFrame(step);
+    else el.textContent=prefix+abs.toFixed(decimals).replace(".",",")+suffix;
+  }
+  requestAnimationFrame(step);
+}
+
 function showSlide(idx){
   document.querySelectorAll(".slide").forEach(function(s,i){i===idx?s.classList.add("visible"):s.classList.remove("visible")});
   animSlide(idx);
   document.querySelectorAll(".dot").forEach(function(d,i){d.classList.toggle("on",i===idx)});
+
+  // ── Titre animé (slide 0)
+  if(idx===0){
+    document.getElementById("t-label").style.opacity="1";
+    document.getElementById("t-label").style.transform="translateY(0)";
+    setTimeout(function(){
+      document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")});
+    },80);
+  } else {
+    // Reset titre pour la prochaine fois
+    document.getElementById("t-label").style.opacity="0";
+    document.getElementById("t-label").style.transform="translateY(12px)";
+    document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")});
+  }
+
+  // ── Compteurs animés
+  var counters=document.getElementById("slide-"+idx);
+  if(counters){
+    counters.querySelectorAll(".counter").forEach(function(el){
+      setTimeout(function(){animateCounter(el,1600)},600);
+    });
+  }
   startProgressAnim();
 }
 
