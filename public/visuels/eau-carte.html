@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte des bassins transfrontaliers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --or:#C4A265; --bg:#0A1628; --geo:#1A3E6B; --env:#2D6B4A;
+  --danger:#7A2D2D; --text:rgba(236,231,221,0.9);
+}
+html,body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text); height:100%; -webkit-font-smoothing:antialiased; }
+
+.wrap { display:flex; flex-direction:column; min-height:100vh; }
+
+/* HEADER */
+.hd { padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between; }
+.hd-tag { font-size:8px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--or); border:1px solid rgba(196,162,101,0.4); padding:4px 12px; }
+.hd-title { font-family:'Playfair Display',serif; font-size:15px; font-style:italic; color:rgba(236,231,221,0.6); }
+
+/* CHAPITRES */
+.chapters { display:flex; border-bottom:1px solid rgba(255,255,255,0.06); }
+.ch { flex:1; padding:12px 8px; text-align:center; cursor:pointer; font-size:8px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); border-bottom:2px solid transparent; transition:all 0.2s; }
+.ch:hover { color:rgba(255,255,255,0.6); }
+.ch.active { color:var(--or); border-bottom-color:var(--or); }
+
+/* CONTENT */
+.content { flex:1; padding:24px; display:flex; flex-direction:column; gap:20px; }
+
+/* CARTE SVG */
+.map-wrap { position:relative; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:2px; overflow:hidden; }
+
+.map-svg { width:100%; height:auto; display:block; }
+
+/* Points sur la carte */
+.map-point { cursor:pointer; transition:r 0.2s; }
+.map-point:hover circle { r:8; }
+
+/* BASSINS */
+.bassin { display:none; flex-direction:column; gap:16px; animation:fadeIn 0.3s ease; }
+.bassin.active { display:flex; }
+
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+.bassin-header { display:flex; align-items:center; gap:16px; }
+.bassin-icon { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.bassin-name { font-family:'Playfair Display',serif; font-size:clamp(18px,3vw,24px); font-weight:300; color:var(--text); }
+.bassin-sub { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:4px; }
+
+.bassin-desc { font-family:'Playfair Display',serif; font-size:clamp(14px,2vw,17px); font-style:italic; color:rgba(236,231,221,0.55); line-height:1.7; }
+
+/* TENSION BAR */
+.tensions { display:flex; flex-direction:column; gap:10px; }
+.tension-row { display:flex; align-items:center; gap:12px; }
+.tension-label { font-size:9px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.4); width:80px; flex-shrink:0; }
+.tension-bar { flex:1; height:4px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden; }
+.tension-fill { height:100%; border-radius:2px; transition:width 0.8s ease; }
+.tension-val { font-size:10px; color:var(--or); width:30px; text-align:right; flex-shrink:0; }
+
+/* PAYS */
+.pays-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.pays-item { display:flex; align-items:center; gap:8px; padding:10px 12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); }
+.pays-flag { font-size:16px; }
+.pays-info { display:flex; flex-direction:column; gap:2px; }
+.pays-name { font-size:12px; font-weight:500; color:var(--text); }
+.pays-role { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.pays-amont { color:var(--or); }
+.pays-aval { color:#7A9EC7; }
+
+/* STAT INLINE */
+.stat-row { display:flex; gap:1px; background:rgba(255,255,255,0.05); }
+.stat-box { flex:1; padding:16px 14px; background:var(--bg); }
+.stat-num { font-family:'Playfair Display',serif; font-size:28px; font-weight:300; color:var(--or); letter-spacing:-1px; line-height:1; margin-bottom:6px; }
+.stat-lbl { font-size:11px; color:rgba(255,255,255,0.3); line-height:1.4; }
+
+/* QUOTE */
+.quote { border-left:2px solid rgba(196,162,101,0.4); padding:12px 18px; }
+.quote p { font-family:'Playfair Display',serif; font-size:15px; font-style:italic; color:rgba(236,231,221,0.5); line-height:1.6; }
+.quote cite { font-size:9px; color:rgba(196,162,101,0.6); letter-spacing:1.5px; text-transform:uppercase; margin-top:8px; display:block; font-style:normal; }
+
+/* NAV */
+.nav { padding:14px 24px; border-top:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; }
+.nav-btn { font-size:8px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:9px 16px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:rgba(255,255,255,0.4); cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.2s; }
+.nav-btn:hover:not(:disabled) { border-color:var(--or); color:var(--or); }
+.nav-btn:disabled { opacity:0.2; cursor:default; }
+.nav-btn.next { border-color:rgba(196,162,101,0.4); color:var(--or); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd">
+    <span class="hd-tag">Visualisation · Eau</span>
+    <span class="hd-title">Carte des bassins transfrontaliers</span>
+  </div>
+
+  <div class="chapters">
+    <div class="ch active" onclick="showCh(0)">Amont / Aval</div>
+    <div class="ch" onclick="showCh(1)">Himalaya</div>
+    <div class="ch" onclick="showCh(2)">Nil & Afrique</div>
+    <div class="ch" onclick="showCh(3)">Guerre invisible</div>
+  </div>
+
+  <div class="content">
+
+    <!-- CH 0: Amont/Aval -->
+    <div class="bassin active" id="ch0">
+      <div class="bassin-header">
+        <div class="bassin-icon" style="background:rgba(26,62,107,0.3)">🌊</div>
+        <div>
+          <div class="bassin-name">La logique amont / aval</div>
+          <div class="bassin-sub">310 bassins · 153 États · tension structurelle</div>
+        </div>
+      </div>
+
+      <div class="bassin-desc">
+        L'État situé en amont contrôle le robinet de l'État situé en aval. Ce rapport de force géographique irréductible est la source des principales tensions hydriques mondiales.
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">310</div>
+          <div class="stat-lbl">bassins fluviaux transfrontaliers dans le monde</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">153</div>
+          <div class="stat-lbl">États impliqués dans au moins un bassin transfrontalier</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">40%</div>
+          <div class="stat-lbl">de la population mondiale vit dans un bassin partagé</div>
+        </div>
+      </div>
+
+      <div class="tensions">
+        <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px">Niveau de tension par région</div>
+        <div class="tension-row">
+          <div class="tension-label">Moyen-Orient</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:92%;background:#7A2D2D"></div></div>
+          <div class="tension-val">92%</div>
+        </div>
+        <div class="tension-row">
+          <div class="tension-label">Asie du Sud</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:85%;background:#B86A1A"></div></div>
+          <div class="tension-val">85%</div>
+        </div>
+        <div class="tension-row">
+          <div class="tension-label">Afrique Est</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:78%;background:#B86A1A"></div></div>
+          <div class="tension-val">78%</div>
+        </div>
+        <div class="tension-row">
+          <div class="tension-label">Asie SE</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:70%;background:var(--or)"></div></div>
+          <div class="tension-val">70%</div>
+        </div>
+        <div class="tension-row">
+          <div class="tension-label">Europe</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:35%;background:var(--env)"></div></div>
+          <div class="tension-val">35%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 1: Himalaya -->
+    <div class="bassin" id="ch1">
+      <div class="bassin-header">
+        <div class="bassin-icon" style="background:rgba(26,62,107,0.3)">🏔️</div>
+        <div>
+          <div class="bassin-name">L'empire hydraulique chinois</div>
+          <div class="bassin-sub">Plateau tibétain · 2 milliards de personnes en aval</div>
+        </div>
+      </div>
+
+      <div class="bassin-desc">
+        La Chine contrôle le plateau tibétain depuis 1951. De ce plateau partent l'Indus, le Brahmapoutre, le Mékong, le Yangtsé et le Fleuve Jaune — les sources d'eau de près de 2 milliards de personnes.
+      </div>
+
+      <div class="pays-grid">
+        <div class="pays-item">
+          <span class="pays-flag">🇨🇳</span>
+          <div class="pays-info">
+            <span class="pays-name">Chine</span>
+            <span class="pays-role pays-amont">Amont — contrôle total</span>
+          </div>
+        </div>
+        <div class="pays-item">
+          <span class="pays-flag">🇮🇳</span>
+          <div class="pays-info">
+            <span class="pays-name">Inde</span>
+            <span class="pays-role pays-aval">Aval — 1,4 Mds dépendants</span>
+          </div>
+        </div>
+        <div class="pays-item">
+          <span class="pays-flag">🇻🇳</span>
+          <div class="pays-info">
+            <span class="pays-name">Vietnam / Laos</span>
+            <span class="pays-role pays-aval">Mékong — débit manipulé</span>
+          </div>
+        </div>
+        <div class="pays-item">
+          <span class="pays-flag">🇧🇩</span>
+          <div class="pays-info">
+            <span class="pays-name">Bangladesh</span>
+            <span class="pays-role pays-aval">Brahmapoutre — extrême vulnérabilité</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote">
+        <p>Entre 2019 et 2020, une sécheresse sévère en Thaïlande et au Cambodge a coïncidé avec des niveaux anormalement élevés dans les retenues chinoises.</p>
+        <cite>Stimson Center, Mekong Dam Monitor, 2020</cite>
+      </div>
+    </div>
+
+    <!-- CH 2: Nil -->
+    <div class="bassin" id="ch2">
+      <div class="bassin-header">
+        <div class="bassin-icon" style="background:rgba(45,107,74,0.3)">🌍</div>
+        <div>
+          <div class="bassin-name">Le Nil — ligne rouge égyptienne</div>
+          <div class="bassin-sub">GERD · Éthiopie vs Égypte vs Soudan</div>
+        </div>
+      </div>
+
+      <div class="bassin-desc">
+        Le Grand Barrage de la Renaissance éthiopienne (GERD) est la plus grande centrale hydroélectrique d'Afrique. L'Égypte, dont 90% de l'eau vient du Nil, y voit une menace existentielle.
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">90%</div>
+          <div class="stat-lbl">de l'eau de l'Égypte provient du Nil</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">107M</div>
+          <div class="stat-lbl">d'Égyptiens dépendent du Nil dans un pays à 95% désertique</div>
+        </div>
+      </div>
+
+      <div class="pays-grid">
+        <div class="pays-item">
+          <span class="pays-flag">🇪🇹</span>
+          <div class="pays-info">
+            <span class="pays-name">Éthiopie</span>
+            <span class="pays-role pays-amont">Amont · GERD · souveraineté</span>
+          </div>
+        </div>
+        <div class="pays-item">
+          <span class="pays-flag">🇪🇬</span>
+          <div class="pays-info">
+            <span class="pays-name">Égypte</span>
+            <span class="pays-role pays-aval">Aval · ligne rouge déclarée</span>
+          </div>
+        </div>
+        <div class="pays-item">
+          <span class="pays-flag">🇸🇩</span>
+          <div class="pays-info">
+            <span class="pays-name">Soudan</span>
+            <span class="pays-role" style="color:var(--or)">Position ambiguë</span>
+          </div>
+        </div>
+        <div class="pays-item">
+          <span class="pays-flag">🇹🇩</span>
+          <div class="pays-info">
+            <span class="pays-name">Lac Tchad</span>
+            <span class="pays-role" style="color:#7A2D2D">−90% surface en 50 ans</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CH 3: Guerre invisible -->
+    <div class="bassin" id="ch3">
+      <div class="bassin-header">
+        <div class="bassin-icon" style="background:rgba(122,45,45,0.3)">⚔️</div>
+        <div>
+          <div class="bassin-name">La guerre invisible de l'eau</div>
+          <div class="bassin-sub">400+ conflits documentés · barrages comme armes</div>
+        </div>
+      </div>
+
+      <div class="bassin-desc">
+        Les conflits hydriques ne ressemblent pas aux guerres classiques. Sabotage d'infrastructures, manipulation des débits, diplomatie coercitive, destruction de barrages. Une guerre sans déclaration.
+      </div>
+
+      <div class="tensions">
+        <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px">Formes de conflits hydriques</div>
+        <div class="tension-row">
+          <div class="tension-label">Manipulation débit</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:88%;background:#7A2D2D"></div></div>
+          <div class="tension-val">↑</div>
+        </div>
+        <div class="tension-row">
+          <div class="tension-label">Sabotage infra</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:72%;background:#B86A1A"></div></div>
+          <div class="tension-val">↑</div>
+        </div>
+        <div class="tension-row">
+          <div class="tension-label">Pression diplo</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:95%;background:#7A2D2D"></div></div>
+          <div class="tension-val">↑</div>
+        </div>
+        <div class="tension-row">
+          <div class="tension-label">Guerre ouverte</div>
+          <div class="tension-bar"><div class="tension-fill" style="width:15%;background:var(--or)"></div></div>
+          <div class="tension-val">rare</div>
+        </div>
+      </div>
+
+      <div class="quote">
+        <p>Le barrage de Kakhovka sur le Dniepr a été détruit en 2023, privant des centaines de milliers de personnes d'eau potable. L'eau est devenue une arme de guerre explicite.</p>
+        <cite>Pacific Institute, Water Conflict Chronology, 2024</cite>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="btnPrev" onclick="prev()" disabled>← Précédent</button>
+    <button class="nav-btn next" id="btnNext" onclick="next()">Suivant →</button>
+  </div>
+</div>
+
+<script>
+var cur = 0;
+var total = 4;
+
+function showCh(i) {
+  cur = i;
+  document.querySelectorAll('.bassin').forEach(function(el, j) {
+    el.classList.toggle('active', j === i);
+  });
+  document.querySelectorAll('.ch').forEach(function(el, j) {
+    el.classList.toggle('active', j === i);
+  });
+  document.getElementById('btnPrev').disabled = i === 0;
+  document.getElementById('btnNext').disabled = i === total - 1;
+  document.getElementById('btnNext').textContent = i === total - 1 ? 'Fin' : 'Suivant →';
+}
+
+function next() { if (cur < total - 1) showCh(cur + 1); }
+function prev() { if (cur > 0) showCh(cur - 1); }
+</script>
+</body>
+</html>

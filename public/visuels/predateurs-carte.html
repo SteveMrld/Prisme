@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Monde des Prédateurs — Carte</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root { --or:#C4A265; --usa:#1A3E6B; --rus:#7A2D2D; --chn:#B86A1A; --bg:#080C14; }
+html,body { background:var(--bg); font-family:'DM Sans',sans-serif; color:rgba(236,231,221,0.9); height:100%; -webkit-font-smoothing:antialiased; }
+
+.wrap { display:flex; flex-direction:column; min-height:100vh; }
+
+.hd { padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.hd-tag { font-size:8px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--or); border:1px solid rgba(196,162,101,0.35); padding:4px 12px; }
+.hd-sub { font-family:'Playfair Display',serif; font-size:14px; font-style:italic; color:rgba(236,231,221,0.4); }
+
+/* CARTE MONDE SVG STYLISÉE */
+.globe-wrap { position:relative; padding:20px 24px 0; }
+
+.globe { width:100%; max-height:220px; display:block; }
+
+/* ZONES colorées sur la carte */
+.zone-usa { fill:rgba(26,62,107,0.6); }
+.zone-rus { fill:rgba(122,45,45,0.6); }
+.zone-chn { fill:rgba(184,106,26,0.6); }
+.zone-neutre { fill:rgba(255,255,255,0.04); }
+.zone-mer { fill:rgba(10,20,40,0.8); }
+
+/* LÉGENDE */
+.legend { display:flex; gap:16px; padding:12px 24px; border-bottom:1px solid rgba(255,255,255,0.06); flex-wrap:wrap; }
+.legend-item { display:flex; align-items:center; gap:7px; font-size:9px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
+.legend-dot { width:10px; height:10px; border-radius:1px; flex-shrink:0; }
+
+/* ONGLETS */
+.tabs { display:flex; gap:1px; background:rgba(255,255,255,0.04); }
+.tab { flex:1; padding:12px 8px; text-align:center; cursor:pointer; font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); border-bottom:2px solid transparent; transition:all 0.2s; }
+.tab.usa.active { color:#4A7EC7; border-color:#4A7EC7; background:rgba(74,126,199,0.06); }
+.tab.rus.active { color:#C75A5A; border-color:#C75A5A; background:rgba(199,90,90,0.06); }
+.tab.chn.active { color:#D4882A; border-color:#D4882A; background:rgba(212,136,42,0.06); }
+
+/* EMPIRE PANEL */
+.empire { display:none; flex-direction:column; gap:14px; padding:20px 24px; animation:fadeIn 0.3s ease; }
+.empire.active { display:flex; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+.empire-name { font-family:'Playfair Display',serif; font-size:clamp(22px,4vw,32px); font-weight:300; letter-spacing:-1px; line-height:1; }
+.empire-name.usa { color:#4A7EC7; }
+.empire-name.rus { color:#C75A5A; }
+.empire-name.chn { color:#D4882A; }
+
+.empire-doctrine { font-size:8px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-top:4px; }
+
+.empire-desc { font-family:'Playfair Display',serif; font-size:clamp(13px,1.8vw,16px); font-style:italic; color:rgba(236,231,221,0.5); line-height:1.65; }
+
+/* AXES */
+.axes { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.05); }
+.axe { background:rgba(255,255,255,0.02); padding:14px 16px; }
+.axe-label { font-size:7px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:6px; }
+.axe-value { font-family:'Playfair Display',serif; font-size:14px; color:rgba(236,231,221,0.8); line-height:1.2; }
+.axe-bar { height:3px; background:rgba(255,255,255,0.06); border-radius:2px; overflow:hidden; margin-top:8px; }
+.axe-fill { height:100%; border-radius:2px; }
+
+/* ZONES */
+.zones { display:flex; flex-direction:column; gap:6px; }
+.zones-title { font-size:7px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); }
+.zone-item { display:flex; gap:10px; align-items:flex-start; }
+.zone-bullet { width:5px; height:5px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+.zone-text { font-size:12px; color:rgba(236,231,221,0.45); line-height:1.5; }
+.zone-text strong { color:rgba(236,231,221,0.75); font-weight:500; }
+
+.quote { border-left:2px solid rgba(196,162,101,0.25); padding:10px 16px; }
+.quote p { font-family:'Playfair Display',serif; font-size:13px; font-style:italic; color:rgba(236,231,221,0.4); line-height:1.55; }
+.quote cite { font-size:8px; color:rgba(196,162,101,0.5); letter-spacing:1.5px; text-transform:uppercase; margin-top:6px; display:block; font-style:normal; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd">
+    <span class="hd-tag">Carte · Géopolitique</span>
+    <span class="hd-sub">Le Monde des Prédateurs — 2026</span>
+  </div>
+
+  <!-- CARTE MONDE STYLISÉE -->
+  <div class="globe-wrap">
+    <svg class="globe" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+      <!-- Fond mer -->
+      <rect width="800" height="360" fill="#0D1825"/>
+      
+      <!-- Grille géographique -->
+      <line x1="0" y1="180" x2="800" y2="180" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <line x1="400" y1="0" x2="400" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      
+      <!-- ZONES D'INFLUENCE USA (bleu) -->
+      <!-- Amérique du Nord -->
+      <ellipse cx="155" cy="140" rx="100" ry="70" fill="rgba(26,62,107,0.45)" />
+      <!-- Amérique du Sud -->
+      <ellipse cx="185" cy="250" rx="60" ry="75" fill="rgba(26,62,107,0.25)" />
+      <!-- Europe Ouest -->
+      <ellipse cx="400" cy="120" rx="55" ry="45" fill="rgba(26,62,107,0.25)" />
+      <!-- Zone Pacifique -->
+      <ellipse cx="680" cy="190" rx="40" ry="30" fill="rgba(26,62,107,0.2)" />
+
+      <!-- ZONES RUSSIE (rouge) -->
+      <!-- Russie/Europe Est -->
+      <ellipse cx="500" cy="100" rx="90" ry="55" fill="rgba(122,45,45,0.45)" />
+      <!-- Sahel/Afrique -->
+      <ellipse cx="415" cy="235" rx="40" ry="35" fill="rgba(122,45,45,0.3)" />
+
+      <!-- ZONES CHINE (orange) -->
+      <!-- Chine/Asie -->
+      <ellipse cx="610" cy="155" rx="80" ry="55" fill="rgba(184,106,26,0.45)" />
+      <!-- Afrique (BRI) -->
+      <ellipse cx="455" cy="255" rx="50" ry="60" fill="rgba(184,106,26,0.25)" />
+      <!-- Asie Centrale -->
+      <ellipse cx="545" cy="160" rx="45" ry="30" fill="rgba(184,106,26,0.2)" />
+
+      <!-- Contours continents schématiques -->
+      <!-- Amérique Nord -->
+      <path d="M60,60 L200,50 L240,100 L220,180 L180,220 L100,200 L60,150 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <!-- Amérique Sud -->
+      <path d="M140,220 L220,215 L235,300 L190,340 L140,310 L125,260 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <!-- Europe -->
+      <path d="M355,60 L440,55 L460,90 L440,140 L390,150 L360,120 L350,85 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <!-- Afrique -->
+      <path d="M380,155 L470,150 L490,200 L480,290 L440,320 L390,295 L370,240 L375,190 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <!-- Russie -->
+      <path d="M440,50 L700,45 L720,110 L650,130 L550,120 L460,130 L430,90 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+      <!-- Asie/Chine -->
+      <path d="M540,120 L720,115 L740,200 L680,240 L600,230 L540,190 L520,155 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+
+      <!-- Labels -->
+      <text x="155" y="145" font-family="DM Sans" font-size="9" fill="rgba(74,126,199,0.9)" text-anchor="middle" font-weight="700" letter-spacing="2">ÉTATS-UNIS</text>
+      <text x="510" y="85" font-family="DM Sans" font-size="9" fill="rgba(199,90,90,0.9)" text-anchor="middle" font-weight="700" letter-spacing="2">RUSSIE</text>
+      <text x="620" y="160" font-family="DM Sans" font-size="9" fill="rgba(212,136,42,0.9)" text-anchor="middle" font-weight="700" letter-spacing="2">CHINE</text>
+
+      <!-- Points capitales -->
+      <circle cx="155" cy="155" r="4" fill="#4A7EC7" opacity="0.8"/>
+      <circle cx="500" cy="100" r="4" fill="#C75A5A" opacity="0.8"/>
+      <circle cx="640" cy="160" r="4" fill="#D4882A" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1A3E6B"></div><span style="color:#4A7EC7">États-Unis</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7A2D2D"></div><span style="color:#C75A5A">Russie</span></div>
+    <div class="legend-item"><div class="legend-dot" style="background:#B86A1A"></div><span style="color:#D4882A">Chine</span></div>
+    <div class="legend-item" style="margin-left:auto"><div class="legend-dot" style="background:rgba(255,255,255,0.15)"></div><span style="color:rgba(255,255,255,0.3)">Zone contestée</span></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab usa active" onclick="show('usa')">🇺🇸 États-Unis</div>
+    <div class="tab rus" onclick="show('rus')">🇷🇺 Russie</div>
+    <div class="tab chn" onclick="show('chn')">🇨🇳 Chine</div>
+  </div>
+
+  <!-- USA -->
+  <div class="empire active" id="emp-usa">
+    <div>
+      <div class="empire-name usa">États-Unis</div>
+      <div class="empire-doctrine">Doctrine Monroe réactivée · Hégémonie par les normes</div>
+    </div>
+    <div class="empire-desc">L'opération Venezuela (2026) sans mandat international. Pression sur le Groenland. Contrôle du canal de Panama. Les États-Unis ont abandonné le multilatéralisme pour une logique de sphère d'influence directe.</div>
+    <div class="axes">
+      <div class="axe">
+        <div class="axe-label">Budget militaire</div>
+        <div class="axe-value">886 Mds $</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:95%;background:#4A7EC7"></div></div>
+      </div>
+      <div class="axe">
+        <div class="axe-label">Mode d'expansion</div>
+        <div class="axe-value">Unilatéral</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:85%;background:#4A7EC7"></div></div>
+      </div>
+      <div class="axe">
+        <div class="axe-label">Légitimité ONU</div>
+        <div class="axe-value">En déclin</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:30%;background:#4A7EC7"></div></div>
+      </div>
+    </div>
+    <div class="zones">
+      <div class="zones-title">Zones de contrôle</div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#4A7EC7"></div><div class="zone-text"><strong>Hémisphère occidental</strong> — 35 pays sous accords de défense</div></div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#4A7EC7"></div><div class="zone-text"><strong>Indo-Pacifique</strong> — bases en Corée, Japon, Philippines, Guam</div></div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#4A7EC7"></div><div class="zone-text"><strong>Dollar & SWIFT</strong> — arme financière mondiale</div></div>
+    </div>
+  </div>
+
+  <!-- RUSSIE -->
+  <div class="empire" id="emp-rus">
+    <div>
+      <div class="empire-name rus">Russie</div>
+      <div class="empire-doctrine">Monde russe · Restauration impériale par la force</div>
+    </div>
+    <div class="empire-desc">L'espace post-soviétique comme sphère naturelle. L'Ukraine comme province séparatiste. Le Sahel comme nouveau terrain de projection. La Russie opère par la force là où les États-Unis opèrent par les normes.</div>
+    <div class="axes">
+      <div class="axe">
+        <div class="axe-label">Budget militaire</div>
+        <div class="axe-value">109 Mds $</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:52%;background:#C75A5A"></div></div>
+      </div>
+      <div class="axe">
+        <div class="axe-label">Mode d'expansion</div>
+        <div class="axe-value">Militaire direct</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:90%;background:#C75A5A"></div></div>
+      </div>
+      <div class="axe">
+        <div class="axe-label">Légitimité ONU</div>
+        <div class="axe-value">Isolement</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:12%;background:#C75A5A"></div></div>
+      </div>
+    </div>
+    <div class="zones">
+      <div class="zones-title">Zones de contrôle</div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#C75A5A"></div><div class="zone-text"><strong>Ukraine orientale</strong> — ~20% du territoire occupé, 4 oblasts annexés</div></div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#C75A5A"></div><div class="zone-text"><strong>Sahel africain</strong> — présence Wagner/Africa Corps au Mali, Burkina, Niger, RCA</div></div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#C75A5A"></div><div class="zone-text"><strong>Arctique</strong> — remilitarisation, revendications plateau continental</div></div>
+    </div>
+  </div>
+
+  <!-- CHINE -->
+  <div class="empire" id="emp-chn">
+    <div>
+      <div class="empire-name chn">Chine</div>
+      <div class="empire-doctrine">Rêve chinois · Expansion silencieuse par la dette</div>
+    </div>
+    <div class="empire-desc">147 pays dans la Belt and Road Initiative. 40+ ports sous contrôle ou influence. 60% de l'extraction mondiale des terres rares. La Chine construit un empire sans déclarer de guerre.</div>
+    <div class="axes">
+      <div class="axe">
+        <div class="axe-label">Budget militaire</div>
+        <div class="axe-value">225 Mds $</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:72%;background:#D4882A"></div></div>
+      </div>
+      <div class="axe">
+        <div class="axe-label">Mode d'expansion</div>
+        <div class="axe-value">Économique</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:78%;background:#D4882A"></div></div>
+      </div>
+      <div class="axe">
+        <div class="axe-label">Légitimité ONU</div>
+        <div class="axe-value">Ambivalente</div>
+        <div class="axe-bar"><div class="axe-fill" style="width:50%;background:#D4882A"></div></div>
+      </div>
+    </div>
+    <div class="zones">
+      <div class="zones-title">Zones de contrôle</div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#D4882A"></div><div class="zone-text"><strong>Mer de Chine méridionale</strong> — îles artificielles militarisées</div></div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#D4882A"></div><div class="zone-text"><strong>Afrique & Asie centrale</strong> — 147 pays BRI, 40+ ports</div></div>
+      <div class="zone-item"><div class="zone-bullet" style="background:#D4882A"></div><div class="zone-text"><strong>Terres rares</strong> — 60% extraction, 90% raffinage mondial</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.empire').forEach(function(e) { e.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('emp-' + id).classList.add('active');
+  document.querySelector('.tab.' + id).classList.add('active');
+}
+</script>
+</body>
+</html>
