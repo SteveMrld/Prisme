@@ -116,6 +116,8 @@
 .articleBodyFull {
   width: 100%;
   padding: 0;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .articleBody p {
@@ -164,5 +166,5 @@
   .title { font-size: clamp(24px, 6vw, 36px); }
   .description { font-size: 19px; }
   .articleBody { padding: 36px 20px 60px; }
-  .articleBodyFull { padding: 0; }
+  .articleBodyFull { padding: 0 20px; }
 }
