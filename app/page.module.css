@@ -603,7 +603,11 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .ge { grid-template-columns: 1fr; }
-  .gePortrait { display: none; }
+  .gePortrait { 
+    display: block;
+    height: 300px;
+    order: -1;
+  }
   .geContent { padding: 40px 24px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
