@@ -3,42 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Dollar II — L'arme financière · Prisme</title>
+<title>Le Dollar · II — L'arme financière — Prisme</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
-:root{--gold:#C4A265;--blue:#7BA7C4;--teal:#6BB8A8;--lav:#9B8EC4;--red:#C47A65}
+:root{--gold:#C4A265;--blue:#7BA7C4;--teal:#6BB8A8;--lav:#9B8EC4;--red:#C47B7B;--bg2:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08)}
 #stage{position:fixed;top:0;left:0;width:100%;height:100%}
 .slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 48px 88px;opacity:0;transition:opacity 900ms ease;pointer-events:none}
 .slide.visible{opacity:1;pointer-events:auto}
-.label{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:flex;align-items:center;gap:14px;margin-bottom:24px;justify-content:center}
+.label{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:flex;align-items:center;gap:14px;margin-bottom:22px;justify-content:center}
 .label::before,.label::after{content:"";width:20px;height:1px;background:rgba(196,162,101,0.3)}
-.hero-title{font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,108px);font-weight:300;line-height:0.88;letter-spacing:-4px;text-align:center;margin-bottom:28px}
+.hero-title{font-family:"Playfair Display",serif;font-size:clamp(38px,7vw,90px);font-weight:300;line-height:0.9;letter-spacing:-3px;text-align:center;margin-bottom:28px}
 .hero-title em{font-style:italic;color:var(--gold);display:block}
 .t-word{display:inline-block;opacity:0;transform:translateY(18px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
 .t-word.in{opacity:1;transform:translateY(0)}
-.hero-sub{font-family:"Playfair Display",serif;font-size:clamp(13px,1.9vw,18px);font-style:italic;color:rgba(255,255,255,0.4);max-width:540px;line-height:1.8;text-align:center}
-.two-col{width:100%;max-width:880px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.col-left .section-title,.col-left .body-text{text-align:left}
+.hero-sub{font-family:"Playfair Display",serif;font-size:clamp(13px,2vw,18px);font-style:italic;color:rgba(255,255,255,0.4);max-width:520px;line-height:1.8;text-align:center}
+.two-col{width:100%;max-width:860px;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.ev-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:block;margin-bottom:12px}
 .section-title{font-family:"Playfair Display",serif;font-size:clamp(20px,3.5vw,38px);font-weight:300;letter-spacing:-1px;line-height:1.15;margin-bottom:14px}
 .section-title em{font-style:italic;color:var(--gold)}
 .body-text{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.9;max-width:540px}
-.ev-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:block;margin-bottom:12px}
-.ev-num{font-family:"Playfair Display",serif;font-size:clamp(36px,6vw,72px);font-weight:300;letter-spacing:-2px;line-height:1;display:block;margin-bottom:6px}
-.ev-unit{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block}
-.sanction-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);align-items:flex-start}
-.s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.s-country{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
-.s-desc{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.55}
-.s-stat{font-family:"Playfair Display",serif;font-size:14px;color:var(--red);flex-shrink:0;text-align:right;min-width:60px}
-.step-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
-.step-num{width:22px;height:22px;border-radius:50%;background:rgba(196,162,101,0.15);border:1px solid rgba(196,162,101,0.3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--gold);flex-shrink:0;margin-top:2px}
+.highlight{color:rgba(255,255,255,0.88);font-weight:500}
+.stat-big{font-family:"Playfair Display",serif;font-size:clamp(38px,7vw,80px);font-weight:300;color:var(--gold);letter-spacing:-2px;line-height:1;display:block;margin-bottom:8px}
+.stat-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.5)}
+.tl-item{display:flex;gap:16px;align-items:flex-start;padding:14px 18px;border-radius:8px;margin-bottom:8px;opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease}
+.tl-item.in{opacity:1;transform:translateY(0)}
+.tl-year{font-family:"Playfair Display",serif;font-size:15px;color:var(--gold);width:48px;flex-shrink:0;font-weight:300}
+.tl-text{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.6}
+.tl-text strong{color:rgba(255,255,255,0.85);font-weight:500}
+.pk-letter{display:inline-block;font-family:"Playfair Display",serif;font-size:clamp(40px,8vw,96px);font-weight:300;letter-spacing:-2px;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
+.pk-letter.in{opacity:1;transform:translateY(0)}
 .fin-rule{width:1px;height:48px;background:rgba(196,162,101,0.3);margin:0 auto 24px}
 .fin-q{font-family:"Playfair Display",serif;font-size:clamp(15px,2.2vw,22px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.7;max-width:600px;margin:0 auto 14px;text-align:center}
 .fin-a{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.45);text-align:center;display:block}
-.pk-letter{display:inline-block;font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,100px);font-weight:300;letter-spacing:-2px;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
-.pk-letter.in{opacity:1;transform:translateY(0)}
+.part-nav{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.part-btn{padding:7px 14px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:5px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color .2s,border-color .2s}
+.part-btn.active{color:var(--gold);border-color:rgba(196,162,101,0.4)}
 #player{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;flex-direction:column;background:rgba(5,5,7,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.07)}
 #progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.08);cursor:pointer}
 #progress-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s linear}
@@ -57,163 +58,206 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 #prisme-wm span{color:rgba(196,162,101,0.22)}
 .back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;z-index:200}
 .back:hover{color:var(--gold)}
-@media(max-width:600px){.two-col{grid-template-columns:1fr;gap:20px}.slide{padding:80px 20px 88px}}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;gap:24px}.slide{padding:72px 22px 88px}}
 </style>
 </head>
 <body>
-<a class="back" href="/visuels/dollar1.html">← Partie I</a>
+<a class="back" href="/">← Prisme</a>
 <div id="stage">
 <div id="prisme-wm">PRISME<span>.FR</span></div>
 
 <!-- S0 TITRE -->
 <div class="slide visible" id="slide-0">
-  <div class="label">Trilogie du Dollar · II / III</div>
+  <div class="label">Le Dollar · Partie II / III</div>
   <h1 class="hero-title">
     <span class="t-word" style="transition-delay:0.3s">L'arme</span><br>
-    <em class="t-word" style="transition-delay:0.7s">financière</em>
+    <em class="t-word" style="transition-delay:0.65s">financière</em>
   </h1>
-  <p class="hero-sub t-word" style="transition-delay:1.1s">Le dollar n'est pas seulement une monnaie. C'est un instrument de puissance. SWIFT, sanctions, gel d'avoirs — Washington contrôle les tuyaux du commerce mondial.</p>
+  <p class="hero-sub t-word" style="transition-delay:1.1s">Quand une monnaie devient un instrument de puissance — sanctions, gel d'avoirs, exclusion du système mondial.</p>
+  <div class="part-nav t-word" style="transition-delay:1.4s">
+    <a class="part-btn" href="dollar1.html">I · Naissance</a>
+    <a class="part-btn active" href="dollar2.html">II · L'arme</a>
+    <a class="part-btn" href="dollar3.html">III · Crépuscule ?</a>
+  </div>
 </div>
 
-<!-- S1 CHIFFRES CLÉS -->
+<!-- S1 SWIFT -->
 <div class="slide" id="slide-1">
-  <div class="label">La weaponization du dollar</div>
-  <div class="section-title" style="text-align:center;margin-bottom:28px">Une arme <em>sans précédent</em></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:600px;width:100%;margin-bottom:20px">
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-top:2px solid var(--red);border-radius:8px;padding:18px;text-align:center">
-      <span class="ev-num" style="color:var(--red);font-size:clamp(28px,5vw,56px)"><span class="counter" data-target="300" data-suffix=" Mds$">300 Mds$</span></span>
-      <span class="ev-unit">de réserves russes gelées en 2022</span>
+  <div class="two-col">
+    <div>
+      <span class="ev-tag">L'infrastructure · SWIFT</span>
+      <div class="section-title">Le réseau qui<br><em>contrôle tout</em></div>
+      <p class="body-text">SWIFT est le système de messagerie qui permet aux banques du monde de communiquer entre elles pour les transferts internationaux. <span class="highlight">11 000 institutions dans 200 pays</span>. 40 millions de messages par jour.</p>
+      <p class="body-text" style="margin-top:10px">Ce réseau est libellé en dollars et soumis aux lois américaines. L'exclure, c'est couper une banque — ou un pays entier — du commerce mondial.</p>
     </div>
-    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-top:2px solid var(--gold);border-radius:8px;padding:18px;text-align:center">
-      <span class="ev-num" style="color:var(--gold);font-size:clamp(28px,5vw,56px)"><span class="counter" data-target="60" data-suffix="%">60%</span></span>
-      <span class="ev-unit">des sanctions mondiales sont américaines</span>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+      <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)">Ce qui transite par SWIFT chaque jour</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:280px">
+        <div style="padding:16px;background:rgba(123,167,196,0.08);border:1px solid rgba(123,167,196,0.2);border-radius:8px;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--blue)"><span class="counter2" data-target="40" data-suffix="M">0M</span></div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-top:4px">messages / jour</div>
+        </div>
+        <div style="padding:16px;background:rgba(107,184,168,0.08);border:1px solid rgba(107,184,168,0.2);border-radius:8px;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--teal)"><span class="counter2" data-target="5" data-suffix="Tn$">0Tn$</span></div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-top:4px">par jour</div>
+        </div>
+        <div style="padding:16px;background:rgba(155,142,196,0.08);border:1px solid rgba(155,142,196,0.2);border-radius:8px;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--lav)">200</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-top:4px">pays connectés</div>
+        </div>
+        <div style="padding:16px;background:rgba(196,162,101,0.08);border:1px solid rgba(196,162,101,0.2);border-radius:8px;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:300;color:var(--gold)">11 000</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-top:4px">institutions</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div style="padding:14px 20px;background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.15);border-radius:8px;max-width:560px;text-align:center">
-    <p style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7">La <em style="color:rgba(255,255,255,0.8)">weaponization</em> du dollar a commencé prudemment dans les années 1990. Elle s'est accélérée après le 11 septembre — et depuis 2022, elle a franchi un seuil historique.</p>
   </div>
 </div>
 
-<!-- S2 SWIFT -->
+<!-- S2 IRAN -->
 <div class="slide" id="slide-2">
   <div class="two-col">
-    <div class="col-left">
-      <span class="ev-tag">L'infrastructure · SWIFT</span>
-      <div class="section-title">L'arme<br><em>nucléaire</em> financière</div>
-      <p class="body-text">SWIFT : 11 000 institutions, 200 pays, 42 millions de messages par jour. <span style="color:rgba(255,255,255,0.85)">Couper un pays de SWIFT, c'est l'isoler du commerce international du jour au lendemain.</span></p>
-      <p class="body-text" style="margin-top:10px">L'Iran exclu en 2012 a vu ses exportations de pétrole chuter de 40% en quelques mois. La Russie en 2022 : précédent historique pour une puissance nucléaire.</p>
-    </div>
     <div>
-      <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;text-align:center">Comment fonctionne une transaction internationale</div>
-      <div style="display:flex;flex-direction:column;gap:0">
-        <div class="step-row" style="padding-top:0">
-          <div class="step-num">1</div>
-          <div><div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">Banque A (Paris) → Banque B (Shanghai)</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">Message SWIFT chiffré — code d'identification, montant, instructions</div></div>
+      <span class="ev-tag">2012 · Premier précédent</span>
+      <div class="section-title">L'Iran exclu<br>de <em>SWIFT</em></div>
+      <p class="body-text">En 2012, les États-Unis obtiennent l'exclusion de l'Iran du réseau SWIFT. C'est la première fois qu'une nation entière est coupée du système financier mondial.</p>
+      <p class="body-text" style="margin-top:10px">Résultat : les exportations pétrolières iraniennes chutent de <span class="highlight">60% en un an</span>. Le rial perd 80% de sa valeur. Pas un seul soldat déployé.</p>
+      <p class="body-text" style="margin-top:10px">La leçon est immédiatement comprise par Pékin, Moscou et Téhéran : <span class="highlight">le dollar est une arme</span>.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px">Impact sur l'Iran — 2012-2013</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(255,255,255,0.5)">Exportations pétrolières</span>
+            <span style="font-size:11px;color:var(--red)">−60%</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden">
+            <div id="bar-iran1" style="height:100%;background:var(--red);border-radius:3px;width:0%;transition:width 1.2s ease 0.3s"></div>
+          </div>
         </div>
-        <div class="step-row">
-          <div class="step-num" style="background:rgba(123,167,196,0.15);border-color:rgba(123,167,196,0.3);color:var(--blue)">2</div>
-          <div><div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">Banque correspondante américaine</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">La transaction en dollars transite par un établissement américain. <span style="color:rgba(196,162,101,0.7)">C'est là que Washington peut bloquer.</span></div></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(255,255,255,0.5)">Valeur du rial</span>
+            <span style="font-size:11px;color:var(--red)">−80%</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden">
+            <div id="bar-iran2" style="height:100%;background:rgba(196,119,119,0.7);border-radius:3px;width:0%;transition:width 1.4s ease 0.5s"></div>
+          </div>
         </div>
-        <div class="step-row" style="border-bottom:none">
-          <div class="step-num" style="background:rgba(107,184,168,0.15);border-color:rgba(107,184,168,0.3);color:var(--teal)">3</div>
-          <div><div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:3px">Fonds arrivent à Banque B</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">Si la transaction est autorisée. Sinon : gel, saisie, blocage.</div></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(255,255,255,0.5)">PIB iranien</span>
+            <span style="font-size:11px;color:rgba(196,119,119,0.7)">−6%</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden">
+            <div id="bar-iran3" style="height:100%;background:rgba(196,119,119,0.4);border-radius:3px;width:0%;transition:width 1.2s ease 0.7s"></div>
+          </div>
         </div>
+      </div>
+      <div style="margin-top:8px;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px">
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.6;font-style:italic;font-family:'Playfair Display',serif">"Pas un avion. Pas un missile. Juste l'accès à la finance internationale."</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S3 LES CAS DE SANCTIONS -->
+<!-- S3 RUSSIE 2022 -->
 <div class="slide" id="slide-3">
-  <div class="label">Les grandes opérations de sanctions</div>
-  <div class="section-title" style="text-align:center;margin-bottom:20px"><em>Détruire</em> sans déclarer la guerre</div>
-  <div style="max-width:720px;width:100%">
-    <div class="sanction-row" style="padding-top:0">
-      <div class="s-dot" style="background:var(--blue)"></div>
-      <div style="flex:1">
-        <div class="s-country">Iran · depuis 1979</div>
-        <div class="s-desc">40 ans de sanctions progressives. Exclusion de SWIFT en 2012. Le rial iranien a perdu 90% de sa valeur depuis 2018.</div>
-      </div>
-      <div class="s-stat">−90%<span style="font-size:9px;display:block;color:rgba(255,255,255,0.3)">valeur rial</span></div>
+  <div class="two-col">
+    <div>
+      <span class="ev-tag">Février 2022 · Russie</span>
+      <div class="section-title">Le gel<br>de <em>300 milliards</em></div>
+      <p class="body-text">Après l'invasion de l'Ukraine, l'Occident gèle <span class="highlight">300 milliards de dollars de réserves russes</span> détenues à l'étranger — en quelques heures.</p>
+      <p class="body-text" style="margin-top:10px">Sept banques russes sont exclues de SWIFT. La Banque centrale russe ne peut plus défendre le rouble. En une semaine, le rouble perd 40% de sa valeur.</p>
+      <p class="body-text" style="margin-top:10px">C'est la sanction financière la plus massive de l'histoire. Elle pose une question que le monde entier se pose désormais : <span class="highlight">est-il prudent de stocker des réserves en dollars ?</span></p>
     </div>
-    <div class="sanction-row">
-      <div class="s-dot" style="background:var(--red)"></div>
-      <div style="flex:1">
-        <div class="s-country">Russie · depuis 2022</div>
-        <div class="s-desc">300 Mds$ de réserves souveraines gelés. Première fois dans l'histoire qu'une puissance nucléaire subit un gel d'avoirs à cette échelle.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="text-align:center;padding:24px 32px;background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.2);border-radius:12px">
+        <span class="stat-big"><span class="counter3" data-target="300" data-suffix=" Mds$">0 Mds$</span></span>
+        <span class="stat-sub">Réserves gelées<br>en une nuit</span>
       </div>
-      <div class="s-stat">300<span style="font-size:9px;display:block;color:rgba(255,255,255,0.3)">Mds$ gelés</span></div>
-    </div>
-    <div class="sanction-row">
-      <div class="s-dot" style="background:var(--gold)"></div>
-      <div style="flex:1">
-        <div class="s-country">Venezuela · depuis 2017</div>
-        <div class="s-desc">Embargo pétrolier, gel des avoirs de PDVSA. Le PIB a chuté de 75% en 7 ans.</div>
+      <div style="display:flex;gap:10px;width:100%;max-width:280px">
+        <div style="flex:1;padding:12px;background:rgba(196,119,119,0.08);border:1px solid rgba(196,119,119,0.2);border-radius:8px;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--red)">−40%</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-top:4px">Rouble — 1 semaine</div>
+        </div>
+        <div style="flex:1;padding:12px;background:rgba(123,167,196,0.08);border:1px solid rgba(123,167,196,0.2);border-radius:8px;text-align:center">
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--blue)">7</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;margin-top:4px">Banques exclues SWIFT</div>
+        </div>
       </div>
-      <div class="s-stat">−75%<span style="font-size:9px;display:block;color:rgba(255,255,255,0.3)">PIB en 7 ans</span></div>
-    </div>
-    <div class="sanction-row" style="border-bottom:none">
-      <div class="s-dot" style="background:var(--lav)"></div>
-      <div style="flex:1">
-        <div class="s-country">Corée du Nord · depuis 2006</div>
-        <div class="s-desc">Nation la plus sanctionnée au monde. A développé le nucléaire malgré — ou grâce à — l'isolement économique total.</div>
-      </div>
-      <div class="s-stat" style="font-size:11px;color:rgba(255,255,255,0.3)">isolement<br>total</div>
     </div>
   </div>
 </div>
 
-<!-- S4 LE RETOUR DE BÂTON -->
+<!-- S4 L'EXTRATERRITORIALITÉ -->
 <div class="slide" id="slide-4">
   <div class="two-col">
-    <div class="col-left">
-      <span class="ev-tag">La contre-réaction</span>
-      <div class="section-title">Quand l'arme<br><em>se retourne</em></div>
-      <p class="body-text">Les sanctions russes de 2022 ont produit un effet inattendu : elles ont convaincu la Chine, l'Inde, les pays du Golfe et les nations émergentes que <span style="color:rgba(255,255,255,0.85)">leurs réserves en dollars n'étaient pas sûres.</span></p>
-      <p class="body-text" style="margin-top:10px">Pour la première fois, des pays comme l'Arabie Saoudite acceptent le yuan pour certaines transactions pétrolières. L'Inde règle ses importations de pétrole russe en roupies.</p>
-      <p class="body-text" style="margin-top:10px">La question n'est plus "le dollar peut-il être contourné ?" mais "à quelle vitesse ?"</p>
-    </div>
     <div>
-      <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;text-align:center">Signaux de dédollarisation</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="padding:12px 16px;background:rgba(155,142,196,0.06);border:1px solid rgba(155,142,196,0.15);border-radius:8px">
-          <div style="font-size:11px;font-weight:600;color:#fff;margin-bottom:3px">🇨🇳 Chine — Pétroyuan</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.4)">Contrats pétroliers libellés en yuan sur la bourse de Shanghai. En croissance depuis 2022.</div>
-        </div>
-        <div style="padding:12px 16px;background:rgba(107,184,168,0.06);border:1px solid rgba(107,184,168,0.15);border-radius:8px">
-          <div style="font-size:11px;font-weight:600;color:#fff;margin-bottom:3px">🇮🇳 Inde — La roupie</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.4)">Accords bilatéraux en monnaies locales avec plusieurs partenaires. Pétrole russe réglé en roupies.</div>
-        </div>
-        <div style="padding:12px 16px;background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.15);border-radius:8px">
-          <div style="font-size:11px;font-weight:600;color:#fff;margin-bottom:3px">🌍 BRICS — Alternatives</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.4)">Discussions sur un système de paiement alternatif à SWIFT. Pas encore opérationnel, mais le signal politique est fort.</div>
-        </div>
+      <span class="ev-tag">Le mécanisme juridique</span>
+      <div class="section-title">Le droit<br><em>extraterritorial</em></div>
+      <p class="body-text">Les États-Unis ont étendu leur juridiction à toute transaction libellée en dollars — même entre deux entreprises étrangères sur sol étranger.</p>
+      <p class="body-text" style="margin-top:10px">Si une banque européenne fait une transaction en dollars avec une entité sanctionnée, elle tombe sous la juridiction américaine. <span class="highlight">Le dollar comme monnaie = le droit américain comme règle</span>.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px">Exemples d'amendes extraterritoriales</div>
+      <div class="tl-item" data-delay="200" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07)">
+        <span class="tl-year" style="font-size:13px">BNP</span>
+        <span class="tl-text"><strong>8,9 milliards $</strong> d'amende — 2014. La banque française avait effectué des transactions en dollars avec Cuba, l'Iran et le Soudan.</span>
+      </div>
+      <div class="tl-item" data-delay="450" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07)">
+        <span class="tl-year" style="font-size:13px">HSBC</span>
+        <span class="tl-text"><strong>1,9 milliard $</strong> d'amende — 2012. Blanchiment de narcodollars mexicains via le système américain.</span>
+      </div>
+      <div class="tl-item" data-delay="700" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07)">
+        <span class="tl-year" style="font-size:13px">Total</span>
+        <span class="tl-text"><strong>Retrait d'Iran</strong> — 2018. La major française renonce à un contrat de 5 milliards en Iran par crainte des sanctions secondaires.</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S5 CITATION -->
-<div class="slide" id="slide-5" style="text-align:center">
-  <div class="fin-rule"></div>
-  <p class="fin-q">"Nous avons militarisé le dollar. Et maintenant tout le monde cherche comment s'en passer."</p>
-  <span class="fin-a">Barry Eichengreen, économiste, Université de Berkeley, 2023</span>
+<!-- S5 LE DILEMME -->
+<div class="slide" id="slide-5">
+  <div class="label">Le paradoxe</div>
+  <div class="section-title" style="text-align:center;margin-bottom:20px">Plus on l'utilise,<br><em>moins on lui fait confiance.</em></div>
+  <div style="max-width:680px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div style="padding:20px;background:rgba(123,167,196,0.06);border:1px solid rgba(123,167,196,0.15);border-radius:10px">
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px">La force des sanctions</div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7">Elles fonctionnent précisément parce que le dollar est universel. Aucun autre pays ne peut l'imiter avec la même efficacité.</p>
+    </div>
+    <div style="padding:20px;background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.15);border-radius:10px">
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px">La faiblesse des sanctions</div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.7">Chaque sanction renforce l'incitation des pays tiers à construire des alternatives — CIPS chinois, systèmes bilatéraux, cryptomonnaies d'État.</p>
+    </div>
+  </div>
+  <div style="margin-top:20px;max-width:600px;padding:18px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;text-align:center">
+    <p style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8;font-style:italic;font-family:'Playfair Display',serif">"En gelant les réserves russes, l'Occident a envoyé un signal à tous les pays : vos dollars ne vous appartiennent que si vous restez dans nos bonnes grâces."</p>
+  </div>
 </div>
 
-<!-- S6 PACKSHOT -->
-<div class="slide" id="slide-6" style="flex-direction:column;align-items:center;justify-content:center;gap:32px;padding-bottom:80px">
+<!-- S6 FINALE -->
+<div class="slide" id="slide-6" style="text-align:center">
+  <div class="fin-rule"></div>
+  <p class="fin-q">"Le dollar est une arme. La question n'est plus de savoir si on peut s'en passer — c'est de savoir si on peut se permettre d'en dépendre."</p>
+  <span class="fin-a">Prisme · Le Dollar II — L'arme financière</span>
+  <div class="part-nav" style="margin-top:36px">
+    <a class="part-btn" href="dollar1.html">← I · Naissance</a>
+    <a class="part-btn active" href="dollar2.html">II · L'arme</a>
+    <a class="part-btn" href="dollar3.html">III · Crépuscule ? →</a>
+  </div>
+</div>
+
+<!-- S7 PACKSHOT -->
+<div class="slide" id="slide-7" style="flex-direction:column;align-items:center;justify-content:center;gap:32px;padding-bottom:80px">
   <div id="pk-line" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1)"></div>
   <div style="display:flex;gap:clamp(8px,2vw,24px);align-items:baseline">
     <span class="pk-letter" style="transition-delay:0.10s">P</span><span class="pk-letter" style="transition-delay:0.25s">R</span><span class="pk-letter" style="transition-delay:0.40s">I</span><span class="pk-letter" style="transition-delay:0.55s">S</span><span class="pk-letter" style="transition-delay:0.70s">M</span><span class="pk-letter" style="transition-delay:0.85s">E</span>
     <span id="pk-dot-mid" style="display:inline-block;font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,56px);color:#fff;font-weight:300;opacity:0;transform:scale(0);transition:opacity 0.4s ease 1.5s,transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s;line-height:0;vertical-align:-0.25em;margin:0 -4px">.</span>
     <span class="pk-letter" style="transition-delay:1.1s">F</span><span class="pk-letter" style="transition-delay:1.22s">R</span>
   </div>
-  <p id="pk-tag" style="font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.4);opacity:0;transform:translateY(8px);transition:opacity 0.6s ease 1.8s,transform 0.6s ease 1.8s;font-family:'DM Sans',sans-serif">II / III · L'arme financière</p>
-  <div style="display:flex;gap:16px;opacity:0;transform:translateY(8px);transition:opacity 0.6s ease 2.1s,transform 0.6s ease 2.1s" id="pk-nav">
-    <a href="/visuels/dollar1.html" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none">← Partie I</a>
-    <span style="color:rgba(255,255,255,0.1)">·</span>
-    <a href="/visuels/dollar3.html" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5);text-decoration:none">Partie III →</a>
-  </div>
+  <p id="pk-tag" style="font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:6px;text-transform:uppercase;color:rgba(196,162,101,0.45);opacity:0;transform:translateY(10px);transition:opacity 0.7s ease 1.8s,transform 0.7s ease 1.8s">L'information qui compte</p>
   <div id="pk-line2" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s"></div>
 </div>
 
@@ -225,31 +269,32 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <button class="ctrl-btn" onclick="prev()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
     <button class="ctrl-btn" id="btn-play" onclick="togglePlay()"><svg class="ip" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ipa" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
     <button class="ctrl-btn" onclick="next()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
-    <span id="counter">1 / 7</span>
+    <span id="counter">1 / 8</span>
   </div>
 </div>
 <script>
-var N=7,cur=0,tmr=null,paused=false;
-var durs=[5000,8000,8000,9000,8000,8000,9000];
+var N=8,cur=0,tmr=null,paused=false;
+var durs=[5500,8500,8500,8500,8500,8000,8000,9000];
 var dotsEl=document.getElementById("dots");
 for(var i=0;i<N;i++){(function(idx){var d=document.createElement("div");d.className="dot";d.onclick=function(e){e.stopPropagation();goTo(idx)};dotsEl.appendChild(d)})(i)}
 function updateCounter(){document.getElementById("counter").textContent=(cur+1)+" / "+N}
 var progRaf=null,progStart=0;
 function startProg(){if(progRaf)cancelAnimationFrame(progRaf);progStart=Date.now();var dur=durs[cur]||8000;function tick(){var p=Math.min((Date.now()-progStart)/dur,1);document.getElementById("progress-fill").style.width=(p*100)+"%";if(p<1&&!paused)progRaf=requestAnimationFrame(tick)}requestAnimationFrame(tick)}
-function seekClick(e){var r=e.currentTarget.getBoundingClientRect();goTo(Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left)/r.width*(N-1)))))}
-function animCounter(el,dur){var t=parseFloat(el.dataset.target)||0,sf=el.dataset.suffix||"";var st=null;function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e2=1-Math.pow(1-p,4);el.textContent=Math.round(t*e2)+sf;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+function seekClick(e){var r=e.currentTarget.getBoundingClientRect();var pct=(e.clientX-r.left)/r.width;goTo(Math.max(0,Math.min(N-1,Math.round(pct*(N-1)))))}
+function animateCounter(el,sfx){var t=parseInt(el.dataset.target)||0;var s=el.dataset.suffix||sfx||"";var st=Date.now();var d=1400;function tick(){var p=Math.min((Date.now()-st)/d,1);var e2=1-Math.pow(1-p,4);el.textContent=Math.round(t*e2)+s;if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
 function showSlide(idx){
   document.querySelectorAll(".slide").forEach(function(s,i){i===idx?s.classList.add("visible"):s.classList.remove("visible")});
   if(idx===0){setTimeout(function(){document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")})},100)}
   else{document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")})}
-  if(idx===1)setTimeout(function(){document.querySelectorAll("#slide-1 .counter").forEach(function(el){animCounter(el,1800)})},400);
-  var pkL=document.querySelectorAll(".pk-letter"),pdm=document.getElementById("pk-dot-mid"),pt=document.getElementById("pk-tag"),pn=document.getElementById("pk-nav"),pl=document.getElementById("pk-line"),pl2=document.getElementById("pk-line2");
+  if(idx===1)setTimeout(function(){document.querySelectorAll(".counter2").forEach(function(el){animateCounter(el)})},400);
+  if(idx===2){setTimeout(function(){var b1=document.getElementById("bar-iran1"),b2=document.getElementById("bar-iran2"),b3=document.getElementById("bar-iran3");if(b1)b1.style.width="60%";if(b2)b2.style.width="80%";if(b3)b3.style.width="20%"}  ,400)}
+  else{["bar-iran1","bar-iran2","bar-iran3"].forEach(function(id){var el=document.getElementById(id);if(el)el.style.width="0%"})}
+  if(idx===3)setTimeout(function(){var el=document.querySelector(".counter3");if(el)animateCounter(el)},400);
+  if(idx===4){document.querySelectorAll(".tl-item").forEach(function(el){el.classList.remove("in")});setTimeout(function(){document.querySelectorAll(".tl-item").forEach(function(el){setTimeout(function(){el.classList.add("in")},parseInt(el.dataset.delay||0))})},300)}
+  var pkL=document.querySelectorAll(".pk-letter"),pdm=document.getElementById("pk-dot-mid"),pt=document.getElementById("pk-tag"),pl=document.getElementById("pk-line"),pl2=document.getElementById("pk-line2");
   pkL.forEach(function(el){el.classList.remove("in")});
-  if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0)"}
-  if(pt){pt.style.opacity="0";pt.style.transform="translateY(8px)"}
-  if(pn){pn.style.opacity="0";pn.style.transform="translateY(8px)"}
-  if(pl)pl.style.width="0";if(pl2)pl2.style.width="0";
-  if(idx===6){setTimeout(function(){if(pl)pl.style.width="clamp(50px,12vw,140px)";if(pl2)pl2.style.width="clamp(50px,12vw,140px)";pkL.forEach(function(el){el.classList.add("in")});setTimeout(function(){if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1)"}},1500);setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},1900);setTimeout(function(){if(pn){pn.style.opacity="1";pn.style.transform="translateY(0)"}},2200)},200)}
+  if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0)"}if(pt){pt.style.opacity="0";pt.style.transform="translateY(10px)"}if(pl)pl.style.width="0";if(pl2)pl2.style.width="0";
+  if(idx===7){setTimeout(function(){if(pl)pl.style.width="clamp(50px,12vw,140px)";if(pl2)pl2.style.width="clamp(50px,12vw,140px)";pkL.forEach(function(el){el.classList.add("in")});setTimeout(function(){if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1)"}},1500);setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},2000)},200)}
   document.querySelectorAll(".dot").forEach(function(d,i){d.classList.toggle("on",i===idx)});
   updateCounter();startProg();
 }
@@ -258,7 +303,7 @@ function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!
 function schedule(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,durs[cur]||8000)}
 function goTo(idx){if(tmr)clearTimeout(tmr);cur=idx;showSlide(idx);if(!paused)schedule()}
 function togglePlay(){paused=!paused;var btn=document.getElementById("btn-play");if(paused){btn.classList.remove("playing");if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}else{btn.classList.add("playing");schedule();startProg()}}
-document.getElementById("stage").addEventListener("click",function(e){if(e.target.closest("#dots")||e.target.closest("#player")||e.target.closest(".back"))return;next()});
+document.getElementById("stage").addEventListener("click",function(e){if(e.target.closest("#dots")||e.target.closest("#player")||e.target.closest(".back")||e.target.closest(".part-nav"))return;next()});
 document.getElementById("btn-play").classList.add("playing");
 goTo(0);
 </script>
