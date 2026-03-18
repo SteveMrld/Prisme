@@ -79,8 +79,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       categoryLabel={categoryLabels[article.category] || 'Article'}
       readTime={article.readTime}
       hasInternalHeader={hasInternalHeader}
-    >
-      <div dangerouslySetInnerHTML={{ __html: content }} />
-    </ArticleLayout>
+      content={content}
+    />
   )
 }

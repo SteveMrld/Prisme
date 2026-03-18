@@ -152,3 +152,5 @@
   min-width: 200px;
   height: 36px;
 }
+
+.retro::after, .retro:hover, .retro.active { background: var(--or); color: var(--or); }

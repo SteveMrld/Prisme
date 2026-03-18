@@ -8,9 +8,8 @@ interface ArticleLayoutProps {
   category: string
   categoryLabel: string
   readTime: string
-  /** Si true, le HTML injecté contient déjà son propre en-tête (atop / article-header / essentiel) */
   hasInternalHeader?: boolean
-  children: React.ReactNode
+  content: string
 }
 
 const categoryColors: Record<string, string> = {
@@ -21,7 +20,7 @@ const categoryColors: Record<string, string> = {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, hasInternalHeader = false, children
+  readTime, hasInternalHeader = false, content
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
 
@@ -29,14 +28,12 @@ export default function ArticleLayout({
     <>
       <Header activeNav={category} />
 
-      {/* IMAGE HERO — uniquement si l'article n'a pas son propre art-hero-wrap interne */}
       {image && !hasInternalHeader && (
         <div className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg} />
         </div>
       )}
 
-      {/* EN-TÊTE — uniquement si le HTML n'en a pas un lui-même */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
           <div className={styles.eyebrow}>
@@ -48,9 +45,8 @@ export default function ArticleLayout({
         </div>
       )}
 
-      {/* CORPS */}
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
-        {children}
+        <div className="prisme-article" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
 
       <footer className={styles.footer}>

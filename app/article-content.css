@@ -1000,3 +1000,241 @@
   font-style: italic;
   line-height: 1.5;
 }
+
+/* ============================================================
+   .prisme-article — wrapper global pour tout le contenu HTML
+   Styles de base qui s'appliquent à TOUS les articles
+   ============================================================ */
+
+.prisme-article {
+  width: 100%;
+}
+
+/* Paragraphes globaux */
+.prisme-article p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px, 2.2vw, 21px);
+  line-height: 1.85;
+  color: #222;
+  margin-bottom: 24px;
+  padding: 0 24px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* Titres de section */
+.prisme-article h2,
+.prisme-article h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  color: var(--encre);
+  margin-top: 48px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  padding: 0 24px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.prisme-article h2 { font-size: clamp(20px, 2.8vw, 28px); font-style: italic; }
+.prisme-article h3 { font-size: clamp(18px, 2.4vw, 24px); }
+.prisme-article h3 em { font-style: italic; color: var(--or); font-weight: 300; }
+
+/* Liens dans le texte */
+.prisme-article a {
+  color: inherit;
+  border-bottom: 1px solid var(--bord);
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+.prisme-article a:hover { border-color: var(--encre); }
+
+/* Exposants */
+.prisme-article sup {
+  font-size: 11px;
+  color: var(--gris-l);
+  vertical-align: super;
+}
+
+/* Em italic dans les paragraphes */
+.prisme-article p em { font-style: italic; }
+.prisme-article p strong { font-weight: 600; }
+
+/* Blocs centrés avec max-width */
+.prisme-article .essentiel,
+.prisme-article .stats-row,
+.prisme-article .stats-bloc,
+.prisme-article .pull-quote,
+.prisme-article .exergue,
+.prisme-article .prospectif,
+.prisme-article .motion-link,
+.prisme-article .motion-placeholder,
+.prisme-article .notes-section,
+.prisme-article .auteur,
+.prisme-article .share-bar,
+.prisme-article .verso-section,
+.prisme-article .anav,
+.prisme-article .art-nav,
+.prisme-article .content-embed,
+.prisme-article .art-chart-wrap,
+.prisme-article .art-signature,
+.prisme-article .timeline-oeuvres,
+.prisme-article .stat-inline {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+}
+
+/* Blocs qui ont leur propre padding interne — on ne double pas */
+.prisme-article .essentiel { padding: 28px 32px; }
+.prisme-article .pull-quote { padding: 24px 32px; }
+.prisme-article .prospectif { padding: 40px 44px; }
+.prisme-article .notes-section { padding-left: 0; padding-right: 0; }
+.prisme-article .share-bar { padding-left: 0; padding-right: 0; }
+.prisme-article .verso-section { padding-left: 0; padding-right: 0; }
+.prisme-article .anav { padding-left: 0; padding-right: 0; }
+
+/* En-têtes internes (atop, article-header) */
+.prisme-article .atop,
+.prisme-article .article-header {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+  box-sizing: border-box;
+}
+
+/* Article body interne */
+.prisme-article .article-body,
+.prisme-article .article-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 0 48px;
+  box-sizing: border-box;
+}
+
+.prisme-article .article-body p,
+.prisme-article .article-content p {
+  padding: 0;
+  max-width: none;
+}
+
+.prisme-article .article-body h2,
+.prisme-article .article-body h3,
+.prisme-article .article-content h2,
+.prisme-article .article-content h3 {
+  padding: 0;
+  max-width: none;
+}
+
+/* Hero image interne */
+.prisme-article .art-hero-wrap {
+  max-width: 100%;
+  margin: 0 0 0;
+  padding: 0;
+}
+
+.prisme-article .art-hero-img {
+  width: 100%;
+  height: clamp(200px, 40vw, 480px);
+  object-fit: cover;
+  display: block;
+}
+
+/* Notes — fix em inline */
+.prisme-article .notes-list li em {
+  font-style: italic;
+  display: inline;
+}
+
+.prisme-article .notes-list li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--gris-m);
+  line-height: 1.55;
+  padding: 0;
+  max-width: none;
+}
+
+/* Stats rows — pleine largeur dans leur conteneur */
+.prisme-article .stats-row {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--bord);
+  margin: 40px auto;
+}
+
+.prisme-article .stat-box {
+  background: var(--bg);
+  padding: 20px 24px;
+}
+
+/* Verso grid */
+.prisme-article .verso-grid,
+.prisme-article .vgrid {
+  padding: 0;
+}
+
+/* Anav/art-nav */
+.prisme-article .anav,
+.prisme-article .art-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--bord);
+  padding: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .prisme-article p,
+  .prisme-article h2,
+  .prisme-article h3 {
+    padding: 0 20px;
+  }
+
+  .prisme-article .essentiel { padding: 20px; }
+  .prisme-article .pull-quote { padding: 16px 20px; }
+  .prisme-article .prospectif { padding: 24px 20px; }
+
+  .prisme-article .stats-row {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    background: transparent;
+    gap: 12px;
+  }
+
+  .prisme-article .stat-box {
+    border: 1px solid var(--bord);
+  }
+
+  .prisme-article .verso-grid,
+  .prisme-article .vgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .prisme-article .anav,
+  .prisme-article .art-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .prisme-article .art-hero-img {
+    height: 220px;
+  }
+
+  .prisme-article .atop,
+  .prisme-article .article-header {
+    padding: 32px 20px 20px;
+  }
+}

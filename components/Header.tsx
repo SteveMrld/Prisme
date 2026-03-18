@@ -14,6 +14,7 @@ const navItems = [
   { label: 'Culture', href: '/culture', className: 'culture' },
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Visuels', href: '/visuels', className: 'concept' },
+  { label: 'Rétrospective 2025', href: '/retrospective', className: 'retro' },
 ]
 
 export default function Header({ activeNav }: { activeNav?: string }) {
