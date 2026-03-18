@@ -7,556 +7,99 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#04080F;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
-:root{--gold:#C4A265;--blue:#4A90C4;--red:#C45A4A;--teal:#4AC4A8;--lav:#9B8EC4}
-#stage{position:fixed;top:0;left:0;width:100%;height:100%}
-#map-wrap{position:absolute;top:0;left:0;width:100%;height:calc(100% - 56px)}
-#world-svg{width:100%;height:100%;display:block}
+html,body{width:100%;height:100%;overflow:hidden;background:#05090F;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
+:root{--gold:#C4A265;--blue:#4A9AD4;--red:#D45040}
 
-/* ── OVERLAY CHAPITRES ── */
-.chapter{position:absolute;opacity:0;transition:opacity 700ms ease;pointer-events:none}
-.chapter.vis{opacity:1;pointer-events:auto}
+#stage{position:fixed;top:0;left:0;width:100%;height:calc(100% - 56px)}
+#map-svg{position:absolute;top:0;left:0;width:100%;height:100%}
 
-/* ── TITRE OVERLAY ── */
-#ch0{top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(4,8,15,0.72);backdrop-filter:blur(2px)}
-#ch0 .label{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:20px}
-#ch0 .hero{font-family:"Playfair Display",serif;font-size:clamp(40px,8vw,96px);font-weight:300;letter-spacing:-3px;text-align:center;line-height:0.9;margin-bottom:20px}
-#ch0 .hero em{font-style:italic;color:var(--gold);display:block}
-#ch0 .sub{font-family:"Playfair Display",serif;font-size:clamp(12px,1.8vw,17px);font-style:italic;color:rgba(255,255,255,0.38);max-width:480px;text-align:center;line-height:1.8}
-.t-word{display:inline-block;opacity:0;transform:translateY(16px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
-.t-word.in{opacity:1;transform:translateY(0)}
+/* Routes */
+@keyframes flowRoute{to{stroke-dashoffset:-28}}
+.rf{stroke-dasharray:12 8;animation:flowRoute 3s linear infinite}
+.rfs{stroke-dasharray:9 7;animation:flowRoute 4.5s linear infinite}
 
-/* ── PANNEAU INFO (droite) ── */
-.info-panel{position:absolute;right:0;top:0;height:100%;width:clamp(200px,28vw,320px);background:linear-gradient(to left, rgba(4,8,15,0.94) 60%, rgba(4,8,15,0));display:flex;flex-direction:column;justify-content:center;padding:32px 28px 32px 48px}
-.info-panel .ch-tag{font-size:7px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.55);margin-bottom:14px}
-.info-panel h2{font-family:"Playfair Display",serif;font-size:clamp(18px,2.8vw,30px);font-weight:300;line-height:1.15;letter-spacing:-0.5px;margin-bottom:14px}
-.info-panel h2 em{font-style:italic;color:var(--gold)}
-.info-panel p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:12px}
-.stat-row{display:flex;align-items:baseline;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)}
-.stat-big{font-family:"Playfair Display",serif;font-size:clamp(22px,3.5vw,40px);font-weight:300;color:var(--gold)}
-.stat-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);line-height:1.3}
+/* Pulse rings */
+@keyframes pRing{0%{r:6;opacity:0.85}100%{r:28;opacity:0}}
+.pr{animation:pRing 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+
+/* Radar (pour les zones de tension) */
+@keyframes radar{0%{r:8;opacity:0.9}100%{r:46;opacity:0}}
+.rad{animation:radar 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+
+/* Zone pulsante */
+@keyframes zPulse{0%,100%{opacity:0.07}50%{opacity:0.22}}
+.zp{animation:zPulse 3s ease-in-out infinite}
+
+/* Label clignotant */
+@keyframes lFlash{0%,100%{opacity:1}50%{opacity:0.4}}
+.lf{animation:lFlash 1.8s ease-in-out infinite}
+
+/* ── PANNEAU INFO ── */
+#panel{
+  position:absolute;right:0;top:0;height:100%;
+  width:clamp(240px,24vw,300px);
+  background:linear-gradient(to left,rgba(5,9,15,0.98) 55%,rgba(5,9,15,0.75) 78%,transparent);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:44px 28px 44px 52px;
+}
+.panel-tag{font-size:7.5px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:20px}
+.panel-title{font-family:"Playfair Display",serif;font-size:clamp(20px,2.8vw,32px);font-weight:300;line-height:1.12;letter-spacing:-0.5px;margin-bottom:18px}
+.panel-title em{font-style:italic;color:var(--gold)}
+.panel-body{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.88;margin-bottom:10px}
+.panel-body strong{color:rgba(255,255,255,0.88);font-weight:500}
+.panel-stat{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.07)}
+.stat-n{font-family:"Playfair Display",serif;font-size:clamp(38px,5vw,58px);font-weight:300;color:var(--gold);line-height:1;display:block}
+.stat-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block;margin-top:8px;line-height:1.7}
 
 /* ── LÉGENDE ── */
-.legend{position:absolute;left:18px;bottom:20px;display:flex;flex-direction:column;gap:7px}
-.legend-item{display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
-.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.legend-line{width:20px;height:2px;flex-shrink:0;border-radius:1px}
-
-/* ── MARQUEURS CARTE ── */
-.strait-label{font-family:"DM Sans",sans-serif;font-size:8px;fill:rgba(196,162,101,0.7);letter-spacing:0.5px;pointer-events:none}
-.ocean-label{font-family:"Playfair Display",serif;font-size:11px;font-style:italic;fill:rgba(255,255,255,0.12);letter-spacing:1px}
-.city-dot{fill:rgba(255,255,255,0.4);stroke:none}
-.region-label{font-family:"DM Sans",sans-serif;font-size:7px;fill:rgba(255,255,255,0.25);letter-spacing:2px;text-transform:uppercase}
-
-/* ── ROUTE ANIMATION ── */
-.trade-route{stroke:rgba(196,162,101,0.4);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-dasharray:6,4}
-.trade-route.animate{animation:dash 4s linear infinite}
-@keyframes dash{to{stroke-dashoffset:-40}}
-.route-glow{stroke:rgba(196,162,101,0.12);stroke-width:4;fill:none;stroke-linecap:round}
-
-/* ── ZONES INFLUENCE ── */
-.zone{opacity:0;transition:opacity 1s ease}
-.zone.vis{opacity:1}
-.pulse-ring{animation:pulseRing 2s ease-out infinite;transform-origin:center}
-@keyframes pulseRing{0%{opacity:0.7;r:5}60%{opacity:0;r:14}100%{opacity:0;r:14}}
-.flash-dot{animation:flashDot 2s ease-in-out infinite}
-@keyframes flashDot{0%,100%{opacity:1}50%{opacity:0.3}}
-
-/* ── TENSION ── */
-.tension-zone{fill:rgba(196,90,74,0.12);stroke:rgba(196,90,74,0.35);stroke-width:1;stroke-dasharray:4,3;opacity:0;transition:opacity 1s ease}
-.tension-zone.vis{opacity:1;animation:tensionPulse 2.5s ease-in-out infinite}
-@keyframes tensionPulse{0%,100%{fill:rgba(196,90,74,0.1)}50%{fill:rgba(196,90,74,0.2)}}
+#legend{
+  position:absolute;left:22px;bottom:26px;
+  display:flex;flex-direction:column;gap:12px;
+  opacity:0;transition:opacity 0.8s ease;
+}
+#legend.vis{opacity:1}
+.li{display:flex;align-items:center;gap:12px}
+.li-text{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.3px}
+.l-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.l-line{width:28px;height:3px;border-radius:2px;flex-shrink:0}
+.l-dash{width:28px;height:0;flex-shrink:0}
+.l-zone{width:16px;height:11px;border-radius:3px;flex-shrink:0}
 
 /* ── PLAYER ── */
-#player{position:absolute;bottom:0;left:0;right:0;z-index:200;display:flex;flex-direction:column;background:rgba(4,8,15,0.95);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.06)}
-#progress-bar{width:100%;height:2px;background:rgba(255,255,255,0.07);cursor:pointer}
+#player{position:fixed;bottom:0;left:0;right:0;height:56px;z-index:200;display:flex;flex-direction:column;background:rgba(5,9,15,0.99);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.07)}
+#progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.07);cursor:pointer}
 #progress-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s linear}
-#controls{display:flex;align-items:center;justify-content:center;padding:10px 20px;position:relative}
-#dots{position:absolute;left:20px;display:flex;gap:5px}
-.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.18);cursor:pointer;transition:background .2s,transform .2s}
+#controls{flex:1;display:flex;align-items:center;justify-content:center;padding:0 20px;position:relative}
+#dots{position:absolute;left:20px;display:flex;gap:6px;align-items:center}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background .2s,transform .2s}
 .dot.on{background:var(--gold);transform:scale(1.5)}
-.ctrl-btn{width:36px;height:36px;border:none;background:none;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 4px}
+.ctrl-btn{width:38px;height:38px;border:none;background:none;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 4px}
 .ctrl-btn:hover{color:var(--gold)}
 .ctrl-btn svg{width:20px;height:20px;fill:currentColor}
 #btn-play .ip{display:block}#btn-play .ipa{display:none}
 #btn-play.playing .ip{display:none}#btn-play.playing .ipa{display:block}
-#btn-play{width:44px;height:44px;border-radius:50%;background:rgba(196,162,101,0.15);color:var(--gold);border:1px solid rgba(196,162,101,0.3)}
+#btn-play{width:46px;height:46px;border-radius:50%;background:rgba(196,162,101,0.15);color:var(--gold);border:1px solid rgba(196,162,101,0.3)}
 #counter{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
 #prisme-wm{position:fixed;bottom:78px;left:20px;z-index:50;pointer-events:none;font-family:"DM Sans",sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.38)}
 #prisme-wm span{color:rgba(196,162,101,0.22)}
-.back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;z-index:200}
+.back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);text-decoration:none;z-index:200}
 .back:hover{color:var(--gold)}
-
-/* Packshot */
-.pk-letter{display:inline-block;font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,100px);font-weight:300;letter-spacing:-2px;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
-.pk-letter.in{opacity:1;transform:translateY(0)}
-@media(max-width:600px){.info-panel{width:100%;height:auto;top:auto;bottom:60px;padding:16px 20px 16px 20px;background:linear-gradient(to top, rgba(4,8,15,0.95) 80%,rgba(4,8,15,0))}}
 </style>
 </head>
 <body>
 <a class="back" href="/">← Prisme</a>
-<div id="stage">
 <div id="prisme-wm">PRISME<span>.FR</span></div>
-
-<div id="map-wrap">
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  CARTE SVG MONDIALE                                       -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<svg id="world-svg" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet">
-<defs>
-  <!-- Gradient fond océan -->
-  <radialGradient id="ocean-grad" cx="50%" cy="50%" r="70%">
-    <stop offset="0%" stop-color="#080E1A"/>
-    <stop offset="100%" stop-color="#040810"/>
-  </radialGradient>
-  <!-- Glow doré pour les détroits -->
-  <filter id="glow-gold">
-    <feGaussianBlur stdDeviation="3" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
-  <filter id="glow-blue">
-    <feGaussianBlur stdDeviation="4" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
-  <filter id="glow-red">
-    <feGaussianBlur stdDeviation="4" result="blur"/>
-    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
-  <!-- Gradient routes commerciales -->
-  <linearGradient id="route-pacific" x1="0%" y1="0%" x2="100%" y2="0%">
-    <stop offset="0%" stop-color="#C4A265" stop-opacity="0"/>
-    <stop offset="50%" stop-color="#C4A265" stop-opacity="0.5"/>
-    <stop offset="100%" stop-color="#C4A265" stop-opacity="0"/>
-  </linearGradient>
-</defs>
-
-<!-- Fond océan -->
-<rect width="960" height="500" fill="url(#ocean-grad)"/>
-
-<!-- Grille de longitude/latitude (très discrète) -->
-<g stroke="rgba(255,255,255,0.025)" stroke-width="0.5" fill="none">
-  <line x1="0" y1="250" x2="960" y2="250"/><!-- Équateur -->
-  <line x1="480" y1="0" x2="480" y2="500"/><!-- Méridien 0 -->
-  <line x1="0" y1="139" x2="960" y2="139"/><!-- 40°N -->
-  <line x1="0" y1="361" x2="960" y2="361"/><!-- 40°S -->
-  <line x1="213" y1="0" x2="213" y2="500"/><!-- -90° -->
-  <line x1="746" y1="0" x2="746" y2="500"/><!-- +90° -->
-</g>
-
-<!-- ══ CONTINENTS ══ -->
-<g fill="#0D1826" stroke="#1A2840" stroke-width="0.8">
-
-  <!-- Amérique du Nord -->
-  <path d="M 82,88 L 105,70 L 130,60 L 170,52 L 220,50 L 265,58 L 295,72 L 308,95 L 298,130 L 285,160 L 268,185 L 248,198 L 225,205 L 208,198 L 188,185 L 170,178 L 158,160 L 148,138 L 120,110 L 95,100 Z"/>
-  <!-- Floride -->
-  <path d="M 268,185 L 278,195 L 272,205 L 260,198 L 255,190 Z"/>
-  <!-- Mexique/Amérique Centrale -->
-  <path d="M 208,198 L 230,205 L 245,215 L 238,225 L 220,230 L 205,220 L 195,210 Z"/>
-  <!-- Alaska -->
-  <path d="M 82,88 L 68,80 L 55,88 L 48,100 L 60,110 L 80,108 L 90,98 Z"/>
-
-  <!-- Groenland -->
-  <path d="M 310,45 L 345,30 L 375,35 L 385,55 L 368,75 L 340,78 L 315,65 Z"/>
-
-  <!-- Amérique du Sud -->
-  <path d="M 220,235 L 255,218 L 290,220 L 315,240 L 320,270 L 315,310 L 298,355 L 270,388 L 245,392 L 222,370 L 208,330 L 202,285 L 210,255 Z"/>
-
-  <!-- Europe occidentale -->
-  <path d="M 432,72 L 458,58 L 490,52 L 510,60 L 520,78 L 515,100 L 498,118 L 475,125 L 455,118 L 438,102 L 430,88 Z"/>
-  <!-- Scandinavie -->
-  <path d="M 480,50 L 510,38 L 530,45 L 525,68 L 510,80 L 495,78 Z"/>
-  <!-- Péninsule ibérique -->
-  <path d="M 432,100 L 450,95 L 460,108 L 448,122 L 432,118 Z"/>
-  <!-- Italie -->
-  <path d="M 480,105 L 492,100 L 500,115 L 496,130 L 483,125 Z"/>
-
-  <!-- Afrique -->
-  <path d="M 435,140 L 480,128 L 525,135 L 548,155 L 555,185 L 550,230 L 542,275 L 520,328 L 495,358 L 468,362 L 445,335 L 425,288 L 418,238 L 420,188 L 428,162 Z"/>
-  <!-- Madagascar -->
-  <path d="M 562,295 L 572,278 L 580,290 L 575,315 L 562,318 Z"/>
-
-  <!-- Péninsule arabique -->
-  <path d="M 530,148 L 565,140 L 590,148 L 600,168 L 595,195 L 570,205 L 548,200 L 535,178 Z"/>
-
-  <!-- Asie centrale + Russie (simplifié) -->
-  <path d="M 510,58 L 600,42 L 700,38 L 790,48 L 840,60 L 858,82 L 845,105 L 810,118 L 775,128 L 740,135 L 710,148 L 680,155 L 650,162 L 615,165 L 580,158 L 555,145 L 530,135 L 518,115 L 510,88 Z"/>
-  <!-- Sibérie Est -->
-  <path d="M 840,60 L 880,52 L 910,68 L 905,88 L 875,95 L 850,88 L 840,72 Z"/>
-
-  <!-- Sous-continent indien -->
-  <path d="M 605,162 L 635,152 L 658,162 L 665,188 L 655,218 L 630,232 L 608,225 L 596,205 L 595,182 Z"/>
-
-  <!-- Asie du Sud-Est (Indochine) -->
-  <path d="M 688,155 L 720,148 L 748,158 L 755,178 L 742,198 L 718,205 L 695,198 L 680,178 Z"/>
-  <!-- Péninsule malaise -->
-  <path d="M 732,202 L 748,198 L 752,218 L 742,230 L 728,225 L 725,210 Z"/>
-
-  <!-- Chine (approximation) -->
-  <path d="M 718,90 L 770,82 L 808,92 L 822,115 L 818,140 L 792,155 L 760,162 L 728,158 L 710,145 L 705,125 L 712,105 Z"/>
-
-  <!-- Corée + Japon (simplifié) -->
-  <path d="M 818,110 L 835,105 L 848,115 L 845,130 L 830,135 L 818,125 Z"/>
-  <!-- Japon -->
-  <path d="M 845,95 L 860,88 L 870,98 L 865,115 L 852,118 L 842,108 Z"/>
-
-  <!-- Taïwan -->
-  <ellipse cx="808" cy="165" rx="8" ry="12" fill="#0D1826" stroke="#1A2840"/>
-
-  <!-- Australie -->
-  <path d="M 695,295 L 768,278 L 808,292 L 825,325 L 818,368 L 785,392 L 742,398 L 702,375 L 685,342 L 682,312 Z"/>
-  <!-- Nouvelle-Zélande -->
-  <path d="M 840,350 L 852,335 L 862,350 L 855,372 L 842,370 Z"/>
-
-  <!-- Sri Lanka -->
-  <ellipse cx="648" cy="238" rx="6" ry="8"/>
-
-  <!-- Philippines (simplifié) -->
-  <path d="M 775,175 L 790,165 L 800,175 L 795,192 L 780,195 L 772,185 Z"/>
-
-  <!-- Borneo -->
-  <path d="M 748,225 L 785,215 L 800,232 L 798,258 L 775,268 L 750,255 L 742,238 Z"/>
-
-  <!-- Sumatra -->
-  <path d="M 700,228 L 740,215 L 750,225 L 740,248 L 710,258 L 695,245 Z"/>
-
-  <!-- Java -->
-  <path d="M 748,262 L 792,255 L 795,268 L 768,278 L 748,272 Z"/>
-
-  <!-- Islande -->
-  <path d="M 400,65 L 418,58 L 428,68 L 420,78 L 405,75 Z"/>
-</g>
-
-<!-- ══ NOMS DES OCÉANS ══ -->
-<g>
-  <text class="ocean-label" x="160" y="270" text-anchor="middle">Atlantique</text>
-  <text class="ocean-label" x="550" y="290" text-anchor="middle">Indien</text>
-  <text class="ocean-label" x="88" y="380" text-anchor="middle">Atlantique Sud</text>
-  <text class="ocean-label" x="600" y="450" text-anchor="middle">Austral</text>
-  <!-- Pacifique : deux parties à cause des continents -->
-  <text class="ocean-label" x="870" y="280" text-anchor="middle">Pacifique</text>
-  <text class="ocean-label" x="870" y="300" font-size="9" text-anchor="middle" font-style="normal" fill="rgba(255,255,255,0.08)">Ouest</text>
-  <text class="ocean-label" x="50" y="280" text-anchor="middle">Pacifique</text>
-  <text class="ocean-label" x="50" y="300" font-size="9" text-anchor="middle" font-style="normal" fill="rgba(255,255,255,0.08)">Est</text>
-</g>
-
-<!-- ══ NOMS CONTINENTS ══ -->
-<g>
-  <text class="region-label" x="185" y="130" text-anchor="middle">Amérique du Nord</text>
-  <text class="region-label" x="262" y="305" text-anchor="middle">Amérique du Sud</text>
-  <text class="region-label" x="470" y="95" text-anchor="middle">Europe</text>
-  <text class="region-label" x="482" y="235" text-anchor="middle">Afrique</text>
-  <text class="region-label" x="670" y="92" text-anchor="middle">Russie / Asie Centrale</text>
-  <text class="region-label" x="640" y="188" text-anchor="middle">Asie du Sud</text>
-  <text class="region-label" x="752" y="340" text-anchor="middle">Australie</text>
-</g>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- COUCHE 1 : ROUTES COMMERCIALES (ch1)                        -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<g id="layer-routes" opacity="0" style="transition:opacity 1s ease">
-  <!-- Route transpacifique (Asie → Amérique du Nord) -->
-  <path class="route-glow" d="M 758,185 Q 880,220 955,230 Q 960,230 0,230 Q 30,200 170,180"/>
-  <path class="trade-route animate" d="M 758,185 Q 880,220 955,230 Q 960,230 0,230 Q 30,200 170,180" style="animation-delay:0s"/>
-
-  <!-- Route Asie → Europe (via Suez) -->
-  <path class="route-glow" d="M 748,198 Q 670,210 630,195 Q 600,188 572,172 Q 556,163 542,155 Q 520,145 490,138 Q 468,132 448,130 Q 430,130 400,145 Q 380,155 360,165 Q 340,172 310,165 Q 285,158 265,152 Q 245,148 220,158"/>
-  <path class="trade-route animate" d="M 748,198 Q 670,210 630,195 Q 600,188 572,172 Q 556,163 542,155 Q 520,145 490,138 Q 468,132 448,130 Q 430,130 400,145 Q 380,155 360,165 Q 340,172 310,165 Q 285,158 265,152 Q 245,148 220,158" style="animation-delay:-2s"/>
-
-  <!-- Route Atlantique Nord (Europe ↔ USA) -->
-  <path class="route-glow" d="M 455,110 Q 380,118 320,120 Q 270,120 220,128"/>
-  <path class="trade-route animate" d="M 455,110 Q 380,118 320,120 Q 270,120 220,128" style="animation-delay:-1s;stroke-dasharray:4,3;opacity:0.5"/>
-
-  <!-- Route Cap de Bonne Espérance -->
-  <path class="trade-route" d="M 460,360 Q 440,420 400,450 Q 360,465 310,440 Q 260,415 230,380" style="stroke:rgba(196,162,101,0.2);stroke-dasharray:4,6"/>
-
-  <!-- Route Australie → Asie -->
-  <path class="trade-route animate" d="M 752,278 Q 752,248 748,220" style="animation-delay:-3s;stroke:rgba(74,196,168,0.35)"/>
-</g>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- COUCHE 2 : DÉTROITS STRATÉGIQUES (ch2)                      -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<g id="layer-straits" opacity="0" style="transition:opacity 1s ease">
-
-  <!-- ── DÉTROIT D'ORMUZ (lon 56, lat 26) → x=629, y=178 ── -->
-  <circle class="pulse-ring" cx="629" cy="178" r="5" fill="none" stroke="#C4A265" stroke-width="1.5"/>
-  <circle class="pulse-ring" cx="629" cy="178" r="5" fill="none" stroke="#C4A265" stroke-width="1" style="animation-delay:-0.7s"/>
-  <circle cx="629" cy="178" r="4" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
-  <text class="strait-label" x="635" y="172">Ormuz</text>
-  <text x="635" y="181" font-family="DM Sans" font-size="6.5" fill="rgba(196,162,101,0.45)">20% pétrole mondial</text>
-
-  <!-- ── DÉTROIT DE MALACCA (lon 102, lat 3) → x=752, y=247 ── -->
-  <circle class="pulse-ring" cx="732" cy="228" r="5" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-0.3s"/>
-  <circle class="pulse-ring" cx="732" cy="228" r="5" fill="none" stroke="#C4A265" stroke-width="1" style="animation-delay:-1s"/>
-  <circle cx="732" cy="228" r="4" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
-  <text class="strait-label" x="738" y="224">Malacca</text>
-  <text x="738" y="233" font-family="DM Sans" font-size="6.5" fill="rgba(196,162,101,0.45)">25% commerce mondial</text>
-
-  <!-- ── CANAL DE SUEZ (lon 32, lat 30) → x=565, y=167 ── -->
-  <circle class="pulse-ring" cx="555" cy="148" r="5" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-0.5s"/>
-  <circle cx="555" cy="148" r="4" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
-  <text class="strait-label" x="560" y="144">Suez</text>
-  <text x="560" y="153" font-family="DM Sans" font-size="6.5" fill="rgba(196,162,101,0.45)">12% commerce mondial</text>
-
-  <!-- ── GIBRALTAR (lon -5, lat 36) → x=467, y=150 ── -->
-  <circle class="pulse-ring" cx="460" cy="128" r="4" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-1.2s"/>
-  <circle cx="460" cy="128" r="3.5" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
-  <text class="strait-label" x="432" y="124">Gibraltar</text>
-
-  <!-- ── BOSPHORE (lon 29, lat 41) → x=557, y=136 ── -->
-  <circle class="pulse-ring" cx="535" cy="118" r="4" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-1.8s"/>
-  <circle cx="535" cy="118" r="3.5" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
-  <text class="strait-label" x="540" y="114">Bosphore</text>
-
-  <!-- ── DÉTROIT DE TAÏWAN (lon 119, lat 24) → x=798, y=183 ── -->
-  <circle class="pulse-ring" cx="808" cy="158" r="5" fill="none" stroke="#C47A4A" stroke-width="1.5" style="animation-delay:-0.8s"/>
-  <circle cx="808" cy="158" r="4" fill="#C47A4A" opacity="0.9" filter="url(#glow-red)"/>
-  <text class="strait-label" x="814" y="155" fill="rgba(196,122,74,0.8)">Taïwan</text>
-  <text x="814" y="163" font-family="DM Sans" font-size="6.5" fill="rgba(196,122,74,0.5)">Ligne de front</text>
-
-  <!-- ── CAP DE BONNE ESPÉRANCE ── -->
-  <circle class="pulse-ring" cx="460" cy="358" r="4" fill="none" stroke="#C4A265" stroke-width="1" style="animation-delay:-2.1s"/>
-  <circle cx="460" cy="358" r="3" fill="#C4A265" opacity="0.7"/>
-  <text class="strait-label" x="430" y="368">Cap de Bonne-Espérance</text>
-</g>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- COUCHE 3 : DOMINATION AMÉRICAINE (ch3)                      -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<g id="layer-us" opacity="0" style="transition:opacity 1s ease">
-  <!-- Zone d'influence US (cercles doux) -->
-  <!-- 6e flotte - Méditerranée -->
-  <circle cx="490" cy="148" r="45" fill="rgba(74,144,196,0.07)" stroke="rgba(74,144,196,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
-  <text x="490" y="152" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.6)" text-anchor="middle" font-weight="600">6e Flotte</text>
-
-  <!-- 5e flotte - Golfe Persique -->
-  <circle cx="620" cy="185" r="40" fill="rgba(74,144,196,0.07)" stroke="rgba(74,144,196,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
-  <text x="620" y="189" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.6)" text-anchor="middle" font-weight="600">5e Flotte</text>
-
-  <!-- 7e flotte - Pacifique Ouest -->
-  <circle cx="852" cy="175" r="55" fill="rgba(74,144,196,0.07)" stroke="rgba(74,144,196,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
-  <text x="852" y="179" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.6)" text-anchor="middle" font-weight="600">7e Flotte</text>
-
-  <!-- Porte-avions -->
-  <g filter="url(#glow-blue)">
-    <!-- CVN Méditerranée -->
-    <path d="M 488,143 L 496,140 L 496,147 L 488,147 Z" fill="rgba(74,144,196,0.9)"/>
-    <!-- CVN Golfe -->
-    <path d="M 618,180 L 626,177 L 626,184 L 618,184 Z" fill="rgba(74,144,196,0.9)"/>
-    <!-- CVN Pacifique -->
-    <path d="M 850,170 L 858,167 L 858,174 L 850,174 Z" fill="rgba(74,144,196,0.9)"/>
-    <!-- CVN Pacifique Est -->
-    <path d="M 112,165 L 120,162 L 120,169 L 112,169 Z" fill="rgba(74,144,196,0.9)"/>
-  </g>
-
-  <!-- Bases : Guam -->
-  <circle cx="880" cy="222" r="5" fill="rgba(74,144,196,0.6)" stroke="rgba(74,144,196,0.8)" stroke-width="1"/>
-  <text x="887" y="226" font-family="DM Sans" font-size="6.5" fill="rgba(74,144,196,0.7)">Guam</text>
-
-  <!-- Légende CVN -->
-  <text x="30" y="430" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.5)">■ Porte-avions US (position approximative)</text>
-</g>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- COUCHE 4 : MONTÉE CHINOISE (ch4)                            -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<g id="layer-china" opacity="0" style="transition:opacity 1s ease">
-  <!-- Mer de Chine méridionale — zone de revendication (9 traits) -->
-  <path d="M 748,158 Q 798,155 820,180 Q 840,210 820,255 Q 800,280 765,285 Q 740,280 720,260 Q 700,238 700,215 Q 700,188 720,172 Z"
-    fill="rgba(196,74,74,0.1)" stroke="rgba(196,74,74,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
-  <text x="760" y="225" font-family="DM Sans" font-size="8" fill="rgba(196,74,74,0.6)" text-anchor="middle" font-weight="600">Mer de Chine</text>
-  <text x="760" y="235" font-family="DM Sans" font-size="7" fill="rgba(196,74,74,0.4)" text-anchor="middle">Méridionale</text>
-  <text x="760" y="248" font-family="DM Sans" font-size="6" fill="rgba(196,74,74,0.35)" text-anchor="middle">revendication 9 traits</text>
-
-  <!-- Îles artificielles (Spratleys) -->
-  <circle cx="768" cy="245" r="4" fill="rgba(196,74,74,0.7)" filter="url(#glow-red)"/>
-  <text x="774" y="249" font-family="DM Sans" font-size="6" fill="rgba(196,74,74,0.6)">Spratleys</text>
-
-  <!-- Route de la Soie Maritime (BRI) -->
-  <path d="M 748,198 Q 680,210 630,200 Q 588,190 555,172 Q 528,155 488,135 Q 460,122 430,120 Q 400,118 365,128 Q 335,138 305,145 Q 275,150 240,148" fill="none" stroke="rgba(196,74,74,0.4)" stroke-width="1.5" stroke-dasharray="5,4"/>
-  <text x="545" y="220" font-family="DM Sans" font-size="7" fill="rgba(196,74,74,0.4)" text-anchor="middle">Route de la Soie Maritime</text>
-
-  <!-- PLAN — Flotte chinoise -->
-  <path d="M 762,162 L 770,159 L 770,166 L 762,166 Z" fill="rgba(196,74,74,0.9)" filter="url(#glow-red)"/>
-  <path d="M 790,168 L 798,165 L 798,172 L 790,172 Z" fill="rgba(196,74,74,0.9)" filter="url(#glow-red)"/>
-  <text x="775" y="178" font-family="DM Sans" font-size="6.5" fill="rgba(196,74,74,0.6)">PLAN ▶</text>
-
-  <!-- Djibouti (base) -->
-  <circle cx="570" cy="220" r="4" fill="rgba(196,74,74,0.6)" stroke="rgba(196,74,74,0.7)" stroke-width="1"/>
-  <text x="576" y="224" font-family="DM Sans" font-size="6" fill="rgba(196,74,74,0.5)">Djibouti</text>
-</g>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- COUCHE 5 : ZONES DE FRICTION (ch5)                          -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<g id="layer-friction" opacity="0" style="transition:opacity 1s ease">
-  <!-- Taïwan -->
-  <ellipse cx="808" cy="165" rx="20" ry="22" class="tension-zone"/>
-  <text x="808" y="148" font-family="DM Sans" font-size="7" fill="rgba(196,90,74,0.7)" text-anchor="middle">TAÏWAN</text>
-
-  <!-- Mer de Chine méridionale -->
-  <circle cx="762" cy="238" r="30" class="tension-zone" style="animation-delay:0.8s"/>
-
-  <!-- Mer Noire -->
-  <ellipse cx="570" cy="122" rx="28" ry="14" class="tension-zone" style="animation-delay:0.4s"/>
-  <text x="570" y="118" font-family="DM Sans" font-size="6" fill="rgba(196,90,74,0.6)" text-anchor="middle">MER NOIRE</text>
-
-  <!-- Détroit de Taïwan pulsant -->
-  <circle class="pulse-ring" cx="808" cy="165" r="8" fill="none" stroke="#C45A4A" stroke-width="1.5" style="animation:pulseRing 1.5s ease-out infinite"/>
-
-  <!-- Arctique (nouvelle route) -->
-  <path d="M 105,55 Q 200,30 300,35 Q 400,30 500,38 Q 600,35 700,40 Q 800,42 880,52" fill="none" stroke="rgba(196,162,101,0.3)" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <text x="480" y="28" font-family="DM Sans" font-size="7" fill="rgba(196,162,101,0.4)" text-anchor="middle">Route Arctique (en ouverture)</text>
-
-  <!-- Golfe Persique -->
-  <circle cx="620" cy="182" r="22" class="tension-zone" style="animation-delay:1.2s"/>
-
-  <!-- Légende -->
-  <text x="30" y="430" font-family="DM Sans" font-size="7" fill="rgba(196,90,74,0.4)">● Zones de haute tension géopolitique</text>
-</g>
-
-</svg><!-- /world-svg -->
-</div><!-- /map-wrap -->
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CHAPITRE 0 — TITRE                                          -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="chapter vis" id="ch0">
-  <div class="label">Géopolitique · Puissance maritime</div>
-  <h1 class="hero">
-    <span class="t-word" style="transition-delay:0.3s">Les mers</span><br>
-    <em class="t-word" style="transition-delay:0.7s">du pouvoir</em>
-  </h1>
-  <p class="sub t-word" style="transition-delay:1.1s">80 % du commerce mondial circule sur l'eau. Celui qui contrôle les mers contrôle l'économie mondiale.</p>
+<div id="stage">
+  <svg id="map-svg"></svg>
+  <div id="panel">
+    <div id="pTag" class="panel-tag"></div>
+    <h2 id="pTitle" class="panel-title"></h2>
+    <div id="pBody" class="panel-body"></div>
+    <div class="panel-stat"><span id="pStatN" class="stat-n"></span><span id="pStatL" class="stat-l"></span></div>
+  </div>
+  <div id="legend"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CHAPITRE 1 — ROUTES COMMERCIALES                            -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="chapter" id="ch1">
-  <div class="info-panel">
-    <div class="ch-tag">Chapitre I · Économie mondiale</div>
-    <h2>Les autoroutes <em>du monde</em></h2>
-    <p>Avant l'avion, avant le train — la mer. Aujourd'hui encore, 80 % des biens échangés mondialement transitent par bateau. Le pétrole, les containers, les céréales : tout passe par quelques routes critiques.</p>
-    <p>Ces routes ne sont pas des abstractions géographiques. Ce sont des lignes de vie. En couper une, c'est déclencher une crise mondiale en quelques semaines.</p>
-    <div class="stat-row">
-      <div>
-        <div class="stat-big">80%</div>
-        <div class="stat-label">du commerce mondial<br>passe par la mer</div>
-      </div>
-    </div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-line" style="background:rgba(196,162,101,0.5)"></div>Routes commerciales majeures</div>
-    <div class="legend-item"><div class="legend-line" style="background:rgba(74,196,168,0.4)"></div>Routes régionales</div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CHAPITRE 2 — DÉTROITS                                       -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="chapter" id="ch2">
-  <div class="info-panel">
-    <div class="ch-tag">Chapitre II · Points d'étranglement</div>
-    <h2>Les détroits qui <em>étranglent</em> le monde</h2>
-    <p>Quelques kilomètres de mer séparent la prospérité de la catastrophe. Ces points d'étranglement concentrent des flux colossaux — et un pouvoir géopolitique absolu.</p>
-    <p><strong style="color:rgba(255,255,255,0.7)">Ormuz</strong> : 20 % du pétrole mondial. <strong style="color:rgba(255,255,255,0.7)">Malacca</strong> : 25 % du commerce. <strong style="color:rgba(255,255,255,0.7)">Suez</strong> : 12 % des échanges. Bloquer l'un d'eux, c'est mettre l'économie mondiale à genoux.</p>
-    <div class="stat-row">
-      <div>
-        <div class="stat-big">5</div>
-        <div class="stat-label">détroits contrôlent<br>l'essentiel du commerce</div>
-      </div>
-    </div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#C4A265"></div>Détroit économique critique</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#C47A4A"></div>Détroit de tension militaire</div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CHAPITRE 3 — DOMINATION AMÉRICAINE                          -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="chapter" id="ch3">
-  <div class="info-panel">
-    <div class="ch-tag">Chapitre III · Pax Americana</div>
-    <h2>L'empire <em>des sept mers</em></h2>
-    <p>Depuis 1945, la marine américaine garantit la liberté de navigation mondiale. 11 porte-avions nucléaires sur 40 dans le monde entier — plus que les 9 autres pays réunis.</p>
-    <p>Six flottes permanentes couvrent chaque océan. Une présence continue dans le Golfe, la Méditerranée et le Pacifique Ouest depuis 80 ans.</p>
-    <div class="stat-row">
-      <div>
-        <div class="stat-big">11</div>
-        <div class="stat-label">porte-avions américains<br>vs 2 pour la Chine</div>
-      </div>
-    </div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#4A90C4"></div>Zones d'opérations permanentes</div>
-    <div class="legend-item"><div class="legend-line" style="width:14px;height:6px;background:rgba(74,144,196,0.08);border:1px solid rgba(74,144,196,0.3)"></div>■ Porte-avions</div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CHAPITRE 4 — MONTÉE CHINOISE                                -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="chapter" id="ch4">
-  <div class="info-panel">
-    <div class="ch-tag">Chapitre IV · PLAN</div>
-    <h2>La Chine prend <em>la mer</em></h2>
-    <p>La marine chinoise (PLAN) est devenue en 20 ans la plus grande du monde en nombre de navires — 355 bâtiments. Elle revendique 90 % de la mer de Chine méridionale via la doctrine des "9 traits".</p>
-    <p>Îles artificielles transformées en bases militaires. Route de la Soie Maritime pour sécuriser les approvisionnements. Première base étrangère à Djibouti en 2017.</p>
-    <div class="stat-row">
-      <div>
-        <div class="stat-big">355</div>
-        <div class="stat-label">navires de guerre PLAN<br>— n°1 mondial en nombre</div>
-      </div>
-    </div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#C44A4A"></div>Zone de revendication chinoise</div>
-    <div class="legend-item"><div class="legend-line" style="background:rgba(196,74,74,0.4)"></div>Route de la Soie Maritime</div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CHAPITRE 5 — ZONES DE FRICTION                              -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="chapter" id="ch5">
-  <div class="info-panel">
-    <div class="ch-tag">Chapitre V · Tensions</div>
-    <h2>Les points de <em>rupture</em></h2>
-    <p>Trois zones concentrent les risques d'escalade militaire majeure : <strong style="color:rgba(255,255,255,0.7)">Taïwan</strong>, où une invasion chinoise déclencherait une réponse américaine. La <strong style="color:rgba(255,255,255,0.7)">Mer Noire</strong>, théâtre du conflit ukrainien. Le <strong style="color:rgba(255,255,255,0.7)">Golfe Persique</strong>, otage des tensions irano-américaines.</p>
-    <p>Et une nouvelle frontière s'ouvre : l'<strong style="color:rgba(196,162,101,0.8)">Arctique</strong>, dont la fonte des glaces dessine une route commerciale raccourcissant de 40 % le trajet Asie-Europe.</p>
-    <div class="stat-row">
-      <div>
-        <div class="stat-big">3</div>
-        <div class="stat-label">zones à risque<br>de conflit majeur</div>
-      </div>
-    </div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#C45A4A;animation:flashDot 2s ease-in-out infinite"></div>Zone de haute tension</div>
-    <div class="legend-item"><div class="legend-line" style="background:rgba(196,162,101,0.4)"></div>Route Arctique (émergente)</div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CHAPITRE 6 — PACKSHOT                                       -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="chapter" id="ch6" style="top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:rgba(4,8,15,0.82);backdrop-filter:blur(4px)">
-  <div id="pk-line" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1)"></div>
-  <div style="display:flex;gap:clamp(8px,2vw,22px);align-items:baseline">
-    <span class="pk-letter" style="transition-delay:0.10s">P</span><span class="pk-letter" style="transition-delay:0.25s">R</span><span class="pk-letter" style="transition-delay:0.40s">I</span><span class="pk-letter" style="transition-delay:0.55s">S</span><span class="pk-letter" style="transition-delay:0.70s">M</span><span class="pk-letter" style="transition-delay:0.85s">E</span>
-    <span id="pk-dot-mid" style="display:inline-block;font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,50px);color:#fff;font-weight:300;opacity:0;transform:scale(0);transition:opacity 0.4s ease 1.5s,transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s;line-height:0;vertical-align:-0.25em;margin:0 -4px">.</span>
-    <span class="pk-letter" style="transition-delay:1.05s">F</span><span class="pk-letter" style="transition-delay:1.18s">R</span>
-  </div>
-  <p id="pk-tag" style="font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.4);opacity:0;transform:translateY(8px);transition:opacity 0.6s ease 1.8s,transform 0.6s ease 1.8s;font-family:'DM Sans',sans-serif">Les mers du pouvoir</p>
-  <div id="pk-line2" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s"></div>
-</div>
-
-</div><!-- /stage -->
-
-<!-- ══ PLAYER ══ -->
 <div id="player">
   <div id="progress-bar" onclick="seekClick(event)"><div id="progress-fill"></div></div>
   <div id="controls">
@@ -564,64 +107,460 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04080F;color:#fff;f
     <button class="ctrl-btn" onclick="prev()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
     <button class="ctrl-btn" id="btn-play" onclick="togglePlay()"><svg class="ip" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ipa" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
     <button class="ctrl-btn" onclick="next()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
-    <span id="counter">1 / 7</span>
+    <span id="counter">1 / 5</span>
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
-var N=7,cur=0,tmr=null,paused=false;
-var durs=[6000,9000,10000,10000,10000,10000,9000];
-var dotsEl=document.getElementById("dots");
-for(var i=0;i<N;i++){(function(idx){var d=document.createElement("div");d.className="dot";d.onclick=function(e){e.stopPropagation();goTo(idx)};dotsEl.appendChild(d)})(i)}
-function updateCounter(){document.getElementById("counter").textContent=(cur+1)+" / "+N}
-var progRaf=null,progStart=0;
-function startProg(){if(progRaf)cancelAnimationFrame(progRaf);progStart=Date.now();var dur=durs[cur]||9000;function tick(){var p=Math.min((Date.now()-progStart)/dur,1);document.getElementById("progress-fill").style.width=(p*100)+"%";if(p<1&&!paused)progRaf=requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+var W=window.innerWidth, H=window.innerHeight-56;
+var svg=d3.select('#map-svg').attr('width',W).attr('height',H);
+var proj=d3.geoNaturalEarth1().scale(W/6.2).translate([W*0.48,H*0.535]);
+var gpath=d3.geoPath().projection(proj);
+var P=function(lon,lat){return proj([lon,lat])||[0,0]};
+
+/* DEFS */
+var defs=svg.append('defs');
+function glow(id,blur){
+  var f=defs.append('filter').attr('id',id).attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
+  f.append('feGaussianBlur').attr('stdDeviation',blur).attr('result','b');
+  var m=f.append('feMerge');m.append('feMergeNode').attr('in','b');m.append('feMergeNode').attr('in','SourceGraphic');
+}
+glow('gg',4); glow('gb',5); glow('gr',5); glow('gs',2);
+
+  /* ── SHIP ICONS ── */
+  window.containerShipSVG = '\n<g class="ship-container" transform="translate({x},{y}) scale({s})">\n  <!-- Coque -->\n  <path d="M-26,2 Q-28,8 -22,10 L22,10 Q26,10 28,6 L28,2 Z" fill="{c}"/>\n  <!-- Pont principal -->\n  <rect x="-24" y="-1" width="50" height="4" fill="{c}"/>\n  <!-- Proue inclinée -->\n  <path d="M22,2 L28,2 L28,6 L22,10 Z" fill="{c}" opacity="0.8"/>\n  <!-- Poupe -->\n  <path d="M-24,-1 L-28,2 L-22,10 L-24,10 Z" fill="{c}" opacity="0.8"/>\n  <!-- Containers rangée 1 (bas) -->\n  <rect x="-20" y="-7" width="9" height="5" fill="{c}"/>\n  <rect x="-10" y="-7" width="9" height="5" fill="{c}"/>\n  <rect x="1" y="-7" width="9" height="5" fill="{c}"/>\n  <!-- Containers rangée 2 (haut) -->\n  <rect x="-18" y="-12" width="8" height="4" fill="{c}" opacity="0.85"/>\n  <rect x="-9" y="-12" width="8" height="4" fill="{c}" opacity="0.85"/>\n  <rect x="1" y="-12" width="7" height="4" fill="{c}" opacity="0.85"/>\n  <!-- Séparateurs containers -->\n  <line x1="-15" y1="-7" x2="-15" y2="-2" stroke="rgba(5,9,15,0.6)" stroke-width="0.8"/>\n  <line x1="-5" y1="-7" x2="-5" y2="-2" stroke="rgba(5,9,15,0.6)" stroke-width="0.8"/>\n  <line x1="5" y1="-7" x2="5" y2="-2" stroke="rgba(5,9,15,0.6)" stroke-width="0.8"/>\n  <!-- Passerelle / superstructure (droite) -->\n  <rect x="13" y="-16" width="9" height="17" rx="1" fill="{c}"/>\n  <rect x="15" y="-14" width="2" height="2" fill="rgba(5,9,15,0.5)"/>\n  <rect x="15" y="-11" width="2" height="2" fill="rgba(5,9,15,0.5)"/>\n  <rect x="18" y="-14" width="2" height="2" fill="rgba(5,9,15,0.5)"/>\n  <!-- Mât -->\n  <rect x="17" y="-20" width="1.5" height="5" fill="{c}"/>\n</g>\n';
+  window.carrierSVG = '\n<g class="ship-carrier" transform="translate({x},{y}) scale({s})">\n  <!-- Coque principale -->\n  <path d="M-30,4 Q-34,10 -26,12 L26,12 Q30,12 32,8 L32,3 Z" fill="{c}"/>\n  <!-- Pont d\'envol (plat, large) -->\n  <rect x="-30" y="-2" width="62" height="7" rx="1" fill="{c}"/>\n  <!-- Proue angulaire -->\n  <path d="M28,3 L32,3 L32,8 L26,12 Z" fill="{c}" opacity="0.85"/>\n  <!-- Encoche catapultes (côté gauche coque) -->\n  <rect x="-25" y="5" width="3" height="2" fill="rgba(5,9,15,0.6)" rx="0.5"/>\n  <rect x="-18" y="5" width="3" height="2" fill="rgba(5,9,15,0.6)" rx="0.5"/>\n  <!-- Fenêtres latérales -->\n  <rect x="2" y="5" width="4" height="2" fill="rgba(5,9,15,0.55)" rx="0.5"/>\n  <rect x="8" y="5" width="4" height="2" fill="rgba(5,9,15,0.55)" rx="0.5"/>\n  <rect x="14" y="5" width="4" height="2" fill="rgba(5,9,15,0.55)" rx="0.5"/>\n  <!-- Îlot / superstructure (tribord droite) -->\n  <rect x="18" y="-14" width="10" height="16" rx="1" fill="{c}"/>\n  <!-- Antenne radar (croix) -->\n  <rect x="21" y="-20" width="4" height="1.5" fill="{c}"/>\n  <rect x="22.5" y="-22" width="1.5" height="6" fill="{c}"/>\n  <rect x="20" y="-18" width="8" height="1" fill="{c}" opacity="0.7"/>\n  <!-- Fenêtres îlot -->\n  <rect x="20" y="-10" width="3" height="2" fill="rgba(5,9,15,0.55)" rx="0.5"/>\n  <rect x="24" y="-10" width="3" height="2" fill="rgba(5,9,15,0.55)" rx="0.5"/>\n  <!-- Avions sur le pont (4 silhouettes) -->\n  <!-- Avion 1 -->\n  <path d="M-22,-4 L-18,-6 L-14,-4 L-18,-3 Z" fill="{c2}"/>\n  <rect x="-19" y="-4" width="4" height="1.5" fill="{c2}"/>\n  <!-- Avion 2 -->\n  <path d="M-11,-4 L-7,-6 L-3,-4 L-7,-3 Z" fill="{c2}"/>\n  <rect x="-8" y="-4" width="4" height="1.5" fill="{c2}"/>\n  <!-- Avion 3 -->\n  <path d="M0,-4 L4,-6 L8,-4 L4,-3 Z" fill="{c2}"/>\n  <rect x="3" y="-4" width="4" height="1.5" fill="{c2}"/>\n  <!-- Avion 4 -->\n  <path d="M10,-4 L14,-6 L17,-4 L14,-3 Z" fill="{c2}"/>\n  <rect x="13" y="-4" width="3" height="1.5" fill="{c2}"/>\n</g>\n';
+
+/* ── CHAPITRES DATA ── */
+var chapters=[
+  {tag:'I · Économie mondiale',
+   title:'Les autoroutes <em>de la planète</em>',
+   body:'80 % des biens échangés dans le monde transitent par la mer — pétrole, containers, céréales. Trois axes dominent l\'économie mondiale. En couper un seul suffit à déclencher une crise en quelques semaines.',
+   statN:'80%',statL:'du commerce mondial\ntransite par voie maritime',
+   leg:[{t:'line',c:'rgba(196,162,101,0.8)',l:'Route commerciale majeure'},{t:'dot',c:'rgba(196,162,101,0.7)',l:'Porte-conteneurs'}]},
+  {tag:'II · Points d\'étranglement',
+   title:'Les détroits qui <em>étranglent</em> le monde',
+   body:'Quelques kilomètres de mer concentrent des flux colossaux. Ces points de passage obligé sont les talons d\'Achille de l\'économie mondiale : les bloquer 48h fait bondir le prix du pétrole de 40 dollars.\n\n<strong>Ormuz</strong> : 20% du pétrole mondial. <strong>Malacca</strong> : 25% du commerce. <strong>Suez</strong> : 12% des échanges.',
+   statN:'7',statL:'détroits concentrent\nl\'essentiel du commerce mondial',
+   leg:[{t:'dot',c:'#C4A265',l:'Détroit économique critique'},{t:'dot',c:'#D45040',l:'Détroit à risque géopolitique'}]},
+  {tag:'III · Domination américaine',
+   title:'L\'empire <em>des sept mers</em>',
+   body:'Depuis 1945, la marine américaine garantit la liberté de navigation mondiale. C\'est la seule au monde à maintenir des porte-avions déployés en permanence sur <strong>tous les océans simultanément</strong>. Cette présence continue est le socle invisible de la mondialisation.',
+   statN:'11',statL:'porte-avions américains\nen service — plus que tous les autres pays réunis',
+   leg:[{t:'zone',c:'rgba(74,154,212,0.1)',bc:'rgba(74,154,212,0.35)',l:'Zone de présence permanente'},{t:'rect',c:'rgba(74,154,212,0.85)',l:'Porte-avions'}]},
+  {tag:'IV · Marine chinoise',
+   title:'La Chine <em>prend la mer</em>',
+   body:'En vingt ans, la Chine a construit la plus grande marine du monde en nombre de navires. Elle revendique 90% de la <strong>mer de Chine méridionale</strong> — traversée chaque année par 5 000 milliards de dollars de commerce. Des récifs ont été transformés en îles artificielles abritant des bases militaires. En 2017, la Chine a ouvert sa première base navale hors d\'Asie, à <strong>Djibouti</strong>, sur l\'une des routes maritimes les plus fréquentées du monde.',
+   statN:'370',statL:'navires de guerre chinois\nn°1 mondial en nombre de bâtiments',
+   leg:[{t:'zone',c:'rgba(212,80,64,0.15)',bc:'rgba(212,80,64,0.5)',l:'Revendication des 9 traits'},{t:'line',c:'rgba(212,80,64,0.6)',l:'Route de la Soie Maritime'},{t:'dot',c:'#D45040',l:'Base militaire chinoise à l\'étranger'}]},
+  {tag:'V · Zones de tension',
+   title:'Les points <em>de rupture</em>',
+   body:'Trois zones concentrent les risques d\'escalade militaire : <strong>Taïwan</strong>, où une invasion chinoise déclencherait une réponse américaine directe. La <strong>Mer Noire</strong>, théâtre du conflit ukrainien. Le <strong>Golfe Persique</strong>, otage des tensions irano-américaines. Et une nouvelle frontière s\'ouvre : l\'<strong style="color:rgba(196,162,101,0.9)">Arctique</strong>, dont la fonte des glaces raccourcit le trajet Asie-Europe de 40%.',
+   statN:'3',statL:'zones à risque élevé\nde conflit naval majeur',
+   leg:[{t:'dot',c:'#D45040',l:'Zone de haute tension'},{t:'dash',c:'rgba(196,162,101,0.7)',l:'Route Arctique en ouverture'}]}
+];
+
+/* ── COUCHES ── */
+var layers=[];
+
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
+  /* Fond */
+  svg.append('rect').attr('width',W).attr('height',H).attr('fill','#05090F');
+  svg.append('path').datum({type:'Sphere'}).attr('d',gpath).attr('fill','#070C16');
+  /* Grille */
+  svg.append('path').datum(d3.geoGraticule()()).attr('d',gpath).attr('fill','none').attr('stroke','rgba(255,255,255,0.035)').attr('stroke-width',0.5);
+  /* Equateur */
+  svg.append('path').datum({type:'LineString',coordinates:[[-180,0],[180,0]]}).attr('d',gpath).attr('fill','none').attr('stroke','rgba(255,255,255,0.1)').attr('stroke-width',0.7);
+  /* Pays */
+  svg.append('g').selectAll('path')
+    .data(topojson.feature(world,world.objects.countries).features).join('path')
+    .attr('d',gpath).attr('fill','#0C1620').attr('stroke','none');
+  /* Frontières */
+  svg.append('path').datum(topojson.mesh(world,world.objects.countries,function(a,b){return a!==b}))
+    .attr('d',gpath).attr('fill','none').attr('stroke','#1A2D44').attr('stroke-width',0.6);
+  /* Contour sphère */
+  svg.append('path').datum({type:'Sphere'}).attr('d',gpath).attr('fill','none').attr('stroke','rgba(255,255,255,0.12)').attr('stroke-width',1);
+  /* Labels océans */
+  [[-35,20,'ATLANTIQUE',13],[-135,5,'PACIFIQUE',14],[155,-10,'PACIFIQUE',14],[72,-20,'INDIEN',13]]
+    .forEach(function(l){var pt=P(l[0],l[1]);svg.append('text').attr('x',pt[0]).attr('y',pt[1]).attr('text-anchor','middle').attr('font-family','"Playfair Display",serif').attr('font-size',l[3]).attr('font-style','italic').attr('fill','rgba(255,255,255,0.09)').attr('letter-spacing',4).text(l[2])});
+
+  buildLayer0(); buildLayer1(); buildLayer2(); buildLayer3(); buildLayer4();
+  initPlayer();
+});
+
+/* ══════════════════════════════════════════════
+   LAYER 0 — ROUTES COMMERCIALES
+   ══════════════════════════════════════════════ */
+function buildLayer0(){
+  var g=svg.append('g').attr('id','l0').attr('opacity',0).style('transition','opacity 1.1s ease');
+  layers.push(g);
+
+  /* 3 routes uniquement, bien lisibles */
+  var routes=[
+    // Transpacifique
+    {coords:[[121,31],[140,34],[160,38],[180,40],[-160,38],[-130,35],[-118,34]],primary:true,delay:0,label:[-148,42,'Route Transpacifique']},
+    // Asie → Europe via Suez
+    {coords:[[121,31],[104,1],[57,20],[43,13],[33,27],[15,37],[4,52]],primary:true,delay:0.6,label:[[70,15,'Asie — Europe (via Suez)'],]},
+    // Atlantique Nord
+    {coords:[[-73,41],[-40,45],[-10,51],[4,52]],primary:false,delay:1.2,label:[-38,48,'Atlantique Nord']}
+  ];
+
+  routes.forEach(function(r){
+    var d=gpath({type:'LineString',coordinates:r.coords});
+    if(!d) return;
+    // Halo
+    g.append('path').attr('d',d).attr('fill','none').attr('stroke','rgba(196,162,101,0.07)').attr('stroke-width',r.primary?10:6).attr('stroke-linecap','round');
+    // Base
+    g.append('path').attr('d',d).attr('fill','none').attr('stroke',r.primary?'rgba(196,162,101,0.22)':'rgba(196,162,101,0.12)').attr('stroke-width',r.primary?4:2.5).attr('stroke-linecap','round');
+    // Flow animé
+    g.append('path').attr('d',d).attr('fill','none')
+      .attr('stroke',r.primary?'#C4A265':'rgba(196,162,101,0.55)')
+      .attr('stroke-width',r.primary?2.8:1.8).attr('stroke-linecap','round')
+      .attr('class',r.primary?'rf':'rfs').style('animation-delay',r.delay+'s');
+    // Label route
+    var lbl=Array.isArray(r.label[0])?r.label:[r.label];
+    lbl.forEach(function(l){
+      var pt=P(l[0],l[1]);
+      g.append('text').attr('x',pt[0]).attr('y',pt[1]).attr('text-anchor','middle')
+        .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('font-weight','500')
+        .attr('fill','rgba(196,162,101,0.95)').attr('letter-spacing',0.3)
+        .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+        .text(l[2]);
+    });
+  });
+
+  /* Porte-conteneurs — silhouette vue de côté */
+  var ships=[
+    {lon:160,lat:37,s:0.82},{lon:-145,lat:36,s:0.82},{lon:75,lat:12,s:0.78},{lon:18,lat:39,s:0.75}
+  ];
+  ships.forEach(function(s,i){
+    var pt=P(s.lon,s.lat); var x=pt[0],y=pt[1];
+    if(!x||x<10||x>W-10) return;
+    var sc=s.s;
+    var sg=g.append('g').attr('transform','translate('+x+','+y+') scale('+sc+')').attr('filter','url(#gs)');
+    /* Coque */
+    sg.append('path').attr('d','M-26,2 Q-28,8 -22,10 L22,10 Q26,10 28,6 L28,2 Z').attr('fill','rgba(196,162,101,0.85)');
+    sg.append('rect').attr('x','-24').attr('y','-1').attr('width',50).attr('height',4).attr('fill','rgba(196,162,101,0.85)');
+    sg.append('path').attr('d','M-24,-1 L-28,2 L-22,10 L-24,10 Z').attr('fill','rgba(196,162,101,0.7)');
+    /* Containers rangée 1 */
+    sg.append('rect').attr('x','-20').attr('y','-7').attr('width',9).attr('height',5).attr('fill','rgba(196,162,101,0.85)');
+    sg.append('rect').attr('x','-10').attr('y','-7').attr('width',9).attr('height',5).attr('fill','rgba(196,162,101,0.85)');
+    sg.append('rect').attr('x','1').attr('y','-7').attr('width',9).attr('height',5).attr('fill','rgba(196,162,101,0.85)');
+    /* Containers rangée 2 */
+    sg.append('rect').attr('x','-18').attr('y','-12').attr('width',8).attr('height',4).attr('fill','rgba(196,162,101,0.72)');
+    sg.append('rect').attr('x','-9').attr('y','-12').attr('width',8).attr('height',4).attr('fill','rgba(196,162,101,0.72)');
+    sg.append('rect').attr('x','1').attr('y','-12').attr('width',7).attr('height',4).attr('fill','rgba(196,162,101,0.72)');
+    /* Séparateurs */
+    ['−15','−5','5'].forEach(function(xx){sg.append('line').attr('x1',xx).attr('y1','-7').attr('x2',xx).attr('y2','-2').attr('stroke','rgba(5,9,15,0.55)').attr('stroke-width',0.9)});
+    /* Superstructure */
+    sg.append('rect').attr('x','13').attr('y','-16').attr('width',9).attr('height',17).attr('rx',1).attr('fill','rgba(196,162,101,0.85)');
+    sg.append('rect').attr('x','17').attr('y','-21').attr('width',1.5).attr('height',6).attr('fill','rgba(196,162,101,0.85)');
+    /* Sillage bleu */
+    g.append('path').attr('d','M'+(x-26*sc)+','+(y+4*sc)+' Q'+(x-44*sc)+','+(y)+' '+(x-52*sc)+','+(y+4*sc)+' Q'+(x-44*sc)+','+(y+8*sc)+' '+(x-26*sc)+','+(y+4*sc))
+      .attr('fill','none').attr('stroke','rgba(74,154,212,0.35)').attr('stroke-width',2);
+  });
+}
+
+/* ══════════════════════════════════════════════
+   LAYER 1 — DÉTROITS
+   ══════════════════════════════════════════════ */
+function buildLayer1(){
+  var g=svg.append('g').attr('id','l1').attr('opacity',0).style('transition','opacity 1.1s ease');
+  layers.push(g);
+
+  /* Fond carte discret */
+  /* lr=true→droite, lr=false→gauche, dy=offset vertical du label vs dot */
+  var pts7=[
+    {lon:56.5,lat:26.5,name:'Ormuz',stat:'20% du pétrole mondial',c:'#C4A265',sz:'big',lr:true,dy:0},
+    {lon:103.8,lat:1.5,name:'Malacca',stat:'25% du commerce',c:'#C4A265',sz:'big',lr:true,dy:0},
+    {lon:32.5,lat:30.0,name:'Suez',stat:'12% des échanges',c:'#C4A265',sz:'big',lr:true,dy:18},
+    {lon:-5.4,lat:35.9,name:'Gibraltar',stat:'porte de la Méditerranée',c:'#C4A265',sz:'small',lr:false,dy:0},
+    {lon:29.0,lat:41.5,name:'Bosphore',stat:'accès mer Noire',c:'#C4A265',sz:'small',lr:false,dy:-14},
+    {lon:-79.5,lat:9.0,name:'Panama',stat:'5% du commerce',c:'#C4A265',sz:'small',lr:true,dy:0},
+    {lon:119.0,lat:23.8,name:'Taïwan',stat:'flashpoint — ligne de front',c:'#D45040',sz:'big',lr:true,dy:-28}
+  ];
+
+  pts7.forEach(function(s,i){
+    var pt=P(s.lon,s.lat); var x=pt[0],y=pt[1];
+    if(!x||x<10||x>W-10||y<5||y>H-10) return;
+    var big=s.sz==='big';
+    var wg=g.append('g').attr('transform','translate('+x+','+y+')');
+
+    /* Rings (3 pour big, 2 pour small) */
+    var nr=big?3:2;
+    for(var r=0;r<nr;r++){
+      wg.append('circle').attr('r',1).attr('fill','none')
+        .attr('stroke',s.c==='#D45040'?'rgba(212,80,64,0.7)':'rgba(196,162,101,0.7)')
+        .attr('stroke-width',big?2:1.5).attr('class','pr')
+        .style('animation-delay',(i*0.2+r*0.8)+'s');
+    }
+    /* Dot central */
+    wg.append('circle').attr('r',big?6:4.5).attr('fill',s.c)
+      .attr('filter',s.c==='#D45040'?'url(#gr)':'url(#gg)');
+    wg.append('circle').attr('r',big?3:2.5).attr('fill','rgba(255,255,255,0.95)');
+
+    /* Label sur fond */
+    var lx=s.lr?16:-16; var anchor=s.lr?'start':'end';
+    var dy=s.dy||0;
+    g.append('text').attr('x',x+lx).attr('y',y-2+dy).attr('text-anchor',anchor)
+      .attr('font-family','"DM Sans",sans-serif')
+      .attr('font-size',big?13.5:11).attr('font-weight','600')
+      .attr('fill',s.c==='#D45040'?'rgba(212,80,64,0.98)':'rgba(255,255,255,0.97)')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .text(s.name);
+    g.append('text').attr('x',x+lx).attr('y',y+13+dy).attr('text-anchor',anchor)
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',big?10:9)
+      .attr('fill',s.c==='#D45040'?'rgba(212,80,64,0.7)':'rgba(196,162,101,0.8)')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.85)').attr('stroke-width',2.5).attr('stroke-linejoin','round')
+      .text(s.stat);
+  });
+}
+
+/* ══════════════════════════════════════════════
+   LAYER 2 — US NAVY
+   ══════════════════════════════════════════════ */
+function buildLayer2(){
+  var g=svg.append('g').attr('id','l2').attr('opacity',0).style('transition','opacity 1.1s ease');
+  layers.push(g);
+
+  /* 5 porte-avions positionnés dans leurs zones — pas de jargon militaire */
+  var carriers=[
+    {lon:12,lat:44,region:'Méditerranée'},
+    {lon:66,lat:14,region:'Golfe Persique'},
+    {lon:152,lat:10,region:'Pacifique Ouest'},
+    {lon:-30,lat:52,region:'Atlantique Nord'},
+    {lon:-142,lat:22,region:'Pacifique Est'}
+  ];
+
+  /* Zone grisée = présence US permanente */
+  carriers.forEach(function(f){
+    var pt=P(f.lon,f.lat); var cx=pt[0],cy=pt[1];
+    if(!cx||cx<5||cx>W-5) return;
+    /* Halo de présence */
+    g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',68)
+      .attr('fill','rgba(74,154,212,0.06)').attr('stroke','rgba(74,154,212,0.25)')
+      .attr('stroke-width',1.5).attr('stroke-dasharray','6 4');
+    /* Porte-avions — silhouette vue de côté (fidèle à l'icône) */
+    var sc2=0.9;
+    var sg=g.append('g').attr('transform','translate('+cx+','+cy+') scale('+sc2+')').attr('filter','url(#gb)');
+    /* Coque */
+    sg.append('path').attr('d','M-32,4 Q-36,11 -27,13 L27,13 Q31,13 34,9 L34,3 Z').attr('fill','rgba(74,154,212,0.9)');
+    /* Pont d envol plat */
+    sg.append('rect').attr('x','-32').attr('y','-3').attr('width',65).attr('height',8).attr('rx',1).attr('fill','rgba(74,154,212,0.9)');
+    /* Proue */
+    sg.append('path').attr('d','M29,3 L34,3 L34,9 L27,13 Z').attr('fill','rgba(74,154,212,0.78)');
+    /* Catapultes — encoches côté gauche */
+    sg.append('rect').attr('x','-27').attr('y','6').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
+    sg.append('rect').attr('x','-20').attr('y','6').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
+    /* Hublots côté droit */
+    sg.append('rect').attr('x','2').attr('y','6').attr('width',4).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.5)');
+    sg.append('rect').attr('x','9').attr('y','6').attr('width',4).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.5)');
+    sg.append('rect').attr('x','16').attr('y','6').attr('width',4).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.5)');
+    /* Îlot (tribord, côté droit) */
+    sg.append('rect').attr('x','20').attr('y','-15').attr('width',10).attr('height',17).attr('rx',1).attr('fill','rgba(74,154,212,0.9)');
+    /* Fenêtres îlot */
+    sg.append('rect').attr('x','22').attr('y','-11').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
+    sg.append('rect').attr('x','26').attr('y','-11').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
+    /* Radar (croix) */
+    sg.append('rect').attr('x','22').attr('y','-21').attr('width',5).attr('height',1.5).attr('fill','rgba(74,154,212,0.9)');
+    sg.append('rect').attr('x','24').attr('y','-23').attr('width',1.5).attr('height',7).attr('fill','rgba(74,154,212,0.9)');
+    sg.append('rect').attr('x','21').attr('y','-19').attr('width',9).attr('height',1).attr('fill','rgba(74,154,212,0.72)');
+    /* 4 avions sur le pont */
+    [[-24,-5],[-14,-5],[-4,-5],[6,-5]].forEach(function(p){
+      sg.append('path').attr('d','M'+p[0]+','+p[1]+' L'+(p[0]+4)+','+(p[1]-2.5)+' L'+(p[0]+9)+','+p[1]+' L'+(p[0]+4.5)+','+(p[1]+1.5)+' Z').attr('fill','rgba(255,255,255,0.6)');
+      sg.append('rect').attr('x',p[0]+2).attr('y',p[1]).attr('width',5).attr('height',1.5).attr('fill','rgba(255,255,255,0.5)');
+    });
+    /* Sillage bleu */
+    g.append('path').attr('d','M'+(cx-32*sc2)+','+(cy+8*sc2)+' Q'+(cx-52*sc2)+','+cy+' '+(cx-62*sc2)+','+(cy+8*sc2)+' Q'+(cx-52*sc2)+','+(cy+16*sc2)+' '+(cx-32*sc2)+','+(cy+8*sc2))
+      .attr('fill','none').attr('stroke','rgba(74,154,212,0.4)').attr('stroke-width',2.5);
+    /* Label région */
+    var lbw=f.region.length*7.5+24;
+    /* Label région — au-dessus du halo, pas en dessous pour éviter chevauchement */
+    g.append('text').attr('x',cx).attr('y',cy-75).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',12).attr('font-weight','600')
+      .attr('fill','rgba(74,154,212,0.98)')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .text(f.region);
+  });
+
+  /* Légende "11 porte-avions US dans le monde" */
+  var lx=30, ly=H-80;
+  g.append('text').attr('x',lx+14).attr('y',ly+15).attr('font-family','"DM Sans",sans-serif')
+    .attr('font-size',11).attr('fill','rgba(74,154,212,0.85)')
+    .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+    .text('Position approx. — porte-avions américains');
+}
+
+/* ══════════════════════════════════════════════
+   LAYER 3 — CHINE
+   ══════════════════════════════════════════════ */
+function buildLayer3(){
+  var g=svg.append('g').attr('id','l3').attr('opacity',0).style('transition','opacity 1.1s ease');
+  layers.push(g);
+
+  /* Zone 9 traits — polygone simplifié */
+  var nineCoords=[[117,22],[118,16],[116,11],[113,7],[109,4],[107,9],[108,17],[110,21],[116,23]];
+  var polyPts=nineCoords.map(function(c){return P(c[0],c[1])}).filter(function(p){return p&&p[0]>0&&p[1]>0});
+  if(polyPts.length>3){
+    var d9='M'+polyPts[0].join(' ')+' '+polyPts.slice(1).map(function(p){return 'L'+p.join(' ')}).join(' ')+'Z';
+    g.append('path').attr('d',d9).attr('fill','rgba(212,80,64,0.07)').attr('stroke','rgba(212,80,64,0.55)').attr('stroke-width',2.2).attr('stroke-dasharray','6 3').attr('class','zp');
+    var cx2=polyPts.reduce(function(s,p){return s+p[0]},0)/polyPts.length;
+    var cy2=polyPts.reduce(function(s,p){return s+p[1]},0)/polyPts.length;
+    g.append('text').attr('x',cx2).attr('y',cy2+3).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('font-weight','700')
+      .attr('fill','rgba(212,80,64,0.98)').attr('letter-spacing',1.5)
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .text('REVENDICATION 9 TRAITS');
+  }
+
+  /* Route de la Soie Maritime — une seule ligne claire */
+  var silkC=[[121,31],[104,1],[57,20],[43,13],[33,27],[15,37],[4,52]];
+  var silkD=gpath({type:'LineString',coordinates:silkC});
+  if(silkD){
+    g.append('path').attr('d',silkD).attr('fill','none').attr('stroke','rgba(212,80,64,0.09)').attr('stroke-width',8).attr('stroke-linecap','round');
+    g.append('path').attr('d',silkD).attr('fill','none').attr('stroke','rgba(212,80,64,0.18)').attr('stroke-width',3.5).attr('stroke-linecap','round');
+    g.append('path').attr('d',silkD).attr('fill','none').attr('stroke','rgba(212,80,64,0.6)').attr('stroke-width',2).attr('stroke-dasharray','9 6').attr('class','rf').style('animation-delay','0.5s');
+    var midSilk=P(75,8);
+    g.append('text').attr('x',midSilk[0]).attr('y',midSilk[1]).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('fill','rgba(212,80,64,0.95)')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .text('Route de la Soie Maritime');
+  }
+
+  /* 2 points clés seulement */
+  var pts=[
+    {lon:115,lat:5,label:'Îles Spratleys',sub:'bases militaires artificielles'},
+    {lon:43.1,lat:11.6,label:'Djibouti',sub:'1re base chinoise hors Asie (2017)'}
+  ];
+  /* Spratleys (i=0) → label droite | Djibouti (i=1) → label gauche */
+  pts.forEach(function(b,i){
+    var pt=P(b.lon,b.lat); var x=pt[0],y=pt[1];
+    if(!x) return;
+    var lx=i===0?14:-14; var anchor=i===0?'start':'end';
+    var wg=g.append('g').attr('transform','translate('+x+','+y+')');
+    for(var r=0;r<2;r++){
+      wg.append('circle').attr('r',1).attr('fill','none').attr('stroke','rgba(212,80,64,0.7)')
+        .attr('stroke-width',1.8).attr('class','pr').style('animation-delay',(i*0.4+r*0.8)+'s');
+    }
+    wg.append('circle').attr('r',6).attr('fill','rgba(212,80,64,0.92)').attr('filter','url(#gr)');
+    wg.append('circle').attr('r',3).attr('fill','rgba(255,255,255,0.95)');
+    g.append('text').attr('x',x+lx).attr('y',y-1).attr('text-anchor',anchor)
+      .attr('font-family','"DM Sans",sans-serif')
+      .attr('font-size',12).attr('font-weight','600').attr('fill','rgba(212,80,64,0.98)')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.92)').attr('stroke-width',3.5).attr('stroke-linejoin','round')
+      .text(b.label);
+    g.append('text').attr('x',x+lx).attr('y',y+12).attr('text-anchor',anchor)
+      .attr('font-family','"DM Sans",sans-serif')
+      .attr('font-size',9.5).attr('fill','rgba(212,80,64,0.72)')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.85)').attr('stroke-width',2.5).attr('stroke-linejoin','round')
+      .text(b.sub);
+  });
+}
+
+/* ══════════════════════════════════════════════
+   LAYER 4 — FRICTION
+   ══════════════════════════════════════════════ */
+function buildLayer4(){
+  var g=svg.append('g').attr('id','l4').attr('opacity',0).style('transition','opacity 1.1s ease');
+  layers.push(g);
+
+  /* Route arctique */
+  var arcC=[[-165,70],[-120,75],[-60,78],[0,81],[60,78],[120,74],[165,68]];
+  var arcD=gpath({type:'LineString',coordinates:arcC});
+  if(arcD){
+    g.append('path').attr('d',arcD).attr('fill','none').attr('stroke','rgba(196,162,101,0.1)').attr('stroke-width',7).attr('stroke-linecap','round');
+    g.append('path').attr('d',arcD).attr('fill','none').attr('stroke','rgba(196,162,101,0.72)').attr('stroke-width',2.5).attr('stroke-dasharray','8 5').attr('filter','url(#gs)');
+    var arcMid=P(0,81);
+    g.append('text').attr('x',arcMid[0]).attr('y',arcMid[1]).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('fill','rgba(196,162,101,0.95)')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .text('Route Arctique — −40% trajet Asie-Europe');
+  }
+
+  /* Zones de tension — 3 seulement, bien espacées */
+  var fz=[
+    {lon:119,lat:23.5,r:36,label:'TAÏWAN',sz:'big'},
+    {lon:34,lat:43,rx:82,ry:22,label:'MER NOIRE',sz:'ellipse',ldy:14},
+    {lon:55,lat:25,r:46,label:'GOLFE PERSIQUE',sz:'big'}
+  ];
+  fz.forEach(function(z,i){
+    var pt=P(z.lon,z.lat); var cx=pt[0],cy=pt[1];
+    if(!cx) return;
+    if(z.sz==='ellipse'){
+      g.append('ellipse').attr('cx',cx).attr('cy',cy).attr('rx',z.rx).attr('ry',z.ry)
+        .attr('fill','rgba(212,64,64,0.06)').attr('stroke','rgba(212,64,64,0.55)').attr('stroke-width',2).attr('stroke-dasharray','6 3').attr('class','zp');
+    } else {
+      g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',z.r)
+        .attr('fill','rgba(212,64,64,0.06)').attr('stroke','rgba(212,64,64,0.55)').attr('stroke-width',2).attr('stroke-dasharray','6 3').attr('class','zp');
+    }
+    /* Radar radar */
+    var wg=g.append('g').attr('transform','translate('+cx+','+cy+')');
+    for(var r=0;r<3;r++){
+      wg.append('circle').attr('r',1).attr('fill','none').attr('stroke','rgba(212,64,64,0.8)').attr('stroke-width',2.2).attr('class','rad').style('animation-delay',(i*0.3+r*0.7)+'s');
+    }
+    wg.append('circle').attr('r',6).attr('fill','#D45040').attr('filter','url(#gr)');
+    wg.append('circle').attr('r',3).attr('fill','rgba(255,255,255,0.95)');
+    var lbw=z.label.length*8+24;
+    var lby=z.sz==='ellipse'?cy-z.ry-18:cy-z.r-18;
+    var ldy=z.ldy||0;
+    g.append('text').attr('x',cx).attr('y',lby+13+ldy).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',12).attr('font-weight','700')
+      .attr('fill','rgba(212,80,64,0.98)').attr('letter-spacing',2).attr('class','lf')
+      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .text(z.label);
+  });
+}
+
+/* ════════════════════════════════════════════ */
+var N=5,cur=0,tmr=null,paused=false,progRaf=null,progStart=0;
+var durs=[11000,11000,11000,11000,12000];
+var dotsEl=document.getElementById('dots');
+for(var i=0;i<N;i++){(function(idx){var d=document.createElement('div');d.className='dot';d.onclick=function(e){e.stopPropagation();goTo(idx)};dotsEl.appendChild(d)})(i)}
+
+function updatePanel(idx){
+  var c=chapters[idx];
+  document.getElementById('pTag').textContent=c.tag;
+  document.getElementById('pTitle').innerHTML=c.title;
+  document.getElementById('pBody').innerHTML=c.body.replace(/\n/g,'<br>');
+  document.getElementById('pStatN').textContent=c.statN;
+  document.getElementById('pStatL').innerHTML=c.statL.replace(/\n/g,'<br>');
+  var leg=document.getElementById('legend');
+  leg.innerHTML=c.leg.map(function(item){
+    var icon='';
+    if(item.t==='dot') icon='<div class="l-dot" style="background:'+item.c+'"></div>';
+    else if(item.t==='line') icon='<div class="l-line" style="background:'+item.c+'"></div>';
+    else if(item.t==='dash') icon='<div class="l-dash" style="border-top:2.5px dashed '+item.c+'"></div>';
+    else if(item.t==='zone') icon='<div class="l-zone" style="background:'+item.c+';border:2px dashed '+(item.bc||'#fff')+'"></div>';
+    else if(item.t==='rect') icon='<div style="width:22px;height:10px;border-radius:2px;background:'+item.c+'"></div>';
+    return '<div class="li">'+icon+'<span class="li-text">'+item.l+'</span></div>';
+  }).join('');
+  leg.classList.add('vis');
+}
+function startProg(){
+  if(progRaf)cancelAnimationFrame(progRaf);
+  progStart=Date.now(); var dur=durs[cur]||11000;
+  (function tick(){var p=Math.min((Date.now()-progStart)/dur,1);document.getElementById('progress-fill').style.width=(p*100)+'%';if(p<1&&!paused)progRaf=requestAnimationFrame(tick)})();
+}
 function seekClick(e){var r=e.currentTarget.getBoundingClientRect();goTo(Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left)/r.width*(N-1)))))}
-
-// Layers carte
-var layers={1:"layer-routes",2:"layer-straits",3:"layer-us",4:"layer-china",5:"layer-friction"};
-var chapters=["ch0","ch1","ch2","ch3","ch4","ch5","ch6"];
-
 function showSlide(idx){
-  // Chapitres
-  chapters.forEach(function(id,i){
-    var el=document.getElementById(id);
-    if(el)el.classList.toggle("vis",i===idx);
-  });
-  // Layers carte
-  Object.keys(layers).forEach(function(k){
-    var el=document.getElementById(layers[k]);
-    if(!el)return;
-    var show=parseInt(k)<=idx && idx<6;
-    el.style.opacity=show?"1":"0";
-  });
-  // Titre animé
-  if(idx===0){setTimeout(function(){document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")})},100)}
-  else{document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")})}
-  // Packshot
-  var pkL=document.querySelectorAll(".pk-letter"),pdm=document.getElementById("pk-dot-mid"),pt=document.getElementById("pk-tag"),pl=document.getElementById("pk-line"),pl2=document.getElementById("pk-line2");
-  pkL.forEach(function(el){el.classList.remove("in")});
-  if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0)"}
-  if(pt){pt.style.opacity="0";pt.style.transform="translateY(8px)"}
-  if(pl)pl.style.width="0";if(pl2)pl2.style.width="0";
-  if(idx===6){setTimeout(function(){
-    if(pl)pl.style.width="clamp(50px,12vw,140px)";
-    if(pl2)pl2.style.width="clamp(50px,12vw,140px)";
-    pkL.forEach(function(el){el.classList.add("in")});
-    setTimeout(function(){if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1)"}},1500);
-    setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},1900);
-  },200)}
-  document.querySelectorAll(".dot").forEach(function(d,i){d.classList.toggle("on",i===idx)});
-  updateCounter();startProg();
+  layers.forEach(function(lg,i){lg.style('opacity',i===idx?'1':'0')});
+  updatePanel(idx);
+  document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('on',i===idx)});
+  document.getElementById('counter').textContent=(idx+1)+' / '+N;
+  startProg();
 }
 function next(){if(tmr)clearTimeout(tmr);cur=cur<N-1?cur+1:0;showSlide(cur);if(!paused)schedule()}
 function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!paused)schedule()}
-function schedule(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,durs[cur]||9000)}
+function schedule(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,durs[cur]||11000)}
 function goTo(idx){if(tmr)clearTimeout(tmr);cur=idx;showSlide(idx);if(!paused)schedule()}
-function togglePlay(){paused=!paused;var btn=document.getElementById("btn-play");if(paused){btn.classList.remove("playing");if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}else{btn.classList.add("playing");schedule();startProg()}}
-document.getElementById("stage").addEventListener("click",function(e){if(e.target.closest("#dots")||e.target.closest("#player")||e.target.closest(".back"))return;next()});
-document.getElementById("btn-play").classList.add("playing");
-goTo(0);
+function togglePlay(){paused=!paused;var btn=document.getElementById('btn-play');if(paused){btn.classList.remove('playing');if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}else{btn.classList.add('playing');schedule();startProg()}}
+function initPlayer(){
+  document.getElementById('stage').addEventListener('click',function(e){if(e.target.closest('#dots')||e.target.closest('#player')||e.target.closest('.back'))return;next()});
+  document.getElementById('btn-play').classList.add('playing');
+  setTimeout(function(){showSlide(0);schedule()},300);
+}
 </script>
 </body>
 </html>
