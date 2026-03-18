@@ -3,236 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Dollar — III. Le crépuscule ?</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Le Dollar III — Le crépuscule ? · Prisme</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:#060608;color:#ECE7DD;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-#progress{position:fixed;top:0;left:0;height:2px;background:#C4A265;width:0%;z-index:100;transition:width 0.1s}
-.site-header{position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,8,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
-.hd-series{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C4A265;border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
-.hd-nav{display:flex;gap:4px}
-.hd-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background 0.2s}
-.hd-dot.active{background:#C4A265}
-.chapter{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 40px 60px;position:relative}
-.chapter:nth-child(even){background:rgba(255,255,255,0.015)}
-.ch-inner{max-width:900px;width:100%;display:grid;gap:60px}
-.ch-inner.two-col{grid-template-columns:1fr 1fr;align-items:center;gap:80px}
-.eyebrow{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C4A265;margin-bottom:16px}
-.ch-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:300;line-height:1.05;letter-spacing:-2px;color:#ECE7DD;margin-bottom:24px}
-.ch-title em{font-style:italic;color:#C4A265}
-.ch-body{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,21px);font-style:italic;color:rgba(236,231,221,0.55);line-height:1.75}
-.ch-text{font-size:15px;color:rgba(236,231,221,0.45);line-height:1.8;margin-top:16px}
-
-/* CHALLENGERS */
-.challenger{padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.06);display:grid;grid-template-columns:28px 1fr auto;gap:16px;align-items:start}
-.ch-idx{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:rgba(196,162,101,0.4)}
-.ch-name{font-size:14px;font-weight:600;color:#ECE7DD;margin-bottom:5px}
-.ch-desc{font-size:12px;color:rgba(236,231,221,0.35);line-height:1.6;font-style:italic}
-.ch-odds{font-family:'Playfair Display',serif;font-size:22px;font-weight:300;text-align:right;padding-top:2px}
-.ch-threat{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;text-align:right;margin-top:4px}
-
-/* VERDICT */
-.verdict-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.07)}
-.verdict-card{background:#060608;padding:28px;display:flex;flex-direction:column;gap:12px}
-.vc-label{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase}
-.vc-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#ECE7DD;line-height:1.3}
-.vc-desc{font-size:13px;color:rgba(236,231,221,0.35);line-height:1.65;font-style:italic}
-
-/* COURBE SVG */
-.curve-wrap{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:16px}
-.curve-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:12px}
-
-.stat-big{display:flex;flex-direction:column;gap:6px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.07)}
-.stat-num{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,72px);font-weight:300;letter-spacing:-2px;line-height:1;color:#ECE7DD}
-.stat-unit{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C4A265;margin-top:4px}
-.stat-desc{font-size:13px;color:rgba(236,231,221,0.35);line-height:1.6;margin-top:8px;max-width:320px}
-
-.big-quote{padding:48px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);text-align:center;position:relative}
-.big-quote::before{content:'"';position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:120px;color:rgba(196,162,101,0.1);line-height:1}
-.bq-text{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,26px);font-style:italic;color:rgba(236,231,221,0.75);line-height:1.55;max-width:680px;margin:0 auto 20px}
-.bq-cite{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5)}
-
-/* FINAL CTA */
-.final{background:rgba(196,162,101,0.04);border:1px solid rgba(196,162,101,0.15);padding:40px;text-align:center;display:flex;flex-direction:column;gap:16px;align-items:center}
-.final-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.6)}
-.final-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:300;color:#ECE7DD;letter-spacing:-1px}
-.final-body{font-size:13px;color:rgba(236,231,221,0.4);line-height:1.7;max-width:560px}
-
-.part-nav{display:flex;justify-content:space-between;align-items:center;padding:40px;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06)}
-.part-tag{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
-.part-back{text-decoration:none;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
-.part-end{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.4)}
-
-@media(max-width:768px){.ch-inner.two-col{grid-template-columns:1fr}.chapter{padding:100px 20px 60px}.verdict-grid{grid-template-columns:1fr}}
+html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
+:root{--gold:#C4A265;--blue:#7BA7C4;--teal:#6BB8A8;--lav:#9B8EC4;--red:#C47A65}
+#stage{position:fixed;top:0;left:0;width:100%;height:100%}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 48px 88px;opacity:0;transition:opacity 900ms ease;pointer-events:none}
+.slide.visible{opacity:1;pointer-events:auto}
+.label{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:flex;align-items:center;gap:14px;margin-bottom:24px;justify-content:center}
+.label::before,.label::after{content:"";width:20px;height:1px;background:rgba(196,162,101,0.3)}
+.hero-title{font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,108px);font-weight:300;line-height:0.88;letter-spacing:-4px;text-align:center;margin-bottom:28px}
+.hero-title em{font-style:italic;color:var(--gold);display:block}
+.t-word{display:inline-block;opacity:0;transform:translateY(18px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
+.t-word.in{opacity:1;transform:translateY(0)}
+.hero-sub{font-family:"Playfair Display",serif;font-size:clamp(13px,1.9vw,18px);font-style:italic;color:rgba(255,255,255,0.4);max-width:540px;line-height:1.8;text-align:center}
+.two-col{width:100%;max-width:880px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.col-left .section-title,.col-left .body-text{text-align:left}
+.section-title{font-family:"Playfair Display",serif;font-size:clamp(20px,3.5vw,38px);font-weight:300;letter-spacing:-1px;line-height:1.15;margin-bottom:14px}
+.section-title em{font-style:italic;color:var(--gold)}
+.body-text{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.9;max-width:540px}
+.ev-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:block;margin-bottom:12px}
+.ev-num{font-family:"Playfair Display",serif;font-size:clamp(36px,6vw,72px);font-weight:300;letter-spacing:-2px;line-height:1;display:block;margin-bottom:6px}
+.ev-unit{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);display:block}
+.challenger-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);align-items:flex-start}
+.ch-name{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px}
+.ch-desc{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.55}
+.ch-verdict{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:2px;align-self:flex-start}
+.scenario-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.sc-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.sc-title{font-family:"Playfair Display",serif;font-size:16px;font-weight:400;color:#fff;margin-bottom:6px}
+.sc-body{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.65}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bar-yr{font-size:9px;color:rgba(255,255,255,0.4);width:36px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;width:0%;transition:width 1.3s cubic-bezier(0.4,0,0.2,1)}
+.bar-val{font-size:9px;color:rgba(255,255,255,0.4);width:28px}
+.fin-rule{width:1px;height:48px;background:rgba(196,162,101,0.3);margin:0 auto 24px}
+.fin-q{font-family:"Playfair Display",serif;font-size:clamp(15px,2.2vw,22px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.7;max-width:600px;margin:0 auto 14px;text-align:center}
+.fin-a{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.45);text-align:center;display:block}
+.pk-letter{display:inline-block;font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,100px);font-weight:300;letter-spacing:-2px;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
+.pk-letter.in{opacity:1;transform:translateY(0)}
+.curve-svg{width:100%;height:80px;display:block}
+#player{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;flex-direction:column;background:rgba(5,5,7,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.07)}
+#progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.08);cursor:pointer}
+#progress-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s linear}
+#controls{display:flex;align-items:center;justify-content:center;padding:10px 20px;position:relative}
+#dots{position:absolute;left:20px;display:flex;gap:5px}
+.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.18);cursor:pointer;transition:background .2s,transform .2s}
+.dot.on{background:var(--gold);transform:scale(1.5)}
+.ctrl-btn{width:36px;height:36px;border:none;background:none;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 4px}
+.ctrl-btn:hover{color:var(--gold)}
+.ctrl-btn svg{width:20px;height:20px;fill:currentColor}
+#btn-play .ip{display:block}#btn-play .ipa{display:none}
+#btn-play.playing .ip{display:none}#btn-play.playing .ipa{display:block}
+#btn-play{width:44px;height:44px;border-radius:50%;background:rgba(196,162,101,0.15);color:var(--gold);border:1px solid rgba(196,162,101,0.3)}
+#counter{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+#prisme-wm{position:fixed;bottom:78px;left:20px;z-index:50;pointer-events:none;font-family:"DM Sans",sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.38)}
+#prisme-wm span{color:rgba(196,162,101,0.22)}
+.back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;z-index:200}
+.back:hover{color:var(--gold)}
+@media(max-width:600px){.two-col{grid-template-columns:1fr;gap:20px}.slide{padding:80px 20px 88px}}
 </style>
 </head>
 <body>
-<div id="progress"></div>
-<header class="site-header">
-  <span class="hd-series">Trilogie du Dollar · III / III</span>
-  <div class="hd-nav">
-    <div class="hd-dot" onclick="location.href='dollar1.html'"></div>
-    <div class="hd-dot" onclick="location.href='dollar2.html'"></div>
-    <div class="hd-dot active"></div>
-  </div>
-</header>
+<a class="back" href="/visuels/dollar2.html">← Partie II</a>
+<div id="stage">
+<div id="prisme-wm">PRISME<span>.FR</span></div>
 
-<!-- INTRO -->
-<section class="chapter">
-  <div class="ch-inner">
-    <div>
-      <div class="eyebrow">Trilogie du Dollar · Partie III</div>
-      <h1 class="ch-title">Le<br><em>crépuscule ?</em></h1>
-      <p class="ch-body">Le dollar décline. Mais il ne tombe pas. La question n'est pas si son hégémonie finira, mais quand, comment — et par quoi elle sera remplacée.</p>
-      <p class="ch-text">Depuis 2001, la part du dollar dans les réserves mondiales est passée de 73% à 58%. Une glissade lente, continue, qui s'est accélérée après le gel des réserves russes de 2022. Mais aucun challenger sérieux n'est apparu. L'euro est divisé. Le yuan est contrôlé. Le Bitcoin est volatil. Le dollar reste le moins mauvais choix — pour l'instant.</p>
-    </div>
-    <div>
-      <!-- Courbe déclin dollar -->
-      <div class="curve-wrap">
-        <div class="curve-label">Part du dollar dans les réserves mondiales (%)</div>
-        <svg viewBox="0 0 400 160" style="width:100%;height:auto;display:block">
-          <defs>
-            <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#C4A265" stop-opacity="0.3"/>
-              <stop offset="100%" stop-color="#C4A265" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <!-- Grid -->
-          <line x1="40" y1="20" x2="40" y2="140" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-          <line x1="40" y1="140" x2="390" y2="140" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-          <!-- Labels Y -->
-          <text x="35" y="28" text-anchor="end" font-family="DM Sans" font-size="9" fill="rgba(255,255,255,0.25)">85%</text>
-          <text x="35" y="80" text-anchor="end" font-family="DM Sans" font-size="9" fill="rgba(255,255,255,0.25)">65%</text>
-          <text x="35" y="132" text-anchor="end" font-family="DM Sans" font-size="9" fill="rgba(255,255,255,0.25)">45%</text>
-          <!-- Labels X -->
-          <text x="50" y="152" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.25)">1978</text>
-          <text x="155" y="152" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.25)">1995</text>
-          <text x="255" y="152" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.25)">2008</text>
-          <text x="355" y="152" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.25)">2024</text>
-          <!-- Courbe area -->
-          <path d="M50,22 C80,26 120,52 160,60 C200,66 230,68 260,72 C290,76 320,80 380,88 L380,140 L50,140 Z"
-            fill="url(#grad)" opacity="0.6"/>
-          <!-- Courbe line -->
-          <path d="M50,22 C80,26 120,52 160,60 C200,66 230,68 260,72 C290,76 320,80 380,88"
-            fill="none" stroke="#C4A265" stroke-width="2" stroke-linecap="round"/>
-          <!-- Dot actuel -->
-          <circle cx="380" cy="88" r="4" fill="#C4A265"/>
-          <text x="370" y="82" font-family="DM Sans" font-size="9" fill="#C4A265" font-weight="600" text-anchor="end">58%</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHALLENGERS -->
-<section class="chapter">
-  <div class="ch-inner two-col">
-    <div>
-      <div class="eyebrow">Les prétendants au trône</div>
-      <h2 class="ch-title" style="font-size:clamp(28px,4vw,48px)">Qui peut<br><em>remplacer</em><br>le dollar ?</h2>
-      <p class="ch-body">Chaque challenger a une force et un défaut rédhibitoire. L'hégémonie du dollar tient moins à sa force qu'à la faiblesse de ses concurrents.</p>
-    </div>
-    <div>
-      <div class="challenger">
-        <div class="ch-idx">1</div>
-        <div>
-          <div class="ch-name">Yuan chinois (renminbi)</div>
-          <div class="ch-desc">Puissance économique n°1 ou 2 mondiale. Mais le yuan n'est pas librement convertible. Pékin contrôle les flux de capitaux — incompatible avec une monnaie de réserve mondiale.</div>
-        </div>
-        <div>
-          <div class="ch-odds" style="color:#D4882A">Faible</div>
-          <div class="ch-threat" style="color:rgba(212,136,42,0.5)">à 10 ans</div>
-        </div>
-      </div>
-      <div class="challenger">
-        <div class="ch-idx">2</div>
-        <div>
-          <div class="ch-name">Euro</div>
-          <div class="ch-desc">Deuxième monnaie mondiale (20% des réserves). Mais sans union fiscale, sans Trésor européen unifié, sans marché obligataire commun. Fragile.</div>
-        </div>
-        <div>
-          <div class="ch-odds" style="color:#4A7EC7">Moyen</div>
-          <div class="ch-threat" style="color:rgba(74,126,199,0.5)">partiel seulement</div>
-        </div>
-      </div>
-      <div class="challenger">
-        <div class="ch-idx">3</div>
-        <div>
-          <div class="ch-name">Monnaie BRICS</div>
-          <div class="ch-desc">Annoncée, jamais créée. Les BRICS (Brésil, Russie, Inde, Chine, Afrique du Sud) ont des intérêts divergents. Une monnaie commune nécessite une union politique — inexistante.</div>
-        </div>
-        <div>
-          <div class="ch-odds" style="color:rgba(196,162,101,0.5)">Très faible</div>
-          <div class="ch-threat" style="color:rgba(196,162,101,0.3)">hypothétique</div>
-        </div>
-      </div>
-      <div class="challenger">
-        <div class="ch-idx">4</div>
-        <div>
-          <div class="ch-name">Bitcoin / cryptomonnaies</div>
-          <div class="ch-desc">Technologie brillante, mais volatilité extrême. Aucune banque centrale ne peut gérer ses réserves en actifs variant de 80% par an.</div>
-        </div>
-        <div>
-          <div class="ch-odds" style="color:rgba(255,255,255,0.25)">Nul</div>
-          <div class="ch-threat" style="color:rgba(255,255,255,0.15)">structurellement</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VERDICTS -->
-<section class="chapter">
-  <div class="ch-inner">
-    <div>
-      <div class="eyebrow">Les scénarios</div>
-      <h2 class="ch-title" style="font-size:clamp(24px,3.5vw,40px)">Trois futurs<br><em>possibles</em></h2>
-    </div>
-    <div class="verdict-grid">
-      <div class="verdict-card">
-        <div class="vc-label" style="color:#C4A265">Scénario 1 — Probable</div>
-        <div class="vc-title">Le déclin lent</div>
-        <div class="vc-desc">Le dollar reste dominant mais perd progressivement des parts. Les échanges régionaux se font en monnaies locales. Le monde devient multipolaire monétairement — comme il l'est devenu politiquement. Probabilité : 60%.</div>
-      </div>
-      <div class="verdict-card">
-        <div class="vc-label" style="color:#4A7EC7">Scénario 2 — Possible</div>
-        <div class="vc-title">Le système dual</div>
-        <div class="vc-desc">Dollar pour l'Occident, yuan pour l'Orient. Deux blocs, deux systèmes de paiement, deux mondes financiers. La guerre commerciale US-Chine accélère ce scénario. Probabilité : 30%.</div>
-      </div>
-      <div class="verdict-card" style="grid-column:1/-1">
-        <div class="vc-label" style="color:#C75A5A">Scénario 3 — Improbable mais non nul</div>
-        <div class="vc-title">L'effondrement brutal</div>
-        <div class="vc-desc">Un choc exogène — guerre majeure, crise financière systémique, défaut américain — pourrait précipiter une recomposition rapide. Aucun système de remplacement n'est prêt. Ce scénario serait une crise mondiale sans précédent. Probabilité : moins de 10% à 10 ans.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTE FINALE -->
-<section class="chapter">
-  <div class="ch-inner">
-    <div class="big-quote">
-      <p class="bq-text">Le dollar tombera le jour où les Américains cesseront d'avoir besoin des autres. Ce jour n'est pas arrivé.</p>
-      <div class="bq-cite">Zoltan Pozsar, ancien stratégiste Credit Suisse, 2023</div>
-    </div>
-    <div class="final">
-      <div class="final-label">Fin de la Trilogie du Dollar</div>
-      <div class="final-title">L'empire du dollar n'est pas mort.<br>Il est <em>mortel</em>.</div>
-      <div class="final-body">Toutes les grandes monnaies de réserve ont fini par être remplacées. La livre sterling a régné 200 ans. Le dollar américain, 80. L'histoire n'est pas terminée — mais elle s'écrit.</div>
-    </div>
-  </div>
-</section>
-
-<div class="part-nav">
-  <a href="dollar2.html" class="part-back">← Partie II</a>
-  <span class="part-tag">Fin de la trilogie</span>
-  <span class="part-end">Prisme · Analyse</span>
+<!-- S0 TITRE -->
+<div class="slide visible" id="slide-0">
+  <div class="label">Trilogie du Dollar · III / III</div>
+  <h1 class="hero-title">
+    <span class="t-word" style="transition-delay:0.3s">Le</span>
+    <span class="t-word" style="transition-delay:0.55s">crépuscule</span><br>
+    <em class="t-word" style="transition-delay:0.85s">?</em>
+  </h1>
+  <p class="hero-sub t-word" style="transition-delay:1.2s">Le dollar décline. Mais il ne tombe pas. La question n'est pas si son hégémonie finira — mais quand, comment, et par quoi.</p>
 </div>
 
+<!-- S1 LA COURBE DU DÉCLIN -->
+<div class="slide" id="slide-1">
+  <div class="two-col">
+    <div class="col-left">
+      <span class="ev-tag">La glissade · 2001–2024</span>
+      <div class="section-title">Un déclin<br><em>lent, continu</em></div>
+      <p class="body-text">Depuis 2001, la part du dollar dans les réserves mondiales est passée de 73% à 58%. Une glissade lente, continue, qui s'est accélérée après 2022.</p>
+      <p class="body-text" style="margin-top:10px">Ce n'est pas un effondrement. C'est la fin du monopole absolu. Le monde devient <span style="color:rgba(255,255,255,0.85)">multipolaire monétairement</span> comme il l'est géopolitiquement.</p>
+      <div style="margin-top:16px;display:flex;gap:16px">
+        <div style="text-align:center">
+          <span class="ev-num" style="color:rgba(255,255,255,0.5);font-size:clamp(24px,4vw,44px)">73%</span>
+          <span class="ev-unit">2001</span>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--gold);font-size:20px">→</div>
+        <div style="text-align:center">
+          <span class="ev-num" style="color:var(--gold);font-size:clamp(24px,4vw,44px)"><span class="counter" data-target="58" data-suffix="%">58%</span></span>
+          <span class="ev-unit">2024</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:10px;text-align:center">Réserves mondiales en dollars (%)</div>
+      <svg class="curve-svg" viewBox="0 0 260 80" style="height:90px">
+        <defs><linearGradient id="gdec" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C4A265" stop-opacity="0.15"/><stop offset="100%" stop-color="#C4A265" stop-opacity="0"/></linearGradient></defs>
+        <path id="fdec" d="M0,14 L40,16 L80,22 L120,28 L160,34 L200,38 L240,42 L260,45 L260,80 L0,80 Z" fill="url(#gdec)" opacity="0" style="transition:opacity 0.8s ease 0.3s"/>
+        <path id="pdec" d="M0,14 L40,16 L80,22 L120,28 L160,34 L200,38 L240,42 L260,45" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="340" stroke-dashoffset="340" style="transition:stroke-dashoffset 1.8s ease 0.3s"/>
+        <text x="2" y="11" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">73%</text>
+        <text x="235" y="42" font-family="DM Sans" font-size="7" fill="var(--gold)" font-weight="600">58%</text>
+        <text x="2" y="74" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">2001</text>
+        <text x="230" y="74" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">2024</text>
+        <line x1="170" y1="8" x2="170" y2="72" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="172" y="16" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">2022</text>
+        <text x="172" y="24" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">Russie</text>
+      </svg>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px">
+        <div class="bar-row"><span class="bar-yr">Dollar</span><div class="bar-track"><div class="bar-fill" data-w="58" data-slide="1" style="background:var(--gold)"></div></div><span class="bar-val" style="color:var(--gold)">58%</span></div>
+        <div class="bar-row"><span class="bar-yr">Euro</span><div class="bar-track"><div class="bar-fill" data-w="20" data-slide="1" style="background:var(--blue)"></div></div><span class="bar-val">20%</span></div>
+        <div class="bar-row"><span class="bar-yr">Yuan</span><div class="bar-track"><div class="bar-fill" data-w="3" data-slide="1" style="background:var(--red)"></div></div><span class="bar-val">3%</span></div>
+        <div class="bar-row"><span class="bar-yr">Autres</span><div class="bar-track"><div class="bar-fill" data-w="19" data-slide="1" style="background:rgba(255,255,255,0.3)"></div></div><span class="bar-val">19%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 LES CHALLENGERS -->
+<div class="slide" id="slide-2">
+  <div class="label">Les prétendants au trône</div>
+  <div class="section-title" style="text-align:center;margin-bottom:6px">Qui peut <em>remplacer</em> le dollar ?</div>
+  <p class="body-text" style="text-align:center;margin-bottom:20px;max-width:560px">Chaque challenger a une force et un défaut rédhibitoire. L'hégémonie du dollar tient moins à sa propre force qu'à la faiblesse de ses concurrents.</p>
+  <div style="max-width:700px;width:100%">
+    <div class="challenger-row" style="padding-top:0">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:4px"></div>
+      <div style="flex:1"><div class="ch-name">Yuan chinois (renminbi)</div><div class="ch-desc">Puissance économique n°1. Mais le yuan n'est pas librement convertible. Pékin contrôle les flux de capitaux.</div></div>
+      <span class="ch-verdict" style="background:rgba(196,116,101,0.12);border:1px solid rgba(196,116,101,0.2);color:var(--red)">Bloqué</span>
+    </div>
+    <div class="challenger-row">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:4px"></div>
+      <div style="flex:1"><div class="ch-name">Euro</div><div class="ch-desc">2e monnaie mondiale (20% des réserves). Mais sans union fiscale, sans Trésor européen unifié, sans marché obligataire commun.</div></div>
+      <span class="ch-verdict" style="background:rgba(123,167,196,0.12);border:1px solid rgba(123,167,196,0.2);color:var(--blue)">Partiel</span>
+    </div>
+    <div class="challenger-row">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--lav);flex-shrink:0;margin-top:4px"></div>
+      <div style="flex:1"><div class="ch-name">Monnaie BRICS</div><div class="ch-desc">Annoncée, jamais créée. Les BRICS ont des intérêts divergents. Une monnaie commune requiert une confiance mutuelle que ces pays n'ont pas.</div></div>
+      <span class="ch-verdict" style="background:rgba(155,142,196,0.12);border:1px solid rgba(155,142,196,0.2);color:var(--lav)">Hypothétique</span>
+    </div>
+    <div class="challenger-row" style="border-bottom:none">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:4px"></div>
+      <div style="flex:1"><div class="ch-name">Bitcoin / cryptomonnaies</div><div class="ch-desc">Technologie brillante, mais volatilité extrême. Aucune banque centrale ne peut gérer ses réserves en actifs variant de 80% en un an.</div></div>
+      <span class="ch-verdict" style="background:rgba(107,184,168,0.12);border:1px solid rgba(107,184,168,0.2);color:var(--teal)">Structurel</span>
+    </div>
+  </div>
+</div>
+
+<!-- S3 LES SCÉNARIOS -->
+<div class="slide" id="slide-3">
+  <div class="label">Trois futurs possibles</div>
+  <div style="max-width:720px;width:100%;display:flex;flex-direction:column;gap:10px">
+    <div class="scenario-card" style="border-left:2px solid var(--gold)">
+      <div class="sc-label" style="color:var(--gold)">Scénario 1 · Probable</div>
+      <div class="sc-title">Le déclin lent</div>
+      <div class="sc-body">Le dollar reste dominant mais perd progressivement des parts. Les échanges régionaux se font en monnaies locales. Le monde devient multipolaire monétairement — sans rupture brutale.</div>
+    </div>
+    <div class="scenario-card" style="border-left:2px solid var(--blue)">
+      <div class="sc-label" style="color:var(--blue)">Scénario 2 · Possible</div>
+      <div class="sc-title">Le système dual</div>
+      <div class="sc-body">Dollar pour l'Occident, yuan pour l'Orient. Deux blocs, deux systèmes de paiement, deux mondes financiers. La guerre commerciale actuelle accélère cette bifurcation.</div>
+    </div>
+    <div class="scenario-card" style="border-left:2px solid var(--lav)">
+      <div class="sc-label" style="color:var(--lav)">Scénario 3 · Improbable mais non nul</div>
+      <div class="sc-title">L'effondrement brutal</div>
+      <div class="sc-body">Un choc exogène — guerre majeure, crise financière systémique, défaut américain — pourrait précipiter une recomposition rapide. Historiquement peu probable, mais non impossible.</div>
+    </div>
+  </div>
+</div>
+
+<!-- S4 CONCLUSION -->
+<div class="slide" id="slide-4" style="text-align:center">
+  <div class="section-title" style="max-width:560px;margin-bottom:20px">L'empire du dollar<br><em>n'est pas mort.</em></div>
+  <p class="body-text" style="text-align:center;max-width:520px;margin-bottom:24px">Il traverse sa première remise en question sérieuse depuis 1945. Ce n'est pas la fin du dollar — c'est la fin de son règne sans partage. Deux forces s'opposent : la force d'inertie du système actuel, et la volonté croissante de s'en affranchir.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:480px">
+    <div style="padding:14px;background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.15);border-radius:8px;text-align:center">
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">Pour le dollar</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.6">Inertie des marchés, dette mondiale libellée en $, réseau SWIFT, confiance institutionnelle</div>
+    </div>
+    <div style="padding:14px;background:rgba(155,142,196,0.06);border:1px solid rgba(155,142,196,0.15);border-radius:8px;text-align:center">
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--lav);margin-bottom:6px">Contre le dollar</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.6">Weaponization, déficits américains, montée des BRICS, alternatives techniques</div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 CITATION -->
+<div class="slide" id="slide-5" style="text-align:center">
+  <div class="fin-rule"></div>
+  <p class="fin-q">"Le dollar tombera le jour où les Américains cesseront d'avoir besoin des autres. Ce jour n'est pas arrivé."</p>
+  <span class="fin-a">Zoltan Pozsar, ancien stratégiste Credit Suisse, 2023</span>
+</div>
+
+<!-- S6 PACKSHOT FINAL -->
+<div class="slide" id="slide-6" style="flex-direction:column;align-items:center;justify-content:center;gap:32px;padding-bottom:80px">
+  <div id="pk-line" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1)"></div>
+  <div style="display:flex;gap:clamp(8px,2vw,24px);align-items:baseline">
+    <span class="pk-letter" style="transition-delay:0.10s">P</span><span class="pk-letter" style="transition-delay:0.25s">R</span><span class="pk-letter" style="transition-delay:0.40s">I</span><span class="pk-letter" style="transition-delay:0.55s">S</span><span class="pk-letter" style="transition-delay:0.70s">M</span><span class="pk-letter" style="transition-delay:0.85s">E</span>
+    <span id="pk-dot-mid" style="display:inline-block;font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,56px);color:#fff;font-weight:300;opacity:0;transform:scale(0);transition:opacity 0.4s ease 1.5s,transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s;line-height:0;vertical-align:-0.25em;margin:0 -4px">.</span>
+    <span class="pk-letter" style="transition-delay:1.1s">F</span><span class="pk-letter" style="transition-delay:1.22s">R</span>
+  </div>
+  <p id="pk-tag" style="font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.4);opacity:0;transform:translateY(8px);transition:opacity 0.6s ease 1.8s,transform 0.6s ease 1.8s;font-family:'DM Sans',sans-serif">Fin de la Trilogie du Dollar</p>
+  <a href="/visuels/dollar2.html" id="pk-nav" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;opacity:0;transform:translateY(8px);transition:opacity 0.6s ease 2.1s,transform 0.6s ease 2.1s">← Partie II · L'arme financière</a>
+  <div id="pk-line2" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s"></div>
+</div>
+
+</div>
+<div id="player">
+  <div id="progress-bar" onclick="seekClick(event)"><div id="progress-fill"></div></div>
+  <div id="controls">
+    <div id="dots"></div>
+    <button class="ctrl-btn" onclick="prev()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
+    <button class="ctrl-btn" id="btn-play" onclick="togglePlay()"><svg class="ip" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ipa" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
+    <button class="ctrl-btn" onclick="next()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+    <span id="counter">1 / 7</span>
+  </div>
+</div>
 <script>
-window.addEventListener('scroll',function(){var s=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('progress').style.width=(window.scrollY/s*100)+'%'})
+var N=7,cur=0,tmr=null,paused=false;
+var durs=[5000,9000,9000,9000,8000,8000,9000];
+var dotsEl=document.getElementById("dots");
+for(var i=0;i<N;i++){(function(idx){var d=document.createElement("div");d.className="dot";d.onclick=function(e){e.stopPropagation();goTo(idx)};dotsEl.appendChild(d)})(i)}
+function updateCounter(){document.getElementById("counter").textContent=(cur+1)+" / "+N}
+var progRaf=null,progStart=0;
+function startProg(){if(progRaf)cancelAnimationFrame(progRaf);progStart=Date.now();var dur=durs[cur]||8000;function tick(){var p=Math.min((Date.now()-progStart)/dur,1);document.getElementById("progress-fill").style.width=(p*100)+"%";if(p<1&&!paused)progRaf=requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+function seekClick(e){var r=e.currentTarget.getBoundingClientRect();goTo(Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left)/r.width*(N-1)))))}
+function animCounter(el,dur){var t=parseFloat(el.dataset.target)||0,sf=el.dataset.suffix||"";var st=null;function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e2=1-Math.pow(1-p,4);el.textContent=Math.round(t*e2)+sf;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+function showSlide(idx){
+  document.querySelectorAll(".slide").forEach(function(s,i){i===idx?s.classList.add("visible"):s.classList.remove("visible")});
+  if(idx===0){setTimeout(function(){document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")})},100)}
+  else{document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")})}
+  // Reset courbe
+  var p=document.getElementById("pdec"),f=document.getElementById("fdec");
+  if(p)p.style.strokeDashoffset="340";if(f)f.style.opacity="0";
+  document.querySelectorAll("[data-slide='1']").forEach(function(b){b.style.width="0%"});
+  if(idx===1){
+    setTimeout(function(){if(p)p.style.strokeDashoffset="0";if(f)f.style.opacity="1"},400);
+    setTimeout(function(){document.querySelectorAll("[data-slide='1']").forEach(function(b){b.style.width=b.dataset.w+"%"})},600);
+    setTimeout(function(){document.querySelectorAll("#slide-1 .counter").forEach(function(el){animCounter(el,1600)})},400);
+  }
+  var pkL=document.querySelectorAll(".pk-letter"),pdm=document.getElementById("pk-dot-mid"),pt=document.getElementById("pk-tag"),pn=document.getElementById("pk-nav"),pl=document.getElementById("pk-line"),pl2=document.getElementById("pk-line2");
+  pkL.forEach(function(el){el.classList.remove("in")});
+  if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0)"}
+  if(pt){pt.style.opacity="0";pt.style.transform="translateY(8px)"}
+  if(pn){pn.style.opacity="0";pn.style.transform="translateY(8px)"}
+  if(pl)pl.style.width="0";if(pl2)pl2.style.width="0";
+  if(idx===6){setTimeout(function(){if(pl)pl.style.width="clamp(50px,12vw,140px)";if(pl2)pl2.style.width="clamp(50px,12vw,140px)";pkL.forEach(function(el){el.classList.add("in")});setTimeout(function(){if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1)"}},1500);setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},1900);setTimeout(function(){if(pn){pn.style.opacity="1";pn.style.transform="translateY(0)"}},2200)},200)}
+  document.querySelectorAll(".dot").forEach(function(d,i){d.classList.toggle("on",i===idx)});
+  updateCounter();startProg();
+}
+function next(){if(tmr)clearTimeout(tmr);cur=cur<N-1?cur+1:0;showSlide(cur);if(!paused)schedule()}
+function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!paused)schedule()}
+function schedule(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,durs[cur]||8000)}
+function goTo(idx){if(tmr)clearTimeout(tmr);cur=idx;showSlide(idx);if(!paused)schedule()}
+function togglePlay(){paused=!paused;var btn=document.getElementById("btn-play");if(paused){btn.classList.remove("playing");if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}else{btn.classList.add("playing");schedule();startProg()}}
+document.getElementById("stage").addEventListener("click",function(e){if(e.target.closest("#dots")||e.target.closest("#player")||e.target.closest(".back"))return;next()});
+document.getElementById("btn-play").classList.add("playing");
+goTo(0);
 </script>
 </body>
 </html>
