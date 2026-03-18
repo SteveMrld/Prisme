@@ -117,27 +117,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 #btn-play{width:44px;height:44px;border-radius:50%;background:rgba(196,162,101,0.15);color:#C4A265;border:1px solid rgba(196,162,101,0.3)}
 #btn-play:hover{background:rgba(196,162,101,0.28)}
 #counter{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)}
-/* ── WATERMARK ── */
-#prisme-wm{
-  position:fixed;
-  right:18px;top:50%;
-  transform:translateY(-50%);
-  display:flex;flex-direction:column;
-  gap:3px;
-  z-index:5;
-  pointer-events:none;
-}
-#prisme-wm span{
-  font-family:"DM Sans",sans-serif;
-  font-size:8px;font-weight:700;
-  letter-spacing:3px;
-  color:rgba(196,162,101,0.22);
-  writing-mode:vertical-rl;
-  text-orientation:mixed;
-  display:block;
-  width:8px;
-}
-
 /* ── PACKSHOT LETTRES ── */
 .pk-letter{
   font-family:"Playfair Display",serif;
@@ -150,6 +129,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   transition:opacity 0.55s ease,transform 0.55s ease;
 }
 .pk-letter.in{opacity:1;transform:translateY(0)}
+
+/* ── WATERMARK ── */
+#prisme-wm{
+  position:fixed;
+  bottom:78px;
+  left:20px;
+  z-index:50;
+  pointer-events:none;
+  font-family:"DM Sans",sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(196,162,101,0.38);
+}
+#prisme-wm span{
+  color:rgba(196,162,101,0.22);
+}
 
 .back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;z-index:200;transition:color .2s}
 .back:hover{color:#C4A265}
@@ -167,11 +164,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 <a class="back" href="/articles/cygne">← Article</a>
 
 <div id="stage">
+  <!-- WATERMARK PRISME.FR — bas gauche, horizontal, au-dessus du player -->
+  <div id="prisme-wm">PRISME<span>.FR</span></div>
 
-  <!-- WATERMARK PRISME — toujours visible, discret, vertical -->
-  <div id="prisme-wm">
-    <span>P</span><span>R</span><span>I</span><span>S</span><span>M</span><span>E</span><span style="opacity:0.5;margin-top:4px">.</span><span>F</span><span>R</span>
-  </div>
+
 
 <!-- S0 TITRE -->
 <div class="slide visible" id="slide-0" style="padding-bottom:100px">
