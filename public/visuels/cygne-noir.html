@@ -8,132 +8,142 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:#FAFAF8;color:#0A0A0A;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#C4A265,#E8D4A0);width:0%;z-index:200;transition:width 0.05s linear}
+/* PROGRESS */
+#progress{position:fixed;top:0;left:0;height:3px;background:#C4A265;width:0%;z-index:200}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 32px;position:relative;overflow:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 32px;border-bottom:1px solid #E8E3D8;position:relative}
 
-/* Particules canvas */
-#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.6}
-
-.hero-content{position:relative;z-index:1}
-
-/* Badge */
-.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(196,162,101,0.3);padding:6px 16px;margin-bottom:48px}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(196,162,101,0.4);padding:6px 18px;margin-bottom:48px}
 .badge-dot{width:5px;height:5px;border-radius:50%;background:#C4A265;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.badge-text{font-size:8px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.8)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.25}}
+.badge-text{font-size:8px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.9)}
 
-/* Titre héro */
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(64px,10vw,140px);font-weight:300;line-height:0.92;letter-spacing:-4px;color:#fff;margin-bottom:40px}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(72px,12vw,160px);font-weight:300;line-height:0.9;letter-spacing:-5px;color:#0A0A0A;margin-bottom:40px}
 .hero-title em{font-style:italic;color:#C4A265;display:block}
 
-/* Sous-titre */
-.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,20px);font-style:italic;color:rgba(255,255,255,0.35);max-width:480px;line-height:1.75;margin:0 auto 56px}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,21px);font-style:italic;color:#7A7570;max-width:500px;line-height:1.7;margin:0 auto 64px}
 
-/* Scroll indicator */
-.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,0.2);font-size:9px;letter-spacing:2px;text-transform:uppercase}
-.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(196,162,101,0.5),transparent);animation:scrollLine 1.8s ease-in-out infinite}
-@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:12px;color:#B0ABA5;font-size:9px;letter-spacing:3px;text-transform:uppercase}
+.scroll-arrow{width:20px;height:20px;border-right:1px solid #C4A265;border-bottom:1px solid #C4A265;transform:rotate(45deg);animation:bounce 1.6s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translate(0,0);opacity:1}50%{transform:rotate(45deg) translate(4px,4px);opacity:0.4}}
+
+/* SECTION LABEL */
+.sec-label{font-size:8px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:#C4A265;display:flex;align-items:center;gap:16px;margin-bottom:40px}
+.sec-label::after{content:'';flex:1;height:1px;background:#E8E3D8}
 
 /* DÉFINITION */
-.section{padding:100px 32px;max-width:800px;margin:0 auto}
-.section-label{font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:32px;display:flex;align-items:center;gap:16px}
-.section-label::after{content:'';flex:1;height:1px;background:rgba(196,162,101,0.15)}
+.def-section{padding:100px 40px;max-width:900px;margin:0 auto}
 
-.def-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.05);margin-top:48px}
-.def-card{background:#060608;padding:32px 28px;position:relative;overflow:hidden;transition:background 0.3s}
-.def-card:hover{background:rgba(196,162,101,0.04)}
-.def-card::before{content:attr(data-n);position:absolute;bottom:-10px;right:10px;font-family:'Playfair Display',serif;font-size:96px;font-weight:300;color:rgba(196,162,101,0.06);line-height:1;pointer-events:none}
-.def-num-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5);margin-bottom:14px}
-.def-card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:12px;line-height:1.2}
-.def-card-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.75}
+.def-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:300;letter-spacing:-2px;line-height:1.05;margin-bottom:56px}
+.def-title em{font-style:italic;color:#C4A265}
+
+.def-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#E8E3D8}
+.def-card{background:#FAFAF8;padding:36px 28px;position:relative;overflow:hidden;cursor:default;transition:background 0.2s}
+.def-card:hover{background:#F2EDE3}
+.def-watermark{position:absolute;bottom:-16px;right:8px;font-family:'Playfair Display',serif;font-size:120px;font-weight:300;color:rgba(196,162,101,0.07);line-height:1;pointer-events:none;user-select:none}
+.def-num{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:16px}
+.def-card-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#0A0A0A;margin-bottom:14px;line-height:1.2}
+.def-card-body{font-size:13px;color:#7A7570;line-height:1.8}
 
 /* EVENTS */
-.events-section{padding:80px 32px;max-width:1000px;margin:0 auto}
+.events-section{padding:80px 40px 120px;max-width:1000px;margin:0 auto}
 
-.event-row{display:grid;grid-template-columns:100px 1fr 200px;gap:32px;align-items:start;padding:36px 0;border-bottom:1px solid rgba(255,255,255,0.04);opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease, transform 0.7s ease}
-.event-row.visible{opacity:1;transform:translateX(0)}
+.event-row{
+  display:grid;
+  grid-template-columns:100px 1fr 180px;
+  gap:40px;
+  align-items:start;
+  padding:40px 0;
+  border-bottom:1px solid #E8E3D8;
+  /* Animation état initial */
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.event-row.visible{opacity:1;transform:translateY(0)}
+.event-row:nth-child(2){transition-delay:0.05s}
+.event-row:nth-child(3){transition-delay:0.1s}
+.event-row:nth-child(4){transition-delay:0.05s}
+.event-row:nth-child(5){transition-delay:0.1s}
+.event-row:nth-child(6){transition-delay:0.05s}
 
-.ev-year{font-family:'Playfair Display',serif;font-size:56px;font-weight:300;letter-spacing:-2px;line-height:1;color:rgba(196,162,101,0.5)}
+.ev-year{
+  font-family:'Playfair Display',serif;
+  font-size:52px;
+  font-weight:300;
+  letter-spacing:-2px;
+  line-height:1;
+  color:#C4A265;
+  padding-top:4px;
+}
 
-.ev-content{}
-.ev-tag{font-size:8px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:10px;display:block}
-.ev-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-0.5px}
-.ev-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.8;max-width:480px}
+.ev-tag{font-size:8px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#B0ABA5;margin-bottom:10px;display:block}
+.ev-title{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,30px);font-weight:400;color:#0A0A0A;line-height:1.15;margin-bottom:12px;letter-spacing:-0.5px}
+.ev-body{font-size:13px;color:#7A7570;line-height:1.8}
 
-.ev-impact{text-align:right;padding-top:8px}
-.ev-big{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);font-weight:300;line-height:1;letter-spacing:-1px}
-.ev-unit{font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);display:block;margin-top:6px}
+.ev-impact{text-align:right;padding-top:6px}
+.ev-big{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:300;line-height:1.1;letter-spacing:-1px}
+.ev-unit{font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#B0ABA5;display:block;margin-top:6px}
 
 /* FINALE */
-.finale-section{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:80px 32px;text-align:center}
-.finale-inner{max-width:680px}
-.finale-rule{width:1px;height:80px;background:linear-gradient(to bottom,rgba(196,162,101,0.4),transparent);margin:0 auto 40px}
-.finale-quote{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,30px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:24px}
-.finale-author{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.45)}
+.finale-section{background:#0A0A0A;padding:100px 40px;text-align:center}
+.finale-inner{max-width:680px;margin:0 auto}
+.finale-rule{width:1px;height:64px;background:rgba(196,162,101,0.4);margin:0 auto 40px}
+.finale-quote{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.65;margin-bottom:28px}
+.finale-author{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.5)}
 
 /* BACK */
-.back{position:fixed;bottom:28px;left:28px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s;z-index:100}
+.back{position:fixed;bottom:24px;left:24px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#B0ABA5;text-decoration:none;transition:color 0.2s;z-index:100}
 .back:hover{color:#C4A265}
 
-/* RESPONSIVE */
 @media(max-width:700px){
   .def-grid{grid-template-columns:1fr}
-  .event-row{grid-template-columns:60px 1fr;gap:16px}
+  .event-row{grid-template-columns:64px 1fr;gap:20px}
   .ev-impact{display:none}
   .ev-year{font-size:36px}
+  .def-section,.events-section{padding-left:20px;padding-right:20px}
 }
 </style>
 </head>
 <body>
 
 <div id="progress"></div>
-<canvas id="bg-canvas"></canvas>
 <a class="back" href="/articles/cygne">← Article</a>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="badge">
-      <span class="badge-dot"></span>
-      <span class="badge-text">Motion design · Prisme</span>
-    </div>
-
-    <h1 class="hero-title">
-      Le<br>Cygne
-      <em>Noir</em>
-    </h1>
-
-    <p class="hero-sub">Ces événements que personne n'anticipe, qui changent tout — et qu'on dit inévitables après.</p>
-
-    <div class="scroll-hint">
-      <div class="scroll-line"></div>
-      <span>Défiler</span>
-    </div>
+  <div class="badge"><span class="badge-dot"></span><span class="badge-text">Motion design · Prisme</span></div>
+  <h1 class="hero-title">Le<br>Cygne<em>Noir</em></h1>
+  <p class="hero-sub">Ces événements que personne n'anticipe, qui changent tout — et qu'on dit inévitables après.</p>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+    <span>Défiler</span>
   </div>
 </section>
 
 <!-- DÉFINITION -->
-<div class="section">
-  <div class="section-label">Définition · Nassim Nicholas Taleb, 2007</div>
-  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:300;letter-spacing:-2px;line-height:1.1;color:#fff">Un événement <em style="font-style:italic;color:#C4A265">triplement</em><br>singulier</h2>
-
+<div class="def-section">
+  <div class="sec-label">Définition · Nassim Nicholas Taleb, 2007</div>
+  <h2 class="def-title">Un événement <em>triplement</em><br>singulier</h2>
   <div class="def-grid">
-    <div class="def-card" data-n="1">
-      <div class="def-num-label">Premier critère</div>
+    <div class="def-card">
+      <div class="def-watermark">1</div>
+      <div class="def-num">Premier critère</div>
       <div class="def-card-title">Il est imprévisible</div>
       <p class="def-card-body">Aucun modèle existant ne permettait de l'anticiper. Il se situe en dehors du champ des attentes normales — c'est sa définition même.</p>
     </div>
-    <div class="def-card" data-n="2">
-      <div class="def-num-label">Deuxième critère</div>
+    <div class="def-card">
+      <div class="def-watermark">2</div>
+      <div class="def-num">Deuxième critère</div>
       <div class="def-card-title">Son impact est extrême</div>
       <p class="def-card-body">Il reconfigure le monde. Économies, gouvernements, sociétés — rien n'est identique après. L'amplitude du choc dépasse tout modèle précédent.</p>
     </div>
-    <div class="def-card" data-n="3">
-      <div class="def-num-label">Troisième critère</div>
+    <div class="def-card">
+      <div class="def-watermark">3</div>
+      <div class="def-num">Troisième critère</div>
       <div class="def-card-title">On le rationalise après</div>
       <p class="def-card-body">Une fois survenu, il paraît évident. On invente des explications, on dit qu'on aurait dû le voir venir. C'est le piège de la mémoire rétrospective.</p>
     </div>
@@ -142,11 +152,11 @@ body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font
 
 <!-- ÉVÉNEMENTS -->
 <div class="events-section">
-  <div class="section-label" style="max-width:100%">Six ruptures · Six cygnes noirs</div>
+  <div class="sec-label">Six ruptures · Six cygnes noirs</div>
 
   <div class="event-row">
     <div class="ev-year">1987</div>
-    <div class="ev-content">
+    <div>
       <span class="ev-tag">Finance · New York</span>
       <div class="ev-title">Black Monday</div>
       <p class="ev-body">Le 19 octobre 1987, le Dow Jones s'effondre de 22,6% en une seule séance — la plus grande chute boursière de l'histoire en un jour. Aucun modèle économique ne l'avait prédit. La cause reste débattue 40 ans après.</p>
@@ -159,7 +169,7 @@ body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font
 
   <div class="event-row">
     <div class="ev-year">1998</div>
-    <div class="ev-content">
+    <div>
       <span class="ev-tag">Finance · Systémique</span>
       <div class="ev-title">LTCM — Quand les génies perdent</div>
       <p class="ev-body">Deux prix Nobel d'économie. Un fonds qui "ne pouvait pas" faire faillite selon leurs propres modèles. Il a failli emporter l'ensemble du système financier mondial. La Fed a organisé un sauvetage d'urgence en une nuit.</p>
@@ -172,10 +182,10 @@ body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font
 
   <div class="event-row">
     <div class="ev-year">2001</div>
-    <div class="ev-content">
+    <div>
       <span class="ev-tag">Géopolitique · Terrorisme</span>
       <div class="ev-title">11 Septembre</div>
-      <p class="ev-body">L'impensable. Deux tours, quatre avions, 3 000 morts. La CIA avait des signaux. Les enquêteurs avaient des suspects. Mais personne ne pouvait imaginer cette configuration précise. Le monde de l'avant et le monde de l'après sont deux mondes différents.</p>
+      <p class="ev-body">L'impensable. Deux tours, quatre avions, 3 000 morts. La CIA avait des signaux, les enquêteurs avaient des suspects. Mais personne ne pouvait imaginer cette configuration précise. Le monde de l'avant et le monde de l'après sont deux mondes différents.</p>
     </div>
     <div class="ev-impact">
       <div class="ev-big" style="color:#7A2D2D">3 000</div>
@@ -185,23 +195,23 @@ body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font
 
   <div class="event-row">
     <div class="ev-year">2008</div>
-    <div class="ev-content">
+    <div>
       <span class="ev-tag">Finance · Mondial</span>
       <div class="ev-title">La crise des subprimes</div>
       <p class="ev-body">Des prêts accordés à des ménages insolvables, titrisés, notés AAA, vendus à travers la planète. Quand la bulle éclate, le système bancaire mondial vacille. Les agences de notation n'avaient rien vu. Les régulateurs non plus.</p>
     </div>
     <div class="ev-impact">
-      <div class="ev-big" style="color:#C75A5A">8 000<br><span style="font-size:0.6em">Mds$</span></div>
+      <div class="ev-big" style="color:#C75A5A">8 000<br><span style="font-size:0.55em">Mds$</span></div>
       <span class="ev-unit">de richesse évaporés</span>
     </div>
   </div>
 
   <div class="event-row">
     <div class="ev-year">2020</div>
-    <div class="ev-content">
+    <div>
       <span class="ev-tag">Santé · Planétaire</span>
       <div class="ev-title">Covid-19</div>
-      <p class="ev-body">Des pandémies, les épidémiologistes en prédisaient. Mais pas ici, pas maintenant, pas comme ça. En 12 semaines, l'économie mondiale s'arrête. 100 millions de personnes plongées dans l'extrême pauvreté. Le monde ne reprendra jamais exactement sa forme d'avant.</p>
+      <p class="ev-body">Des pandémies, les épidémiologistes en prédisaient. Mais pas ici, pas maintenant, pas comme ça. En 12 semaines, l'économie mondiale s'arrête. 100 millions de personnes plongées dans l'extrême pauvreté.</p>
     </div>
     <div class="ev-impact">
       <div class="ev-big" style="color:#4A2080">7 M+</div>
@@ -211,16 +221,17 @@ body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font
 
   <div class="event-row">
     <div class="ev-year">2025</div>
-    <div class="ev-content">
+    <div>
       <span class="ev-tag">Technologie · Intelligence artificielle</span>
       <div class="ev-title">DeepSeek — La rupture algorithmique</div>
-      <p class="ev-body">Le 20 janvier 2025, une startup chinoise publie un modèle rivalisant avec GPT-4 — pour 6 millions de dollars de calcul, contre 100 millions pour ses équivalents américains. En une séance, 593 milliards de valorisation Nvidia s'évaporent. Le paradigme de la course aux puces est brisé.</p>
+      <p class="ev-body">Le 20 janvier 2025, une startup chinoise publie un modèle rivalisant avec GPT-4 pour 6 millions de dollars — contre 100 millions pour ses équivalents américains. En une séance, 593 milliards de valorisation Nvidia s'évaporent.</p>
     </div>
     <div class="ev-impact">
-      <div class="ev-big" style="color:#C4A265">593 Mds</div>
-      <span class="ev-unit">$ Nvidia · une seule séance</span>
+      <div class="ev-big" style="color:#8B6914">593 Mds</div>
+      <span class="ev-unit">$ Nvidia · une séance</span>
     </div>
   </div>
+
 </div>
 
 <!-- FINALE -->
@@ -233,76 +244,23 @@ body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font
 </section>
 
 <script>
-// ── PROGRESS BAR ──
+// Progress bar
 window.addEventListener('scroll', function() {
-  var scrolled = window.scrollY;
-  var total = document.body.scrollHeight - window.innerHeight;
-  document.getElementById('progress').style.width = (scrolled / total * 100) + '%';
+  var t = document.body.scrollHeight - window.innerHeight;
+  document.getElementById('progress').style.width = (window.scrollY / t * 100) + '%';
 });
 
-// ── CANVAS PARTICLES ──
-(function() {
-  var canvas = document.getElementById('bg-canvas');
-  var ctx = canvas.getContext('2d');
-  var W, H, particles = [];
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function Particle() {
-    this.reset = function() {
-      this.x = Math.random() * W;
-      this.y = H + 10;
-      this.size = Math.random() * 1.5 + 0.3;
-      this.speedY = -(Math.random() * 0.4 + 0.1);
-      this.speedX = (Math.random() - 0.5) * 0.15;
-      this.opacity = Math.random() * 0.5 + 0.05;
-      this.life = 1;
-      this.decay = Math.random() * 0.003 + 0.001;
-    };
-    this.reset();
-    this.y = Math.random() * H; // scatter initially
-  }
-
-  for (var i = 0; i < 60; i++) particles.push(new Particle());
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(function(p) {
-      p.x += p.speedX;
-      p.y += p.speedY;
-      p.life -= p.decay;
-      if (p.life <= 0 || p.y < -10) p.reset();
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(196,162,101,' + (p.opacity * p.life) + ')';
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
-// ── INTERSECTION OBSERVER — apparition des events ──
-(function() {
-  var rows = document.querySelectorAll('.event-row');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry, i) {
-      if (entry.isIntersecting) {
-        var delay = 0;
-        entry.target.style.transitionDelay = delay + 's';
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-  rows.forEach(function(row) { observer.observe(row); });
-})();
+// Apparition événements au scroll — IntersectionObserver
+var rows = document.querySelectorAll('.event-row');
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+rows.forEach(function(r) { obs.observe(r); });
 </script>
 </body>
 </html>
