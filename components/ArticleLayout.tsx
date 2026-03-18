@@ -1,6 +1,6 @@
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
-import { ReadingProgress } from './ArticleAnimations'
+import { ReadingProgress, ReadingTimeCounter } from './ArticleAnimations'
 
 interface ArticleLayoutProps {
   title: string
@@ -24,10 +24,12 @@ export default function ArticleLayout({
   readTime, hasInternalHeader = false, content
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
+  const minutes = parseInt(readTime) || 8
 
   return (
     <>
       <ReadingProgress />
+      <ReadingTimeCounter totalMinutes={minutes} />
       <Header activeNav={category} />
 
       {image && !hasInternalHeader && (
@@ -40,7 +42,8 @@ export default function ArticleLayout({
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
           <div className={styles.eyebrow}>
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
-            <span className={styles.readTime}>{readTime} min</span>
+            <span className={styles.readTime}>{readTime} min de lecture</span>
+            <span className={styles.readDate}>Mars 2026</span>
           </div>
           <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
           <p className={styles.description}>{description}</p>

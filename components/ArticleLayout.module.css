@@ -168,3 +168,9 @@
   .articleBody { padding: 36px 20px 60px; }
   .articleBodyFull { padding: 0 20px; }
 }
+
+.readDate {
+  font-size: 10px;
+  color: var(--gris-l);
+  letter-spacing: 1px;
+}
