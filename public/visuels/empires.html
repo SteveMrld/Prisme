@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La France face à la loi des empires</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#FAFAF8;--encre:#0A0A0A;--bord:#D8D3C8;--papier:#F2EDE3}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);background:var(--encre);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.4);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.5)}
+.tabs{display:flex;background:var(--encre);border-bottom:2px solid var(--or)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);transition:all 0.2s}
+.tab.active{color:var(--or);background:rgba(196,162,101,0.08)}
+.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9A9590}
+
+/* CYCLES */
+.cycle{padding:0;background:var(--bg)}
+.cycle-svg{width:100%;height:auto;display:block}
+.cycle-bar{animation:growH 1.4s ease forwards}
+@keyframes growH{from{height:0;y:var(--base)}}
+
+/* COMPARAISON */
+.comp-row{display:grid;grid-template-columns:140px 1fr 60px;gap:10px;align-items:center;margin-bottom:10px}
+.comp-label{font-size:11px;color:var(--encre);font-weight:500}
+.comp-track{height:8px;background:var(--bord);border-radius:4px;overflow:hidden}
+.comp-fill{height:100%;border-radius:4px;animation:grow 1.4s ease forwards}
+@keyframes grow{from{width:0}}
+.comp-val{font-size:11px;color:var(--or);text-align:right;font-weight:600}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bord)}
+.stat{background:var(--bg);padding:16px 18px}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--encre);letter-spacing:-1px;line-height:1;margin-bottom:5px}
+.stat-lbl{font-size:11px;color:#6A6A6A;line-height:1.5}
+
+.analyse{padding:14px 18px;border-left:3px solid var(--bord);background:rgba(0,0,0,0.02);margin-bottom:1px}
+.a-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.a-desc{font-size:12px;color:#6A6A6A;line-height:1.55;font-style:italic}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Géopolitique</span>
+  <span class="hd-sub">La France face à la loi des empires</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('cycles',this)">Cycles des empires</div>
+  <div class="tab" onclick="showTab('france',this)">La France aujourd'hui</div>
+  <div class="tab" onclick="showTab('analyse',this)">La thèse</div>
+</div>
+
+<div class="panel active" id="tab-cycles">
+  <div class="lbl">Durée des grandes hégémonies mondiales (années)</div>
+  <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#F2EDE3">
+    <rect width="640" height="280" fill="#F2EDE3"/>
+    <line x1="60" y1="20" x2="60" y2="240" stroke="#D8D3C8" stroke-width="1"/>
+    <line x1="60" y1="240" x2="630" y2="240" stroke="#D8D3C8" stroke-width="1"/>
+    <!-- Barres -->
+    <!-- Rome 500 ans -->
+    <rect x="80" y="90" width="65" height="150" fill="#C4A265" opacity="0.8" class="cycle-bar"/>
+    <text x="112" y="82" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#4A4A4A" font-weight="600">500</text>
+    <text x="112" y="258" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A6A6A">Rome</text>
+    <!-- Mongols 150 ans -->
+    <rect x="170" y="195" width="55" height="45" fill="#B86A1A" opacity="0.7" class="cycle-bar"/>
+    <text x="197" y="187" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#4A4A4A" font-weight="600">150</text>
+    <text x="197" y="258" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A6A6A">Mongols</text>
+    <!-- Portugal 100 ans -->
+    <rect x="250" y="210" width="55" height="30" fill="#B86A1A" opacity="0.5" class="cycle-bar"/>
+    <text x="277" y="202" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#4A4A4A" font-weight="600">100</text>
+    <text x="277" y="258" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A6A6A">Portugal</text>
+    <!-- Espagne 200 ans -->
+    <rect x="330" y="150" width="55" height="90" fill="#7A2D2D" opacity="0.6" class="cycle-bar"/>
+    <text x="357" y="142" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#4A4A4A" font-weight="600">200</text>
+    <text x="357" y="258" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A6A6A">Espagne</text>
+    <!-- GB 250 ans -->
+    <rect x="410" y="135" width="55" height="105" fill="#1A3E6B" opacity="0.7" class="cycle-bar"/>
+    <text x="437" y="127" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#4A4A4A" font-weight="600">250</text>
+    <text x="437" y="258" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A6A6A">Grande-Bretagne</text>
+    <!-- USA 80 ans -->
+    <rect x="490" y="216" width="55" height="24" fill="#1A3E6B" opacity="0.4" class="cycle-bar"/>
+    <text x="517" y="208" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#4A4A4A" font-weight="600">80</text>
+    <text x="517" y="258" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A6A6A">USA (post-45)</text>
+    <!-- Axe Y labels -->
+    <text x="50" y="93" text-anchor="end" font-family="DM Sans" font-size="9" fill="#9A9590">500</text>
+    <text x="50" y="153" text-anchor="end" font-family="DM Sans" font-size="9" fill="#9A9590">300</text>
+    <text x="50" y="198" text-anchor="end" font-family="DM Sans" font-size="9" fill="#9A9590">150</text>
+  </svg>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">~200</div><div class="stat-lbl">ans — durée moyenne d'une hégémonie mondiale selon Ibn Khaldun (XIVe s.)</div></div>
+    <div class="stat"><div class="stat-num">1945</div><div class="stat-lbl">début de l'hégémonie américaine — si la loi des 200 ans s'applique : 2145</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-france">
+  <div class="lbl">Puissance française — indicateurs comparés</div>
+  <div class="comp-row"><div class="comp-label">PIB mondial (rang 7)</div><div class="comp-track"><div class="comp-fill" style="width:48%;background:#1A3E6B"></div></div><div class="comp-val">3%</div></div>
+  <div class="comp-row"><div class="comp-label">Dépenses militaires</div><div class="comp-track"><div class="comp-fill" style="width:35%;background:#7A2D2D"></div></div><div class="comp-val">2% PIB</div></div>
+  <div class="comp-row"><div class="comp-label">ZEE maritime</div><div class="comp-track"><div class="comp-fill" style="width:95%;background:#C4A265"></div></div><div class="comp-val">2ème</div></div>
+  <div class="comp-row"><div class="comp-label">Réseau diplomatique</div><div class="comp-track"><div class="comp-fill" style="width:88%;background:#2D6B4A"></div></div><div class="comp-val">3ème</div></div>
+  <div class="comp-row"><div class="comp-label">Influence culturelle</div><div class="comp-track"><div class="comp-fill" style="width:70%;background:#B86A1A"></div></div><div class="comp-val">Top 5</div></div>
+  <div class="comp-row"><div class="comp-label">Siège permanent ONU</div><div class="comp-track"><div class="comp-fill" style="width:100%;background:#C4A265"></div></div><div class="comp-val">Oui</div></div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">membres permanents du Conseil de sécurité — la France est le plus petit des cinq</div></div>
+    <div class="stat"><div class="stat-num">67M</div><div class="stat-lbl">habitants — puissance moyenne qui agit comme grande puissance par héritage historique</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-analyse">
+  <div class="lbl">La thèse centrale</div>
+  <div class="analyse" style="border-color:var(--or)">
+    <div class="a-title" style="color:#8B6914">Ibn Khaldun et la loi des cycles</div>
+    <div class="a-desc">Le philosophe tunisien du XIVe siècle théorisait l'asabiyya — la solidarité de groupe qui fait naître et mourir les empires. Quand elle s'épuise, la décadence commence. Un cycle inévitable, non une fatalité.</div>
+  </div>
+  <div class="analyse" style="border-color:#1A3E6B">
+    <div class="a-title">La France entre deux mondes</div>
+    <div class="a-desc">La France n'est plus une grande puissance au sens classique, pas encore une puissance régionale assumée. Elle occupe un entre-deux inconfortable : les attributs du rang (nucléaire, ONU, ZEE) sans les moyens de les exercer pleinement.</div>
+  </div>
+  <div class="analyse" style="border-color:#C4A265">
+    <div class="a-title" style="color:#8B6914">L'alternative à l'hégémonie</div>
+    <div class="a-desc">La France peut choisir entre deux stratégies : le déclin géré (réduction des ambitions au niveau des moyens) ou la puissance d'influence (soft power, multilatéralisme, Europe comme levier). Les deux nécessitent une lucidité que la politique française peine à assumer.</div>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

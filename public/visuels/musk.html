@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elon Musk — L'homme qui défie son époque</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#FAFAF8;--encre:#0A0A0A;--bord:#D8D3C8;--papier:#F2EDE3}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);background:var(--encre);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.4);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.5)}
+.tabs{display:flex;background:var(--encre);border-bottom:2px solid var(--or)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);transition:all 0.2s}
+.tab.active{color:var(--or);background:rgba(196,162,101,0.08)}
+.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9A9590}
+
+/* EMPIRE GRID */
+.empire-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bord)}
+.empire-card{background:var(--bg);padding:20px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:background 0.15s}
+.empire-card:hover{background:var(--papier)}
+.empire-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--encre);letter-spacing:-0.5px}
+.empire-sector{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.empire-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1}
+.empire-desc{font-size:11px;color:#6A6A6A;line-height:1.5}
+.empire-bar{height:3px;border-radius:2px;margin-top:8px;animation:grow 1.2s ease forwards}
+@keyframes grow{from{width:0}}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column}
+.tl-row{display:grid;grid-template-columns:80px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--bord);cursor:pointer;transition:background 0.15s}
+.tl-row:hover,.tl-row.open{background:var(--papier);margin:0 -24px;padding:13px 24px}
+.tl-yr{font-family:'Playfair Display',serif;font-size:16px;font-weight:300;color:var(--or);text-align:right;padding-top:2px}
+.tl-ev{font-size:13px;font-weight:500;line-height:1.3;margin-bottom:3px}
+.tl-desc{font-size:12px;color:#6A6A6A;line-height:1.6;display:none;margin-top:6px;font-style:italic}
+.tl-row.open .tl-desc{display:block}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bord)}
+.stat{background:var(--bg);padding:16px 18px}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--encre);letter-spacing:-1px;line-height:1;margin-bottom:5px}
+.stat-lbl{font-size:11px;color:#6A6A6A;line-height:1.5}
+
+.question{padding:14px 18px;border-left:3px solid var(--bord);background:rgba(0,0,0,0.02);margin-bottom:1px}
+.q-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.q-desc{font-size:12px;color:#6A6A6A;line-height:1.55;font-style:italic}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Portrait · Puissance</span>
+  <span class="hd-sub">Elon Musk — L'homme qui défie son époque</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('empire',this)">Les 6 empires</div>
+  <div class="tab" onclick="showTab('timeline',this)">Ascension</div>
+  <div class="tab" onclick="showTab('pouvoir',this)">Pouvoir réel</div>
+</div>
+
+<div class="panel active" id="tab-empire">
+  <div class="lbl">Les 6 entreprises majeures dirigées simultanément</div>
+  <div class="empire-grid">
+    <div class="empire-card">
+      <div class="empire-sector" style="color:#C75A5A">Automobile / Energie</div>
+      <div class="empire-name">Tesla</div>
+      <div class="empire-val" id="ev1">0</div>
+      <div class="empire-desc">milliards $ de capitalisation. Premier constructeur mondial de véhicules électriques. Stockage d'énergie.</div>
+      <div class="empire-bar" style="width:85%;background:#C75A5A"></div>
+    </div>
+    <div class="empire-card">
+      <div class="empire-sector" style="color:#4A7EC7">Espace</div>
+      <div class="empire-name">SpaceX</div>
+      <div class="empire-val" id="ev2">0</div>
+      <div class="empire-desc">milliards $ de valorisation (privée). Monopole de facto du lancement commercial américain. Starship.</div>
+      <div class="empire-bar" style="width:70%;background:#4A7EC7"></div>
+    </div>
+    <div class="empire-card">
+      <div class="empire-sector" style="color:#0A0A0A">Médias / Influence</div>
+      <div class="empire-name">X (ex-Twitter)</div>
+      <div class="empire-val">44 Mds</div>
+      <div class="empire-desc">payés pour racheter Twitter. Plateforme de 600M d'utilisateurs. Influence politique directe.</div>
+      <div class="empire-bar" style="width:60%;background:#0A0A0A"></div>
+    </div>
+    <div class="empire-card">
+      <div class="empire-sector" style="color:#4A2080">Neurosciences</div>
+      <div class="empire-name">Neuralink</div>
+      <div class="empire-val">1er</div>
+      <div class="empire-desc">implant cérébral humain approuvé FDA. Interface cerveau-machine. Patient 1 joue aux échecs par la pensée.</div>
+      <div class="empire-bar" style="width:40%;background:#4A2080"></div>
+    </div>
+    <div class="empire-card">
+      <div class="empire-sector" style="color:#2D6B4A">Tunnels / Transport</div>
+      <div class="empire-name">The Boring Company</div>
+      <div class="empire-val">Las Vegas</div>
+      <div class="empire-desc">Loop opérationnel. Tunnels sous plusieurs villes américaines en négociation. Vision : transport urbain souterrain.</div>
+      <div class="empire-bar" style="width:25%;background:#2D6B4A"></div>
+    </div>
+    <div class="empire-card">
+      <div class="empire-sector" style="color:#B86A1A">Gouvernement</div>
+      <div class="empire-name">DOGE</div>
+      <div class="empire-val">1 000</div>
+      <div class="empire-desc">milliards $ d'économies promises sur le budget fédéral américain. Accès sans précédent aux systèmes gouvernementaux.</div>
+      <div class="empire-bar" style="width:55%;background:#B86A1A"></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="tab-timeline">
+  <div class="lbl">Chronologie d'une ascension hors norme</div>
+  <div class="tl">
+    <div class="tl-row open" onclick="tog(this)">
+      <div class="tl-yr">1999</div>
+      <div>
+        <div class="tl-ev">Vente de Zip2 — premier exit à 22M$</div>
+        <div class="tl-desc">Son premier projet, un annuaire en ligne pour journaux. Vendu à Compaq pour 307 millions de dollars. Musk reçoit 22 millions. Il a 27 ans. Il investit tout dans X.com, qui deviendra PayPal.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">2002</div>
+      <div>
+        <div class="tl-ev">PayPal vendu à eBay — 180M$ pour Musk</div>
+        <div class="tl-desc">180 millions personnels. Il crée SpaceX la même année avec l'ambition de coloniser Mars. Tout le monde pense qu'il va tout perdre. Le premier Falcon 1 explose.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">2008</div>
+      <div>
+        <div class="tl-ev">Tesla et SpaceX au bord de la faillite</div>
+        <div class="tl-desc">Crise financière. Tesla ne peut pas payer ses fournisseurs. SpaceX rate son troisième lancement. Musk divise ses derniers dollars entre les deux entreprises. Quatrième lancement : succès. Tesla survit.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">2021</div>
+      <div>
+        <div class="tl-ev">Homme le plus riche du monde</div>
+        <div class="tl-desc">Tesla dépasse Toyota et Volkswagen en capitalisation. SpaceX vaut 100 milliards. Musk dépasse Jeff Bezos. Il tweete sur le Dogecoin et le fait monter de 20%. Première démonstration de son pouvoir de marché informel.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">2025</div>
+      <div>
+        <div class="tl-ev">DOGE — le milliardaire dans l'État</div>
+        <div class="tl-desc">Trump lui confie la direction du Department of Government Efficiency. Musk accède aux systèmes de paiement du Trésor américain, aux bases de données fédérales. Aucun précédent dans l'histoire américaine.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="tab-pouvoir">
+  <div class="lbl">Un pouvoir sans précédent — les questions</div>
+  <div class="question" style="border-color:#C75A5A">
+    <div class="q-title" style="color:#C75A5A">Starlink et la guerre en Ukraine</div>
+    <div class="q-desc">Musk a temporairement coupé l'accès Starlink aux forces ukrainiennes lors d'une offensive en Crimée en 2022 — avouant plus tard avoir refusé d'activer la couverture. Un seul homme décide de la connectivité d'une guerre.</div>
+  </div>
+  <div class="question" style="border-color:#B86A1A">
+    <div class="q-title" style="color:#B86A1A">X comme arme politique</div>
+    <div class="q-desc">Depuis le rachat de Twitter, Musk a rétabli des comptes bannis, boosté algorithmiquement ses propres tweets, et influencé des élections en Allemagne, au Royaume-Uni et en Italie par ses prises de position.</div>
+  </div>
+  <div class="question" style="border-color:#4A2080">
+    <div class="q-title" style="color:#4A2080">Contrats gouvernementaux et conflits d'intérêts</div>
+    <div class="q-desc">SpaceX est le principal fournisseur de la NASA et de l'armée américaine. DOGE coupe les budgets d'agences qui réglementent les concurrents de Tesla. La concentration de pouvoir est sans précédent dans une démocratie.</div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">entreprises majeures dirigées simultanément — record absolu pour un chef d'entreprise</div></div>
+    <div class="stat"><div class="stat-num">200 Mds</div><div class="stat-lbl">fortune estimée — equivalent au PIB du Portugal</div></div>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+  if(id==='empire') animCounters();
+}
+function animCounter(el,val,suf){
+  if(!el)return;
+  var s=Date.now(),d=2000,t=setInterval(function(){
+    var p=Math.min((Date.now()-s)/d,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e*val).toLocaleString('fr-FR')+suf;
+    if(p>=1)clearInterval(t);
+  },16);
+}
+function animCounters(){
+  setTimeout(function(){
+    animCounter(document.getElementById('ev1'),800,' Mds');
+    animCounter(document.getElementById('ev2'),175,' Mds');
+  },300);
+}
+function tog(el){document.querySelectorAll('.tl-row').forEach(r=>r.classList.remove('open'));el.classList.add('open')}
+window.addEventListener('load',function(){setTimeout(animCounters,400)});
+</script>
+</body>
+</html>

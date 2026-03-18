@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'impôt que vous ne voyez pas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#FAFAF8;--encre:#0A0A0A;--bord:#D8D3C8;--papier:#F2EDE3;--eco:#B86A1A}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);background:var(--encre);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.4);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.5)}
+.tabs{display:flex;background:var(--encre);border-bottom:2px solid var(--or)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);transition:all 0.2s}
+.tab.active{color:var(--or);background:rgba(196,162,101,0.08)}
+.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9A9590}
+
+/* BARRES */
+.bar-section{margin-bottom:6px}
+.bar-title{font-size:11px;font-weight:600;color:var(--encre);margin-bottom:8px}
+.bar-row{display:grid;grid-template-columns:160px 1fr 55px;gap:10px;align-items:center;margin-bottom:8px}
+.bar-label{font-size:11px;color:var(--encre)}
+.bar-track{height:8px;background:var(--bord);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;animation:grow 1.4s ease forwards}
+@keyframes grow{from{width:0}}
+.bar-val{font-size:11px;color:var(--or);text-align:right;font-weight:600}
+
+/* COMPARAISON */
+.pays-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bord)}
+.pays-card{background:var(--bg);padding:16px 18px}
+.pays-name{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9A9590;margin-bottom:6px}
+.pays-taux{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--encre);letter-spacing:-1px;line-height:1;margin-bottom:4px}
+.pays-note{font-size:10px;color:#6A6A6A;line-height:1.4}
+.pays-bar{height:4px;border-radius:2px;margin-top:8px;animation:grow 1.2s ease forwards}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bord)}
+.stat{background:var(--bg);padding:16px 18px}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--encre);letter-spacing:-1px;line-height:1;margin-bottom:5px}
+.stat-lbl{font-size:11px;color:#6A6A6A;line-height:1.5}
+
+.mecanisme{padding:14px 18px;border-left:3px solid var(--bord);background:rgba(0,0,0,0.02);margin-bottom:1px;cursor:pointer;transition:background 0.15s}
+.mecanisme:hover{background:rgba(0,0,0,0.04)}
+.m-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.m-desc{font-size:12px;color:#6A6A6A;line-height:1.55;font-style:italic}
+.m-chiffre{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--or);margin-top:6px}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Économie</span>
+  <span class="hd-sub">L'impôt que vous ne voyez pas</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('taux',this)">Taux effectifs réels</div>
+  <div class="tab" onclick="showTab('comparaison',this)">Comparaison internationale</div>
+  <div class="tab" onclick="showTab('mecanismes',this)">Les mécanismes</div>
+</div>
+
+<div class="panel active" id="tab-taux">
+  <div class="lbl">Taux d'imposition effectif réel en France par catégorie</div>
+  <div class="bar-section">
+    <div class="bar-title">Revenus du travail — salariés</div>
+    <div class="bar-row"><div class="bar-label">SMIC (1 400€ nets)</div><div class="bar-track"><div class="bar-fill" style="width:42%;background:#B86A1A"></div></div><div class="bar-val">42%</div></div>
+    <div class="bar-row"><div class="bar-label">Classe moyenne (3 000€)</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#B86A1A"></div></div><div class="bar-val">52%</div></div>
+    <div class="bar-row"><div class="bar-label">Cadre sup (8 000€)</div><div class="bar-track"><div class="bar-fill" style="width:58%;background:#7A2D2D"></div></div><div class="bar-val">58%</div></div>
+  </div>
+  <div class="bar-section">
+    <div class="bar-title">Revenus du capital</div>
+    <div class="bar-row"><div class="bar-label">Dividendes (PFU)</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:#C4A265"></div></div><div class="bar-val">30%</div></div>
+    <div class="bar-row"><div class="bar-label">Plus-values immobilières</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:#C4A265"></div></div><div class="bar-val">36%</div></div>
+    <div class="bar-row"><div class="bar-label">Carried interest (PE)</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#2D6B4A"></div></div><div class="bar-val">28%</div></div>
+  </div>
+  <div class="bar-section">
+    <div class="bar-title">Grandes entreprises — taux effectif réel</div>
+    <div class="bar-row"><div class="bar-label">PME françaises</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:#1A3E6B"></div></div><div class="bar-val">25%</div></div>
+    <div class="bar-row"><div class="bar-label">GAFAM (en France)</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:#2D6B4A"></div></div><div class="bar-val">12%</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-comparaison">
+  <div class="lbl">Prélèvements obligatoires — % PIB (2025)</div>
+  <div class="pays-grid">
+    <div class="pays-card">
+      <div class="pays-name">France</div>
+      <div class="pays-taux">46%</div>
+      <div class="pays-note">1er rang OCDE. Record historique. Dépenses publiques : 57% du PIB.</div>
+      <div class="pays-bar" style="width:90%;background:#7A2D2D"></div>
+    </div>
+    <div class="pays-card">
+      <div class="pays-name">Allemagne</div>
+      <div class="pays-taux">39%</div>
+      <div class="pays-note">Modèle de consensus social. Cotisations élevées mais services publics efficaces.</div>
+      <div class="pays-bar" style="width:75%;background:#B86A1A"></div>
+    </div>
+    <div class="pays-card">
+      <div class="pays-name">Royaume-Uni</div>
+      <div class="pays-taux">36%</div>
+      <div class="pays-note">Post-Brexit et austérité. Baisse des services publics perceptible.</div>
+      <div class="pays-bar" style="width:68%;background:#B86A1A"></div>
+    </div>
+    <div class="pays-card">
+      <div class="pays-name">États-Unis</div>
+      <div class="pays-taux">27%</div>
+      <div class="pays-note">Fédéral bas. Mais assurances privées ajoutent 10-15%. Coût total comparable.</div>
+      <div class="pays-bar" style="width:50%;background:#C4A265"></div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">80 Mds</div><div class="stat-lbl">€ par an — montant de l'optimisation fiscale des multinationales en France (estimation)</div></div>
+    <div class="stat"><div class="stat-num">15%</div><div class="stat-lbl">impôt minimum mondial sur les grandes entreprises — accord OCDE 2023, application partielle</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-mecanismes">
+  <div class="lbl">Les mécanismes de l'impôt invisible</div>
+  <div class="mecanisme" style="border-color:#7A2D2D">
+    <div class="m-title" style="color:#7A2D2D">La TVA — l'impôt qui frappe les pauvres deux fois</div>
+    <div class="m-desc">La TVA à 20% représente la même charge pour un salaire de 1 400€ et de 14 000€ sur les mêmes achats. En proportion du revenu, elle pèse 3 fois plus sur les bas salaires que sur les hauts revenus.</div>
+    <div class="m-chiffre">170 Mds€ / an collectés</div>
+  </div>
+  <div class="mecanisme" style="border-color:#B86A1A">
+    <div class="m-title" style="color:#B86A1A">Les niches fiscales — 100 Mds€ de dépenses cachées</div>
+    <div class="m-desc">L'État français dépense 100 milliards d'euros par an en "dépenses fiscales" — exonérations, réductions, crédits d'impôt. 60% bénéficient aux entreprises. 15 milliards aux ménages les plus aisés.</div>
+    <div class="m-chiffre">474 niches fiscales recensées</div>
+  </div>
+  <div class="mecanisme" style="border-color:#C4A265">
+    <div class="m-title">Les cotisations — l'impôt qui ne dit pas son nom</div>
+    <div class="m-desc">Un salarié au SMIC coûte 1 750€ à l'employeur, reçoit 1 400€. 350€ de cotisations patronales disparaissent sans apparaître sur la fiche de paie. Montant annuel : 500 milliards d'euros.</div>
+    <div class="m-chiffre">500 Mds€ de cotisations / an</div>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

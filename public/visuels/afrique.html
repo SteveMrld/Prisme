@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afrique — La fin d'un monde</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#080C10;--encre:#ECE7DD;--bord:rgba(255,255,255,0.07);--fr:#1A3E6B;--rus:#7A2D2D;--chn:#B86A1A}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
+.tabs{display:flex;border-bottom:1px solid var(--bord)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--or);border-color:var(--or)}
+.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+
+/* CARTE SAHEL */
+.map-wrap{background:rgba(255,255,255,0.02);border:1px solid var(--bord);padding:16px}
+.map-svg{width:100%;height:auto;display:block}
+
+/* Zone d'influence animation */
+.zone{opacity:0;animation:zoneIn 0.6s ease forwards}
+@keyframes zoneIn{to{opacity:1}}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column}
+.tl-row{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--bord);cursor:pointer;transition:background 0.15s}
+.tl-row:hover,.tl-row.open{background:rgba(255,255,255,0.03);margin:0 -24px;padding:13px 24px}
+.tl-date{font-family:'Playfair Display',serif;font-size:15px;font-weight:300;color:var(--or);text-align:right;padding-top:2px}
+.tl-ev{font-size:13px;font-weight:500;color:var(--encre);line-height:1.3;margin-bottom:3px}
+.tl-tag{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;display:inline-block;width:fit-content}
+.tl-desc{font-size:12px;color:rgba(236,231,221,0.4);line-height:1.6;display:none;margin-top:6px;font-style:italic}
+.tl-row.open .tl-desc{display:block}
+
+/* ACTEURS */
+.acteur{padding:14px 18px;border-left:4px solid;background:rgba(255,255,255,0.02);margin-bottom:1px}
+.acteur-name{font-size:13px;font-weight:700;margin-bottom:5px}
+.acteur-desc{font-size:12px;color:rgba(236,231,221,0.4);line-height:1.55;font-style:italic}
+.acteur-bar{height:3px;border-radius:2px;margin-top:8px;animation:grow 1.2s ease forwards}
+@keyframes grow{from{width:0}}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+.stat{background:var(--bg);padding:16px 18px}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1;margin-bottom:5px}
+.stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Géopolitique</span>
+  <span class="hd-sub">Afrique — La recomposition des influences</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('carte',this)">Carte Sahel</div>
+  <div class="tab" onclick="showTab('timeline',this)">Chronologie des ruptures</div>
+  <div class="tab" onclick="showTab('acteurs',this)">Les nouveaux acteurs</div>
+</div>
+
+<div class="panel active" id="tab-carte">
+  <div class="lbl">Recomposition des influences au Sahel — 2020-2026</div>
+  <div class="map-wrap">
+    <svg class="map-svg" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="400" fill="#060A0E"/>
+
+      <!-- Afrique schématique -->
+      <path d="M200,40 L480,38 L540,120 L560,220 L500,320 L380,375 L260,370 L160,300 L120,200 L140,100 Z"
+        fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+      <!-- Zone Sahel -->
+      <path d="M155,140 L500,130 L510,200 L160,210 Z"
+        fill="rgba(184,106,26,0.12)" stroke="rgba(184,106,26,0.3)" stroke-width="1" stroke-dasharray="4,3"
+        class="zone" style="animation-delay:0.3s"/>
+
+      <!-- Influence France (recul) -->
+      <circle cx="260" cy="165" r="35" fill="rgba(26,62,107,0.2)" stroke="rgba(26,62,107,0.4)" stroke-width="1" stroke-dasharray="5,3" class="zone" style="animation-delay:0.5s"/>
+      <text x="260" y="160" text-anchor="middle" font-family="DM Sans" font-size="9" fill="rgba(74,126,199,0.7)" font-weight="700">FR</text>
+      <text x="260" y="172" text-anchor="middle" font-family="DM Sans" font-size="7" fill="rgba(74,126,199,0.5)">en recul</text>
+
+      <!-- Influence Russie (croissante) -->
+      <circle cx="340" cy="170" r="45" fill="rgba(122,45,45,0.2)" stroke="rgba(122,45,45,0.5)" stroke-width="1.5" class="zone" style="animation-delay:0.8s"/>
+      <text x="340" y="165" text-anchor="middle" font-family="DM Sans" font-size="9" fill="rgba(199,90,90,0.9)" font-weight="700">RUSSIE</text>
+      <text x="340" y="178" text-anchor="middle" font-family="DM Sans" font-size="7" fill="rgba(199,90,90,0.6)">Wagner / Africa Corps</text>
+
+      <!-- Influence Chine -->
+      <circle cx="420" cy="175" r="40" fill="rgba(184,106,26,0.2)" stroke="rgba(184,106,26,0.5)" stroke-width="1.5" class="zone" style="animation-delay:1.1s"/>
+      <text x="420" y="170" text-anchor="middle" font-family="DM Sans" font-size="9" fill="rgba(212,136,42,0.9)" font-weight="700">CHINE</text>
+      <text x="420" y="183" text-anchor="middle" font-family="DM Sans" font-size="7" fill="rgba(212,136,42,0.6)">BRI + mines</text>
+
+      <!-- Pays clés -->
+      <circle cx="255" cy="158" r="5" fill="#C75A5A"/>
+      <text x="243" y="148" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">Mali</text>
+
+      <circle cx="300" cy="162" r="5" fill="#C75A5A"/>
+      <text x="300" y="152" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">Burkina</text>
+
+      <circle cx="350" cy="168" r="5" fill="#C75A5A"/>
+      <text x="350" y="158" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">Niger</text>
+
+      <circle cx="410" cy="158" r="4" fill="rgba(255,255,255,0.4)"/>
+      <text x="410" y="148" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle">Tchad</text>
+
+      <!-- Label zone -->
+      <text x="350" y="210" text-anchor="middle" font-family="DM Sans" font-size="8" fill="rgba(184,106,26,0.6)" letter-spacing="2" font-weight="700">SAHEL — ZONE DE RECOMPOSITION</text>
+
+      <!-- Légende -->
+      <rect x="30" y="340" width="10" height="10" fill="rgba(26,62,107,0.5)" stroke="rgba(74,126,199,0.5)" stroke-width="1"/>
+      <text x="45" y="350" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.4)">France (recul)</text>
+      <rect x="160" y="340" width="10" height="10" fill="rgba(122,45,45,0.5)" stroke="rgba(199,90,90,0.5)" stroke-width="1"/>
+      <text x="175" y="350" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.4)">Russie (expansion)</text>
+      <rect x="310" y="340" width="10" height="10" fill="rgba(184,106,26,0.5)" stroke="rgba(212,136,42,0.5)" stroke-width="1"/>
+      <text x="325" y="350" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.4)">Chine (investissements)</text>
+    </svg>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">pays du Sahel ont expulsé les forces françaises entre 2022 et 2024</div></div>
+    <div class="stat"><div class="stat-num">30%</div><div class="stat-lbl">des réserves mondiales de minéraux critiques concentrées en Afrique</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-timeline">
+  <div class="lbl">Chronologie des ruptures avec la France</div>
+  <div class="tl">
+    <div class="tl-row open" onclick="tog(this)">
+      <div class="tl-date">2021</div>
+      <div>
+        <div class="tl-ev">Coup d'État au Mali — fin de Barkhane</div>
+        <span class="tl-tag" style="background:rgba(122,45,45,0.4);color:#C75A5A">Rupture militaire</span>
+        <div class="tl-desc">Le colonel Assimi Goïta prend le pouvoir. Paris maintient d'abord sa présence, puis suspend la coopération militaire. Premiers contacts avec Wagner documentés dès l'automne 2021.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-date">2022</div>
+      <div>
+        <div class="tl-ev">Burkina Faso — double coup d'État</div>
+        <span class="tl-tag" style="background:rgba(122,45,45,0.4);color:#C75A5A">Rupture diplomatique</span>
+        <div class="tl-desc">Deux putschs en une année. Le capitaine Traoré expulse les soldats français en janvier 2023. Le pays se tourne vers la Russie et interdit RFI et France 24.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-date">2023</div>
+      <div>
+        <div class="tl-ev">Niger — coup d'État contre Bazoum</div>
+        <span class="tl-tag" style="background:rgba(122,45,45,0.4);color:#C75A5A">Rupture stratégique</span>
+        <div class="tl-desc">Le Niger était la dernière base française au Sahel. Paris hésite, la CEDEAO menace d'intervenir, puis recule. Les soldats français quittent Niamey en décembre 2023.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-date">2024</div>
+      <div>
+        <div class="tl-ev">Alliance des États du Sahel — AES</div>
+        <span class="tl-tag" style="background:rgba(184,106,26,0.4);color:#D4882A">Nouvelle architecture</span>
+        <div class="tl-desc">Mali, Burkina et Niger forment la Confédération AES. Quittent la CEDEAO. Se donnent 5 ans pour créer une monnaie commune. Poutine les reçoit en grande pompe à Moscou.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-date">2026</div>
+      <div>
+        <div class="tl-ev">Sénégal et Côte d'Ivoire — la ligne qui tient</div>
+        <span class="tl-tag" style="background:rgba(26,62,107,0.4);color:#4A7EC7">Relation en tension</span>
+        <div class="tl-desc">Bassirou Faye élu au Sénégal sur une plateforme anti-françafrique. Ouattara en Côte d'Ivoire reste le dernier allié solide. Mais les opinions publiques africaines ont profondément changé.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="tab-acteurs">
+  <div class="lbl">Les nouveaux acteurs au Sahel</div>
+  <div class="acteur" style="border-color:#C75A5A">
+    <div class="acteur-name" style="color:#C75A5A">Russie — Wagner / Africa Corps</div>
+    <div class="acteur-desc">Groupe Wagner rebaptisé Africa Corps après la mort de Prigojine. Présence au Mali, Burkina, Niger, Centrafrique, Libye, Mozambique. Offre : sécurité contre ressources minières. Pas de conditionnalité politique.</div>
+    <div class="acteur-bar" style="width:75%;background:#C75A5A"></div>
+  </div>
+  <div class="acteur" style="border-color:#D4882A">
+    <div class="acteur-name" style="color:#D4882A">Chine — l'approche silencieuse</div>
+    <div class="acteur-desc">Pas de bases militaires, pas de Wagner. Des mines, des routes, des stades, des palais présidentiels. 40+ pays africains avec projets BRI. Présence sans ingérence déclarée — le modèle qui séduit les dirigeants.</div>
+    <div class="acteur-bar" style="width:85%;background:#D4882A"></div>
+  </div>
+  <div class="acteur" style="border-color:#4A7EC7">
+    <div class="acteur-name" style="color:#4A7EC7">Turquie — le prétendant discret</div>
+    <div class="acteur-desc">Bases militaires en Somalie et Libye. Drones Bayraktar vendus à 10+ pays africains. Erdogan visite régulière du continent. La Turquie joue sa propre partition, distincte de Moscou et Pékin.</div>
+    <div class="acteur-bar" style="width:45%;background:#4A7EC7"></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">54</div><div class="stat-lbl">pays africains — le continent le plus jeune du monde (âge médian 19 ans)</div></div>
+    <div class="stat"><div class="stat-num">2050</div><div class="stat-lbl">l'Afrique représentera 1 humain sur 4. La recomposition en cours n'est qu'un début.</div></div>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+function tog(el){
+  document.querySelectorAll('.tl-row').forEach(r=>r.classList.remove('open'));
+  el.classList.add('open');
+}
+</script>
+</body>
+</html>
