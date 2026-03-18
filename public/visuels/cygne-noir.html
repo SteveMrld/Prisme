@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased;cursor:none}
+html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased;}
 
 /* Curseur doré — masqué par défaut, visible seulement si souris détectée */
 #cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:#C4A265;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);display:none;left:-50px;top:-50px}
@@ -42,7 +42,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 .swan-area{flex:1;display:flex;align-items:center;justify-content:center}
 
 /* ── SLIDES EVENTS ── */
-.slide-ev{flex-direction:row;align-items:center;justify-content:flex-start;gap:0;padding:60px 7vw 90px;text-align:left}
+.slide-ev{flex-direction:row;align-items:center;justify-content:flex-start;gap:0;padding:60px 7vw 100px;text-align:left}
 .ev-left{flex:1;max-width:460px}
 .ev-right{flex-shrink:0;padding-left:52px;display:flex;flex-direction:column;align-items:flex-end}
 .ev-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.7);display:block;margin-bottom:14px}
@@ -85,7 +85,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 .cb{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.65}
 
 /* Finale */
-#slide-10{flex-direction:column;justify-content:space-between;padding-top:52px;padding-bottom:90px}
+#slide-11{flex-direction:column;justify-content:space-between;padding-top:52px;padding-bottom:90px}
 .fin-block{text-align:center}
 .fin-rule{width:1px;height:48px;background:rgba(196,162,101,0.3);margin:0 auto 24px}
 .fin-q{font-family:"Playfair Display",serif;font-size:clamp(14px,2vw,21px);font-style:italic;font-weight:300;color:#fff;line-height:1.7;max-width:600px;margin:0 auto 12px}
@@ -129,8 +129,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 </style>
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+
 <a class="back" href="/articles/cygne">← Article</a>
 
 <div id="stage">
@@ -343,26 +342,68 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
         <line x1="30" y1="75" x2="255" y2="75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
         <text x="28" y="78" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.25)" text-anchor="end">Coût</text>
         <text x="258" y="78" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.25)">Perf.</text>
-        <!-- Points modèles coûteux (haut gauche) -->
-        <circle id="sc1" cx="160" cy="22" r="7" fill="rgba(232,90,90,0.6)" opacity="0" style="transition:opacity 0.4s ease 0.5s"/>
-        <text id="sc1t" x="170" y="26" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.5)" opacity="0" style="transition:opacity 0.4s ease 0.5s">GPT-4</text>
-        <circle id="sc2" cx="185" cy="16" r="6" fill="rgba(232,90,90,0.5)" opacity="0" style="transition:opacity 0.4s ease 0.7s"/>
-        <text id="sc2t" x="194" y="20" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.5)" opacity="0" style="transition:opacity 0.4s ease 0.7s">Gemini</text>
-        <circle id="sc3" cx="210" cy="10" r="8" fill="rgba(232,90,90,0.4)" opacity="0" style="transition:opacity 0.4s ease 0.9s"/>
-        <text id="sc3t" x="220" y="14" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.5)" opacity="0" style="transition:opacity 0.4s ease 0.9s">Claude</text>
-        <!-- DeepSeek — même perf, coût 17x moins -->
-        <circle id="sc4" cx="205" cy="55" r="9" fill="#C4A265" opacity="0" style="transition:opacity 0.5s ease 1.3s"/>
-        <text id="sc4t" x="216" y="53" font-family="DM Sans" font-size="8" fill="#C4A265" font-weight="600" opacity="0" style="transition:opacity 0.5s ease 1.3s">DeepSeek</text>
-        <text id="sc4s" x="216" y="63" font-family="DM Sans" font-size="7" fill="rgba(196,162,101,0.6)" opacity="0" style="transition:opacity 0.5s ease 1.3s">6M$ vs 100M$</text>
-        <!-- Flèche surprise -->
-        <line id="sc-arrow" x1="205" y1="48" x2="205" y2="30" stroke="rgba(196,162,101,0.4)" stroke-width="1" stroke-dasharray="2,2" opacity="0" style="transition:opacity 0.4s ease 1.6s"/>
+        <!-- Axe Y label -->
+        <text x="32" y="8" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">Haute perf.</text>
+        <!-- GPT-4 -->
+        <circle id="sc1" cx="155" cy="25" r="6" fill="rgba(232,90,90,0.65)" opacity="0" style="transition:opacity 0.4s ease 0.5s"/>
+        <text id="sc1t" x="155" y="14" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.55)" text-anchor="middle" opacity="0" style="transition:opacity 0.4s ease 0.5s">GPT-4</text>
+        <!-- Gemini -->
+        <circle id="sc2" cx="183" cy="18" r="5.5" fill="rgba(232,90,90,0.5)" opacity="0" style="transition:opacity 0.4s ease 0.7s"/>
+        <text id="sc2t" x="183" y="8" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.5)" text-anchor="middle" opacity="0" style="transition:opacity 0.4s ease 0.7s">Gemini</text>
+        <!-- Claude -->
+        <circle id="sc3" cx="212" cy="12" r="7" fill="rgba(232,90,90,0.4)" opacity="0" style="transition:opacity 0.4s ease 0.9s"/>
+        <text id="sc3t" x="235" y="16" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.45)" opacity="0" style="transition:opacity 0.4s ease 0.9s">Claude</text>
+        <!-- DeepSeek — même perf, coût 17x moins = plus bas sur axe Y coût -->
+        <circle id="sc4" cx="212" cy="58" r="8" fill="#C4A265" opacity="0" style="transition:opacity 0.5s ease 1.3s"/>
+        <text id="sc4t" x="225" y="56" font-family="DM Sans" font-size="8" fill="#C4A265" font-weight="600" opacity="0" style="transition:opacity 0.5s ease 1.3s">DeepSeek</text>
+        <text id="sc4s" x="225" y="66" font-family="DM Sans" font-size="7" fill="rgba(196,162,101,0.6)" opacity="0" style="transition:opacity 0.5s ease 1.3s">6M$ vs 100M$</text>
+        <!-- Flèche verticale : même perf, coût différent -->
+        <line id="sc-arrow" x1="212" y1="20" x2="212" y2="50" stroke="rgba(196,162,101,0.45)" stroke-width="1" stroke-dasharray="3,2" opacity="0" style="transition:opacity 0.4s ease 1.6s"/>
+        <text id="sc-arrowt" x="196" y="37" font-family="DM Sans" font-size="6" fill="rgba(196,162,101,0.5)" text-anchor="middle" opacity="0" style="transition:opacity 0.4s ease 1.8s">÷17</text>
       </svg>
     </div>
   </div>
 </div>
 
-<!-- S10 FINALE -->
-<div class="slide" id="slide-10" style="flex-direction:column;justify-content:space-between;padding-top:52px;padding-bottom:90px">
+<!-- S11 PROSPECTIVE -->
+<div class="slide slide-ev" id="slide-10" style="padding-bottom:100px">
+  <div class="ev-left">
+    <span class="ev-tag">Prospective · Menaces systémiques</span>
+    <div class="ev-title">Quel sera le prochain<br>Cygne Noir ?</div>
+    <p class="ev-body">Par définition, on ne peut pas le désigner avec certitude. Mais certains signaux faibles — ignorés, sous-estimés, jugés impossibles — ressemblent à ce qu'on disait de LTCM en 1997, ou d'une pandémie mondiale en 2019.</p>
+  </div>
+  <div class="ev-right">
+    <div class="chart-wrap" style="width:280px">
+      <span class="chart-label">Candidats · probabilité subjective</span>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+        <div class="bar-row">
+          <span class="bar-yr" style="width:90px;font-size:9px;color:rgba(255,255,255,0.6)">Dette souveraine</span>
+          <div class="bar-track"><div class="bar-fill" data-w="78" data-slide="11" style="background:rgba(199,90,90,0.7)"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-yr" style="width:90px;font-size:9px;color:rgba(255,255,255,0.6)">AGI rupture</span>
+          <div class="bar-track"><div class="bar-fill" data-w="65" data-slide="11" style="background:rgba(196,162,101,0.8)"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-yr" style="width:90px;font-size:9px;color:rgba(255,255,255,0.6)">Pandémie X</span>
+          <div class="bar-track"><div class="bar-fill" data-w="55" data-slide="11" style="background:rgba(199,90,90,0.5)"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-yr" style="width:90px;font-size:9px;color:rgba(255,255,255,0.6)">Rupture eau/climat</span>
+          <div class="bar-track"><div class="bar-fill" data-w="48" data-slide="11" style="background:rgba(74,160,106,0.7)"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-yr" style="width:90px;font-size:9px;color:rgba(255,255,255,0.6)">Cyberattaque grids</span>
+          <div class="bar-track"><div class="bar-fill" data-w="42" data-slide="11" style="background:rgba(196,162,101,0.5)"></div></div>
+        </div>
+      </div>
+      <p style="font-size:8px;color:rgba(255,255,255,0.2);margin-top:10px;font-style:italic;line-height:1.5">Ce que Taleb appelle "l'inconnue inconnue" est par définition absent de cette liste.</p>
+    </div>
+  </div>
+</div>
+
+<!-- S12 FINALE -->
+<div class="slide" id="slide-11" style="flex-direction:column;justify-content:space-between;padding-top:52px;padding-bottom:100px">
   <div class="swan-area">
     <img class="swan-mirror" style="filter:invert(1);mix-blend-mode:screen;max-height:38vh;max-width:50vw" src="data:image/jpeg;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIJIAAAAAAAAAAAAAAAAAAAAAAAABBJIJAAAAAAAAAAAAAAAAAAAAAAABJJJJIAAAAAAAAAAAAAAAAAAAAAAAJJJJJIAAAAAAAAAAAAAAAAAAAAAAJJJJJIAAAAAAAAAAAAAAAAAAAAAAAJJJJJIAAAAAAAAAAAAAAAAAAAAAABJBBJJAAAAAAAAAAAAAAAAAAAAAAAJJAJJIAAAAAAAAAAAAAAAAAAAAAABJAAAJAAAAAAAAAAAAAAAAAAAAAAAJIAAJAAAAAAAAAAAAAAAAAAAAAAABJIAAJAAAAAAAAAAAAAAAAAAAAAABJJAAIAAAAAAAAAAAAAAAAAAAAAAAAJIAAJAAAAAAAAAAAAABIAJIAAAAAJJBABAAAAAAAAAAAAAABJJIIJAAAAJJAAAAAAAAAAAAAAAAAABJBBIBAAAJJIAAAAAAAAAAAAAAIAJJIJBAIJAABJAAAAAAAAAAAAAABJJJJJJJJJIABJJJAAAAAAAAAAAAAJJJJJJJJJJJAIJJAAAAAAAAAAAAAABJJJJJJJJJBAAJJBAAAAAAAAAIBAAAJJJJJJJJJAABJJAAAAAAAABJBIAABJJJJJJJJJAABJJIAAAAAAAJIJJJJJJJJJJJJJJBAJJJIAAAAAAJJJJJJJJJJJJJJJJJIJJJJAAAAAAAJJJJJJJJJJJJJJJJJJJJJIAAAAAABIJJJJJJJJJJJJJJJJJJJIAAAAAAAIJJJJJJJJJJJJJJJJJJJJIAAAAAAAAJJJJJJJJJJJJJJJJJJJJAAAAAAAABJJJJJJJJJJJJJJJJJJJIAAAAAAAABJJJJJJJJJJJJJJJJJJJAAAAAAAAAABJJJJJJJJJJJJJJJJJAAAAAAAAAAAAJJJJJJJJJJJJJJJJIAAAAAAAAAAAAJBBJJJJJJJJJJJJJAAAAAAAAAAAAAAAJBJIIABJIJBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAsP/aAAgBAwEB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" alt=""/>
   </div>
@@ -399,17 +440,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 </div>
 
 <script>
-// Curseur doré — activé seulement si souris détectée (pas sur touch/iPad)
-var ce=document.getElementById("cursor"),cr=document.getElementById("cursor-ring"),mx=0,my=0,rx=0,ry=0,cursorActive=false;
-document.addEventListener("mousemove",function(e){
-  if(!cursorActive){cursorActive=true;ce.style.display="block";cr.style.display="block";}
-  mx=e.clientX;my=e.clientY;ce.style.left=mx+"px";ce.style.top=my+"px";
-},{ passive:true });
-function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;if(cursorActive){cr.style.left=rx+"px";cr.style.top=ry+"px";}requestAnimationFrame(animRing)}
-animRing();
 
-var N=11,cur=0,tmr=null,paused=false;
-var durs=[5000,7000,7000,8500,7000,7000,7000,7000,7000,7000,10000];
+
+var N=12,cur=0,tmr=null,paused=false;
+var durs=[5000,7000,7000,8500,7000,7000,7000,7000,7000,7000,7000,10000];
 
 // Dots
 var dotsEl=document.getElementById("dots");
@@ -464,13 +498,14 @@ function animSlide(idx){
   tlEls.forEach(function(id){var el=document.getElementById(id);if(el){if(idx===6){el.style.opacity="1";if(id==="tl-line")el.setAttribute("x2","200")}else{el.style.opacity="0";if(id==="tl-line")el.setAttribute("x2","20")}}});
 
   // Scatter 2025
-  ["sc1","sc1t","sc2","sc2t","sc3","sc3t","sc4","sc4t","sc4s","sc-arrow"].forEach(function(id){
+  ["sc1","sc1t","sc2","sc2t","sc3","sc3t","sc4","sc4t","sc4s","sc-arrow","sc-arrowt"].forEach(function(id){
     var el=document.getElementById(id);if(el)el.style.opacity=idx===9?"1":"0";
   });
 
-  // Barres COVID
+  // Barres
   document.querySelectorAll(".bar-fill").forEach(function(b){
-    if(b.dataset.slide=="8") b.style.width=idx===8?(b.dataset.w+"%"):"0%";
+    var si=parseInt(b.dataset.slide);
+    b.style.width=idx===si?(b.dataset.w+"%"):"0%";
   });
 
   // Critères
