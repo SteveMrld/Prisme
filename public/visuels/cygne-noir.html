@@ -599,7 +599,7 @@ function animSlide(idx){
 
   // Morph
   var mw=document.getElementById("morph-white"),mb=document.getElementById("morph-black");
-  if(mw&&mb){if(idx===2){mw.style.opacity="1";mb.style.opacity="0";setTimeout(function(){mw.style.opacity="0";mb.style.opacity="1"},2000)}else{mw.style.opacity="1";mb.style.opacity="0"}}
+  if(mw&&mb){mw.style.opacity="0";mb.style.opacity=idx===2?"0.7":"0";}
 }
 
 function showSlide(idx){
