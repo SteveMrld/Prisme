@@ -556,9 +556,27 @@
   flex-shrink: 0;
 }
 
-.notes-list li em { font-style: italic; }
+.notes-list li em { font-style: italic; display: inline; }
 
-/* ── Auteur ── */
+/* Fix notes li layout - ensure text flows inline */
+.notes-list li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--gris-m);
+  line-height: 1.55;
+}
+
+.notes-list li > span:last-child,
+.notes-list li > *:not(:first-child) {
+  display: inline;
+}
+
+.notes-list li em,
+.notes-list li strong {
+  display: inline;
+}
 .auteur {
   margin-top: 48px;
   padding: 24px 0;
@@ -1156,9 +1174,10 @@
 }
 
 /* Notes — fix em inline */
-.prisme-article .notes-list li em {
+.prisme-article .notes-list li em,
+.notes-list li em {
   font-style: italic;
-  display: inline;
+  display: inline !important;
 }
 
 .prisme-article .notes-list li {
