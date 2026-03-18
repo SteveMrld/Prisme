@@ -783,3 +783,217 @@ sup {
     margin-right: 6px;
   }
 }
+
+/* ═══════════════════════════════════════════════════
+   PULL-QUOTE — redesign impactant façon NYT/FT
+   ═══════════════════════════════════════════════════ */
+
+.pull-quote {
+  position: relative;
+  margin: 56px auto;
+  max-width: 620px;
+  padding: 32px 40px 32px 48px;
+  background: transparent;
+  border-left: none;
+}
+
+/* Trait vertical doré épais */
+.pull-quote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--or);
+}
+
+/* Guillemet typographique décoratif */
+.pull-quote::after {
+  content: '\201C';
+  position: absolute;
+  top: -8px;
+  left: 28px;
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  font-weight: 300;
+  color: var(--or);
+  opacity: 0.2;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.pull-quote p {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(18px, 2.8vw, 24px) !important;
+  font-style: italic;
+  color: var(--encre) !important;
+  line-height: 1.55 !important;
+  margin-bottom: 14px !important;
+  padding: 0 !important;
+  max-width: none !important;
+}
+
+.pull-quote cite {
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or);
+  display: block;
+}
+
+/* Exergue — grande citation centrée */
+.exergue {
+  text-align: center;
+  padding: 48px 32px;
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  margin: 56px 0;
+  position: relative;
+}
+
+.exergue::before {
+  content: '\201C';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 300;
+  color: var(--or);
+  opacity: 0.15;
+  line-height: 1;
+}
+
+.exergue p {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(20px, 3vw, 28px) !important;
+  font-style: italic;
+  color: var(--encre) !important;
+  line-height: 1.5 !important;
+  margin-bottom: 16px !important;
+  padding: 0 !important;
+  max-width: 640px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.exergue cite {
+  font-size: 9px;
+  font-style: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or);
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════
+   SHARE BAR — boutons de partage
+   ═══════════════════════════════════════════════════ */
+
+.share-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  border-top: 1px solid var(--bord);
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.share-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border: 1px solid var(--bord);
+  background: transparent;
+  color: var(--gris-m);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.share-btn:hover {
+  border-color: var(--encre);
+  color: var(--encre);
+  background: var(--papier);
+}
+
+.share-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Bouton LinkedIn — couleur au hover */
+#shareLinkedIn:hover {
+  border-color: #0A66C2;
+  color: #0A66C2;
+}
+
+/* Bouton X */
+#shareX:hover {
+  border-color: var(--encre);
+  color: var(--encre);
+}
+
+/* Bouton copier lien */
+.share-copy {
+  outline: none;
+}
+
+.share-copied {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--encre);
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.share-copied.visible {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .pull-quote {
+    padding: 24px 20px 24px 32px;
+    margin: 40px 0;
+  }
+  .pull-quote::after {
+    font-size: 60px;
+    left: 16px;
+  }
+  .share-bar {
+    gap: 8px;
+  }
+  .share-btn {
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+}
