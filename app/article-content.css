@@ -1274,3 +1274,33 @@
   width: 100%;
   border: none;
 }
+
+/* ── Visuel inline (remplace les iframes) ── */
+.visuel-inline {
+  margin: 32px 0;
+  border: 1px solid var(--bord);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.visuel-inner {
+  width: 100%;
+}
+
+/* Reset complet pour les styles inline des visuels */
+.visuel-inline * {
+  box-sizing: border-box;
+}
+
+/* S'assure que les styles scoped ne débordent pas */
+.prisme-article .visuel-inline p {
+  padding: 0 !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin-bottom: 0 !important;
+}

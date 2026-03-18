@@ -23,13 +23,275 @@
     Remplacer par l'infographie, motion ou animation correspondante
     ════════════════════════════════════════
   -->
-  <div class="content-embed" style="margin:32px 0;border:1px solid var(--bord);overflow:hidden">
-  <iframe
-    src="/visuels/cygne-noir.html"
-    style="width:100%;height:560px;border:none;display:block;overflow:hidden"
-    title="/visuels/cygne-noir.html"
-   
-  ></iframe>
+  <div class="visuel-inline">
+<style>
+/* Scoped styles for cygne-noir */
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --encre: #0A0A0A; --or: #C4A265; --bg: #FAFAF8; --papier: #F2EDE3;
+    --gris: #3D3D3D; --gris-m: #6A6A6A; --gris-l: #9A9590; --bord: #D8D3C8;
+  }
+  html, body { background: var(--encre); font-family: 'DM Sans', sans-serif; font-weight: 300; color: #ECE7DD; height: 100%; -webkit-font-smoothing: antialiased; overflow: hidden; }
+
+  .deck { width: 100%; height: 100vh; display: flex; flex-direction: column; }
+
+  /* HEADER */
+  .deck-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .deck-tag { font-size: 8px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--or); border: 1px solid rgba(196,162,101,0.4); padding: 4px 12px; }
+  .deck-counter { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+
+  /* CARD */
+  .card-area { flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; overflow: hidden; }
+
+  .card {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 620px;
+    width: 100%;
+    animation: fadeUp 0.4s ease;
+  }
+  .card.active { display: flex; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: rgba(196,162,101,0.15);
+    line-height: 1;
+    letter-spacing: -4px;
+  }
+
+  .card-eyebrow {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--or);
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #ECE7DD;
+  }
+  .card-title em { font-style: italic; color: var(--or); }
+
+  .card-body {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2.5vw, 21px);
+    font-style: italic;
+    color: rgba(236,231,221,0.65);
+    line-height: 1.7;
+  }
+
+  .card-example {
+    border-left: 2px solid rgba(196,162,101,0.4);
+    padding: 12px 20px;
+    font-size: clamp(13px, 1.8vw, 16px);
+    color: rgba(236,231,221,0.45);
+    line-height: 1.6;
+  }
+
+  .card-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .card-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--or);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .card-stat-label {
+    font-size: 15px;
+    color: rgba(236,231,221,0.55);
+    line-height: 1.4;
+    max-width: 300px;
+  }
+
+  /* PROGRESS */
+  .progress {
+    flex-shrink: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--or);
+    transition: width 0.4s ease;
+  }
+
+  /* CONTROLS */
+  .controls {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-shrink: 0;
+  }
+
+  .btn {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn:hover { border-color: var(--or); color: var(--or); }
+  .btn:disabled { opacity: 0.2; cursor: default; }
+  .btn-next { border-color: rgba(196,162,101,0.4); color: var(--or); }
+  .btn-next:hover { background: rgba(196,162,101,0.1); }
+
+  .dots { display: flex; gap: 6px; align-items: center; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: background 0.3s; cursor: pointer; }
+  .dot.active { background: var(--or); width: 6px; height: 6px; }
+
+</style>
+<div class="visuel-inner">
+<div class="deck">
+  <div class="deck-header">
+    <span class="deck-tag">Décryptage · Le Cygne Noir</span>
+    <span class="deck-counter" id="counter">1 / 8</span>
+  </div>
+
+  <div class="progress"><div class="progress-fill" id="progress"></div></div>
+
+  <div class="card-area" id="cardArea"></div>
+
+  <div class="controls">
+    <button class="btn" id="btnPrev" onclick="prev()">← Précédent</button>
+    <div class="dots" id="dots"></div>
+    <button class="btn btn-next" id="btnNext" onclick="next()">Suivant →</button>
+  </div>
+</div>
+
+<script>
+const cards = [
+  {
+    num: '01',
+    eyebrow: 'Définition',
+    title: 'Qu\'est-ce qu\'un <em>Cygne Noir</em> ?',
+    body: 'Nassim Nicholas Taleb a théorisé en 2007 un type d\'événement qui réunit trois propriétés : il est extrêmement rare et imprévisible, son impact est massif, et après coup on le rationalise comme s\'il était inévitable.',
+    example: '« Ce n\'est pas que l\'événement était impossible à prévoir. C\'est que nos modèles l\'excluaient par construction. » — Taleb, The Black Swan, 2007',
+  },
+  {
+    num: '02',
+    eyebrow: 'La métaphore',
+    title: 'Pourquoi un <em>cygne noir</em> ?',
+    body: 'Pendant des siècles, tous les cygnes observés en Europe étaient blancs. La proposition "tous les cygnes sont blancs" semblait une vérité universelle. En 1697, les explorateurs hollandais découvrent l\'Australie — et des cygnes noirs. Un seul cas invalide une certitude millénaire.',
+    example: 'Le problème : nos modèles de prédiction sont construits sur des observations passées. Ils sont, par nature, aveugles à ce qui n\'a jamais été observé.',
+  },
+  {
+    num: '03',
+    eyebrow: 'La triade',
+    title: 'Les trois propriétés <em>invariantes</em>',
+    body: 'Un Cygne Noir doit réunir exactement trois caractéristiques. L\'absence d\'une seule disqualifie l\'événement.',
+    example: '① Rareté et imprévisibilité au-delà des attentes normales ② Impact extrême — négatif ou positif ③ Rationalisation rétrospective : on explique pourquoi c\'était "évident"',
+  },
+  {
+    num: '04',
+    eyebrow: 'Exemples',
+    title: 'Les Cygnes Noirs <em>du XXe siècle</em>',
+    body: 'Les guerres mondiales, la bombe atomique, Internet, le sida, l\'effondrement de l\'URSS, le 11 septembre, la crise de 2008, le Covid-19. Chacun de ces événements a été rationalisé après coup. Aucun n\'était intégré dans les modèles dominants avant de se produire.',
+    example: '« Les économistes avaient prédit une récession dans 148 des 150 dernières crises. Et ils en avaient manqué les deux plus importantes. » — Haldane, Banque d\'Angleterre',
+  },
+  {
+    num: '05',
+    eyebrow: 'Statistique',
+    title: '',
+    body: '',
+    stat: { num: '10×', label: 'La dernière décennie a produit dix fois plus d\'événements qualifiés de Cygnes Noirs que la décennie précédente selon les analystes de risque' },
+  },
+  {
+    num: '06',
+    eyebrow: 'Le paradoxe',
+    title: 'On ne peut pas <em>prévoir</em> un Cygne Noir',
+    body: 'C\'est la contradiction fondamentale : si on pouvait le prévoir, ce ne serait plus un Cygne Noir. La question n\'est donc pas de prédire le prochain, mais de construire des systèmes — personnels, organisationnels, politiques — capables de résister à l\'imprévu et d\'en profiter.',
+    example: 'Taleb appelle cette propriété la "robustesse" ou, pour les systèmes qui bénéficient du désordre, l\'"antifragilité".',
+  },
+  {
+    num: '07',
+    eyebrow: 'Biais cognitif',
+    title: 'Le Problème de <em>Ludovic</em>',
+    body: 'Nous avons tendance à réduire l\'incertitude aux risques que nous pouvons mesurer — et à ignorer les risques que nous ne pouvons pas mesurer. Ce biais, Taleb le nomme "le problème de Ludovic" : nous optimisons pour le monde que nous connaissons, pas pour le monde réel.',
+    example: '« Les banques utilisaient des modèles de risque qui supposaient une distribution normale des événements. Les Cygnes Noirs ne suivent pas une distribution normale. »',
+  },
+  {
+    num: '08',
+    eyebrow: 'Conclusion',
+    title: 'Apprendre à <em>naviguer</em> dans l\'incertitude',
+    body: 'Face aux Cygnes Noirs, l\'objectif n\'est pas la prédiction — c\'est la posture. Réduire l\'exposition aux conséquences négatives imprévisibles. Augmenter l\'exposition aux conséquences positives imprévisibles. Et surtout : ne jamais confondre l\'absence de preuve avec la preuve de l\'absence.',
+    example: '« La stratégie barbell : être ultra-conservateur sur 90% de ses risques et ultra-agressif sur les 10% restants. Éviter le milieu, qui donne une fausse illusion de sécurité. » — Taleb',
+  },
+]
+
+let current = 0
+
+function render() {
+  const area = document.getElementById('cardArea')
+  const dots = document.getElementById('dots')
+  const counter = document.getElementById('counter')
+  const progress = document.getElementById('progress')
+
+  area.innerHTML = cards.map((c, i) => `
+    <div class="card ${i === current ? 'active' : ''}">
+      <div class="card-num">${c.num}</div>
+      ${c.eyebrow ? `<div class="card-eyebrow">${c.eyebrow}</div>` : ''}
+      ${c.title ? `<h2 class="card-title">${c.title}</h2>` : ''}
+      ${c.body ? `<p class="card-body">${c.body}</p>` : ''}
+      ${c.stat ? `<div class="card-stat"><div class="card-stat-num">${c.stat.num}</div><div class="card-stat-label">${c.stat.label}</div></div>` : ''}
+      ${c.example ? `<div class="card-example">${c.example}</div>` : ''}
+    </div>
+  `).join('')
+
+  dots.innerHTML = cards.map((_, i) => `<div class="dot ${i === current ? 'active' : ''}" onclick="goTo(${i})"></div>`).join('')
+  counter.textContent = `${current + 1} / ${cards.length}`
+  progress.style.width = `${((current + 1) / cards.length) * 100}%`
+
+  document.getElementById('btnPrev').disabled = current === 0
+  document.getElementById('btnNext').disabled = current === cards.length - 1
+}
+
+function next() { if (current < cards.length - 1) { current++; render(); } }
+function prev() { if (current > 0) { current--; render(); } }
+function goTo(i) { current = i; render(); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') next()
+  if (e.key === 'ArrowLeft') prev()
+})
+
+render()
+</script>
+</div>
 </div>
 </div>
 
