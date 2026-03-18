@@ -365,40 +365,34 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 <!-- S9 : 2025 — SCATTER points coût vs performance IA -->
 <div class="slide slide-ev" id="slide-9">
   <div class="ev-left">
-    <span class="ev-tag">Technologie · Intelligence artificielle</span>
-    <div class="ev-title">DeepSeek — La rupture algorithmique</div>
-    <p class="ev-body">Une startup chinoise publie un modèle rivalisant avec GPT-4 pour 6 millions de dollars de calcul, contre 100 millions pour ses équivalents américains. Le paradigme de la course aux puces est brisé en une nuit.</p>
-    <span class="ev-num" style="color:#C4A265">−17%</span>
-    <span class="ev-unit">Nvidia en une séance · −593 Mds$ de capitalisation</span>
+    <span class="ev-tag">Technologie · Semi-conducteurs · 2012–2024</span>
+    <div class="ev-title">Nvidia — La carte graphique<br>qui a changé le monde</div>
+    <p class="ev-body">En 2012, Nvidia vend des cartes graphiques pour joueurs. Valorisation : 4 milliards. Personne ne prédit que CUDA — son langage de programmation GPU — deviendra l'infrastructure mondiale de l'intelligence artificielle. En 2024 : 3 300 milliards de dollars.</p>
+    <span class="ev-num" style="color:#C4A265">×825</span>
+    <span class="ev-unit">en capitalisation boursière · 2012 → 2024</span>
   </div>
   <div class="ev-right">
-    <span class="ev-year-bg">2025</span>
+    <span class="ev-year-bg" style="font-size:clamp(60px,12vw,140px)">NVDA</span>
     <div class="chart-wrap">
-      <span class="chart-label">Coût entraînement vs performance IA</span>
-      <svg class="scatter-svg" viewBox="0 0 260 90">
-        <!-- Axes -->
-        <line x1="30" y1="5" x2="30" y2="75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <line x1="30" y1="75" x2="255" y2="75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <text x="28" y="78" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.25)" text-anchor="end">Coût</text>
-        <text x="258" y="78" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.25)">Perf.</text>
-        <!-- Axe Y label -->
-        <text x="32" y="8" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">Haute perf.</text>
-        <!-- GPT-4 -->
-        <circle id="sc1" cx="155" cy="25" r="6" fill="rgba(232,90,90,0.65)" opacity="0" style="transition:opacity 0.4s ease 0.5s"/>
-        <text id="sc1t" x="155" y="14" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.55)" text-anchor="middle" opacity="0" style="transition:opacity 0.4s ease 0.5s">GPT-4</text>
-        <!-- Gemini -->
-        <circle id="sc2" cx="183" cy="18" r="5.5" fill="rgba(232,90,90,0.5)" opacity="0" style="transition:opacity 0.4s ease 0.7s"/>
-        <text id="sc2t" x="183" y="8" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.5)" text-anchor="middle" opacity="0" style="transition:opacity 0.4s ease 0.7s">Gemini</text>
-        <!-- Claude -->
-        <circle id="sc3" cx="212" cy="12" r="7" fill="rgba(232,90,90,0.4)" opacity="0" style="transition:opacity 0.4s ease 0.9s"/>
-        <text id="sc3t" x="235" y="16" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.45)" opacity="0" style="transition:opacity 0.4s ease 0.9s">Claude</text>
-        <!-- DeepSeek — même perf, coût 17x moins = plus bas sur axe Y coût -->
-        <circle id="sc4" cx="212" cy="58" r="8" fill="#C4A265" opacity="0" style="transition:opacity 0.5s ease 1.3s"/>
-        <text id="sc4t" x="225" y="56" font-family="DM Sans" font-size="8" fill="#C4A265" font-weight="600" opacity="0" style="transition:opacity 0.5s ease 1.3s">DeepSeek</text>
-        <text id="sc4s" x="225" y="66" font-family="DM Sans" font-size="7" fill="rgba(196,162,101,0.6)" opacity="0" style="transition:opacity 0.5s ease 1.3s">6M$ vs 100M$</text>
-        <!-- Flèche verticale : même perf, coût différent -->
-        <line id="sc-arrow" x1="212" y1="20" x2="212" y2="50" stroke="rgba(196,162,101,0.45)" stroke-width="1" stroke-dasharray="3,2" opacity="0" style="transition:opacity 0.4s ease 1.6s"/>
-        <text id="sc-arrowt" x="196" y="37" font-family="DM Sans" font-size="6" fill="rgba(196,162,101,0.5)" text-anchor="middle" opacity="0" style="transition:opacity 0.4s ease 1.8s">÷17</text>
+      <span class="chart-label">Nvidia — capitalisation boursière</span>
+      <svg class="curve-svg" viewBox="0 0 260 80">
+        <defs>
+          <linearGradient id="gnv" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#C4A265" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#C4A265" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path id="fnv" d="M0,72 L40,70 L80,68 L110,62 L135,55 L155,44 L175,30 L200,14 L230,6 L260,3 L260,80 L0,80 Z" fill="url(#gnv)" opacity="0" style="transition:opacity 0.8s ease 0.4s"/>
+        <path id="pnv" d="M0,72 L40,70 L80,68 L110,62 L135,55 L155,44 L175,30 L200,14 L230,6 L260,3" fill="none" stroke="#C4A265" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="420" stroke-dashoffset="420" style="transition:stroke-dashoffset 1.8s ease 0.3s"/>
+        <!-- Annotations -->
+        <text x="2" y="68" font-family="DM Sans" font-size="7" fill="rgba(255,255,255,0.3)">4 Mds$</text>
+        <text x="2" y="76" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">2012</text>
+        <text x="218" y="14" font-family="DM Sans" font-size="7" fill="#C4A265" font-weight="600">3 300 Mds$</text>
+        <text x="235" y="22" font-family="DM Sans" font-size="6" fill="rgba(196,162,101,0.5)">2024</text>
+        <!-- Ligne pivot IA — 2016 AlphaGo -->
+        <line x1="145" y1="48" x2="145" y2="72" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="147" y="60" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.25)">AlphaGo</text>
+        <text x="147" y="68" font-family="DM Sans" font-size="6" fill="rgba(255,255,255,0.2)">2016</text>
       </svg>
     </div>
   </div>
@@ -544,7 +538,7 @@ function seekClick(e){
 function animSlide(idx){
   updateCounter();
   // Courbes
-  var curves={4:["p87","f87"],7:["p08","f08"],9:null};
+  var curves={4:["p87","f87"],7:["p08","f08"],9:["pnv","fnv"]};
   // Reset toutes
   ["p87","f87","p08","f08"].forEach(function(id){
     var el=document.getElementById(id);if(!el)return;
@@ -566,10 +560,7 @@ function animSlide(idx){
   var tlEls=["tl-line","tl-1","tl-2","tl-3","tl-4","tl-t1","tl-t2","tl-t3","tl-t4","tl-d1","tl-d2","tl-d3","tl-d4"];
   tlEls.forEach(function(id){var el=document.getElementById(id);if(el){if(idx===6){el.style.opacity="1";if(id==="tl-line")el.setAttribute("x2","200")}else{el.style.opacity="0";if(id==="tl-line")el.setAttribute("x2","20")}}});
 
-  // Scatter 2025
-  ["sc1","sc1t","sc2","sc2t","sc3","sc3t","sc4","sc4t","sc4s","sc-arrow","sc-arrowt"].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.style.opacity=idx===9?"1":"0";
-  });
+
 
   // Barres
   document.querySelectorAll(".bar-fill").forEach(function(b){
