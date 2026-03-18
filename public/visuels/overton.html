@@ -418,7 +418,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="pk-letter" style="transition-delay:0.55s">S</span>
     <span class="pk-letter" style="transition-delay:0.70s">M</span>
     <span class="pk-letter" style="transition-delay:0.85s">E</span>
-    <span class="pk-letter" style="transition-delay:1.0s;color:rgba(196,162,101,0.5);font-size:0.5em">.</span>
+    <span id="pk-dot-mid" style="display:inline-block;font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,48px);color:#C4A265;opacity:0;transform:scale(0) translateY(10px);transition:opacity 0.4s ease 1.5s, transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s;line-height:1;align-self:center">.</span>
     <span class="pk-letter" style="transition-delay:1.1s">F</span>
     <span class="pk-letter" style="transition-delay:1.22s">R</span>
   </div>
@@ -573,6 +573,7 @@ function showSlide(idx){
   var pl=document.getElementById("pk-line");
   var pl2=document.getElementById("pk-line2");
   pkLetters.forEach(function(el){el.classList.remove("in")});
+  var pdm=document.getElementById("pk-dot-mid");if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0) translateY(10px)"}
   if(pd){pd.style.opacity="0";pd.style.transform="scale(0)"}
   if(pt){pt.style.opacity="0";pt.style.transform="translateY(10px)"}
   if(pl){pl.style.width="0"}
@@ -582,6 +583,7 @@ function showSlide(idx){
       if(pl)pl.style.width="clamp(60px,15vw,160px)";
       if(pl2)pl2.style.width="clamp(60px,15vw,160px)";
       pkLetters.forEach(function(el){el.classList.add("in")});
+      setTimeout(function(){var pdm=document.getElementById("pk-dot-mid");if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1) translateY(0)"}},1500);
     },200);
     setTimeout(function(){if(pd){pd.style.opacity="1";pd.style.transform="scale(1)"}},1700);
     setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},2000);
