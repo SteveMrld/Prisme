@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les mers du pouvoir · Prisme</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#04080F;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
+:root{--gold:#C4A265;--blue:#4A90C4;--red:#C45A4A;--teal:#4AC4A8;--lav:#9B8EC4}
+#stage{position:fixed;top:0;left:0;width:100%;height:100%}
+#map-wrap{position:absolute;top:0;left:0;width:100%;height:calc(100% - 56px)}
+#world-svg{width:100%;height:100%;display:block}
+
+/* ── OVERLAY CHAPITRES ── */
+.chapter{position:absolute;opacity:0;transition:opacity 700ms ease;pointer-events:none}
+.chapter.vis{opacity:1;pointer-events:auto}
+
+/* ── TITRE OVERLAY ── */
+#ch0{top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(4,8,15,0.72);backdrop-filter:blur(2px)}
+#ch0 .label{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:20px}
+#ch0 .hero{font-family:"Playfair Display",serif;font-size:clamp(40px,8vw,96px);font-weight:300;letter-spacing:-3px;text-align:center;line-height:0.9;margin-bottom:20px}
+#ch0 .hero em{font-style:italic;color:var(--gold);display:block}
+#ch0 .sub{font-family:"Playfair Display",serif;font-size:clamp(12px,1.8vw,17px);font-style:italic;color:rgba(255,255,255,0.38);max-width:480px;text-align:center;line-height:1.8}
+.t-word{display:inline-block;opacity:0;transform:translateY(16px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
+.t-word.in{opacity:1;transform:translateY(0)}
+
+/* ── PANNEAU INFO (droite) ── */
+.info-panel{position:absolute;right:0;top:0;height:100%;width:clamp(200px,28vw,320px);background:linear-gradient(to left, rgba(4,8,15,0.94) 60%, rgba(4,8,15,0));display:flex;flex-direction:column;justify-content:center;padding:32px 28px 32px 48px}
+.info-panel .ch-tag{font-size:7px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.55);margin-bottom:14px}
+.info-panel h2{font-family:"Playfair Display",serif;font-size:clamp(18px,2.8vw,30px);font-weight:300;line-height:1.15;letter-spacing:-0.5px;margin-bottom:14px}
+.info-panel h2 em{font-style:italic;color:var(--gold)}
+.info-panel p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:12px}
+.stat-row{display:flex;align-items:baseline;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)}
+.stat-big{font-family:"Playfair Display",serif;font-size:clamp(22px,3.5vw,40px);font-weight:300;color:var(--gold)}
+.stat-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);line-height:1.3}
+
+/* ── LÉGENDE ── */
+.legend{position:absolute;left:18px;bottom:20px;display:flex;flex-direction:column;gap:7px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.legend-line{width:20px;height:2px;flex-shrink:0;border-radius:1px}
+
+/* ── MARQUEURS CARTE ── */
+.strait-label{font-family:"DM Sans",sans-serif;font-size:8px;fill:rgba(196,162,101,0.7);letter-spacing:0.5px;pointer-events:none}
+.ocean-label{font-family:"Playfair Display",serif;font-size:11px;font-style:italic;fill:rgba(255,255,255,0.12);letter-spacing:1px}
+.city-dot{fill:rgba(255,255,255,0.4);stroke:none}
+.region-label{font-family:"DM Sans",sans-serif;font-size:7px;fill:rgba(255,255,255,0.25);letter-spacing:2px;text-transform:uppercase}
+
+/* ── ROUTE ANIMATION ── */
+.trade-route{stroke:rgba(196,162,101,0.4);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-dasharray:6,4}
+.trade-route.animate{animation:dash 4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-40}}
+.route-glow{stroke:rgba(196,162,101,0.12);stroke-width:4;fill:none;stroke-linecap:round}
+
+/* ── ZONES INFLUENCE ── */
+.zone{opacity:0;transition:opacity 1s ease}
+.zone.vis{opacity:1}
+.pulse-ring{animation:pulseRing 2s ease-out infinite;transform-origin:center}
+@keyframes pulseRing{0%{opacity:0.7;r:5}60%{opacity:0;r:14}100%{opacity:0;r:14}}
+.flash-dot{animation:flashDot 2s ease-in-out infinite}
+@keyframes flashDot{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ── TENSION ── */
+.tension-zone{fill:rgba(196,90,74,0.12);stroke:rgba(196,90,74,0.35);stroke-width:1;stroke-dasharray:4,3;opacity:0;transition:opacity 1s ease}
+.tension-zone.vis{opacity:1;animation:tensionPulse 2.5s ease-in-out infinite}
+@keyframes tensionPulse{0%,100%{fill:rgba(196,90,74,0.1)}50%{fill:rgba(196,90,74,0.2)}}
+
+/* ── PLAYER ── */
+#player{position:absolute;bottom:0;left:0;right:0;z-index:200;display:flex;flex-direction:column;background:rgba(4,8,15,0.95);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.06)}
+#progress-bar{width:100%;height:2px;background:rgba(255,255,255,0.07);cursor:pointer}
+#progress-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s linear}
+#controls{display:flex;align-items:center;justify-content:center;padding:10px 20px;position:relative}
+#dots{position:absolute;left:20px;display:flex;gap:5px}
+.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.18);cursor:pointer;transition:background .2s,transform .2s}
+.dot.on{background:var(--gold);transform:scale(1.5)}
+.ctrl-btn{width:36px;height:36px;border:none;background:none;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 4px}
+.ctrl-btn:hover{color:var(--gold)}
+.ctrl-btn svg{width:20px;height:20px;fill:currentColor}
+#btn-play .ip{display:block}#btn-play .ipa{display:none}
+#btn-play.playing .ip{display:none}#btn-play.playing .ipa{display:block}
+#btn-play{width:44px;height:44px;border-radius:50%;background:rgba(196,162,101,0.15);color:var(--gold);border:1px solid rgba(196,162,101,0.3)}
+#counter{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+#prisme-wm{position:fixed;bottom:78px;left:20px;z-index:50;pointer-events:none;font-family:"DM Sans",sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.38)}
+#prisme-wm span{color:rgba(196,162,101,0.22)}
+.back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;z-index:200}
+.back:hover{color:var(--gold)}
+
+/* Packshot */
+.pk-letter{display:inline-block;font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,100px);font-weight:300;letter-spacing:-2px;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
+.pk-letter.in{opacity:1;transform:translateY(0)}
+@media(max-width:600px){.info-panel{width:100%;height:auto;top:auto;bottom:60px;padding:16px 20px 16px 20px;background:linear-gradient(to top, rgba(4,8,15,0.95) 80%,rgba(4,8,15,0))}}
+</style>
+</head>
+<body>
+<a class="back" href="/">← Prisme</a>
+<div id="stage">
+<div id="prisme-wm">PRISME<span>.FR</span></div>
+
+<div id="map-wrap">
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  CARTE SVG MONDIALE                                       -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<svg id="world-svg" viewBox="0 0 960 500" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <!-- Gradient fond océan -->
+  <radialGradient id="ocean-grad" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" stop-color="#080E1A"/>
+    <stop offset="100%" stop-color="#040810"/>
+  </radialGradient>
+  <!-- Glow doré pour les détroits -->
+  <filter id="glow-gold">
+    <feGaussianBlur stdDeviation="3" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="glow-blue">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="glow-red">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <!-- Gradient routes commerciales -->
+  <linearGradient id="route-pacific" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#C4A265" stop-opacity="0"/>
+    <stop offset="50%" stop-color="#C4A265" stop-opacity="0.5"/>
+    <stop offset="100%" stop-color="#C4A265" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+
+<!-- Fond océan -->
+<rect width="960" height="500" fill="url(#ocean-grad)"/>
+
+<!-- Grille de longitude/latitude (très discrète) -->
+<g stroke="rgba(255,255,255,0.025)" stroke-width="0.5" fill="none">
+  <line x1="0" y1="250" x2="960" y2="250"/><!-- Équateur -->
+  <line x1="480" y1="0" x2="480" y2="500"/><!-- Méridien 0 -->
+  <line x1="0" y1="139" x2="960" y2="139"/><!-- 40°N -->
+  <line x1="0" y1="361" x2="960" y2="361"/><!-- 40°S -->
+  <line x1="213" y1="0" x2="213" y2="500"/><!-- -90° -->
+  <line x1="746" y1="0" x2="746" y2="500"/><!-- +90° -->
+</g>
+
+<!-- ══ CONTINENTS ══ -->
+<g fill="#0D1826" stroke="#1A2840" stroke-width="0.8">
+
+  <!-- Amérique du Nord -->
+  <path d="M 82,88 L 105,70 L 130,60 L 170,52 L 220,50 L 265,58 L 295,72 L 308,95 L 298,130 L 285,160 L 268,185 L 248,198 L 225,205 L 208,198 L 188,185 L 170,178 L 158,160 L 148,138 L 120,110 L 95,100 Z"/>
+  <!-- Floride -->
+  <path d="M 268,185 L 278,195 L 272,205 L 260,198 L 255,190 Z"/>
+  <!-- Mexique/Amérique Centrale -->
+  <path d="M 208,198 L 230,205 L 245,215 L 238,225 L 220,230 L 205,220 L 195,210 Z"/>
+  <!-- Alaska -->
+  <path d="M 82,88 L 68,80 L 55,88 L 48,100 L 60,110 L 80,108 L 90,98 Z"/>
+
+  <!-- Groenland -->
+  <path d="M 310,45 L 345,30 L 375,35 L 385,55 L 368,75 L 340,78 L 315,65 Z"/>
+
+  <!-- Amérique du Sud -->
+  <path d="M 220,235 L 255,218 L 290,220 L 315,240 L 320,270 L 315,310 L 298,355 L 270,388 L 245,392 L 222,370 L 208,330 L 202,285 L 210,255 Z"/>
+
+  <!-- Europe occidentale -->
+  <path d="M 432,72 L 458,58 L 490,52 L 510,60 L 520,78 L 515,100 L 498,118 L 475,125 L 455,118 L 438,102 L 430,88 Z"/>
+  <!-- Scandinavie -->
+  <path d="M 480,50 L 510,38 L 530,45 L 525,68 L 510,80 L 495,78 Z"/>
+  <!-- Péninsule ibérique -->
+  <path d="M 432,100 L 450,95 L 460,108 L 448,122 L 432,118 Z"/>
+  <!-- Italie -->
+  <path d="M 480,105 L 492,100 L 500,115 L 496,130 L 483,125 Z"/>
+
+  <!-- Afrique -->
+  <path d="M 435,140 L 480,128 L 525,135 L 548,155 L 555,185 L 550,230 L 542,275 L 520,328 L 495,358 L 468,362 L 445,335 L 425,288 L 418,238 L 420,188 L 428,162 Z"/>
+  <!-- Madagascar -->
+  <path d="M 562,295 L 572,278 L 580,290 L 575,315 L 562,318 Z"/>
+
+  <!-- Péninsule arabique -->
+  <path d="M 530,148 L 565,140 L 590,148 L 600,168 L 595,195 L 570,205 L 548,200 L 535,178 Z"/>
+
+  <!-- Asie centrale + Russie (simplifié) -->
+  <path d="M 510,58 L 600,42 L 700,38 L 790,48 L 840,60 L 858,82 L 845,105 L 810,118 L 775,128 L 740,135 L 710,148 L 680,155 L 650,162 L 615,165 L 580,158 L 555,145 L 530,135 L 518,115 L 510,88 Z"/>
+  <!-- Sibérie Est -->
+  <path d="M 840,60 L 880,52 L 910,68 L 905,88 L 875,95 L 850,88 L 840,72 Z"/>
+
+  <!-- Sous-continent indien -->
+  <path d="M 605,162 L 635,152 L 658,162 L 665,188 L 655,218 L 630,232 L 608,225 L 596,205 L 595,182 Z"/>
+
+  <!-- Asie du Sud-Est (Indochine) -->
+  <path d="M 688,155 L 720,148 L 748,158 L 755,178 L 742,198 L 718,205 L 695,198 L 680,178 Z"/>
+  <!-- Péninsule malaise -->
+  <path d="M 732,202 L 748,198 L 752,218 L 742,230 L 728,225 L 725,210 Z"/>
+
+  <!-- Chine (approximation) -->
+  <path d="M 718,90 L 770,82 L 808,92 L 822,115 L 818,140 L 792,155 L 760,162 L 728,158 L 710,145 L 705,125 L 712,105 Z"/>
+
+  <!-- Corée + Japon (simplifié) -->
+  <path d="M 818,110 L 835,105 L 848,115 L 845,130 L 830,135 L 818,125 Z"/>
+  <!-- Japon -->
+  <path d="M 845,95 L 860,88 L 870,98 L 865,115 L 852,118 L 842,108 Z"/>
+
+  <!-- Taïwan -->
+  <ellipse cx="808" cy="165" rx="8" ry="12" fill="#0D1826" stroke="#1A2840"/>
+
+  <!-- Australie -->
+  <path d="M 695,295 L 768,278 L 808,292 L 825,325 L 818,368 L 785,392 L 742,398 L 702,375 L 685,342 L 682,312 Z"/>
+  <!-- Nouvelle-Zélande -->
+  <path d="M 840,350 L 852,335 L 862,350 L 855,372 L 842,370 Z"/>
+
+  <!-- Sri Lanka -->
+  <ellipse cx="648" cy="238" rx="6" ry="8"/>
+
+  <!-- Philippines (simplifié) -->
+  <path d="M 775,175 L 790,165 L 800,175 L 795,192 L 780,195 L 772,185 Z"/>
+
+  <!-- Borneo -->
+  <path d="M 748,225 L 785,215 L 800,232 L 798,258 L 775,268 L 750,255 L 742,238 Z"/>
+
+  <!-- Sumatra -->
+  <path d="M 700,228 L 740,215 L 750,225 L 740,248 L 710,258 L 695,245 Z"/>
+
+  <!-- Java -->
+  <path d="M 748,262 L 792,255 L 795,268 L 768,278 L 748,272 Z"/>
+
+  <!-- Islande -->
+  <path d="M 400,65 L 418,58 L 428,68 L 420,78 L 405,75 Z"/>
+</g>
+
+<!-- ══ NOMS DES OCÉANS ══ -->
+<g>
+  <text class="ocean-label" x="160" y="270" text-anchor="middle">Atlantique</text>
+  <text class="ocean-label" x="550" y="290" text-anchor="middle">Indien</text>
+  <text class="ocean-label" x="88" y="380" text-anchor="middle">Atlantique Sud</text>
+  <text class="ocean-label" x="600" y="450" text-anchor="middle">Austral</text>
+  <!-- Pacifique : deux parties à cause des continents -->
+  <text class="ocean-label" x="870" y="280" text-anchor="middle">Pacifique</text>
+  <text class="ocean-label" x="870" y="300" font-size="9" text-anchor="middle" font-style="normal" fill="rgba(255,255,255,0.08)">Ouest</text>
+  <text class="ocean-label" x="50" y="280" text-anchor="middle">Pacifique</text>
+  <text class="ocean-label" x="50" y="300" font-size="9" text-anchor="middle" font-style="normal" fill="rgba(255,255,255,0.08)">Est</text>
+</g>
+
+<!-- ══ NOMS CONTINENTS ══ -->
+<g>
+  <text class="region-label" x="185" y="130" text-anchor="middle">Amérique du Nord</text>
+  <text class="region-label" x="262" y="305" text-anchor="middle">Amérique du Sud</text>
+  <text class="region-label" x="470" y="95" text-anchor="middle">Europe</text>
+  <text class="region-label" x="482" y="235" text-anchor="middle">Afrique</text>
+  <text class="region-label" x="670" y="92" text-anchor="middle">Russie / Asie Centrale</text>
+  <text class="region-label" x="640" y="188" text-anchor="middle">Asie du Sud</text>
+  <text class="region-label" x="752" y="340" text-anchor="middle">Australie</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- COUCHE 1 : ROUTES COMMERCIALES (ch1)                        -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<g id="layer-routes" opacity="0" style="transition:opacity 1s ease">
+  <!-- Route transpacifique (Asie → Amérique du Nord) -->
+  <path class="route-glow" d="M 758,185 Q 880,220 955,230 Q 960,230 0,230 Q 30,200 170,180"/>
+  <path class="trade-route animate" d="M 758,185 Q 880,220 955,230 Q 960,230 0,230 Q 30,200 170,180" style="animation-delay:0s"/>
+
+  <!-- Route Asie → Europe (via Suez) -->
+  <path class="route-glow" d="M 748,198 Q 670,210 630,195 Q 600,188 572,172 Q 556,163 542,155 Q 520,145 490,138 Q 468,132 448,130 Q 430,130 400,145 Q 380,155 360,165 Q 340,172 310,165 Q 285,158 265,152 Q 245,148 220,158"/>
+  <path class="trade-route animate" d="M 748,198 Q 670,210 630,195 Q 600,188 572,172 Q 556,163 542,155 Q 520,145 490,138 Q 468,132 448,130 Q 430,130 400,145 Q 380,155 360,165 Q 340,172 310,165 Q 285,158 265,152 Q 245,148 220,158" style="animation-delay:-2s"/>
+
+  <!-- Route Atlantique Nord (Europe ↔ USA) -->
+  <path class="route-glow" d="M 455,110 Q 380,118 320,120 Q 270,120 220,128"/>
+  <path class="trade-route animate" d="M 455,110 Q 380,118 320,120 Q 270,120 220,128" style="animation-delay:-1s;stroke-dasharray:4,3;opacity:0.5"/>
+
+  <!-- Route Cap de Bonne Espérance -->
+  <path class="trade-route" d="M 460,360 Q 440,420 400,450 Q 360,465 310,440 Q 260,415 230,380" style="stroke:rgba(196,162,101,0.2);stroke-dasharray:4,6"/>
+
+  <!-- Route Australie → Asie -->
+  <path class="trade-route animate" d="M 752,278 Q 752,248 748,220" style="animation-delay:-3s;stroke:rgba(74,196,168,0.35)"/>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- COUCHE 2 : DÉTROITS STRATÉGIQUES (ch2)                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<g id="layer-straits" opacity="0" style="transition:opacity 1s ease">
+
+  <!-- ── DÉTROIT D'ORMUZ (lon 56, lat 26) → x=629, y=178 ── -->
+  <circle class="pulse-ring" cx="629" cy="178" r="5" fill="none" stroke="#C4A265" stroke-width="1.5"/>
+  <circle class="pulse-ring" cx="629" cy="178" r="5" fill="none" stroke="#C4A265" stroke-width="1" style="animation-delay:-0.7s"/>
+  <circle cx="629" cy="178" r="4" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
+  <text class="strait-label" x="635" y="172">Ormuz</text>
+  <text x="635" y="181" font-family="DM Sans" font-size="6.5" fill="rgba(196,162,101,0.45)">20% pétrole mondial</text>
+
+  <!-- ── DÉTROIT DE MALACCA (lon 102, lat 3) → x=752, y=247 ── -->
+  <circle class="pulse-ring" cx="732" cy="228" r="5" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-0.3s"/>
+  <circle class="pulse-ring" cx="732" cy="228" r="5" fill="none" stroke="#C4A265" stroke-width="1" style="animation-delay:-1s"/>
+  <circle cx="732" cy="228" r="4" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
+  <text class="strait-label" x="738" y="224">Malacca</text>
+  <text x="738" y="233" font-family="DM Sans" font-size="6.5" fill="rgba(196,162,101,0.45)">25% commerce mondial</text>
+
+  <!-- ── CANAL DE SUEZ (lon 32, lat 30) → x=565, y=167 ── -->
+  <circle class="pulse-ring" cx="555" cy="148" r="5" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-0.5s"/>
+  <circle cx="555" cy="148" r="4" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
+  <text class="strait-label" x="560" y="144">Suez</text>
+  <text x="560" y="153" font-family="DM Sans" font-size="6.5" fill="rgba(196,162,101,0.45)">12% commerce mondial</text>
+
+  <!-- ── GIBRALTAR (lon -5, lat 36) → x=467, y=150 ── -->
+  <circle class="pulse-ring" cx="460" cy="128" r="4" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-1.2s"/>
+  <circle cx="460" cy="128" r="3.5" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
+  <text class="strait-label" x="432" y="124">Gibraltar</text>
+
+  <!-- ── BOSPHORE (lon 29, lat 41) → x=557, y=136 ── -->
+  <circle class="pulse-ring" cx="535" cy="118" r="4" fill="none" stroke="#C4A265" stroke-width="1.5" style="animation-delay:-1.8s"/>
+  <circle cx="535" cy="118" r="3.5" fill="#C4A265" opacity="0.9" filter="url(#glow-gold)"/>
+  <text class="strait-label" x="540" y="114">Bosphore</text>
+
+  <!-- ── DÉTROIT DE TAÏWAN (lon 119, lat 24) → x=798, y=183 ── -->
+  <circle class="pulse-ring" cx="808" cy="158" r="5" fill="none" stroke="#C47A4A" stroke-width="1.5" style="animation-delay:-0.8s"/>
+  <circle cx="808" cy="158" r="4" fill="#C47A4A" opacity="0.9" filter="url(#glow-red)"/>
+  <text class="strait-label" x="814" y="155" fill="rgba(196,122,74,0.8)">Taïwan</text>
+  <text x="814" y="163" font-family="DM Sans" font-size="6.5" fill="rgba(196,122,74,0.5)">Ligne de front</text>
+
+  <!-- ── CAP DE BONNE ESPÉRANCE ── -->
+  <circle class="pulse-ring" cx="460" cy="358" r="4" fill="none" stroke="#C4A265" stroke-width="1" style="animation-delay:-2.1s"/>
+  <circle cx="460" cy="358" r="3" fill="#C4A265" opacity="0.7"/>
+  <text class="strait-label" x="430" y="368">Cap de Bonne-Espérance</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- COUCHE 3 : DOMINATION AMÉRICAINE (ch3)                      -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<g id="layer-us" opacity="0" style="transition:opacity 1s ease">
+  <!-- Zone d'influence US (cercles doux) -->
+  <!-- 6e flotte - Méditerranée -->
+  <circle cx="490" cy="148" r="45" fill="rgba(74,144,196,0.07)" stroke="rgba(74,144,196,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="490" y="152" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.6)" text-anchor="middle" font-weight="600">6e Flotte</text>
+
+  <!-- 5e flotte - Golfe Persique -->
+  <circle cx="620" cy="185" r="40" fill="rgba(74,144,196,0.07)" stroke="rgba(74,144,196,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="620" y="189" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.6)" text-anchor="middle" font-weight="600">5e Flotte</text>
+
+  <!-- 7e flotte - Pacifique Ouest -->
+  <circle cx="852" cy="175" r="55" fill="rgba(74,144,196,0.07)" stroke="rgba(74,144,196,0.25)" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="852" y="179" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.6)" text-anchor="middle" font-weight="600">7e Flotte</text>
+
+  <!-- Porte-avions -->
+  <g filter="url(#glow-blue)">
+    <!-- CVN Méditerranée -->
+    <path d="M 488,143 L 496,140 L 496,147 L 488,147 Z" fill="rgba(74,144,196,0.9)"/>
+    <!-- CVN Golfe -->
+    <path d="M 618,180 L 626,177 L 626,184 L 618,184 Z" fill="rgba(74,144,196,0.9)"/>
+    <!-- CVN Pacifique -->
+    <path d="M 850,170 L 858,167 L 858,174 L 850,174 Z" fill="rgba(74,144,196,0.9)"/>
+    <!-- CVN Pacifique Est -->
+    <path d="M 112,165 L 120,162 L 120,169 L 112,169 Z" fill="rgba(74,144,196,0.9)"/>
+  </g>
+
+  <!-- Bases : Guam -->
+  <circle cx="880" cy="222" r="5" fill="rgba(74,144,196,0.6)" stroke="rgba(74,144,196,0.8)" stroke-width="1"/>
+  <text x="887" y="226" font-family="DM Sans" font-size="6.5" fill="rgba(74,144,196,0.7)">Guam</text>
+
+  <!-- Légende CVN -->
+  <text x="30" y="430" font-family="DM Sans" font-size="7" fill="rgba(74,144,196,0.5)">■ Porte-avions US (position approximative)</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- COUCHE 4 : MONTÉE CHINOISE (ch4)                            -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<g id="layer-china" opacity="0" style="transition:opacity 1s ease">
+  <!-- Mer de Chine méridionale — zone de revendication (9 traits) -->
+  <path d="M 748,158 Q 798,155 820,180 Q 840,210 820,255 Q 800,280 765,285 Q 740,280 720,260 Q 700,238 700,215 Q 700,188 720,172 Z"
+    fill="rgba(196,74,74,0.1)" stroke="rgba(196,74,74,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="760" y="225" font-family="DM Sans" font-size="8" fill="rgba(196,74,74,0.6)" text-anchor="middle" font-weight="600">Mer de Chine</text>
+  <text x="760" y="235" font-family="DM Sans" font-size="7" fill="rgba(196,74,74,0.4)" text-anchor="middle">Méridionale</text>
+  <text x="760" y="248" font-family="DM Sans" font-size="6" fill="rgba(196,74,74,0.35)" text-anchor="middle">revendication 9 traits</text>
+
+  <!-- Îles artificielles (Spratleys) -->
+  <circle cx="768" cy="245" r="4" fill="rgba(196,74,74,0.7)" filter="url(#glow-red)"/>
+  <text x="774" y="249" font-family="DM Sans" font-size="6" fill="rgba(196,74,74,0.6)">Spratleys</text>
+
+  <!-- Route de la Soie Maritime (BRI) -->
+  <path d="M 748,198 Q 680,210 630,200 Q 588,190 555,172 Q 528,155 488,135 Q 460,122 430,120 Q 400,118 365,128 Q 335,138 305,145 Q 275,150 240,148" fill="none" stroke="rgba(196,74,74,0.4)" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="545" y="220" font-family="DM Sans" font-size="7" fill="rgba(196,74,74,0.4)" text-anchor="middle">Route de la Soie Maritime</text>
+
+  <!-- PLAN — Flotte chinoise -->
+  <path d="M 762,162 L 770,159 L 770,166 L 762,166 Z" fill="rgba(196,74,74,0.9)" filter="url(#glow-red)"/>
+  <path d="M 790,168 L 798,165 L 798,172 L 790,172 Z" fill="rgba(196,74,74,0.9)" filter="url(#glow-red)"/>
+  <text x="775" y="178" font-family="DM Sans" font-size="6.5" fill="rgba(196,74,74,0.6)">PLAN ▶</text>
+
+  <!-- Djibouti (base) -->
+  <circle cx="570" cy="220" r="4" fill="rgba(196,74,74,0.6)" stroke="rgba(196,74,74,0.7)" stroke-width="1"/>
+  <text x="576" y="224" font-family="DM Sans" font-size="6" fill="rgba(196,74,74,0.5)">Djibouti</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- COUCHE 5 : ZONES DE FRICTION (ch5)                          -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<g id="layer-friction" opacity="0" style="transition:opacity 1s ease">
+  <!-- Taïwan -->
+  <ellipse cx="808" cy="165" rx="20" ry="22" class="tension-zone"/>
+  <text x="808" y="148" font-family="DM Sans" font-size="7" fill="rgba(196,90,74,0.7)" text-anchor="middle">TAÏWAN</text>
+
+  <!-- Mer de Chine méridionale -->
+  <circle cx="762" cy="238" r="30" class="tension-zone" style="animation-delay:0.8s"/>
+
+  <!-- Mer Noire -->
+  <ellipse cx="570" cy="122" rx="28" ry="14" class="tension-zone" style="animation-delay:0.4s"/>
+  <text x="570" y="118" font-family="DM Sans" font-size="6" fill="rgba(196,90,74,0.6)" text-anchor="middle">MER NOIRE</text>
+
+  <!-- Détroit de Taïwan pulsant -->
+  <circle class="pulse-ring" cx="808" cy="165" r="8" fill="none" stroke="#C45A4A" stroke-width="1.5" style="animation:pulseRing 1.5s ease-out infinite"/>
+
+  <!-- Arctique (nouvelle route) -->
+  <path d="M 105,55 Q 200,30 300,35 Q 400,30 500,38 Q 600,35 700,40 Q 800,42 880,52" fill="none" stroke="rgba(196,162,101,0.3)" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="480" y="28" font-family="DM Sans" font-size="7" fill="rgba(196,162,101,0.4)" text-anchor="middle">Route Arctique (en ouverture)</text>
+
+  <!-- Golfe Persique -->
+  <circle cx="620" cy="182" r="22" class="tension-zone" style="animation-delay:1.2s"/>
+
+  <!-- Légende -->
+  <text x="30" y="430" font-family="DM Sans" font-size="7" fill="rgba(196,90,74,0.4)">● Zones de haute tension géopolitique</text>
+</g>
+
+</svg><!-- /world-svg -->
+</div><!-- /map-wrap -->
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPITRE 0 — TITRE                                          -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter vis" id="ch0">
+  <div class="label">Géopolitique · Puissance maritime</div>
+  <h1 class="hero">
+    <span class="t-word" style="transition-delay:0.3s">Les mers</span><br>
+    <em class="t-word" style="transition-delay:0.7s">du pouvoir</em>
+  </h1>
+  <p class="sub t-word" style="transition-delay:1.1s">80 % du commerce mondial circule sur l'eau. Celui qui contrôle les mers contrôle l'économie mondiale.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPITRE 1 — ROUTES COMMERCIALES                            -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch1">
+  <div class="info-panel">
+    <div class="ch-tag">Chapitre I · Économie mondiale</div>
+    <h2>Les autoroutes <em>du monde</em></h2>
+    <p>Avant l'avion, avant le train — la mer. Aujourd'hui encore, 80 % des biens échangés mondialement transitent par bateau. Le pétrole, les containers, les céréales : tout passe par quelques routes critiques.</p>
+    <p>Ces routes ne sont pas des abstractions géographiques. Ce sont des lignes de vie. En couper une, c'est déclencher une crise mondiale en quelques semaines.</p>
+    <div class="stat-row">
+      <div>
+        <div class="stat-big">80%</div>
+        <div class="stat-label">du commerce mondial<br>passe par la mer</div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-line" style="background:rgba(196,162,101,0.5)"></div>Routes commerciales majeures</div>
+    <div class="legend-item"><div class="legend-line" style="background:rgba(74,196,168,0.4)"></div>Routes régionales</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPITRE 2 — DÉTROITS                                       -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch2">
+  <div class="info-panel">
+    <div class="ch-tag">Chapitre II · Points d'étranglement</div>
+    <h2>Les détroits qui <em>étranglent</em> le monde</h2>
+    <p>Quelques kilomètres de mer séparent la prospérité de la catastrophe. Ces points d'étranglement concentrent des flux colossaux — et un pouvoir géopolitique absolu.</p>
+    <p><strong style="color:rgba(255,255,255,0.7)">Ormuz</strong> : 20 % du pétrole mondial. <strong style="color:rgba(255,255,255,0.7)">Malacca</strong> : 25 % du commerce. <strong style="color:rgba(255,255,255,0.7)">Suez</strong> : 12 % des échanges. Bloquer l'un d'eux, c'est mettre l'économie mondiale à genoux.</p>
+    <div class="stat-row">
+      <div>
+        <div class="stat-big">5</div>
+        <div class="stat-label">détroits contrôlent<br>l'essentiel du commerce</div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#C4A265"></div>Détroit économique critique</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#C47A4A"></div>Détroit de tension militaire</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPITRE 3 — DOMINATION AMÉRICAINE                          -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch3">
+  <div class="info-panel">
+    <div class="ch-tag">Chapitre III · Pax Americana</div>
+    <h2>L'empire <em>des sept mers</em></h2>
+    <p>Depuis 1945, la marine américaine garantit la liberté de navigation mondiale. 11 porte-avions nucléaires sur 40 dans le monde entier — plus que les 9 autres pays réunis.</p>
+    <p>Six flottes permanentes couvrent chaque océan. Une présence continue dans le Golfe, la Méditerranée et le Pacifique Ouest depuis 80 ans.</p>
+    <div class="stat-row">
+      <div>
+        <div class="stat-big">11</div>
+        <div class="stat-label">porte-avions américains<br>vs 2 pour la Chine</div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#4A90C4"></div>Zones d'opérations permanentes</div>
+    <div class="legend-item"><div class="legend-line" style="width:14px;height:6px;background:rgba(74,144,196,0.08);border:1px solid rgba(74,144,196,0.3)"></div>■ Porte-avions</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPITRE 4 — MONTÉE CHINOISE                                -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch4">
+  <div class="info-panel">
+    <div class="ch-tag">Chapitre IV · PLAN</div>
+    <h2>La Chine prend <em>la mer</em></h2>
+    <p>La marine chinoise (PLAN) est devenue en 20 ans la plus grande du monde en nombre de navires — 355 bâtiments. Elle revendique 90 % de la mer de Chine méridionale via la doctrine des "9 traits".</p>
+    <p>Îles artificielles transformées en bases militaires. Route de la Soie Maritime pour sécuriser les approvisionnements. Première base étrangère à Djibouti en 2017.</p>
+    <div class="stat-row">
+      <div>
+        <div class="stat-big">355</div>
+        <div class="stat-label">navires de guerre PLAN<br>— n°1 mondial en nombre</div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#C44A4A"></div>Zone de revendication chinoise</div>
+    <div class="legend-item"><div class="legend-line" style="background:rgba(196,74,74,0.4)"></div>Route de la Soie Maritime</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPITRE 5 — ZONES DE FRICTION                              -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch5">
+  <div class="info-panel">
+    <div class="ch-tag">Chapitre V · Tensions</div>
+    <h2>Les points de <em>rupture</em></h2>
+    <p>Trois zones concentrent les risques d'escalade militaire majeure : <strong style="color:rgba(255,255,255,0.7)">Taïwan</strong>, où une invasion chinoise déclencherait une réponse américaine. La <strong style="color:rgba(255,255,255,0.7)">Mer Noire</strong>, théâtre du conflit ukrainien. Le <strong style="color:rgba(255,255,255,0.7)">Golfe Persique</strong>, otage des tensions irano-américaines.</p>
+    <p>Et une nouvelle frontière s'ouvre : l'<strong style="color:rgba(196,162,101,0.8)">Arctique</strong>, dont la fonte des glaces dessine une route commerciale raccourcissant de 40 % le trajet Asie-Europe.</p>
+    <div class="stat-row">
+      <div>
+        <div class="stat-big">3</div>
+        <div class="stat-label">zones à risque<br>de conflit majeur</div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#C45A4A;animation:flashDot 2s ease-in-out infinite"></div>Zone de haute tension</div>
+    <div class="legend-item"><div class="legend-line" style="background:rgba(196,162,101,0.4)"></div>Route Arctique (émergente)</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CHAPITRE 6 — PACKSHOT                                       -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch6" style="top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:rgba(4,8,15,0.82);backdrop-filter:blur(4px)">
+  <div id="pk-line" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1)"></div>
+  <div style="display:flex;gap:clamp(8px,2vw,22px);align-items:baseline">
+    <span class="pk-letter" style="transition-delay:0.10s">P</span><span class="pk-letter" style="transition-delay:0.25s">R</span><span class="pk-letter" style="transition-delay:0.40s">I</span><span class="pk-letter" style="transition-delay:0.55s">S</span><span class="pk-letter" style="transition-delay:0.70s">M</span><span class="pk-letter" style="transition-delay:0.85s">E</span>
+    <span id="pk-dot-mid" style="display:inline-block;font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,50px);color:#fff;font-weight:300;opacity:0;transform:scale(0);transition:opacity 0.4s ease 1.5s,transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s;line-height:0;vertical-align:-0.25em;margin:0 -4px">.</span>
+    <span class="pk-letter" style="transition-delay:1.05s">F</span><span class="pk-letter" style="transition-delay:1.18s">R</span>
+  </div>
+  <p id="pk-tag" style="font-size:9px;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.4);opacity:0;transform:translateY(8px);transition:opacity 0.6s ease 1.8s,transform 0.6s ease 1.8s;font-family:'DM Sans',sans-serif">Les mers du pouvoir</p>
+  <div id="pk-line2" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s"></div>
+</div>
+
+</div><!-- /stage -->
+
+<!-- ══ PLAYER ══ -->
+<div id="player">
+  <div id="progress-bar" onclick="seekClick(event)"><div id="progress-fill"></div></div>
+  <div id="controls">
+    <div id="dots"></div>
+    <button class="ctrl-btn" onclick="prev()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
+    <button class="ctrl-btn" id="btn-play" onclick="togglePlay()"><svg class="ip" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ipa" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
+    <button class="ctrl-btn" onclick="next()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+    <span id="counter">1 / 7</span>
+  </div>
+</div>
+
+<script>
+var N=7,cur=0,tmr=null,paused=false;
+var durs=[6000,9000,10000,10000,10000,10000,9000];
+var dotsEl=document.getElementById("dots");
+for(var i=0;i<N;i++){(function(idx){var d=document.createElement("div");d.className="dot";d.onclick=function(e){e.stopPropagation();goTo(idx)};dotsEl.appendChild(d)})(i)}
+function updateCounter(){document.getElementById("counter").textContent=(cur+1)+" / "+N}
+var progRaf=null,progStart=0;
+function startProg(){if(progRaf)cancelAnimationFrame(progRaf);progStart=Date.now();var dur=durs[cur]||9000;function tick(){var p=Math.min((Date.now()-progStart)/dur,1);document.getElementById("progress-fill").style.width=(p*100)+"%";if(p<1&&!paused)progRaf=requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+function seekClick(e){var r=e.currentTarget.getBoundingClientRect();goTo(Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left)/r.width*(N-1)))))}
+
+// Layers carte
+var layers={1:"layer-routes",2:"layer-straits",3:"layer-us",4:"layer-china",5:"layer-friction"};
+var chapters=["ch0","ch1","ch2","ch3","ch4","ch5","ch6"];
+
+function showSlide(idx){
+  // Chapitres
+  chapters.forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(el)el.classList.toggle("vis",i===idx);
+  });
+  // Layers carte
+  Object.keys(layers).forEach(function(k){
+    var el=document.getElementById(layers[k]);
+    if(!el)return;
+    var show=parseInt(k)<=idx && idx<6;
+    el.style.opacity=show?"1":"0";
+  });
+  // Titre animé
+  if(idx===0){setTimeout(function(){document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")})},100)}
+  else{document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")})}
+  // Packshot
+  var pkL=document.querySelectorAll(".pk-letter"),pdm=document.getElementById("pk-dot-mid"),pt=document.getElementById("pk-tag"),pl=document.getElementById("pk-line"),pl2=document.getElementById("pk-line2");
+  pkL.forEach(function(el){el.classList.remove("in")});
+  if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0)"}
+  if(pt){pt.style.opacity="0";pt.style.transform="translateY(8px)"}
+  if(pl)pl.style.width="0";if(pl2)pl2.style.width="0";
+  if(idx===6){setTimeout(function(){
+    if(pl)pl.style.width="clamp(50px,12vw,140px)";
+    if(pl2)pl2.style.width="clamp(50px,12vw,140px)";
+    pkL.forEach(function(el){el.classList.add("in")});
+    setTimeout(function(){if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1)"}},1500);
+    setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},1900);
+  },200)}
+  document.querySelectorAll(".dot").forEach(function(d,i){d.classList.toggle("on",i===idx)});
+  updateCounter();startProg();
+}
+function next(){if(tmr)clearTimeout(tmr);cur=cur<N-1?cur+1:0;showSlide(cur);if(!paused)schedule()}
+function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!paused)schedule()}
+function schedule(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,durs[cur]||9000)}
+function goTo(idx){if(tmr)clearTimeout(tmr);cur=idx;showSlide(idx);if(!paused)schedule()}
+function togglePlay(){paused=!paused;var btn=document.getElementById("btn-play");if(paused){btn.classList.remove("playing");if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}else{btn.classList.add("playing");schedule();startProg()}}
+document.getElementById("stage").addEventListener("click",function(e){if(e.target.closest("#dots")||e.target.closest("#player")||e.target.closest(".back"))return;next()});
+document.getElementById("btn-play").classList.add("playing");
+goTo(0);
+</script>
+</body>
+</html>
