@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rushkoff — Quand les bâtisseurs fuient leur propre création</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#080C10;--encre:#ECE7DD;--bord:rgba(255,255,255,0.07);--tech:#4A2080}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
+.tabs{display:flex;border-bottom:1px solid var(--bord)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--or);border-color:var(--or)}
+.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+
+/* SCÉNARIO BUNKER */
+.scenario{padding:20px 22px;border:1px solid var(--bord);background:rgba(255,255,255,0.02);display:flex;flex-direction:column;gap:10px;margin-bottom:1px}
+.sc-titre{font-family:'Playfair Display',serif;font-size:16px;font-weight:300;color:var(--or);letter-spacing:-0.5px}
+.sc-desc{font-size:12px;color:rgba(236,231,221,0.45);line-height:1.65;font-style:italic}
+.sc-chiffre{font-family:'Playfair Display',serif;font-size:26px;font-weight:300;color:var(--encre);letter-spacing:-1px;border-top:1px solid var(--bord);padding-top:10px;margin-top:4px}
+.sc-chiffre-lbl{font-size:10px;color:rgba(255,255,255,0.3);margin-top:3px}
+
+/* PARADOXE */
+.paradoxe{padding:14px 18px;border-left:3px solid;background:rgba(255,255,255,0.02);margin-bottom:1px}
+.p-titre{font-size:13px;font-weight:600;margin-bottom:4px}
+.p-desc{font-size:12px;color:rgba(236,231,221,0.4);line-height:1.55;font-style:italic}
+
+.big-quote{padding:28px 24px;background:rgba(196,162,101,0.06);border:1px solid rgba(196,162,101,0.2);text-align:center}
+.bq-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,22px);font-style:italic;color:rgba(236,231,221,0.8);line-height:1.6;margin-bottom:12px}
+.bq-cite{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.6)}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+.stat{background:var(--bg);padding:16px 18px}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1;margin-bottom:5px}
+.stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Tech / Société</span>
+  <span class="hd-sub">Rushkoff — La fuite des bâtisseurs</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('bunkers',this)">Les bunkers de l'élite</div>
+  <div class="tab" onclick="showTab('paradoxes',this)">Les paradoxes</div>
+  <div class="tab" onclick="showTab('thèse',this)">La thèse</div>
+</div>
+
+<div class="panel active" id="tab-bunkers">
+  <div class="lbl">Destinations de repli des ultra-riches — documentées</div>
+  <div class="scenario">
+    <div class="sc-titre">Nouvelle-Zélande — "Le dernier endroit sûr"</div>
+    <div class="sc-desc">Peter Thiel, co-fondateur de PayPal, a obtenu la citoyenneté néo-zélandaise en 12 jours (délai habituel : des années). Il a acheté 193 hectares. Depuis, plus de 100 milliardaires américains ont acquis des propriétés là-bas.</div>
+    <div class="sc-chiffre">+100</div>
+    <div class="sc-chiffre-lbl">milliardaires américains ayant acheté des propriétés en NZ</div>
+  </div>
+  <div class="scenario">
+    <div class="sc-titre">Bunkers souterrains — marché en plein essor</div>
+    <div class="sc-desc">Rising S Company (Texas) a vu ses ventes de bunkers de luxe multipliées par 10 entre 2016 et 2024. Prix : de 500 000 à 8 millions de dollars. Equipements : cinéma, piscine, armurerie, réserves pour 5 ans.</div>
+    <div class="sc-chiffre">x10</div>
+    <div class="sc-chiffre-lbl">hausse des ventes de bunkers de luxe depuis 2016</div>
+  </div>
+  <div class="scenario">
+    <div class="sc-titre">Yachts — ambassades flottantes</div>
+    <div class="sc-desc">Les super-yachts de plus de 100 mètres permettent de résider dans les eaux internationales, hors juridiction nationale. Oligarques russes, milliardaires tech : le yacht comme État souverain personnel.</div>
+    <div class="sc-chiffre">123</div>
+    <div class="sc-chiffre-lbl">super-yachts de plus de 100m en service dans le monde (2025)</div>
+  </div>
+</div>
+
+<div class="panel" id="tab-paradoxes">
+  <div class="lbl">Les paradoxes de la fuite des élites tech</div>
+  <div class="paradoxe" style="border-color:#C4A265">
+    <div class="p-titre" style="color:var(--or)">Ils ont construit l'hyper-connexion, ils fuient dans l'isolement</div>
+    <div class="p-desc">Les architectes d'internet — réseau conçu pour connecter le monde — investissent maintenant dans des retraites hors réseau, des propriétés sans internet, des communautés fermées. La cohérence n'est pas leur fort.</div>
+  </div>
+  <div class="paradoxe" style="border-color:#4A2080">
+    <div class="p-titre" style="color:#7A5CB0">Ils ont financé les algorithmes de polarisation, ils fuient la polarisation</div>
+    <div class="p-desc">Facebook, Twitter/X, YouTube ont maximisé l'engagement via la colère. Les fondateurs qui ont construit ces systèmes se plaignent maintenant de la violence sociale qu'ils ont contribué à créer.</div>
+  </div>
+  <div class="paradoxe" style="border-color:#7A2D2D">
+    <div class="p-titre" style="color:#C75A5A">Ils ont détruit les classes moyennes, ils ont peur des classes moyennes</div>
+    <div class="p-desc">L'automatisation et l'optimisation fiscale ont concentré les richesses au sommet et fragilisé les classes moyennes. Les bunkers et les bunkers sont une réponse à une instabilité sociale dont ils sont en partie responsables.</div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">250 Mds</div><div class="stat-lbl">$ investis en bunkers, propriétés isolées et préparatifs de survie par des ultra-riches depuis 2016</div></div>
+    <div class="stat"><div class="stat-num">82%</div><div class="stat-lbl">des nouvelles richesses créées depuis 2020 sont allées aux 1% les plus riches (Oxfam, 2023)</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-thèse">
+  <div class="big-quote">
+    <div class="bq-text">"Ces hommes n'essayent pas de sauver le monde. Ils essayent de le quitter. La vraie question est : qui leur a donné le droit de partir ?"</div>
+    <div class="bq-cite">Douglas Rushkoff — Survival of the Richest, 2022</div>
+  </div>
+  <div class="paradoxe" style="border-color:var(--or)">
+    <div class="p-titre" style="color:var(--or)">Le livre qui a tout déclenché</div>
+    <div class="p-desc">En 2018, Rushkoff est invité à rencontrer 5 milliardaires dans un hôtel de luxe pour un "talk sur l'avenir de la technologie". La réunion dure 3 heures. Ils ne parlent que de bunkers, de gardes armés, et de comment maintenir l'obéissance après "l'Évènement".</div>
+  </div>
+  <div class="paradoxe" style="border-color:rgba(255,255,255,0.15)">
+    <div class="p-titre">La question qu'ils ont posée à Rushkoff</div>
+    <div class="p-desc">"Comment s'assurer que mes gardes du corps m'obéissent encore après l'Évènement ?" — voilà la vraie préoccupation. Pas le changement climatique, pas la démocratie, pas l'humanité. La loyauté de leur propre sécurité privée dans un monde effondré.</div>
+  </div>
+  <div class="paradoxe" style="border-color:rgba(255,255,255,0.15)">
+    <div class="p-titre">La réponse de Rushkoff</div>
+    <div class="p-desc">Il leur a répondu que la seule façon d'assurer la loyauté de leurs gardes était de construire un monde où les gens n'avaient pas de raison de vouloir tuer leurs employeurs. Ils ont trouvé la réponse naïve. Il a trouvé la question terrifiante.</div>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
