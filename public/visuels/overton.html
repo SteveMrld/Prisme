@@ -8,109 +8,32 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
-
-/* ── SLIDES ── */
 #stage{position:fixed;top:0;left:0;width:100%;height:100%}
-.slide{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:72px 56px 90px;
-  opacity:0;transition:opacity 800ms ease;
-  pointer-events:none;
-}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:72px 56px 90px;opacity:0;transition:opacity 800ms ease;pointer-events:none}
 .slide.visible{opacity:1;pointer-events:auto}
-
-/* ── TYPO ── */
 .label{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:flex;align-items:center;gap:14px;margin-bottom:28px;justify-content:center}
 .label::before,.label::after{content:"";width:24px;height:1px;background:rgba(196,162,101,0.3)}
-
-.hero-title{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(52px,10vw,120px);
-  font-weight:300;line-height:0.88;letter-spacing:-4px;
-  text-align:center;margin-bottom:32px;
-}
+.hero-title{font-family:"Playfair Display",serif;font-size:clamp(52px,10vw,120px);font-weight:300;line-height:0.88;letter-spacing:-4px;text-align:center;margin-bottom:32px}
 .hero-title em{font-style:italic;color:#C4A265;display:block}
-
-/* Mots animés */
 .t-word{display:inline-block;opacity:0;transform:translateY(20px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
 .t-word.in{opacity:1;transform:translateY(0)}
-
 .hero-sub{font-family:"Playfair Display",serif;font-size:clamp(14px,2vw,19px);font-style:italic;color:rgba(255,255,255,0.4);max-width:520px;line-height:1.8;text-align:center}
-
-/* ── SLIDE DÉFINITION ── */
 .def-wrap{max-width:720px;text-align:center}
 .def-title{font-family:"Playfair Display",serif;font-size:clamp(24px,4vw,44px);font-weight:300;letter-spacing:-1.5px;line-height:1.1;margin-bottom:24px}
 .def-title em{font-style:italic;color:#C4A265}
 .def-body{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:36px;max-width:600px;margin-left:auto;margin-right:auto}
-
-/* ── LA GLISSIÈRE — élément central ── */
 .spectrum-wrap{width:100%;max-width:800px;position:relative;margin:0 auto}
-
-/* Barre du spectre */
-.spectrum-bar{
-  height:6px;border-radius:3px;
-  background:linear-gradient(to right,
-    #1a3a6b 0%,        /* Extrême gauche */
-    #2d5a9e 18%,       /* Gauche */
-    #6b8fc7 36%,       /* Centre gauche */
-    #d4d4d4 50%,       /* Centre */
-    #c78b6b 64%,       /* Centre droit */
-    #b05a30 82%,       /* Droite */
-    #7a1f1f 100%       /* Extrême droite */
-  );
-  width:100%;margin-bottom:12px;position:relative;
-}
-
-/* Labels spectre */
+.spectrum-bar{height:6px;border-radius:3px;background:linear-gradient(to right,#1a3a6b 0%,#2d5a9e 18%,#6b8fc7 36%,#d4d4d4 50%,#c78b6b 64%,#b05a30 82%,#7a1f1f 100%);width:100%;margin-bottom:12px;position:relative}
 .spectrum-labels{display:flex;justify-content:space-between;margin-bottom:32px}
 .spectrum-labels span{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)}
-
-/* Fenêtre d'Overton — rectangle qui se déplace */
-.overton-window{
-  position:absolute;top:-8px;
-  height:22px;
-  border-radius:4px;
-  border:2px solid #C4A265;
-  background:rgba(196,162,101,0.12);
-  transition:left 1.2s cubic-bezier(0.4,0,0.2,1), width 1.2s cubic-bezier(0.4,0,0.2,1);
-  pointer-events:none;
-}
-
-/* Label "Fenêtre d'Overton" au-dessus */
-.overton-label{
-  position:absolute;top:-32px;
-  font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:#C4A265;white-space:nowrap;
-  transition:left 1.2s cubic-bezier(0.4,0,0.2,1);
-}
-.overton-label::after{
-  content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
-  width:1px;height:6px;background:rgba(196,162,101,0.5);
-}
-
-/* Curseur position actuelle */
-.position-dot{
-  position:absolute;top:-5px;
-  width:16px;height:16px;border-radius:50%;
-  background:#C4A265;
-  box-shadow:0 0 12px rgba(196,162,101,0.5);
-  transition:left 1s cubic-bezier(0.4,0,0.2,1);
-  transform:translateX(-50%);
-}
-
-/* ── SLIDE EXEMPLE — layout 2 colonnes ── */
-.ex-wrap{
-  width:100%;max-width:900px;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:60px;align-items:center;
-}
-.ex-left{}
+.overton-window{position:absolute;top:-8px;height:22px;border-radius:4px;border:2px solid #C4A265;background:rgba(196,162,101,0.12);transition:left 1.2s cubic-bezier(0.4,0,0.2,1),width 1.2s cubic-bezier(0.4,0,0.2,1);pointer-events:none}
+.overton-label{position:absolute;top:-32px;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C4A265;white-space:nowrap;transition:left 1.2s cubic-bezier(0.4,0,0.2,1)}
+.overton-label::after{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:1px;height:6px;background:rgba(196,162,101,0.5)}
+.position-dot{position:absolute;top:-5px;width:16px;height:16px;border-radius:50%;background:#C4A265;box-shadow:0 0 12px rgba(196,162,101,0.5);transition:left 1s cubic-bezier(0.4,0,0.2,1);transform:translateX(-50%)}
+.ex-wrap{width:100%;max-width:900px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .ex-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.65);display:block;margin-bottom:14px}
 .ex-title{font-family:"Playfair Display",serif;font-size:clamp(24px,4vw,42px);font-weight:300;letter-spacing:-1.5px;line-height:1.1;margin-bottom:18px}
 .ex-body{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.9;margin-bottom:24px}
-
-/* Timeline "avant / après" */
 .before-after{display:flex;flex-direction:column;gap:10px}
 .ba-row{display:flex;align-items:center;gap:12px}
 .ba-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;width:48px;flex-shrink:0}
@@ -119,48 +42,23 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 .ba-text{font-size:12px;line-height:1.5}
 .ba-text.before{color:rgba(255,255,255,0.3);text-decoration:line-through;text-decoration-color:rgba(255,255,255,0.15)}
 .ba-text.after{color:rgba(255,255,255,0.8)}
-
 .ex-right{display:flex;flex-direction:column;gap:16px}
-
-/* Mini spectre dans les slides exemple */
 .mini-spectrum{width:100%;position:relative}
 .mini-bar{height:5px;border-radius:2px;background:linear-gradient(to right,#1a3a6b,#2d5a9e,#6b8fc7,#d4d4d4,#c78b6b,#b05a30,#7a1f1f);margin-bottom:8px}
-.mini-window{
-  position:absolute;top:-4px;height:13px;border-radius:3px;
-  border:1.5px solid rgba(196,162,101,0.4);
-  background:rgba(196,162,101,0.08);
-  transition:left 1.2s cubic-bezier(0.4,0,0.2,1),width 1.2s cubic-bezier(0.4,0,0.2,1);
-}
-.mini-dot-before,.mini-dot-after{
-  position:absolute;top:-4px;
-  width:12px;height:12px;border-radius:50%;
-  transform:translateX(-50%);
-  transition:left 1s ease;
-}
+.mini-window{position:absolute;top:-4px;height:13px;border-radius:3px;border:1.5px solid rgba(196,162,101,0.4);background:rgba(196,162,101,0.08);transition:left 1.2s cubic-bezier(0.4,0,0.2,1),width 1.2s cubic-bezier(0.4,0,0.2,1)}
+.mini-dot-before,.mini-dot-after{position:absolute;top:-4px;width:12px;height:12px;border-radius:50%;transform:translateX(-50%);transition:left 1s ease}
 .mini-dot-before{background:rgba(255,255,255,0.3);border:1.5px solid rgba(255,255,255,0.2)}
 .mini-dot-after{background:#C4A265;box-shadow:0 0 8px rgba(196,162,101,0.5)}
 .mini-labels{display:flex;justify-content:space-between}
 .mini-labels span{font-size:7px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase}
-
-/* Flèche déplacement */
-.shift-arrow{
-  display:flex;align-items:center;gap:8px;
-  font-size:10px;color:rgba(196,162,101,0.7);
-  margin-top:8px;
-}
+.shift-arrow{display:flex;align-items:center;gap:8px;font-size:10px;color:rgba(196,162,101,0.7);margin-top:8px}
 .shift-arrow::before{content:"";flex:1;height:1px;background:rgba(196,162,101,0.3)}
 .shift-arrow::after{content:"›";font-size:16px}
-
-/* ── FINALE ── */
 .fin-rule{width:1px;height:48px;background:rgba(196,162,101,0.3);margin:0 auto 24px}
 .fin-q{font-family:"Playfair Display",serif;font-size:clamp(16px,2.2vw,23px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.7;max-width:620px;margin:0 auto 16px;text-align:center}
 .fin-a{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.45);text-align:center;display:block}
-
-/* ── PACKSHOT ── */
 .pk-letter{display:inline-block;font-family:"Playfair Display",serif;font-size:clamp(44px,9vw,100px);font-weight:300;letter-spacing:-2px;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
 .pk-letter.in{opacity:1;transform:translateY(0)}
-
-/* ── PLAYER ── */
 #player{position:fixed;bottom:0;left:0;right:0;z-index:200;display:flex;flex-direction:column;background:rgba(5,5,7,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.07)}
 #progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.1);cursor:pointer;position:relative}
 #progress-fill{height:100%;background:#C4A265;width:0%;transition:width 0.1s linear;pointer-events:none}
@@ -176,27 +74,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 #btn-play.playing .icon-play{display:none}
 #btn-play.playing .icon-pause{display:block}
 #btn-play{width:44px;height:44px;border-radius:50%;background:rgba(196,162,101,0.15);color:#C4A265;border:1px solid rgba(196,162,101,0.3)}
-#btn-play:hover{background:rgba(196,162,101,0.28)}
 #counter{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)}
-
-/* Watermark */
 #prisme-wm{position:fixed;bottom:78px;left:20px;z-index:50;pointer-events:none;font-family:"DM Sans",sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.38)}
 #prisme-wm span{color:rgba(196,162,101,0.22)}
-
-/* Back link */
-.back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;z-index:200;transition:color .2s}
-.back:hover{color:#C4A265}
-
-@media(max-width:600px){
-  .ex-wrap{grid-template-columns:1fr;gap:24px}
-  .slide{padding:80px 24px 90px}
-}
+@media(max-width:600px){.ex-wrap{grid-template-columns:1fr;gap:24px}.slide{padding:80px 24px 90px}}
 </style>
 </head>
 <body>
-
-<a class="back" href="/">← Prisme</a>
-
 <div id="stage">
 <div id="prisme-wm">PRISME<span>.FR</span></div>
 
@@ -210,48 +94,37 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   <p class="hero-sub t-word" style="transition-delay:1.3s">Comment l'impensable d'hier devient l'évidence d'aujourd'hui — et pourquoi c'est plus mécanique qu'on ne le croit.</p>
 </div>
 
-<!-- S1 DÉFINITION + GLISSIÈRE ANIMÉE -->
+<!-- S1 DÉFINITION -->
 <div class="slide" id="slide-1">
   <div class="label">Le concept · Joseph Overton, 1990</div>
   <div class="def-wrap">
     <h2 class="def-title">À chaque instant, seul un corridor<br>d'idées est <em>politiquement acceptable</em></h2>
     <p class="def-body">Ce corridor — la Fenêtre d'Overton — n'est pas fixé par les politiciens. Il est défini par ce que la société considère comme raisonnable, tolérable, ou impensable. Les politiques suivent la fenêtre. Ils ne la créent pas.</p>
   </div>
-
   <div class="spectrum-wrap">
     <div style="position:relative;margin-bottom:12px">
-      <div class="spectrum-bar" id="main-bar"></div>
+      <div class="spectrum-bar"></div>
       <div class="overton-window" id="main-window" style="left:30%;width:40%"></div>
       <div class="overton-label" id="main-label" style="left:38%">Fenêtre d'Overton</div>
       <div class="position-dot" id="main-dot" style="left:50%"></div>
     </div>
     <div class="spectrum-labels">
-      <span>Radical<br>gauche</span>
-      <span>Gauche</span>
-      <span>Centre</span>
-      <span>Droite</span>
-      <span>Radical<br>droite</span>
+      <span>Radical<br>gauche</span><span>Gauche</span><span>Centre</span><span>Droite</span><span>Radical<br>droite</span>
     </div>
     <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);font-style:italic;font-family:'Playfair Display',serif">La fenêtre se déplace. Pas les politiciens.</p>
   </div>
 </div>
 
-<!-- S2 : PROTECTIONNISME -->
+<!-- S2 PROTECTIONNISME -->
 <div class="slide" id="slide-2">
   <div class="ex-wrap">
     <div class="ex-left">
       <span class="ex-tag">Exemple 1 · Commerce international</span>
       <div class="ex-title">Le protectionnisme</div>
-      <p class="ex-body">En 2005, taxer les importations chinoises était considéré comme du populisme irresponsable. En 2018, Donald Trump l'impose. En 2023, Biden maintient la quasi-totalité de ces tarifs. En 2025, l'UE suit.</p>
+      <p class="ex-body">En 2005, taxer les importations chinoises était considéré comme du populisme irresponsable. En 2018, Trump l'impose. En 2023, Biden maintient ces tarifs. En 2025, l'UE suit.</p>
       <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-label before">2005</span>
-          <span class="ba-text before">Taxer les importations = protectionnisme archaïque</span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-label after">2025</span>
-          <span class="ba-text after">La relocalisation industrielle est une priorité nationale</span>
-        </div>
+        <div class="ba-row"><span class="ba-label before">2005</span><span class="ba-text before">Taxer les importations = protectionnisme archaïque</span></div>
+        <div class="ba-row"><span class="ba-label after">2025</span><span class="ba-text after">La relocalisation industrielle est une priorité nationale</span></div>
       </div>
     </div>
     <div class="ex-right">
@@ -271,22 +144,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   </div>
 </div>
 
-<!-- S3 : IMMIGRATION -->
+<!-- S3 IMMIGRATION -->
 <div class="slide" id="slide-3">
   <div class="ex-wrap">
     <div class="ex-left">
       <span class="ex-tag">Exemple 2 · Immigration</span>
       <div class="ex-title">La limitation<br>de l'immigration</div>
-      <p class="ex-body">En 2010, parler de quotas d'immigration était associé à l'extrême droite en Europe. Quinze ans plus tard, les partis de gouvernement de gauche comme de droite proposent des plafonds, des centres de rétention, des expulsions accélérées.</p>
+      <p class="ex-body">En 2010, parler de quotas d'immigration était associé à l'extrême droite. Quinze ans plus tard, les partis de gouvernement de gauche comme de droite proposent des plafonds et des expulsions accélérées.</p>
       <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-label before">2010</span>
-          <span class="ba-text before">Quotas d'immigration = discours d'extrême droite</span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-label after">2024</span>
-          <span class="ba-text after">Les partis de gauche proposent des plafonds migratoires</span>
-        </div>
+        <div class="ba-row"><span class="ba-label before">2010</span><span class="ba-text before">Quotas d'immigration = discours d'extrême droite</span></div>
+        <div class="ba-row"><span class="ba-label after">2024</span><span class="ba-text after">Les partis de gauche proposent des plafonds migratoires</span></div>
       </div>
     </div>
     <div class="ex-right">
@@ -306,22 +173,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   </div>
 </div>
 
-<!-- S4 : SEMAINE 4 JOURS -->
+<!-- S4 SEMAINE 4J -->
 <div class="slide" id="slide-4">
   <div class="ex-wrap">
     <div class="ex-left">
       <span class="ex-tag">Exemple 3 · Travail</span>
       <div class="ex-title">La semaine<br>de quatre jours</div>
-      <p class="ex-body">Idée marginale de think tanks de gauche en 2015, expérimentée en Islande (2021), au Royaume-Uni (2022), adoptée par plusieurs entreprises du CAC 40 en 2024. En moins de dix ans, le débat s'est déplacé de "utopiste" à "pragmatique".</p>
+      <p class="ex-body">Idée marginale en 2015, expérimentée en Islande (2021), au Royaume-Uni (2022), adoptée par plusieurs entreprises du CAC 40 en 2024. En dix ans, le débat est passé de "utopiste" à "pragmatique".</p>
       <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-label before">2015</span>
-          <span class="ba-text before">Semaine 4 jours = rêverie d'idéalistes</span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-label after">2024</span>
-          <span class="ba-text after">Expérimentée dans 20 pays, adoptée par des multinationales</span>
-        </div>
+        <div class="ba-row"><span class="ba-label before">2015</span><span class="ba-text before">Semaine 4 jours = rêverie d'idéalistes</span></div>
+        <div class="ba-row"><span class="ba-label after">2024</span><span class="ba-text after">Expérimentée dans 20 pays, adoptée par des multinationales</span></div>
       </div>
     </div>
     <div class="ex-right">
@@ -341,22 +202,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   </div>
 </div>
 
-<!-- S5 : TAXATION MILLIARDAIRES -->
+<!-- S5 TAXATION -->
 <div class="slide" id="slide-5">
   <div class="ex-wrap">
     <div class="ex-left">
       <span class="ex-tag">Exemple 4 · Fiscalité</span>
       <div class="ex-title">Taxer<br>les milliardaires</div>
-      <p class="ex-body">En 2012, Bernie Sanders était un sénateur marginal quand il proposait un impôt sur les ultra-riches. En 2024, le G20 adopte une déclaration de principe sur une taxation minimale mondiale des milliardaires. En 10 ans : de l'utopie au communiqué diplomatique.</p>
+      <p class="ex-body">En 2012, Bernie Sanders proposait un impôt sur les ultra-riches dans l'indifférence. En 2024, le G20 adopte une déclaration de principe sur une taxation minimale mondiale. En 10 ans : de l'utopie au communiqué diplomatique.</p>
       <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-label before">2012</span>
-          <span class="ba-text before">Taxer les milliardaires = marxisme électoraliste</span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-label after">2024</span>
-          <span class="ba-text after">Le G20 adopte le principe d'une taxation mondiale minimale</span>
-        </div>
+        <div class="ba-row"><span class="ba-label before">2012</span><span class="ba-text before">Taxer les milliardaires = marxisme électoraliste</span></div>
+        <div class="ba-row"><span class="ba-label after">2024</span><span class="ba-text after">Le G20 adopte le principe d'une taxation mondiale minimale</span></div>
       </div>
     </div>
     <div class="ex-right">
@@ -376,27 +231,21 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   </div>
 </div>
 
-<!-- S6 : CONCLUSION — glissière en mouvement continu -->
+<!-- S6 CONCLUSION -->
 <div class="slide" id="slide-6">
   <div class="label">La leçon</div>
   <div class="def-wrap" style="margin-bottom:40px">
     <h2 class="def-title">La fenêtre bouge.<br><em>Toujours.</em></h2>
     <p class="def-body">Ce n'est pas un phénomène politique — c'est un phénomène social. Les idées ne deviennent pas acceptables parce qu'un leader les impose. Elles deviennent acceptables parce que la société a bougé assez loin pour qu'elles semblent raisonnables.</p>
   </div>
-
-  <!-- Grande glissière qui oscille -->
   <div class="spectrum-wrap">
     <div style="position:relative;margin-bottom:12px">
       <div class="spectrum-bar"></div>
       <div class="overton-window" id="anim-window" style="left:20%;width:40%"></div>
-      <div class="overton-label" id="anim-label" style="left:28%">Acceptable aujourd'hui</div>
+      <div class="overton-label" id="anim-label" style="left:28%">Années 50</div>
     </div>
     <div class="spectrum-labels">
-      <span>Radical<br>gauche</span>
-      <span>Gauche</span>
-      <span>Centre</span>
-      <span>Droite</span>
-      <span>Radical<br>droite</span>
+      <span>Radical<br>gauche</span><span>Gauche</span><span>Centre</span><span>Droite</span><span>Radical<br>droite</span>
     </div>
   </div>
 </div>
@@ -418,18 +267,17 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
     <span class="pk-letter" style="transition-delay:0.55s">S</span>
     <span class="pk-letter" style="transition-delay:0.70s">M</span>
     <span class="pk-letter" style="transition-delay:0.85s">E</span>
-    <span id="pk-dot-mid" style="display:inline-block;font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,48px);color:#C4A265;opacity:0;transform:scale(0) translateY(10px);transition:opacity 0.4s ease 1.5s, transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s;line-height:1;align-self:center">.</span>
+    <span id="pk-dot-mid" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:clamp(32px,6vw,64px);color:#fff;font-weight:300;opacity:0;transform:scale(0);transition:opacity 0.4s ease 1.5s,transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s;line-height:0;vertical-align:-0.25em;margin:0 -4px">.</span>
     <span class="pk-letter" style="transition-delay:1.1s">F</span>
     <span class="pk-letter" style="transition-delay:1.22s">R</span>
   </div>
-  <div id="pk-gold" style="width:4px;height:4px;border-radius:50%;background:#C4A265;opacity:0;transform:scale(0);transition:opacity 0.5s ease 1.5s,transform 0.5s ease 1.5s"></div>
+  
   <p id="pk-tag" style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:400;letter-spacing:6px;text-transform:uppercase;color:rgba(196,162,101,0.45);opacity:0;transform:translateY(10px);transition:opacity 0.7s ease 1.8s,transform 0.7s ease 1.8s">L'information qui compte</p>
   <div id="pk-line2" style="width:0;height:1px;background:rgba(196,162,101,0.4);transition:width 1.2s cubic-bezier(0.4,0,0.2,1) 0.4s"></div>
 </div>
 
-</div><!-- /stage -->
+</div>
 
-<!-- PLAYER -->
 <div id="player">
   <div id="progress-bar" onclick="seekClick(event)"><div id="progress-fill"></div></div>
   <div id="controls">
@@ -445,173 +293,44 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 </div>
 
 <script>
-var N=9, cur=0, tmr=null, paused=false;
+var N=9,cur=0,tmr=null,paused=false;
 var durs=[5000,7000,7000,7000,7000,7000,7000,8000,9000];
-
-// Config glissière par slide
-// [windowLeft%, windowWidth%, dotLeft%, labelLeft%]
-var spectrumConfig = {
-  1: {wl:30, ww:40, dl:50,  ll:38},  // Neutre
-  2: {wl:48, ww:30, dl:63,  ll:52},  // Proto → droite (protectionnisme)
-  3: {wl:50, ww:35, dl:67,  ll:54},  // → droite (immigration)
-  4: {wl:25, ww:38, dl:44,  ll:29},  // → centre (semaine 4j)
-  5: {wl:18, ww:40, dl:38,  ll:22},  // → centre-gauche (taxation)
-};
-
-// Dots
 var dotsEl=document.getElementById("dots");
-for(var i=0;i<N;i++){
-  (function(idx){
-    var d=document.createElement("div");d.className="dot";
-    d.onclick=function(e){e.stopPropagation();goTo(idx)};
-    dotsEl.appendChild(d);
-  })(i);
-}
-
+for(var i=0;i<N;i++){(function(idx){var d=document.createElement("div");d.className="dot";d.onclick=function(e){e.stopPropagation();goTo(idx)};dotsEl.appendChild(d)})(i)}
 function updateCounter(){document.getElementById("counter").textContent=(cur+1)+" / "+N}
-
-// Progress
-var progRaf=null, progStart=0;
-function startProg(){
-  if(progRaf)cancelAnimationFrame(progRaf);
-  progStart=Date.now();
-  var dur=durs[cur]||7000;
-  function tick(){
-    var p=Math.min((Date.now()-progStart)/dur,1);
-    document.getElementById("progress-fill").style.width=(p*100)+"%";
-    if(p<1&&!paused)progRaf=requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-function seekClick(e){
-  var r=e.currentTarget.getBoundingClientRect();
-  var pct=(e.clientX-r.left)/r.width;
-  goTo(Math.max(0,Math.min(N-1,Math.round(pct*(N-1)))));
-}
-
-// Animation glissière principale (slide 1)
-function animSpectrum(idx){
-  var cfg=spectrumConfig[idx];
-  if(!cfg)return;
-  var mw=document.getElementById("main-window");
-  var ml=document.getElementById("main-label");
-  var md=document.getElementById("main-dot");
-  if(mw){mw.style.left=cfg.wl+"%";mw.style.width=cfg.ww+"%"}
-  if(ml){ml.style.left=cfg.ll+"%"}
-  if(md){md.style.left=cfg.dl+"%"}
-}
-
-// Animation glissière oscillante slide 6
+var progRaf=null,progStart=0;
+function startProg(){if(progRaf)cancelAnimationFrame(progRaf);progStart=Date.now();var dur=durs[cur]||7000;function tick(){var p=Math.min((Date.now()-progStart)/dur,1);document.getElementById("progress-fill").style.width=(p*100)+"%";if(p<1&&!paused)progRaf=requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+function seekClick(e){var r=e.currentTarget.getBoundingClientRect();var pct=(e.clientX-r.left)/r.width;goTo(Math.max(0,Math.min(N-1,Math.round(pct*(N-1)))))}
 var oscTimer=null;
 function startOscillation(){
-  var positions=[
-    {l:10,w:40},{l:25,w:42},{l:40,w:38},{l:50,w:36},{l:35,w:44},{l:20,w:38}
-  ];
-  var labels=["Années 50","Années 70","Années 90","Années 2010","Années 2020","Demain ?"];
+  var pos=[{l:10,w:40},{l:25,w:42},{l:40,w:38},{l:50,w:36},{l:35,w:44},{l:20,w:38}];
+  var labs=["Années 50","Années 70","Années 90","Années 2010","Années 2020","Demain ?"];
   var i=0;
-  function step(){
-    var cfg=positions[i];
-    var mw=document.getElementById("anim-window");
-    var ml=document.getElementById("anim-label");
-    if(mw){mw.style.left=cfg.l+"%";mw.style.width=cfg.w+"%"}
-    if(ml){ml.textContent=labels[i];ml.style.left=(cfg.l+cfg.w/2-8)+"%"}
-    i=(i+1)%positions.length;
-    oscTimer=setTimeout(step,1400);
-  }
+  function step(){var cfg=pos[i];var mw=document.getElementById("anim-window");var ml=document.getElementById("anim-label");if(mw){mw.style.left=cfg.l+"%";mw.style.width=cfg.w+"%"}if(ml){ml.textContent=labs[i];ml.style.left=(cfg.l+cfg.w/2-8)+"%"}i=(i+1)%pos.length;oscTimer=setTimeout(step,1400)}
   step();
 }
-
 function showSlide(idx){
-  document.querySelectorAll(".slide").forEach(function(s,i){
-    i===idx?s.classList.add("visible"):s.classList.remove("visible");
-  });
-
-  // Reset oscillation
+  document.querySelectorAll(".slide").forEach(function(s,i){i===idx?s.classList.add("visible"):s.classList.remove("visible")});
   if(oscTimer){clearTimeout(oscTimer);oscTimer=null}
-
-  // Titre
-  if(idx===0){
-    setTimeout(function(){
-      document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")});
-    },100);
-  } else {
-    document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")});
-  }
-
-  // Glissière slide 1 — neutre puis anime
-  if(idx===1){
-    setTimeout(function(){animSpectrum(1)},600);
-  }
-
-  // Mini glissières exemples
-  var miniConfigs = {
-    2:{wl:55,ww:30,dbl:25,dal:64},
-    3:{wl:50,ww:35,dbl:18,dal:67},
-    4:{wl:25,ww:38,dbl:12,dal:42},
-    5:{wl:18,ww:40,dbl:6,dal:33}
-  };
-  if(miniConfigs[idx]){
-    var mc=miniConfigs[idx];
-    setTimeout(function(){
-      var mw=document.getElementById("w"+idx);
-      var db=document.getElementById("db"+idx);
-      var da=document.getElementById("da"+idx);
-      if(mw){mw.style.left=mc.wl+"%";mw.style.width=mc.ww+"%"}
-      if(db)db.style.left=mc.dbl+"%";
-      if(da)da.style.left=mc.dal+"%";
-    },500);
-  }
-
-  // Oscillation slide 6
+  if(idx===0){setTimeout(function(){document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")})},100)}
+  else{document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")})}
+  if(idx===1){setTimeout(function(){var mw=document.getElementById("main-window");var ml=document.getElementById("main-label");var md=document.getElementById("main-dot");if(mw){mw.style.left="30%";mw.style.width="40%"}if(ml)ml.style.left="38%";if(md)md.style.left="50%"},600)}
+  var mc={2:{wl:55,ww:30,dbl:25,dal:64},3:{wl:50,ww:35,dbl:18,dal:67},4:{wl:25,ww:38,dbl:12,dal:42},5:{wl:18,ww:40,dbl:6,dal:33}};
+  if(mc[idx]){setTimeout(function(){var c=mc[idx];var mw=document.getElementById("w"+idx);var db=document.getElementById("db"+idx);var da=document.getElementById("da"+idx);if(mw){mw.style.left=c.wl+"%";mw.style.width=c.ww+"%"}if(db)db.style.left=c.dbl+"%";if(da)da.style.left=c.dal+"%"},500)}
   if(idx===6){setTimeout(startOscillation,800)}
-
-  // Packshot slide 8
-  var pkLetters=document.querySelectorAll(".pk-letter");
-  var pd=document.getElementById("pk-gold");
-  var pt=document.getElementById("pk-tag");
-  var pl=document.getElementById("pk-line");
-  var pl2=document.getElementById("pk-line2");
-  pkLetters.forEach(function(el){el.classList.remove("in")});
-  var pdm=document.getElementById("pk-dot-mid");if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0) translateY(10px)"}
-  if(pd){pd.style.opacity="0";pd.style.transform="scale(0)"}
-  if(pt){pt.style.opacity="0";pt.style.transform="translateY(10px)"}
-  if(pl){pl.style.width="0"}
-  if(pl2){pl2.style.width="0"}
-  if(idx===8){
-    setTimeout(function(){
-      if(pl)pl.style.width="clamp(60px,15vw,160px)";
-      if(pl2)pl2.style.width="clamp(60px,15vw,160px)";
-      pkLetters.forEach(function(el){el.classList.add("in")});
-      setTimeout(function(){var pdm=document.getElementById("pk-dot-mid");if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1) translateY(0)"}},1500);
-    },200);
-    setTimeout(function(){if(pd){pd.style.opacity="1";pd.style.transform="scale(1)"}},1700);
-    setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},2000);
-  }
-
-  // Dots + counter + progress
+  var pkL=document.querySelectorAll(".pk-letter");var pd=null;var pt=document.getElementById("pk-tag");var pl=document.getElementById("pk-line");var pl2=document.getElementById("pk-line2");
+  pkL.forEach(function(el){el.classList.remove("in")});var pdm=document.getElementById("pk-dot-mid");if(pdm){pdm.style.opacity="0";pdm.style.transform="scale(0) translateY(10px)"}
+  if(pd){pd.style.opacity="0";pd.style.transform="scale(0)"}if(pt){pt.style.opacity="0";pt.style.transform="translateY(10px)"}if(pl)pl.style.width="0";if(pl2)pl2.style.width="0";
+  if(idx===8){setTimeout(function(){if(pl)pl.style.width="clamp(60px,15vw,160px)";if(pl2)pl2.style.width="clamp(60px,15vw,160px)";pkL.forEach(function(el){el.classList.add("in")});setTimeout(function(){var pdm=document.getElementById("pk-dot-mid");if(pdm){pdm.style.opacity="1";pdm.style.transform="scale(1) translateY(0)"}},1500)},200);setTimeout(function(){if(pd){pd.style.opacity="1";pd.style.transform="scale(1)"}},1700);setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)"}},2000)}
   document.querySelectorAll(".dot").forEach(function(d,i){d.classList.toggle("on",i===idx)});
-  updateCounter();
-  startProg();
+  updateCounter();startProg();
 }
-
 function next(){if(tmr)clearTimeout(tmr);cur=cur<N-1?cur+1:0;showSlide(cur);if(!paused)schedule()}
 function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!paused)schedule()}
 function schedule(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,durs[cur]||7000)}
 function goTo(idx){if(tmr)clearTimeout(tmr);cur=idx;showSlide(idx);if(!paused)schedule()}
-
-function togglePlay(){
-  paused=!paused;
-  var btn=document.getElementById("btn-play");
-  if(paused){btn.classList.remove("playing");if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}
-  else{btn.classList.add("playing");schedule();startProg()}
-}
-
-document.getElementById("stage").addEventListener("click",function(e){
-  if(e.target.closest("#dots")||e.target.closest("#player")||e.target.closest(".back"))return;
-  next();
-});
-
+function togglePlay(){paused=!paused;var btn=document.getElementById("btn-play");if(paused){btn.classList.remove("playing");if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}else{btn.classList.add("playing");schedule();startProg()}}
+document.getElementById("stage").addEventListener("click",function(e){if(e.target.closest("#dots")||e.target.closest("#player"))return;next()});
 document.getElementById("btn-play").classList.add("playing");
 goTo(0);
 </script>
