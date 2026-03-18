@@ -4,402 +4,305 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Cygne Noir — Prisme</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{background:#000;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth}
+body{background:#060608;color:#fff;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-/* ── CANVAS FIXED ── */
-#canvas-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#C4A265,#E8D4A0);width:0%;z-index:200;transition:width 0.05s linear}
 
-/* ── SCROLL CONTAINER ── */
-#smooth-wrapper{position:relative;z-index:1}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 32px;position:relative;overflow:hidden}
 
-/* ── SECTIONS ── */
-.panel{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.panel-tall{min-height:200vh}
+/* Particules canvas */
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.6}
 
-/* ── TYPOGRAPHY ── */
-.label{font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.7);margin-bottom:24px;display:block;opacity:0}
-.title-word{display:inline-block;overflow:hidden}
-.title-line{display:block;transform:translateY(110%);font-family:'Playfair Display',serif;font-weight:300;line-height:1}
-.ch-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(52px,8vw,110px);line-height:0.95;letter-spacing:-3px;color:#fff}
-.ch-title em{font-style:italic;color:#C4A265}
-.subtitle{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,22px);font-style:italic;color:rgba(255,255,255,0.35);max-width:520px;line-height:1.7;margin-top:32px;opacity:0}
+.hero-content{position:relative;z-index:1}
 
-/* ── DEFINITION ── */
-.def-wrap{max-width:600px;opacity:0;transform:translateY(30px)}
-.def-num{font-family:'Playfair Display',serif;font-size:clamp(80px,15vw,180px);font-weight:300;color:rgba(196,162,101,0.08);position:absolute;top:-20px;left:-20px;line-height:1;pointer-events:none;z-index:0}
-.def-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:300;letter-spacing:-1px;margin-bottom:20px;position:relative;z-index:1}
-.def-title em{font-style:italic;color:#C4A265}
-.def-body{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.9;position:relative;z-index:1}
-.def-rule{width:40px;height:1px;background:#C4A265;margin:24px 0;opacity:0.4}
+/* Badge */
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(196,162,101,0.3);padding:6px 16px;margin-bottom:48px}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:#C4A265;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.badge-text{font-size:8px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.8)}
 
-/* ── EVENTS ── */
-.events-track{display:flex;flex-direction:column;gap:0;width:100%;max-width:1100px}
-.event{display:grid;grid-template-columns:120px 1fr 280px;gap:40px;align-items:center;padding:32px 0;border-bottom:1px solid rgba(255,255,255,0.05);opacity:0;transform:translateX(-40px)}
-.ev-year{font-family:'Playfair Display',serif;font-size:clamp(42px,5vw,64px);font-weight:300;color:rgba(196,162,101,0.6);line-height:1;letter-spacing:-2px}
-.ev-body{display:flex;flex-direction:column;gap:8px}
-.ev-tag{font-size:8px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
-.ev-title{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,30px);font-weight:400;color:#fff;line-height:1.2;letter-spacing:-0.5px}
-.ev-desc{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.7;max-width:500px;margin-top:4px}
-.ev-stat{text-align:right;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
-.ev-num{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);font-weight:300;letter-spacing:-1px;line-height:1}
-.ev-unit{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px}
+/* Titre héro */
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(64px,10vw,140px);font-weight:300;line-height:0.92;letter-spacing:-4px;color:#fff;margin-bottom:40px}
+.hero-title em{font-style:italic;color:#C4A265;display:block}
 
-/* ── FINALE ── */
-.finale{text-align:center;max-width:700px;opacity:0}
-.finale-quote{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,40px);font-style:italic;font-weight:300;line-height:1.5;color:rgba(255,255,255,0.85);margin-bottom:28px}
-.finale-author{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.5)}
-.finale-rule{width:1px;height:60px;background:rgba(196,162,101,0.3);margin:0 auto 28px}
+/* Sous-titre */
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,20px);font-style:italic;color:rgba(255,255,255,0.35);max-width:480px;line-height:1.75;margin:0 auto 56px}
 
-/* ── PADDING LAYOUT ── */
-.inner{max-width:1100px;width:100%;padding:0 60px;margin:0 auto;position:relative}
+/* Scroll indicator */
+.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,0.2);font-size:9px;letter-spacing:2px;text-transform:uppercase}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(196,162,101,0.5),transparent);animation:scrollLine 1.8s ease-in-out infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ── PROGRESS ── */
-#progress{position:fixed;top:0;left:0;height:2px;background:#C4A265;width:0%;z-index:200;pointer-events:none}
+/* DÉFINITION */
+.section{padding:100px 32px;max-width:800px;margin:0 auto}
+.section-label{font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:32px;display:flex;align-items:center;gap:16px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(196,162,101,0.15)}
 
-/* ── BACK LINK ── */
-.back{position:fixed;bottom:28px;left:32px;z-index:100;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s}
+.def-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.05);margin-top:48px}
+.def-card{background:#060608;padding:32px 28px;position:relative;overflow:hidden;transition:background 0.3s}
+.def-card:hover{background:rgba(196,162,101,0.04)}
+.def-card::before{content:attr(data-n);position:absolute;bottom:-10px;right:10px;font-family:'Playfair Display',serif;font-size:96px;font-weight:300;color:rgba(196,162,101,0.06);line-height:1;pointer-events:none}
+.def-num-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5);margin-bottom:14px}
+.def-card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:12px;line-height:1.2}
+.def-card-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.75}
+
+/* EVENTS */
+.events-section{padding:80px 32px;max-width:1000px;margin:0 auto}
+
+.event-row{display:grid;grid-template-columns:100px 1fr 200px;gap:32px;align-items:start;padding:36px 0;border-bottom:1px solid rgba(255,255,255,0.04);opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease, transform 0.7s ease}
+.event-row.visible{opacity:1;transform:translateX(0)}
+
+.ev-year{font-family:'Playfair Display',serif;font-size:56px;font-weight:300;letter-spacing:-2px;line-height:1;color:rgba(196,162,101,0.5)}
+
+.ev-content{}
+.ev-tag{font-size:8px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:10px;display:block}
+.ev-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;letter-spacing:-0.5px}
+.ev-body{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.8;max-width:480px}
+
+.ev-impact{text-align:right;padding-top:8px}
+.ev-big{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);font-weight:300;line-height:1;letter-spacing:-1px}
+.ev-unit{font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);display:block;margin-top:6px}
+
+/* FINALE */
+.finale-section{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:80px 32px;text-align:center}
+.finale-inner{max-width:680px}
+.finale-rule{width:1px;height:80px;background:linear-gradient(to bottom,rgba(196,162,101,0.4),transparent);margin:0 auto 40px}
+.finale-quote{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,30px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:24px}
+.finale-author{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,162,101,0.45)}
+
+/* BACK */
+.back{position:fixed;bottom:28px;left:28px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s;z-index:100}
 .back:hover{color:#C4A265}
 
-/* MOBILE */
-@media(max-width:768px){
-  .event{grid-template-columns:70px 1fr;gap:16px}
-  .ev-stat{display:none}
-  .inner{padding:0 24px}
-  .events-track{padding:0 24px}
+/* RESPONSIVE */
+@media(max-width:700px){
+  .def-grid{grid-template-columns:1fr}
+  .event-row{grid-template-columns:60px 1fr;gap:16px}
+  .ev-impact{display:none}
+  .ev-year{font-size:36px}
 }
 </style>
 </head>
 <body>
 
 <div id="progress"></div>
-<a href="/articles/cygne" class="back">← Retour à l'article</a>
+<canvas id="bg-canvas"></canvas>
+<a class="back" href="/articles/cygne">← Article</a>
 
-<!-- CANVAS BACKGROUND - particles -->
-<canvas id="canvas-bg"></canvas>
-
-<div id="smooth-wrapper">
-
-  <!-- 1. OUVERTURE -->
-  <section class="panel" id="s-intro">
-    <div class="inner" style="text-align:center;display:flex;flex-direction:column;align-items:center">
-      <!-- SVG CYGNE -->
-      <div id="swan-wrap" style="margin-bottom:48px;height:160px;display:flex;align-items:center;justify-content:center">
-        <svg id="swan-svg" viewBox="0 0 400 220" width="360" height="200" style="overflow:visible">
-          <!-- Corps du cygne - morphe de blanc à noir -->
-          <g id="swan-g" style="transform-origin:center">
-            <!-- Ombre/reflet dans l'eau -->
-            <ellipse cx="200" cy="195" rx="100" ry="14" fill="rgba(196,162,101,0.08)" id="swan-shadow"/>
-            <!-- Corps principal -->
-            <path id="swan-body" d="M120,140 C100,120 90,95 110,75 C130,55 160,50 185,58 C200,42 230,35 255,45 C285,55 300,80 290,105 C310,100 330,108 325,125 C320,140 300,145 280,140 C265,155 240,162 210,160 C180,158 140,158 120,140 Z"
-              fill="#fff" stroke="none"/>
-            <!-- Cou -->
-            <path id="swan-neck" d="M185,58 C188,48 192,30 200,18 C206,8 215,2 222,5 C232,9 234,22 228,35 C222,48 210,55 200,60"
-              fill="#fff" stroke="none"/>
-            <!-- Tête -->
-            <ellipse id="swan-head" cx="222" cy="8" rx="18" ry="13" fill="#fff"/>
-            <!-- Bec -->
-            <path id="swan-beak" d="M236,6 C248,4 256,7 255,12 C254,16 244,17 234,14 Z" fill="#C4A265"/>
-            <!-- Oeil -->
-            <circle id="swan-eye" cx="228" cy="5" r="3" fill="#000"/>
-            <circle cx="229" cy="4" r="1" fill="#fff"/>
-            <!-- Aile gauche -->
-            <path id="swan-wing" d="M150,115 C130,100 115,115 120,135 C125,152 145,158 165,150 C155,140 148,128 150,115 Z"
-              fill="rgba(255,255,255,0.6)"/>
-          </g>
-        </svg>
-      </div>
-
-      <span class="label" id="label-intro">Motion design · Prisme</span>
-      <div class="ch-title">
-        <div class="title-word"><span class="title-line" id="t1">Le Cygne</span></div><br>
-        <div class="title-word"><span class="title-line" id="t2"><em>Noir</em></span></div>
-      </div>
-      <p class="subtitle" id="subtitle-intro">Ces événements que personne n'anticipe,<br>qui changent tout — et qu'on dit inévitables après.</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      <span class="badge-text">Motion design · Prisme</span>
     </div>
-  </section>
 
-  <!-- 2. DÉFINITION -->
-  <section class="panel" id="s-def">
-    <div class="inner">
-      <div class="def-wrap" id="def-wrap">
-        <div class="def-num">1</div>
-        <span class="label" style="opacity:1">Définition · Nassim Nicholas Taleb, 2007</span>
-        <h2 class="def-title">Un événement <em>triplrement</em><br>singulier</h2>
-        <div class="def-rule"></div>
-        <p class="def-body">
-          <strong style="color:rgba(255,255,255,0.7);display:block;margin-bottom:12px">1. Il est imprévisible.</strong>
-          Aucun modèle existant ne permettait de l'anticiper. Il se situe en dehors du champ des attentes normales.
-        </p>
-        <p class="def-body" style="margin-top:16px">
-          <strong style="color:rgba(255,255,255,0.7);display:block;margin-bottom:12px">2. Son impact est extrême.</strong>
-          Il reconfigure le monde. Économies, gouvernements, sociétés — rien n'est identique après.
-        </p>
-        <p class="def-body" style="margin-top:16px">
-          <strong style="color:rgba(255,255,255,0.7);display:block;margin-bottom:12px">3. On le rationalise après coup.</strong>
-          Une fois survenu, il paraît évident. On invente des explications. On dit qu'on aurait dû le voir venir.
-        </p>
-      </div>
+    <h1 class="hero-title">
+      Le<br>Cygne
+      <em>Noir</em>
+    </h1>
+
+    <p class="hero-sub">Ces événements que personne n'anticipe, qui changent tout — et qu'on dit inévitables après.</p>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Défiler</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 3. ÉVÉNEMENTS -->
-  <section class="panel-tall" id="s-events" style="align-items:flex-start;padding:80px 0">
-    <div class="inner" style="width:100%">
-      <span class="label" id="label-events" style="margin-bottom:48px;display:block">Six événements · Six ruptures</span>
-      <div class="events-track" id="events-track">
+<!-- DÉFINITION -->
+<div class="section">
+  <div class="section-label">Définition · Nassim Nicholas Taleb, 2007</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:300;letter-spacing:-2px;line-height:1.1;color:#fff">Un événement <em style="font-style:italic;color:#C4A265">triplement</em><br>singulier</h2>
 
-        <div class="event" id="ev0">
-          <div class="ev-year">1987</div>
-          <div class="ev-body">
-            <span class="ev-tag">Finance · New York</span>
-            <div class="ev-title">Black Monday</div>
-            <p class="ev-desc">Le 19 octobre 1987, le Dow Jones s'effondre de 22,6% en une seule séance — la plus grande chute boursière de l'histoire en une journée. Aucun modèle économique ne l'avait prévu. La cause reste débattue 40 ans après.</p>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-num" style="color:#C75A5A" data-target="22" data-suffix="%">0%</span>
-            <span class="ev-unit">chute en un jour</span>
-          </div>
-        </div>
-
-        <div class="event" id="ev1">
-          <div class="ev-year">1998</div>
-          <div class="ev-body">
-            <span class="ev-tag">Finance · Systémique</span>
-            <div class="ev-title">LTCM — Quand les génies perdent</div>
-            <p class="ev-desc">Long-Term Capital Management : deux prix Nobel d'économie aux commandes. Un fonds qui "ne pouvait pas" faire faillite. Il a failli emporter l'ensemble du système financier mondial. La Fed a organisé un sauvetage d'urgence à 3,6 milliards.</p>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-num" style="color:#B86A1A" data-target="4.6" data-suffix="Mds$">0</span>
-            <span class="ev-unit">de pertes en 4 mois</span>
-          </div>
-        </div>
-
-        <div class="event" id="ev2">
-          <div class="ev-year">2001</div>
-          <div class="ev-body">
-            <span class="ev-tag">Géopolitique · Terrorisme</span>
-            <div class="ev-title">11 Septembre</div>
-            <p class="ev-desc">L'impensable. Deux tours, quatre avions, 3 000 morts. La CIA avait des signaux. Les enquêteurs avaient des suspects. Mais personne ne pouvait imaginer cette configuration précise. Le monde de l'avant et le monde de l'après sont deux mondes différents.</p>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-num" style="color:#7A2D2D" data-target="3000" data-suffix="">0</span>
-            <span class="ev-unit">vies — une rupture civilisationnelle</span>
-          </div>
-        </div>
-
-        <div class="event" id="ev3">
-          <div class="ev-year">2008</div>
-          <div class="ev-body">
-            <span class="ev-tag">Finance · Mondial</span>
-            <div class="ev-title">La crise des subprimes</div>
-            <p class="ev-desc">Des millions de prêts immobiliers accordés à des ménages insolvables, titrisés, notés AAA par les agences, vendus à travers la planète. Quand la bulle éclate, le système bancaire mondial vacille. 8 000 milliards de dollars de richesse évaporés.</p>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-num" style="color:#C75A5A" data-target="8000" data-suffix="">0</span>
-            <span class="ev-unit">milliards $ évaporés</span>
-          </div>
-        </div>
-
-        <div class="event" id="ev4">
-          <div class="ev-year">2020</div>
-          <div class="ev-body">
-            <span class="ev-tag">Santé · Planétaire</span>
-            <div class="ev-title">Covid-19</div>
-            <p class="ev-desc">Des pandémies, les épidémiologistes en prédisaient. Mais pas ici, pas maintenant, pas comme ça. En 12 semaines, l'économie mondiale s'arrête. 100 millions de personnes plongées dans l'extrême pauvreté. Le monde ne reprendra jamais exactement sa forme antérieure.</p>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-num" style="color:#4A2080" data-target="7" data-suffix="M+">0</span>
-            <span class="ev-unit">morts officiels dans le monde</span>
-          </div>
-        </div>
-
-        <div class="event" id="ev5">
-          <div class="ev-year">2025</div>
-          <div class="ev-body">
-            <span class="ev-tag">Technologie · IA</span>
-            <div class="ev-title">DeepSeek — La rupture algorithmique</div>
-            <p class="ev-desc">Le 20 janvier 2025, une startup chinoise publie un modèle d'IA rivalisant avec GPT-4 — pour 6 millions de dollars de coût de calcul, contre 100 millions pour ses équivalents américains. En une séance, 593 milliards de valorisation Nvidia s'évaporent.</p>
-          </div>
-          <div class="ev-stat">
-            <span class="ev-num" style="color:#C4A265" data-target="593" data-suffix="Mds">0</span>
-            <span class="ev-unit">$ Nvidia · une seule séance</span>
-          </div>
-        </div>
-
-      </div>
+  <div class="def-grid">
+    <div class="def-card" data-n="1">
+      <div class="def-num-label">Premier critère</div>
+      <div class="def-card-title">Il est imprévisible</div>
+      <p class="def-card-body">Aucun modèle existant ne permettait de l'anticiper. Il se situe en dehors du champ des attentes normales — c'est sa définition même.</p>
     </div>
-  </section>
-
-  <!-- 4. FINALE -->
-  <section class="panel" id="s-finale">
-    <div class="inner" style="display:flex;align-items:center;justify-content:center">
-      <div class="finale" id="finale">
-        <div class="finale-rule"></div>
-        <p class="finale-quote">"La vraie leçon du Cygne Noir n'est pas de chercher à le prédire. C'est d'admettre qu'on ne peut pas — et de construire des systèmes assez robustes pour y survivre."</p>
-        <span class="finale-author">Nassim Nicholas Taleb · The Black Swan, 2007</span>
-      </div>
+    <div class="def-card" data-n="2">
+      <div class="def-num-label">Deuxième critère</div>
+      <div class="def-card-title">Son impact est extrême</div>
+      <p class="def-card-body">Il reconfigure le monde. Économies, gouvernements, sociétés — rien n'est identique après. L'amplitude du choc dépasse tout modèle précédent.</p>
     </div>
-  </section>
+    <div class="def-card" data-n="3">
+      <div class="def-num-label">Troisième critère</div>
+      <div class="def-card-title">On le rationalise après</div>
+      <p class="def-card-body">Une fois survenu, il paraît évident. On invente des explications, on dit qu'on aurait dû le voir venir. C'est le piège de la mémoire rétrospective.</p>
+    </div>
+  </div>
+</div>
 
-</div><!-- /smooth-wrapper -->
+<!-- ÉVÉNEMENTS -->
+<div class="events-section">
+  <div class="section-label" style="max-width:100%">Six ruptures · Six cygnes noirs</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <div class="event-row">
+    <div class="ev-year">1987</div>
+    <div class="ev-content">
+      <span class="ev-tag">Finance · New York</span>
+      <div class="ev-title">Black Monday</div>
+      <p class="ev-body">Le 19 octobre 1987, le Dow Jones s'effondre de 22,6% en une seule séance — la plus grande chute boursière de l'histoire en un jour. Aucun modèle économique ne l'avait prédit. La cause reste débattue 40 ans après.</p>
+    </div>
+    <div class="ev-impact">
+      <div class="ev-big" style="color:#C75A5A">−22,6%</div>
+      <span class="ev-unit">en une seule journée</span>
+    </div>
+  </div>
+
+  <div class="event-row">
+    <div class="ev-year">1998</div>
+    <div class="ev-content">
+      <span class="ev-tag">Finance · Systémique</span>
+      <div class="ev-title">LTCM — Quand les génies perdent</div>
+      <p class="ev-body">Deux prix Nobel d'économie. Un fonds qui "ne pouvait pas" faire faillite selon leurs propres modèles. Il a failli emporter l'ensemble du système financier mondial. La Fed a organisé un sauvetage d'urgence en une nuit.</p>
+    </div>
+    <div class="ev-impact">
+      <div class="ev-big" style="color:#B86A1A">4,6 Mds$</div>
+      <span class="ev-unit">perdus en 4 mois</span>
+    </div>
+  </div>
+
+  <div class="event-row">
+    <div class="ev-year">2001</div>
+    <div class="ev-content">
+      <span class="ev-tag">Géopolitique · Terrorisme</span>
+      <div class="ev-title">11 Septembre</div>
+      <p class="ev-body">L'impensable. Deux tours, quatre avions, 3 000 morts. La CIA avait des signaux. Les enquêteurs avaient des suspects. Mais personne ne pouvait imaginer cette configuration précise. Le monde de l'avant et le monde de l'après sont deux mondes différents.</p>
+    </div>
+    <div class="ev-impact">
+      <div class="ev-big" style="color:#7A2D2D">3 000</div>
+      <span class="ev-unit">vies · rupture civilisationnelle</span>
+    </div>
+  </div>
+
+  <div class="event-row">
+    <div class="ev-year">2008</div>
+    <div class="ev-content">
+      <span class="ev-tag">Finance · Mondial</span>
+      <div class="ev-title">La crise des subprimes</div>
+      <p class="ev-body">Des prêts accordés à des ménages insolvables, titrisés, notés AAA, vendus à travers la planète. Quand la bulle éclate, le système bancaire mondial vacille. Les agences de notation n'avaient rien vu. Les régulateurs non plus.</p>
+    </div>
+    <div class="ev-impact">
+      <div class="ev-big" style="color:#C75A5A">8 000<br><span style="font-size:0.6em">Mds$</span></div>
+      <span class="ev-unit">de richesse évaporés</span>
+    </div>
+  </div>
+
+  <div class="event-row">
+    <div class="ev-year">2020</div>
+    <div class="ev-content">
+      <span class="ev-tag">Santé · Planétaire</span>
+      <div class="ev-title">Covid-19</div>
+      <p class="ev-body">Des pandémies, les épidémiologistes en prédisaient. Mais pas ici, pas maintenant, pas comme ça. En 12 semaines, l'économie mondiale s'arrête. 100 millions de personnes plongées dans l'extrême pauvreté. Le monde ne reprendra jamais exactement sa forme d'avant.</p>
+    </div>
+    <div class="ev-impact">
+      <div class="ev-big" style="color:#4A2080">7 M+</div>
+      <span class="ev-unit">morts officiels</span>
+    </div>
+  </div>
+
+  <div class="event-row">
+    <div class="ev-year">2025</div>
+    <div class="ev-content">
+      <span class="ev-tag">Technologie · Intelligence artificielle</span>
+      <div class="ev-title">DeepSeek — La rupture algorithmique</div>
+      <p class="ev-body">Le 20 janvier 2025, une startup chinoise publie un modèle rivalisant avec GPT-4 — pour 6 millions de dollars de calcul, contre 100 millions pour ses équivalents américains. En une séance, 593 milliards de valorisation Nvidia s'évaporent. Le paradigme de la course aux puces est brisé.</p>
+    </div>
+    <div class="ev-impact">
+      <div class="ev-big" style="color:#C4A265">593 Mds</div>
+      <span class="ev-unit">$ Nvidia · une seule séance</span>
+    </div>
+  </div>
+</div>
+
+<!-- FINALE -->
+<section class="finale-section">
+  <div class="finale-inner">
+    <div class="finale-rule"></div>
+    <p class="finale-quote">"La vraie leçon du Cygne Noir n'est pas de chercher à le prédire. C'est d'admettre qu'on ne peut pas — et de construire des systèmes assez robustes pour y survivre."</p>
+    <span class="finale-author">Nassim Nicholas Taleb · The Black Swan, 2007</span>
+  </div>
+</section>
+
 <script>
-gsap.registerPlugin(ScrollTrigger);
+// ── PROGRESS BAR ──
+window.addEventListener('scroll', function() {
+  var scrolled = window.scrollY;
+  var total = document.body.scrollHeight - window.innerHeight;
+  document.getElementById('progress').style.width = (scrolled / total * 100) + '%';
+});
 
 // ── CANVAS PARTICLES ──
-const canvas = document.getElementById('canvas-bg');
-const ctx = canvas.getContext('2d');
-let W, H, particles = [];
+(function() {
+  var canvas = document.getElementById('bg-canvas');
+  var ctx = canvas.getContext('2d');
+  var W, H, particles = [];
 
-function resize(){
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-class Particle {
-  constructor(){
+  function Particle() {
+    this.reset = function() {
+      this.x = Math.random() * W;
+      this.y = H + 10;
+      this.size = Math.random() * 1.5 + 0.3;
+      this.speedY = -(Math.random() * 0.4 + 0.1);
+      this.speedX = (Math.random() - 0.5) * 0.15;
+      this.opacity = Math.random() * 0.5 + 0.05;
+      this.life = 1;
+      this.decay = Math.random() * 0.003 + 0.001;
+    };
     this.reset();
+    this.y = Math.random() * H; // scatter initially
   }
-  reset(){
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.size = Math.random() * 1.2 + 0.2;
-    this.speedX = (Math.random() - 0.5) * 0.15;
-    this.speedY = -Math.random() * 0.3 - 0.05;
-    this.opacity = Math.random() * 0.4 + 0.05;
-    this.life = Math.random();
+
+  for (var i = 0; i < 60; i++) particles.push(new Particle());
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(function(p) {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.life -= p.decay;
+      if (p.life <= 0 || p.y < -10) p.reset();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(196,162,101,' + (p.opacity * p.life) + ')';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
   }
-  update(){
-    this.x += this.speedX;
-    this.y += this.speedY;
-    this.life -= 0.002;
-    if(this.life <= 0 || this.y < -10) this.reset();
-  }
-  draw(){
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(196,162,101,${this.opacity * this.life * 2})`;
-    ctx.fill();
-  }
-}
+  draw();
+})();
 
-for(let i = 0; i < 80; i++) particles.push(new Particle());
-
-function animateParticles(){
-  ctx.clearRect(0, 0, W, H);
-  particles.forEach(p => { p.update(); p.draw(); });
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
-
-// ── PROGRESS BAR ──
-ScrollTrigger.create({
-  trigger: document.body,
-  start: 'top top',
-  end: 'bottom bottom',
-  onUpdate: self => {
-    document.getElementById('progress').style.width = (self.progress * 100) + '%';
-  }
-});
-
-// ── SECTION 1 : INTRO ──
-const tl1 = gsap.timeline({ delay: 0.3 });
-
-// Swan entrée
-tl1.from('#swan-g', { 
-  scale: 0.6, opacity: 0, y: 30, 
-  duration: 1.4, ease: 'power3.out' 
-})
-// Swan se noircit au scroll
-.to('#label-intro', { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.8')
-.to('#t1', { y: '0%', duration: 0.9, ease: 'power4.out' }, '-=0.5')
-.to('#t2', { y: '0%', duration: 0.9, ease: 'power4.out' }, '-=0.6')
-.to('#subtitle-intro', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.3');
-
-// Swan color morph on scroll
-ScrollTrigger.create({
-  trigger: '#s-intro',
-  start: 'top top',
-  end: 'bottom top',
-  scrub: 1.5,
-  onUpdate: self => {
-    const p = self.progress;
-    // Blanc → Noir au scroll
-    const r = Math.round(255 * (1-p));
-    const g = Math.round(255 * (1-p));
-    const b = Math.round(255 * (1-p));
-    document.getElementById('swan-body').setAttribute('fill', `rgb(${r},${g},${b})`);
-    document.getElementById('swan-neck').setAttribute('fill', `rgb(${r},${g},${b})`);
-    document.getElementById('swan-head').setAttribute('fill', `rgb(${r},${g},${b})`);
-    document.getElementById('swan-wing').setAttribute('fill', `rgba(${r},${g},${b},0.6)`);
-    // Plumes qui apparaissent
-    document.getElementById('swan-g').style.transform = `rotate(${p * -8}deg)`;
-  }
-});
-
-// ── SECTION 2 : DÉFINITION ──
-gsap.fromTo('#def-wrap', 
-  { opacity: 0, y: 50 },
-  { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-    scrollTrigger: { trigger: '#s-def', start: 'top 65%', toggleActions: 'play none none reverse' }
-  }
-);
-
-// ── SECTION 3 : EVENTS ──
-gsap.to('#label-events', { 
-  opacity: 1, duration: 0.6,
-  scrollTrigger: { trigger: '#s-events', start: 'top 80%' }
-});
-
-// Chaque événement entre depuis la gauche
-document.querySelectorAll('.event').forEach((el, i) => {
-  const numEl = el.querySelector('.ev-num');
-  
-  gsap.fromTo(el,
-    { opacity: 0, x: -60 },
-    { 
-      opacity: 1, x: 0, duration: 0.8, ease: 'power3.out',
-      scrollTrigger: { 
-        trigger: el, 
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      },
-      onComplete: () => {
-        // Compteur animé
-        if(!numEl) return;
-        const target = parseFloat(numEl.dataset.target);
-        const suffix = numEl.dataset.suffix || '';
-        const isFloat = String(target).includes('.');
-        let start = 0;
-        const dur = 1800;
-        const t0 = Date.now();
-        const run = () => {
-          const p = Math.min((Date.now()-t0)/dur, 1);
-          const eased = 1 - Math.pow(1-p, 3);
-          const val = eased * target;
-          numEl.textContent = (isFloat ? val.toFixed(1) : Math.round(val).toLocaleString('fr-FR')) + suffix;
-          if(p < 1) requestAnimationFrame(run);
-        };
-        requestAnimationFrame(run);
+// ── INTERSECTION OBSERVER — apparition des events ──
+(function() {
+  var rows = document.querySelectorAll('.event-row');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry, i) {
+      if (entry.isIntersecting) {
+        var delay = 0;
+        entry.target.style.transitionDelay = delay + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
-    }
-  );
-});
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-// ── SECTION 4 : FINALE ──
-const tlFinale = gsap.timeline({
-  scrollTrigger: { trigger: '#s-finale', start: 'top 65%' }
-});
-tlFinale
-  .fromTo('#finale', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' });
-
+  rows.forEach(function(row) { observer.observe(row); });
+})();
 </script>
 </body>
 </html>
