@@ -1,73 +1,114 @@
 import Header from '../../components/Header'
 import Link from 'next/link'
-import articlesData from '../../lib/articles.json'
 import styles from './retrospective.module.css'
 
 export const metadata = {
   title: 'Rétrospective 2025 — Prisme',
-  description: 'Les analyses qui ont compté. Retour sur une année de bouleversements géopolitiques, technologiques et économiques.',
+  description: 'Les douze mois qui ont changé le monde. Retour analytique sur 2025.',
 }
 
-const temps = [
+const mois = [
   {
-    mois: 'Janvier 2025',
-    titre: 'DeepSeek efface 593 Mds de Nvidia',
-    desc: 'Un modèle chinois entraîné avec des contraintes matérielles sévères surpasse GPT-4. Le mythe de la suprématie américaine en IA prend un coup.',
-    slug: 'semico',
-    cat: 'tech',
+    m: 'Janvier', slug: 'jan',
+    titre: 'DeepSeek efface 593 Mds de Nvidia en une séance',
+    desc: 'Un modèle chinois entraîné sous contraintes surpasse GPT-4. Le mythe de la suprématie américaine en IA prend un coup historique. Les marchés paniquent. La géopolitique technologique bascule.',
+    cat: 'tech', catLabel: 'Technologie',
+    article: 'semico',
+    stat: { num: '593', unit: 'Mds $', label: 'de capitalisation Nvidia effacés en une séance' },
   },
   {
-    mois: 'Février 2025',
+    m: 'Février', slug: 'fev',
     titre: 'Les semi-conducteurs deviennent une arme d\'État',
-    desc: 'Washington resserre les contrôles à l\'export. Pékin accélère. TSMC reste seul au centre du monde.',
-    slug: 'semico',
-    cat: 'geo',
+    desc: 'Washington resserre les contrôles à l\'export sur les puces avancées. Pékin accélère son plan d\'autonomie. TSMC reste seul au centre du monde numérique.',
+    cat: 'geo', catLabel: 'Géopolitique',
+    article: 'semico',
+    stat: { num: '90%', unit: '', label: 'des puces avancées mondiales fabriquées dans une seule île' },
   },
   {
-    mois: 'Mars 2025',
+    m: 'Mars', slug: 'mars',
     titre: 'L\'Arctique s\'ouvre, les tensions montent',
-    desc: 'La fonte record ouvre de nouvelles routes commerciales et militaires. Russie, Canada, États-Unis repositionnent leurs forces.',
-    slug: 'arctique',
-    cat: 'env',
+    desc: 'Fonte record de la banquise. De nouvelles routes commerciales s\'ouvrent. Russie, Canada et États-Unis repositionnent leurs forces militaires dans la région.',
+    cat: 'env', catLabel: 'Environnement',
+    article: 'arctique',
+    stat: { num: '4×', unit: '', label: 'plus vite que la moyenne mondiale : la fonte en Arctique' },
   },
   {
-    mois: 'Juin 2025',
-    titre: 'Le Sahel tourne le dos à la France',
-    desc: 'Mali, Burkina, Niger consolident leur rupture avec Paris. La présence russe et chinoise s\'installe.',
-    slug: 'afrique',
-    cat: 'geo',
+    m: 'Avril', slug: 'avr',
+    titre: 'La bataille pour les terres rares s\'intensifie',
+    desc: 'La Chine contrôle 90% du raffinage des terres rares mondiales. Washington cherche des alternatives. L\'Afrique devient le nouveau terrain de jeu géopolitique.',
+    cat: 'geo', catLabel: 'Géopolitique',
+    article: 'techgeo',
+    stat: { num: '60%', unit: '', label: 'de l\'extraction mondiale de terres rares contrôlée par Pékin' },
   },
   {
-    mois: 'Septembre 2025',
+    m: 'Mai', slug: 'mai',
+    titre: 'L\'eau : première crise géopolitique de l\'été',
+    desc: 'Les négociations sur le barrage de la Renaissance éthiopienne s\'enlisent. L\'Égypte pose ses lignes rouges. Le bassin du Nil, première zone de friction hydrique mondiale.',
+    cat: 'env', catLabel: 'Environnement',
+    article: 'eau',
+    stat: { num: '4 Mds', unit: '', label: 'de personnes subissent une pénurie d\'eau au moins un mois par an' },
+  },
+  {
+    m: 'Juin', slug: 'juin',
+    titre: 'Le Sahel tourne définitivement le dos à la France',
+    desc: 'Mali, Burkina, Niger consolident leur rupture avec Paris. Les troupes françaises achèvent leur retrait. La présence russe et chinoise s\'installe durablement.',
+    cat: 'geo', catLabel: 'Géopolitique',
+    article: 'afrique',
+    stat: { num: '30%', unit: '', label: 'des réserves minérales mondiales sur le continent africain' },
+  },
+  {
+    m: 'Juillet', slug: 'juil',
+    titre: 'Canicule record en Europe du Sud',
+    desc: 'Troisième année consécutive de sécheresse extrême. Les réserves hydriques espagnoles et italiennes tombent sous 30% de capacité. La PAC agricole est remise en question.',
+    cat: 'env', catLabel: 'Environnement',
+    article: 'eau',
+    stat: { num: '47°C', unit: '', label: 'record de température enregistré en Sicile en juillet 2025' },
+  },
+  {
+    m: 'Août', slug: 'aout',
+    titre: 'Taïwan : les exercices militaires chinois atteignent un nouveau seuil',
+    desc: 'Pékin franchit la ligne médiane du détroit lors de manœuvres d\'une ampleur inédite. Washington envoie un groupe aéronaval. Le monde retient son souffle.',
+    cat: 'geo', catLabel: 'Géopolitique',
+    article: 'taiwan',
+    stat: { num: '10 600', unit: 'Mds $', label: 'coût estimé d\'un conflit dans le détroit de Taïwan la 1ère année' },
+  },
+  {
+    m: 'Septembre', slug: 'sep',
     titre: 'BlackRock dépasse les 11 000 Mds sous gestion',
-    desc: 'La concentration du capital atteint un niveau sans précédent. Trois fonds gèrent plus que le PIB de la Chine.',
-    slug: 'blackrock',
-    cat: 'eco',
+    desc: 'La concentration du capital atteint un niveau sans précédent dans l\'histoire du capitalisme. Trois fonds gèrent plus que le PIB de la Chine.',
+    cat: 'eco', catLabel: 'Économie',
+    article: 'blackrock',
+    stat: { num: '28 000', unit: 'Mds $', label: 'gérés par BlackRock, Vanguard et State Street réunis' },
   },
   {
-    mois: 'Novembre 2025',
-    titre: 'La crise de l\'eau au Maghreb devient structurelle',
-    desc: 'Quatrième année consécutive de sécheresse. Les gouvernements commencent à parler de migration climatique forcée.',
-    slug: 'eau',
-    cat: 'env',
-  },
-  {
-    mois: 'Décembre 2025',
+    m: 'Octobre', slug: 'oct',
     titre: 'L\'IA générative s\'installe dans les rédactions',
-    desc: 'Licenciements, restructurations, débats sur l\'authenticité. Ce que la technologie fait à l\'écriture humaine.',
-    slug: 'ia_ecriture',
-    cat: 'culture',
+    desc: 'Licenciements massifs dans la presse. Débat sur l\'authenticité journalistique. Ce que la technologie fait à l\'écriture humaine et à la vérité.',
+    cat: 'culture', catLabel: 'Culture',
+    article: 'ia_ecriture',
+    stat: { num: '40%', unit: '', label: 'des emplois mondiaux exposés à l\'IA générative selon le FMI' },
+  },
+  {
+    m: 'Novembre', slug: 'nov',
+    titre: 'Elon Musk entre à la Maison-Blanche',
+    desc: 'DOGE, coupes budgétaires massives, restructuration de l\'État fédéral. La trajectoire d\'un entrepreneur devenu acteur politique mondial atteint son apogée.',
+    cat: 'soc', catLabel: 'Société',
+    article: 'musk',
+    stat: { num: '6', unit: '', label: 'entreprises majeures dirigées simultanément par Elon Musk en 2025' },
+  },
+  {
+    m: 'Décembre', slug: 'dec',
+    titre: 'L\'opération Venezuela — retour de la doctrine Monroe',
+    desc: 'Les États-Unis capturent Maduro sans mandat international, sans vote du Congrès. Le droit international recule. L\'ordre mondial post-1945 s\'effondre un peu plus.',
+    cat: 'geo', catLabel: 'Géopolitique',
+    article: 'venezuela',
+    stat: { num: '90%', unit: '', label: 'de la cocaïne US transite par le Mexique — pas le Venezuela' },
   },
 ]
 
 const catColors: Record<string, string> = {
   geo: 'var(--geo)', eco: 'var(--eco)', tech: 'var(--tech)',
   env: 'var(--env)', soc: 'var(--soc)', culture: 'var(--culture)',
-}
-
-const catLabels: Record<string, string> = {
-  geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
-  env: 'Environnement', soc: 'Société', culture: 'Culture',
 }
 
 export default function RetrospectivePage() {
@@ -80,56 +121,45 @@ export default function RetrospectivePage() {
           <span className={styles.eyebrow}>Rétrospective</span>
           <h1 className={styles.title}>2025 — L'année <em>des ruptures</em></h1>
           <p className={styles.subtitle}>
-            Les analyses qui ont compté. Retour sur une année de bouleversements
-            géopolitiques, technologiques et économiques.
+            Douze mois. Douze moments qui ont reconfiguré le monde.
+            Retour analytique sur une année de basculements.
           </p>
         </div>
         <div className={styles.heroYear}>2025</div>
       </div>
 
       <div className={styles.timeline}>
-        {temps.map((item, i) => (
-          <Link key={i} href={`/articles/${item.slug}`} className={styles.item}>
-            <div className={styles.itemLeft}>
-              <div className={styles.itemMois}>{item.mois}</div>
-              <div className={styles.itemLine}>
-                <div className={styles.itemDot} style={{ background: catColors[item.cat] }} />
+        {mois.map((item, i) => (
+          <div key={item.slug} className={styles.item}>
+            <div className={styles.itemMeta}>
+              <div className={styles.itemNum}>
+                {String(i + 1).padStart(2, '0')}
               </div>
+              <div className={styles.itemMois}>{item.m}</div>
+              <div className={styles.itemAccent} style={{ background: catColors[item.cat] }} />
             </div>
-            <div className={styles.itemRight}>
+
+            <div className={styles.itemBody}>
               <div className={styles.itemCat} style={{ color: catColors[item.cat] }}>
-                {catLabels[item.cat]}
+                {item.catLabel}
               </div>
               <h2 className={styles.itemTitre}>{item.titre}</h2>
               <p className={styles.itemDesc}>{item.desc}</p>
-              <span className={styles.itemCta}>Lire l'analyse →</span>
-            </div>
-          </Link>
-        ))}
-      </div>
 
-      <div className={styles.articles}>
-        <div className={styles.articlesLabel}>Toutes les analyses de 2025</div>
-        <div className={styles.articlesGrid}>
-          {(articlesData as any[]).slice(0, 12).map(a => (
-            <Link key={a.slug} href={`/articles/${a.slug}`} className={styles.card}>
-              {a.image && (
-                <div className={styles.cardImg}>
-                  <img src={a.image} alt={a.title} />
-                </div>
-              )}
-              <div className={styles.cardBody}>
-                <span className={styles.cardCat} style={{ color: catColors[a.category] }}>
-                  {catLabels[a.category] || a.category}
-                </span>
-                <div className={styles.cardTitle}
-                  dangerouslySetInnerHTML={{ __html: a.title.replace(/\n/g, ' ') }}
-                />
-                <span className={styles.cardTime}>{a.readTime} min →</span>
+              <div className={styles.itemStat}>
+                <span className={styles.statNum}>{item.stat.num}</span>
+                {item.stat.unit && <span className={styles.statUnit}>{item.stat.unit}</span>}
+                <span className={styles.statLabel}>{item.stat.label}</span>
               </div>
-            </Link>
-          ))}
-        </div>
+            </div>
+
+            <div className={styles.itemAction}>
+              <Link href={`/articles/${item.article}`} className={styles.itemCta}>
+                Lire l'analyse →
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
 
       <footer className={styles.footer}>

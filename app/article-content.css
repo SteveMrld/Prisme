@@ -1098,6 +1098,7 @@
 .prisme-article .pull-quote { padding: 24px 32px; }
 .prisme-article .prospectif { padding: 40px 44px; }
 .prisme-article .notes-section { padding-left: 0; padding-right: 0; }
+.prisme-article .content-embed { padding-left: 0; padding-right: 0; max-width: 100%; }
 .prisme-article .share-bar { padding-left: 0; padding-right: 0; }
 .prisme-article .verso-section { padding-left: 0; padding-right: 0; }
 .prisme-article .anav { padding-left: 0; padding-right: 0; }
