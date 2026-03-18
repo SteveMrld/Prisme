@@ -38,7 +38,7 @@ export default function MotDePasseOubliePage() {
 
           {sent ? (
             <div className={styles.success}>
-              <div className={styles.successIcon}>✓</div>
+              <div className={styles.successIcon}></div>
               <h1 className={styles.successTitle}>Lien envoyé</h1>
               <p className={styles.successText}>
                 Si un compte existe avec l'adresse <strong>{email}</strong>, vous recevrez un lien de réinitialisation dans quelques minutes.

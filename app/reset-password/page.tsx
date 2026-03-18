@@ -49,7 +49,7 @@ export default function ResetPasswordPage() {
 
           {done ? (
             <div className={styles.success}>
-              <div className={styles.successIcon}>✓</div>
+              <div className={styles.successIcon}></div>
               <h1 className={styles.successTitle}>Mot de passe mis à jour</h1>
               <p className={styles.successText}>Redirection vers votre compte…</p>
             </div>
