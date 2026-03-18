@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arctique — La fonte qui change le monde</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#0A1628;--encre:#ECE7DD;--bord:rgba(255,255,255,0.08);--env:#2D6B4A;--ice:#7AB8D4}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
+.tabs{display:flex;border-bottom:1px solid var(--bord)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--ice);border-color:var(--ice);background:rgba(122,184,212,0.05)}
+.panel{display:none;padding:24px;flex-direction:column;gap:20px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* FONTE CHART */
+.chart-label{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px}
+
+.ice-bars{display:flex;align-items:flex-end;gap:8px;height:160px;padding:0 8px}
+.ice-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
+.ice-bar{width:100%;background:var(--ice);border-radius:2px 2px 0 0;transition:height 0.5s ease;position:relative}
+.ice-bar.old{background:rgba(122,184,212,0.3)}
+.ice-yr{font-size:9px;color:rgba(255,255,255,0.3);font-weight:500}
+.ice-val{font-size:10px;color:var(--ice);font-weight:600}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+.stat{background:var(--bg);padding:18px 20px}
+.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:300;color:var(--ice);letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+
+/* ROUTES */
+.route-card{padding:16px 18px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:8px}
+.route-name{font-size:12px;font-weight:600;color:var(--encre)}
+.route-sub{font-size:11px;color:rgba(236,231,221,0.4);font-style:italic;line-height:1.5}
+.route-tag{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;width:fit-content}
+
+/* PUISSANCES */
+.power{padding:14px 18px;border-left:3px solid transparent;margin-bottom:8px}
+.power-name{font-size:13px;font-weight:600;color:var(--encre);margin-bottom:4px}
+.power-desc{font-size:12px;color:rgba(236,231,221,0.45);line-height:1.55;font-style:italic}
+.power-bar{height:3px;border-radius:2px;margin-top:8px;animation:grow 1.2s ease forwards}
+@keyframes grow{from{width:0}}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Environnement</span>
+  <span class="hd-sub">Arctique — La fonte qui change le monde</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('fonte',this)">Fonte de la banquise</div>
+  <div class="tab" onclick="showTab('routes',this)">Nouvelles routes</div>
+  <div class="tab" onclick="showTab('geo',this)">Enjeux géopolitiques</div>
+</div>
+
+<div class="panel active" id="tab-fonte">
+  <div class="chart-label">Étendue de la banquise arctique en septembre (millions km²)</div>
+  <div class="ice-bars" id="iceBars">
+    <div class="ice-bar-wrap"><div class="ice-bar old" style="height:112px"></div><div class="ice-yr">1980</div><div class="ice-val">7.8</div></div>
+    <div class="ice-bar-wrap"><div class="ice-bar old" style="height:100px"></div><div class="ice-yr">1990</div><div class="ice-val">6.9</div></div>
+    <div class="ice-bar-wrap"><div class="ice-bar old" style="height:86px"></div><div class="ice-yr">2000</div><div class="ice-val">6.0</div></div>
+    <div class="ice-bar-wrap"><div class="ice-bar old" style="height:72px"></div><div class="ice-yr">2010</div><div class="ice-val">4.9</div></div>
+    <div class="ice-bar-wrap"><div class="ice-bar" style="height:54px"></div><div class="ice-yr">2020</div><div class="ice-val">3.7</div></div>
+    <div class="ice-bar-wrap"><div class="ice-bar" style="height:46px;background:#C4A265"></div><div class="ice-yr">2025</div><div class="ice-val" style="color:var(--or)">3.2</div></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">4×</div><div class="stat-lbl">plus vite que la moyenne mondiale — taux de réchauffement en Arctique</div></div>
+    <div class="stat"><div class="stat-num">−59%</div><div class="stat-lbl">de superficie perdue depuis les années 1980 pour la glace de mer</div></div>
+    <div class="stat"><div class="stat-num">2040</div><div class="stat-lbl">première année sans glace en été selon les projections IPCC optimistes</div></div>
+    <div class="stat"><div class="stat-num">13%</div><div class="stat-lbl">des réserves mondiales de pétrole non découvertes estimées sous l'Arctique</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-routes">
+  <div class="chart-label">Nouvelles routes commerciales</div>
+
+  <div class="route-card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="route-name">Route du Nord-Est (Passage de Sibérie)</div>
+      <span class="route-tag" style="background:rgba(199,90,90,0.3);color:#C75A5A">Russie contrôle</span>
+    </div>
+    <div class="route-sub">Rotterdam → Shanghai via l'Arctique russe. 40% plus court que Suez. La Russie impose des escortes de brise-glace et des frais de transit. Revenus estimés : 1 milliard $ par an d'ici 2030.</div>
+    <div style="display:flex;gap:16px;margin-top:4px">
+      <span style="font-size:10px;color:rgba(255,255,255,0.4)">Distance : <strong style="color:var(--encre)">~13 000 km</strong></span>
+      <span style="font-size:10px;color:rgba(255,255,255,0.4)">vs Suez : <strong style="color:var(--ice)">−40%</strong></span>
+    </div>
+  </div>
+
+  <div class="route-card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="route-name">Passage du Nord-Ouest</div>
+      <span class="route-tag" style="background:rgba(74,126,199,0.3);color:#4A7EC7">Canada/USA</span>
+    </div>
+    <div class="route-sub">Atlantique → Pacifique via l'archipel canadien. Navigable saisonnièrement depuis 2007. Dispute juridique : Canada revendique eaux intérieures, USA droit de passage international.</div>
+  </div>
+
+  <div class="route-card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div class="route-name">Route Transpolaire</div>
+      <span class="route-tag" style="background:rgba(45,107,74,0.3);color:#4AAA7A">Futur · 2035+</span>
+    </div>
+    <div class="route-sub">Passage direct par-dessus le pôle Nord. Possible uniquement si la glace estivale disparaît complètement. Le scénario le plus économique : aucun État riverain ne peut le contrôler.</div>
+  </div>
+</div>
+
+<div class="panel" id="tab-geo">
+  <div class="chart-label">Repositionnement des puissances</div>
+
+  <div class="power" style="border-color:#C75A5A">
+    <div class="power-name" style="color:#C75A5A">🇷🇺 Russie — 53% du littoral arctique</div>
+    <div class="power-desc">Réouverture de 50 bases soviétiques abandonnées. Nouveau commandement militaire arctique. Flotte de brise-glaces nucléaires — la seule au monde. La Route du Nord-Est comme levier économique et géopolitique.</div>
+    <div class="power-bar" style="width:53%;background:#C75A5A"></div>
+  </div>
+
+  <div class="power" style="border-color:#4A7EC7">
+    <div class="power-name" style="color:#4A7EC7">🇺🇸 États-Unis — retour en Arctique</div>
+    <div class="power-desc">Base d'Elmendorf-Richardson en Alaska modernisée. Plan de 3 brise-glaces (0 opérationnel en 2020). Reconnaissance du réchauffement comme menace à la sécurité nationale sous Biden. Trump renverse la position.</div>
+    <div class="power-bar" style="width:20%;background:#4A7EC7"></div>
+  </div>
+
+  <div class="power" style="border-color:#D4882A">
+    <div class="power-name" style="color:#D4882A">🇨🇳 Chine — "État quasi-arctique"</div>
+    <div class="power-desc">Pékin s'autodéclare "État proche de l'Arctique". Station de recherche au Svalbard. Partenariats avec la Russie sur la Route du Nord-Est. Intérêt pour les ressources sous le plateau continental.</div>
+    <div class="power-bar" style="width:35%;background:#D4882A"></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">30%</div><div class="stat-lbl">du gaz naturel mondial non découvert estimé en Arctique</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-lbl">pays membres du Conseil arctique — réunions suspendues depuis 2022</div></div>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

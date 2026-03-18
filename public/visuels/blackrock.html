@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackRock — La concentration du capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#FAFAF8;--encre:#0A0A0A;--bord:#D8D3C8;--eco:#B86A1A}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);background:var(--encre);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.4);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.5)}
+.tabs{display:flex;background:var(--encre);border-bottom:2px solid var(--or)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);transition:all 0.2s}
+.tab.active{color:var(--or);background:rgba(196,162,101,0.08)}
+.panel{display:none;padding:24px;flex-direction:column;gap:20px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#9A9590}
+
+/* COURBE AUM */
+.curve-svg{width:100%;height:auto;display:block;background:var(--encre);border-radius:2px}
+.curve-label{fill:rgba(236,231,221,0.4);font-family:'DM Sans',sans-serif;font-size:10px}
+.curve-val{fill:#C4A265;font-family:'Playfair Display',serif;font-size:13px;font-weight:300}
+
+.line-path{stroke-dasharray:800;stroke-dashoffset:800;animation:lineDraw 2s ease forwards 0.3s}
+@keyframes lineDraw{to{stroke-dashoffset:0}}
+
+/* DONUT */
+.donut-wrap{display:flex;gap:24px;align-items:center}
+.donut-svg{flex-shrink:0;width:180px;height:180px}
+.donut-legend{display:flex;flex-direction:column;gap:10px;flex:1}
+.dleg{display:flex;align-items:center;gap:10px}
+.dleg-dot{width:10px;height:10px;border-radius:1px;flex-shrink:0}
+.dleg-label{font-size:12px;flex:1}
+.dleg-val{font-size:13px;font-weight:600;color:var(--or)}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bord)}
+.stat{background:var(--bg);padding:18px 20px}
+.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:300;color:var(--encre);letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:11px;color:#6A6A6A;line-height:1.5}
+
+.concern{padding:14px 18px;border-left:3px solid;background:rgba(0,0,0,0.03);margin-bottom:1px}
+.concern-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.concern-desc{font-size:11px;color:#6A6A6A;line-height:1.55;font-style:italic}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Économie</span>
+  <span class="hd-sub">La concentration du capital — 2026</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('aum',this)">Croissance AUM</div>
+  <div class="tab" onclick="showTab('concentration',this)">Concentration</div>
+  <div class="tab" onclick="showTab('pouvoir',this)">Pouvoir de vote</div>
+</div>
+
+<div class="panel active" id="tab-aum">
+  <div class="lbl">Actifs sous gestion BlackRock (milliers de milliards $)</div>
+  <svg class="curve-svg" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+    <rect width="640" height="260" fill="#0A0A0A"/>
+    <!-- Grille -->
+    <line x1="60" y1="20" x2="60" y2="220" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <line x1="60" y1="220" x2="620" y2="220" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <!-- Lignes horizontales -->
+    <line x1="60" y1="170" x2="620" y2="170" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="60" y1="120" x2="620" y2="120" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="60" y1="70" x2="620" y2="70" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+    <!-- Labels Y -->
+    <text x="50" y="173" class="curve-label" text-anchor="end">5</text>
+    <text x="50" y="123" class="curve-label" text-anchor="end">7</text>
+    <text x="50" y="73" class="curve-label" text-anchor="end">9</text>
+    <!-- Labels X -->
+    <text x="100" y="240" class="curve-label" text-anchor="middle">2010</text>
+    <text x="200" y="240" class="curve-label" text-anchor="middle">2014</text>
+    <text x="300" y="240" class="curve-label" text-anchor="middle">2017</text>
+    <text x="400" y="240" class="curve-label" text-anchor="middle">2020</text>
+    <text x="500" y="240" class="curve-label" text-anchor="middle">2022</text>
+    <text x="590" y="240" class="curve-label" text-anchor="middle">2025</text>
+    <!-- Zone sous courbe -->
+    <path d="M100,210 L150,200 L200,185 L250,175 L300,160 L350,145 L400,130 L450,105 L500,90 L550,75 L590,55 L590,220 L100,220 Z" fill="rgba(196,162,101,0.06)"/>
+    <!-- Courbe -->
+    <path d="M100,210 L150,200 L200,185 L250,175 L300,160 L350,145 L400,130 L450,105 L500,90 L550,75 L590,55" fill="none" stroke="#C4A265" stroke-width="2.5" class="line-path"/>
+    <!-- Point final -->
+    <circle cx="590" cy="55" r="5" fill="#C4A265"/>
+    <text x="595" y="52" class="curve-val">11,5 Mds $</text>
+  </svg>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num" id="br1">0</div><div class="stat-lbl">milliards $ sous gestion BlackRock seul — record mondial 2025</div></div>
+    <div class="stat"><div class="stat-num" id="br2">0</div><div class="stat-lbl">milliards $ gérés par BlackRock, Vanguard et State Street réunis</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-concentration">
+  <div class="lbl">Concentration du capital mondial</div>
+  <div class="donut-wrap">
+    <svg class="donut-svg" viewBox="0 0 180 180">
+      <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="30"/>
+      <circle cx="90" cy="90" r="70" fill="none" stroke="#B86A1A" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 0.2s ease forwards;--t:180;transform:rotate(-90deg);transform-origin:center"/>
+      <circle cx="90" cy="90" r="70" fill="none" stroke="#C4A265" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 0.7s ease forwards;--t:305;transform:rotate(54deg);transform-origin:center"/>
+      <circle cx="90" cy="90" r="70" fill="none" stroke="#4A7EC7" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 1s ease forwards;--t:375;transform:rotate(125deg);transform-origin:center"/>
+      <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 1.2s ease forwards;--t:440;transform:rotate(161deg);transform-origin:center"/>
+      <text x="90" y="86" text-anchor="middle" font-family="Playfair Display" font-size="20" font-weight="300" fill="#0A0A0A">Top 3</text>
+      <text x="90" y="100" text-anchor="middle" font-family="DM Sans" font-size="9" fill="#6A6A6A">20% des actions</text>
+      <style>.da{animation:daAnim 1.5s ease forwards} @keyframes daAnim{to{stroke-dashoffset:var(--t)}}</style>
+    </svg>
+    <div class="donut-legend">
+      <div class="dleg"><div class="dleg-dot" style="background:#B86A1A"></div><div class="dleg-label">BlackRock</div><div class="dleg-val">11,5 Mds</div></div>
+      <div class="dleg"><div class="dleg-dot" style="background:#C4A265"></div><div class="dleg-label">Vanguard</div><div class="dleg-val">9,3 Mds</div></div>
+      <div class="dleg"><div class="dleg-dot" style="background:#4A7EC7"></div><div class="dleg-label">State Street</div><div class="dleg-val">4,1 Mds</div></div>
+      <div class="dleg"><div class="dleg-dot" style="background:rgba(0,0,0,0.15)"></div><div class="dleg-label">Reste du monde</div><div class="dleg-val">—</div></div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">88%</div><div class="stat-lbl">des entreprises du S&P 500 ont BlackRock parmi leurs 5 premiers actionnaires</div></div>
+    <div class="stat"><div class="stat-num">PIB CN</div><div class="stat-lbl">Les 3 fonds gèrent plus que le PIB entier de la Chine (2ème économie mondiale)</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-pouvoir">
+  <div class="lbl">Le pouvoir de vote comme arme silencieuse</div>
+  <div class="concern" style="border-color:#B86A1A">
+    <div class="concern-title" style="color:#B86A1A">Droits de vote dans les grandes entreprises</div>
+    <div class="concern-desc">BlackRock, Vanguard et State Street votent collectivement sur les décisions stratégiques de milliers de sociétés. Nomination des PDG, politiques climatiques, rémunérations. Un pouvoir de gouvernance sans précédent.</div>
+  </div>
+  <div class="concern" style="border-color:#C4A265">
+    <div class="concern-title" style="color:#B86A1A">La question de l'intérêt public</div>
+    <div class="concern-desc">Ces fonds sont actionnaires simultanément de concurrents directs : Apple et Samsung, Coca-Cola et Pepsi, Delta et United. Le risque théorique : réduire la concurrence en alignant les stratégies.</div>
+  </div>
+  <div class="concern" style="border-color:#4A7EC7">
+    <div class="concern-title" style="color:#4A7EC7">La réponse réglementaire</div>
+    <div class="concern-desc">La FTC et la DG Concurrence européenne examinent la question. Débat académique intense entre Posner, Azar et Scott Morton. Aucune régulation contraignante adoptée à ce jour.</div>
+  </div>
+  <div style="padding:16px 18px;background:rgba(0,0,0,0.04);border:1px solid var(--bord);margin-top:4px">
+    <p style="font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#4A4A4A;line-height:1.65">"Nous sommes devenus les propriétaires par défaut de l'économie mondiale. Ce n'était pas le plan."</p>
+    <p style="font-size:9px;color:#9A9590;letter-spacing:1.5px;text-transform:uppercase;margin-top:8px">Larry Fink, fondateur de BlackRock, interview FT, 2023</p>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+  if(id==='aum') animCounters();
+}
+function animCounter(el,val,suf){
+  var s=Date.now(),d=2000,t=setInterval(function(){
+    var p=Math.min((Date.now()-s)/d,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e*val).toLocaleString('fr-FR')+suf;
+    if(p>=1)clearInterval(t);
+  },16);
+}
+function animCounters(){
+  setTimeout(function(){
+    animCounter(document.getElementById('br1'),11500,' Mds');
+    animCounter(document.getElementById('br2'),28000,' Mds');
+  },200);
+}
+// Auto-animate on first load
+window.addEventListener('load', function(){setTimeout(animCounters, 500)});
+</script>
+</body>
+</html>

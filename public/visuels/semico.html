@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semi-conducteurs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#0A0A14;--encre:#ECE7DD;--bord:rgba(255,255,255,0.08);--tech:#4A2080}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
+.tabs{display:flex;border-bottom:1px solid var(--bord)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--or);border-color:var(--or);background:rgba(196,162,101,0.05)}
+.panel{display:none;padding:24px;animation:fi 0.3s ease}
+.panel.active{display:flex;flex-direction:column;gap:20px}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column;gap:0}
+.tl-row{display:grid;grid-template-columns:70px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--bord);cursor:pointer;transition:background 0.15s}
+.tl-row:hover,.tl-row.open{background:rgba(255,255,255,0.03);margin:0 -24px;padding:14px 24px}
+.tl-yr{font-family:'Playfair Display',serif;font-size:16px;font-weight:300;color:var(--or);text-align:right;padding-top:2px}
+.tl-body{display:flex;flex-direction:column;gap:3px}
+.tl-ev{font-size:13px;font-weight:500;color:var(--encre);line-height:1.3}
+.tl-tag{display:inline-block;font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 6px;background:rgba(74,32,128,0.5);color:rgba(236,231,221,0.7);margin-top:3px;width:fit-content}
+.tl-desc{font-size:12px;color:rgba(236,231,221,0.45);line-height:1.6;display:none;margin-top:6px;font-style:italic}
+.tl-row.open .tl-desc{display:block}
+
+/* CONCENTRATION */
+.conc-title{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+.conc-bars{display:flex;flex-direction:column;gap:12px}
+.cb-row{display:grid;grid-template-columns:130px 1fr 45px;gap:10px;align-items:center}
+.cb-label{font-size:11px;color:var(--encre)}
+.cb-track{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.cb-fill{height:100%;border-radius:3px;animation:grow 1.4s ease forwards}
+@keyframes grow{from{width:0}}
+.cb-val{font-size:11px;color:var(--or);text-align:right;font-weight:600}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+.stat-box{background:var(--bg);padding:18px 20px}
+.stat-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+
+/* CARTE */
+.map-bg{background:rgba(255,255,255,0.02);border:1px solid var(--bord);padding:20px}
+.map-title{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px}
+.map-svg{width:100%;height:auto;display:block}
+
+.pulse{transform-origin:center;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0.6}}
+
+.legend{display:flex;gap:20px;margin-top:14px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:9px;color:rgba(255,255,255,0.4)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.quote{border-left:2px solid rgba(196,162,101,0.3);padding:12px 16px}
+.quote p{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:rgba(236,231,221,0.45);line-height:1.65}
+.quote cite{font-size:8px;color:rgba(196,162,101,0.5);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;display:block;font-style:normal}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Tech</span>
+  <span class="hd-sub">La guerre pour le pétrole du XXIe siècle</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('timeline',this)">Chronologie</div>
+  <div class="tab" onclick="showTab('conc',this)">Concentration</div>
+  <div class="tab" onclick="showTab('carte',this)">Carte des puces</div>
+</div>
+
+<div class="panel active" id="tab-timeline">
+  <div class="tl">
+    <div class="tl-row open" onclick="tog(this)">
+      <div class="tl-yr">1947</div>
+      <div class="tl-body">
+        <div class="tl-ev">Invention du transistor — Bell Labs</div>
+        <span class="tl-tag">Fondation</span>
+        <div class="tl-desc">Shockley, Bardeen et Brattain inventent le transistor. Début d'une révolution qui compressera le monde en quelques nanomètres. Bell Labs cède les brevets à 25 000 $ — la plus grande sous-évaluation de l'histoire industrielle.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">1965</div>
+      <div class="tl-body">
+        <div class="tl-ev">Loi de Moore — doublement tous les 2 ans</div>
+        <span class="tl-tag">Prédiction</span>
+        <div class="tl-desc">Gordon Moore prédit que le nombre de transistors sur une puce doublera tous les deux ans. Cette loi empirique devient une prophétie auto-réalisatrice qui guide 60 ans d'investissements.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">1987</div>
+      <div class="tl-body">
+        <div class="tl-ev">Fondation de TSMC à Taïwan</div>
+        <span class="tl-tag">Géopolitique</span>
+        <div class="tl-desc">Morris Chang crée le premier fondeur pur-play. TSMC ne conçoit pas de puces — il les fabrique pour les autres. Ce modèle concentre l'expertise de fabrication sur une seule île de 36 000 km².</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">2020</div>
+      <div class="tl-body">
+        <div class="tl-ev">Sanctions américaines sur Huawei</div>
+        <span class="tl-tag">Guerre froide tech</span>
+        <div class="tl-desc">Washington coupe l'accès de Huawei aux puces fabriquées avec des technologies américaines. Début de la guerre des semi-conducteurs. Pékin décide de consacrer 150 milliards $ à son autonomie.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">2022</div>
+      <div class="tl-body">
+        <div class="tl-ev">CHIPS Act — 52 Mds $ pour relocaliser</div>
+        <span class="tl-tag">Géopolitique</span>
+        <div class="tl-desc">Biden signe le CHIPS Act. 52 milliards pour ramener la fabrication de puces sur le sol américain. Intel, TSMC et Samsung reçoivent des subventions massives. L'Europe lance son propre plan à 43 milliards.</div>
+      </div>
+    </div>
+    <div class="tl-row" onclick="tog(this)">
+      <div class="tl-yr">2025</div>
+      <div class="tl-body">
+        <div class="tl-ev">DeepSeek — la puce n'est plus le seul enjeu</div>
+        <span class="tl-tag">Rupture</span>
+        <div class="tl-desc">DeepSeek R1 prouve qu'on peut entraîner un modèle de frontier avec des puces moins avancées. La vraie bataille se déplace : des puces vers les algorithmes, les données, et l'écosystème logiciel.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="tab-conc">
+  <div class="conc-title">Concentration de la chaîne de valeur</div>
+  <div class="conc-bars">
+    <div class="cb-row"><div class="cb-label">TSMC — Puces avancées</div><div class="cb-track"><div class="cb-fill" style="width:90%;background:#4A2080"></div></div><div class="cb-val">90%</div></div>
+    <div class="cb-row"><div class="cb-label">ASML — Machines EUV</div><div class="cb-track"><div class="cb-fill" style="width:100%;background:var(--or)"></div></div><div class="cb-val">100%</div></div>
+    <div class="cb-row"><div class="cb-label">Nvidia — GPU pour l'IA</div><div class="cb-track"><div class="cb-fill" style="width:88%;background:#4A7EC7"></div></div><div class="cb-val">88%</div></div>
+    <div class="cb-row"><div class="cb-label">ARM — Architecture CPU</div><div class="cb-track"><div class="cb-fill" style="width:95%;background:#2D6B4A"></div></div><div class="cb-val">95%</div></div>
+    <div class="cb-row"><div class="cb-label">Synopsys/Cadence — EDA</div><div class="cb-track"><div class="cb-fill" style="width:80%;background:#7A2D2D"></div></div><div class="cb-val">80%</div></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num" id="sc1">0</div><div class="stat-lbl">milliards $ de capitalisation Nvidia effacés le jour de DeepSeek</div></div>
+    <div class="stat-box"><div class="stat-num">3 nm</div><div class="stat-lbl">taille des transistors TSMC — 10 000× plus fin qu'un cheveu</div></div>
+    <div class="stat-box"><div class="stat-num" id="sc2">0</div><div class="stat-lbl">milliards $ investis par les USA dans le CHIPS Act</div></div>
+    <div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">seule entreprise au monde fabrique les machines EUV nécessaires — ASML</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-carte">
+  <div class="map-bg">
+    <div class="map-title">Où se fabrique le monde numérique</div>
+    <svg class="map-svg" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="320" fill="#080C14"/>
+      <!-- Continents -->
+      <path d="M50,90 L160,80 L185,130 L160,180 L75,175 L40,135 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+      <path d="M220,65 L315,60 L335,105 L315,145 L235,148 L208,105 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+      <path d="M375,55 L555,50 L575,125 L495,145 L385,132 L358,90 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+      <path d="M495,145 L625,135 L645,210 L565,248 L475,232 L455,175 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+      <path d="M250,165 L345,158 L365,220 L325,255 L252,242 L232,200 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+
+      <!-- TAIWAN — point principal pulsant -->
+      <circle cx="608" cy="175" r="14" fill="rgba(196,162,101,0.15)" class="pulse"/>
+      <circle cx="608" cy="175" r="7" fill="#C4A265"/>
+      <text x="622" y="170" font-family="DM Sans" font-size="9" fill="#C4A265" font-weight="700">TAÏWAN</text>
+      <text x="622" y="182" font-family="DM Sans" font-size="8" fill="rgba(196,162,101,0.6)">TSMC · 90% puces avancées</text>
+
+      <!-- Pays clés -->
+      <circle cx="302" cy="75" r="5" fill="#4A7EC7"/>
+      <text x="312" y="78" font-family="DM Sans" font-size="8" fill="#4A7EC7">Pays-Bas</text>
+      <text x="312" y="88" font-family="DM Sans" font-size="7" fill="rgba(74,126,199,0.6)">ASML · EUV monopole</text>
+
+      <circle cx="130" cy="105" r="5" fill="#4A7EC7"/>
+      <text x="140" y="108" font-family="DM Sans" font-size="8" fill="#4A7EC7">USA</text>
+      <text x="140" y="118" font-family="DM Sans" font-size="7" fill="rgba(74,126,199,0.6)">Design · IA · CHIPS Act</text>
+
+      <circle cx="558" cy="95" r="5" fill="#C75A5A"/>
+      <text x="568" y="98" font-family="DM Sans" font-size="8" fill="#C75A5A">Chine</text>
+      <text x="568" y="108" font-family="DM Sans" font-size="7" fill="rgba(199,90,90,0.6)">7 nm max · 150 Mds$ plan</text>
+
+      <circle cx="560" cy="200" r="4" fill="rgba(255,255,255,0.4)"/>
+      <text x="570" y="203" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.4)">Corée du Sud</text>
+
+      <circle cx="512" cy="160" r="4" fill="rgba(255,255,255,0.4)"/>
+      <text x="520" y="163" font-family="DM Sans" font-size="8" fill="rgba(255,255,255,0.4)">Japon</text>
+    </svg>
+  </div>
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#C4A265"></div>Fabrication avancée (TSMC)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#4A7EC7"></div>Équipements & design occidental</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#C75A5A"></div>Ambitions chinoises</div>
+  </div>
+  <div class="quote" style="margin-top:16px">
+    <p>Si Taïwan était envahie et TSMC stoppée, l'économie mondiale perdrait l'accès aux puces avancées. Il n'existe pas de plan B à court terme.</p>
+    <cite>Chris Miller, Chip War, 2022</cite>
+  </div>
+</div>
+
+<script>
+function showTab(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+  if (id === 'conc') animateCounters();
+}
+function tog(el) {
+  document.querySelectorAll('.tl-row').forEach(r => r.classList.remove('open'));
+  el.classList.add('open');
+}
+function animCounter(el, val, suf) {
+  var s = Date.now(), d = 2000;
+  var t = setInterval(function() {
+    var p = Math.min((Date.now()-s)/d, 1), e = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(e*val).toLocaleString('fr-FR') + suf;
+    if (p >= 1) clearInterval(t);
+  }, 16);
+}
+function animateCounters() {
+  setTimeout(function() {
+    animCounter(document.getElementById('sc1'), 593, ' Mds');
+    animCounter(document.getElementById('sc2'), 52, ' Mds');
+  }, 200);
+}
+</script>
+</body>
+</html>

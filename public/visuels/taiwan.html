@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taïwan — Le détroit le plus dangereux du monde</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#080C14;--encre:#ECE7DD;--bord:rgba(255,255,255,0.07);--geo:#1A3E6B}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
+.tabs{display:flex;border-bottom:1px solid var(--bord)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--or);border-color:var(--or);background:rgba(196,162,101,0.04)}
+.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+
+/* DONUT */
+.donut-wrap{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.donut-svg{flex-shrink:0;width:160px;height:160px}
+.donut-legend{display:flex;flex-direction:column;gap:10px;flex:1}
+.dleg{display:flex;align-items:center;gap:10px}
+.dleg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.dleg-label{font-size:12px;color:var(--encre);flex:1}
+.dleg-val{font-size:13px;font-weight:600;color:var(--or)}
+
+/* DONUT animation */
+.donut-seg{stroke-dashoffset:283;animation:donutAnim 1.5s ease forwards}
+@keyframes donutAnim{to{stroke-dashoffset:var(--target)}}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+.stat{background:var(--bg);padding:16px 18px}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1;margin-bottom:5px}
+.stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+
+.sc-item{padding:14px 18px;border-left:3px solid;margin-bottom:1px;background:rgba(255,255,255,0.02)}
+.sc-name{font-size:12px;font-weight:600;margin-bottom:4px}
+.sc-desc{font-size:11px;color:rgba(236,231,221,0.4);line-height:1.55;font-style:italic}
+.sc-proba{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+
+.quote{border-left:2px solid rgba(196,162,101,0.25);padding:10px 16px}
+.quote p{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.45);line-height:1.65}
+.quote cite{font-size:8px;color:rgba(196,162,101,0.5);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;display:block;font-style:normal}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Géopolitique</span>
+  <span class="hd-sub">Taïwan — Le détroit le plus dangereux du monde</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('puces',this)">Puces mondiales</div>
+  <div class="tab" onclick="showTab('scenarios',this)">Scénarios 2026</div>
+  <div class="tab" onclick="showTab('cout',this)">Coût d'un conflit</div>
+</div>
+
+<div class="panel active" id="tab-puces">
+  <div class="lbl">Part de marché — puces avancées (≤ 7nm)</div>
+  <div class="donut-wrap">
+    <svg class="donut-svg" viewBox="0 0 160 160">
+      <circle cx="80" cy="80" r="62" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="28"/>
+      <!-- TSMC 90% -->
+      <circle cx="80" cy="80" r="62" fill="none" stroke="#C4A265" stroke-width="28" stroke-dasharray="283" stroke-dashoffset="283" style="animation:donutAnim 1.5s 0.2s ease forwards;--target:28.3;transform:rotate(-90deg);transform-origin:center"/>
+      <!-- Samsung 8% -->
+      <circle cx="80" cy="80" r="62" fill="none" stroke="#4A7EC7" stroke-width="28" stroke-dasharray="283" stroke-dashoffset="283" style="animation:donutAnim 1.5s 0.8s ease forwards;--target:257;transform:rotate(234deg);transform-origin:center"/>
+      <!-- Intel 2% -->
+      <circle cx="80" cy="80" r="62" fill="none" stroke="#2D6B4A" stroke-width="28" stroke-dasharray="283" stroke-dashoffset="283" style="animation:donutAnim 1.5s 1.1s ease forwards;--target:277;transform:rotate(263deg);transform-origin:center"/>
+      <text x="80" y="76" text-anchor="middle" font-family="Playfair Display" font-size="24" font-weight="300" fill="#C4A265">90%</text>
+      <text x="80" y="92" text-anchor="middle" font-family="DM Sans" font-size="9" fill="rgba(255,255,255,0.4)">TSMC</text>
+    </svg>
+    <div class="donut-legend">
+      <div class="dleg"><div class="dleg-dot" style="background:#C4A265"></div><div class="dleg-label">TSMC (Taïwan)</div><div class="dleg-val">90%</div></div>
+      <div class="dleg"><div class="dleg-dot" style="background:#4A7EC7"></div><div class="dleg-label">Samsung (Corée)</div><div class="dleg-val">8%</div></div>
+      <div class="dleg"><div class="dleg-dot" style="background:#2D6B4A"></div><div class="dleg-label">Intel (USA)</div><div class="dleg-val">2%</div></div>
+      <div class="dleg"><div class="dleg-dot" style="background:#7A2D2D"></div><div class="dleg-label">Chine (SMIC)</div><div class="dleg-val">0%</div></div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">36 000</div><div class="stat-lbl">km² — superficie de Taïwan, moins grande que la Suisse</div></div>
+    <div class="stat"><div class="stat-num">180 km</div><div class="stat-lbl">largeur du détroit de Taïwan — la distance la plus surveillée du monde</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-scenarios">
+  <div class="lbl">Scénarios 2026–2030</div>
+  <div class="sc-item" style="border-color:#2D6B4A">
+    <div class="sc-name" style="color:#4AAA7A">Statu quo tendu</div>
+    <div class="sc-desc">La Chine maintient la pression militaire sans envahir. Exercices réguliers. Guerre économique et technologique. Taïwan accélère sa défense asymétrique. Probabilité la plus élevée.</div>
+    <div class="sc-proba" style="color:#4AAA7A">Probabilité estimée : élevée</div>
+  </div>
+  <div class="sc-item" style="border-color:#C4A265">
+    <div class="sc-name" style="color:var(--or)">Blocage naval</div>
+    <div class="sc-desc">La Chine impose un blocus sans invasion terrestre. Coupe les approvisionnements. Teste la réponse américaine. Scénario jugé "plus probable qu'une invasion" par les analystes de RAND.</div>
+    <div class="sc-proba" style="color:var(--or)">Probabilité estimée : moyenne</div>
+  </div>
+  <div class="sc-item" style="border-color:#C75A5A">
+    <div class="sc-name" style="color:#C75A5A">Invasion militaire</div>
+    <div class="sc-desc">Opération amphibie de grande envergure. Requiert 2 ans de préparation visible. Coût humain et économique considérable. Xi Jinping a fixé 2027 comme date symbolique (centenaire de l'APL).</div>
+    <div class="sc-proba" style="color:#C75A5A">Probabilité estimée : faible mais croissante</div>
+  </div>
+</div>
+
+<div class="panel" id="tab-cout">
+  <div class="lbl">Coût économique estimé d'un conflit (1ère année)</div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num" id="tc1">0</div><div class="stat-lbl">milliards $ — coût économique mondial estimé dès la première année</div></div>
+    <div class="stat"><div class="stat-num">−100%</div><div class="stat-lbl">production de puces avancées mondiales si TSMC est stoppée</div></div>
+    <div class="stat"><div class="stat-num">2–3</div><div class="stat-lbl">années minimum pour construire une alternative même partielle à TSMC</div></div>
+    <div class="stat"><div class="stat-num" id="tc2">0</div><div class="stat-lbl">milliards $ d'aide militaire US à Taïwan depuis 1979</div></div>
+  </div>
+  <div class="quote">
+    <p>Un conflit autour de Taïwan dépasserait en coût économique la Seconde Guerre mondiale. Aucun scénario ne protège l'économie mondiale des conséquences d'un arrêt de TSMC.</p>
+    <cite>Bloomberg Economics, 2023</cite>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+  if(id==='cout') animCounters();
+}
+function animCounter(el,val,suf){
+  var s=Date.now(),d=2000,t=setInterval(function(){
+    var p=Math.min((Date.now()-s)/d,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e*val).toLocaleString('fr-FR')+suf;
+    if(p>=1)clearInterval(t);
+  },16);
+}
+function animCounters(){
+  setTimeout(function(){
+    animCounter(document.getElementById('tc1'),10600,' Mds');
+    animCounter(document.getElementById('tc2'),19,' Mds');
+  },200);
+}
+</script>
+</body>
+</html>
