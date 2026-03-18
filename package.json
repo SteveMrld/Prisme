@@ -12,7 +12,9 @@
     "react-dom": "18.2.0",
     "@supabase/supabase-js": "^2.45.4",
     "@supabase/ssr": "^0.5.1",
-    "stripe": "^16.12.0"
+    "stripe": "^16.12.0",
+    "framer-motion": "^11.11.0",
+    "recharts": "^2.13.0"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",

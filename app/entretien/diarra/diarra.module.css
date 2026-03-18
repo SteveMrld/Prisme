@@ -78,7 +78,7 @@
   overflow: hidden;
   height: 520px;
   position: relative;
-  background: var(--papier);
+  background: #1a1a1a;
 }
 
 .heroPortrait::after {
@@ -87,7 +87,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120px;
+  height: 200px;
   background: linear-gradient(to bottom, transparent, var(--papier));
   pointer-events: none;
 }
@@ -96,9 +96,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 10%;
+  object-position: center 15%;
   display: block;
-  mix-blend-mode: multiply;
+  filter: grayscale(20%) contrast(1.05);
 }
 
 .questionsSection {
@@ -248,18 +248,13 @@
 
 @media (max-width: 900px) {
   .page { padding: 0 24px 60px; }
-  .hero { 
-    grid-template-columns: 1fr 160px;
-    gap: 24px;
-    align-items: start;
-  }
+  .hero { grid-template-columns: 1fr; gap: 0; }
   .heroPortrait { 
-    height: 200px;
-    width: 160px;
+    height: 320px;
+    order: -1;
+    margin: 0 -24px;
   }
-  .portrait {
-    object-position: center 20%;
-  }
+  .portrait { object-position: center 20%; }
   .comingInner { padding: 40px 24px; }
   .footer { padding: 40px 24px; }
 }
