@@ -121,6 +121,11 @@ export default function ConnexionPage() {
             <button className={styles.btn} disabled={loading}>
               {loading ? 'Chargement…' : mode === 'login' ? 'Se connecter' : mode === 'signup' ? 'Créer mon compte' : 'Recevoir le lien'}
             </button>
+            {mode === 'login' && (
+              <Link href="/mot-de-passe-oublie" className={styles.forgot}>
+                Mot de passe oublié ?
+              </Link>
+            )}
           </form>
 
           {mode === 'login' && (
