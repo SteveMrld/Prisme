@@ -234,14 +234,17 @@
 
 @media (max-width: 900px) {
   .page { padding: 0 24px 60px; }
-  .hero { grid-template-columns: 1fr; gap: 0; }
+  .hero { 
+    grid-template-columns: 1fr 160px;
+    gap: 24px;
+    align-items: start;
+  }
   .heroPortrait { 
-    height: 260px;
-    order: -1;
-    margin: 0 -24px;
+    height: 200px;
+    width: 160px;
   }
   .portrait {
-    object-position: center 30%;
+    object-position: center 20%;
   }
   .comingInner { padding: 40px 24px; }
   .footer { padding: 40px 24px; }
