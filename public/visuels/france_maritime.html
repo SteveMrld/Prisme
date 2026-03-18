@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>France Maritime — L'empire ignoré</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#060C18;--encre:#ECE7DD;--bord:rgba(255,255,255,0.07);--fr:#1A3E6B}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
+.tabs{display:flex;border-bottom:1px solid var(--bord)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--or);border-color:var(--or)}
+.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
+.panel.active{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+
+/* MONDE SVG */
+.world-svg{width:100%;height:auto;display:block}
+.zee-zone{opacity:0;animation:zeeAppear 0.8s ease forwards}
+@keyframes zeeAppear{to{opacity:1}}
+
+/* TERRITOIRE */
+.terr{padding:12px 16px;border-left:3px solid rgba(196,162,101,0.4);background:rgba(255,255,255,0.02);margin-bottom:1px;cursor:pointer;transition:background 0.15s}
+.terr:hover{background:rgba(255,255,255,0.04)}
+.terr-name{font-size:12px;font-weight:600;margin-bottom:3px;color:var(--encre)}
+.terr-ocean{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--or);margin-bottom:3px}
+.terr-desc{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5;font-style:italic}
+
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
+.stat{background:var(--bg);padding:16px 18px}
+.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1;margin-bottom:5px}
+.stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+
+.quote{border-left:2px solid rgba(196,162,101,0.25);padding:10px 16px}
+.quote p{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.45);line-height:1.65}
+</style>
+</head>
+<body>
+<div class="hd">
+  <span class="hd-tag">Visualisation · Géopolitique</span>
+  <span class="hd-sub">La France maritime — un empire ignoré</span>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('carte',this)">ZEE mondiale</div>
+  <div class="tab" onclick="showTab('territoires',this)">Territoires</div>
+  <div class="tab" onclick="showTab('enjeux',this)">Enjeux stratégiques</div>
+</div>
+
+<div class="panel active" id="tab-carte">
+  <div class="lbl">Zone économique exclusive française — 11,7 millions km²</div>
+  <svg class="world-svg" viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg">
+    <rect width="700" height="360" fill="#060C18"/>
+    <!-- Fond mer -->
+    <rect width="700" height="360" fill="#0A1428" rx="0"/>
+    <!-- Grille -->
+    <line x1="0" y1="180" x2="700" y2="180" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+    <line x1="350" y1="0" x2="350" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+
+    <!-- Continents schématiques -->
+    <path d="M55,90 L165,80 L190,130 L168,182 L80,178 L42,138 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+    <path d="M105,180 L178,174 L195,230 L158,258 L105,242 L88,208 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+    <path d="M225,65 L318,60 L338,108 L318,148 L238,152 L210,108 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+    <path d="M258,162 L348,155 L368,220 L328,255 L260,242 L240,200 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+    <path d="M378,58 L558,52 L578,128 L498,148 L388,135 L362,92 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+    <path d="M498,148 L628,138 L648,212 L568,250 L478,235 L458,178 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+
+    <!-- ZEE françaises — zones colorées -->
+    <!-- Métropole -->
+    <circle cx="268" cy="90" r="18" fill="rgba(26,62,107,0.35)" class="zee-zone" style="animation-delay:0.2s"/>
+    <text x="268" y="93" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#4A7EC7" font-weight="700">FR</text>
+
+    <!-- Caraïbes (Martinique, Guadeloupe, St Martin) -->
+    <circle cx="148" cy="168" r="15" fill="rgba(196,162,101,0.25)" class="zee-zone" style="animation-delay:0.4s"/>
+    <text x="148" y="172" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Caraïbes</text>
+
+    <!-- Guyane -->
+    <circle cx="162" cy="198" r="12" fill="rgba(196,162,101,0.2)" class="zee-zone" style="animation-delay:0.6s"/>
+    <text x="162" y="202" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Guyane</text>
+
+    <!-- Réunion / Mayotte -->
+    <circle cx="448" cy="222" r="14" fill="rgba(196,162,101,0.25)" class="zee-zone" style="animation-delay:0.8s"/>
+    <text x="448" y="226" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Réunion</text>
+
+    <!-- Polynésie française -->
+    <circle cx="95" cy="248" r="22" fill="rgba(196,162,101,0.3)" class="zee-zone" style="animation-delay:1s"/>
+    <text x="95" y="252" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Polynésie</text>
+
+    <!-- Nouvelle-Calédonie -->
+    <circle cx="582" cy="245" r="16" fill="rgba(196,162,101,0.25)" class="zee-zone" style="animation-delay:1.2s"/>
+    <text x="582" y="249" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">N-Calédonie</text>
+
+    <!-- TAAF (Terres australes) -->
+    <circle cx="380" cy="310" r="18" fill="rgba(196,162,101,0.2)" class="zee-zone" style="animation-delay:1.4s"/>
+    <text x="380" y="314" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">TAAF</text>
+
+    <!-- Label principal -->
+    <text x="350" y="25" text-anchor="middle" font-family="Playfair Display" font-size="12" font-style="italic" fill="rgba(196,162,101,0.6)">ZEE française — 11,7 millions km² — 2ème mondiale</text>
+  </svg>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">11,7M</div><div class="stat-lbl">km² de ZEE — 2ème plus grande zone économique exclusive au monde</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-lbl">fuseaux horaires couverts par les territoires français — le maximum mondial</div></div>
+  </div>
+</div>
+
+<div class="panel" id="tab-territoires">
+  <div class="lbl">Territoires et leurs océans</div>
+  <div class="terr"><div class="terr-ocean">Atlantique</div><div class="terr-name">Martinique · Guadeloupe · Saint-Martin · Saint-Barthélemy</div><div class="terr-desc">Départements et collectivités d'outre-mer. Présence militaire française dans les Caraïbes. Surveillance du trafic de drogue atlantique.</div></div>
+  <div class="terr"><div class="terr-ocean">Atlantique Sud</div><div class="terr-name">Guyane française</div><div class="terr-desc">Seule frontière terrestre de l'UE avec le Brésil. Base de lancement de Kourou — accès spatial européen. Or et biodiversité amazoniennes.</div></div>
+  <div class="terr"><div class="terr-ocean">Pacifique</div><div class="terr-name">Polynésie française · Nouvelle-Calédonie · Wallis-et-Futuna · Clipperton</div><div class="terr-desc">La Polynésie seule représente une ZEE de 4,8 millions km². La Nouvelle-Calédonie concentre 25% des réserves mondiales de nickel.</div></div>
+  <div class="terr"><div class="terr-ocean">Océan Indien</div><div class="terr-name">Réunion · Mayotte · TAAF · Île Tromelin</div><div class="terr-desc">Les Terres australes et antarctiques françaises couvrent une zone maritime considérable. Mayotte est disputée par les Comores.</div></div>
+</div>
+
+<div class="panel" id="tab-enjeux">
+  <div class="lbl">Pourquoi cet empire est stratégique</div>
+  <div class="terr" style="border-color:#C4A265">
+    <div class="terr-name" style="color:var(--or)">Nodules polymétalliques — la prochaine ruée</div>
+    <div class="terr-desc">Le fond des océans sous ZEE française contient des concentrations de cobalt, manganèse et nickel non exploitées. Avec la transition énergétique, ces ressources deviennent stratégiques.</div>
+  </div>
+  <div class="terr" style="border-color:#4A7EC7">
+    <div class="terr-name" style="color:#4A7EC7">Câbles sous-marins — internet mondial</div>
+    <div class="terr-desc">95% du trafic internet mondial transite par des câbles sous-marins. La France surveille des nœuds stratégiques via ses ZEE. Les TAAF contrôlent des routes câblaires critiques.</div>
+  </div>
+  <div class="terr" style="border-color:#2D6B4A">
+    <div class="terr-name" style="color:#4AAA7A">Biodiversité marine — capital naturel</div>
+    <div class="terr-desc">La ZEE française abrite une biodiversité marine parmi les plus riches. La Polynésie seule représente 20% des atolls mondiaux. Capital naturel estimé à plusieurs milliers de milliards d'euros.</div>
+  </div>
+  <div class="quote">
+    <p>La France a le deuxième espace maritime mondial et n'en fait pas grand-chose. C'est une puissance océanique qui ne se pense pas comme telle.</p>
+    <cite>Cyrille Martin, Institut français de la mer, 2024</cite>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
