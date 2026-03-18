@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Dollar — I. La naissance d'un empire</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:#060608;color:#ECE7DD;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── PROGRESS ── */
+#progress{position:fixed;top:0;left:0;height:2px;background:#C4A265;width:0%;z-index:100;transition:width 0.1s}
+
+/* ── HEADER ── */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:50;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,8,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.hd-series{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C4A265;border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-nav{display:flex;gap:4px}
+.hd-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background 0.2s}
+.hd-dot.active{background:#C4A265}
+
+/* ── SECTIONS ── */
+.chapter{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 40px 60px;position:relative}
+.chapter:nth-child(even){background:rgba(255,255,255,0.015)}
+
+.ch-inner{max-width:900px;width:100%;display:grid;gap:60px}
+.ch-inner.two-col{grid-template-columns:1fr 1fr;align-items:center;gap:80px}
+
+/* ── TYPOGRAPHY ── */
+.eyebrow{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#C4A265;margin-bottom:16px}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:300;line-height:1.05;letter-spacing:-2px;color:#ECE7DD;margin-bottom:24px}
+.ch-title em{font-style:italic;color:#C4A265}
+.ch-body{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,21px);font-style:italic;color:rgba(236,231,221,0.55);line-height:1.75}
+.ch-text{font-size:15px;color:rgba(236,231,221,0.45);line-height:1.8;margin-top:16px}
+
+/* ── STAT BLOCK ── */
+.stat-big{display:flex;flex-direction:column;gap:6px;padding:24px 0;border-top:1px solid rgba(255,255,255,0.07)}
+.stat-num{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,88px);font-weight:300;letter-spacing:-3px;line-height:1;color:#ECE7DD}
+.stat-unit{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C4A265;margin-top:4px}
+.stat-desc{font-size:13px;color:rgba(236,231,221,0.35);line-height:1.6;margin-top:8px;max-width:320px}
+
+/* ── TIMELINE ── */
+.tl{display:flex;flex-direction:column;gap:0}
+.tl-item{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:all 0.2s}
+.tl-item:hover{background:rgba(255,255,255,0.03);margin:0 -20px;padding:20px}
+.tl-yr{font-family:'Playfair Display',serif;font-size:18px;font-weight:300;color:#C4A265;padding-top:3px;line-height:1}
+.tl-ev{font-size:14px;font-weight:600;color:#ECE7DD;margin-bottom:6px}
+.tl-desc{font-size:13px;color:rgba(236,231,221,0.4);line-height:1.65;font-style:italic;display:none}
+.tl-item.open .tl-desc{display:block}
+
+/* ── PIE CHART SVG ── */
+.chart-wrap{display:flex;flex-direction:column;gap:20px;align-items:center}
+.legend-row{display:flex;flex-direction:column;gap:8px;width:100%;max-width:260px}
+.leg-item{display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(236,231,221,0.5)}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── QUOTE ── */
+.big-quote{padding:48px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);text-align:center;position:relative}
+.big-quote::before{content:'"';position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:120px;color:rgba(196,162,101,0.1);line-height:1}
+.bq-text{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,26px);font-style:italic;color:rgba(236,231,221,0.75);line-height:1.55;max-width:680px;margin:0 auto 20px}
+.bq-cite{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5)}
+
+/* ── PART NAV ── */
+.part-nav{display:flex;justify-content:space-between;align-items:center;padding:40px;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06);margin-top:40px}
+.part-tag{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+.part-link{display:flex;flex-direction:column;gap:4px;text-decoration:none;transition:opacity 0.2s}
+.part-link:hover{opacity:0.7}
+.part-link-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#C4A265}
+.part-link-title{font-family:'Playfair Display',serif;font-size:16px;color:#ECE7DD}
+
+@media(max-width:768px){
+  .ch-inner.two-col{grid-template-columns:1fr}
+  .chapter{padding:100px 20px 60px}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="site-header">
+  <span class="hd-series">Trilogie du Dollar · I / III</span>
+  <div class="hd-nav">
+    <div class="hd-dot active" title="Partie I"></div>
+    <div class="hd-dot" onclick="location.href='dollar2.html'" title="Partie II"></div>
+    <div class="hd-dot" onclick="location.href='dollar3.html'" title="Partie III"></div>
+  </div>
+</header>
+
+<!-- CHAPTER 1 — TITRE -->
+<section class="chapter">
+  <div class="ch-inner">
+    <div>
+      <div class="eyebrow">Trilogie du Dollar · Partie I</div>
+      <h1 class="ch-title">La naissance<br>d'un <em>empire</em></h1>
+      <p class="ch-body">Comment une monnaie nationale est devenue l'étalon de l'économie mondiale — et pourquoi cette domination n'était pas une fatalité.</p>
+      <p class="ch-text">En 1944, dans un hôtel du New Hampshire, des délégués de 44 pays ont redessiné l'architecture financière mondiale. Ils ne savaient pas qu'ils créaient l'empire le plus puissant de l'histoire — sans armée, sans territoire, sans frontière.</p>
+    </div>
+    <div>
+      <div class="stat-big">
+        <div class="stat-num" id="cnt1">0</div>
+        <div class="stat-unit">% des réserves mondiales en dollars</div>
+        <div class="stat-desc">Part du dollar dans les réserves officielles des banques centrales mondiales. Au pic (1978) : 85%.</div>
+      </div>
+      <div class="stat-big">
+        <div class="stat-num">1944</div>
+        <div class="stat-unit">Conférence de Bretton Woods</div>
+        <div class="stat-desc">730 délégués, 3 semaines, un hôtel du New Hampshire. Le dollar prend le trône de la livre sterling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 — BRETTON WOODS -->
+<section class="chapter">
+  <div class="ch-inner two-col">
+    <div>
+      <div class="eyebrow">1944 — L'acte fondateur</div>
+      <h2 class="ch-title" style="font-size:clamp(28px,4vw,48px)">Bretton<br><em>Woods</em></h2>
+      <p class="ch-body">L'Europe est en ruines. L'Amérique sort de la guerre avec 2/3 des réserves d'or mondiales. Le rapport de force est total.</p>
+      <p class="ch-text">John Maynard Keynes, pour les Britanniques, plaidait pour une monnaie internationale neutre : le "bancor". Harry Dexter White, pour les Américains, voulait le dollar. Les Américains ont gagné. Keynes est reparti défait, et il est mort deux ans après.</p>
+    </div>
+    <div>
+      <div class="tl">
+        <div class="tl-item open" onclick="tog(this)">
+          <div class="tl-yr">1944</div>
+          <div><div class="tl-ev">Accords de Bretton Woods</div><div class="tl-desc">35$ = 1 once d'or. Toutes les monnaies mondiales sont indexées sur le dollar, lui-même indexé sur l'or. Les États-Unis possèdent 70% de l'or mondial.</div></div>
+        </div>
+        <div class="tl-item" onclick="tog(this)">
+          <div class="tl-yr">1945</div>
+          <div><div class="tl-ev">Création du FMI et de la Banque mondiale</div><div class="tl-desc">Deux institutions basées à Washington, dirigées de facto par les États-Unis. Les règles du jeu économique mondial seront écrites à Washington.</div></div>
+        </div>
+        <div class="tl-item" onclick="tog(this)">
+          <div class="tl-yr">1957</div>
+          <div><div class="tl-ev">Le "dilemme de Triffin"</div><div class="tl-desc">L'économiste belge Robert Triffin identifie la contradiction fondamentale : pour fournir des liquidités mondiales, les USA doivent avoir des déficits — mais ces déficits sapent la confiance dans le dollar.</div></div>
+        </div>
+        <div class="tl-item" onclick="tog(this)">
+          <div class="tl-yr">1971</div>
+          <div><div class="tl-ev">Nixon ferme le guichet de l'or</div><div class="tl-desc">"Le dollar est notre monnaie, mais c'est votre problème." — John Connally, secrétaire au Trésor. Le 15 août 1971, Nixon suspend la convertibilité dollar-or. La fin de Bretton Woods. Le début d'autre chose.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 — PETRODOLLAR -->
+<section class="chapter">
+  <div class="ch-inner">
+    <div class="big-quote">
+      <p class="bq-text">Vous vendrez votre pétrole en dollars. En échange, nous garantirons la sécurité de votre régime.</p>
+      <div class="bq-cite">Accord USA-Arabie Saoudite, 1974 (reconstitution)</div>
+    </div>
+    <div class="ch-inner two-col" style="gap:40px;margin-top:0">
+      <div>
+        <div class="eyebrow">1974 — Le pacte du siècle</div>
+        <h2 class="ch-title" style="font-size:clamp(24px,3.5vw,40px)">Le <em>pétrodollar</em></h2>
+        <p class="ch-body">Après la fin de l'étalon-or, le dollar avait besoin d'un nouveau fondement. Kissinger a trouvé la solution : le pétrole.</p>
+        <p class="ch-text">L'accord avec l'Arabie Saoudite est simple et brillant : Riyad vend son pétrole exclusivement en dollars, et place ses pétrodollars en bons du Trésor américain. En échange, Washington garantit la sécurité du régime saoudien. Le dollar n'est plus adossé à l'or. Il est adossé à l'énergie mondiale.</p>
+      </div>
+      <div>
+        <div class="stat-big">
+          <div class="stat-num">13%</div>
+          <div class="stat-unit">du pétrole mondial facturé hors dollar</div>
+          <div class="stat-desc">En 2024. Contre 0% en 1975. La fissure est réelle, mais elle reste marginale.</div>
+        </div>
+        <div class="stat-big">
+          <div class="stat-num">6 T$</div>
+          <div class="stat-unit">de transactions en dollars par jour</div>
+          <div class="stat-desc">Sur les marchés des changes mondiaux (FOREX). Le dollar représente 88% de toutes les transactions de change.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="part-nav">
+  <span class="part-tag">Trilogie du Dollar · I / III</span>
+  <a href="dollar2.html" class="part-link">
+    <span class="part-link-label">Partie suivante →</span>
+    <span class="part-link-title">II. L'arme financière</span>
+  </a>
+</div>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',function(){
+  var s=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress').style.width=(window.scrollY/s*100)+'%';
+});
+// Counter animation
+function animCount(el,val,suf,dur){
+  var s=Date.now(),t=setInterval(function(){
+    var p=Math.min((Date.now()-s)/dur,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(e*val)+suf;
+    if(p>=1)clearInterval(t);
+  },16);
+}
+window.addEventListener('load',function(){
+  setTimeout(function(){animCount(document.getElementById('cnt1'),58,'%',2000)},500);
+});
+function tog(el){
+  document.querySelectorAll('.tl-item').forEach(function(i){i.classList.remove('open')});
+  el.classList.add('open');
+}
+</script>
+</body>
+</html>
