@@ -236,12 +236,12 @@
   .page { padding: 0 24px 60px; }
   .hero { grid-template-columns: 1fr; gap: 0; }
   .heroPortrait { 
-    height: 420px;
+    height: 260px;
     order: -1;
     margin: 0 -24px;
   }
   .portrait {
-    object-position: center 15%;
+    object-position: center 30%;
   }
   .comingInner { padding: 40px 24px; }
   .footer { padding: 40px 24px; }
