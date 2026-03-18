@@ -1010,8 +1010,8 @@
   width: 100%;
 }
 
-/* Paragraphes globaux */
-.prisme-article p {
+/* Paragraphes globaux — exclu les composants interactifs */
+.prisme-article p:not(.mzone p):not(.sw p):not(.si p):not(.sl-body):not(.sl-box):not(.card p):not(.verso-item p):not(.vitem p):not(.prospectif p):not(.pull-quote p):not(.exergue p) {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(17px, 2.2vw, 21px);
   line-height: 1.85;
@@ -1024,9 +1024,9 @@
   box-sizing: border-box;
 }
 
-/* Titres de section */
-.prisme-article h2,
-.prisme-article h3 {
+/* Titres de section — exclu les composants interactifs */
+.prisme-article h2:not(.mzone h2):not(.card h2),
+.prisme-article h3:not(.mzone h3):not(.card h3) {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   color: var(--encre);
@@ -1238,4 +1238,39 @@
   .prisme-article .article-header {
     padding: 32px 20px 20px;
   }
+}
+
+/* ── Reset complet pour les composants interactifs ── */
+/* Ces blocs ont leurs propres styles — on ne touche à rien */
+.prisme-article .mzone,
+.prisme-article .mzone *,
+.prisme-article .sw,
+.prisme-article .sw *,
+.prisme-article .si,
+.prisme-article .si * {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Restaure le padding interne du mzone */
+.prisme-article .mmeta { padding: 16px 24px 12px !important; }
+.prisme-article .sw { padding: 32px 40px !important; }
+.prisme-article .mnav { padding: 14px 24px !important; }
+
+/* iframes — pleine largeur sans padding */
+.prisme-article .content-embed {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 40px 0 !important;
+}
+
+.prisme-article .content-embed iframe {
+  display: block;
+  width: 100%;
+  border: none;
 }
