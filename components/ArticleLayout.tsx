@@ -1,5 +1,6 @@
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
+import { ReadingProgress } from './ArticleAnimations'
 
 interface ArticleLayoutProps {
   title: string
@@ -26,6 +27,7 @@ export default function ArticleLayout({
 
   return (
     <>
+      <ReadingProgress />
       <Header activeNav={category} />
 
       {image && !hasInternalHeader && (

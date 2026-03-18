@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Header from '../../components/Header'
 import articlesData from '../../lib/articles.json'
 import styles from './category.module.css'
+import { AnimBand, AnimFeatured, AnimGrid, AnimCard } from './CategoryAnimations'
 
 /* ── Config rubriques ── */
 const CATEGORIES: Record<string, {
@@ -133,7 +134,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
       <Header activeNav={URL_TO_NAV[category]} />
 
       {/* BANDEAU RUBRIQUE */}
-      <div className={styles.band} style={{ borderColor: config.color }}>
+      <AnimBand className={styles.band} color={config.color}>
         <div className={styles.bandInner}>
           <div className={styles.bandLabel} style={{ color: config.color }}>
             {config.label}
@@ -144,7 +145,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
         <div className={styles.bandCount} style={{ color: config.color }}>
           {articles.length} article{articles.length > 1 ? 's' : ''}
         </div>
-      </div>
+      </AnimBand>
 
       {articles.length === 0 ? (
         <div className={styles.empty}>
@@ -156,6 +157,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
 
           {/* ARTICLE FEATURED */}
           {featured && (
+            <AnimFeatured>
             <Link href={`/articles/${featured.slug}`} className={styles.featured}>
               {featured.image && (
                 <div className={styles.featuredImgWrap}>
@@ -179,13 +181,15 @@ export default function CategoryPage({ params }: { params: { category: string } 
                 </span>
               </div>
             </Link>
+            </AnimFeatured>
           )}
 
           {/* GRILLE DES AUTRES ARTICLES */}
           {rest.length > 0 && (
-            <div className={styles.grid}>
+            <AnimGrid className={styles.grid}>
               {rest.map(article => (
-                <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.card}>
+                <AnimCard key={article.slug}>
+                <Link href={`/articles/${article.slug}`} className={styles.card}>
                   {article.image && (
                     <div className={styles.cardImgWrap}>
                       <img src={article.image} alt={article.title} className={styles.cardImg} />
@@ -206,8 +210,9 @@ export default function CategoryPage({ params }: { params: { category: string } 
                   </div>
                   <div className={styles.cardAccent} style={{ background: config.color }} />
                 </Link>
+                </AnimCard>
               ))}
-            </div>
+            </AnimGrid>
           )}
         </div>
       )}
