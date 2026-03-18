@@ -170,7 +170,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
 
   <!-- WATERMARK PRISME — toujours visible, discret, vertical -->
   <div id="prisme-wm">
-    <span>P</span><span>R</span><span>I</span><span>S</span><span>M</span><span>E</span>
+    <span>P</span><span>R</span><span>I</span><span>S</span><span>M</span><span>E</span><span style="opacity:0.5;margin-top:4px">.</span><span>F</span><span>R</span>
   </div>
 
 <!-- S0 TITRE -->
@@ -457,15 +457,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050507;color:#fff;f
   <!-- Lettres PRISME -->
   <div style="display:flex;gap:clamp(12px,3vw,32px);align-items:baseline">
     <span class="pk-letter" id="pk-P" style="transition-delay:0.1s">P</span>
-    <span class="pk-letter" id="pk-R" style="transition-delay:0.28s">R</span>
-    <span class="pk-letter" id="pk-I" style="transition-delay:0.46s">I</span>
-    <span class="pk-letter" id="pk-S" style="transition-delay:0.64s">S</span>
-    <span class="pk-letter" id="pk-M" style="transition-delay:0.82s">M</span>
-    <span class="pk-letter" id="pk-E" style="transition-delay:1.0s">E</span>
+    <span class="pk-letter" id="pk-R" style="transition-delay:0.25s">R</span>
+    <span class="pk-letter" id="pk-I" style="transition-delay:0.4s">I</span>
+    <span class="pk-letter" id="pk-S" style="transition-delay:0.55s">S</span>
+    <span class="pk-letter" id="pk-M" style="transition-delay:0.7s">M</span>
+    <span class="pk-letter" id="pk-E" style="transition-delay:0.85s">E</span>
+    <span class="pk-letter" id="pk-dot" style="transition-delay:1.0s;color:rgba(196,162,101,0.6);font-size:clamp(28px,5vw,56px)">.</span>
+    <span class="pk-letter" id="pk-F" style="transition-delay:1.1s">F</span>
+    <span class="pk-letter" id="pk-FR" style="transition-delay:1.22s">R</span>
   </div>
 
   <!-- Point doré séparateur -->
-  <div id="pk-dot" style="width:4px;height:4px;border-radius:50%;background:#C4A265;opacity:0;transform:scale(0);transition:opacity 0.5s ease 1.4s,transform 0.5s ease 1.4s"></div>
+  <div id="pk-gold" style="width:4px;height:4px;border-radius:50%;background:#C4A265;opacity:0;transform:scale(0);transition:opacity 0.5s ease 1.5s,transform 0.5s ease 1.5s"></div>
 
   <!-- Tagline -->
   <p id="pk-tag" style="font-family:'DM Sans',sans-serif;font-size:9px;font-weight:400;letter-spacing:6px;text-transform:uppercase;color:rgba(196,162,101,0.45);opacity:0;transform:translateY(10px);transition:opacity 0.7s ease 1.7s,transform 0.7s ease 1.7s">
@@ -577,10 +580,10 @@ function animSlide(idx){
   }
 
   // Packshot
-  var pkLetters=["pk-P","pk-R","pk-I","pk-S","pk-M","pk-E"];
+  var pkLetters=["pk-P","pk-R","pk-I","pk-S","pk-M","pk-E","pk-dot","pk-F","pk-FR"];
   pkLetters.forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove("in")});
   ["pk-line","pk-line2"].forEach(function(id){var el=document.getElementById(id);if(el)el.style.width="0px"});
-  var pd=document.getElementById("pk-dot");if(pd){pd.style.opacity="0";pd.style.transform="scale(0)";}
+  var pd=document.getElementById("pk-gold");if(pd){pd.style.opacity="0";pd.style.transform="scale(0)";}
   var pt=document.getElementById("pk-tag");if(pt){pt.style.opacity="0";pt.style.transform="translateY(10px)";}
   if(idx===12){
     setTimeout(function(){
@@ -590,8 +593,8 @@ function animSlide(idx){
     pkLetters.forEach(function(id){
       setTimeout(function(){var el=document.getElementById(id);if(el)el.classList.add("in")},100);
     });
-    setTimeout(function(){if(pd){pd.style.opacity="1";pd.style.transform="scale(1)";}},1500);
-    setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)";}},1800);
+    setTimeout(function(){if(pd){pd.style.opacity="1";pd.style.transform="scale(1)";}},1700);
+    setTimeout(function(){if(pt){pt.style.opacity="1";pt.style.transform="translateY(0)";}},2000);
   }
 
   // Morph
