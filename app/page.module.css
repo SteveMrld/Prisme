@@ -52,6 +52,26 @@
 .tickerWrap {
   flex: 1;
   overflow: hidden;
+  position: relative;
+}
+
+/* Masques dégradés gauche/droite — signature Bloomberg/FT */
+.tickerFadeL,
+.tickerFadeR {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  z-index: 2;
+  pointer-events: none;
+}
+.tickerFadeL {
+  left: 0;
+  background: linear-gradient(90deg, var(--encre) 0%, transparent 100%);
+}
+.tickerFadeR {
+  right: 0;
+  background: linear-gradient(270deg, var(--encre) 0%, transparent 100%);
 }
 
 .tickerTrack {
@@ -71,25 +91,24 @@
 .tickerItem {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 11px;
   color: rgba(255,255,255,0.75);
-  padding: 0 24px;
+  padding: 0 28px;
   border-right: 1px solid rgba(255,255,255,0.08);
 }
 
-.tickerDot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.tickerCat {
-  font-size: 9px;
-  font-weight: 600;
+/* Pill catégorie — style FT/Reuters */
+.tickerPill {
+  font-size: 8px;
+  font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 2px;
+  opacity: 0.92;
+  flex-shrink: 0;
 }
 
 .tickerSignal {

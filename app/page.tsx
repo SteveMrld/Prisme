@@ -3,12 +3,7 @@ import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
 import { FadeSection, FadeCard, StaggerGrid, StaggerItem } from './HomeClient'
-
-function todayFr() {
-  return new Date().toLocaleDateString('fr-FR', {
-    day: 'numeric', month: 'long', year: 'numeric'
-  })
-}
+import Ticker from './TickerClient'
 
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
@@ -54,16 +49,6 @@ const categoryColors: Record<string, string> = {
   portrait: 'var(--portrait)', concept: 'var(--concept)'
 }
 
-const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran frappe Ras Laffan — dommages considérables sur le 1er site GNL mondial au Qatar' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Brent +6% à 114$/baril, gaz naturel +30% — marchés énergétiques en état d\'alerte' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Trump menace de détruire South Pars si l\'Iran attaque à nouveau le Qatar' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Détroit d\'Ormuz bloqué par l\'Iran — 20% des exportations pétrolières mondiales suspendues' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Macron appelle à un moratoire sur les frappes des infrastructures civiles et énergétiques' },
-  { cat: 'Société', color: 'var(--soc)', text: 'Municipales 2026 — second tour dimanche dans 1 600 communes, Paris-Marseille-Lyon en suspens' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Mojtaba Khamenei, nouveau Guide suprême d\'Iran — Ali Larijani tué dans une frappe israélienne' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'BCE — réunion de politique monétaire ce jeudi, décision sur les taux attendue à 14h15' },
-]
 
 export default function HomePage() {
   return (
@@ -71,27 +56,7 @@ export default function HomePage() {
       <Header />
 
       {/* TICKER LIVE */}
-      <div className={styles.ticker}>
-        <div className={styles.tickerLeft}>
-          <span className={styles.livePill}>
-            <span className={styles.liveDot}></span>
-            LIVE
-          </span>
-          <span className={styles.tickerDate}>{todayFr()}</span>
-        </div>
-        <div className={styles.tickerWrap}>
-          <div className={styles.tickerTrack}>
-            {[...tickerItems, ...tickerItems].map((item, i) => (
-              <span key={i} className={styles.tickerItem}>
-                <span className={styles.tickerDot} style={{ background: item.color }}></span>
-                <span className={styles.tickerCat} style={{ color: item.color }}>{item.cat}</span>
-                {item.text}
-              </span>
-            ))}
-          </div>
-        </div>
-        <Link href="/signal" className={styles.tickerSignal}>Signal →</Link>
-      </div>
+      <Ticker />
 
       {/* GRAND ENTRETIEN */}
       <FadeSection>
