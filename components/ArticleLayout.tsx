@@ -26,6 +26,23 @@ function initials(name: string) {
   return name.split(' ').map(n => n[0]).join('')
 }
 
+// Portrait URL depuis /public/portraits/
+function portraitUrl(name: string): string | null {
+  const map: Record<string, string> = {
+    'Léo Cottencin':      '/portraits/cottencin.jpg',
+    'Jade Desroses':      '/portraits/desroses.jpg',
+    'Laetitia Hélouet':   '/portraits/helouet.jpg',
+    'Fatemeh Jailani':    '/portraits/jailani.jpg',
+    'Claire Le Flécher':  '/portraits/leflecher.jpg',
+    'Élodie Mielczareck': '/portraits/mielczareck.jpg',
+    'Élisabeth Moreno':   '/portraits/moreno.jpg',
+    'Éric Ouzounian':     '/portraits/ouzounian.jpg',
+    'Pierre Sonigo':      '/portraits/sonigo.jpg',
+    'Majda Vincent':      '/portraits/vincent.jpg',
+  }
+  return map[name] || null
+}
+
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
   readTime, hasInternalHeader = false, content,
@@ -58,7 +75,10 @@ export default function ArticleLayout({
 
           {/* BYLINE HAUT */}
           <div className={styles.bylineTop}>
-            <div className={styles.bylineTopAvatar}>{initials(author)}</div>
+            {portraitUrl(author)
+              ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
+              : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
+            }
             <div>
               <div className={styles.bylineTopName}>{author}</div>
               <div className={styles.bylineTopRole}>{authorRole}</div>
@@ -72,7 +92,10 @@ export default function ArticleLayout({
 
         {/* SIGNATURE BAS */}
         <div className={styles.authorSignature}>
-          <div className={styles.authorSigAvatar}>{initials(author)}</div>
+          {portraitUrl(author)
+            ? <img src={portraitUrl(author)!} alt={author} className={styles.authorSigAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
+            : <div className={styles.authorSigAvatar}>{initials(author)}</div>
+          }
           <div className={styles.authorSigBody}>
             <div className={styles.authorSigLabel}>Auteur</div>
             <div className={styles.authorSigName}>{author}</div>

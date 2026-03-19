@@ -1121,3 +1121,43 @@ sup {
 @media (max-width: 768px) {
   .verso-grid { grid-template-columns: 1fr; gap: 24px; }
 }
+
+/* ── NAVIGATION ENTRE ARTICLES ── */
+.art-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 56px 0 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--bord);
+}
+.art-nav-item {
+  text-decoration: none;
+  color: var(--encre);
+  flex: 1;
+  padding: 16px 0;
+  transition: opacity 0.2s;
+}
+.art-nav-item:hover { opacity: 0.6; }
+.art-nav-dir {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 6px;
+}
+.art-nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--encre);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.art-nav-tag {
+  font-size: 9px;
+  color: var(--gris-l);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
