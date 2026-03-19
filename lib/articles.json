@@ -5,7 +5,9 @@
     "description": "Coups d'État au Sahel, retrait militaire, perte d'influence face à la Russie et à la Chine. La France n'a pas perdu l'Afrique par accident. Elle l'a perdue par aveuglement.",
     "image": "https://i.ibb.co/twCGQsPB/img-afrique.jpg",
     "category": "geo",
-    "readTime": "8"
+    "readTime": "8",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "arctique",
@@ -13,7 +15,9 @@
     "description": "La banquise recule à une vitesse sans précédent. Ce que la catastrophe climatique ouvre comme perspectives commerciales et militaires redessine les équilibres géopolitiques mondiaux, avec la Russie en première ligne.",
     "image": "https://i.ibb.co/jvvQx1mw/img-arctique.jpg",
     "category": "env",
-    "readTime": "12"
+    "readTime": "12",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "blackrock",
@@ -21,7 +25,9 @@
     "description": "Ensemble, BlackRock, Vanguard et State Street gèrent plus de 28 000 milliards de dollars. Jamais dans l'histoire du capitalisme des fonds privés n'ont concentré pareille puissance sur l'économie mondiale.",
     "image": "https://i.ibb.co/tw4146Sw/img-blackrock.jpg",
     "category": "eco",
-    "readTime": "11"
+    "readTime": "11",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "chine",
@@ -29,7 +35,9 @@
     "description": "En quatre décennies, Pékin a transformé une économie agraire en première puissance commerciale mondiale, et prépare maintenant la prochaine étape : devenir la première puissance technologique.",
     "image": "https://i.ibb.co/qLtNzNZP/img-chine.jpg",
     "category": "geo",
-    "readTime": "13"
+    "readTime": "13",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "cygne",
@@ -37,7 +45,9 @@
     "description": "Ces événements rares, imprévisibles et à fort impact que nos modèles ignorent systématiquement.",
     "image": "https://i.ibb.co/Pdkq9wm/img-cygne.png",
     "category": "concept",
-    "readTime": "2"
+    "readTime": "2",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "eau",
@@ -45,7 +55,9 @@
     "description": "Des glaciers himalayens aux barrages africains. Comment la maîtrise de l'eau redessine silencieusement les rapports de puissance et annonce les conflits du siècle.",
     "image": "https://i.ibb.co/mVBDmC2j/img-eau.png",
     "category": "env",
-    "readTime": "18"
+    "readTime": "18",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "empires",
@@ -53,7 +65,9 @@
     "description": "L'opération Venezuela vient de démontrer que le droit international ne dissuade plus les grandes puissances. Pour la France, qui possède des territoires dans chaque océan sans avoir les moyens de les défendre, l'heure est grave.",
     "image": "https://i.ibb.co/nN5hN0sQ/img-empires.jpg",
     "category": "geo",
-    "readTime": "13"
+    "readTime": "13",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "fiscalite",
@@ -61,7 +75,9 @@
     "description": "Le débat fiscal français est structurellement biaisé. Non par mauvaise foi, mais parce que le vocabulaire lui-même est une arme.",
     "image": "https://i.ibb.co/mrbKMSp8/img-fiscalite.jpg",
     "category": "eco",
-    "readTime": "4"
+    "readTime": "4",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "fragilite",
@@ -69,7 +85,9 @@
     "description": "Nous bâtissons nos vies sur l'illusion de la permanence. Un instant suffit pour que tout bascule, et c'est précisément cet instant qui nous apprend à quoi nous tenons.",
     "image": "https://i.ibb.co/b5HpKbFm/e5a38d4b-63ff-4677-b15b-7f56f0326c56.png",
     "category": "culture",
-    "readTime": "5"
+    "readTime": "5",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "france_maritime",
@@ -77,7 +95,9 @@
     "description": "Deuxième zone économique exclusive mondiale, présence dans trois océans et sur quatre continents. La France détient un avantage géostratégique sans équivalent en Occident, et ne sait pas quoi en faire.",
     "image": "https://i.ibb.co/JR5dhX0K/img-france-maritime.jpg",
     "category": "geo",
-    "readTime": "10"
+    "readTime": "10",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "ia",
@@ -85,7 +105,9 @@
     "description": "Ce qu'elle fait vraiment, et comment bien l'utiliser.",
     "image": "https://i.ibb.co/vCcXB6p8/img-ia-jamais.jpg",
     "category": "concept",
-    "readTime": "2"
+    "readTime": "2",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "ia_ecriture",
@@ -93,7 +115,9 @@
     "description": "L'intelligence artificielle générative produit des textes corrects, fluides, souvent convaincants. Ce qu'elle ne produit pas, ce qu'elle ne peut pas produire, c'est ce que Camus et Césaire avaient compris.",
     "image": "https://i.ibb.co/CKnpDW2N/img-ia-ecriture.jpg",
     "category": "culture",
-    "readTime": "8"
+    "readTime": "8",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "kintsugi",
@@ -101,7 +125,9 @@
     "description": "Il existe une philosophie japonaise qui répare la porcelaine avec de l'or. Une sagesse sur ce que nos fractures disent de nous, et sur ce qu'une époque obsédée par le neuf préfère ignorer.",
     "image": "https://i.ibb.co/DDtDtGwj/img-kintsugi.jpg",
     "category": "culture",
-    "readTime": "7"
+    "readTime": "7",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "lecture",
@@ -109,7 +135,9 @@
     "description": "La lecture n'est pas un loisir parmi d'autres. C'est une technologie de l'humain, l'une des plus puissantes jamais inventées. Par Jade Desroses.",
     "image": "https://i.ibb.co/b5HpKbFm/e5a38d4b-63ff-4677-b15b-7f56f0326c56.png",
     "category": "culture",
-    "readTime": "9"
+    "readTime": "9",
+    "author": "Jade Desroses",
+    "authorRole": "Contributrice · Culture & Société"
   },
   {
     "slug": "medias",
@@ -117,7 +145,9 @@
     "description": "La désinformation prospère moins parce que le mensonge est devenu habile que parce que la rigueur journalistique s'est érodée. Entre polarisation éditoriale et économie de l'attention, le diagnostic.",
     "image": "https://i.ibb.co/0yxgDcKx/img-medias.jpg",
     "category": "soc",
-    "readTime": "7"
+    "readTime": "7",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "morrison",
@@ -125,7 +155,9 @@
     "description": "Romancière, essayiste, première femme noire Nobel de littérature. Elle a consacré une vie entière à fouiller les blessures de la mémoire afro-américaine, et à les transformer en langage.",
     "image": "https://i.ibb.co/k6c8Yw7v/img-morrison.jpg",
     "category": "portrait",
-    "readTime": "9"
+    "readTime": "9",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "musk",
@@ -133,7 +165,9 @@
     "description": "De l'Afrique du Sud à la Maison-Blanche, de SpaceX à X, la trajectoire d'un entrepreneur devenu acteur politique mondial, et les questions qu'elle soulève.",
     "image": "https://i.ibb.co/604Ft7vQ/img-musk.jpg",
     "category": "portrait",
-    "readTime": "9"
+    "readTime": "9",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "nooyi",
@@ -141,7 +175,9 @@
     "description": "Douze ans à la tête de PepsiCo, une transformation stratégique radicale, et une trajectoire qui dit autant sur les possibles du capitalisme américain que sur ses limites structurelles.",
     "image": "https://i.ibb.co/mVSTQc9c/img-nooyi.png",
     "category": "portrait",
-    "readTime": "8"
+    "readTime": "8",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "overton",
@@ -149,7 +185,9 @@
     "description": "Comment l'inacceptable devient acceptable et finit par devenir loi.",
     "image": "https://i.ibb.co/M5kS52Qm/img-overton.png",
     "category": "concept",
-    "readTime": "2"
+    "readTime": "2",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "pessimisme",
@@ -157,7 +195,9 @@
     "description": "Biais de négativité, algorithmes de l'indignation, économie de l'outrage. Notre cerveau et nos médias conspirent pour nous faire percevoir le monde plus mal qu'il n'est.",
     "image": "https://i.ibb.co/WmPb8JT/img-pessimisme.jpg",
     "category": "soc",
-    "readTime": "9"
+    "readTime": "9",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "predateurs",
@@ -165,7 +205,9 @@
     "description": "Trois empires, trois doctrines d'expansion. Le retour assumé des sphères d'influence.",
     "image": "https://i.ibb.co/FkyVvc4s/img-predateurs.jpg",
     "category": "concept",
-    "readTime": "2"
+    "readTime": "2",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "reseaux",
@@ -173,7 +215,9 @@
     "description": "Les réseaux sociaux ont tenu la promesse d'un monde connecté. Ils ont aussi produit quelque chose que personne n'avait commandé : une civilisation de la mise en scène de soi.",
     "image": "https://i.ibb.co/YFL59wJv/img-reseaux.png",
     "category": "soc",
-    "readTime": "11"
+    "readTime": "11",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "rushkoff",
@@ -181,7 +225,9 @@
     "description": "Les hommes qui ont connecté le monde rêvent maintenant de s'en extraire. Des bunkers en Nouvelle-Zélande, des gardes armés, des plans de survie. Ce n'est pas anodin.",
     "image": "https://i.ibb.co/7Npw5BJ6/img-rushkoff.jpg",
     "category": "tech",
-    "readTime": "7"
+    "readTime": "7",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "semico",
@@ -189,7 +235,9 @@
     "description": "Le 20 janvier 2025, DeepSeek a effacé 593 milliards de valorisation Nvidia en une seule séance. Cet événement n'est pas une crise boursière, c'est le symptôme d'une guerre technologique totale.",
     "image": "https://i.ibb.co/35HMs574/img-semico.jpg",
     "category": "concept",
-    "readTime": "11"
+    "readTime": "11",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "silence",
@@ -197,7 +245,9 @@
     "description": "Quand un jeu est manifestement truqué, se taire revient à y jouer. L'indignation n'est pas une posture. C'est une exigence, envers soi-même, et envers ceux qui comptent sur nous.",
     "image": "https://i.ibb.co/ZRdqHTwz/img-silence.jpg",
     "category": "soc",
-    "readTime": "5"
+    "readTime": "5",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "taiwan",
@@ -205,7 +255,9 @@
     "description": "Joyau convoité de l'industrie électronique, pivot de l'Asie-Pacifique. La petite île qui fait trembler les grandes puissances.",
     "image": "https://i.ibb.co/WvTfGYtS/img-taiwan.jpg",
     "category": "geo",
-    "readTime": "6"
+    "readTime": "6",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "techgeo",
@@ -213,7 +265,9 @@
     "description": "Des mines de terres rares de Mongolie intérieure aux usines de puces de Taiwan, des laboratoires de DeepSeek à Pékin aux fabs TSMC d'Arizona, une même guerre souterraine pour les matériaux du futur.",
     "image": "https://i.ibb.co/vCpv1sLb/img-techgeo.jpg",
     "category": "geo",
-    "readTime": "13"
+    "readTime": "13",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "technosolutionnisme",
@@ -221,7 +275,9 @@
     "description": "La technologie est-elle le remède aux problèmes qu'elle contribue à créer ? De l'extraction des terres rares à la surveillance algorithmique, une lecture critique de l'idéologie dominante.",
     "image": "https://i.ibb.co/VpYfCtzB/img-technosolutionnisme.jpg",
     "category": "tech",
-    "readTime": "15"
+    "readTime": "15",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   },
   {
     "slug": "venezuela",
@@ -229,6 +285,8 @@
     "description": "Le 2 janvier 2026, les États-Unis ont bombardé Caracas et capturé Nicolas Maduro sans déclaration de guerre, sans vote du Congrès, sans mandat international.",
     "image": "https://i.ibb.co/RkLKt6Pk/img-venezuela.jpg",
     "category": "geo",
-    "readTime": "10"
+    "readTime": "10",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Directeur de la rédaction"
   }
 ]

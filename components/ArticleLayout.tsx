@@ -11,6 +11,8 @@ interface ArticleLayoutProps {
   readTime: string
   hasInternalHeader?: boolean
   content: string
+  author?: string
+  authorRole?: string
 }
 
 const categoryColors: Record<string, string> = {
@@ -19,9 +21,16 @@ const categoryColors: Record<string, string> = {
   portrait: '#C4A265', concept: '#1A1A3E'
 }
 
+// Initiales pour l'avatar texte
+function initials(name: string) {
+  return name.split(' ').map(n => n[0]).join('')
+}
+
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, hasInternalHeader = false, content
+  readTime, hasInternalHeader = false, content,
+  author = 'Steve Moradel',
+  authorRole = 'Fondateur · Directeur de la rédaction'
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -46,11 +55,30 @@ export default function ArticleLayout({
             <span className={styles.readDate}>Mars 2026</span>
           </div>
           <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
+
+          {/* BYLINE HAUT */}
+          <div className={styles.bylineTop}>
+            <div className={styles.bylineTopAvatar}>{initials(author)}</div>
+            <div>
+              <div className={styles.bylineTopName}>{author}</div>
+              <div className={styles.bylineTopRole}>{authorRole}</div>
+            </div>
+          </div>
         </div>
       )}
 
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         <div className="prisme-article" dangerouslySetInnerHTML={{ __html: content }} />
+
+        {/* SIGNATURE BAS */}
+        <div className={styles.authorSignature}>
+          <div className={styles.authorSigAvatar}>{initials(author)}</div>
+          <div className={styles.authorSigBody}>
+            <div className={styles.authorSigLabel}>Auteur</div>
+            <div className={styles.authorSigName}>{author}</div>
+            <div className={styles.authorSigRole}>{authorRole}</div>
+          </div>
+        </div>
       </div>
 
       <footer className={styles.footer}>

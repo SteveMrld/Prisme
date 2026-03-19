@@ -67,8 +67,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
 
   const hasInternalHeader =
     content.includes('class="atop"') ||
-    content.includes('class="article-header"') ||
-    content.includes('class="essentiel"')
+    content.includes('class="article-header"')
 
   return (
     <ArticleLayout
@@ -80,6 +79,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       readTime={article.readTime}
       hasInternalHeader={hasInternalHeader}
       content={content}
+      author={(article as any).author || 'Steve Moradel'}
+      authorRole={(article as any).authorRole || 'Fondateur · Directeur de la rédaction'}
     />
   )
 }

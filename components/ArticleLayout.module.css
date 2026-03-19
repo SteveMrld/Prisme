@@ -174,3 +174,93 @@
   color: var(--gris-l);
   letter-spacing: 1px;
 }
+
+/* ── BYLINE HAUT ── */
+.bylineTop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--bord);
+}
+
+.bylineTopAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--encre);
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.bylineTopName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--encre);
+}
+
+.bylineTopRole {
+  font-size: 10px;
+  color: var(--gris-l);
+  font-style: italic;
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+}
+
+/* ── SIGNATURE BAS ── */
+.authorSignature {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 64px;
+  padding: 28px 0;
+  border-top: 2px solid var(--encre);
+  border-bottom: 1px solid var(--bord);
+}
+
+.authorSigAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--encre);
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.authorSigLabel {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 4px;
+}
+
+.authorSigName {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--encre);
+  letter-spacing: -0.3px;
+}
+
+.authorSigRole {
+  font-size: 10px;
+  color: var(--gris-l);
+  font-style: italic;
+  margin-top: 3px;
+  letter-spacing: 0.3px;
+}
