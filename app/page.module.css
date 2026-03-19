@@ -131,18 +131,24 @@
   background: #F5F1E8;
   border-top: 3px solid var(--encre);
   border-bottom: 1px solid var(--bord);
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 320px;
   overflow: hidden;
-  min-height: 420px;
+}
+
+.geContent {
+  padding: 52px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  max-width: 640px;
 }
 
 .gePortraitWrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 55%;
-  height: 100%;
-  pointer-events: none;
+  position: relative;
+  overflow: hidden;
+  background: #F5F1E8;
 }
 
 .gePortrait {
@@ -152,23 +158,9 @@
   object-position: center top;
   display: block;
   mix-blend-mode: multiply;
-  opacity: 0.88;
-  mask-image: linear-gradient(to right, transparent 0%, black 40%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
 }
 
 .gePortraitCaption { display: none; }
-
-.geContent {
-  position: relative;
-  z-index: 2;
-  padding: 52px 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  max-width: 580px;
-}
 
 .geEyebrow {
   display: flex;
@@ -668,8 +660,9 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .gePortraitWrap { width: 50%; }
-  .geContent { padding: 36px 24px; max-width: 100%; }
+  .ge { grid-template-columns: 1fr; }
+  .gePortraitWrap { display: none; }
+  .geContent { padding: 36px 24px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
   .gfSection { padding: 0 24px; }
