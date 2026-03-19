@@ -65,6 +65,28 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* Prédateurs — carte interactive */}
+          <a href="/visuels/predateurs.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBg}>
+              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 60% 50%, rgba(160,120,32,0.07) 0%, transparent 60%)'}}/>
+            </div>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--geo)'}}>Géopolitique · Carte interactive</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>Le Monde des Prédateurs</h3>
+              <p className={styles.featSub}>États-Unis · Russie · Chine — zones d&apos;influence mondiales</p>
+              <p className={styles.featDesc}>
+                Trois puissances, trois doctrines. Une carte choroplèthe mondiale cliquable et interactive qui révèle comment USA, Russie et Chine se partagent le monde — avec un focus sur l&apos;Arctique et les points de friction.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la carte</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Coming soon grands formats */}
           <div className={styles.comingSoonGrid}>
             {[
@@ -171,7 +193,6 @@ export default function VisuelsPage() {
           </div>
           <div className={styles.upcomingGrid}>
             {[
-              {title:'Les Prédateurs',sub:'USA · Russie · Chine',cat:'Géopolitique'},
               {title:'L\'Afrique recomposée',sub:'La fin d\'un monde',cat:'Géopolitique'},
               {title:'Taïwan',sub:'Le détroit le plus dangereux',cat:'Géopolitique'},
               {title:'BlackRock',sub:'La concentration du capital',cat:'Économie'},
