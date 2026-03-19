@@ -998,3 +998,126 @@ sup {
     font-size: 10px;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   VERSO — Aller plus loin
+═══════════════════════════════════════════════ */
+.verso-section {
+  margin-top: 64px;
+  border-top: 2px solid var(--encre);
+  padding-top: 40px;
+}
+
+.verso-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.verso-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--encre);
+  letter-spacing: -0.5px;
+}
+
+.verso-badge {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--or);
+  border: 1px solid rgba(196,162,101,0.4);
+  padding: 3px 10px;
+}
+
+.verso-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.verso-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.verso-col-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.verso-col-icon {
+  font-size: 12px;
+  color: var(--or);
+}
+
+.verso-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--bord);
+  font-size: 13px;
+  color: var(--gris);
+  line-height: 1.6;
+}
+
+.verso-item:last-child {
+  border-bottom: none;
+}
+
+.verso-item strong {
+  color: var(--encre);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.verso-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Sources */
+.verso-sources {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--bord);
+}
+
+.verso-sources-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin-bottom: 14px;
+}
+
+.verso-source {
+  font-size: 12px;
+  color: var(--gris-m);
+  line-height: 1.7;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--bord-l);
+}
+
+.verso-source:last-child { border-bottom: none; }
+
+.verso-source strong {
+  color: var(--gris);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .verso-grid { grid-template-columns: 1fr; gap: 24px; }
+}
