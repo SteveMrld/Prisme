@@ -57,7 +57,7 @@
 .tickerTrack {
   display: flex;
   gap: 0;
-  animation: tickerScroll 40s linear infinite;
+  animation: tickerScroll 60s linear infinite;
   white-space: nowrap;
 }
 

@@ -55,13 +55,14 @@ const categoryColors: Record<string, string> = {
 }
 
 const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Guerre Moyen-Orient J18 — Israël frappe Téhéran et Beyrouth' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'La Fed se réunit — stagflation en ligne de mire, pétrole à 103$' },
-  { cat: 'Technologie', color: 'var(--tech)', text: 'Nvidia GPU H200 : rupture de stock mondiale, Taïwan sous pression' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Trump face au mur, alliés absents' },
-  { cat: 'Environnement', color: 'var(--env)', text: 'Sécheresse record en Europe du Sud — 4e année consécutive' },
-  { cat: 'Société', color: 'var(--soc)', text: 'France : réforme des retraites, mobilisation nationale jeudi' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Bitcoin dépasse 94 000$ — institutionnels en retrait' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran frappe Ras Laffan — dommages considérables sur le 1er site GNL mondial au Qatar' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Brent +6% à 114$/baril, gaz naturel +30% — marchés énergétiques en état d\'alerte' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Trump menace de détruire South Pars si l\'Iran attaque à nouveau le Qatar' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Détroit d\'Ormuz bloqué par l\'Iran — 20% des exportations pétrolières mondiales suspendues' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Macron appelle à un moratoire sur les frappes des infrastructures civiles et énergétiques' },
+  { cat: 'Société', color: 'var(--soc)', text: 'Municipales 2026 — second tour dimanche dans 1 600 communes, Paris-Marseille-Lyon en suspens' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Mojtaba Khamenei, nouveau Guide suprême d\'Iran — Ali Larijani tué dans une frappe israélienne' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'BCE — réunion de politique monétaire ce jeudi, décision sur les taux attendue à 14h15' },
 ]
 
 export default function HomePage() {
