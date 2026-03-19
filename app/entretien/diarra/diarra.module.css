@@ -78,7 +78,7 @@
   overflow: hidden;
   height: 520px;
   position: relative;
-  background: #1a1a1a;
+  background: var(--papier);
 }
 
 .heroPortrait::after {
@@ -98,7 +98,7 @@
   object-fit: cover;
   object-position: center 60%;
   display: block;
-  filter: grayscale(20%) contrast(1.05);
+  mix-blend-mode: multiply;
 }
 
 .questionsSection {
@@ -259,12 +259,11 @@
     width: 140px;
     order: 1;
     margin: 0;
-    border-radius: 2px;
+    border-radius: 0;
   }
   .heroPortrait::after { display: none; }
   .portrait { 
     object-position: center 65%;
-    filter: grayscale(10%);
   }
   .heroText { order: 0; }
   .comingInner { padding: 40px 20px; }
