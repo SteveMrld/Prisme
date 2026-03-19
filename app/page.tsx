@@ -30,9 +30,11 @@ const heroAside = heroAsideSlugs.map(slug => {
 })
 
 const grandsFormatsSlugs = [
-  { slug: 'chine',              extraCategories: [{ label: 'Économie', color: 'eco' }], sections: '8 sections · 14 sources' },
-  { slug: 'technosolutionnisme', extraCategories: [],                                   sections: '8 sections · 18 sources' },
+  { slug: 'france_maritime',    extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '7 sections · 12 sources' },
   { slug: 'eau',                extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '8 sections · 11 sources' },
+  { slug: 'techgeo',            extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '7 sections · 16 sources' },
+  { slug: 'taiwan',             extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · 10 sources' },
+  { slug: 'chine',              extraCategories: [{ label: 'Économie', color: 'eco' }],     sections: '8 sections · 14 sources' },
 ]
 const grandsFormats = grandsFormatsSlugs.map(({ slug, extraCategories, sections }) => {
   const a = getArticle(slug)
