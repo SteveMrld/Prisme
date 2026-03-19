@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Câbles sous-marins — La colonne vertébrale du monde numérique</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#C4A265;--bg:#0A1420;--encre:#ECE7DD;--bord:rgba(255,255,255,0.07);--red:#E53E3E;--blue:rgba(100,150,255,0.8);--green:rgba(100,210,130,0.8);--amber:rgba(255,150,50,0.8)}
+html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* HEADER */
+.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
+.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
+.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--bord)}
+.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--or);border-color:var(--or)}
+
+/* PANELS */
+.panel{display:none;animation:fi 0.3s ease}
+.panel.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── PANEL 1 · VUE EN COUPE ─── */
+#coupe{padding:0}
+.coupe-scene{position:relative;width:100%;height:340px;overflow:hidden;background:#06101c}
+
+/* Surface */
+.surface{position:absolute;top:52px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(100,180,255,0.15) 20%,rgba(100,180,255,0.45) 50%,rgba(100,180,255,0.15) 80%,transparent 100%)}
+.surface-shimmer{position:absolute;top:48px;left:0;right:0;height:10px;background:linear-gradient(180deg,rgba(100,180,255,0.08) 0%,transparent 100%)}
+
+/* Navire animé */
+.ship{position:absolute;top:28px;font-size:18px;animation:sail 22s linear infinite;white-space:nowrap}
+@keyframes sail{0%{left:-60px}100%{left:calc(100% + 60px)}}
+.cable-drop{position:absolute;top:46px;width:1px;background:linear-gradient(180deg,rgba(196,162,101,0.6) 0%,transparent 100%);animation:sail 22s linear infinite}
+@keyframes cable-drop-anim{0%{left:-60px}100%{left:calc(100% + 60px)}}
+
+/* Profondeurs */
+.depth-ruler{position:absolute;left:0;top:52px;bottom:0;width:58px;border-right:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;justify-content:space-between;padding:4px 8px}
+.depth-tick{font-size:7px;color:rgba(255,255,255,0.18);letter-spacing:0.5px;text-align:right}
+
+/* Stats strip */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bord)}
+.stat-box{background:var(--bg);padding:14px 16px}
+.stat-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:300;color:var(--or);line-height:1;margin-bottom:3px}
+.stat-lbl{font-size:8px;color:rgba(236,231,221,0.35);line-height:1.4;letter-spacing:0.3px}
+
+/* Incidents */
+.incidents{padding:20px 24px;display:flex;flex-direction:column;gap:1px}
+.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:12px}
+.incident{padding:13px 16px;border-left:3px solid;background:rgba(255,255,255,0.02);margin-bottom:1px}
+.incident-title{font-size:12px;font-weight:500;margin-bottom:4px}
+.incident-desc{font-size:11px;color:rgba(236,231,221,0.45);line-height:1.5;font-style:italic}
+
+/* Tooltip */
+.tip{position:absolute;background:rgba(6,16,28,0.97);border:1px solid rgba(196,162,101,0.4);padding:10px 14px;font-size:10px;line-height:1.6;display:none;z-index:20;min-width:200px;max-width:260px;pointer-events:none}
+.tip strong{color:var(--or);display:block;font-size:11px;margin-bottom:5px;font-weight:600}
+
+/* Zones rupture */
+.rupture{position:absolute;width:22px;height:22px;cursor:pointer;z-index:10;transform:translate(-50%,-50%)}
+.r-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(229,62,62,0.5);animation:rring 2s ease-out infinite}
+.r-dot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:var(--red);animation:rdot 2s ease infinite}
+@keyframes rring{0%{transform:scale(.7);opacity:.8}100%{transform:scale(2.2);opacity:0}}
+@keyframes rdot{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* Amplis */
+.amp-label{font-size:6px;fill:rgba(196,162,101,0.5);letter-spacing:1px;text-transform:uppercase}
+
+/* ─── PANEL 2 · RÉSEAU DE FLUX ─── */
+#flux{padding:0}
+.flux-header{padding:18px 24px 12px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--bord)}
+.flux-h-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:300;line-height:1.3}
+.flux-h-title em{color:var(--or);font-style:italic}
+.flux-h-meta{text-align:right;font-size:8px;color:rgba(255,255,255,0.25);letter-spacing:1px;line-height:2}
+.flux-h-meta strong{display:block;font-family:'Playfair Display',serif;font-size:20px;color:var(--or);font-weight:300;letter-spacing:-0.5px}
+.flux-canvas-wrap{position:relative}
+canvas#fc{display:block;width:100%}
+.flux-legend{display:flex;flex-wrap:wrap;gap:16px;padding:12px 24px;border-top:1px solid var(--bord)}
+.fl-item{display:flex;align-items:center;gap:6px;font-size:8px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase}
+.fl-dot{width:7px;height:7px;border-radius:50%}
+
+/* ─── PANEL 3 · ENJEUX ─── */
+#enjeux{padding:24px;display:flex;flex-direction:column;gap:18px}
+.enjeu-block{padding:16px 18px;border-left:3px solid;background:rgba(255,255,255,0.02)}
+.enjeu-title{font-size:13px;font-weight:600;margin-bottom:5px}
+.enjeu-desc{font-size:11px;color:rgba(236,231,221,0.45);line-height:1.6;font-style:italic}
+.enjeu-bar{height:2px;border-radius:1px;margin-top:10px;animation:grow 1.2s ease forwards}
+@keyframes grow{from{width:0}}
+
+.two-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bord);margin-top:4px}
+.two-stat{background:var(--bg);padding:16px 18px}
+.two-stat-num{font-family:'Playfair Display',serif;font-size:26px;font-weight:300;color:var(--or);line-height:1;margin-bottom:4px}
+.two-stat-lbl{font-size:10px;color:rgba(236,231,221,0.35);line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <span class="hd-tag">Visualisation · Géopolitique</span>
+  <span class="hd-sub">Les câbles sous-marins — colonne vertébrale du monde numérique</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('coupe',this)">Vue en coupe</div>
+  <div class="tab" onclick="showTab('flux',this)">Réseau de flux</div>
+  <div class="tab" onclick="showTab('enjeux',this)">Enjeux stratégiques</div>
+</div>
+
+<!-- ══════════ PANEL 1 · VUE EN COUPE ══════════ -->
+<div id="coupe" class="panel active">
+  <div class="coupe-scene">
+
+    <!-- Ciel / surface -->
+    <div style="position:absolute;top:0;left:0;right:0;height:52px;background:linear-gradient(180deg,#060e18 0%,#0a1a2e 100%)"></div>
+    <div class="surface-shimmer"></div>
+    <div class="surface"></div>
+
+    <!-- Navire + câble qui descend -->
+    <div class="ship">🚢</div>
+    <div class="cable-drop" style="height:60px;animation:sail 22s linear infinite;animation-delay:-5s"></div>
+
+    <!-- Océan -->
+    <div style="position:absolute;top:52px;left:0;right:0;bottom:0;background:linear-gradient(180deg,#091828 0%,#050f1c 40%,#030a12 100%)"></div>
+
+    <!-- Ruler profondeurs -->
+    <div class="depth-ruler">
+      <div class="depth-tick">0 m</div>
+      <div class="depth-tick">−200</div>
+      <div class="depth-tick">−1 000</div>
+      <div class="depth-tick">−3 000</div>
+      <div class="depth-tick">−6 000</div>
+    </div>
+
+    <!-- SVG câbles animés -->
+    <svg style="position:absolute;top:0;left:0;width:100%;height:100%" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a3a1a"/>
+          <stop offset="100%" stop-color="#0a1a0a"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Fond marin organique -->
+      <path d="M0,295 Q60,280 130,292 Q200,302 280,285 Q360,270 440,288 Q520,302 600,282 Q680,265 740,280 Q770,287 800,275 L800,340 L0,340 Z" fill="url(#sg)"/>
+      <path d="M0,305 Q80,295 160,308 Q240,318 320,300 Q400,284 480,298 Q560,310 640,295 Q720,280 800,290" fill="none" stroke="rgba(80,160,80,0.12)" stroke-width="1"/>
+
+      <!-- CÂBLE A — Grande profondeur (~4 000m) -->
+      <path id="cA" d="M60,255 Q150,248 250,252 Q380,257 450,254 Q570,250 700,256 Q750,258 800,254"
+        fill="none" stroke="rgba(196,162,101,0.35)" stroke-width="2.5" stroke-dasharray="6,3"/>
+      <!-- Flux A -->
+      <path d="M60,255 Q150,248 250,252 Q380,257 450,254 Q570,250 700,256 Q750,258 800,254"
+        fill="none" stroke="var(--or)" stroke-width="1.5">
+        <animate attributeName="stroke-dasharray" values="0 900;22 900;0 900" dur="2.8s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dashoffset" from="0" to="-80" dur="2.8s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- CÂBLE B — Profondeur moyenne (~2 000m) -->
+      <path d="M60,200 Q160,192 260,197 Q380,203 450,199 Q570,195 700,200 Q750,202 800,198"
+        fill="none" stroke="rgba(100,150,255,0.35)" stroke-width="2" stroke-dasharray="5,4"/>
+      <path d="M60,200 Q160,192 260,197 Q380,203 450,199 Q570,195 700,200 Q750,202 800,198"
+        fill="none" stroke="rgba(120,170,255,0.7)" stroke-width="1.2">
+        <animate attributeName="stroke-dasharray" values="0 800;18 800;0 800" dur="4s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dashoffset" from="200" to="0" dur="4s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- CÂBLE C — Côtier (~200m) -->
+      <path d="M60,110 Q140,104 220,108 Q320,113 420,108 Q520,104 640,108 Q720,111 800,107"
+        fill="none" stroke="rgba(100,200,130,0.3)" stroke-width="1.5" stroke-dasharray="3,5"/>
+      <path d="M60,110 Q140,104 220,108 Q320,113 420,108 Q520,104 640,108 Q720,111 800,107"
+        fill="none" stroke="rgba(120,220,140,0.65)" stroke-width="1">
+        <animate attributeName="stroke-dasharray" values="0 700;14 700;0 700" dur="5s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dashoffset" from="-80" to="80" dur="5s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Amplificateurs câble A -->
+      <g fill="rgba(196,162,101,0.65)" stroke="rgba(196,162,101,0.8)" stroke-width="0.8">
+        <rect x="198" y="249" width="9" height="7" rx="1.5"/>
+        <rect x="438" y="250" width="9" height="7" rx="1.5"/>
+        <rect x="678" y="251" width="9" height="7" rx="1.5"/>
+      </g>
+      <text x="202" y="245" class="amp-label" text-anchor="middle">AMP</text>
+      <text x="442" y="246" class="amp-label" text-anchor="middle">AMP</text>
+      <text x="682" y="247" class="amp-label" text-anchor="middle">AMP</text>
+
+      <!-- Lignes d'atterrissement -->
+      <line x1="60" y1="52" x2="60" y2="255" stroke="rgba(196,162,101,0.2)" stroke-width="1" stroke-dasharray="2,4"/>
+      <line x1="800" y1="52" x2="800" y2="254" stroke="rgba(100,150,255,0.2)" stroke-width="1" stroke-dasharray="2,4"/>
+      <circle cx="60" cy="254" r="5" fill="none" stroke="var(--or)" stroke-width="1.5"/>
+      <circle cx="800" cy="253" r="5" fill="none" stroke="rgba(100,150,255,0.8)" stroke-width="1.5"/>
+
+      <!-- Labels continents -->
+      <text x="75" y="44" fill="rgba(196,162,101,0.5)" font-size="8" font-family="Playfair Display" font-style="italic">Europe</text>
+      <text x="770" y="44" fill="rgba(100,150,255,0.5)" font-size="8" font-family="Playfair Display" font-style="italic" text-anchor="end">Asie</text>
+
+      <!-- Légende câbles -->
+      <line x1="450" y1="30" x2="474" y2="30" stroke="rgba(196,162,101,0.7)" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="478" y="33" fill="rgba(255,255,255,0.3)" font-size="7">Grande profondeur (−4 000 m)</text>
+      <line x1="450" y1="44" x2="474" y2="44" stroke="rgba(100,150,255,0.7)" stroke-width="2" stroke-dasharray="5,4"/>
+      <text x="478" y="47" fill="rgba(255,255,255,0.3)" font-size="7">Profondeur moyenne (−2 000 m)</text>
+      <line x1="450" y1="58" x2="474" y2="58" stroke="rgba(100,200,130,0.6)" stroke-width="1.5" stroke-dasharray="3,5"/>
+      <text x="478" y="61" fill="rgba(255,255,255,0.3)" font-size="7">Côtier (−200 m)</text>
+    </svg>
+
+    <!-- Zone de rupture — Mer Rouge -->
+    <div class="rupture" style="left:42%;top:62%"
+      onmouseenter="showTip(this,'Mer Rouge — 2024–2026','4 câbles sectionnés par les Houthis.<br>−25% de capacité Asie–Europe.<br>Déviation via Le Cap : +80 ms de latence.')"
+      ontouchstart="toggleTip(this,'Mer Rouge — 2024–2026','4 câbles sectionnés par les Houthis.<br>−25% de capacité Asie–Europe.<br>Déviation via Le Cap : +80 ms de latence.')"
+      onmouseleave="hideTip()">
+      <div class="r-ring"></div>
+      <div class="r-dot"></div>
+    </div>
+
+    <!-- Zone de rupture — Tonga -->
+    <div class="rupture" style="left:68%;top:78%"
+      onmouseenter="showTip(this,'Tonga — 2022','Séisme M8.1 sectionne le câble Tonga Cable.<br>Île isolée 5 semaines.<br>Réparation : navire Ile de Ré, 38 jours.')"
+      ontouchstart="toggleTip(this,'Tonga — 2022','Séisme M8.1 sectionne le câble Tonga Cable.<br>Île isolée 5 semaines.<br>Réparation : navire Ile de Ré, 38 jours.')"
+      onmouseleave="hideTip()">
+      <div class="r-ring" style="animation-delay:1s"></div>
+      <div class="r-dot"></div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tip" id="tip"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-strip">
+    <div class="stat-box">
+      <div class="stat-num">1,4 M</div>
+      <div class="stat-lbl">km de câbles posés<br>dans les océans</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">99%</div>
+      <div class="stat-lbl">du trafic internet<br>passe par câble sous-marin</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">~200</div>
+      <div class="stat-lbl">ruptures par an —<br>ancres, séismes, pêche</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">8 000 m</div>
+      <div class="stat-lbl">profondeur maximale<br>de pose enregistrée</div>
+    </div>
+  </div>
+
+  <!-- Incidents -->
+  <div class="incidents">
+    <div class="lbl">Incidents majeurs</div>
+    <div class="incident" style="border-color:var(--red)">
+      <div class="incident-title" style="color:var(--red)">Mer Rouge — Attaques Houthis (2024–2026)</div>
+      <div class="incident-desc">Quatre câbles sectionnés en mer Rouge. Le trafic Asie–Europe est dévié via Le Cap ou le Pacifique, augmentant les latences de 80 à 120 ms et les coûts de transit de 40%.</div>
+    </div>
+    <div class="incident" style="border-color:rgba(196,162,101,0.5)">
+      <div class="incident-title" style="color:var(--or)">Tonga — Séisme M8.1 (2022)</div>
+      <div class="incident-desc">L'éruption volcanique et le séisme sectionnent le câble unique reliant les îles Tonga. 5 semaines d'isolement numérique quasi-total pour 100 000 personnes.</div>
+    </div>
+    <div class="incident" style="border-color:rgba(100,150,255,0.5)">
+      <div class="incident-title" style="color:rgba(140,180,255,0.9)">Baltique — Sabotage (2024)</div>
+      <div class="incident-desc">Deux câbles entre la Finlande, l'Estonie et l'Allemagne endommagés à quelques semaines d'intervalle. Les enquêtes pointent vers des actes délibérés liés au conflit ukrainien.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PANEL 2 · RÉSEAU DE FLUX ══════════ -->
+<div id="flux" class="panel">
+  <div class="flux-header">
+    <div>
+      <div class="flux-h-title">Flux de données<br><em>mondiales</em></div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.25);margin-top:6px;line-height:1.6">Chaque pulsion = paquet de données<br>transitant par câble sous-marin</div>
+    </div>
+    <div class="flux-h-meta">
+      Capacité mondiale<br>
+      <strong>1 200 Tbps</strong>
+      bande passante totale
+    </div>
+  </div>
+  <div class="flux-canvas-wrap">
+    <canvas id="fc"></canvas>
+  </div>
+  <div class="flux-legend">
+    <div class="fl-item"><div class="fl-dot" style="background:var(--or)"></div>Nœud majeur</div>
+    <div class="fl-item"><div class="fl-dot" style="background:rgba(100,150,255,0.8)"></div>Route Atlantique</div>
+    <div class="fl-item"><div class="fl-dot" style="background:rgba(100,210,130,0.8)"></div>Route Pacifique</div>
+    <div class="fl-item"><div class="fl-dot" style="background:rgba(255,150,50,0.8)"></div>Route Indien</div>
+    <div class="fl-item"><div class="fl-dot" style="background:var(--red)"></div>Zone critique</div>
+  </div>
+</div>
+
+<!-- ══════════ PANEL 3 · ENJEUX ══════════ -->
+<div id="enjeux" class="panel">
+  <div class="lbl">Concentration du pouvoir sur les câbles</div>
+
+  <div class="enjeu-block" style="border-color:var(--or)">
+    <div class="enjeu-title" style="color:var(--or)">La mainmise des GAFAM</div>
+    <div class="enjeu-desc">Google, Meta, Amazon et Microsoft possèdent ou co-financent désormais plus de 30% de la capacité mondiale de câbles sous-marins. En 2024, les hyperscalers américains contrôlaient 70% des nouvelles poses dans le Pacifique, réduisant la dépendance aux consortiums traditionnels mais concentrant un bien commun dans des mains privées.</div>
+    <div class="enjeu-bar" style="background:var(--or);width:70%"></div>
+  </div>
+
+  <div class="enjeu-block" style="border-color:rgba(100,150,255,0.6)">
+    <div class="enjeu-title" style="color:rgba(140,180,255,0.9)">La stratégie chinoise</div>
+    <div class="enjeu-desc">HMN Technologies (ex-Huawei Marine) a posé 20% des câbles mondiaux depuis 2010. Les États-Unis ont interdit à leurs alliés de recourir à l'entreprise pour les câbles sensibles, estimant que Pékin pourrait y insérer des équipements d'interception ou couper délibérément les flux.</div>
+    <div class="enjeu-bar" style="background:rgba(100,150,255,0.6);width:55%"></div>
+  </div>
+
+  <div class="enjeu-block" style="border-color:var(--red)">
+    <div class="enjeu-title" style="color:var(--red)">Les points d'étranglement</div>
+    <div class="enjeu-desc">Douze points de passage concentrent la quasi-totalité du trafic mondial : détroit d'Ormuz, mer Rouge, détroit de Malacca, canal de Suez, Gibraltar. Une frappe coordonnée sur trois ou quatre de ces points pourrait paralyser 40% d'internet mondial en moins d'une heure.</div>
+    <div class="enjeu-bar" style="background:var(--red);width:85%"></div>
+  </div>
+
+  <div class="enjeu-block" style="border-color:rgba(100,210,130,0.5)">
+    <div class="enjeu-title" style="color:rgba(120,230,150,0.9)">La riposte européenne</div>
+    <div class="enjeu-desc">L'UE finance le projet EurAfrica Connect et le câble Medusa (2024) reliant l'Europe au Maghreb, tentant de réduire la dépendance aux axes Anglo-saxons. La France, via son domaine maritime, contrôle des points d'atterrissement stratégiques à La Réunion, en Guyane et en Polynésie.</div>
+    <div class="enjeu-bar" style="background:rgba(100,210,130,0.5);width:38%"></div>
+  </div>
+
+  <div class="two-stats">
+    <div class="two-stat">
+      <div class="two-stat-num">12</div>
+      <div class="two-stat-lbl">points de passage stratégiques<br>pour 99% du trafic mondial</div>
+    </div>
+    <div class="two-stat">
+      <div class="two-stat-num">18 mois</div>
+      <div class="two-stat-lbl">délai moyen de réparation<br>d'un câble transoceanique</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── TABS */
+function showTab(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'))
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
+  el.classList.add('active')
+  if (id === 'flux') initFlux()
+}
+
+/* ── TOOLTIP */
+function showTip(el, title, body) {
+  const tip = document.getElementById('tip')
+  tip.innerHTML = '<strong>' + title + '</strong>' + body
+  tip.style.display = 'block'
+  const er = el.getBoundingClientRect()
+  const sr = el.closest('.coupe-scene').getBoundingClientRect()
+  let left = er.left - sr.left + 16
+  let top = er.top - sr.top - 90
+  if (left + 260 > sr.width) left = sr.width - 270
+  if (top < 4) top = er.top - sr.top + 26
+  tip.style.left = left + 'px'
+  tip.style.top = top + 'px'
+}
+function toggleTip(el, title, body) {
+  const tip = document.getElementById('tip')
+  if (tip.style.display === 'block') { hideTip(); return }
+  showTip(el, title, body)
+}
+function hideTip() { document.getElementById('tip').style.display = 'none' }
+
+/* ── FLUX CANVAS */
+let fluxReady = false
+function initFlux() {
+  if (fluxReady) return
+  fluxReady = true
+
+  const canvas = document.getElementById('fc')
+  const wrap = canvas.parentElement
+  const W = wrap.offsetWidth
+  const H = Math.round(W * 0.55)
+  canvas.width = W
+  canvas.height = H
+  canvas.style.height = H + 'px'
+  const ctx = canvas.getContext('2d')
+
+  const nodes = [
+    { x: W*.10, y: H*.32, label: 'New York',    col: '#C4A265', r: 9  },
+    { x: W*.13, y: H*.70, label: 'São Paulo',   col: '#C4A265', r: 6  },
+    { x: W*.38, y: H*.25, label: 'Londres',     col: '#C4A265', r: 8  },
+    { x: W*.41, y: H*.46, label: 'Marseille',   col: '#C4A265', r: 6  },
+    { x: W*.45, y: H*.68, label: 'Le Cap',      col: '#C4A265', r: 5  },
+    { x: W*.53, y: H*.50, label: '⚠ Mer Rouge', col: '#E53E3E', r: 7  },
+    { x: W*.65, y: H*.35, label: 'Mumbai',      col: '#C4A265', r: 6  },
+    { x: W*.76, y: H*.42, label: 'Singapour',   col: '#C4A265', r: 8  },
+    { x: W*.89, y: H*.28, label: 'Tokyo',       col: '#C4A265', r: 7  },
+    { x: W*.87, y: H*.72, label: 'Sydney',      col: '#C4A265', r: 6  },
+  ]
+
+  const routes = [
+    { f:0, t:2, col:'rgba(100,150,255,0.45)', sp:1.8 },
+    { f:1, t:4, col:'rgba(100,150,255,0.22)', sp:1.0 },
+    { f:2, t:3, col:'rgba(196,162,101,0.4)',  sp:2.2 },
+    { f:3, t:5, col:'rgba(255,120,40,0.5)',   sp:1.5 },
+    { f:5, t:6, col:'rgba(229,62,62,0.35)',   sp:0.7 },
+    { f:6, t:7, col:'rgba(255,150,50,0.45)',  sp:2.0 },
+    { f:7, t:8, col:'rgba(100,210,130,0.5)',  sp:2.5 },
+    { f:7, t:9, col:'rgba(100,210,130,0.4)',  sp:1.8 },
+    { f:0, t:8, col:'rgba(100,210,130,0.2)',  sp:0.9 },
+    { f:4, t:6, col:'rgba(255,150,50,0.25)',  sp:1.2 },
+  ]
+
+  const particles = []
+  routes.forEach((r, ri) => {
+    for (let i = 0; i < 3 + Math.floor(Math.random()*3); i++) {
+      particles.push({ ri, t: Math.random(), sp: r.sp * (0.0007 + Math.random()*.0005) })
+    }
+  })
+
+  function ctrl(a, b) {
+    return { x: (a.x+b.x)/2, y: Math.min(a.y,b.y) - 30 - Math.abs(b.x-a.x)*.06 }
+  }
+  function bez(t, a, c, b) {
+    const m = 1-t
+    return { x: m*m*a.x + 2*m*t*c.x + t*t*b.x, y: m*m*a.y + 2*m*t*c.y + t*t*b.y }
+  }
+
+  let frame = 0
+  function draw() {
+    ctx.clearRect(0, 0, W, H)
+    ctx.fillStyle = '#0A1420'
+    ctx.fillRect(0, 0, W, H)
+
+    // Routes
+    routes.forEach(r => {
+      const a = nodes[r.f], b = nodes[r.t], c = ctrl(a,b)
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.quadraticCurveTo(c.x,c.y,b.x,b.y)
+      ctx.strokeStyle = r.col; ctx.lineWidth = 1; ctx.setLineDash([4,5]); ctx.stroke(); ctx.setLineDash([])
+    })
+
+    // Particules
+    particles.forEach(p => {
+      p.t += p.sp; if (p.t > 1) p.t = 0
+      const r = routes[p.ri], a = nodes[r.f], b = nodes[r.t], c = ctrl(a,b)
+      const pos = bez(p.t, a, c, b)
+      // Traîne
+      for (let i = 4; i >= 1; i--) {
+        const tp = Math.max(0, p.t - i*.014)
+        const pp = bez(tp, a, c, b)
+        ctx.beginPath(); ctx.arc(pp.x, pp.y, 2-i*.3, 0, Math.PI*2)
+        ctx.fillStyle = `rgba(196,162,101,${.08-i*.015})`; ctx.fill()
+      }
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, 2.5, 0, Math.PI*2)
+      const isRed = r.f === 5 || r.t === 5
+      ctx.fillStyle = isRed ? 'rgba(229,62,62,0.9)' : nodes[r.f].col; ctx.fill()
+    })
+
+    // Nœuds
+    nodes.forEach(n => {
+      const pulse = .5 + .5*Math.sin(frame*.04 + n.x*.01)
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r*1.8 + pulse*3, 0, Math.PI*2)
+      ctx.fillStyle = n.col === '#E53E3E' ? 'rgba(229,62,62,0.07)' : 'rgba(196,162,101,0.06)'; ctx.fill()
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI*2)
+      ctx.strokeStyle = n.col; ctx.lineWidth = 1; ctx.stroke()
+      ctx.beginPath(); ctx.arc(n.x, n.y, 3, 0, Math.PI*2)
+      ctx.fillStyle = n.col; ctx.fill()
+      ctx.fillStyle = 'rgba(236,231,221,0.55)'; ctx.font = '8px DM Sans'; ctx.textAlign = 'center'
+      ctx.fillText(n.label, n.x, n.y + n.r + 11)
+    })
+
+    frame++
+    requestAnimationFrame(draw)
+  }
+  draw()
+}
+</script>
+</body>
+</html>
