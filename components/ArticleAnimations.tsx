@@ -66,3 +66,31 @@ export function ReadingTimeCounter({ totalMinutes }: { totalMinutes: number }) {
     </motion.div>
   )
 }
+
+// ── SCROLL DEPTH INDICATOR ────────────────────────────────────
+export function ScrollDepth() {
+  const { scrollYProgress } = useScroll()
+  const [pct, setPct] = useState(0)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    return scrollYProgress.on('change', (v) => {
+      setVisible(v > 0.03 && v < 0.97)
+      setPct(Math.round(v * 100))
+    })
+  }, [scrollYProgress])
+
+  return (
+    <motion.div
+      className="scroll-depth-indicator"
+      animate={{ opacity: visible ? 1 : 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div
+        className="scroll-depth-fill"
+        style={{ height: `${pct}%` }}
+      />
+      <span className="scroll-depth-pct">{pct}%</span>
+    </motion.div>
+  )
+}

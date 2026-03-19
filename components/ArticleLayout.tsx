@@ -1,6 +1,6 @@
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
-import { ReadingProgress, ReadingTimeCounter } from './ArticleAnimations'
+import { ReadingProgress, ReadingTimeCounter, ScrollDepth } from './ArticleAnimations'
 
 interface ArticleLayoutProps {
   title: string
@@ -56,6 +56,7 @@ export default function ArticleLayout({
     <>
       <ReadingProgress />
       <ReadingTimeCounter totalMinutes={minutes} />
+      <ScrollDepth />
       <Header activeNav={category} />
 
       {image && !hasInternalHeader && (

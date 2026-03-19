@@ -4,6 +4,7 @@ import Link from 'next/link'
 import articlesData from '../lib/articles.json'
 import { FadeSection, FadeCard, StaggerGrid, StaggerItem } from './HomeClient'
 import Ticker from './TickerClient'
+import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
@@ -59,6 +60,9 @@ export default function HomePage() {
 
       {/* TICKER LIVE */}
       <Ticker />
+
+      {/* EN CE MOMENT */}
+      <EnCeMoment />
 
       {/* GRAND ENTRETIEN */}
       <FadeSection>
@@ -179,6 +183,29 @@ export default function HomePage() {
             </StaggerItem>
           ))}
         </StaggerGrid>
+      </section>
+      </FadeSection>
+
+      {/* ── STATS PRISME ── */}
+      <FadeSection>
+      <section style={{
+        borderTop: '1px solid var(--bord)',
+        borderBottom: '1px solid var(--bord)',
+        padding: '0 64px',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gap: '0',
+      }}>
+        {[
+          { value: 29, suffix: '', label: 'Analyses publiées', prefix: '' },
+          { value: 11, suffix: ' M km²', label: 'ZEE française — 2e mondiale', prefix: '' },
+          { value: 8, suffix: '', label: 'Minutes de lecture en moyenne', prefix: '' },
+          { value: 11, suffix: '', label: 'Contributeurs', prefix: '' },
+        ].map((s, i) => (
+          <div key={i} style={{ padding: '32px 28px', borderRight: i < 3 ? '1px solid var(--bord)' : 'none' }}>
+            <StatCount value={s.value} suffix={s.suffix} prefix={s.prefix} label={s.label} />
+          </div>
+        ))}
       </section>
       </FadeSection>
 

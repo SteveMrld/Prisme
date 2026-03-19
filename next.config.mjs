@@ -5,6 +5,9 @@ const nextConfig = {
       { protocol: 'https', hostname: 'i.ibb.co' },
     ],
   },
+  experimental: {
+    viewTransition: true,
+  },
 }
 
 export default nextConfig

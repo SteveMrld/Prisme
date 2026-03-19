@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { createClient } from '../lib/supabase'
 import styles from './Header.module.css'
+import DarkModeToggle from '../app/DarkModeToggle'
 
 const navItems = [
   { label: 'Signal', href: '/signal', className: 'signal' },
@@ -45,6 +46,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           <Link href="/" className={styles.logo}>Pris<em>me</em></Link>
         </div>
         <div className={styles.actions}>
+          <DarkModeToggle />
           {user === undefined ? (
             <div className={styles.actionsPlaceholder} />
           ) : user ? (
