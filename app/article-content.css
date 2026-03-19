@@ -182,14 +182,11 @@
   max-width: 900px;
   margin: 0 auto 0;
   overflow: hidden;
-  max-height: 480px;
 }
 
 .art-hero-img {
   width: 100%;
-  height: 480px;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
 }
 
