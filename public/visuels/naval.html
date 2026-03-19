@@ -14,9 +14,22 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05090F;color:#fff;f
 #map-svg{position:absolute;top:0;left:0;width:100%;height:100%}
 
 /* Routes */
-@keyframes flowRoute{to{stroke-dashoffset:-28}}
-.rf{stroke-dasharray:12 8;animation:flowRoute 3s linear infinite}
-.rfs{stroke-dasharray:9 7;animation:flowRoute 4.5s linear infinite}
+/* Courants maritimes — 3 vitesses pour profondeur */
+@keyframes current1{to{stroke-dashoffset:-40}}
+@keyframes current2{to{stroke-dashoffset:-32}}
+@keyframes current3{to{stroke-dashoffset:-22}}
+@keyframes ripple{0%,100%{opacity:0.18}50%{opacity:0.42}}
+.rf{stroke-dasharray:18 12;animation:current1 5s linear infinite}
+.rfs{stroke-dasharray:14 10;animation:current2 7s linear infinite}
+.rf-deep{stroke-dasharray:6 14;animation:current3 9s linear infinite}
+
+/* Bateaux — mouvement lent vers la droite (direction de navigation) */
+@keyframes sailE{0%{transform:translateX(0px)}100%{transform:translateX(18px)}}
+@keyframes sailW{0%{transform:translateX(0px)}100%{transform:translateX(-18px)}}
+@keyframes sailNE{0%{transform:translate(0px,0px)}100%{transform:translate(14px,-8px)}}
+.ship-drift-e{animation:sailE 14s ease-in-out infinite alternate}
+.ship-drift-w{animation:sailW 14s ease-in-out infinite alternate}
+.ship-drift-ne{animation:sailNE 14s ease-in-out infinite alternate}
 
 /* Pulse rings */
 @keyframes pRing{0%{r:6;opacity:0.85}100%{r:28;opacity:0}}
@@ -85,6 +98,26 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05090F;color:#fff;f
 #prisme-wm span{color:rgba(196,162,101,0.22)}
 .back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);text-decoration:none;z-index:200}
 .back:hover{color:var(--gold)}
+
+@media(max-width:680px){
+  #stage{display:flex;flex-direction:column}
+  #map-svg{position:relative}
+  #panel{
+    position:relative;right:auto;top:auto;
+    width:100%;height:auto;
+    background:rgba(5,9,15,0.98);
+    padding:14px 18px;
+    justify-content:flex-start;
+    border-top:1px solid rgba(255,255,255,0.07);
+    overflow-y:auto;
+  }
+  .panel-hook{font-size:12px;margin-bottom:12px;padding-bottom:12px}
+  .panel-title{font-size:17px;margin-bottom:8px}
+  .panel-body{font-size:12px;line-height:1.65}
+  .panel-stat{margin-top:10px;padding-top:10px}
+  .stat-n{font-size:28px}
+  #legend{display:none}
+}
 </style>
 </head>
 <body>
@@ -122,6 +155,14 @@ var svg=d3.select('#map-svg').attr('width',W).attr('height',H);
 var proj=d3.geoNaturalEarth1().scale(W/6.2).translate([W*0.48,H*0.535]);
 var gpath=d3.geoPath().projection(proj);
 var P=function(lon,lat){return proj([lon,lat])||[0,0]};
+
+/* Trace une courbe fluide Catmull-Rom entre des coordonnées lon/lat */
+function smoothRoute(coords){
+  var pts=coords.map(function(c){return P(c[0],c[1])}).filter(function(p){return p[0]>0&&p[1]>0});
+  if(pts.length<2) return null;
+  var line=d3.line().x(function(p){return p[0]}).y(function(p){return p[1]}).curve(d3.curveCatmullRom.alpha(0.5));
+  return line(pts);
+}
 
 /* DEFS */
 var defs=svg.append('defs');
@@ -167,7 +208,7 @@ var chapters=[
    title:'Les points <em>de rupture</em>',
    body:'<strong>Taïwan</strong> : une invasion déclencherait une réponse américaine directe. La <strong>Mer Noire</strong>, théâtre ukrainien. Le <strong>Golfe Persique</strong>, otage des tensions irano-américaines. Et l\'<strong style="color:rgba(196,162,101,0.9)">Arctique</strong>, nouvelle route commerciale, nouveau front.',
    statN:'3',statL:'zones à risque élevé\nde conflit naval majeur',
-   leg:[{t:'dot',c:'#D45040',l:'Zone de haute tension'},{t:'dash',c:'rgba(196,162,101,0.7)',l:'Route Arctique en ouverture'}]}
+   leg:[{t:'dot',c:'#D45040',l:'Zone de haute tension'},{t:'dash',c:'rgba(160,225,255,0.7)',l:'Route Arctique en ouverture'}]}
 ];
 
 /* ── COUCHES ── */
@@ -216,24 +257,34 @@ function buildLayer0(){
   ];
 
   routes.forEach(function(r){
-    var d=gpath({type:'LineString',coordinates:r.coords});
+    var d=smoothRoute(r.coords);
     if(!d) return;
-    // Halo
-    g.append('path').attr('d',d).attr('fill','none').attr('stroke','rgba(196,162,101,0.07)').attr('stroke-width',r.primary?10:6).attr('stroke-linecap','round');
-    // Base
-    g.append('path').attr('d',d).attr('fill','none').attr('stroke',r.primary?'rgba(196,162,101,0.22)':'rgba(196,162,101,0.12)').attr('stroke-width',r.primary?4:2.5).attr('stroke-linecap','round');
-    // Flow animé
+    /* Couche 1 — profondeur large et sombre (fond marin) */
     g.append('path').attr('d',d).attr('fill','none')
-      .attr('stroke',r.primary?'#C4A265':'rgba(196,162,101,0.55)')
-      .attr('stroke-width',r.primary?2.8:1.8).attr('stroke-linecap','round')
+      .attr('stroke',r.primary?'rgba(74,140,200,0.12)':'rgba(74,140,200,0.07)')
+      .attr('stroke-width',r.primary?18:10).attr('stroke-linecap','round');
+    /* Couche 2 — corps du courant bleu-vert */
+    g.append('path').attr('d',d).attr('fill','none')
+      .attr('stroke',r.primary?'rgba(60,130,190,0.22)':'rgba(60,130,190,0.12)')
+      .attr('stroke-width',r.primary?9:5).attr('stroke-linecap','round');
+    /* Couche 3 — flux lent animé (bleu profond) */
+    g.append('path').attr('d',d).attr('fill','none')
+      .attr('stroke',r.primary?'rgba(80,160,220,0.35)':'rgba(80,160,220,0.2)')
+      .attr('stroke-width',r.primary?4:2.5).attr('stroke-linecap','round')
+      .attr('stroke-dasharray',r.primary?'22 14':'16 12')
+      .attr('class','rf-deep').style('animation-delay',(r.delay*1.3)+'s');
+    /* Couche 4 — éclat de surface (or pâle, lumineux) */
+    g.append('path').attr('d',d).attr('fill','none')
+      .attr('stroke',r.primary?'rgba(180,220,255,0.55)':'rgba(180,220,255,0.28)')
+      .attr('stroke-width',r.primary?1.8:1.2).attr('stroke-linecap','round')
       .attr('class',r.primary?'rf':'rfs').style('animation-delay',r.delay+'s');
     // Label route
     var lbl=Array.isArray(r.label[0])?r.label:[r.label];
     lbl.forEach(function(l){
       var pt=P(l[0],l[1]);
       g.append('text').attr('x',pt[0]).attr('y',pt[1]).attr('text-anchor','middle')
-        .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','300')
-        .attr('fill','rgba(196,162,101,0.7)').attr('letter-spacing',0.3)
+        .attr('font-family','"DM Sans",sans-serif').attr('font-size',9.5).attr('font-weight','300')
+        .attr('fill','rgba(160,210,240,0.65)').attr('letter-spacing',0.3)
         
         .text(l[2]);
     });
@@ -241,33 +292,41 @@ function buildLayer0(){
 
   /* Porte-conteneurs — silhouette vue de côté */
   var ships=[
-    {lon:160,lat:37,s:0.82},{lon:-145,lat:36,s:0.82},{lon:75,lat:12,s:0.78},{lon:18,lat:39,s:0.75}
+    {lon:160,lat:37,s:0.82},{lon:-145,lat:36,s:0.82},{lon:75,lat:12,s:0.82},{lon:18,lat:39,s:0.82}
   ];
   ships.forEach(function(s,i){
     var pt=P(s.lon,s.lat); var x=pt[0],y=pt[1];
     if(!x||x<10||x>W-10) return;
     var sc=s.s;
-    var sg=g.append('g').attr('transform','translate('+x+','+y+') scale('+sc+')').attr('filter','url(#gs)');
+    var sg=g.append('g').attr('transform','translate('+x+','+y+') scale('+sc+')');
+    /* Animation SVG native — déplacement horizontal lent */
+    sg.append('animateTransform')
+      .attr('attributeName','transform').attr('attributeType','XML')
+      .attr('type','translate').attr('additive','sum')
+      .attr('from','0 0').attr('to','16 0')
+      .attr('dur','14s').attr('begin',(i*2.5)+'s')
+      .attr('repeatCount','indefinite').attr('calcMode','linear')
+      .attr('keyTimes','0;0.5;1').attr('values','0 0;16 0;0 0');
     /* Coque */
     sg.append('path').attr('d','M-26,2 Q-28,8 -22,10 L22,10 Q26,10 28,6 L28,2 Z').attr('fill','rgba(196,162,101,0.85)');
     sg.append('rect').attr('x','-24').attr('y','-1').attr('width',50).attr('height',4).attr('fill','rgba(196,162,101,0.85)');
-    sg.append('path').attr('d','M-24,-1 L-28,2 L-22,10 L-24,10 Z').attr('fill','rgba(196,162,101,0.7)');
+    sg.append('path').attr('d','M-24,-1 L-28,2 L-22,10 L-24,10 Z').attr('fill','rgba(196,162,101,0.85)');
     /* Containers rangée 1 */
     sg.append('rect').attr('x','-20').attr('y','-7').attr('width',9).attr('height',5).attr('fill','rgba(196,162,101,0.85)');
     sg.append('rect').attr('x','-10').attr('y','-7').attr('width',9).attr('height',5).attr('fill','rgba(196,162,101,0.85)');
     sg.append('rect').attr('x','1').attr('y','-7').attr('width',9).attr('height',5).attr('fill','rgba(196,162,101,0.85)');
     /* Containers rangée 2 */
-    sg.append('rect').attr('x','-18').attr('y','-12').attr('width',8).attr('height',4).attr('fill','rgba(196,162,101,0.72)');
-    sg.append('rect').attr('x','-9').attr('y','-12').attr('width',8).attr('height',4).attr('fill','rgba(196,162,101,0.72)');
-    sg.append('rect').attr('x','1').attr('y','-12').attr('width',7).attr('height',4).attr('fill','rgba(196,162,101,0.72)');
+    sg.append('rect').attr('x','-18').attr('y','-12').attr('width',8).attr('height',4).attr('fill','rgba(196,162,101,0.85)');
+    sg.append('rect').attr('x','-9').attr('y','-12').attr('width',8).attr('height',4).attr('fill','rgba(196,162,101,0.85)');
+    sg.append('rect').attr('x','1').attr('y','-12').attr('width',7).attr('height',4).attr('fill','rgba(196,162,101,0.85)');
     /* Séparateurs */
     ['−15','−5','5'].forEach(function(xx){sg.append('line').attr('x1',xx).attr('y1','-7').attr('x2',xx).attr('y2','-2').attr('stroke','rgba(5,9,15,0.55)').attr('stroke-width',0.9)});
     /* Superstructure */
     sg.append('rect').attr('x','13').attr('y','-16').attr('width',9).attr('height',17).attr('rx',1).attr('fill','rgba(196,162,101,0.85)');
     sg.append('rect').attr('x','17').attr('y','-21').attr('width',1.5).attr('height',6).attr('fill','rgba(196,162,101,0.85)');
-    /* Sillage bleu */
-    g.append('path').attr('d','M'+(x-26*sc)+','+(y+4*sc)+' Q'+(x-44*sc)+','+(y)+' '+(x-52*sc)+','+(y+4*sc)+' Q'+(x-44*sc)+','+(y+8*sc)+' '+(x-26*sc)+','+(y+4*sc))
-      .attr('fill','none').attr('stroke','rgba(74,154,212,0.35)').attr('stroke-width',2);
+    /* Sillage — ligne simple derrière le bateau */
+    g.append('path').attr('d','M'+(x-28*sc)+','+(y+5*sc)+' L'+(x-46*sc)+','+(y+5*sc))
+      .attr('fill','none').attr('stroke','rgba(100,180,230,0.4)').attr('stroke-width',2);
   });
 }
 
@@ -346,50 +405,47 @@ function buildLayer2(){
   carriers.forEach(function(f){
     var pt=P(f.lon,f.lat); var cx=pt[0],cy=pt[1];
     if(!cx||cx<5||cx>W-5) return;
-    /* Halo de présence */
+    /* Halo de présence animé */
     g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',68)
-      .attr('fill','rgba(74,154,212,0.06)').attr('stroke','rgba(74,154,212,0.25)')
-      .attr('stroke-width',1.5).attr('stroke-dasharray','6 4');
-    /* Porte-avions — silhouette vue de côté (fidèle à l'icône) */
-    var sc2=0.9;
+      .attr('fill','rgba(74,154,212,0.05)').attr('stroke','rgba(74,154,212,0.22)')
+      .attr('stroke-width',1.2).attr('stroke-dasharray','6 4').attr('class','zp');
+    /* Anneau pulse externe */
+    g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',1).attr('fill','none')
+      .attr('stroke','rgba(74,154,212,0.5)').attr('stroke-width',1.5).attr('class','pr')
+      .style('animation-delay',(Math.random()*2)+'s');
+    /* Porte-avions — silhouette épurée, sans éléments parasites */
+    var sc2=0.88;
+    /* Porte-avions : léger mouvement de patrouille */
+    var carrierIdx=carriers.indexOf(f); var carrierDelay=carrierIdx*2.8;
     var sg=g.append('g').attr('transform','translate('+cx+','+cy+') scale('+sc2+')').attr('filter','url(#gb)');
+    sg.append('animateTransform')
+      .attr('attributeName','transform').attr('attributeType','XML')
+      .attr('type','translate').attr('additive','sum')
+      .attr('from','0 0').attr('to','14 0')
+      .attr('dur','16s').attr('begin',carrierDelay+'s')
+      .attr('repeatCount','indefinite').attr('calcMode','spline')
+      .attr('keyTimes','0;0.5;1').attr('keySplines','0.4 0 0.6 1;0.4 0 0.6 1')
+      .attr('values','0 0;14 0;0 0');
     /* Coque */
-    sg.append('path').attr('d','M-32,4 Q-36,11 -27,13 L27,13 Q31,13 34,9 L34,3 Z').attr('fill','rgba(74,154,212,0.9)');
-    /* Pont d envol plat */
-    sg.append('rect').attr('x','-32').attr('y','-3').attr('width',65).attr('height',8).attr('rx',1).attr('fill','rgba(74,154,212,0.9)');
-    /* Proue */
-    sg.append('path').attr('d','M29,3 L34,3 L34,9 L27,13 Z').attr('fill','rgba(74,154,212,0.78)');
-    /* Catapultes — encoches côté gauche */
-    sg.append('rect').attr('x','-27').attr('y','6').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
-    sg.append('rect').attr('x','-20').attr('y','6').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
-    /* Hublots côté droit */
-    sg.append('rect').attr('x','2').attr('y','6').attr('width',4).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.5)');
-    sg.append('rect').attr('x','9').attr('y','6').attr('width',4).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.5)');
-    sg.append('rect').attr('x','16').attr('y','6').attr('width',4).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.5)');
-    /* Îlot (tribord, côté droit) */
-    sg.append('rect').attr('x','20').attr('y','-15').attr('width',10).attr('height',17).attr('rx',1).attr('fill','rgba(74,154,212,0.9)');
-    /* Fenêtres îlot */
-    sg.append('rect').attr('x','22').attr('y','-11').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
-    sg.append('rect').attr('x','26').attr('y','-11').attr('width',3).attr('height',2).attr('rx',0.5).attr('fill','rgba(5,9,15,0.55)');
-    /* Radar (croix) */
-    sg.append('rect').attr('x','22').attr('y','-21').attr('width',5).attr('height',1.5).attr('fill','rgba(74,154,212,0.9)');
-    sg.append('rect').attr('x','24').attr('y','-23').attr('width',1.5).attr('height',7).attr('fill','rgba(74,154,212,0.9)');
-    sg.append('rect').attr('x','21').attr('y','-19').attr('width',9).attr('height',1).attr('fill','rgba(74,154,212,0.72)');
-    /* 4 avions sur le pont */
-    [[-24,-5],[-14,-5],[-4,-5],[6,-5]].forEach(function(p){
-      sg.append('path').attr('d','M'+p[0]+','+p[1]+' L'+(p[0]+4)+','+(p[1]-2.5)+' L'+(p[0]+9)+','+p[1]+' L'+(p[0]+4.5)+','+(p[1]+1.5)+' Z').attr('fill','rgba(255,255,255,0.6)');
-      sg.append('rect').attr('x',p[0]+2).attr('y',p[1]).attr('width',5).attr('height',1.5).attr('fill','rgba(255,255,255,0.5)');
-    });
-    /* Sillage bleu */
-    g.append('path').attr('d','M'+(cx-32*sc2)+','+(cy+8*sc2)+' Q'+(cx-52*sc2)+','+cy+' '+(cx-62*sc2)+','+(cy+8*sc2)+' Q'+(cx-52*sc2)+','+(cy+16*sc2)+' '+(cx-32*sc2)+','+(cy+8*sc2))
-      .attr('fill','none').attr('stroke','rgba(74,154,212,0.4)').attr('stroke-width',2.5);
+    sg.append('path').attr('d','M-30,2 Q-35,9 -26,12 L26,12 Q30,12 33,8 L33,2 Z').attr('fill','rgba(74,154,212,0.85)');
+    /* Pont d'envol — large et plat */
+    sg.append('rect').attr('x','-30').attr('y','-4').attr('width',62).attr('height',7).attr('fill','rgba(74,154,212,0.9)');
+    /* Îlot (tribord) — simple bloc */
+    sg.append('rect').attr('x','18').attr('y','-14').attr('width',9).attr('height',11).attr('fill','rgba(74,154,212,0.9)');
+    /* Mât radar */
+    sg.append('rect').attr('x','21').attr('y','-20').attr('width',1.5).attr('height',7).attr('fill','rgba(74,154,212,0.8)');
+    sg.append('rect').attr('x','18').attr('y','-19').attr('width',8).attr('height',1).attr('fill','rgba(74,154,212,0.6)');
+    /* Sillage — trait simple */
+    g.append('path').attr('d','M'+(cx-30*sc2)+','+(cy+5*sc2)+' L'+(cx-55*sc2)+','+(cy+5*sc2))
+      .attr('fill','none').attr('stroke','rgba(74,154,212,0.35)').attr('stroke-width',1.8);
     /* Label région */
     var lbw=f.region.length*7.5+24;
     /* Label région — au-dessus du halo, pas en dessous pour éviter chevauchement */
-    g.append('text').attr('x',cx).attr('y',cy-75).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',11).attr('font-weight','300')
-      .attr('fill','rgba(74,154,212,0.8)')
-      
+    /* Label positionné selon la zone — évite les chevauchements */
+    var lblY=(f.region==='Atlantique Nord'||f.region==='Pacifique Est')?cy+58:cy-72;
+    g.append('text').attr('x',cx).attr('y',lblY).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('font-weight','300')
+      .attr('fill','rgba(74,154,212,0.72)')
       .text(f.region);
   });
 
@@ -417,23 +473,21 @@ function buildLayer3(){
     var cx2=polyPts.reduce(function(s,p){return s+p[0]},0)/polyPts.length;
     var cy2=polyPts.reduce(function(s,p){return s+p[1]},0)/polyPts.length;
     g.append('text').attr('x',cx2).attr('y',cy2+3).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','400')
-      .attr('fill','rgba(212,80,64,0.82)').attr('letter-spacing',1.5)
-      
-      .text('REVENDICATION 9 TRAITS');
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',8.5).attr('font-weight','400')
+      .attr('fill','rgba(212,80,64,0.75)').attr('letter-spacing',1.5)
+      .text('9 TRAITS');
   }
 
   /* Route de la Soie Maritime — une seule ligne claire */
   var silkC=[[121,31],[104,1],[57,20],[43,13],[33,27],[15,37],[4,52]];
-  var silkD=gpath({type:'LineString',coordinates:silkC});
+  var silkD=smoothRoute(silkC);
   if(silkD){
     g.append('path').attr('d',silkD).attr('fill','none').attr('stroke','rgba(212,80,64,0.09)').attr('stroke-width',8).attr('stroke-linecap','round');
     g.append('path').attr('d',silkD).attr('fill','none').attr('stroke','rgba(212,80,64,0.18)').attr('stroke-width',3.5).attr('stroke-linecap','round');
     g.append('path').attr('d',silkD).attr('fill','none').attr('stroke','rgba(212,80,64,0.6)').attr('stroke-width',2).attr('stroke-dasharray','9 6').attr('class','rf').style('animation-delay','0.5s');
-    var midSilk=P(75,8);
+    var midSilk=P(62,-4);
     g.append('text').attr('x',midSilk[0]).attr('y',midSilk[1]).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('fill','rgba(212,80,64,0.95)')
-      
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',9.5).attr('fill','rgba(212,80,64,0.75)')
       .text('Route de la Soie Maritime');
   }
 
@@ -475,23 +529,28 @@ function buildLayer4(){
   layers.push(g);
 
   /* Route arctique */
-  var arcC=[[-165,70],[-120,75],[-60,78],[0,81],[60,78],[120,74],[165,68]];
-  var arcD=gpath({type:'LineString',coordinates:arcC});
+  var arcC=[[-165,66],[-140,72],[-90,76],[-45,78],[0,79],[45,78],[90,76],[140,72],[165,66]];
+  var arcD=smoothRoute(arcC);
   if(arcD){
-    g.append('path').attr('d',arcD).attr('fill','none').attr('stroke','rgba(196,162,101,0.1)').attr('stroke-width',7).attr('stroke-linecap','round');
-    g.append('path').attr('d',arcD).attr('fill','none').attr('stroke','rgba(196,162,101,0.72)').attr('stroke-width',2.5).attr('stroke-dasharray','8 5').attr('filter','url(#gs)');
-    var arcMid=P(0,81);
+    /* Route arctique — bleu glacé, 3 couches animées */
+    g.append('path').attr('d',arcD).attr('fill','none')
+      .attr('stroke','rgba(140,210,255,0.08)').attr('stroke-width',10).attr('stroke-linecap','round');
+    g.append('path').attr('d',arcD).attr('fill','none')
+      .attr('stroke','rgba(120,195,240,0.22)').attr('stroke-width',4).attr('stroke-linecap','round');
+    g.append('path').attr('d',arcD).attr('fill','none')
+      .attr('stroke','rgba(160,225,255,0.65)').attr('stroke-width',1.8)
+      .attr('stroke-dasharray','10 7').attr('class','rf').style('animation-delay','0.4s');
+    var arcMid=P(0,79);
     g.append('text').attr('x',arcMid[0]).attr('y',arcMid[1]).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('fill','rgba(196,162,101,0.95)')
-      
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('fill','rgba(160,225,255,0.75)')
       .text('Route Arctique — −40% trajet Asie-Europe');
   }
 
   /* Zones de tension — 3 seulement, bien espacées */
   var fz=[
-    {lon:119,lat:23.5,r:36,label:'TAÏWAN',sz:'big'},
-    {lon:34,lat:43,rx:82,ry:22,label:'MER NOIRE',sz:'ellipse',ldy:14},
-    {lon:55,lat:25,r:46,label:'GOLFE PERSIQUE',sz:'big'}
+    {lon:119,lat:23.5,r:28,label:'TAÏWAN',sz:'big',ldx:0,ldy:0},
+    {lon:34,lat:43,rx:65,ry:18,label:'MER NOIRE',sz:'ellipse',ldx:0,ldy:14},
+    {lon:57,lat:22,r:34,label:'GOLFE PERSIQUE',sz:'big',ldx:0,ldy:0}
   ];
   fz.forEach(function(z,i){
     var pt=P(z.lon,z.lat); var cx=pt[0],cy=pt[1];
@@ -510,13 +569,11 @@ function buildLayer4(){
     }
     wg.append('circle').attr('r',6).attr('fill','#D45040').attr('filter','url(#gr)');
     wg.append('circle').attr('r',3).attr('fill','rgba(255,255,255,0.95)');
-    var lbw=z.label.length*8+24;
-    var lby=z.sz==='ellipse'?cy-z.ry-18:cy-z.r-18;
+    var lby=z.sz==='ellipse'?cy-z.ry-14:cy-z.r-14;
     var ldy=z.ldy||0;
-    g.append('text').attr('x',cx).attr('y',lby+13+ldy).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',11).attr('font-weight','400')
-      .attr('fill','rgba(212,80,64,0.88)').attr('letter-spacing',2.5).attr('class','lf')
-      
+    g.append('text').attr('x',cx+(z.ldx||0)).attr('y',lby+12+ldy).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','400')
+      .attr('fill','rgba(212,80,64,0.85)').attr('letter-spacing',2).attr('class','lf')
       .text(z.label);
   });
 }
