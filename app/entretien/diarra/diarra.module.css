@@ -96,7 +96,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 25%;
   display: block;
   filter: grayscale(20%) contrast(1.05);
 }
@@ -263,7 +263,7 @@
   }
   .heroPortrait::after { display: none; }
   .portrait { 
-    object-position: center 10%;
+    object-position: center 30%;
     filter: grayscale(10%);
   }
   .heroText { order: 0; }
