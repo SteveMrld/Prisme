@@ -249,8 +249,8 @@
 .gePortraitWrap {
   position: relative;
   overflow: hidden;
-  border-left: 1px solid rgba(0,0,0,0.08);
-  background: #EDE8DC;
+  border-left: none;
+  background: #F5F1E8;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -262,7 +262,8 @@
   object-fit: cover;
   object-position: 20% top;
   display: block;
-  filter: grayscale(18%) contrast(1.04);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
 }
 
 .gePortraitCaption {
