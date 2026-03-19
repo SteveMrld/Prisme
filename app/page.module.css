@@ -643,14 +643,11 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { grid-template-columns: 1fr; }
+  .ge { grid-template-columns: 1fr 120px; }
   .gePortraitWrap { 
-    height: 260px;
-    order: -1;
-    border-left: none;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    border-left: 1px solid rgba(0,0,0,0.08);
   }
-  .geContent { padding: 40px 24px; }
+  .geContent { padding: 28px 20px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
   .gfSection { padding: 0 24px; }
