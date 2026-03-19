@@ -11,7 +11,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
 :root{
   --us:#1B3A5E;       /* bleu nuit profond */
   --ru:#2E4A38;       /* vert kaki eurasiatique */
-  --cn:#A07820;       /* or profond champagne */
+  --cn:#B8920A;       /* or riche */
   --neutral:#1A2535;
   --gold:#C4A265;
   --ocean:#05080F;
@@ -42,7 +42,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
 .sel-btn.active{color:#fff;background:rgba(255,255,255,0.1)}
 .sel-btn.us.active{color:#7AAEDD;background:rgba(27,58,94,0.3)}
 .sel-btn.ru.active{color:#72A882;background:rgba(46,74,56,0.3)}
-.sel-btn.cn.active{color:#C09830;background:rgba(160,120,32,0.25)}
+.sel-btn.cn.active{color:#DDB830;background:rgba(184,146,10,0.25)}
 
 /* ══ PANNEAU ══ */
 #panel{
@@ -214,7 +214,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
 
   <div id="legend">
     <div class="li on" id="li-all" onclick="filter('all')">
-      <div class="li-bar" style="background:linear-gradient(to right,#2E62A0,#3A6B48,#A07820)"></div>
+      <div class="li-bar" style="background:linear-gradient(to right,#2E62A0,#3A6B48,#C8A010)"></div>
       <span class="li-txt">Toutes les zones</span>
     </div>
     <div class="li" id="li-us" onclick="filter('us')">
@@ -226,7 +226,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
       <span class="li-txt">Zone Russie</span>
     </div>
     <div class="li" id="li-cn" onclick="filter('cn')">
-      <div class="li-bar" style="background:#A07820"></div>
+      <div class="li-bar" style="background:#C8A010"></div>
       <span class="li-txt">Zone Chine</span>
     </div>
     <div class="li" style="cursor:default;margin-top:4px">
@@ -290,12 +290,12 @@ function addGlow(id,col,b){
   f.append('feGaussianBlur').attr('stdDeviation',b).attr('result','b');
   var m=f.append('feMerge');m.append('feMergeNode').attr('in','b');m.append('feMergeNode').attr('in','SourceGraphic');
 }
-addGlow('gus','#1B3A5E',4);addGlow('gru','#2E4A38',4);addGlow('gcn','#A07820',4);
+addGlow('gus','#1B3A5E',4);addGlow('gru','#2E4A38',4);addGlow('gcn','#B8920A',4);
 addGlow('ggold','#C4A265',2);addGlow('gw','#fff',2);
 
 /* ══ COULEURS ══ */
-var SCOL={us:'#1B3A5E',ru:'#2E4A38',cn:'#A07820'};
-var SFILL={us:'#080F1C',ru:'#0A120C',cn:'#141000'};
+var SCOL={us:'#1B3A5E',ru:'#2E4A38',cn:'#B8920A'};
+var SFILL={us:'#080F1C',ru:'#0A120C',cn:'#181200'};
 var SNAME={us:'Zone US',ru:'Zone Russie',cn:'Zone Chine'};
 
 /* ══ MAPPING PAYS ══ */
@@ -433,7 +433,7 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
     {lon:103,lat:35,name:'CHINE',s:'cn'},
   ].forEach(function(l){
     var pt=P(l.lon,l.lat);
-    var LCOL={us:'#6A9FD0',ru:'#5A8E68',cn:'#B89840'};
+    var LCOL={us:'#6A9FD0',ru:'#5A8E68',cn:'#C8A030'};
     svg.append('text').attr('x',pt[0]).attr('y',pt[1])
       .attr('text-anchor','middle')
       .attr('font-family','"DM Sans",sans-serif')
