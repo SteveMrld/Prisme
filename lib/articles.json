@@ -107,7 +107,7 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Essai & Concept"
+    "authorRole": "Technologie & Numérique"
   },
   {
     "slug": "ia_ecriture",
@@ -117,7 +117,7 @@
     "category": "culture",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Culture & Essai"
+    "authorRole": "Technologie & Numérique"
   },
   {
     "slug": "kintsugi",
@@ -217,7 +217,7 @@
     "category": "soc",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Société & Politique"
+    "authorRole": "Technologie & Numérique"
   },
   {
     "slug": "rushkoff",
@@ -227,7 +227,7 @@
     "category": "tech",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Géopolitique"
+    "authorRole": "Technologie & Numérique"
   },
   {
     "slug": "semico",
@@ -237,7 +237,7 @@
     "category": "concept",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Essai & Concept"
+    "authorRole": "Technologie & Numérique"
   },
   {
     "slug": "silence",
@@ -267,7 +267,7 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Géopolitique & Stratégie"
+    "authorRole": "Technologie & Numérique"
   },
   {
     "slug": "technosolutionnisme",
@@ -277,7 +277,7 @@
     "category": "tech",
     "readTime": "15",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Géopolitique"
+    "authorRole": "Technologie & Numérique"
   },
   {
     "slug": "venezuela",
