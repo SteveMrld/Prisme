@@ -798,3 +798,114 @@
   height: 100%;
   display: block;
 }
+
+/* ── PORTRAITS SECTION ── */
+.portraitsSection {
+  padding: 64px;
+  border-top: 1px solid var(--bord);
+}
+
+.portraitsHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.portraitsLabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--encre);
+}
+
+.portraitsSeeAll {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--portrait);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.portraitsSeeAll:hover { opacity: 0.7; }
+
+.portraitsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--bord);
+}
+
+.portraitCard {
+  background: var(--bg);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.15s;
+  border-left: 3px solid var(--portrait);
+}
+.portraitCard:hover { background: var(--papier); }
+
+.portraitImgWrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.portraitCard:hover .portraitImg { transform: scale(1.03); }
+
+.portraitBody {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.portraitTag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.portraitTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--encre);
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+
+.portraitDesc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--gris-m);
+  line-height: 1.5;
+  font-style: italic;
+  flex: 1;
+}
+
+.portraitCta {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--portrait);
+}
+
+@media (max-width: 900px) {
+  .portraitsSection { padding: 40px 20px; }
+  .portraitsGrid { grid-template-columns: 1fr; }
+}

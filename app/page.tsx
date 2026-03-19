@@ -219,7 +219,7 @@ export default function HomePage() {
             getArticle('blackrock'),
             getArticle('afrique'),
             getArticle('reseaux'),
-            getArticle('musk'),
+            getArticle('technosolutionnisme'),
             getArticle('overton'),
           ].map((article) => (
             <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.latestCard}>
@@ -235,6 +235,35 @@ export default function HomePage() {
                 <div className={styles.latestTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
                 <p className={styles.latestDesc}>{article.description}</p>
                 <span className={styles.latestTime}>{article.readTime} min</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      </FadeSection>
+
+      {/* ── PORTRAITS ── */}
+      <FadeSection>
+      <section className={styles.portraitsSection}>
+        <div className={styles.portraitsHead}>
+          <div className={styles.portraitsLabel}>Portraits</div>
+          <Link href="/portraits" className={styles.portraitsSeeAll}>Tous les portraits →</Link>
+        </div>
+        <div className={styles.portraitsGrid}>
+          {[
+            getArticle('musk'),
+            getArticle('morrison'),
+            getArticle('nooyi'),
+          ].map((article) => (
+            <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitCard}>
+              <div className={styles.portraitImgWrap}>
+                <img src={article.image} alt={article.title} className={styles.portraitImg} />
+              </div>
+              <div className={styles.portraitBody}>
+                <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
+                <div className={styles.portraitTitle}>{article.title}</div>
+                <p className={styles.portraitDesc}>{article.description}</p>
+                <span className={styles.portraitCta}>Lire →</span>
               </div>
             </Link>
           ))}
