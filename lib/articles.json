@@ -7,7 +7,7 @@
     "category": "geo",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Géopolitique & Stratégie"
   },
   {
     "slug": "arctique",
@@ -17,7 +17,7 @@
     "category": "env",
     "readTime": "12",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Environnement & Ressources"
   },
   {
     "slug": "blackrock",
@@ -27,7 +27,7 @@
     "category": "eco",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Économie & Finance"
   },
   {
     "slug": "chine",
@@ -37,7 +37,7 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Géopolitique & Stratégie"
   },
   {
     "slug": "cygne",
@@ -47,7 +47,7 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Essai & Concept"
   },
   {
     "slug": "eau",
@@ -57,7 +57,7 @@
     "category": "env",
     "readTime": "18",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Environnement & Ressources"
   },
   {
     "slug": "empires",
@@ -67,7 +67,7 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Géopolitique & Stratégie"
   },
   {
     "slug": "fiscalite",
@@ -77,7 +77,7 @@
     "category": "eco",
     "readTime": "4",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Économie & Finance"
   },
   {
     "slug": "fragilite",
@@ -87,7 +87,7 @@
     "category": "culture",
     "readTime": "5",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Culture & Essai"
   },
   {
     "slug": "france_maritime",
@@ -97,7 +97,7 @@
     "category": "geo",
     "readTime": "10",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Géopolitique & Stratégie"
   },
   {
     "slug": "ia",
@@ -107,7 +107,7 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Essai & Concept"
   },
   {
     "slug": "ia_ecriture",
@@ -117,7 +117,7 @@
     "category": "culture",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Culture & Essai"
   },
   {
     "slug": "kintsugi",
@@ -127,7 +127,7 @@
     "category": "culture",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Culture & Essai"
   },
   {
     "slug": "lecture",
@@ -137,7 +137,7 @@
     "category": "culture",
     "readTime": "9",
     "author": "Jade Desroses",
-    "authorRole": "Contributrice · Culture & Société"
+    "authorRole": "Culture & Société"
   },
   {
     "slug": "medias",
@@ -147,7 +147,7 @@
     "category": "soc",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Société & Politique"
   },
   {
     "slug": "morrison",
@@ -157,7 +157,7 @@
     "category": "portrait",
     "readTime": "9",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Portrait"
   },
   {
     "slug": "musk",
@@ -167,7 +167,7 @@
     "category": "portrait",
     "readTime": "9",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Portrait"
   },
   {
     "slug": "nooyi",
@@ -177,7 +177,7 @@
     "category": "portrait",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Portrait"
   },
   {
     "slug": "overton",
@@ -187,7 +187,7 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Essai & Concept"
   },
   {
     "slug": "pessimisme",
@@ -197,7 +197,7 @@
     "category": "soc",
     "readTime": "9",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Société & Politique"
   },
   {
     "slug": "predateurs",
@@ -207,7 +207,7 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Essai & Concept"
   },
   {
     "slug": "reseaux",
@@ -217,7 +217,7 @@
     "category": "soc",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Société & Politique"
   },
   {
     "slug": "rushkoff",
@@ -227,7 +227,7 @@
     "category": "tech",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Technologie & Géopolitique"
   },
   {
     "slug": "semico",
@@ -237,7 +237,7 @@
     "category": "concept",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Essai & Concept"
   },
   {
     "slug": "silence",
@@ -247,7 +247,7 @@
     "category": "soc",
     "readTime": "5",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Société & Politique"
   },
   {
     "slug": "taiwan",
@@ -257,7 +257,7 @@
     "category": "geo",
     "readTime": "6",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Géopolitique & Stratégie"
   },
   {
     "slug": "techgeo",
@@ -267,7 +267,7 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Géopolitique & Stratégie"
   },
   {
     "slug": "technosolutionnisme",
@@ -277,7 +277,7 @@
     "category": "tech",
     "readTime": "15",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Technologie & Géopolitique"
   },
   {
     "slug": "venezuela",
@@ -287,6 +287,6 @@
     "category": "geo",
     "readTime": "10",
     "author": "Steve Moradel",
-    "authorRole": "Fondateur · Directeur de la rédaction"
+    "authorRole": "Géopolitique & Stratégie"
   }
 ]
