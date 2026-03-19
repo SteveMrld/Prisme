@@ -131,40 +131,38 @@
   background: #F5F1E8;
   border-top: 3px solid var(--encre);
   border-bottom: 1px solid var(--bord);
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 52px 64px;
   min-height: 420px;
 }
 
 .geContent {
-  position: relative;
-  z-index: 2;
-  padding: 52px 64px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  max-width: 600px;
+  max-width: 560px;
 }
 
 .gePortraitWrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 44%;
-  height: 100%;
+  flex-shrink: 0;
+  width: 260px;
+  height: 300px;
   overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
 }
 
 .gePortrait {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
   display: block;
   mix-blend-mode: multiply;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
-  mask-image: linear-gradient(to right, transparent 0%, black 25%);
 }
 
 .gePortraitCaption { display: none; }
@@ -667,9 +665,9 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { min-height: 320px; }
-  .gePortraitWrap { display: none; }
-  .geContent { padding: 36px 24px; }
+  .ge { flex-direction: column; align-items: flex-start; gap: 24px; padding: 36px 24px; min-height: unset; }
+  .gePortraitWrap { width: 100%; height: 200px; }
+  .geContent { max-width: 100%; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
   .gfSection { padding: 0 24px; }
