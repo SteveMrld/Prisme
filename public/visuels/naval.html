@@ -42,7 +42,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05090F;color:#fff;f
   display:flex;flex-direction:column;justify-content:center;
   padding:44px 28px 44px 52px;
 }
-.panel-tag{font-size:7.5px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:20px}
+.panel-tag{font-size:7.5px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.6);margin-bottom:16px}
+.panel-hook{font-family:"Playfair Display",serif;font-size:clamp(13px,1.5vw,17px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.42);line-height:1.55;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.06)}
 .panel-title{font-family:"Playfair Display",serif;font-size:clamp(20px,2.8vw,32px);font-weight:300;line-height:1.12;letter-spacing:-0.5px;margin-bottom:18px}
 .panel-title em{font-style:italic;color:var(--gold)}
 .panel-body{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.88;margin-bottom:10px}
@@ -91,8 +92,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05090F;color:#fff;f
 <div id="prisme-wm">PRISME<span>.FR</span></div>
 <div id="stage">
   <svg id="map-svg"></svg>
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 50%,rgba(5,9,15,0.6) 100%);z-index:2"></div>
   <div id="panel">
     <div id="pTag" class="panel-tag"></div>
+    <div id="pHook" class="panel-hook"></div>
     <h2 id="pTitle" class="panel-title"></h2>
     <div id="pBody" class="panel-body"></div>
     <div class="panel-stat"><span id="pStatN" class="stat-n"></span><span id="pStatL" class="stat-l"></span></div>
@@ -135,29 +138,34 @@ glow('gg',4); glow('gb',5); glow('gr',5); glow('gs',2);
 
 /* ── CHAPITRES DATA ── */
 var chapters=[
-  {tag:'I · Économie mondiale',
+  {tag:'I · Commerce mondial · En 2026',
+   hook:'Sans la mer, il n\'y a pas de mondialisation.',
    title:'Les autoroutes <em>de la planète</em>',
-   body:'80 % des biens échangés dans le monde transitent par la mer — pétrole, containers, céréales. Trois axes dominent l\'économie mondiale. En couper un seul suffit à déclencher une crise en quelques semaines.',
+   body:'80% des biens échangés dans le monde transitent par la mer — pétrole, containers, céréales. Trois axes dominent l\'économie mondiale. En couper un seul suffit à déclencher une crise en quelques semaines.',
    statN:'80%',statL:'du commerce mondial\ntransite par voie maritime',
    leg:[{t:'line',c:'rgba(196,162,101,0.8)',l:'Route commerciale majeure'},{t:'dot',c:'rgba(196,162,101,0.7)',l:'Porte-conteneurs'}]},
-  {tag:'II · Points d\'étranglement',
+  {tag:'II · Points d\'étranglement · En 2026',
+   hook:'Bloquer Ormuz 48 heures. Le prix du pétrole bondit de 40 dollars.',
    title:'Les détroits qui <em>étranglent</em> le monde',
-   body:'Quelques kilomètres de mer concentrent des flux colossaux. Ces points de passage obligé sont les talons d\'Achille de l\'économie mondiale : les bloquer 48h fait bondir le prix du pétrole de 40 dollars.\n\n<strong>Ormuz</strong> : 20% du pétrole mondial. <strong>Malacca</strong> : 25% du commerce. <strong>Suez</strong> : 12% des échanges.',
+   body:'Quelques kilomètres de mer concentrent des flux colossaux. Ces points de passage obligé sont les talons d\'Achille de l\'économie mondiale.<br><br><strong>Ormuz</strong> : 20% du pétrole mondial. <strong>Malacca</strong> : 25% du commerce. <strong>Suez</strong> : 12% des échanges.',
    statN:'7',statL:'détroits concentrent\nl\'essentiel du commerce mondial',
    leg:[{t:'dot',c:'#C4A265',l:'Détroit économique critique'},{t:'dot',c:'#D45040',l:'Détroit à risque géopolitique'}]},
-  {tag:'III · Domination américaine',
+  {tag:'III · Domination américaine · En 2026',
+   hook:'Depuis 1945, les Etats-Unis garantissent la liberté de navigation. En échange de quoi, ils contrôlent tout.',
    title:'L\'empire <em>des sept mers</em>',
-   body:'Depuis 1945, la marine américaine garantit la liberté de navigation mondiale. C\'est la seule au monde à maintenir des porte-avions déployés en permanence sur <strong>tous les océans simultanément</strong>. Cette présence continue est le socle invisible de la mondialisation.',
-   statN:'11',statL:'porte-avions américains\nen service — plus que tous les autres pays réunis',
+   body:'La marine américaine est la seule au monde à maintenir des porte-avions déployés en permanence sur <strong>tous les océans simultanément</strong>. Cette présence continue est le socle invisible de la mondialisation — et de la domination américaine.',
+   statN:'11',statL:'porte-avions américains\nplus que tous les autres pays réunis',
    leg:[{t:'zone',c:'rgba(74,154,212,0.1)',bc:'rgba(74,154,212,0.35)',l:'Zone de présence permanente'},{t:'rect',c:'rgba(74,154,212,0.85)',l:'Porte-avions'}]},
-  {tag:'IV · Marine chinoise',
+  {tag:'IV · Marine chinoise · En 2026',
+   hook:'La Chine ne conquiert pas des territoires. Elle construit des flottes.',
    title:'La Chine <em>prend la mer</em>',
-   body:'En vingt ans, la Chine a construit la plus grande marine du monde en nombre de navires. Elle revendique 90% de la <strong>mer de Chine méridionale</strong> — traversée chaque année par 5 000 milliards de dollars de commerce. Des récifs ont été transformés en îles artificielles abritant des bases militaires. En 2017, la Chine a ouvert sa première base navale hors d\'Asie, à <strong>Djibouti</strong>, sur l\'une des routes maritimes les plus fréquentées du monde.',
-   statN:'370',statL:'navires de guerre chinois\nn°1 mondial en nombre de bâtiments',
-   leg:[{t:'zone',c:'rgba(212,80,64,0.15)',bc:'rgba(212,80,64,0.5)',l:'Revendication des 9 traits'},{t:'line',c:'rgba(212,80,64,0.6)',l:'Route de la Soie Maritime'},{t:'dot',c:'#D45040',l:'Base militaire chinoise à l\'étranger'}]},
-  {tag:'V · Zones de tension',
+   body:'En vingt ans, la Chine a bati la plus grande marine du monde en nombre de navires. Elle revendique 90% de la <strong>mer de Chine méridionale</strong> — 5 000 milliards de dollars de commerce annuel. Des récifs transformés en bases militaires. Djibouti, 2017 : sa première base navale hors d\'Asie.',
+   statN:'370',statL:'navires de guerre chinois\nn°1 mondial en nombre',
+   leg:[{t:'zone',c:'rgba(212,80,64,0.15)',bc:'rgba(212,80,64,0.5)',l:'Revendication des 9 traits'},{t:'line',c:'rgba(212,80,64,0.6)',l:'Route de la Soie Maritime'},{t:'dot',c:'#D45040',l:'Base militaire chinoise'}]},
+  {tag:'V · Zones de rupture · En 2026',
+   hook:'Les prochains conflits navals sont déjà dessinés sur la carte.',
    title:'Les points <em>de rupture</em>',
-   body:'Trois zones concentrent les risques d\'escalade militaire : <strong>Taïwan</strong>, où une invasion chinoise déclencherait une réponse américaine directe. La <strong>Mer Noire</strong>, théâtre du conflit ukrainien. Le <strong>Golfe Persique</strong>, otage des tensions irano-américaines. Et une nouvelle frontière s\'ouvre : l\'<strong style="color:rgba(196,162,101,0.9)">Arctique</strong>, dont la fonte des glaces raccourcit le trajet Asie-Europe de 40%.',
+   body:'<strong>Taïwan</strong> : une invasion déclencherait une réponse américaine directe. La <strong>Mer Noire</strong>, théâtre ukrainien. Le <strong>Golfe Persique</strong>, otage des tensions irano-américaines. Et l\'<strong style="color:rgba(196,162,101,0.9)">Arctique</strong>, nouvelle route commerciale, nouveau front.',
    statN:'3',statL:'zones à risque élevé\nde conflit naval majeur',
    leg:[{t:'dot',c:'#D45040',l:'Zone de haute tension'},{t:'dash',c:'rgba(196,162,101,0.7)',l:'Route Arctique en ouverture'}]}
 ];
@@ -224,9 +232,9 @@ function buildLayer0(){
     lbl.forEach(function(l){
       var pt=P(l[0],l[1]);
       g.append('text').attr('x',pt[0]).attr('y',pt[1]).attr('text-anchor','middle')
-        .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('font-weight','500')
-        .attr('fill','rgba(196,162,101,0.95)').attr('letter-spacing',0.3)
-        .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+        .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','300')
+        .attr('fill','rgba(196,162,101,0.7)').attr('letter-spacing',0.3)
+        
         .text(l[2]);
     });
   });
@@ -306,14 +314,14 @@ function buildLayer1(){
     var dy=s.dy||0;
     g.append('text').attr('x',x+lx).attr('y',y-2+dy).attr('text-anchor',anchor)
       .attr('font-family','"DM Sans",sans-serif')
-      .attr('font-size',big?13.5:11).attr('font-weight','600')
-      .attr('fill',s.c==='#D45040'?'rgba(212,80,64,0.98)':'rgba(255,255,255,0.97)')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .attr('font-size',big?13:10.5).attr('font-weight','400')
+      .attr('fill',s.c==='#D45040'?'rgba(212,80,64,0.92)':'rgba(255,255,255,0.88)')
+      
       .text(s.name);
     g.append('text').attr('x',x+lx).attr('y',y+13+dy).attr('text-anchor',anchor)
       .attr('font-family','"DM Sans",sans-serif').attr('font-size',big?10:9)
       .attr('fill',s.c==='#D45040'?'rgba(212,80,64,0.7)':'rgba(196,162,101,0.8)')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.85)').attr('stroke-width',2.5).attr('stroke-linejoin','round')
+      
       .text(s.stat);
   });
 }
@@ -379,17 +387,17 @@ function buildLayer2(){
     var lbw=f.region.length*7.5+24;
     /* Label région — au-dessus du halo, pas en dessous pour éviter chevauchement */
     g.append('text').attr('x',cx).attr('y',cy-75).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',12).attr('font-weight','600')
-      .attr('fill','rgba(74,154,212,0.98)')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',11).attr('font-weight','300')
+      .attr('fill','rgba(74,154,212,0.8)')
+      
       .text(f.region);
   });
 
   /* Légende "11 porte-avions US dans le monde" */
   var lx=30, ly=H-80;
   g.append('text').attr('x',lx+14).attr('y',ly+15).attr('font-family','"DM Sans",sans-serif')
-    .attr('font-size',11).attr('fill','rgba(74,154,212,0.85)')
-    .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+    .attr('font-size',10).attr('fill','rgba(74,154,212,0.65)')
+    
     .text('Position approx. — porte-avions américains');
 }
 
@@ -409,9 +417,9 @@ function buildLayer3(){
     var cx2=polyPts.reduce(function(s,p){return s+p[0]},0)/polyPts.length;
     var cy2=polyPts.reduce(function(s,p){return s+p[1]},0)/polyPts.length;
     g.append('text').attr('x',cx2).attr('y',cy2+3).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('font-weight','700')
-      .attr('fill','rgba(212,80,64,0.98)').attr('letter-spacing',1.5)
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','400')
+      .attr('fill','rgba(212,80,64,0.82)').attr('letter-spacing',1.5)
+      
       .text('REVENDICATION 9 TRAITS');
   }
 
@@ -425,7 +433,7 @@ function buildLayer3(){
     var midSilk=P(75,8);
     g.append('text').attr('x',midSilk[0]).attr('y',midSilk[1]).attr('text-anchor','middle')
       .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('fill','rgba(212,80,64,0.95)')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      
       .text('Route de la Soie Maritime');
   }
 
@@ -448,13 +456,13 @@ function buildLayer3(){
     wg.append('circle').attr('r',3).attr('fill','rgba(255,255,255,0.95)');
     g.append('text').attr('x',x+lx).attr('y',y-1).attr('text-anchor',anchor)
       .attr('font-family','"DM Sans",sans-serif')
-      .attr('font-size',12).attr('font-weight','600').attr('fill','rgba(212,80,64,0.98)')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.92)').attr('stroke-width',3.5).attr('stroke-linejoin','round')
+      .attr('font-size',11).attr('font-weight','300').attr('fill','rgba(212,80,64,0.85)')
+      
       .text(b.label);
     g.append('text').attr('x',x+lx).attr('y',y+12).attr('text-anchor',anchor)
       .attr('font-family','"DM Sans",sans-serif')
       .attr('font-size',9.5).attr('fill','rgba(212,80,64,0.72)')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.85)').attr('stroke-width',2.5).attr('stroke-linejoin','round')
+      
       .text(b.sub);
   });
 }
@@ -475,7 +483,7 @@ function buildLayer4(){
     var arcMid=P(0,81);
     g.append('text').attr('x',arcMid[0]).attr('y',arcMid[1]).attr('text-anchor','middle')
       .attr('font-family','"DM Sans",sans-serif').attr('font-size',10.5).attr('fill','rgba(196,162,101,0.95)')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.88)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      
       .text('Route Arctique — −40% trajet Asie-Europe');
   }
 
@@ -506,9 +514,9 @@ function buildLayer4(){
     var lby=z.sz==='ellipse'?cy-z.ry-18:cy-z.r-18;
     var ldy=z.ldy||0;
     g.append('text').attr('x',cx).attr('y',lby+13+ldy).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',12).attr('font-weight','700')
-      .attr('fill','rgba(212,80,64,0.98)').attr('letter-spacing',2).attr('class','lf')
-      .attr('paint-order','stroke').attr('stroke','rgba(5,9,15,0.9)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',11).attr('font-weight','400')
+      .attr('fill','rgba(212,80,64,0.88)').attr('letter-spacing',2.5).attr('class','lf')
+      
       .text(z.label);
   });
 }
@@ -522,6 +530,7 @@ for(var i=0;i<N;i++){(function(idx){var d=document.createElement('div');d.classN
 function updatePanel(idx){
   var c=chapters[idx];
   document.getElementById('pTag').textContent=c.tag;
+  document.getElementById('pHook').textContent=c.hook||'';
   document.getElementById('pTitle').innerHTML=c.title;
   document.getElementById('pBody').innerHTML=c.body.replace(/\n/g,'<br>');
   document.getElementById('pStatN').textContent=c.statN;
