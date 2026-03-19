@@ -907,5 +907,9 @@
 
 @media (max-width: 900px) {
   .portraitsSection { padding: 40px 20px; }
-  .portraitsGrid { grid-template-columns: 1fr; }
+  .portraitsGrid { grid-template-columns: repeat(3, 1fr); gap: 8px; background: transparent; }
+  .portraitImgWrap { aspect-ratio: unset; height: 140px; }
+  .portraitBody { padding: 12px 14px 16px; gap: 6px; }
+  .portraitTitle { font-size: 13px; }
+  .portraitDesc { display: none; }
 }

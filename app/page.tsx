@@ -195,7 +195,7 @@ export default function HomePage() {
       }}>
         {[
           { value: 29, suffix: '', label: 'Analyses publiées', prefix: '' },
-          { value: 11, suffix: ' M km²', label: 'ZEE française — 2e mondiale', prefix: '' },
+          { value: 18, suffix: ' min', label: 'Lecture la plus longue', prefix: '' },
           { value: 8, suffix: '', label: 'Minutes de lecture en moyenne', prefix: '' },
           { value: 11, suffix: '', label: 'Contributeurs', prefix: '' },
         ].map((s, i) => (
