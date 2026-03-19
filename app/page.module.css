@@ -128,15 +128,17 @@
 
 /* ── GRAND ENTRETIEN ── */
 .ge {
-  background: #F5F1E8;
+  background: var(--blanc);
   border-top: 3px solid var(--encre);
   border-bottom: 1px solid var(--bord);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 48px;
+  justify-content: center;
+  gap: 64px;
   padding: 52px 64px;
   min-height: 420px;
+  position: relative;
+  overflow: hidden;
 }
 
 .geContent {
@@ -150,10 +152,9 @@
 
 .gePortraitWrap {
   flex-shrink: 0;
-  width: 260px;
-  height: 300px;
+  width: 280px;
+  height: 320px;
   overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.08);
 }
 
 .gePortrait {
@@ -163,6 +164,8 @@
   object-position: center 20%;
   display: block;
   mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
 .gePortraitCaption { display: none; }
