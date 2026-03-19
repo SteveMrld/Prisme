@@ -3,272 +3,698 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le Monde des Prédateurs</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Le Monde des Prédateurs · Prisme</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --encre: #0A0A0A; --or: #C4A265;
-    --geo: #1A3E6B; --usa: #1A3E6B; --russie: #7A2D2D; --chine: #B86A1A;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
+:root{
+  --us:#1B3A5E;       /* bleu nuit profond */
+  --ru:#2E4A38;       /* vert kaki eurasiatique */
+  --cn:#A07820;       /* or profond champagne */
+  --neutral:#1A2535;
+  --gold:#C4A265;
+  --ocean:#05080F;
+}
+#stage{position:fixed;top:0;left:0;width:100%;height:calc(100% - 52px);display:flex}
+#map-wrap{position:relative;flex:1;overflow:hidden;background:var(--ocean)}
+#map-svg{position:absolute;top:0;left:0;width:100%;height:100%}
+#vignette{position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(4,7,15,0.7) 100%)}
+
+/* ══ SÉLECTEUR ══ */
+#selector{
+  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+  display:flex;gap:1px;z-index:20;
+  background:rgba(4,7,15,0.88);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:40px;overflow:hidden;
+  backdrop-filter:blur(20px);
+}
+.sel-btn{
+  padding:8px 20px;border:none;cursor:pointer;
+  font-family:"DM Sans",sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  background:transparent;color:rgba(255,255,255,0.55);
+  transition:all 0.3s;border-radius:40px;
+}
+.sel-btn:hover{color:rgba(255,255,255,0.85)}
+.sel-btn.active{color:#fff;background:rgba(255,255,255,0.1)}
+.sel-btn.us.active{color:#7AAEDD;background:rgba(27,58,94,0.3)}
+.sel-btn.ru.active{color:#72A882;background:rgba(46,74,56,0.3)}
+.sel-btn.cn.active{color:#C09830;background:rgba(160,120,32,0.25)}
+
+/* ══ PANNEAU ══ */
+#panel{
+  width:clamp(270px,25vw,320px);flex-shrink:0;
+  position:relative;z-index:10;
+  background:linear-gradient(to right,transparent 0%,rgba(4,7,15,0.96) 14%);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:52px 36px 52px 28px;
+}
+#panel::before{
+  content:'';position:absolute;left:0;top:15%;bottom:15%;width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.06),transparent);
+}
+.p-year{
+  font-size:8px;font-weight:500;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,0.2);margin-bottom:28px;
+}
+.p-tag{font-size:7px;font-weight:700;letter-spacing:5px;text-transform:uppercase;margin-bottom:14px;transition:color 0.6s}
+.p-hook{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(16px,1.6vw,21px);font-style:italic;font-weight:300;
+  color:rgba(255,255,255,0.55);line-height:1.55;
+  margin-bottom:22px;padding-bottom:22px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:opacity 0.5s;
+}
+.p-title{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(24px,2.6vw,34px);font-weight:300;
+  line-height:1.1;letter-spacing:-0.5px;color:#fff;margin-bottom:16px;
+}
+.p-title em{font-style:italic;transition:color 0.6s}
+.p-body{font-size:12.5px;color:rgba(255,255,255,0.42);line-height:1.9}
+.p-body strong{color:rgba(255,255,255,0.82);font-weight:500}
+.p-stat{
+  margin-top:26px;padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.p-n{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(40px,4.2vw,56px);font-weight:300;
+  line-height:1;display:block;white-space:nowrap;
+  transition:color 0.6s;
+}
+.p-l{
+  font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,0.26);display:block;margin-top:10px;line-height:1.8;
+}
+
+/* ══ LÉGENDE ══ */
+#legend{
+  position:absolute;left:20px;top:50%;transform:translateY(-50%);
+  z-index:20;display:flex;flex-direction:column;gap:11px;
+}
+.li{
+  display:flex;align-items:center;gap:10px;
+  cursor:pointer;padding:5px 9px;border-radius:5px;
+  transition:background 0.2s;
+}
+.li:hover,.li.on{background:rgba(255,255,255,0.05)}
+.li-bar{width:18px;height:3px;border-radius:2px;flex-shrink:0;transition:width 0.2s}
+.li.on .li-bar{width:24px}
+.li-txt{font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.3px;white-space:nowrap}
+.li.on .li-txt{color:rgba(255,255,255,0.82)}
+
+/* ══ TOOLTIP ══ */
+#tip{
+  position:absolute;pointer-events:none;z-index:100;
+  background:rgba(4,7,15,0.95);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:13px 17px;
+  font-size:12px;color:#fff;
+  opacity:0;transition:opacity 0.12s;
+  min-width:170px;backdrop-filter:blur(20px);
+  box-shadow:0 8px 40px rgba(0,0,0,0.6);
+}
+#tip-name{font-weight:600;font-size:13px;margin-bottom:3px}
+#tip-zone{font-size:9px;letter-spacing:2px;text-transform:uppercase;opacity:0.55;margin-bottom:6px}
+#tip-detail{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.55}
+
+/* ══ STATS SUR CARTE ══ */
+.map-stat{pointer-events:none}
+.map-stat-n{
+  font-family:"Playfair Display",serif;
+  font-weight:300;fill:rgba(255,255,255,0.7);
+}
+.map-stat-l{
+  font-family:"DM Sans",sans-serif;
+  fill:rgba(255,255,255,0.35);font-size:7px;letter-spacing:1px;text-transform:uppercase;
+}
+
+/* ══ ANIMATIONS ══ */
+@keyframes fadeInCountry{from{opacity:0}to{opacity:1}}
+@keyframes flow{to{stroke-dashoffset:-26}}
+@keyframes ring{0%{r:4;opacity:0.85}100%{r:22;opacity:0}}
+@keyframes zpulse{0%,100%{opacity:0.06}50%{opacity:0.2}}
+@keyframes arcticAnim{0%,100%{fill-opacity:0.08}50%{fill-opacity:0.2}}
+@keyframes revealCountry{from{fill-opacity:0}to{fill-opacity:1}}
+.rf{stroke-dasharray:9 6;animation:flow 3.5s linear infinite}
+.pr{animation:ring 2.4s ease-out infinite}
+.zp{animation:zpulse 3s ease-in-out infinite}
+.arc{animation:arcticAnim 3s ease-in-out infinite}
+
+/* ══ PLAYER ══ */
+#player{
+  position:fixed;bottom:0;left:0;right:0;height:52px;z-index:200;
+  display:flex;flex-direction:column;
+  background:rgba(4,7,15,0.98);border-top:1px solid rgba(255,255,255,0.06);
+}
+#prog-bar{width:100%;height:2px;background:rgba(255,255,255,0.06);cursor:pointer}
+#prog-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s linear}
+#ctrl{flex:1;display:flex;align-items:center;justify-content:center;padding:0 20px;position:relative}
+#dots{position:absolute;left:20px;display:flex;gap:6px;align-items:center}
+.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.15);cursor:pointer;transition:all .2s}
+.dot.on{background:var(--gold);transform:scale(1.5)}
+.cbtn{width:36px;height:36px;border:none;background:none;color:rgba(255,255,255,0.38);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 4px}
+.cbtn:hover{color:var(--gold)}
+.cbtn svg{width:18px;height:18px;fill:currentColor}
+#bplay .ip{display:block}#bplay .ipa{display:none}
+#bplay.on .ip{display:none}#bplay.on .ipa{display:block}
+#bplay{width:42px;height:42px;border-radius:50%;background:rgba(196,162,101,0.1);color:var(--gold);border:1px solid rgba(196,162,101,0.22)}
+#cnt{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18)}
+#wm{position:fixed;bottom:74px;left:20px;z-index:50;pointer-events:none;font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.3)}
+#wm span{color:rgba(196,162,101,0.15)}
+.back{position:fixed;top:20px;left:20px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18);text-decoration:none;z-index:300;transition:color .2s}
+.back:hover{color:var(--gold)}
+
+/* ══ MOBILE ══ */
+@media(max-width:680px){
+  #stage{flex-direction:column}
+  #map-wrap{flex:0 0 48vh;overflow:hidden}
+  #panel{
+    width:100%;flex:1;
+    background:rgba(4,7,15,0.97);
+    padding:14px 20px 14px 20px;
+    justify-content:flex-start;overflow-y:auto;
+    border-top:1px solid rgba(255,255,255,0.07);
   }
-  html, body { background: #0D0D0D; font-family: 'DM Sans', sans-serif; font-weight: 300; color: #ECE7DD; -webkit-font-smoothing: antialiased; min-height: 100vh; }
-
-  .page { display: flex; flex-direction: column; min-height: 100vh; }
-
-  .header {
-    padding: 16px 28px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .header-tag { font-size: 8px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--or); border: 1px solid rgba(196,162,101,0.35); padding: 4px 12px; }
-  .header-title { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: rgba(236,231,221,0.7); }
-
-  .content { flex: 1; padding: 28px; display: flex; flex-direction: column; gap: 20px; }
-
-  /* Intro */
-  .intro { font-family: 'Playfair Display', serif; font-size: 13px; font-style: italic; color: rgba(236,231,221,0.45); line-height: 1.65; max-width: 600px; border-left: 2px solid rgba(196,162,101,0.3); padding-left: 16px; }
-
-  /* TABS */
-  .tabs { display: flex; gap: 1px; background: rgba(255,255,255,0.05); }
-  .tab { flex: 1; padding: 12px 8px; text-align: center; cursor: pointer; font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); transition: all 0.2s; border-bottom: 2px solid transparent; }
-  .tab:hover { color: rgba(255,255,255,0.6); }
-  .tab.usa.active { color: #4A7EC7; border-color: #4A7EC7; background: rgba(74,126,199,0.06); }
-  .tab.russie.active { color: #C75A5A; border-color: #C75A5A; background: rgba(199,90,90,0.06); }
-  .tab.chine.active { color: #D4882A; border-color: #D4882A; background: rgba(212,136,42,0.06); }
-
-  /* EMPIRE CARD */
-  .empire { display: none; flex-direction: column; gap: 20px; animation: fadeIn 0.3s ease; }
-  .empire.active { display: flex; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-  .empire-header { display: flex; align-items: flex-start; gap: 20px; }
-
-  .empire-flag {
-    width: 56px; height: 40px; flex-shrink: 0; border-radius: 2px; overflow: hidden;
-    display: flex; flex-direction: column;
-  }
-
-  .flag-usa { background: linear-gradient(#B22234 0%, #B22234 33%, #fff 33%, #fff 66%, #3C3B6E 66%); }
-  .flag-russie { background: linear-gradient(#fff 0%, #fff 33%, #0039A6 33%, #0039A6 66%, #D52B1E 66%); }
-  .flag-chine { background: #DE2910; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-
-  .empire-identity { display: flex; flex-direction: column; gap: 6px; }
-
-  .empire-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 4vw, 32px);
-    font-weight: 300;
-    letter-spacing: -1px;
-    line-height: 1;
-  }
-  .empire-name.usa { color: #4A7EC7; }
-  .empire-name.russie { color: #C75A5A; }
-  .empire-name.chine { color: #D4882A; }
-
-  .empire-doctrine {
-    font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-  }
-
-  /* AXES */
-  .axes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
-
-  .axe { background: rgba(255,255,255,0.02); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
-
-  .axe-label { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.25); }
-
-  .axe-value { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 400; color: rgba(236,231,221,0.85); line-height: 1.3; }
-
-  .axe-bar { height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
-  .axe-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease 0.1s; }
-
-  /* DESCRIPTION */
-  .empire-desc {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(14px, 2vw, 17px);
-    font-style: italic;
-    color: rgba(236,231,221,0.6);
-    line-height: 1.7;
-  }
-
-  /* ZONES */
-  .zones-title { font-size: 8px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 12px; }
-
-  .zones { display: flex; flex-direction: column; gap: 8px; }
-
-  .zone-item { display: flex; align-items: flex-start; gap: 12px; }
-
-  .zone-bullet { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-
-  .zone-text { font-size: 13px; color: rgba(236,231,221,0.5); line-height: 1.5; }
-
-  .zone-text strong { color: rgba(236,231,221,0.8); font-weight: 500; }
-
-  /* QUOTE */
-  .empire-quote { border-left: 2px solid rgba(196,162,101,0.25); padding: 12px 18px; }
-  .empire-quote p { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: rgba(236,231,221,0.45); line-height: 1.6; }
-  .empire-quote cite { display: block; font-size: 9px; color: rgba(196,162,101,0.6); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 8px; font-style: normal; }
+  #panel::before{display:none}
+  .p-year{margin-bottom:10px}
+  .p-hook{font-size:13px;margin-bottom:12px;padding-bottom:12px}
+  .p-title{font-size:18px;margin-bottom:8px}
+  .p-body{font-size:11.5px}
+  .p-stat{margin-top:12px;padding-top:12px;display:flex;align-items:baseline;gap:10px}
+  .p-n{font-size:30px}
+  .p-l{margin-top:0;font-size:8.5px}
+  #legend{display:none}
+  #selector{bottom:12px}
+  .sel-btn{padding:6px 13px;font-size:8px}
+  .p-tag{margin-bottom:8px}
+}
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="header">
-    <span class="header-tag">Infographie · Géopolitique</span>
-    <span class="header-title">Le Monde des Prédateurs</span>
+<a class="back" href="/">← Prisme</a>
+<div id="wm">PRISME<span>.FR</span></div>
+
+<div id="stage">
+<div id="map-wrap">
+  <svg id="map-svg"></svg>
+  <div id="vignette"></div>
+
+  <div id="selector">
+    <button class="sel-btn all active" onclick="filter('all')">Tous</button>
+    <button class="sel-btn us" onclick="filter('us')">États-Unis</button>
+    <button class="sel-btn ru" onclick="filter('ru')">Russie</button>
+    <button class="sel-btn cn" onclick="filter('cn')">Chine</button>
   </div>
 
-  <div class="content">
-    <p class="intro">En 2026, trois puissances pratiquent l'expansion territoriale selon trois doctrines radicalement différentes. Même résultat : le droit international recule, les sphères d'influence reviennent.</p>
-
-    <div class="tabs">
-      <div class="tab usa active" onclick="show('usa')">USA États-Unis</div>
-      <div class="tab russie" onclick="show('russie')">RUS Russie</div>
-      <div class="tab chine" onclick="show('chine')">CHN Chine</div>
+  <div id="legend">
+    <div class="li on" id="li-all" onclick="filter('all')">
+      <div class="li-bar" style="background:linear-gradient(to right,#2E62A0,#3A6B48,#A07820)"></div>
+      <span class="li-txt">Toutes les zones</span>
     </div>
-
-    <!-- USA -->
-    <div class="empire active" id="empire-usa">
-      <div class="empire-header">
-        <div class="empire-flag flag-usa"></div>
-        <div class="empire-identity">
-          <div class="empire-name usa">États-Unis</div>
-          <div class="empire-doctrine">Doctrine Monroe réactivée · Hégémonie occidentale</div>
-        </div>
-      </div>
-
-      <div class="axes">
-        <div class="axe">
-          <div class="axe-label">Puissance militaire</div>
-          <div class="axe-value">800 Mds $</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:95%;background:#4A7EC7"></div></div>
-        </div>
-        <div class="axe">
-          <div class="axe-label">Mode d'expansion</div>
-          <div class="axe-value">Unilatéral</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:85%;background:#4A7EC7"></div></div>
-        </div>
-        <div class="axe">
-          <div class="axe-label">Légitimité internationale</div>
-          <div class="axe-value">En déclin</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:35%;background:#4A7EC7"></div></div>
-        </div>
-      </div>
-
-      <p class="empire-desc">L'opération Venezuela (2026), la pression sur Groenland, le contrôle du canal de Panama — les États-Unis ont abandonné le multilatéralisme pour une logique de sphère d'influence directe. La doctrine Monroe, enterrée en 1933, est revenue sous forme de doctrine Trump.</p>
-
-      <div>
-        <div class="zones-title">Zones de contrôle stratégique</div>
-        <div class="zones">
-          <div class="zone-item"><div class="zone-bullet" style="background:#4A7EC7"></div><div class="zone-text"><strong>Hémisphère occidental</strong> — contrôle militaire direct ou indirect de 35 pays via accords de défense</div></div>
-          <div class="zone-item"><div class="zone-bullet" style="background:#4A7EC7"></div><div class="zone-text"><strong>Indo-Pacifique</strong> — présence navale permanente, bases en Corée, Japon, Philippines, Guam</div></div>
-          <div class="zone-item"><div class="zone-bullet" style="background:#4A7EC7"></div><div class="zone-text"><strong>Dollar &amp; SWIFT</strong> — contrôle du système financier mondial comme instrument de politique étrangère</div></div>
-        </div>
-      </div>
-
-      <div class="empire-quote">
-        <p>America first means America controls its hemisphere first. Everything else is negotiable.</p>
-        <cite>Doctrine Trump, 2025</cite>
-      </div>
+    <div class="li" id="li-us" onclick="filter('us')">
+      <div class="li-bar" style="background:#2E62A0"></div>
+      <span class="li-txt">Zone US</span>
     </div>
-
-    <!-- RUSSIE -->
-    <div class="empire" id="empire-russie">
-      <div class="empire-header">
-        <div class="empire-flag flag-russie"></div>
-        <div class="empire-identity">
-          <div class="empire-name russie">Russie</div>
-          <div class="empire-doctrine">Monde russe · Restauration impériale</div>
-        </div>
-      </div>
-
-      <div class="axes">
-        <div class="axe">
-          <div class="axe-label">Puissance militaire</div>
-          <div class="axe-value">109 Mds $</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:55%;background:#C75A5A"></div></div>
-        </div>
-        <div class="axe">
-          <div class="axe-label">Mode d'expansion</div>
-          <div class="axe-value">Militaire direct</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:90%;background:#C75A5A"></div></div>
-        </div>
-        <div class="axe">
-          <div class="axe-label">Légitimité internationale</div>
-          <div class="axe-value">Isolement</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:15%;background:#C75A5A"></div></div>
-        </div>
-      </div>
-
-      <p class="empire-desc">La Russie de Poutine opère selon une logique de restauration impériale : l'espace post-soviétique est perçu comme une sphère d'influence naturelle dont l'OTAN aurait illégitimement empiété. L'Ukraine n'est pas une guerre, c'est une réunification forcée dans le cadre du concept de "Monde russe".</p>
-
-      <div>
-        <div class="zones-title">Zones de contrôle stratégique</div>
-        <div class="zones">
-          <div class="zone-item"><div class="zone-bullet" style="background:#C75A5A"></div><div class="zone-text"><strong>Ukraine orientale</strong> — occupation militaire de ~20% du territoire, 4 oblasts annexés (2022)</div></div>
-          <div class="zone-item"><div class="zone-bullet" style="background:#C75A5A"></div><div class="zone-text"><strong>Sahel africain</strong> — présence Wagner/Africa Corps au Mali, Burkina, Niger, RCA, Libye</div></div>
-          <div class="zone-item"><div class="zone-bullet" style="background:#C75A5A"></div><div class="zone-text"><strong>Arctique</strong> — remilitarisation accélérée, revendications sur le plateau continental étendu</div></div>
-        </div>
-      </div>
-
-      <div class="empire-quote">
-        <p>Il n'existe pas d'Ukraine. Il n'y a que des Russes qui ont temporairement oublié qu'ils sont russes.</p>
-        <cite>Vladimir Poutine, paraphrasé de ses déclarations 2021-2022</cite>
-      </div>
+    <div class="li" id="li-ru" onclick="filter('ru')">
+      <div class="li-bar" style="background:#3A6B48"></div>
+      <span class="li-txt">Zone Russie</span>
     </div>
-
-    <!-- CHINE -->
-    <div class="empire" id="empire-chine">
-      <div class="empire-header">
-        <div class="empire-flag flag-chine"></div>
-        <div class="empire-identity">
-          <div class="empire-name chine">Chine</div>
-          <div class="empire-doctrine">Rêve chinois · Expansion silencieuse</div>
-        </div>
-      </div>
-
-      <div class="axes">
-        <div class="axe">
-          <div class="axe-label">Puissance militaire</div>
-          <div class="axe-value">225 Mds $</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:72%;background:#D4882A"></div></div>
-        </div>
-        <div class="axe">
-          <div class="axe-label">Mode d'expansion</div>
-          <div class="axe-value">Économique & dette</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:78%;background:#D4882A"></div></div>
-        </div>
-        <div class="axe">
-          <div class="axe-label">Légitimité internationale</div>
-          <div class="axe-value">Ambivalente</div>
-          <div class="axe-bar"><div class="axe-fill" style="width:52%;background:#D4882A"></div></div>
-        </div>
-      </div>
-
-      <p class="empire-desc">La Chine pratique une expansion multidimensionnelle et patiente : investissements en Afrique et en Asie centrale via la Belt and Road, construction d'îles artificielles en mer de Chine méridionale, diplomatie du "piège de la dette", contrôle des ressources rares. La puissance s'étend sans déclaration de guerre.</p>
-
-      <div>
-        <div class="zones-title">Zones de contrôle stratégique</div>
-        <div class="zones">
-          <div class="zone-item"><div class="zone-bullet" style="background:#D4882A"></div><div class="zone-text"><strong>Mer de Chine méridionale</strong> — îles artificielles militarisées, revendication des 9 traits (rejetée par la CIJ)</div></div>
-          <div class="zone-item"><div class="zone-bullet" style="background:#D4882A"></div><div class="zone-text"><strong>Afrique &amp; Asie centrale</strong> — 147 pays dans la BRI, 40+ ports sous contrôle ou influence chinoise</div></div>
-          <div class="zone-item"><div class="zone-bullet" style="background:#D4882A"></div><div class="zone-text"><strong>Terres rares &amp; semi-conducteurs</strong> — 60% extraction, 90% raffinage mondial, levier géopolitique assumé</div></div>
-        </div>
-      </div>
-
-      <div class="empire-quote">
-        <p>La Chine ne cherche pas l'hégémonie. Elle cherche simplement à occuper la place qui lui revient dans l'histoire.</p>
-        <cite>Xi Jinping, discours au Congrès du PCC, 2022</cite>
-      </div>
+    <div class="li" id="li-cn" onclick="filter('cn')">
+      <div class="li-bar" style="background:#A07820"></div>
+      <span class="li-txt">Zone Chine</span>
     </div>
+    <div class="li" style="cursor:default;margin-top:4px">
+      <div class="li-bar" style="background:rgba(255,255,255,0.15)"></div>
+      <span class="li-txt" style="opacity:0.32">Non-aligné</span>
+    </div>
+  </div>
+
+  <div id="tip">
+    <div id="tip-name"></div>
+    <div id="tip-zone"></div>
+    <div id="tip-detail"></div>
   </div>
 </div>
 
+<div id="panel">
+  <div class="p-year">En 2026</div>
+  <div id="pTag" class="p-tag"></div>
+  <div id="pHook" class="p-hook"></div>
+  <h2 id="pTitle" class="p-title"></h2>
+  <div id="pBody" class="p-body"></div>
+  <div class="p-stat">
+    <span id="pN" class="p-n"></span>
+    <span id="pL" class="p-l"></span>
+  </div>
+</div>
+</div>
+
+<div id="player">
+  <div id="prog-bar" onclick="seekClick(event)"><div id="prog-fill"></div></div>
+  <div id="ctrl">
+    <div id="dots"></div>
+    <button class="cbtn" onclick="prev()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
+    <button class="cbtn" id="bplay" onclick="togglePlay()"><svg class="ip" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ipa" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
+    <button class="cbtn" onclick="next()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+    <span id="cnt">1 / 6</span>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
-function show(id) {
-  document.querySelectorAll('.empire').forEach(e => e.classList.remove('active'))
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
-  document.getElementById('empire-' + id).classList.add('active')
-  document.querySelector('.tab.' + id).classList.add('active')
+/* ══ DIMENSIONS ══ */
+function getMapDims(){
+  var wrap=document.getElementById('map-wrap');
+  return {w:wrap.offsetWidth||window.innerWidth, h:wrap.offsetHeight||(window.innerHeight-52)};
+}
+var dims=getMapDims();
+var mapW=dims.w, mapH=dims.h;
+var isMobile=window.innerWidth<680;
+
+var svg=d3.select('#map-svg').attr('width',mapW).attr('height',mapH);
+var proj=d3.geoNaturalEarth1().scale(mapW/6.0).translate([mapW*0.48,mapH*0.535]);
+var gp=d3.geoPath().projection(proj);
+var P=function(lon,lat){var r=proj([lon,lat]);return r||[0,0]};
+
+/* ══ DEFS ══ */
+var defs=svg.append('defs');
+function addGlow(id,col,b){
+  var f=defs.append('filter').attr('id',id).attr('x','-80%').attr('y','-80%').attr('width','260%').attr('height','260%');
+  f.append('feGaussianBlur').attr('stdDeviation',b).attr('result','b');
+  var m=f.append('feMerge');m.append('feMergeNode').attr('in','b');m.append('feMergeNode').attr('in','SourceGraphic');
+}
+addGlow('gus','#1B3A5E',4);addGlow('gru','#2E4A38',4);addGlow('gcn','#A07820',4);
+addGlow('ggold','#C4A265',2);addGlow('gw','#fff',2);
+
+/* ══ COULEURS ══ */
+var SCOL={us:'#1B3A5E',ru:'#2E4A38',cn:'#A07820'};
+var SFILL={us:'#080F1C',ru:'#0A120C',cn:'#141000'};
+var SNAME={us:'Zone US',ru:'Zone Russie',cn:'Zone Chine'};
+
+/* ══ MAPPING PAYS ══ */
+var SP={
+  840:'us',124:'us',826:'us',250:'us',276:'us',380:'us',724:'us',616:'us',
+  528:'us',56:'us',578:'us',752:'us',246:'us',208:'us',620:'us',300:'us',
+  642:'us',203:'us',703:'us',191:'us',100:'us',8:'us',440:'us',428:'us',
+  233:'us',36:'us',554:'us',392:'us',410:'us',608:'us',376:'us',484:'us',
+  170:'us',152:'us',76:'us',32:'us',
+  643:'ru',112:'ru',398:'ru',417:'ru',762:'ru',51:'ru',688:'ru',760:'ru',
+  466:'ru',562:'ru',854:'ru',140:'ru',729:'ru',795:'ru',860:'ru',
+  156:'cn',586:'cn',104:'cn',116:'cn',418:'cn',496:'cn',231:'cn',
+  404:'cn',834:'cn',894:'cn',24:'cn',180:'cn',288:'cn',144:'cn',
+  50:'cn',524:'cn',364:'cn',262:'cn',716:'cn',686:'cn',
+};
+
+var INFO={
+  840:{d:'800 Mds$ defence · 750 bases dans le monde'},
+  643:{d:'20% Ukraine occupé · Wagner en Afrique'},
+  156:{d:'BRI : 147 pays · Marine n°1 mondial'},
+  250:{d:'OTAN · Dissuasion nucléaire independante'},
+  826:{d:'OTAN · Partenaire privilegié des US'},
+  392:{d:'70 000 soldats US stationnés'},
+  586:{d:'Corridor CPEC · 62 Mds investis par Pékin'},
+  364:{d:'Axe sino-russe · Contourne les sanctions'},
+};
+
+/* ══ CHAPITRES ══ */
+var CHS=[
+  {tag:'Vue globale · 2026',
+   hook:'Le monde ne se divise plus en Est et Ouest. Il se divise en trois.',
+   title:'Trois empires,<br><em>trois doctrines</em>',
+   body:'En 2026, trois puissances se partagent le monde selon des logiques radicalement differentes. Dominer par la force, restaurer par la conquete, infiltrer par l\'economie.',
+   n:'3',l:'empires\nse disputent le monde',c:'var(--gold)',f:'all',
+   zoom:null},
+  {tag:'I · Etats-Unis · Hegémonie',
+   hook:'Qui controle les mers controle le commerce. Qui controle le commerce controle le monde.',
+   title:'L\'empire<br><em>americain</em>',
+   body:'Doctrine Trump reactivée : <strong>l\'hemisphere occidental d\'abord</strong>. Pression sur le Groenland, Panama, Venezuela. Dollar et SWIFT comme armes financieres. Presence militaire dans 80 pays.',
+   n:'800 Mds$',l:'budget defense\nn°1 mondial',c:'var(--us)',f:'us',
+   zoom:[-100,40,2.2]},
+  {tag:'II · Russie · Restauration',
+   hook:'Il n\'existe pas d\'Ukraine. Il n\'y a que des Russes qui ont oublie qu\'ils sont russes.',
+   title:'Le retour<br><em>de l\'empire</em>',
+   body:'Poutine opere selon une logique de restauration imperiale : <strong>l\'espace post-sovietique appartient a la Russie</strong>. 20% de l\'Ukraine occupé. Wagner deploye en Afrique. Revendications arctiques.',
+   n:'20%',l:'du territoire ukrainien\noccupé ou annexé',c:'var(--ru)',f:'ru',
+   zoom:[60,58,2.4]},
+  {tag:'III · Chine · Expansion',
+   hook:'La Chine ne conquiert pas des territoires. Elle achete des dependances.',
+   title:'L\'empire<br><em>patient</em>',
+   body:'Expansion multidimensionnelle : <strong>Belt & Road Initiative</strong> dans 147 pays, controle des ports, piege de la dette. L\'acces economique precede toujours l\'acces militaire.',
+   n:'147',l:'pays dans la BRI\n40+ ports sous influence',c:'var(--cn)',f:'cn',
+   zoom:[103,30,2.2]},
+  {tag:'IV · Arctique · Dernier front',
+   hook:'La fonte des glaces ouvre le dernier territoire vierge de la competition entre grandes puissances.',
+   title:'L\'Arctique,<br><em>nouveau front</em>',
+   body:'<strong>22% des hydrocarbures</strong> mondiaux non decouverts. Nouvelles routes commerciales. Russie et Chine s\'y positionnent. Le Groenland devient l\'enjeu strategique du siecle.',
+   n:'22%',l:'des hydrocarbures mondiaux\nsous l\'Arctique',c:'rgba(120,190,255,0.9)',f:'arctic',
+   zoom:[20,78,3.5]},
+  {tag:'V · Points de rupture',
+   hook:'Les prochains conflits sont deja dessinés sur la carte. Il reste a savoir qui tirera en premier.',
+   title:'La ou les empires<br><em>se heurtent</em>',
+   body:'<strong>Taiwan</strong> : ligne rouge sino-americaine. <strong>Ukraine</strong> : OTAN contre Russie. <strong>Sahel</strong> : vide occidental, avance russe. <strong>Mer de Chine</strong> : 9 traits contre la liberte de navigation.',
+   n:'4',l:'zones de friction majeure\nentre les 3 puissances',c:'rgba(220,100,80,0.9)',f:'friction',
+   zoom:null},
+];
+
+/* ══ BUILD MAP ══ */
+var layerBase,layerBri,layerBases,layerArctic,layerFriction,layerStats;
+var isBuilt=false;
+
+setTimeout(function(){initPlayer()},50);
+
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
+  /* Fond ocean */
+  svg.append('rect').attr('width',mapW).attr('height',mapH).attr('fill','#04070F');
+  svg.append('path').datum({type:'Sphere'}).attr('d',gp).attr('fill','#07101E');
+
+  /* Grille subtile */
+  svg.append('path').datum(d3.geoGraticule()()).attr('d',gp)
+    .attr('fill','none').attr('stroke','rgba(255,255,255,0.04)').attr('stroke-width',0.4);
+
+  /* Equateur */
+  svg.append('path').datum({type:'LineString',coordinates:[[-180,0],[180,0]]})
+    .attr('d',gp).attr('fill','none').attr('stroke','rgba(255,255,255,0.09)').attr('stroke-width',0.6);
+
+  var features=topojson.feature(world,world.objects.countries).features;
+
+  /* ── Couche base (tous les pays, fond neutre visible) ── */
+  layerBase=svg.append('g').attr('id','lbase');
+  layerBase.selectAll('path').data(features).join('path')
+    .attr('d',gp)
+    .attr('fill',function(d){
+      var s=SP[+d.id];
+      return s?SFILL[s]:'#0E1A26';
+    })
+    .attr('stroke','rgba(255,255,255,0.0)').attr('stroke-width',0);
+
+  /* ── Couche couleur (opacité animée au chargement) ── */
+  var colorLayer=svg.append('g').attr('id','lcolor');
+  colorLayer.selectAll('path').data(features).join('path')
+    .attr('d',gp)
+    .attr('class','cpath')
+    .attr('data-sphere',function(d){return SP[+d.id]||'n'})
+    .attr('data-id',function(d){return d.id})
+    .attr('fill',function(d){
+      var s=SP[+d.id];
+      return s?SCOL[s]:'transparent';
+    })
+    .attr('opacity',0)
+    .style('cursor','pointer')
+    .on('mousemove',onHover)
+    .on('mouseleave',onLeave)
+    .on('click',function(e,d){var s=SP[+d.id];if(s)filter(s)});
+
+  /* Animation d\'apparition progressive */
+  colorLayer.selectAll('.cpath').transition()
+    .duration(1800).delay(function(d,i){return i*4})
+    .attr('opacity',function(d){return SP[+d.id]?0.72:0});
+
+  /* Frontières */
+  svg.append('path')
+    .datum(topojson.mesh(world,world.objects.countries,function(a,b){return a!==b}))
+    .attr('d',gp).attr('fill','none')
+    .attr('stroke','rgba(255,255,255,0.1)').attr('stroke-width',0.45);
+
+  /* Contour sphere */
+  svg.append('path').datum({type:'Sphere'}).attr('d',gp)
+    .attr('fill','none').attr('stroke','rgba(255,255,255,0.12)').attr('stroke-width',0.8);
+
+  /* Labels 3 grands pays */
+  [
+    {lon:-100,lat:40,name:'ETATS-UNIS',s:'us'},
+    {lon:95,lat:62,name:'RUSSIE',s:'ru'},
+    {lon:103,lat:35,name:'CHINE',s:'cn'},
+  ].forEach(function(l){
+    var pt=P(l.lon,l.lat);
+    var LCOL={us:'#6A9FD0',ru:'#5A8E68',cn:'#B89840'};
+    svg.append('text').attr('x',pt[0]).attr('y',pt[1])
+      .attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif')
+      .attr('font-size',isMobile?9:11)
+      .attr('font-weight','300')
+      .attr('letter-spacing',4)
+      .attr('fill',LCOL[l.s])
+      .attr('opacity',0.7)
+      .attr('pointer-events','none')
+      .text(l.name);
+  });
+
+  /* Labels oceans */
+  [[-35,22,'ATLANTIQUE',isMobile?8:11],[-148,5,'PACIFIQUE',isMobile?8:12],[72,-22,'INDIEN',isMobile?8:10]]
+    .forEach(function(l){
+      var pt=P(l[0],l[1]);
+      svg.append('text').attr('x',pt[0]).attr('y',pt[1]).attr('text-anchor','middle')
+        .attr('font-family','"Playfair Display",serif').attr('font-size',l[3])
+        .attr('font-style','italic').attr('fill','rgba(255,255,255,0.07)')
+        .attr('letter-spacing',4).attr('pointer-events','none').text(l[2]);
+    });
+
+  /* ══ STATS SUR CARTE ══ */
+  layerStats=svg.append('g').attr('id','lstats').attr('opacity',0).style('transition','opacity 0.8s');
+  var stats=[
+    {lon:-90,lat:28,n:'800 Mds$',l:'defense',s:'us'},
+    {lon:130,lat:20,n:'355',l:'navires PLAN',s:'cn'},
+    {lon:60,lat:55,n:'6 000',l:'ogives nucleaires',s:'ru'},
+    {lon:30,lat:30,n:'40+',l:'ports BRI',s:'cn'},
+  ];
+  stats.forEach(function(st){
+    var pt=P(st.lon,st.lat);
+    var g2=layerStats.append('g').attr('class','map-stat');
+    g2.append('text').attr('x',pt[0]).attr('y',pt[1])
+      .attr('text-anchor','middle').attr('class','map-stat-n')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',isMobile?10:12)
+      .attr('font-weight','300').attr('fill',SCOL[st.s]).attr('opacity',0.65)
+      .text(st.n);
+    g2.append('text').attr('x',pt[0]).attr('y',pt[1]+13)
+      .attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',isMobile?7:8)
+      .attr('font-weight','300').attr('letter-spacing',1.5)
+      .attr('fill',SCOL[st.s]).attr('opacity',0.4)
+      .text(st.l);
+  });
+
+  /* ══ BRI ROUTES ══ */
+  layerBri=svg.append('g').attr('id','lbri').attr('opacity',0).style('transition','opacity 1s');
+  [[121,31],[104,1],[57,20],[43,13],[33,27],[15,37],[4,52]].reduce(function(acc,pt,i,arr){
+    if(i===0) return [pt];
+    var d=gp({type:'LineString',coordinates:[arr[i-1],pt]});
+    return acc;
+  },[]);
+  var briPaths=[
+    [[121,31],[104,1],[57,20],[43,13],[33,27],[15,37],[4,52]],
+    [[121,31],[85,28],[57,20]],
+    [[121,31],[104,1],[18,-34]],
+  ];
+  briPaths.forEach(function(r,i){
+    var d=gp({type:'LineString',coordinates:r});if(!d)return;
+    layerBri.append('path').attr('d',d).attr('fill','none')
+      .attr('stroke','rgba(184,120,64,0.08)').attr('stroke-width',6).attr('stroke-linecap','round');
+    layerBri.append('path').attr('d',d).attr('fill','none')
+      .attr('stroke','rgba(184,120,64,0.55)').attr('stroke-width',1.8)
+      .attr('class','rf').style('animation-delay',(i*0.5)+'s');
+  });
+  var bl=P(68,8);
+  layerBri.append('text').attr('x',bl[0]).attr('y',bl[1]).attr('text-anchor','middle')
+    .attr('font-family','"DM Sans",sans-serif').attr('font-size',9).attr('font-weight','300')
+    .attr('fill','rgba(190,150,40,0.6)')
+    .attr('pointer-events','none').text('Belt & Road Initiative');
+
+  /* ══ BASES US ══ */
+  layerBases=svg.append('g').attr('id','lbases').attr('opacity',0).style('transition','opacity 1s');
+  [[127.6,26.4,'Okinawa'],[144.8,13.4,'Guam'],[72.4,-7.3,'Diego Garcia'],[55.5,25.3,'Qatar'],[12.3,43.8,'Djibouti']]
+    .forEach(function(b,i){
+      var pt=P(b[0],b[1]);var x=pt[0],y=pt[1];
+      if(!x||x<0||x>mapW) return;
+      var g2=layerBases.append('g').attr('transform','translate('+x+','+y+')');
+      g2.append('circle').attr('r',1).attr('fill','none')
+        .attr('stroke','rgba(91,141,184,0.65)').attr('stroke-width',1.5)
+        .attr('class','pr').style('animation-delay',(i*0.35)+'s');
+      g2.append('circle').attr('r',3.5).attr('fill','#5B8DB8').attr('filter','url(#gus)');
+      g2.append('circle').attr('r',1.8).attr('fill','rgba(255,255,255,0.9)');
+      layerBases.append('text').attr('x',x+9).attr('y',y+4)
+        .attr('font-family','"DM Sans",sans-serif').attr('font-size',9)
+        .attr('fill','rgba(80,130,195,0.72)')
+        .attr('pointer-events','none').text(b[2]);
+    });
+
+  /* ══ ARCTIQUE ══ */
+  layerArctic=svg.append('g').attr('id','larctic').attr('opacity',0).style('transition','opacity 1s');
+  var aPath=gp({type:'Polygon',coordinates:[[[-180,66.5],[-90,66.5],[0,66.5],[90,66.5],[180,66.5],[180,90],[0,90],[-180,90],[-180,66.5]]]});
+  if(aPath){
+    layerArctic.append('path').attr('d',aPath)
+      .attr('fill','rgba(100,170,240,0.12)').attr('stroke','rgba(100,170,240,0.38)')
+      .attr('stroke-width',1.2).attr('stroke-dasharray','5 3').attr('class','arc');
+    var aLbl=P(0,79);
+    layerArctic.append('text').attr('x',aLbl[0]).attr('y',aLbl[1]).attr('text-anchor','middle')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','300')
+      .attr('fill','rgba(140,195,255,0.6)').attr('letter-spacing',3)
+      .attr('pointer-events','none').text('Arctique');
+    var arRoute=gp({type:'LineString',coordinates:[[-165,71],[-120,76],[-60,79],[0,82],[60,79],[120,75],[165,69]]});
+    if(arRoute) layerArctic.append('path').attr('d',arRoute).attr('fill','none')
+      .attr('stroke','rgba(130,190,255,0.5)').attr('stroke-width',1.8)
+      .attr('stroke-dasharray','7 4').attr('class','rf');
+    var sv=P(16,78);
+    layerArctic.append('circle').attr('cx',sv[0]).attr('cy',sv[1]).attr('r',3.5)
+      .attr('fill','rgba(184,120,64,0.85)').attr('filter','url(#gcn)');
+    layerArctic.append('text').attr('x',sv[0]+9).attr('y',sv[1]+4)
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',8.5)
+      .attr('fill','rgba(190,148,30,0.65)')
+      .attr('pointer-events','none').text('Svalbard (CN)');
+  }
+
+  /* ══ FRICTION ══ */
+  layerFriction=svg.append('g').attr('id','lfrict').attr('opacity',0).style('transition','opacity 1s');
+  [{lon:119,lat:23.5,r:26,lbl:'TAIWAN'},{lon:34,lat:48,r:32,lbl:'UKRAINE'},{lon:0,lat:16,r:40,lbl:'SAHEL'},{lon:113,lat:12,r:30,lbl:'MER DE CHINE'}]
+    .forEach(function(z,i){
+      var pt=P(z.lon,z.lat);var cx=pt[0],cy=pt[1];if(!cx)return;
+      layerFriction.append('circle').attr('cx',cx).attr('cy',cy).attr('r',z.r)
+        .attr('fill','rgba(220,80,60,0.06)').attr('stroke','rgba(220,80,60,0.38)')
+        .attr('stroke-width',1.2).attr('stroke-dasharray','4 3').attr('class','zp');
+      var wg=layerFriction.append('g').attr('transform','translate('+cx+','+cy+')');
+      for(var r=0;r<2;r++) wg.append('circle').attr('r',1).attr('fill','none')
+        .attr('stroke','rgba(220,90,70,0.65)').attr('stroke-width',1.8)
+        .attr('class','pr').style('animation-delay',(i*0.4+r*0.8)+'s');
+      wg.append('circle').attr('r',4.5).attr('fill','rgba(220,90,70,0.88)').attr('filter','url(#gru)');
+      wg.append('circle').attr('r',2).attr('fill','rgba(255,255,255,0.95)');
+      layerFriction.append('text').attr('x',cx).attr('y',cy-z.r-11)
+        .attr('text-anchor','middle')
+        .attr('font-family','"DM Sans",sans-serif').attr('font-size',9).attr('font-weight','400')
+        .attr('fill','rgba(220,100,80,0.75)').attr('letter-spacing',2.5)
+        .attr('pointer-events','none').text(z.lbl);
+    });
+
+  isBuilt=true;
+  showSlide(cur,true);
+});
+
+/* ══ INTERACTIONS ══ */
+var tip=document.getElementById('tip');
+function onHover(evt,d){
+  var id=+d.id,s=SP[id],info=INFO[id];
+  if(!d.properties) return;
+  document.getElementById('tip-name').textContent=d.properties.name||'';
+  document.getElementById('tip-zone').textContent=s?SNAME[s]:'Non-aligne';
+  document.getElementById('tip-zone').style.color=s?SCOL[s]:'rgba(255,255,255,0.3)';
+  document.getElementById('tip-detail').textContent=info?info.d:'';
+  tip.style.borderColor=s?SCOL[s]:'rgba(255,255,255,0.08)';
+  var mx=evt.pageX,my=evt.pageY;
+  var tx=mx+16,ty=my-24;
+  if(tx+200>mapW) tx=mx-212;
+  if(ty+90>mapH+52) ty=my-90;
+  tip.style.left=tx+'px';tip.style.top=ty+'px';tip.style.opacity='1';
+}
+function onLeave(){tip.style.opacity='0'}
+
+/* Zoom par chapitre */
+function zoomTo(params){
+  if(!params){
+    svg.transition().duration(800)
+      .attr('transform',null);
+    proj.scale(mapW/6.0).translate([mapW*0.48,mapH*0.535]);
+    svg.transition().duration(800);
+    return;
+  }
+  var lon=params[0],lat=params[1],sc=params[2];
+  var newScale=(mapW/6.0)*sc;
+  var center=proj([lon,lat]);
+  var newTx=mapW/2-(center[0]-mapW*0.48)*(sc);
+  var newTy=mapH/2-(center[1]-mapH*0.535)*(sc);
+  var g=d3.select('#map-svg');
+  g.selectAll('g,path,text,rect,circle').transition().duration(900)
+    .attr('transform',null);
+  proj.scale(newScale).translate([newTx,newTy]);
+  g.selectAll('.cpath,.lbase path,#lcolor path').transition().duration(900)
+    .attr('d',gp);
+}
+
+function filter(s){
+  document.querySelectorAll('.sel-btn').forEach(function(b){b.classList.remove('active')});
+  var sb=document.querySelector('.sel-btn.'+s);if(sb)sb.classList.add('active');
+  document.querySelectorAll('.li').forEach(function(l){l.classList.remove('on')});
+  var li=document.getElementById('li-'+s);if(li)li.classList.add('on');
+  d3.selectAll('.cpath').transition().duration(500)
+    .attr('opacity',function(d){
+      if(s==='all') return SP[+d.id]?0.72:0;
+      return SP[+d.id]===s?0.82:0;
+    });
+}
+
+/* ══ PLAYER ══ */
+var N=6,cur=0,tmr=null,paused=false,progRaf=null,progStart=0;
+var DURS=[10000,11000,11000,11000,11000,11000];
+var dotsEl=document.getElementById('dots');
+for(var i=0;i<N;i++){(function(idx){
+  var d=document.createElement('div');d.className='dot';
+  d.onclick=function(e){e.stopPropagation();goTo(idx)};
+  dotsEl.appendChild(d);
+})(i)}
+
+function updatePanel(idx){
+  var ch=CHS[idx];
+  document.getElementById('pTag').textContent=ch.tag;
+  document.getElementById('pTag').style.color=ch.c;
+  document.getElementById('pHook').textContent=ch.hook;
+  document.getElementById('pTitle').innerHTML=ch.title;
+  document.getElementById('pBody').innerHTML=ch.body;
+  document.getElementById('pN').textContent=ch.n;
+  document.getElementById('pN').style.color=ch.c;
+  document.getElementById('pL').innerHTML=ch.l.replace(/\n/g,'<br>');
+}
+function updateLayers(idx){
+  if(!isBuilt) return;
+  var ch=CHS[idx];
+  if(layerBri) layerBri.style('opacity',ch.f==='cn'?'1':'0');
+  if(layerBases) layerBases.style('opacity',ch.f==='us'?'1':'0');
+  if(layerArctic) layerArctic.style('opacity',ch.f==='arctic'?'1':'0');
+  if(layerFriction) layerFriction.style('opacity',ch.f==='friction'?'1':'0');
+  if(layerStats) layerStats.style('opacity',ch.f==='all'?'1':'0');
+  filter(ch.f==='arctic'||ch.f==='friction'?'all':ch.f);
+}
+function startProg(){
+  if(progRaf) cancelAnimationFrame(progRaf);
+  progStart=Date.now();var dur=DURS[cur];
+  (function tick(){
+    var p=Math.min((Date.now()-progStart)/dur,1);
+    document.getElementById('prog-fill').style.width=(p*100)+'%';
+    if(p<1&&!paused) progRaf=requestAnimationFrame(tick);
+  })();
+}
+function seekClick(e){
+  var r=e.currentTarget.getBoundingClientRect();
+  goTo(Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left)/r.width*(N-1)))));
+}
+function showSlide(idx,skipLayers){
+  updatePanel(idx);
+  if(!skipLayers) updateLayers(idx);
+  document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('on',i===idx)});
+  document.getElementById('cnt').textContent=(idx+1)+' / '+N;
+  startProg();
+}
+function next(){if(tmr)clearTimeout(tmr);cur=cur<N-1?cur+1:0;showSlide(cur);if(!paused)schedule()}
+function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!paused)schedule()}
+function schedule(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,DURS[cur])}
+function goTo(idx){if(tmr)clearTimeout(tmr);cur=idx;showSlide(idx);if(!paused)schedule()}
+function togglePlay(){
+  paused=!paused;
+  var btn=document.getElementById('bplay');
+  if(paused){btn.classList.remove('on');if(tmr)clearTimeout(tmr);if(progRaf)cancelAnimationFrame(progRaf)}
+  else{btn.classList.add('on');schedule();startProg()}
+}
+function initPlayer(){
+  showSlide(0,false);
+  document.getElementById('bplay').classList.add('on');
+  schedule();
+  document.getElementById('stage').addEventListener('click',function(e){
+    if(e.target.closest('#dots,#player,.back,#selector,#legend,#panel')) return;
+    next();
+  });
 }
 </script>
 </body>
