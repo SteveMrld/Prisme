@@ -98,10 +98,32 @@ export default function VisuelsPage() {
             <div className={styles.featCta}>Voir la carte →</div>
           </a>
 
+          {/* Câbles sous-marins */}
+          <a href="/visuels/cables.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBg}>
+              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 40% 60%, rgba(100,150,255,0.07) 0%, transparent 60%)'}}/>
+            </div>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--tech)'}}>Tech · Géopolitique · Visualisation</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>Câbles sous-marins</h3>
+              <p className={styles.featSub}>Vue en coupe · Réseau de flux · Enjeux stratégiques</p>
+              <p className={styles.featDesc}>
+                99% d&apos;internet circule sous les océans. Qui contrôle ces câbles contrôle l&apos;information mondiale.
+                Vue en coupe animée, réseau de flux et décryptage des enjeux géopolitiques.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la visualisation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Coming soon grands formats */}
           <div className={styles.comingSoonGrid}>
             {[
-              {title:"La bataille pour le sous-sol numérique",sub:'Câbles sous-marins — terres rares',cat:'Tech'},
               {title:"La Chine, stratégie d'une conquête",sub:'Timeline — carte expansion',cat:'Géopolitique'},
             ].map((item,i) => (
               <div key={i} className={styles.comingSoonCard}>
