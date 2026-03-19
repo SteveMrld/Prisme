@@ -61,9 +61,6 @@ export default function HomePage() {
       {/* TICKER LIVE */}
       <Ticker />
 
-      {/* EN CE MOMENT */}
-      <EnCeMoment />
-
       {/* GRAND ENTRETIEN */}
       <FadeSection>
       <section className={styles.ge}>
