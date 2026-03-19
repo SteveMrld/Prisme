@@ -70,11 +70,15 @@
 
 .featuredImgWrap {
   overflow: hidden;
+  height: 420px;
+  border-bottom: 1px solid var(--bord);
 }
 
 .featuredImg {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
   transition: transform 0.4s;
 }
@@ -162,11 +166,15 @@
 
 .cardImgWrap {
   overflow: hidden;
+  height: 280px;
+  border-bottom: 1px solid var(--bord);
 }
 
 .cardImg {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
   transition: transform 0.4s;
 }
