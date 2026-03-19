@@ -18,7 +18,7 @@ interface ArticleLayoutProps {
 const categoryColors: Record<string, string> = {
   geo: '#1A3E6B', eco: '#B86A1A', tech: '#4A2080',
   env: '#2D6B4A', soc: '#7A2D2D', culture: '#6B1A3A',
-  portrait: '#C4A265', concept: '#1A1A3E'
+  portrait: '#C4A265', concept: '#1A1A3E', sciences: '#1A5C4A'
 }
 
 // Initiales pour l'avatar texte

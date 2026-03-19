@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Tech', href: '/tech', className: 'tech' },
   { label: 'Environnement', href: '/env', className: 'env' },
   { label: 'Société', href: '/soc', className: 'soc' },
+  { label: 'Sciences', href: '/sciences', className: 'sciences' },
   { label: 'Culture', href: '/culture', className: 'culture' },
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Visuels', href: '/visuels', className: 'concept' },

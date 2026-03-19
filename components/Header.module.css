@@ -125,6 +125,7 @@
 .tech::after, .tech:hover, .tech.active { background: var(--tech); color: var(--tech); }
 .env::after, .env:hover, .env.active { background: var(--env); color: var(--env); }
 .soc::after, .soc:hover, .soc.active { background: var(--soc); color: var(--soc); }
+.sciences::after, .sciences:hover, .sciences.active { background: var(--sciences); color: var(--sciences); }
 .culture::after, .culture:hover, .culture.active { background: var(--culture); color: var(--culture); }
 .portrait::after, .portrait:hover, .portrait.active { background: var(--portrait); color: var(--portrait); }
 .concept::after, .concept:hover, .concept.active { background: var(--concept); color: var(--concept); }

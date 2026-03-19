@@ -9,7 +9,7 @@ const BASE_URL = 'https://prisme-peach.vercel.app'
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
-  portrait: 'Portrait', concept: 'Concept'
+  portrait: 'Portrait', concept: 'Concept', sciences: 'Sciences'
 }
 
 export async function generateStaticParams() {

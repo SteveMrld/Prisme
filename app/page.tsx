@@ -48,7 +48,7 @@ const grandsFormats = grandsFormatsSlugs.map(({ slug, extraCategories, sections 
 const categoryColors: Record<string, string> = {
   geo: 'var(--geo)', eco: 'var(--eco)', tech: 'var(--tech)',
   env: 'var(--env)', soc: 'var(--soc)', culture: 'var(--culture)',
-  portrait: 'var(--portrait)', concept: 'var(--concept)'
+  portrait: 'var(--portrait)', concept: 'var(--concept)', sciences: 'var(--sciences)'
 }
 
 
