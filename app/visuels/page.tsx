@@ -87,12 +87,22 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* Grand format — L'eau */}
+          <a href="/visuels/eau.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featMeta}>
+              <span className={styles.featTag}>Environnement</span>
+              <span className={styles.featCount}>5 chapitres</span>
+            </div>
+            <h3 className={styles.featTitle}>L&apos;eau : la prochaine grande fracture</h3>
+            <p className={styles.featDesc}>Des glaciers himalayens aux barrages africains. Comment la maîtrise de l&apos;eau redessine les rapports de puissance.</p>
+            <div className={styles.featCta}>Voir la carte →</div>
+          </a>
+
           {/* Coming soon grands formats */}
           <div className={styles.comingSoonGrid}>
             {[
-              {title:'Les Prédateurs',sub:'USA · Russie · Chine — zones d\'influence',cat:'Géopolitique'},
-              {title:'L\'Empire du Pétrole',sub:'Gisements, routes, dépendances',cat:'Économie'},
-              {title:'La Bataille des Puces',sub:'Semi-conducteurs — carte mondiale',cat:'Tech'},
+              {title:"La bataille pour le sous-sol numérique",sub:'Câbles sous-marins — terres rares',cat:'Tech'},
+              {title:"La Chine, stratégie d'une conquête",sub:'Timeline — carte expansion',cat:'Géopolitique'},
             ].map((item,i) => (
               <div key={i} className={styles.comingSoonCard}>
                 <div className={styles.csTag}>{item.cat}</div>
