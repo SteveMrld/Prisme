@@ -88,32 +88,6 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        <div className={styles.gePortrait}>
-          <div className={styles.gePortraitGraphic}>
-            <svg viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" className={styles.gePortraitSvg}>
-              {/* Fond étoilé */}
-              <rect width="400" height="460" fill="#F5F1E8"/>
-              {/* Cercles concentriques — référence astronomique */}
-              <circle cx="200" cy="230" r="180" fill="none" stroke="rgba(10,10,10,0.06)" strokeWidth="1"/>
-              <circle cx="200" cy="230" r="140" fill="none" stroke="rgba(10,10,10,0.05)" strokeWidth="1"/>
-              <circle cx="200" cy="230" r="100" fill="none" stroke="rgba(10,10,10,0.07)" strokeWidth="1"/>
-              <circle cx="200" cy="230" r="60" fill="none" stroke="rgba(10,10,10,0.06)" strokeWidth="1"/>
-              {/* Lignes de méridien */}
-              <line x1="200" y1="50" x2="200" y2="410" stroke="rgba(10,10,10,0.05)" strokeWidth="1"/>
-              <line x1="20" y1="230" x2="380" y2="230" stroke="rgba(10,10,10,0.05)" strokeWidth="1"/>
-              <line x1="73" y1="103" x2="327" y2="357" stroke="rgba(10,10,10,0.04)" strokeWidth="1"/>
-              <line x1="327" y1="103" x2="73" y2="357" stroke="rgba(10,10,10,0.04)" strokeWidth="1"/>
-              {/* Initiales */}
-              <text x="200" y="255" textAnchor="middle" fontFamily="Playfair Display, serif" fontSize="96" fontWeight="300" fill="rgba(10,10,10,0.12)" letterSpacing="-4">CMD</text>
-              {/* Point central */}
-              <circle cx="200" cy="230" r="4" fill="rgba(196,162,101,0.6)"/>
-              <circle cx="200" cy="230" r="8" fill="none" stroke="rgba(196,162,101,0.3)" strokeWidth="1"/>
-              {/* Label */}
-              <text x="200" y="388" textAnchor="middle" fontFamily="DM Sans, sans-serif" fontSize="8" fontWeight="600" letterSpacing="4" fill="rgba(10,10,10,0.25)" textTransform="uppercase">CHEICK MODIBO DIARRA</text>
-              <text x="200" y="404" textAnchor="middle" fontFamily="DM Sans, sans-serif" fontSize="7" letterSpacing="2" fill="rgba(10,10,10,0.15)">PORTRAIT À PARAÎTRE</text>
-            </svg>
-          </div>
-        </div>
       </section>
       </FadeSection>
 
