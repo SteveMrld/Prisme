@@ -61,7 +61,16 @@ export default function ArticleLayout({
 
       {image && !hasInternalHeader && (
         <div className={styles.heroWrap}>
-          <img src={image} alt={title} className={styles.heroImg} />
+          <img
+            src={image}
+            alt={title}
+            className={styles.heroImg}
+            style={
+              category === 'portrait'
+                ? { height: '420px', objectPosition: 'center 15%' }
+                : {}
+            }
+          />
         </div>
       )}
 
