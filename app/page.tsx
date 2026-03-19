@@ -179,6 +179,42 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
+      {/* ── DERNIÈRES ANALYSES ── */}
+      <FadeSection>
+      <section className={styles.latestSection}>
+        <div className={styles.latestHead}>
+          <div className={styles.latestLabel}>Dernières analyses</div>
+          <Link href="/geo" className={styles.latestSeeAll}>Tout voir →</Link>
+        </div>
+        <div className={styles.latestGrid}>
+          {[
+            getArticle('semico'),
+            getArticle('blackrock'),
+            getArticle('afrique'),
+            getArticle('reseaux'),
+            getArticle('musk'),
+            getArticle('overton'),
+          ].map((article) => (
+            <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.latestCard}>
+              {article.image && (
+                <div className={styles.latestImgWrap}>
+                  <img src={article.image} alt={article.title} className={styles.latestImg} />
+                </div>
+              )}
+              <div className={styles.latestBody}>
+                <span className={styles.latestTag} style={{ color: categoryColors[article.category] }}>
+                  {article.categoryLabel}
+                </span>
+                <div className={styles.latestTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                <p className={styles.latestDesc}>{article.description}</p>
+                <span className={styles.latestTime}>{article.readTime} min</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      </FadeSection>
+
       <footer className={styles.footer}>
         <div className={styles.footerLogo}>Pris<em>me</em></div>
         <div className={styles.footerLinks}>
