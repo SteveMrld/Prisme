@@ -89,15 +89,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        <div className={styles.gePortraitWrap}>
-          <img
-            src="https://i.ibb.co/DDXzwq0J/img-cmd-portrait.jpg"
-            alt="Cheick Modibo Diarra"
-            className={styles.gePortrait}
-          />
-          <div className={styles.gePortraitCaption}>
-            Cheick Modibo Diarra, astrophysicien · NASA
-          </div>
+        {/* Portrait Diarra — à remplacer par /portraits/diarra.jpg quand dispo */}
         </div>
       </section>
       </FadeSection>

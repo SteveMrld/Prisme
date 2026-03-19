@@ -151,10 +151,7 @@
 }
 
 .gePortraitWrap {
-  flex-shrink: 0;
-  width: 280px;
-  height: 320px;
-  overflow: hidden;
+  display: none;
 }
 
 .gePortrait {
