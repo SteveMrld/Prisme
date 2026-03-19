@@ -34,59 +34,7 @@ function shareX(e){e.preventDefault();var t=document.querySelector('.art-title,.
 function copyLink(btn){navigator.clipboard.writeText(window.location.href).then(function(){var msg=btn.querySelector('.share-copied');msg.classList.add('show');setTimeout(function(){msg.classList.remove('show')},2000)})}
 </script>
 
-<div class="verso-section">
-  <div class="verso-header">
-    <span class="verso-title">+Verso</span>
-    <span class="verso-badge">Aller plus loin</span>
-  </div>
-  <div class="verso-grid">
-    <div class="verso-col">
-      <div class="verso-col-label">Comprendre</div>
-      <a href="/articles/ia" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Comment l'IA traite le langage</strong>
-        <span>Ce que les modèles de langage font réellement : prédiction statistique, tokens, embeddings. Comprendre le mécanisme pour mieux évaluer ce qu'il produit, et ce qu'il ne peut pas produire.</span>
-      </a>
-      <div class="verso-item">
-        <strong>L'anaphore et les figures de répétition</strong>
-        <span>La répétition en littérature n'est pas une erreur, c'est un instrument de précision. De Césaire à Beckett, la répétition dit ce que la variation ne peut pas dire.</span>
-      </div>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Lire</div>
-      <div class="verso-item">
-        <strong>Aimé Césaire, Cahier d'un retour au pays natal, 1939</strong>
-        <span>Le texte fondateur de la Négritude. Une démonstration de ce que la langue peut faire quand elle est habitée par une urgence historique et une voix irremplaçable.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Walter Benjamin, L'oeuvre d'art à l'époque de sa reproductibilité technique, 1935</strong>
-        <span>La réflexion fondatrice sur ce que la reproduction à grande échelle fait à l'authenticité, une question qui résonne différemment à l'ère de l'IA générative.</span>
-      </div>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Résonances</div>
-      <a href="/articles/rushkoff" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Quand les bâtisseurs fuient leur propre création</strong>
-        <span>Les architectes de l'IA qui construisent des bunkers en Nouvelle-Zélande : l'autre face du même problème, des créateurs qui n'ont pas mesuré ce qu'ils mettaient en mouvement.</span>
-      </a>
-      <a href="/articles/technosolutionnisme" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Les limites du techno-solutionnisme</strong>
-        <span>Pourquoi la croyance que la technologie résout tous les problèmes humains produit des angles morts, et comment les identifier avant qu'ils ne produisent leurs effets.</span>
-      </a>
-    </div>
-  </div>
-</div>
 
-<div class="art-nav">
-  <a href="/articles/rushkoff" class="art-nav-item">
-    <div class="art-nav-dir">Article précédent</div>
-    <div class="art-nav-title">Quand les bâtisseurs fuient leur propre création</div>
-    <div class="art-nav-tag">Technologie · Société</div>
-  </a>
-  <a href="/articles/morrison" class="art-nav-item" style="text-align:right">
-    <div class="art-nav-dir">Article suivant</div>
-    <div class="art-nav-title">Toni Morrison, la mémoire comme acte politique</div>
-    <div class="art-nav-tag">Culture</div>
-  </a>
 
 <div class="essentiel">
   <div class="essentiel-header"><span class="essentiel-label">L'essentiel</span><span class="essentiel-sub">3 points</span></div>
@@ -151,3 +99,59 @@ function copyLink(btn){navigator.clipboard.writeText(window.location.href).then(
 
 <div class="notes-section">
   <div class="notes-header"><div class="notes-title">Notes et sources</div></div>
+
+<div class="verso-section">
+  <div class="verso-header">
+    <span class="verso-title">+Verso</span>
+    <span class="verso-badge">Aller plus loin</span>
+  </div>
+  <div class="verso-grid">
+    <div class="verso-col">
+      <div class="verso-col-label">Comprendre</div>
+      <a href="/articles/ia" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
+        <strong style="color:var(--t-color)">Comment l'IA traite le langage</strong>
+        <span>Ce que les modèles de langage font réellement : prédiction statistique, tokens, embeddings. Comprendre le mécanisme pour mieux évaluer ce qu'il produit, et ce qu'il ne peut pas produire.</span>
+      </a>
+      <div class="verso-item">
+        <strong>L'anaphore et les figures de répétition</strong>
+        <span>La répétition en littérature n'est pas une erreur, c'est un instrument de précision. De Césaire à Beckett, la répétition dit ce que la variation ne peut pas dire.</span>
+      </div>
+    </div>
+    <div class="verso-col">
+      <div class="verso-col-label">Lire</div>
+      <div class="verso-item">
+        <strong>Aimé Césaire, Cahier d'un retour au pays natal, 1939</strong>
+        <span>Le texte fondateur de la Négritude. Une démonstration de ce que la langue peut faire quand elle est habitée par une urgence historique et une voix irremplaçable.</span>
+      </div>
+      <div class="verso-item">
+        <strong>Walter Benjamin, L'oeuvre d'art à l'époque de sa reproductibilité technique, 1935</strong>
+        <span>La réflexion fondatrice sur ce que la reproduction à grande échelle fait à l'authenticité, une question qui résonne différemment à l'ère de l'IA générative.</span>
+      </div>
+    </div>
+    <div class="verso-col">
+      <div class="verso-col-label">Résonances</div>
+      <a href="/articles/rushkoff" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
+        <strong style="color:var(--t-color)">Quand les bâtisseurs fuient leur propre création</strong>
+        <span>Les architectes de l'IA qui construisent des bunkers en Nouvelle-Zélande : l'autre face du même problème, des créateurs qui n'ont pas mesuré ce qu'ils mettaient en mouvement.</span>
+      </a>
+      <a href="/articles/technosolutionnisme" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
+        <strong style="color:var(--t-color)">Les limites du techno-solutionnisme</strong>
+        <span>Pourquoi la croyance que la technologie résout tous les problèmes humains produit des angles morts, et comment les identifier avant qu'ils ne produisent leurs effets.</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="art-nav">
+  <a href="/articles/rushkoff" class="art-nav-item">
+    <div class="art-nav-dir">Article précédent</div>
+    <div class="art-nav-title">Quand les bâtisseurs fuient leur propre création</div>
+    <div class="art-nav-tag">Technologie · Société</div>
+  </a>
+  <a href="/articles/morrison" class="art-nav-item" style="text-align:right">
+    <div class="art-nav-dir">Article suivant</div>
+    <div class="art-nav-title">Toni Morrison, la mémoire comme acte politique</div>
+    <div class="art-nav-tag">Culture</div>
+  </a>
+
+

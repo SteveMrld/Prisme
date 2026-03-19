@@ -89,13 +89,25 @@ export default function VisuelsPage() {
 
           {/* Grand format — L'eau */}
           <a href="/visuels/eau.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-            <div className={styles.featMeta}>
-              <span className={styles.featTag}>Environnement</span>
-              <span className={styles.featCount}>5 chapitres</span>
+            <div className={styles.featBg}>
+              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 50% 60%, rgba(45,107,74,0.1) 0%, transparent 60%)'}}/>
             </div>
-            <h3 className={styles.featTitle}>L&apos;eau : la prochaine grande fracture</h3>
-            <p className={styles.featDesc}>Des glaciers himalayens aux barrages africains. Comment la maîtrise de l&apos;eau redessine les rapports de puissance.</p>
-            <div className={styles.featCta}>Voir la carte →</div>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--env)'}}>Environnement · Géopolitique · Carte animée</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>L&apos;eau : la prochaine grande fracture</h3>
+              <p className={styles.featSub}>Glaciers · Barrages · Conflits · Géopolitique de l&apos;eau</p>
+              <p className={styles.featDesc}>
+                Des glaciers himalayens aux barrages africains. Comment la maîtrise de l&apos;eau
+                redessine les rapports de puissance — une carte animée en 5 chapitres.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la carte</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
           </a>
 
           {/* Câbles sous-marins */}
