@@ -9,12 +9,20 @@ export const metadata = {
 
 const contributeurs = [
   {
+    name: 'Agathe Cagé',
+    role: 'Contributrice · Science politique & Démocratie',
+    bio: 'Docteure en science politique (Paris I), diplômée de l\'ENA. Directrice d\'études à l\'École normale supérieure, autrice de "Respect !" (Éditions des Équateurs). Ses travaux portent sur les inégalités, la mobilité sociale et les recompositions démocratiques.',
+    domaines: ['Politique', 'Société', 'Démocratie'],
+    portrait: '/portraits/cage.jpg',
+    linkedin: 'https://www.linkedin.com/in/cag%C3%A9-agathe-2b1bb344/',
+  },
+  {
     name: 'Léo Cottencin',
     role: 'Contributeur · Finance & Stratégie',
     bio: 'Associé fondateur chez & Co., ancien chez Eurazeo et Messier & Associés. Diplômé de l\'ESSEC et de l\'IESEG, il analyse les dynamiques du capital privé et les stratégies de création de valeur.',
     domaines: ['Économie', 'Finance', 'Stratégie'],
     portrait: '/portraits/cottencin.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/l%C3%A9o-cottencin-11617474/',
   },
   {
     name: 'Jade Desroses',
@@ -22,7 +30,7 @@ const contributeurs = [
     bio: 'Professeure de lettres et essayiste. Elle explore les liens entre littérature, mémoire et politique, avec une attention particulière aux voix longtemps marginalisées du canon occidental.',
     domaines: ['Culture', 'Société', 'Portraits'],
     portrait: '/portraits/desroses.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/jade-desroses-0670b1336/',
   },
   {
     name: 'Laetitia Hélouet',
@@ -30,7 +38,7 @@ const contributeurs = [
     bio: 'Haute fonctionnaire, diplômée de Sciences Po Rennes et de l\'INET. Présidente de l\'Observatoire national de la politique de la Ville, ancienne rapporteure à la Cour des comptes.',
     domaines: ['Politique publique', 'Territoire', 'Société'],
     portrait: '/portraits/helouet.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/laetitia-helouet-5b3a92168/',
   },
   {
     name: 'Fatemeh Jailani',
@@ -38,7 +46,7 @@ const contributeurs = [
     bio: 'Née en Californie de parents afghans, diplômée de Sciences Po. Ses analyses portent sur les politiques européennes, les migrations et les recompositions identitaires dans les démocraties libérales.',
     domaines: ['Europe', 'Politique', 'Société'],
     portrait: '/portraits/jailani.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/fatemeh-jailani-37814127/',
   },
   {
     name: 'Claire Le Flécher',
@@ -46,7 +54,7 @@ const contributeurs = [
     bio: 'Ambassadrice de France, ancienne première conseillère en Arménie, diplômée de l\'ENA. Ses analyses portent sur la diplomatie contemporaine et les recompositions géopolitiques au Moyen-Orient.',
     domaines: ['Géopolitique', 'Diplomatie', 'Relations internationales'],
     portrait: '/portraits/leflecher.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/claire-le-fl%C3%A9cher-3199b442/',
   },
   {
     name: 'Élodie Mielczareck',
@@ -54,7 +62,7 @@ const contributeurs = [
     bio: 'Sémiologue diplômée en Lettres et Linguistique (Sorbonne), autrice de plusieurs ouvrages sur le langage et le pouvoir. Elle décrypte les stratégies discursives des organisations et des acteurs politiques.',
     domaines: ['Société', 'Médias', 'Politique'],
     portrait: '/portraits/mielczareck.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/elodie-mielczareck-semiologue/',
   },
   {
     name: 'Élisabeth Moreno',
@@ -62,7 +70,7 @@ const contributeurs = [
     bio: 'Née au Cap-Vert, ancienne PDG de Lenovo France et DG Afrique de Hewlett-Packard, Ministre déléguée à l\'Égalité femmes-hommes (2020–2022). Fondatrice de LEIA Partners et présidente de Ring Capital.',
     domaines: ['Leadership', 'Égalité', 'Technologie', 'Afrique'],
     portrait: '/portraits/moreno.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/elisabeth-moreno-745362248/',
   },
   {
     name: 'Éric Ouzounian',
@@ -78,7 +86,7 @@ const contributeurs = [
     bio: 'Biologiste, directeur de recherche à l\'INSERM, il a participé en 1985 au séquençage du VIH à l\'Institut Pasteur. Auteur de travaux fondamentaux sur la génétique des virus et l\'évolution moléculaire.',
     domaines: ['Sciences', 'Épistémologie', 'Santé'],
     portrait: '/portraits/sonigo.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/pierre-sonigo-300800a9/',
   },
   {
     name: 'Majda Vincent',
@@ -86,7 +94,7 @@ const contributeurs = [
     bio: 'Diplômée de l\'IAE Paris Sorbonne, ancienne DRH de Sodexo France, elle est aujourd\'hui DRH monde du groupe Adecco. Elle analyse les transformations du travail et les enjeux humains des grandes organisations.',
     domaines: ['Économie', 'Société', 'Management'],
     portrait: '/portraits/vincent.jpg',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/majda-vincent-59641442/',
   },
 ]
 
