@@ -46,7 +46,6 @@ export default function ArticleLayout({
             <span className={styles.readDate}>Mars 2026</span>
           </div>
           <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
-          <p className={styles.description}>{description}</p>
         </div>
       )}
 

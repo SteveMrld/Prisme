@@ -725,8 +725,9 @@ sup {
 
 .article-body h3,
 .article-content h3 {
-  margin-top: 48px !important;
-  margin-bottom: 16px !important;
+  margin-top: 64px !important;
+  margin-bottom: 24px !important;
+  padding-top: 8px;
 }
 
 /* Paragraphe qui suit directement un h2 ou h3 — pas de drop cap */
