@@ -1,7 +1,7 @@
 [
   {
     "slug": "afrique",
-    "title": "La France en Afrique :la fin d'un monde",
+    "title": "La France en Afrique : la fin d'un monde",
     "description": "Coups d'État au Sahel, retrait militaire, perte d'influence face à la Russie et à la Chine. La France n'a pas perdu l'Afrique par accident. Elle l'a perdue par aveuglement.",
     "image": "https://i.ibb.co/twCGQsPB/img-afrique.jpg",
     "category": "geo",
@@ -11,7 +11,7 @@
   },
   {
     "slug": "arctique",
-    "title": "Arctique :la fonte qui change le monde",
+    "title": "Arctique : la fonte qui change le monde",
     "description": "La banquise recule à une vitesse sans précédent. Ce que la catastrophe climatique ouvre comme perspectives commerciales et militaires redessine les équilibres géopolitiques mondiaux, avec la Russie en première ligne.",
     "image": "https://i.ibb.co/jvvQx1mw/img-arctique.jpg",
     "category": "env",
@@ -21,7 +21,7 @@
   },
   {
     "slug": "blackrock",
-    "title": "BlackRock et Vanguard,les nouveaux maîtres du jeu",
+    "title": "BlackRock et Vanguard, les nouveaux maîtres du jeu",
     "description": "Ensemble, BlackRock, Vanguard et State Street gèrent plus de 28 000 milliards de dollars. Jamais dans l'histoire du capitalisme des fonds privés n'ont concentré pareille puissance sur l'économie mondiale.",
     "image": "https://i.ibb.co/tw4146Sw/img-blackrock.jpg",
     "category": "eco",
@@ -61,7 +61,7 @@
   },
   {
     "slug": "empires",
-    "title": "La France face àla loi des empires",
+    "title": "La France face à la loi des empires",
     "description": "L'opération Venezuela vient de démontrer que le droit international ne dissuade plus les grandes puissances. Pour la France, qui possède des territoires dans chaque océan sans avoir les moyens de les défendre, l'heure est grave.",
     "image": "https://i.ibb.co/nN5hN0sQ/img-empires.jpg",
     "category": "geo",
@@ -71,7 +71,7 @@
   },
   {
     "slug": "fiscalite",
-    "title": "L'impôtque vous ne voyez pas",
+    "title": "L'impôt que vous ne voyez pas",
     "description": "Le débat fiscal français est structurellement biaisé. Non par mauvaise foi, mais parce que le vocabulaire lui-même est une arme.",
     "image": "https://i.ibb.co/mrbKMSp8/img-fiscalite.jpg",
     "category": "eco",
@@ -81,7 +81,7 @@
   },
   {
     "slug": "fragilite",
-    "title": "Ce qui ne dure pasmérite d'être aimé",
+    "title": "Ce qui ne dure pas mérite d'être aimé",
     "description": "Nous bâtissons nos vies sur l'illusion de la permanence. Un instant suffit pour que tout bascule, et c'est précisément cet instant qui nous apprend à quoi nous tenons.",
     "image": "https://i.ibb.co/b5HpKbFm/e5a38d4b-63ff-4677-b15b-7f56f0326c56.png",
     "category": "culture",
@@ -91,7 +91,7 @@
   },
   {
     "slug": "france_maritime",
-    "title": "La France maritime,un empire ignoré",
+    "title": "La France maritime, un empire ignoré",
     "description": "Deuxième zone économique exclusive mondiale, présence dans trois océans et sur quatre continents. La France détient un avantage géostratégique sans équivalent en Occident, et ne sait pas quoi en faire.",
     "image": "https://i.ibb.co/JR5dhX0K/img-france-maritime.jpg",
     "category": "geo",
@@ -101,7 +101,7 @@
   },
   {
     "slug": "ia",
-    "title": "Comment l'IA traitele langage",
+    "title": "Comment l'IA traite le langage",
     "description": "Ce qu'elle fait vraiment, et comment bien l'utiliser.",
     "image": "https://i.ibb.co/vCcXB6p8/img-ia-jamais.jpg",
     "category": "concept",
@@ -111,7 +111,7 @@
   },
   {
     "slug": "ia_ecriture",
-    "title": "Ce que l'IAne pourra jamais écrire",
+    "title": "Ce que l'IA ne pourra jamais écrire",
     "description": "L'intelligence artificielle générative produit des textes corrects, fluides, souvent convaincants. Ce qu'elle ne produit pas, ce qu'elle ne peut pas produire, c'est ce que Camus et Césaire avaient compris.",
     "image": "https://i.ibb.co/CKnpDW2N/img-ia-ecriture.jpg",
     "category": "culture",
@@ -121,7 +121,7 @@
   },
   {
     "slug": "kintsugi",
-    "title": "Tout ce qui est brisépeut devenir or",
+    "title": "Tout ce qui est brisé peut devenir or",
     "description": "Il existe une philosophie japonaise qui répare la porcelaine avec de l'or. Une sagesse sur ce que nos fractures disent de nous, et sur ce qu'une époque obsédée par le neuf préfère ignorer.",
     "image": "https://i.ibb.co/DDtDtGwj/img-kintsugi.jpg",
     "category": "culture",
@@ -131,7 +131,7 @@
   },
   {
     "slug": "lecture",
-    "title": "Ce que les livres fontà ceux qui les ouvrent",
+    "title": "Ce que les livres font à ceux qui les ouvrent",
     "description": "La lecture n'est pas un loisir parmi d'autres. C'est une technologie de l'humain, l'une des plus puissantes jamais inventées. Par Jade Desroses.",
     "image": "https://i.ibb.co/b5HpKbFm/e5a38d4b-63ff-4677-b15b-7f56f0326c56.png",
     "category": "culture",
@@ -141,7 +141,7 @@
   },
   {
     "slug": "medias",
-    "title": "Quand les médias perdentle fil de la vérité",
+    "title": "Quand les médias perdent le fil de la vérité",
     "description": "La désinformation prospère moins parce que le mensonge est devenu habile que parce que la rigueur journalistique s'est érodée. Entre polarisation éditoriale et économie de l'attention, le diagnostic.",
     "image": "https://i.ibb.co/0yxgDcKx/img-medias.jpg",
     "category": "soc",
@@ -151,7 +151,7 @@
   },
   {
     "slug": "morrison",
-    "title": "Toni Morrison,la mémoire comme acte politique",
+    "title": "Toni Morrison, la mémoire comme acte politique",
     "description": "Romancière, essayiste, première femme noire Nobel de littérature. Elle a consacré une vie entière à fouiller les blessures de la mémoire afro-américaine, et à les transformer en langage.",
     "image": "/portraits/morrison.jpg",
     "category": "portrait",
@@ -161,7 +161,7 @@
   },
   {
     "slug": "musk",
-    "title": "Elon Musk,l'homme qui défie son époque",
+    "title": "Elon Musk, l'homme qui défie son époque",
     "description": "De l'Afrique du Sud à la Maison-Blanche, de SpaceX à X, la trajectoire d'un entrepreneur devenu acteur politique mondial, et les questions qu'elle soulève.",
     "image": "/portraits/musk.jpg",
     "category": "portrait",
@@ -171,7 +171,7 @@
   },
   {
     "slug": "nooyi",
-    "title": "Indra Nooyi,réinventer un empire depuis l'intérieur",
+    "title": "Indra Nooyi, réinventer un empire depuis l'intérieur",
     "description": "Douze ans à la tête de PepsiCo, une transformation stratégique radicale, et une trajectoire qui dit autant sur les possibles du capitalisme américain que sur ses limites structurelles.",
     "image": "/portraits/nooyi.jpg",
     "category": "portrait",
@@ -191,7 +191,7 @@
   },
   {
     "slug": "pessimisme",
-    "title": "Le monde va mieux.Pourquoi le voyons-nous si sombre ?",
+    "title": "Le monde va mieux. Pourquoi le voyons-nous si sombre ?",
     "description": "Biais de négativité, algorithmes de l'indignation, économie de l'outrage. Notre cerveau et nos médias conspirent pour nous faire percevoir le monde plus mal qu'il n'est.",
     "image": "https://i.ibb.co/WmPb8JT/img-pessimisme.jpg",
     "category": "soc",
@@ -211,7 +211,7 @@
   },
   {
     "slug": "reseaux",
-    "title": "Ce que les plateformesont fait à notre rapportau monde",
+    "title": "Ce que les plateformes ont fait à notre rapport au monde",
     "description": "Les réseaux sociaux ont tenu la promesse d'un monde connecté. Ils ont aussi produit quelque chose que personne n'avait commandé : une civilisation de la mise en scène de soi.",
     "image": "https://i.ibb.co/YFL59wJv/img-reseaux.png",
     "category": "soc",
@@ -221,7 +221,7 @@
   },
   {
     "slug": "rushkoff",
-    "title": "Quand les bâtisseursfuient leur propre création",
+    "title": "Quand les bâtisseurs fuient leur propre création",
     "description": "Les hommes qui ont connecté le monde rêvent maintenant de s'en extraire. Des bunkers en Nouvelle-Zélande, des gardes armés, des plans de survie. Ce n'est pas anodin.",
     "image": "https://i.ibb.co/7Npw5BJ6/img-rushkoff.jpg",
     "category": "tech",
@@ -231,7 +231,7 @@
   },
   {
     "slug": "semico",
-    "title": "Semi-conducteurs :la guerre pour le pétroledu XXIe siècle",
+    "title": "Semi-conducteurs : la guerre pour le pétrole du XXIe siècle",
     "description": "Le 20 janvier 2025, DeepSeek a effacé 593 milliards de valorisation Nvidia en une seule séance. Cet événement n'est pas une crise boursière, c'est le symptôme d'une guerre technologique totale.",
     "image": "https://i.ibb.co/35HMs574/img-semico.jpg",
     "category": "concept",
@@ -241,7 +241,7 @@
   },
   {
     "slug": "silence",
-    "title": "Le silenceaussi est un choix",
+    "title": "Le silence aussi est un choix",
     "description": "Quand un jeu est manifestement truqué, se taire revient à y jouer. L'indignation n'est pas une posture. C'est une exigence, envers soi-même, et envers ceux qui comptent sur nous.",
     "image": "https://i.ibb.co/ZRdqHTwz/img-silence.jpg",
     "category": "soc",
@@ -251,7 +251,7 @@
   },
   {
     "slug": "taiwan",
-    "title": "Taïwan, autoroute maritimestratégique",
+    "title": "Taïwan, autoroute maritime stratégique",
     "description": "Joyau convoité de l'industrie électronique, pivot de l'Asie-Pacifique. La petite île qui fait trembler les grandes puissances.",
     "image": "https://i.ibb.co/WvTfGYtS/img-taiwan.jpg",
     "category": "geo",
@@ -261,7 +261,7 @@
   },
   {
     "slug": "techgeo",
-    "title": "La bataille pour lesous-sol du mondenumérique",
+    "title": "La bataille pour le sous-sol du monde numérique",
     "description": "Des mines de terres rares de Mongolie intérieure aux usines de puces de Taiwan, des laboratoires de DeepSeek à Pékin aux fabs TSMC d'Arizona, une même guerre souterraine pour les matériaux du futur.",
     "image": "https://i.ibb.co/vCpv1sLb/img-techgeo.jpg",
     "category": "geo",
@@ -271,7 +271,7 @@
   },
   {
     "slug": "technosolutionnisme",
-    "title": "Les limites dutechno-solutionnisme",
+    "title": "Les limites du techno-solutionnisme",
     "description": "La technologie est-elle le remède aux problèmes qu'elle contribue à créer ? De l'extraction des terres rares à la surveillance algorithmique, une lecture critique de l'idéologie dominante.",
     "image": "https://i.ibb.co/VpYfCtzB/img-technosolutionnisme.jpg",
     "category": "tech",
