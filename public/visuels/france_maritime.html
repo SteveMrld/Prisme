@@ -3,147 +3,367 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>France Maritime — L'empire ignoré</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>La France maritime · Un empire ignoré · Prisme</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--or:#C4A265;--bg:#060C18;--encre:#ECE7DD;--bord:rgba(255,255,255,0.07);--fr:#1A3E6B}
-html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
-.hd{padding:14px 24px;border-bottom:1px solid var(--bord);display:flex;align-items:center;justify-content:space-between}
-.hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.3);padding:4px 12px}
-.hd-sub{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.4)}
-.tabs{display:flex;border-bottom:1px solid var(--bord)}
-.tab{flex:1;padding:11px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);border-bottom:2px solid transparent;transition:all 0.2s}
-.tab.active{color:var(--or);border-color:var(--or)}
-.panel{display:none;padding:24px;flex-direction:column;gap:18px;animation:fi 0.3s ease}
-.panel.active{display:flex}
-@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.lbl{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+html,body{width:100%;height:100%;overflow:hidden;background:#040810;color:#ECE7DD;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+:root{--or:#C4A265;--bg:#040810;--bord:rgba(255,255,255,0.07);--fr:#1A3E6B}
+#stage{position:fixed;top:0;left:0;width:100%;height:calc(100% - 60px);overflow:hidden}
+#world-svg{position:absolute;top:0;left:0;width:100%;height:100%}
 
-/* MONDE SVG */
-.world-svg{width:100%;height:auto;display:block}
-.zee-zone{opacity:0;animation:zeeAppear 0.8s ease forwards}
-@keyframes zeeAppear{to{opacity:1}}
+/* INTRO */
+#intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:50;background:rgba(4,8,16,0.85);pointer-events:all;transition:opacity 1.4s ease;cursor:pointer}
+#intro.hidden{opacity:0;pointer-events:none}
+.intro-eyebrow{font-size:8px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--or);margin-bottom:28px}
+.intro-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,56px);font-weight:300;text-align:center;line-height:1.15;letter-spacing:-1px;max-width:680px}
+.intro-title em{font-style:italic;color:var(--or)}
+.intro-sub{margin-top:20px;font-size:11px;color:rgba(236,231,221,0.35);letter-spacing:2px;text-transform:uppercase}
 
-/* TERRITOIRE */
-.terr{padding:12px 16px;border-left:3px solid rgba(196,162,101,0.4);background:rgba(255,255,255,0.02);margin-bottom:1px;cursor:pointer;transition:background 0.15s}
-.terr:hover{background:rgba(255,255,255,0.04)}
-.terr-name{font-size:12px;font-weight:600;margin-bottom:3px;color:var(--encre)}
-.terr-ocean{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--or);margin-bottom:3px}
-.terr-desc{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5;font-style:italic}
+/* PANEL */
+#panel{position:absolute;right:0;top:0;height:100%;width:clamp(260px,26vw,320px);background:linear-gradient(to left,rgba(4,8,16,0.98) 55%,rgba(4,8,16,0.75) 80%,transparent);display:flex;flex-direction:column;justify-content:center;padding:48px 28px 48px 56px}
+.panel-chapter{font-size:7px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.5);margin-bottom:12px}
+.panel-hook{font-family:'Playfair Display',serif;font-size:clamp(11px,1.2vw,14px);font-style:italic;font-weight:300;color:rgba(236,231,221,0.38);line-height:1.6;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--bord)}
+.panel-title{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,30px);font-weight:300;line-height:1.15;letter-spacing:-0.5px;margin-bottom:16px}
+.panel-title em{font-style:italic;color:var(--or)}
+.panel-body{font-size:12px;color:rgba(236,231,221,0.48);line-height:1.85}
+.panel-body strong{color:rgba(236,231,221,0.85);font-weight:500}
+.panel-stat{margin-top:20px;padding-top:18px;border-top:1px solid var(--bord)}
+.stat-n{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,50px);font-weight:300;color:var(--or);line-height:1;display:block}
+.stat-l{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(236,231,221,0.28);display:block;margin-top:6px;line-height:1.7}
 
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.06)}
-.stat{background:var(--bg);padding:16px 18px}
-.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1;margin-bottom:5px}
-.stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+/* LEGEND */
+#legend{position:absolute;left:22px;bottom:28px;display:flex;flex-direction:column;gap:10px;opacity:0;transition:opacity 0.8s}
+#legend.vis{opacity:1}
+.li{display:flex;align-items:center;gap:10px;font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase}
+.li-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.li-dash{width:18px;height:1px;flex-shrink:0}
 
-.quote{border-left:2px solid rgba(196,162,101,0.25);padding:10px 16px}
-.quote p{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:rgba(236,231,221,0.45);line-height:1.65}
+/* PLAYER */
+#player{position:fixed;bottom:0;left:0;right:0;height:60px;z-index:200;display:flex;flex-direction:column;background:rgba(4,8,16,0.98);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,0.07)}
+#prog{height:2px;background:rgba(255,255,255,0.06)}
+#prog-fill{height:100%;background:var(--or);transition:width 0.6s ease;width:0%}
+#controls{flex:1;display:flex;align-items:center;padding:0 24px;gap:14px}
+#dots{display:flex;gap:6px;align-items:center}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.15);cursor:pointer;transition:all 0.2s}
+.dot.active{background:var(--or);transform:scale(1.3)}
+#btn-prev,#btn-next{background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.35);font-size:20px;padding:2px 8px;transition:color 0.2s;line-height:1}
+#btn-prev:hover,#btn-next:hover{color:var(--or)}
+#btn-play{background:rgba(196,162,101,0.1);border:1px solid rgba(196,162,101,0.25);border-radius:50%;width:32px;height:32px;cursor:pointer;color:var(--or);display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-size:12px}
+#btn-play:hover{background:rgba(196,162,101,0.2)}
+#counter{margin-left:auto;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2)}
+#back{position:fixed;top:18px;left:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.22);text-decoration:none;z-index:300;transition:color 0.2s}
+#back:hover{color:var(--or)}
+#wm{position:fixed;bottom:78px;left:20px;z-index:50;pointer-events:none;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.28)}
+
+/* ANIMATIONS */
+@keyframes fadeZone{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+@keyframes pulse{0%{r:6;opacity:0.8}100%{r:22;opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes glow{0%,100%{opacity:0.3}50%{opacity:0.7}}
+@keyframes dash{to{stroke-dashoffset:-300}}
+
+.zone{opacity:0;transform-box:fill-box;transform-origin:center;transition:filter 0.4s}
+.zone.vis{animation:fadeZone 0.7s ease forwards}
+.pr{animation:pulse 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.fl{animation:float 4s ease-in-out infinite}
+.gl{animation:glow 3s ease-in-out infinite}
+.conn{stroke-dasharray:6 6;animation:dash 8s linear infinite;opacity:0;transition:opacity 0.8s}
+.conn.vis{opacity:1}
+
+@media(max-width:700px){
+  #panel{position:absolute;right:0;left:0;top:auto;bottom:0;width:100%;height:42%;background:rgba(4,8,16,0.97);padding:14px 18px;justify-content:flex-start;overflow-y:auto;border-top:1px solid var(--bord)}
+  #stage{height:58%}
+  .panel-title{font-size:15px}.stat-n{font-size:26px}
+  #legend{display:none}
+}
 </style>
 </head>
 <body>
-<div class="hd">
-  <span class="hd-tag">Visualisation · Géopolitique</span>
-  <span class="hd-sub">La France maritime — un empire ignoré</span>
+<a href="/visuels" id="back">← Prisme</a>
+<div id="wm">PRISME</div>
+
+<div id="stage">
+<svg id="world-svg" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#06122a"/><stop offset="100%" stop-color="#040810"/></radialGradient>
+  <radialGradient id="glFR" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(26,62,107,0.7)"/><stop offset="100%" stop-color="rgba(26,62,107,0)"/></radialGradient>
+  <radialGradient id="glOR" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(196,162,101,0.55)"/><stop offset="100%" stop-color="rgba(196,162,101,0)"/></radialGradient>
+  <filter id="b4"><feGaussianBlur stdDeviation="4"/></filter>
+  <filter id="b8"><feGaussianBlur stdDeviation="8"/></filter>
+  <filter id="b2"><feGaussianBlur stdDeviation="2"/></filter>
+</defs>
+
+<!-- FOND -->
+<rect width="900" height="500" fill="url(#bg)"/>
+<!-- Grille -->
+<g stroke="rgba(255,255,255,0.025)" stroke-width="0.5" fill="none">
+  <line x1="0" y1="250" x2="900" y2="250"/>
+  <line x1="450" y1="0" x2="450" y2="500"/>
+  <line x1="0" y1="125" x2="900" y2="125"/>
+  <line x1="0" y1="375" x2="900" y2="375"/>
+  <line x1="225" y1="0" x2="225" y2="500"/>
+  <line x1="675" y1="0" x2="675" y2="500"/>
+</g>
+<line x1="0" y1="178" x2="900" y2="178" stroke="rgba(196,162,101,0.055)" stroke-width="0.8" stroke-dasharray="4,6"/>
+<line x1="0" y1="322" x2="900" y2="322" stroke="rgba(196,162,101,0.055)" stroke-width="0.8" stroke-dasharray="4,6"/>
+
+<!-- CONTINENTS -->
+<path d="M92,58 Q140,50 186,62 Q220,72 245,96 Q268,120 272,150 Q275,178 260,200 Q244,222 222,232 Q200,242 178,236 Q152,228 135,210 Q110,190 98,165 Q80,138 78,110 Q76,82 92,58Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+<path d="M178,236 Q205,242 222,260 Q235,278 228,295 Q220,310 208,316L192,302 L178,278 L172,256Z" fill="rgba(255,255,255,0.045)" stroke="rgba(255,255,255,0.08)" stroke-width="0.7"/>
+<path d="M192,316 Q222,302 248,316 Q270,330 278,360 Q285,390 278,422 Q268,450 250,462 Q228,472 205,464 Q180,454 165,432 Q148,406 148,375 Q148,344 162,328Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+<path d="M390,70 Q425,63 456,72 Q480,80 490,98 Q498,116 492,134 Q484,150 466,157 Q446,163 424,156 Q402,148 390,130 Q378,110 382,88Z" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.1)" stroke-width="0.7"/>
+<path d="M428,40 Q450,35 465,48 Q475,62 468,76 L452,68 L432,68Z" fill="rgba(255,255,255,0.038)" stroke="rgba(255,255,255,0.07)" stroke-width="0.7"/>
+<path d="M406,166 Q445,156 480,168 Q506,178 518,208 Q526,235 522,268 Q515,300 504,330 Q490,360 472,380 Q452,397 428,397 Q404,397 386,380 Q365,360 358,328 Q350,293 353,258 Q356,222 370,196 Q384,172 406,166Z" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.1)" stroke-width="0.7"/>
+<path d="M488,35 Q560,26 638,32 Q700,36 750,50 Q790,60 810,78 Q820,95 812,112 Q800,128 775,134 Q735,142 694,135 Q650,126 612,115 Q572,104 545,90 Q515,76 495,62Z" fill="rgba(255,255,255,0.048)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+<path d="M568,165 Q600,158 625,172 Q645,186 648,215 Q650,240 638,260 Q624,278 602,280 Q580,280 565,263 Q550,245 548,218 Q546,192 560,175Z" fill="rgba(255,255,255,0.048)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+<path d="M682,148 Q724,138 756,152 Q780,165 785,192 Q790,218 778,238 Q764,256 738,260 Q712,263 692,248 Q672,232 668,206 Q664,180 682,160Z" fill="rgba(255,255,255,0.048)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+<path d="M698,85 Q750,75 792,87 Q824,96 836,116 Q844,135 835,152 Q822,166 796,170 Q764,172 738,160 Q708,148 698,126 Q686,104 698,85Z" fill="rgba(255,255,255,0.048)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+<path d="M718,308 Q765,295 804,307 Q836,318 848,345 Q858,368 850,393 Q838,415 814,424 Q786,433 758,424 Q730,414 714,392 Q696,368 696,344 Q696,320 718,308Z" fill="rgba(255,255,255,0.048)" stroke="rgba(255,255,255,0.09)" stroke-width="0.7"/>
+<path d="M525,270 Q540,264 552,276 Q560,290 555,308 Q548,324 534,326 Q520,324 515,308 Q512,290 525,270Z" fill="rgba(255,255,255,0.038)" stroke="rgba(255,255,255,0.07)" stroke-width="0.7"/>
+<path d="M250,26 Q280,20 305,30 Q320,40 318,56 Q314,72 298,80 Q278,84 260,72 Q244,60 248,42Z" fill="rgba(255,255,255,0.032)" stroke="rgba(255,255,255,0.065)" stroke-width="0.7"/>
+
+<!-- LABELS OCÉANS -->
+<text x="108" y="270" text-anchor="middle" font-family="Playfair Display" font-size="9" font-style="italic" fill="rgba(255,255,255,0.065)" letter-spacing="2">PACIFIQUE</text>
+<text x="328" y="300" text-anchor="middle" font-family="Playfair Display" font-size="9" font-style="italic" fill="rgba(255,255,255,0.065)" letter-spacing="2">ATLANTIQUE</text>
+<text x="605" y="255" text-anchor="middle" font-family="Playfair Display" font-size="9" font-style="italic" fill="rgba(255,255,255,0.065)" letter-spacing="2">INDIEN</text>
+
+<!-- LIGNES DE CONNEXION -->
+<g id="g-conn">
+  <line class="conn" id="c1" x1="432" y1="108" x2="108" y2="322" stroke="rgba(196,162,101,0.18)" stroke-width="0.8"/>
+  <line class="conn" id="c2" x1="432" y1="108" x2="782" y2="340" stroke="rgba(196,162,101,0.15)" stroke-width="0.8"/>
+  <line class="conn" id="c3" x1="432" y1="108" x2="202" y2="215" stroke="rgba(196,162,101,0.16)" stroke-width="0.8"/>
+  <line class="conn" id="c4" x1="432" y1="108" x2="218" y2="282" stroke="rgba(196,162,101,0.15)" stroke-width="0.8"/>
+  <line class="conn" id="c5" x1="432" y1="108" x2="558" y2="302" stroke="rgba(196,162,101,0.14)" stroke-width="0.8"/>
+  <line class="conn" id="c6" x1="432" y1="108" x2="492" y2="438" stroke="rgba(196,162,101,0.12)" stroke-width="0.8"/>
+  <line class="conn" id="c7" x1="432" y1="108" x2="822" y2="298" stroke="rgba(196,162,101,0.12)" stroke-width="0.8"/>
+  <line class="conn" id="c8" x1="432" y1="108" x2="248" y2="120" stroke="rgba(196,162,101,0.13)" stroke-width="0.8"/>
+</g>
+
+<!-- ZEE ZONES -->
+<!-- MÉTROPOLE -->
+<g class="zone" id="z-metro">
+  <circle cx="432" cy="108" r="32" fill="url(#glFR)" filter="url(#b4)"/>
+  <circle cx="432" cy="108" r="20" fill="rgba(26,62,107,0.22)" stroke="rgba(100,150,255,0.55)" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <circle cx="432" cy="108" r="5.5" fill="#1A3E6B" stroke="rgba(120,165,255,0.9)" stroke-width="1.3"/>
+  <circle class="pr" cx="432" cy="108" r="5" fill="none" stroke="rgba(100,150,255,0.7)" stroke-width="1"/>
+  <text x="432" y="138" text-anchor="middle" font-family="DM Sans" font-size="7" fill="rgba(120,165,255,0.75)" font-weight="600" letter-spacing="1.5">FRANCE</text>
+</g>
+
+<!-- POLYNÉSIE -->
+<g class="zone" id="z-poly">
+  <circle cx="108" cy="322" r="46" fill="url(#glOR)" filter="url(#b8)" class="gl"/>
+  <circle cx="108" cy="322" r="40" fill="none" stroke="rgba(196,162,101,0.38)" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <circle cx="108" cy="322" r="9" fill="rgba(196,162,101,0.32)" stroke="var(--or)" stroke-width="1.4"/>
+  <circle class="pr" cx="108" cy="322" r="9" fill="none" stroke="var(--or)" stroke-width="1" style="animation-delay:0.5s"/>
+  <text class="fl" x="108" y="373" text-anchor="middle" font-family="Playfair Display" font-size="8.5" font-style="italic" fill="rgba(196,162,101,0.72)">Polynésie française</text>
+  <text x="108" y="384" text-anchor="middle" font-family="DM Sans" font-size="6" fill="rgba(196,162,101,0.42)" letter-spacing="1.5">4,8 M km²</text>
+</g>
+
+<!-- NOUVELLE-CALÉDONIE -->
+<g class="zone" id="z-nc">
+  <circle cx="782" cy="340" r="28" fill="url(#glOR)" filter="url(#b4)" class="gl"/>
+  <circle cx="782" cy="340" r="23" fill="none" stroke="rgba(196,162,101,0.33)" stroke-width="1" stroke-dasharray="4,3"/>
+  <circle cx="782" cy="340" r="7" fill="rgba(196,162,101,0.3)" stroke="var(--or)" stroke-width="1.3"/>
+  <circle class="pr" cx="782" cy="340" r="7" fill="none" stroke="var(--or)" stroke-width="1" style="animation-delay:0.9s"/>
+  <text class="fl" x="782" y="372" text-anchor="middle" font-family="Playfair Display" font-size="7.5" font-style="italic" fill="rgba(196,162,101,0.65)">Nlle-Calédonie</text>
+  <text x="782" y="382" text-anchor="middle" font-family="DM Sans" font-size="6" fill="rgba(196,162,101,0.4)" letter-spacing="1">25% NICKEL</text>
+</g>
+
+<!-- ANTILLES -->
+<g class="zone" id="z-ant">
+  <circle cx="202" cy="215" r="18" fill="url(#glOR)" filter="url(#b4)"/>
+  <circle cx="202" cy="215" r="14" fill="none" stroke="rgba(196,162,101,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="202" cy="215" r="5" fill="rgba(196,162,101,0.3)" stroke="var(--or)" stroke-width="1.2"/>
+  <text class="fl" x="202" y="237" text-anchor="middle" font-family="Playfair Display" font-size="7.5" font-style="italic" fill="rgba(196,162,101,0.62)">Antilles</text>
+</g>
+
+<!-- GUYANE -->
+<g class="zone" id="z-guy">
+  <circle cx="218" cy="282" r="15" fill="url(#glOR)" filter="url(#b2)"/>
+  <circle cx="218" cy="282" r="11" fill="none" stroke="rgba(196,162,101,0.28)" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="218" cy="282" r="4" fill="rgba(196,162,101,0.28)" stroke="var(--or)" stroke-width="1.1"/>
+  <text class="fl" x="218" y="300" text-anchor="middle" font-family="Playfair Display" font-size="7" font-style="italic" fill="rgba(196,162,101,0.58)">Guyane</text>
+  <text x="218" y="309" text-anchor="middle" font-family="DM Sans" font-size="5.5" fill="rgba(196,162,101,0.36)" letter-spacing="1">KOUROU</text>
+</g>
+
+<!-- RÉUNION / MAYOTTE -->
+<g class="zone" id="z-reu">
+  <circle cx="558" cy="302" r="22" fill="url(#glOR)" filter="url(#b4)"/>
+  <circle cx="558" cy="302" r="17" fill="none" stroke="rgba(196,162,101,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="558" cy="302" r="5.5" fill="rgba(196,162,101,0.3)" stroke="var(--or)" stroke-width="1.2"/>
+  <circle class="pr" cx="558" cy="302" r="5" fill="none" stroke="var(--or)" stroke-width="1" style="animation-delay:0.7s"/>
+  <text class="fl" x="558" y="325" text-anchor="middle" font-family="Playfair Display" font-size="7.5" font-style="italic" fill="rgba(196,162,101,0.62)">Réunion · Mayotte</text>
+</g>
+
+<!-- TAAF -->
+<g class="zone" id="z-taaf">
+  <circle cx="492" cy="438" r="22" fill="url(#glOR)" filter="url(#b4)"/>
+  <circle cx="492" cy="438" r="17" fill="none" stroke="rgba(196,162,101,0.24)" stroke-width="1" stroke-dasharray="4,4"/>
+  <circle cx="492" cy="438" r="5" fill="rgba(196,162,101,0.22)" stroke="rgba(196,162,101,0.6)" stroke-width="1"/>
+  <text class="fl" x="492" y="460" text-anchor="middle" font-family="Playfair Display" font-size="7" font-style="italic" fill="rgba(196,162,101,0.5)">TAAF</text>
+</g>
+
+<!-- WALLIS -->
+<g class="zone" id="z-wal">
+  <circle cx="822" cy="298" r="11" fill="url(#glOR)" filter="url(#b2)"/>
+  <circle cx="822" cy="298" r="8" fill="none" stroke="rgba(196,162,101,0.22)" stroke-width="0.8" stroke-dasharray="2,3"/>
+  <circle cx="822" cy="298" r="3.5" fill="rgba(196,162,101,0.22)" stroke="rgba(196,162,101,0.5)" stroke-width="1"/>
+  <text x="822" y="311" text-anchor="middle" font-family="DM Sans" font-size="5.5" fill="rgba(196,162,101,0.4)" letter-spacing="0.5">Wallis</text>
+</g>
+
+<!-- ST-PIERRE -->
+<g class="zone" id="z-spm">
+  <circle cx="248" cy="120" r="11" fill="url(#glOR)" filter="url(#b2)"/>
+  <circle cx="248" cy="120" r="8" fill="none" stroke="rgba(196,162,101,0.22)" stroke-width="0.8" stroke-dasharray="2,3"/>
+  <circle cx="248" cy="120" r="3.5" fill="rgba(196,162,101,0.22)" stroke="rgba(196,162,101,0.5)" stroke-width="1"/>
+  <text x="248" y="133" text-anchor="middle" font-family="DM Sans" font-size="5.5" fill="rgba(196,162,101,0.38)" letter-spacing="0.5">St-Pierre</text>
+</g>
+
+<!-- CLIPPERTON -->
+<g class="zone" id="z-clip">
+  <circle cx="145" cy="222" r="9" fill="url(#glOR)" filter="url(#b2)"/>
+  <circle cx="145" cy="222" r="7" fill="none" stroke="rgba(196,162,101,0.2)" stroke-width="0.8" stroke-dasharray="2,3"/>
+  <circle cx="145" cy="222" r="3" fill="rgba(196,162,101,0.2)" stroke="rgba(196,162,101,0.44)" stroke-width="1"/>
+  <text x="145" y="234" text-anchor="middle" font-family="DM Sans" font-size="5.5" fill="rgba(196,162,101,0.35)" letter-spacing="0.5">Clipperton</text>
+</g>
+</svg>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-eyebrow">Prisme · Grand format · Géopolitique</div>
+  <h1 class="intro-title">La France que vous<br><em>ne connaissez pas</em></h1>
+  <p class="intro-sub">Appuyez pour commencer · 6 chapitres</p>
 </div>
-<div class="tabs">
-  <div class="tab active" onclick="showTab('carte',this)">ZEE mondiale</div>
-  <div class="tab" onclick="showTab('territoires',this)">Territoires</div>
-  <div class="tab" onclick="showTab('enjeux',this)">Enjeux stratégiques</div>
+
+<!-- PANEL -->
+<div id="panel">
+  <div class="panel-chapter" id="p-ch">I · MÉTROPOLE</div>
+  <div class="panel-hook" id="p-hk">Vous pensez connaître la France.</div>
+  <div class="panel-title" id="p-ti">La France <em>hexagonale</em></div>
+  <div class="panel-body" id="p-bo"></div>
+  <div class="panel-stat"><span class="stat-n" id="p-st">551 000</span><span class="stat-l" id="p-sl"></span></div>
 </div>
 
-<div class="panel active" id="tab-carte">
-  <div class="lbl">Zone économique exclusive française — 11,7 millions km²</div>
-  <svg class="world-svg" viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg">
-    <rect width="700" height="360" fill="#060C18"/>
-    <!-- Fond mer -->
-    <rect width="700" height="360" fill="#0A1428" rx="0"/>
-    <!-- Grille -->
-    <line x1="0" y1="180" x2="700" y2="180" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
-    <line x1="350" y1="0" x2="350" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
-
-    <!-- Continents schématiques -->
-    <path d="M55,90 L165,80 L190,130 L168,182 L80,178 L42,138 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-    <path d="M105,180 L178,174 L195,230 L158,258 L105,242 L88,208 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-    <path d="M225,65 L318,60 L338,108 L318,148 L238,152 L210,108 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-    <path d="M258,162 L348,155 L368,220 L328,255 L260,242 L240,200 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-    <path d="M378,58 L558,52 L578,128 L498,148 L388,135 L362,92 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-    <path d="M498,148 L628,138 L648,212 L568,250 L478,235 L458,178 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-
-    <!-- ZEE françaises — zones colorées -->
-    <!-- Métropole -->
-    <circle cx="268" cy="90" r="18" fill="rgba(26,62,107,0.35)" class="zee-zone" style="animation-delay:0.2s"/>
-    <text x="268" y="93" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#4A7EC7" font-weight="700">FR</text>
-
-    <!-- Caraïbes (Martinique, Guadeloupe, St Martin) -->
-    <circle cx="148" cy="168" r="15" fill="rgba(196,162,101,0.25)" class="zee-zone" style="animation-delay:0.4s"/>
-    <text x="148" y="172" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Caraïbes</text>
-
-    <!-- Guyane -->
-    <circle cx="162" cy="198" r="12" fill="rgba(196,162,101,0.2)" class="zee-zone" style="animation-delay:0.6s"/>
-    <text x="162" y="202" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Guyane</text>
-
-    <!-- Réunion / Mayotte -->
-    <circle cx="448" cy="222" r="14" fill="rgba(196,162,101,0.25)" class="zee-zone" style="animation-delay:0.8s"/>
-    <text x="448" y="226" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Réunion</text>
-
-    <!-- Polynésie française -->
-    <circle cx="95" cy="248" r="22" fill="rgba(196,162,101,0.3)" class="zee-zone" style="animation-delay:1s"/>
-    <text x="95" y="252" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">Polynésie</text>
-
-    <!-- Nouvelle-Calédonie -->
-    <circle cx="582" cy="245" r="16" fill="rgba(196,162,101,0.25)" class="zee-zone" style="animation-delay:1.2s"/>
-    <text x="582" y="249" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">N-Calédonie</text>
-
-    <!-- TAAF (Terres australes) -->
-    <circle cx="380" cy="310" r="18" fill="rgba(196,162,101,0.2)" class="zee-zone" style="animation-delay:1.4s"/>
-    <text x="380" y="314" text-anchor="middle" font-family="DM Sans" font-size="6" fill="#C4A265">TAAF</text>
-
-    <!-- Label principal -->
-    <text x="350" y="25" text-anchor="middle" font-family="Playfair Display" font-size="12" font-style="italic" fill="rgba(196,162,101,0.6)">ZEE française — 11,7 millions km² — 2ème mondiale</text>
-  </svg>
-
-  <div class="stat-row">
-    <div class="stat"><div class="stat-num">11,7M</div><div class="stat-lbl">km² de ZEE — 2ème plus grande zone économique exclusive au monde</div></div>
-    <div class="stat"><div class="stat-num">12</div><div class="stat-lbl">fuseaux horaires couverts par les territoires français — le maximum mondial</div></div>
-  </div>
+<!-- LÉGENDE -->
+<div id="legend">
+  <div class="li"><div class="li-dot" style="background:rgba(100,150,255,0.75)"></div>France métropolitaine</div>
+  <div class="li"><div class="li-dot" style="background:var(--or)"></div>Territoires d'outre-mer</div>
+  <div class="li"><div class="li-dash" style="background:rgba(196,162,101,0.45)"></div>Zone économique exclusive</div>
+</div>
 </div>
 
-<div class="panel" id="tab-territoires">
-  <div class="lbl">Territoires et leurs océans</div>
-  <div class="terr"><div class="terr-ocean">Atlantique</div><div class="terr-name">Martinique · Guadeloupe · Saint-Martin · Saint-Barthélemy</div><div class="terr-desc">Départements et collectivités d'outre-mer. Présence militaire française dans les Caraïbes. Surveillance du trafic de drogue atlantique.</div></div>
-  <div class="terr"><div class="terr-ocean">Atlantique Sud</div><div class="terr-name">Guyane française</div><div class="terr-desc">Seule frontière terrestre de l'UE avec le Brésil. Base de lancement de Kourou — accès spatial européen. Or et biodiversité amazoniennes.</div></div>
-  <div class="terr"><div class="terr-ocean">Pacifique</div><div class="terr-name">Polynésie française · Nouvelle-Calédonie · Wallis-et-Futuna · Clipperton</div><div class="terr-desc">La Polynésie seule représente une ZEE de 4,8 millions km². La Nouvelle-Calédonie concentre 25% des réserves mondiales de nickel.</div></div>
-  <div class="terr"><div class="terr-ocean">Océan Indien</div><div class="terr-name">Réunion · Mayotte · TAAF · Île Tromelin</div><div class="terr-desc">Les Terres australes et antarctiques françaises couvrent une zone maritime considérable. Mayotte est disputée par les Comores.</div></div>
-</div>
-
-<div class="panel" id="tab-enjeux">
-  <div class="lbl">Pourquoi cet empire est stratégique</div>
-  <div class="terr" style="border-color:#C4A265">
-    <div class="terr-name" style="color:var(--or)">Nodules polymétalliques — la prochaine ruée</div>
-    <div class="terr-desc">Le fond des océans sous ZEE française contient des concentrations de cobalt, manganèse et nickel non exploitées. Avec la transition énergétique, ces ressources deviennent stratégiques.</div>
-  </div>
-  <div class="terr" style="border-color:#4A7EC7">
-    <div class="terr-name" style="color:#4A7EC7">Câbles sous-marins — internet mondial</div>
-    <div class="terr-desc">95% du trafic internet mondial transite par des câbles sous-marins. La France surveille des nœuds stratégiques via ses ZEE. Les TAAF contrôlent des routes câblaires critiques.</div>
-  </div>
-  <div class="terr" style="border-color:#2D6B4A">
-    <div class="terr-name" style="color:#4AAA7A">Biodiversité marine — capital naturel</div>
-    <div class="terr-desc">La ZEE française abrite une biodiversité marine parmi les plus riches. La Polynésie seule représente 20% des atolls mondiaux. Capital naturel estimé à plusieurs milliers de milliards d'euros.</div>
-  </div>
-  <div class="quote">
-    <p>La France a le deuxième espace maritime mondial et n'en fait pas grand-chose. C'est une puissance océanique qui ne se pense pas comme telle.</p>
-    <cite>Cyrille Martin, Institut français de la mer, 2024</cite>
+<!-- PLAYER -->
+<div id="player">
+  <div id="prog"><div id="prog-fill"></div></div>
+  <div id="controls">
+    <div id="dots"></div>
+    <button id="btn-prev">‹</button>
+    <button id="btn-play">▶</button>
+    <button id="btn-next">›</button>
+    <span id="counter">1 / 6</span>
   </div>
 </div>
 
 <script>
-function showTab(id,el){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  el.classList.add('active');
+const S=[
+  {ch:'I · MÉTROPOLE',hk:'Vous pensez connaître la France.',ti:'La France <em>hexagonale</em>',
+   bo:'<strong>551 000 km².</strong> Une puissance européenne de taille moyenne. C\'est ce que montrent toutes les cartes du monde. C\'est tout ce que la plupart des gens voient. C\'est une illusion.',
+   st:'551 000',sl:'km² de territoire métropolitain\n19e rang mondial seulement',
+   zones:['z-metro'],conn:false,leg:false},
+
+  {ch:'II · LA RÉVÉLATION',hk:'Regardez maintenant où est vraiment la France.',ti:'Un empire <em>présent partout</em>',
+   bo:'La France est souveraine dans <strong>tous les océans de la planète</strong>. Pacifique, Atlantique, Indien, Arctique, Antarctique. Simultanément. Aucune autre nation au monde ne peut en dire autant.',
+   st:'5',sl:'océans où la France\nexerce sa souveraineté',
+   zones:['z-metro','z-poly','z-nc','z-ant','z-guy','z-reu','z-taaf','z-wal','z-spm','z-clip'],conn:true,leg:true},
+
+  {ch:'III · LA ZEE',hk:'La mer est le prolongement naturel du territoire.',ti:'11,7 millions de km² <em>d\'océan souverain</em>',
+   bo:'La Zone Économique Exclusive française est la <strong>2e mondiale</strong> — devant les États-Unis. Dans cette zone, la France détient des droits exclusifs sur toutes les ressources : poissons, hydrocarbures, nodules polymétalliques, câbles sous-marins. Un capital naturel estimé à plusieurs milliers de milliards d\'euros.',
+   st:'11,7 M',sl:'km² de ZEE\n2e rang mondial',
+   zones:['z-metro','z-poly','z-nc','z-ant','z-guy','z-reu','z-taaf','z-wal','z-spm','z-clip'],conn:true,leg:true},
+
+  {ch:'IV · POLYNÉSIE',hk:'Un archipel aussi vaste que l\'Europe.',ti:'Polynésie — le <em>joyau pacifique</em>',
+   bo:'La Polynésie française représente à elle seule <strong>4,8 millions km² de ZEE</strong> — soit la superficie de l\'Union européenne. 118 îles, 83 atolls, 20% des atolls mondiaux. Et des fonds marins contenant des concentrations massives de terres rares, cobalt et manganèse encore non exploitées.',
+   st:'4,8 M',sl:'km² de ZEE polynésienne\nplus grande que l\'Europe',
+   zones:['z-metro','z-poly','z-nc','z-ant','z-guy','z-reu','z-taaf','z-wal','z-spm','z-clip'],conn:true,leg:true,hl:'z-poly'},
+
+  {ch:'V · NOUVELLE-CALÉDONIE',hk:'Sous ces eaux : les matériaux de l\'économie verte.',ti:'Le nickel, <em>arme stratégique</em>',
+   bo:'La Nouvelle-Calédonie concentre <strong>25% des réserves mondiales prouvées de nickel</strong> — le métal indispensable aux batteries des véhicules électriques et à la transition énergétique mondiale. Dans la guerre des métaux critiques opposant États-Unis, Chine et Europe, ce territoire de 270 000 habitants est un enjeu géopolitique de premier ordre.',
+   st:'25%',sl:'des réserves mondiales de nickel\nsur ce seul territoire français',
+   zones:['z-metro','z-poly','z-nc','z-ant','z-guy','z-reu','z-taaf','z-wal','z-spm','z-clip'],conn:true,leg:true,hl:'z-nc'},
+
+  {ch:'VI · L\'EMPIRE INVISIBLE',hk:'La plus grande puissance maritime que personne ne connaît.',ti:'La France ne se pense pas <em>océanique</em>',
+   bo:'<strong>12 fuseaux horaires</strong> simultanément. Une présence sur tous les continents. La 2e ZEE mondiale. Des ressources stratégiques colossales. Et pourtant — la France reste une puissance qui se regarde dans le miroir continental. Son empire maritime demeure le secret le mieux gardé de la géopolitique mondiale.<br><br><em>« La France a le deuxième espace maritime mondial et n\'en fait pas grand-chose. »</em>',
+   st:'12',sl:'fuseaux horaires couverts\nrecord mondial absolu',
+   zones:['z-metro','z-poly','z-nc','z-ant','z-guy','z-reu','z-taaf','z-wal','z-spm','z-clip'],conn:true,leg:true},
+]
+
+let cur=-1,playing=false,timer=null
+
+// Dots
+const dotsEl=document.getElementById('dots')
+S.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d.onclick=()=>go(i);dotsEl.appendChild(d)})
+
+function go(n){
+  if(n<0||n>=S.length)return
+  cur=n
+  const s=S[n]
+
+  // Hide intro
+  document.getElementById('intro').classList.add('hidden')
+
+  // Panel
+  document.getElementById('p-ch').textContent=s.ch
+  document.getElementById('p-hk').textContent=s.hk
+  document.getElementById('p-ti').innerHTML=s.ti
+  document.getElementById('p-bo').innerHTML=s.bo
+  document.getElementById('p-st').textContent=s.st
+  document.getElementById('p-sl').textContent=s.sl
+
+  // Zones
+  document.querySelectorAll('.zone').forEach(el=>{el.classList.remove('vis');el.style.opacity='0';el.style.filter=''})
+  s.zones.forEach((id,i)=>{
+    const el=document.getElementById(id)
+    if(!el)return
+    el.style.opacity='1'
+    setTimeout(()=>el.classList.add('vis'),i*70)
+  })
+
+  // Highlight
+  if(s.hl){
+    setTimeout(()=>{
+      const el=document.getElementById(s.hl)
+      if(el)el.style.filter='brightness(1.8) drop-shadow(0 0 12px rgba(196,162,101,0.6))'
+    },s.zones.length*70+200)
+  }
+
+  // Connections
+  document.querySelectorAll('.conn').forEach(el=>el.classList.toggle('vis',!!s.conn))
+
+  // Legend
+  document.getElementById('legend').classList.toggle('vis',!!s.leg)
+
+  // Dots & progress
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===n))
+  document.getElementById('prog-fill').style.width=((n+1)/S.length*100)+'%'
+  document.getElementById('counter').textContent=(n+1)+' / '+S.length
 }
+
+// Controls
+document.getElementById('btn-prev').onclick=()=>go(cur-1)
+document.getElementById('btn-next').onclick=()=>go(cur+1)
+document.getElementById('btn-play').onclick=function(){
+  playing=!playing;this.textContent=playing?'❚❚':'▶'
+  if(playing){timer=setInterval(()=>{if(cur>=S.length-1){playing=false;document.getElementById('btn-play').textContent='▶';clearInterval(timer)}else go(cur+1)},5200)}
+  else clearInterval(timer)
+}
+document.getElementById('intro').onclick=()=>go(0)
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)})
+let tx=0
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true})
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)dx<0?go(cur+1):go(cur-1)},{passive:true})
+
+setTimeout(()=>go(0),200)
 </script>
 </body>
 </html>
