@@ -110,6 +110,29 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* France maritime */}
+          <a href="/visuels/france_maritime.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBg}>
+              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 50% 55%, rgba(13,110,253,0.09) 0%, transparent 60%)'}}/>
+            </div>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--geo)'}}>Géopolitique · Carte animée</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>La France maritime</h3>
+              <p className={styles.featSub}>ZEE · Pacifique · Atlantique · Océan Indien</p>
+              <p className={styles.featDesc}>
+                La France possède la 2e zone économique exclusive mondiale — et presque personne ne le sait.
+                Une révélation en 6 chapitres sur l&apos;empire maritime invisible de la République.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la carte</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Câbles sous-marins */}
           <a href="/visuels/cables.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
             <div className={styles.featBg}>
