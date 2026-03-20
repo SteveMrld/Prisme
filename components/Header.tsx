@@ -57,7 +57,6 @@ export default function Header({ activeNav }: { activeNav?: string }) {
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
             </svg>
           </button>
-          <DarkModeToggle />
           {user === undefined ? (
             <div className={styles.actionsPlaceholder} />
           ) : user ? (
