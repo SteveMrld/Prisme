@@ -88,7 +88,6 @@ export default function HomePage() {
         <Link href={`/articles/${heroArticle.slug}`} className={styles.heroMain}>
           <div className={styles.heroImgWrap}>
             <img src={heroArticle.image} alt={heroArticle.title} className={styles.heroImg} />
-            <div className={styles.imgBadge}>P</div>
           </div>
           <div className={styles.heroEyebrow}>
             <span className={styles.heroTag} style={{ color: categoryColors[heroArticle.category] }}>
@@ -138,7 +137,6 @@ export default function HomePage() {
               {article.image && (
                 <div className={styles.gfImgWrap}>
                   <img src={article.image} alt={article.title} className={styles.gfImg} />
-                  <div className={styles.imgBadge}>P</div>
                 </div>
               )}
               <div className={styles.gfEyebrow}>
@@ -208,14 +206,13 @@ export default function HomePage() {
               {article.image && (
                 <div className={styles.latestImgWrap}>
                   <img src={article.image} alt={article.title} className={styles.latestImg} />
-                  <div className={styles.imgBadge}>P</div>
                 </div>
               )}
               <div className={styles.latestBody}>
                 <span className={styles.latestTag} style={{ color: categoryColors[article.category] }}>
                   {article.categoryLabel}
                 </span>
-                <div className={styles.latestTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                <div className={styles.latestTitle}><span className={styles.pBadge}>P</span><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
                 <p className={styles.latestDesc}>{article.description}</p>
                 <span className={styles.latestTime}>{article.readTime} min</span>
               </div>
@@ -241,11 +238,10 @@ export default function HomePage() {
             <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitCard}>
               <div className={styles.portraitImgWrap}>
                 <img src={article.image} alt={article.title} className={styles.portraitImg} />
-                <div className={styles.imgBadge}>P</div>
               </div>
               <div className={styles.portraitBody}>
                 <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
-                <div className={styles.portraitTitle}>{article.title}</div>
+                <div className={styles.portraitTitle}><span className={styles.pBadge}>P</span>{article.title}</div>
                 <p className={styles.portraitDesc}>{article.description}</p>
                 <span className={styles.portraitCta}>Lire →</span>
               </div>

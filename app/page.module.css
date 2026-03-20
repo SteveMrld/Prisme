@@ -826,22 +826,21 @@
 }
 
 /* ── BADGE PRISME ── */
-.imgBadge {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 28px;
-  height: 28px;
-  background: rgba(10, 10, 10, 0.72);
-  backdrop-filter: blur(6px);
-  color: var(--or);
-  font-family: 'Playfair Display', serif;
-  font-size: 14px;
-  font-weight: 700;
-  font-style: italic;
-  display: flex;
+.pBadge {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-  letter-spacing: -0.5px;
+  width: 16px;
+  height: 16px;
+  background: var(--encre);
+  color: var(--or);
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  font-weight: 700;
+  font-style: italic;
+  margin-right: 7px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
