@@ -669,9 +669,11 @@
   .gePortraitWrap { width: 100%; height: 200px; }
   .geContent { max-width: 100%; }
   .hero { grid-template-columns: 1fr; }
+  .heroImgWrap { height: 200px; }
   .heroAside { display: none; }
   .gfSection { padding: 0 24px; }
   .gfGrid { grid-template-columns: 1fr; }
+  .gfImgWrap { height: 120px; }
   .footer { padding: 40px 24px; }
 }
 
