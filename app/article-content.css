@@ -1257,3 +1257,110 @@ sup {
   display: block;
   margin-top: 2px;
 }
+
+/* ── ALIAS VERSO (vs/vhd/vtitle/vbadge/vgrid/vcol) ── */
+.vs {
+  margin-top: 64px;
+  border-top: 2px solid var(--encre);
+  padding-top: 40px;
+}
+.vhd {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.vtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--encre);
+  letter-spacing: -0.5px;
+}
+.vbadge {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--or);
+  border: 1px solid rgba(196,162,101,0.4);
+  padding: 3px 10px;
+}
+.vgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.vcol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── ALIAS NAVIGATION (anav/anavitem etc) ── */
+.anav {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--bord);
+  padding-top: 32px;
+  margin-top: 48px;
+  gap: 16px;
+}
+.anavitem {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 45%;
+}
+.anavdir {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+.anavtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--encre);
+  line-height: 1.3;
+}
+.anavtag {
+  font-size: 9px;
+  color: var(--gris-l);
+  letter-spacing: 1px;
+}
+
+/* ── AUTEUR ── */
+.auteur {
+  margin: 48px 0 32px;
+  padding: 20px 24px;
+  border-left: 3px solid var(--or);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.7;
+}
+
+/* ── CONTENT-EMBED (iframes) ── */
+.content-embed {
+  margin: 40px 0;
+  overflow: hidden;
+  border: 1px solid var(--bord);
+}
+.content-embed iframe {
+  width: 100%;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .vgrid { grid-template-columns: 1fr; gap: 24px; }
+  .anav { flex-direction: column; }
+  .anavitem { max-width: 100%; }
+  .content-embed iframe { height: 400px !important; }
+}
