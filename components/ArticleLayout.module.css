@@ -302,3 +302,132 @@
   top: -2px;
   cursor: default;
 }
+
+/* ── SHARE BAR ── */
+.shareBar {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 28px 40px;
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.shareLabel {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  flex-shrink: 0;
+}
+.shareBtns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.shareBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--encre);
+  background: none;
+  border: 1px solid var(--bord);
+  padding: 7px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.shareBtn:hover {
+  background: var(--encre);
+  color: var(--or);
+  border-color: var(--encre);
+}
+.shareCopied {
+  font-size: 9px;
+  color: var(--or);
+  letter-spacing: 1px;
+  transition: opacity 0.3s;
+}
+
+/* ── NEWSLETTER ── */
+.newsletter {
+  background: var(--encre);
+  padding: 52px 40px;
+}
+.newsletterInner {
+  max-width: 740px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.newsletterText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.newsletterLabel {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+}
+.newsletterTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 300;
+  color: #ECE7DD;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+.newsletterDesc {
+  font-size: 13px;
+  color: rgba(236,231,221,0.5);
+  line-height: 1.6;
+}
+.newsletterForm {
+  display: flex;
+  gap: 0;
+  flex-shrink: 0;
+}
+.newsletterInput {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-right: none;
+  padding: 12px 18px;
+  font-size: 13px;
+  color: #ECE7DD;
+  outline: none;
+  width: 220px;
+}
+.newsletterInput::placeholder { color: rgba(236,231,221,0.3); }
+.newsletterBtn {
+  background: var(--or);
+  border: none;
+  padding: 12px 20px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.newsletterBtn:hover { opacity: 0.85; }
+
+@media (max-width: 768px) {
+  .shareBar { padding: 20px; }
+  .newsletterInner { flex-direction: column; gap: 24px; }
+  .newsletterForm { width: 100%; }
+  .newsletterInput { flex: 1; width: auto; }
+}

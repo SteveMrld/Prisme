@@ -260,6 +260,23 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
+      {/* ── NEWSLETTER HOME ── */}
+      <FadeSection>
+      <section className={styles.nlSection}>
+        <div className={styles.nlInner}>
+          <div className={styles.nlText}>
+            <div className={styles.nlLabel}>Prisme · Newsletter</div>
+            <div className={styles.nlTitle}>L'analyse qui manque<br />à votre semaine</div>
+            <p className={styles.nlDesc}>Grands formats, Signal, Portraits — sans algorithme, sans bruit. Chaque semaine.</p>
+          </div>
+          <form className={styles.nlForm} onSubmit={(e) => { e.preventDefault(); window.location.href = '/abonnement'; }}>
+            <input type="email" placeholder="votre@email.com" className={styles.nlInput} required />
+            <button type="submit" className={styles.nlBtn}>S'abonner →</button>
+          </form>
+        </div>
+      </section>
+      </FadeSection>
+
       {/* ── SIGNAL ── */}
       <FadeSection>
       <section className={styles.signalSection}>
