@@ -64,8 +64,13 @@ export default function HomePage() {
       {/* GRAND ENTRETIEN */}
       <FadeSection>
       <section className={styles.ge}>
+        <div className={styles.geDecor} aria-hidden="true">
+          <div className={styles.geDecorLine} />
+          <span className={styles.geDecorN}>N°1</span>
+          <div className={styles.geDecorLine} />
+        </div>
         <div className={styles.geTextBlock}>
-          <div className={styles.geLabel}>Le Grand Entretien · N°1 · À venir</div>
+          <div className={styles.geLabel}>Le Grand Entretien · À venir</div>
           <h2 className={styles.geName}>
             Cheick Modibo <em>Diarra</em>
           </h2>
@@ -75,9 +80,6 @@ export default function HomePage() {
           <Link href="/entretien/diarra" className={styles.geCta}>
             Lire l'entretien dès sa parution →
           </Link>
-        </div>
-        <div className={styles.gePortraitWrap}>
-          <img src="/portraits/diarra.jpg" alt="Cheick Modibo Diarra" className={styles.gePortrait} />
         </div>
       </section>
       </FadeSection>

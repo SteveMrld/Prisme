@@ -127,23 +127,58 @@
 .tickerSignal:hover { color: var(--or); }
 
 /* ── GRAND ENTRETIEN ── */
+@keyframes geReveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
 .ge {
   background: #fff;
   border-top: 3px solid var(--encre);
   border-bottom: 1px solid var(--bord);
-  padding: 48px 64px;
+  padding: 52px 64px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 48px;
+  gap: 24px;
+  text-align: center;
+  animation: geReveal 0.8s ease both;
+}
+
+.geDecor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.geDecorLine {
+  flex: 1;
+  height: 1px;
+  background: var(--or);
+  transform-origin: left center;
+  animation: lineGrow 1s ease 0.3s both;
+}
+
+.geDecorN {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+  flex-shrink: 0;
 }
 
 .geTextBlock {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
-  flex: 1;
 }
 
 .geLabel {
@@ -575,8 +610,8 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { padding: 36px 24px; gap: 24px; }
-  .gePortraitWrap { display: none; }
+  .ge { padding: 36px 24px; gap: 20px; }
+  .geDecor { max-width: 100%; }
   .hero { grid-template-columns: 1fr; }
   .heroImgWrap { height: 200px; }
   .heroAside { display: none; }
