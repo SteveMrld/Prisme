@@ -64,33 +64,16 @@ export default function HomePage() {
       {/* GRAND ENTRETIEN */}
       <FadeSection>
       <section className={styles.ge}>
-        <div className={styles.geContent}>
-          <div className={styles.geEyebrow}>
-            <span className={styles.geTag}>Le Grand Entretien</span>
-            <span className={styles.geNum}>N°1 · À venir</span>
-          </div>
-          <h2 className={styles.geName}>
-            Cheick<br />Modibo <em>Diarra</em>
-          </h2>
-          <div className={styles.geRole}>
-            Astrophysicien · NASA<br />
-            Ancien patron de Microsoft Afrique<br />
-            Ancien Premier ministre du Mali
-          </div>
-          <p className={styles.geBio}>
-            Cheick Modibo Diarra n'est pas un homme qu'on résume facilement. Astrophysicien formé à Paris et Washington, ingénieur de navigation interplanétaire à la NASA sur cinq missions, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali.
-          </p>
-          <Link href="/entretien/diarra" className={styles.geCta}>
-            Lire l'entretien dès sa parution →
-          </Link>
-          <div className={styles.geQuestions}>
-            {['L\'espace peut-il survivre à sa privatisation ?', 'L\'Afrique vient-elle de rater sa souveraineté numérique ?', 'Qu\'est-ce que Trump révèle sur la place réelle de l\'Afrique ?', 'Qu\'est-ce que doit être un dirigeant africain au XXIe siècle ?'].map((q, i) => (
-              <span key={i} className={styles.geQuestion}>«&nbsp;{q}&nbsp;»</span>
-            ))}
-          </div>
+        <div className={styles.geLabel}>Le Grand Entretien · N°1 · À venir</div>
+        <h2 className={styles.geName}>
+          Cheick Modibo <em>Diarra</em>
+        </h2>
+        <div className={styles.geRole}>
+          Astrophysicien · NASA · Ancien Premier ministre du Mali
         </div>
-        {/* Portrait Diarra — à remplacer par /portraits/diarra.jpg quand dispo */}
-        </div>
+        <Link href="/entretien/diarra" className={styles.geCta}>
+          Lire l'entretien dès sa parution →
+        </Link>
       </section>
       </FadeSection>
 
