@@ -87,7 +87,7 @@
   height: auto;
   display: block;
   mix-blend-mode: multiply;
-  background: #fff;
+  filter: brightness(1.3) contrast(1.05);
 }
 
 .questionsSection {
