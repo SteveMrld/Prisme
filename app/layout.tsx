@@ -42,12 +42,11 @@ export const metadata: Metadata = {
     icon: '/favicon.svg',
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
+      index: false,
+      follow: false,
     },
   },
   alternates: {
