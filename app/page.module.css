@@ -219,14 +219,12 @@
 }
 
 .geRole {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #888;
-  border-left: 2px solid var(--or);
-  border-right: 2px solid var(--or);
-  padding: 6px 16px;
+  color: #999;
+  padding: 0;
 }
 
 .geCta {
@@ -242,6 +240,8 @@
   text-decoration: none;
   padding: 14px 28px;
   margin-top: 8px;
+  width: fit-content;
+  align-self: center;
   transition: background 0.2s;
 }
 
