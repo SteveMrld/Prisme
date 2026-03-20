@@ -69,6 +69,11 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     content.includes('class="atop"') ||
     content.includes('class="article-header"')
 
+  // Articles liés — même catégorie, max 3, exclu l'article courant
+  const related = (articlesData as any[])
+    .filter(a => a.category === article.category && a.slug !== params.slug)
+    .slice(0, 3)
+
   return (
     <ArticleLayout
       title={article.title}
@@ -81,6 +86,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       content={content}
       author={(article as any).author || 'Steve Moradel'}
       authorRole={(article as any).authorRole || 'Fondateur · Directeur de la rédaction'}
+      related={related}
     />
   )
 }

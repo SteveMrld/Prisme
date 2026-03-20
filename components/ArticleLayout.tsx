@@ -48,7 +48,8 @@ export default function ArticleLayout({
   title, description, image, category, categoryLabel,
   readTime, hasInternalHeader = false, content,
   author = 'Steve Moradel',
-  authorRole = 'Fondateur · Directeur de la rédaction'
+  authorRole = 'Fondateur · Directeur de la rédaction',
+  related = []
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -118,6 +119,28 @@ export default function ArticleLayout({
           </div>
         </div>
       </div>
+
+      {/* ── ARTICLES LIÉS ── */}
+      {related.length > 0 && (
+        <div className={styles.related}>
+          <div className={styles.relatedLabel}>Lire aussi</div>
+          <div className={styles.relatedGrid}>
+            {related.map((a: any) => (
+              <a key={a.slug} href={`/articles/${a.slug}`} className={styles.relatedCard}>
+                {a.image && (
+                  <div className={styles.relatedImgWrap}>
+                    <img src={a.image} alt={a.title} className={styles.relatedImg} />
+                  </div>
+                )}
+                <div className={styles.relatedBody}>
+                  <span className={styles.relatedTag}>{a.readTime} min</span>
+                  <div className={styles.relatedTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* ── PARTAGE ── */}
       <div className={styles.shareBar}>
