@@ -415,14 +415,10 @@
 
 /* ── Tip / encadré ── */
 .tip {
-  border: 1px solid var(--bord);
-  border-left: 3px solid var(--geo);
-  padding: 20px 24px;
-  margin: 32px 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  color: var(--gris);
-  line-height: 1.65;
+  display: inline;
+  border-bottom: 1px dashed var(--gris-l);
+  cursor: help;
+  color: inherit;
 }
 
 /* ── Prospectif ── */
