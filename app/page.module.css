@@ -672,6 +672,9 @@
   color: var(--encre);
   line-height: 1.3;
   letter-spacing: -0.3px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
 .latestDesc {
