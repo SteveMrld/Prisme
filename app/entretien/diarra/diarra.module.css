@@ -75,7 +75,6 @@
 }
 
 .heroPortrait {
-  overflow: hidden;
   background: #fff;
 }
 
@@ -88,6 +87,7 @@
   height: auto;
   display: block;
   mix-blend-mode: multiply;
+  background: #fff;
 }
 
 .questionsSection {
@@ -238,21 +238,20 @@
 @media (max-width: 900px) {
   .page { padding: 0 20px 60px; }
   .hero { 
-    grid-template-columns: 1fr 140px;
+    grid-template-columns: 1fr 120px;
     gap: 20px;
     align-items: start;
     padding: 32px 0 24px;
   }
   .heroPortrait { 
-    height: 180px;
-    width: 140px;
+    width: 120px;
     order: 1;
-    margin: 0;
-    border-radius: 0;
   }
   .heroPortrait::after { display: none; }
   .portrait { 
-    object-position: center 65%;
+    height: auto;
+    object-fit: unset;
+    object-position: unset;
   }
   .heroText { order: 0; }
   .comingInner { padding: 40px 20px; }
