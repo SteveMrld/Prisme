@@ -65,6 +65,9 @@ export default function HomePage() {
       <FadeSection>
       <section className={styles.ge}>
         <div className={styles.geLabel}>Le Grand Entretien · N°1 · À venir</div>
+        <div className={styles.gePortraitWrap}>
+          <img src="/portraits/diarra.jpg" alt="Cheick Modibo Diarra" className={styles.gePortrait} />
+        </div>
         <h2 className={styles.geName}>
           Cheick Modibo <em>Diarra</em>
         </h2>
