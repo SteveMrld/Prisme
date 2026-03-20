@@ -573,9 +573,8 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { flex-direction: column; align-items: flex-start; gap: 24px; padding: 36px 24px; min-height: unset; }
-  .gePortraitWrap { width: 100%; height: 200px; }
-  .geContent { max-width: 100%; }
+  .ge { padding: 36px 24px; gap: 24px; }
+  .gePortraitWrap { display: none; }
   .hero { grid-template-columns: 1fr; }
   .heroImgWrap { height: 200px; }
   .heroAside { display: none; }
