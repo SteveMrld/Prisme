@@ -64,19 +64,21 @@ export default function HomePage() {
       {/* GRAND ENTRETIEN */}
       <FadeSection>
       <section className={styles.ge}>
-        <div className={styles.geLabel}>Le Grand Entretien · N°1 · À venir</div>
+        <div className={styles.geTextBlock}>
+          <div className={styles.geLabel}>Le Grand Entretien · N°1 · À venir</div>
+          <h2 className={styles.geName}>
+            Cheick Modibo <em>Diarra</em>
+          </h2>
+          <div className={styles.geRole}>
+            Astrophysicien · NASA · Ancien Premier ministre du Mali
+          </div>
+          <Link href="/entretien/diarra" className={styles.geCta}>
+            Lire l'entretien dès sa parution →
+          </Link>
+        </div>
         <div className={styles.gePortraitWrap}>
           <img src="/portraits/diarra.jpg" alt="Cheick Modibo Diarra" className={styles.gePortrait} />
         </div>
-        <h2 className={styles.geName}>
-          Cheick Modibo <em>Diarra</em>
-        </h2>
-        <div className={styles.geRole}>
-          Astrophysicien · NASA · Ancien Premier ministre du Mali
-        </div>
-        <Link href="/entretien/diarra" className={styles.geCta}>
-          Lire l'entretien dès sa parution →
-        </Link>
       </section>
       </FadeSection>
 
