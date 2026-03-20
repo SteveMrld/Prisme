@@ -32,8 +32,8 @@
 
 .hero {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 80px;
+  grid-template-columns: 1fr 260px;
+  gap: 40px;
   padding: 56px 0;
   border-bottom: 2px solid var(--encre);
 }
