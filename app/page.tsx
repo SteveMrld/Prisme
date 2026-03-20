@@ -75,7 +75,7 @@ export default function HomePage() {
             Cheick Modibo <em>Diarra</em>
           </h2>
           <div className={styles.geRole}>
-            Astrophysicien · NASA · Ancien Premier ministre du Mali
+            Astrophysicien · NASA · Microsoft Afrique · Ancien Premier ministre du Mali
           </div>
           <Link href="/entretien/diarra" className={styles.geCta}>
             Lire l'entretien dès sa parution →
