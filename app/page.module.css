@@ -233,6 +233,7 @@
 .heroImgWrap {
   overflow: hidden;
   height: 340px;
+  position: relative;
 }
 
 .heroImg {
@@ -442,6 +443,7 @@
   height: 160px;
   overflow: hidden;
   margin-bottom: 16px;
+  position: relative;
 }
 
 .gfImg {
@@ -636,6 +638,7 @@
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
+  position: relative;
 }
 
 .latestImg {
@@ -759,6 +762,7 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  position: relative;
 }
 
 .portraitImg {
@@ -819,4 +823,25 @@
   .portraitBody { padding: 12px 14px 16px; gap: 6px; }
   .portraitTitle { font-size: 13px; }
   .portraitDesc { display: none; }
+}
+
+/* ── BADGE PRISME ── */
+.imgBadge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 28px;
+  height: 28px;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(6px);
+  color: var(--or);
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  letter-spacing: -0.5px;
 }
