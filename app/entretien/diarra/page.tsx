@@ -28,7 +28,7 @@ export default function DiarraPage() {
         <div className={styles.hero}>
           <div className={styles.heroPortrait}>
             <img
-              src="/portraits/diarra.jpg"
+              src="/portraits/diarra.png"
               alt="Cheick Modibo Diarra"
               className={styles.portrait}
             />
