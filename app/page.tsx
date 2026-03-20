@@ -7,10 +7,10 @@ import Ticker from './TickerClient'
 import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 
 const signalItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', headline: "QatarEnergy déclare force majeure sur l'ensemble de sa production GNL", date: '20 mars' },
+  { cat: 'Géopolitique', color: 'var(--geo)', headline: "QatarEnergy déclare force majeure sur l’ensemble de sa production GNL", date: '20 mars' },
   { cat: 'Économie', color: 'var(--eco)', headline: 'Brent à 108$ — marchés énergétiques sous tension maximale', date: '20 mars' },
   { cat: 'Afrique', color: 'var(--geo)', headline: 'Sahel — 50% des morts du terrorisme mondial selon le Global Terrorism Index', date: '20 mars' },
-  { cat: 'Société', color: 'var(--soc)', headline: 'Aïd el-Fitr ce vendredi — fin du Ramadan 2026 confirmée en France', date: '20 mars' },
+  { cat: 'Société', color: 'var(--soc)', headline: "Aïd el-Fitr ce vendredi — fin du Ramadan 2026 confirmée en France", date: '20 mars' },
 ]
 
 const categoryLabels: Record<string, string> = {
