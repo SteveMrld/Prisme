@@ -81,7 +81,11 @@ export default function ArticleLayout({
             <span className={styles.readTime}>{readTime} min de lecture</span>
             <span className={styles.readDate}>Mars 2026</span>
           </div>
-          <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
+          <div className={styles.titleRow}>
+            <span className={styles.pBadgeArticle}>P</span>
+            <span className={styles.audioBadgeArticle} title="Disponible en audio">🎧</span>
+            <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
+          </div>
 
           {/* BYLINE HAUT */}
           <div className={styles.bylineTop}>

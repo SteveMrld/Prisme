@@ -264,3 +264,41 @@
   margin-top: 3px;
   letter-spacing: 0.3px;
 }
+
+/* ── BADGES ARTICLE ── */
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.titleRow .title {
+  flex: 1;
+}
+
+.pBadgeArticle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--encre);
+  color: var(--or);
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: italic;
+  flex-shrink: 0;
+  position: relative;
+  top: -2px;
+}
+
+.audioBadgeArticle {
+  font-size: 13px;
+  opacity: 0.45;
+  flex-shrink: 0;
+  position: relative;
+  top: -2px;
+  cursor: default;
+}
