@@ -117,6 +117,7 @@ body {
 /* ── MODE SOMBRE ── */
 [data-theme="dark"] {
   --bg: #0E0E0E;
+  --blanc: #161616;
   --papier: #141414;
   --encre: #ECE7DD;
   --gris-m: #888;

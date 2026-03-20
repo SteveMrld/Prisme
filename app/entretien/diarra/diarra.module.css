@@ -75,7 +75,7 @@
 }
 
 .heroPortrait {
-  background: #fff;
+  background: var(--blanc);
 }
 
 .heroPortrait::after {

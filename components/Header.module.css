@@ -189,13 +189,14 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--gris-m);
+  color: var(--encre);
   display: flex;
   align-items: center;
-  padding: 4px;
-  transition: color 0.15s;
+  padding: 6px;
+  transition: opacity 0.15s;
+  opacity: 0.6;
 }
-.searchBtn:hover { color: var(--encre); }
+.searchBtn:hover { opacity: 1; }
 
 .searchBar {
   position: absolute;
