@@ -1224,3 +1224,40 @@ sup {
 .audio-player audio {
   display: none;
 }
+
+/* ── ALIAS CLASSES (anciens articles) ── */
+.vclbl {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  display: block;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--bord);
+  margin-top: 20px;
+}
+
+.vitem {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--bord);
+  font-size: 13px;
+  color: var(--gris);
+  line-height: 1.6;
+  display: block;
+}
+
+.vitem:last-child { border-bottom: none; }
+
+.vitem strong {
+  color: var(--encre);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.vitem span {
+  display: block;
+  margin-top: 2px;
+}
