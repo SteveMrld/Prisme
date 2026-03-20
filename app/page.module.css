@@ -890,4 +890,7 @@
   opacity: 0.5;
   cursor: default;
   flex-shrink: 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
