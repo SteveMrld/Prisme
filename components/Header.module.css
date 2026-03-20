@@ -122,15 +122,41 @@
 .navItem.active::after,
 .navItem:hover::after { transform: scaleX(1); }
 
-.geo::after, .geo:hover, .geo.active { background: var(--geo); color: var(--geo); }
-.eco::after, .eco:hover, .eco.active { background: var(--eco); color: var(--eco); }
-.tech::after, .tech:hover, .tech.active { background: var(--tech); color: var(--tech); }
-.env::after, .env:hover, .env.active { background: var(--env); color: var(--env); }
-.soc::after, .soc:hover, .soc.active { background: var(--soc); color: var(--soc); }
-.sciences::after, .sciences:hover, .sciences.active { background: var(--sciences); color: var(--sciences); }
-.culture::after, .culture:hover, .culture.active { background: var(--culture); color: var(--culture); }
-.portrait::after, .portrait:hover, .portrait.active { background: var(--portrait); color: var(--portrait); }
-.concept::after, .concept:hover, .concept.active { background: var(--concept); color: var(--concept); }
+.geo::after { background: var(--geo); }
+.geo:hover { color: var(--geo); }
+.geo.active { color: var(--encre); background: color-mix(in srgb, var(--geo) 12%, transparent); }
+
+.eco::after { background: var(--eco); }
+.eco:hover { color: var(--eco); }
+.eco.active { color: var(--encre); background: color-mix(in srgb, var(--eco) 12%, transparent); }
+
+.tech::after { background: var(--tech); }
+.tech:hover { color: var(--tech); }
+.tech.active { color: var(--encre); background: color-mix(in srgb, var(--tech) 12%, transparent); }
+
+.env::after { background: var(--env); }
+.env:hover { color: var(--env); }
+.env.active { color: var(--encre); background: color-mix(in srgb, var(--env) 12%, transparent); }
+
+.soc::after { background: var(--soc); }
+.soc:hover { color: var(--soc); }
+.soc.active { color: var(--encre); background: color-mix(in srgb, var(--soc) 12%, transparent); }
+
+.sciences::after { background: var(--sciences); }
+.sciences:hover { color: var(--sciences); }
+.sciences.active { color: var(--encre); background: color-mix(in srgb, var(--sciences) 12%, transparent); }
+
+.culture::after { background: var(--culture); }
+.culture:hover { color: var(--culture); }
+.culture.active { color: var(--encre); background: color-mix(in srgb, var(--culture) 12%, transparent); }
+
+.portrait::after { background: var(--portrait); }
+.portrait:hover { color: var(--portrait); }
+.portrait.active { color: var(--encre); background: color-mix(in srgb, var(--portrait) 12%, transparent); }
+
+.concept::after { background: var(--concept); }
+.concept:hover { color: var(--concept); }
+.concept.active { color: var(--encre); background: color-mix(in srgb, var(--concept) 12%, transparent); }
 
 .signalDot {
   width: 6px;
