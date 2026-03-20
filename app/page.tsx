@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import Header from '../components/Header'
 import PrismeTV from '../components/PrismeTV'
 import styles from './page.module.css'
