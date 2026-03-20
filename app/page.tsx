@@ -98,7 +98,7 @@ export default function HomePage() {
             <span className={styles.heroFormat}>Grand format</span>
             <span className={styles.heroTime}>{heroArticle.readTime} min</span>
           </div>
-          <h2 className={styles.heroTitle}><span className={styles.pBadge}>P</span> <span dangerouslySetInnerHTML={{ __html: heroArticle.title }} /></h2>
+          <h2 className={styles.heroTitle}><span className={styles.pBadge}>P</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: heroArticle.title }} /></h2>
           <p className={styles.heroDeck}>{heroArticle.description}</p>
           <div className={styles.heroMeta}>
             <span>{heroArticle.readTime} min de lecture</span>
@@ -150,7 +150,7 @@ export default function HomePage() {
                 <span className={styles.gfFormat}>Grand format</span>
                 <span className={styles.gfReading}>{article.readTime} min</span>
               </div>
-              <div className={styles.gfTitle}><span className={styles.pBadge}>P</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+              <div className={styles.gfTitle}><span className={styles.pBadge}>P</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
               <p className={styles.gfDeck}>{article.description}</p>
               <div className={styles.gfFooter}>
                 <span className={styles.gfSections}>{article.sections}</span>
@@ -214,7 +214,7 @@ export default function HomePage() {
                 <span className={styles.latestTag} style={{ color: categoryColors[article.category] }}>
                   {article.categoryLabel}
                 </span>
-                <div className={styles.latestTitle}><span className={styles.pBadge}>P</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+                <div className={styles.latestTitle}><span className={styles.pBadge}>P</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
                 <p className={styles.latestDesc}>{article.description}</p>
                 <span className={styles.latestTime}>{article.readTime} min</span>
               </div>
@@ -243,7 +243,7 @@ export default function HomePage() {
               </div>
               <div className={styles.portraitBody}>
                 <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
-                <div className={styles.portraitTitle}><span className={styles.pBadge}>P</span>{article.title}</div>
+                <div className={styles.portraitTitle}><span className={styles.pBadge}>P</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span>{article.title}</div>
                 <p className={styles.portraitDesc}>{article.description}</p>
                 <span className={styles.portraitCta}>Lire →</span>
               </div>

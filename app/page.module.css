@@ -882,3 +882,12 @@
   position: relative;
   top: -1px;
 }
+
+/* ── BADGE AUDIO ── */
+.audioBadge {
+  font-size: 10px;
+  margin-left: 4px;
+  opacity: 0.5;
+  cursor: default;
+  flex-shrink: 0;
+}
