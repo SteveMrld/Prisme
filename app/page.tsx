@@ -269,7 +269,7 @@ export default function HomePage() {
             <div className={styles.nlTitle}>L'analyse qui manque<br />à votre semaine</div>
             <p className={styles.nlDesc}>Grands formats, Signal, Portraits — sans algorithme, sans bruit. Chaque semaine.</p>
           </div>
-          <form className={styles.nlForm} onSubmit={(e) => { e.preventDefault(); window.location.href = '/abonnement'; }}>
+          <form className={styles.nlForm} onSubmit={(e) => { e.preventDefault(); if (typeof window !== 'undefined') window.location.href = '/abonnement'; }}>
             <input type="email" placeholder="votre@email.com" className={styles.nlInput} required />
             <button type="submit" className={styles.nlBtn}>S'abonner →</button>
           </form>

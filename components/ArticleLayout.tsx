@@ -1,3 +1,4 @@
+'use client'
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth } from './ArticleAnimations'
@@ -123,14 +124,14 @@ export default function ArticleLayout({
         <span className={styles.shareLabel}>Partager cet article</span>
         <div className={styles.shareBtns}>
           <button className={styles.shareBtn} onClick={() => {
-            navigator.clipboard.writeText(window.location.href)
+            typeof navigator !== 'undefined' && navigator.clipboard.writeText(window.location.href)
             const el = document.getElementById('share-copied')
             if (el) { el.style.opacity = '1'; setTimeout(() => el.style.opacity = '0', 2000) }
           }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             Copier le lien
           </button>
-          <a className={styles.shareBtn} href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=Lu sur Prisme`} target="_blank" rel="noopener">
+          <a className={styles.shareBtn} href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=Lu%20sur%20Prisme`} target="_blank" rel="noopener">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             X
           </a>
@@ -150,7 +151,7 @@ export default function ArticleLayout({
             <div className={styles.newsletterTitle}>Recevoir les analyses chaque semaine</div>
             <p className={styles.newsletterDesc}>Les grands formats, le Signal, les portraits. Sans algorithme, sans bruit.</p>
           </div>
-          <form className={styles.newsletterForm} onSubmit={e => { e.preventDefault(); window.location.href = '/abonnement'; }}>
+          <form className={styles.newsletterForm} onSubmit={e => { e.preventDefault(); if (typeof window !== 'undefined') window.location.href = '/abonnement'; }}>
             <input type="email" placeholder="votre@email.com" className={styles.newsletterInput} required />
             <button type="submit" className={styles.newsletterBtn}>S'abonner →</button>
           </form>
