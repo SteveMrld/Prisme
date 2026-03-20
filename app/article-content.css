@@ -1364,3 +1364,216 @@ sup {
   .anavitem { max-width: 100%; }
   .content-embed iframe { height: 400px !important; }
 }
+
+/* ── VERSO-ITEM-TEXT ── */
+.verso-item-text {
+  display: block;
+  font-size: 13px;
+  color: var(--gris);
+  line-height: 1.6;
+  margin-top: 3px;
+}
+
+/* ── ART-SECTION-TITLE (h2 alternatif) ── */
+.art-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--encre);
+  margin-top: 52px;
+  margin-bottom: 24px;
+}
+.art-section-title em {
+  font-style: italic;
+  color: var(--or);
+}
+
+/* ── AXES (graphiques barres) ── */
+.axes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 32px 0;
+}
+.axe {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.axe-label {
+  font-size: 11px;
+  color: var(--gris);
+  min-width: 140px;
+  flex-shrink: 0;
+}
+.axe-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--bord);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.axe-fill {
+  height: 100%;
+  background: var(--or);
+  border-radius: 3px;
+}
+.axe-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--encre);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* ── LEGEND ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--gris);
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── ZONES ── */
+.zones-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin-bottom: 12px;
+}
+.zones {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.zone-item {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--gris);
+  line-height: 1.5;
+}
+.zone-label {
+  font-weight: 600;
+  color: var(--encre);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+.zone-text { flex: 1; }
+.zone-bullet {
+  color: var(--or);
+  flex-shrink: 0;
+}
+
+/* ── EMPIRE ── */
+.empire {
+  border: 1px solid var(--bord);
+  border-left: 4px solid var(--or);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+.empire-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.empire-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--encre);
+}
+.empire-identity {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+.empire-doctrine {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gris);
+  margin-bottom: 8px;
+}
+.empire-desc {
+  font-size: 14px;
+  color: var(--gris);
+  line-height: 1.65;
+}
+.empire-quote {
+  border-top: 1px solid var(--bord);
+  margin-top: 12px;
+  padding-top: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gris-m);
+}
+
+/* ── VERSO-CARD / VERSO-TAG ── */
+.verso-card {
+  border: 1px solid var(--bord);
+  padding: 16px 20px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.verso-card:hover { background: var(--papier); }
+.verso-tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ── VISUEL INLINE ── */
+.visuel-inline {
+  margin: 32px 0;
+  border: 1px solid var(--bord);
+  overflow: hidden;
+}
+.visuel-inner {
+  width: 100%;
+  display: block;
+}
+
+/* ── SCENARIO BTN ── */
+.scenario-btn {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid var(--bord);
+  padding: 6px 14px;
+  cursor: pointer;
+  background: none;
+  color: var(--gris);
+  transition: all 0.15s;
+}
+.scenario-btn:hover, .scenario-btn.active {
+  background: var(--encre);
+  color: var(--or);
+  border-color: var(--encre);
+}
