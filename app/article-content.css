@@ -1010,6 +1010,11 @@ sup {
   align-items: center;
   gap: 16px;
   margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.verso-title {
+  display: block;
 }
 
 .verso-title {
@@ -1048,6 +1053,10 @@ sup {
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--gris-l);
+  display: block;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--bord);
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -1069,6 +1078,11 @@ sup {
 
 .verso-item:last-child {
   border-bottom: none;
+}
+
+.verso-item span {
+  display: block;
+  margin-top: 3px;
 }
 
 .verso-item strong {
