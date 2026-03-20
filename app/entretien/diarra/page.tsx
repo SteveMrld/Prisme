@@ -26,6 +26,13 @@ export default function DiarraPage() {
         </div>
 
         <div className={styles.hero}>
+          <div className={styles.heroPortrait}>
+            <img
+              src="/portraits/diarra.jpg"
+              alt="Cheick Modibo Diarra"
+              className={styles.portrait}
+            />
+          </div>
           <div className={styles.heroText}>
             <h1 className={styles.name}>
               Cheick<br />Modibo <em>Diarra</em>
@@ -50,13 +57,6 @@ export default function DiarraPage() {
               les étoiles et les palais de gouvernement, et qui peut parler des deux
               sans naïveté.
             </p>
-          </div>
-          <div className={styles.heroPortrait}>
-            <img
-              src="https://i.ibb.co/DDXzwq0J/img-cmd-portrait.jpg"
-              alt="Cheick Modibo Diarra"
-              className={styles.portrait}
-            />
           </div>
         </div>
 
