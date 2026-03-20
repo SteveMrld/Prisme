@@ -86,8 +86,9 @@
   width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;
-  filter: brightness(2.2) contrast(1.1);
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 45%, black 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 45%, black 55%, transparent 100%);
+  
 }
 
 .questionsSection {
