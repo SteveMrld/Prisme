@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
+import PrismeTV from '../components/PrismeTV'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -173,6 +174,11 @@ export default function HomePage() {
           ))}
         </StaggerGrid>
       </section>
+      </FadeSection>
+
+      {/* ── CHAÎNE PRISME ── */}
+      <FadeSection>
+        <PrismeTV />
       </FadeSection>
 
       {/* ── STATS PRISME ── */}
