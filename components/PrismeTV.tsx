@@ -9,7 +9,7 @@ const episodes = [
     title: "L'Inde, le siècle qui vient",
     category: 'Géopolitique',
     duration: '1 min 19',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/prisme_inde_v4-3_qp2iyl.mp4',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v4-3_qp2iyl',
     description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
   },
 ]
@@ -18,6 +18,7 @@ export default function PrismeTV() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [active, setActive] = useState(0)
   const [playing, setPlaying] = useState(false)
+  const [error, setError] = useState(false)
 
   const ep = episodes[active]
 
@@ -27,59 +28,73 @@ export default function PrismeTV() {
       videoRef.current.pause()
       setPlaying(false)
     } else {
-      videoRef.current.play()
+      videoRef.current.play().catch(() => setError(true))
       setPlaying(true)
     }
   }
 
-  const handleEnded = () => setPlaying(false)
-
   return (
     <section className={styles.wrap}>
-      <div className={styles.header}>
-        <div className={styles.labelRow}>
-          <span className={styles.dot} />
-          <span className={styles.label}>Chaîne PRISME</span>
+
+      <div className={styles.tvHeader}>
+        <div className={styles.tvHeaderLeft}>
+          <div className={styles.tvLogo}>
+            <span className={styles.tvLogoText}>PRISME</span>
+            <span className={styles.tvLogoTag}>TV</span>
+          </div>
+          <div className={styles.tvMeta}>
+            <span className={styles.tvDot} />
+            <span className={styles.tvMetaText}>Analyses en mouvement</span>
+          </div>
         </div>
-        <p className={styles.sub}>Formats vidéo · Analyses en mouvement</p>
+        <div className={styles.tvEpCount}>
+          <span className={styles.tvEpNum}>01</span>
+          <span className={styles.tvEpLabel}>épisode</span>
+        </div>
       </div>
 
       <div className={styles.layout}>
-        {/* Player */}
-        <div className={styles.playerWrap}>
-          <video
-            ref={videoRef}
-            src={ep.file}
-            className={styles.video}
-            onEnded={handleEnded}
-            playsInline
-            preload="metadata"
-          />
 
-          {/* Overlay play button */}
-          {!playing && (
-            <button className={styles.playBtn} onClick={handlePlay} aria-label="Lire">
-              <span className={styles.playIcon}>▶</span>
-            </button>
-          )}
+        <div className={styles.playerOuter}>
+          <div className={styles.playerWrap}>
+            <video
+              ref={videoRef}
+              src={ep.file}
+              className={styles.video}
+              onEnded={() => setPlaying(false)}
+              onError={() => setError(true)}
+              playsInline
+              preload="metadata"
+            />
 
-          {/* Click anywhere to pause */}
-          {playing && (
-            <button className={styles.pauseOverlay} onClick={handlePlay} aria-label="Pause" />
-          )}
+            {!playing && !error && (
+              <button className={styles.playBtn} onClick={handlePlay} aria-label="Lire">
+                <span className={styles.playIcon}>▶</span>
+              </button>
+            )}
 
-          {/* Episode badge */}
-          <div className={styles.badge}>
-            <span className={styles.badgeCat}>{ep.category}</span>
-            <span className={styles.badgeDur}>{ep.duration}</span>
+            {error && (
+              <div className={styles.errorMsg}>Vidéo indisponible</div>
+            )}
+
+            {playing && (
+              <button className={styles.pauseOverlay} onClick={handlePlay} aria-label="Pause" />
+            )}
+
+            <div className={styles.badge}>
+              <span className={styles.badgeCat}>{ep.category}</span>
+              <span className={styles.badgeDur}>{ep.duration}</span>
+            </div>
+          </div>
+
+          <div className={styles.playerFooter}>
+            <div className={styles.playerFooterTitle}>{ep.title}</div>
+            <div className={styles.playerFooterDesc}>{ep.description}</div>
           </div>
         </div>
 
-        {/* Sidebar */}
         <div className={styles.sidebar}>
-          <div className={styles.epTitle}>{ep.title}</div>
-          <p className={styles.epDesc}>{ep.description}</p>
-
+          <div className={styles.sidebarLabel}>Dans cet épisode</div>
           <div className={styles.epList}>
             {episodes.map((e, i) => (
               <button
@@ -88,24 +103,31 @@ export default function PrismeTV() {
                 onClick={() => {
                   setActive(i)
                   setPlaying(false)
-                  if (videoRef.current) {
-                    videoRef.current.load()
-                  }
+                  setError(false)
+                  if (videoRef.current) videoRef.current.load()
                 }}
               >
                 <span className={styles.epNum}>#{String(i + 1).padStart(2, '0')}</span>
-                <span className={styles.epItemTitle}>{e.title}</span>
+                <div className={styles.epInfo}>
+                  <span className={styles.epItemTitle}>{e.title}</span>
+                  <span className={styles.epCat}>{e.category}</span>
+                </div>
                 <span className={styles.epDur}>{e.duration}</span>
               </button>
             ))}
 
-            {/* Prochain épisode placeholder */}
             <div className={styles.epNext}>
               <span className={styles.epNextLabel}>Prochain épisode</span>
               <span className={styles.epNextTitle}>À paraître · Dans 15 jours</span>
             </div>
           </div>
+
+          <div className={styles.sidebarNote}>
+            Un nouveau format tous les 15 jours.<br />
+            Analyses visuelles en 60–90 secondes.
+          </div>
         </div>
+
       </div>
     </section>
   )
