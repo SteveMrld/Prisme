@@ -894,3 +894,96 @@
   position: relative;
   top: -2px;
 }
+
+/* ── SIGNAL SECTION ── */
+.signalSection {
+  border-top: 2px solid var(--encre);
+  padding: 0;
+}
+
+.signalHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 64px;
+  border-bottom: 1px solid var(--bord);
+}
+
+.signalLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--encre);
+}
+
+.signalDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E53E3E;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.signalSeeAll {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.signalSeeAll:hover { opacity: 0.7; }
+
+.signalGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--bord);
+  gap: 1px;
+}
+
+.signalItem {
+  background: var(--bg);
+  padding: 24px 28px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.15s;
+}
+.signalItem:hover { background: var(--papier); }
+
+.signalCat {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.signalDate {
+  font-size: 9px;
+  color: var(--gris-l);
+  letter-spacing: 1px;
+}
+
+.signalHeadline {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--encre);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .signalHead { padding: 20px; }
+  .signalGrid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .signalGrid { grid-template-columns: 1fr; }
+}

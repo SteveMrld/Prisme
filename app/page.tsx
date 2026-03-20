@@ -6,6 +6,13 @@ import { FadeSection, FadeCard, StaggerGrid, StaggerItem } from './HomeClient'
 import Ticker from './TickerClient'
 import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 
+const signalItems = [
+  { cat: 'Géopolitique', color: 'var(--geo)', headline: 'QatarEnergy déclare force majeure sur l'ensemble de sa production GNL', date: '20 mars' },
+  { cat: 'Économie', color: 'var(--eco)', headline: 'Brent à 108$ — marchés énergétiques sous tension maximale', date: '20 mars' },
+  { cat: 'Afrique', color: 'var(--geo)', headline: 'Sahel — 50% des morts du terrorisme mondial selon le Global Terrorism Index', date: '20 mars' },
+  { cat: 'Société', color: 'var(--soc)', headline: 'Aïd el-Fitr ce vendredi — fin du Ramadan 2026 confirmée en France', date: '20 mars' },
+]
+
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
@@ -247,6 +254,28 @@ export default function HomePage() {
                 <p className={styles.portraitDesc}>{article.description}</p>
                 <span className={styles.portraitCta}>Lire →</span>
               </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      </FadeSection>
+
+      {/* ── SIGNAL ── */}
+      <FadeSection>
+      <section className={styles.signalSection}>
+        <div className={styles.signalHead}>
+          <div className={styles.signalLabel}>
+            <span className={styles.signalDot} />
+            Signal
+          </div>
+          <Link href="/signal" className={styles.signalSeeAll}>Tout le signal →</Link>
+        </div>
+        <div className={styles.signalGrid}>
+          {signalItems.map((item, i) => (
+            <Link key={i} href="/signal" className={styles.signalItem}>
+              <span className={styles.signalCat} style={{ color: item.color }}>{item.cat}</span>
+              <span className={styles.signalDate}>{item.date}</span>
+              <div className={styles.signalHeadline}>{item.headline}</div>
             </Link>
           ))}
         </div>

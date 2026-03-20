@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { createClient } from '../lib/supabase'
@@ -21,7 +22,8 @@ const navItems = [
 
 export default function Header({ activeNav }: { activeNav?: string }) {
   const [date, setDate] = useState('')
-  const [user, setUser] = useState<any>(undefined) // undefined = loading
+  const [user, setUser] = useState<any>(undefined)
+  const [searchOpen, setSearchOpen] = useState(false) // undefined = loading
   const supabase = createClient()
 
   useEffect(() => {
@@ -46,6 +48,15 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           <Link href="/" className={styles.logo}>Pris<em>me</em></Link>
         </div>
         <div className={styles.actions}>
+          <button
+            className={styles.searchBtn}
+            onClick={() => setSearchOpen(o => !o)}
+            aria-label="Rechercher"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </button>
           <DarkModeToggle />
           {user === undefined ? (
             <div className={styles.actionsPlaceholder} />
@@ -61,6 +72,21 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             </>
           )}
         </div>
+        {searchOpen && (
+          <div className={styles.searchBar}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input
+              autoFocus
+              type="text"
+              placeholder="Rechercher un article, un sujet…"
+              className={styles.searchInput}
+              onKeyDown={e => { if (e.key === 'Escape') setSearchOpen(false) }}
+            />
+            <button className={styles.searchClose} onClick={() => setSearchOpen(false)}>✕</button>
+          </div>
+        )}
       </div>
       <nav className={styles.nav}>
         {navItems.map(item => (
