@@ -11,7 +11,7 @@ const episodes = [
     title: "L'Inde, le siècle qui vient",
     category: 'Géopolitique',
     duration: '1 min 05',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v4-3_qp2iyl',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
     description: "1,44 milliard d'habitants. 7% de croissance par an. Une puissance nucléaire qui refuse de choisir son camp entre Washington et Moscou. L'Inde est peut-être la grande puissance du siècle qui vient.",
     date: 'Mars 2026',
   },

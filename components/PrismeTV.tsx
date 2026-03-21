@@ -9,7 +9,7 @@ const episodes = [
     title: "L'Inde, le siècle qui vient",
     category: 'Géopolitique',
     duration: '1 min 19',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v4-3_qp2iyl',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
     description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
   },
 ]
