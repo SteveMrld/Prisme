@@ -5,6 +5,16 @@ import styles from './PrismeTV.module.css'
 
 const episodes = [
   {
+    id: '04',
+    slug: 'nucleaire',
+    title: "L'arme qui a failli nous tuer",
+    category: 'Géopolitique',
+    duration: '2 min 25',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
+    description: "12 700 ogives. 32 accidents. L'arme censée protéger le monde a failli le détruire.",
+  },
+  {
     id: '03',
     slug: 'biologie',
     title: "La biologie devient un logiciel",
