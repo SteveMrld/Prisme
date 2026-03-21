@@ -101,6 +101,8 @@ export default function PrismeTV() {
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
             )}
+
+            {!playing && !error && (
               <button className={styles.playBtn} onClick={handlePlay} aria-label="Lire">
                 <span className={styles.playIcon}>▶</span>
               </button>
