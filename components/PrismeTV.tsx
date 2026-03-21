@@ -11,7 +11,7 @@ const episodes = [
     category: 'Géopolitique',
     duration: '2 min 02',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
-    poster: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_0,f_jpg/PRISME2_v7-2_mm8oxv.jpg',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME2_v7-2_mm8oxv.jpg',
     description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris.",
   },
   {
@@ -21,7 +21,7 @@ const episodes = [
     category: 'Géopolitique',
     duration: '1 min 19',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
-    poster: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,f_jpg/prisme_inde_v10-3_a57ifu.jpg',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/prisme_inde_v10-3_a57ifu.jpg',
     description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
   },
 ]
@@ -85,15 +85,22 @@ export default function PrismeTV() {
             <video
               ref={videoRef}
               src={ep.file}
-              poster={ep.poster}
               className={styles.video}
               onEnded={() => { setPlaying(false); switchTo((active + 1) % episodes.length) }}
               onError={() => setError(true)}
               playsInline
-              preload="metadata"
+              preload="none"
             />
 
+            {/* Thumbnail overlay — visible avant play, masqué après */}
             {!playing && !error && (
+              <img
+                src={ep.thumb}
+                alt={ep.title}
+                className={styles.thumb}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+              />
+            )}
               <button className={styles.playBtn} onClick={handlePlay} aria-label="Lire">
                 <span className={styles.playIcon}>▶</span>
               </button>

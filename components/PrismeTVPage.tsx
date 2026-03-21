@@ -12,7 +12,8 @@ const episodes = [
     category: 'Géopolitique',
     duration: '2 min 02',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
-    description: "54 pays. 2 000 langues. Le continent le plus vaste, le plus riche en ressources, le plus jeune en population. Et pourtant le plus mal compris. Ce qu'on ne vous a jamais vraiment expliqué.",
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME2_v7-2_mm8oxv.jpg',
+    description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris. Ce qu'on ne vous a jamais vraiment expliqué.",
     date: 'Mars 2026',
   },
   {
@@ -22,7 +23,8 @@ const episodes = [
     category: 'Géopolitique',
     duration: '1 min 19',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
-    description: "1,44 milliard d'habitants. 7% de croissance par an. Une puissance nucléaire qui refuse de choisir son camp entre Washington et Moscou. L'Inde est peut-être la grande puissance du siècle qui vient.",
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/prisme_inde_v10-3_a57ifu.jpg',
+    description: "1,44 milliard d'habitants. 7% de croissance par an. Une puissance nucléaire qui refuse de choisir son camp entre Washington et Moscou.",
     date: 'Mars 2026',
   },
 ]
@@ -107,9 +109,18 @@ export default function PrismeTVPage() {
                 className={styles.video}
                 onEnded={handleEnded}
                 playsInline
-                preload="metadata"
-                poster=""
+                preload="none"
               />
+
+              {/* Thumbnail visible avant lecture */}
+              {!playing && (
+                <img
+                  src={ep.thumb}
+                  alt={ep.title}
+                  className={styles.thumb}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              )}
 
               {!playing && (
                 <button className={styles.playBtn} onClick={handlePlay}>
