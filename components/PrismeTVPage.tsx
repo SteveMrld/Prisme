@@ -6,6 +6,17 @@ import styles from './PrismeTVPage.module.css'
 
 const episodes = [
   {
+    id: '03',
+    slug: 'biologie',
+    title: "La biologie devient un logiciel",
+    category: 'Science',
+    duration: '2 min 07',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME3_v4_fixed_ugm8uc',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME3_v4_fixed_ugm8uc.jpg',
+    description: "CRISPR, AlphaFold, Neuralink. En dix ans, l'intelligence artificielle a donné à l'humanité le pouvoir de lire et réécrire le vivant. La même technologie peut tout guérir — ou tout détruire.",
+    date: 'Mars 2026',
+  },
+  {
     id: '02',
     slug: 'afrique',
     title: "L'Afrique : ce qu'on ne vous a pas appris",
