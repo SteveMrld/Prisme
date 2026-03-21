@@ -5,11 +5,23 @@ import styles from './PrismeTV.module.css'
 
 const episodes = [
   {
+    id: '02',
+    slug: 'afrique',
+    title: "L'Afrique : ce qu'on ne vous a pas appris",
+    category: 'Géopolitique',
+    duration: '2 min 02',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
+    poster: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_0,f_jpg/PRISME2_v7-2_mm8oxv.jpg',
+    description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris.",
+  },
+  {
+    id: '01',
     slug: 'inde',
     title: "L'Inde, le siècle qui vient",
     category: 'Géopolitique',
     duration: '1 min 19',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
+    poster: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,f_jpg/prisme_inde_v10-3_a57ifu.jpg',
     description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
   },
 ]
@@ -19,6 +31,7 @@ export default function PrismeTV() {
   const [active, setActive] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [error, setError] = useState(false)
+  const [fading, setFading] = useState(false)
 
   const ep = episodes[active]
 
@@ -31,6 +44,18 @@ export default function PrismeTV() {
       videoRef.current.play().catch(() => setError(true))
       setPlaying(true)
     }
+  }
+
+  const switchTo = (i: number) => {
+    if (i === active || fading) return
+    setFading(true)
+    setPlaying(false)
+    setTimeout(() => {
+      setActive(i)
+      setError(false)
+      if (videoRef.current) videoRef.current.load()
+      setFading(false)
+    }, 350)
   }
 
   return (
@@ -48,20 +73,21 @@ export default function PrismeTV() {
           </div>
         </div>
         <div className={styles.tvEpCount}>
-          <span className={styles.tvEpNum}>01</span>
-          <span className={styles.tvEpLabel}>épisode</span>
+          <span className={styles.tvEpNum}>0{episodes.length}</span>
+          <span className={styles.tvEpLabel}>épisodes</span>
         </div>
       </div>
 
       <div className={styles.layout}>
 
         <div className={styles.playerOuter}>
-          <div className={styles.playerWrap}>
+          <div className={`${styles.playerWrap} ${fading ? styles.fadeOut : styles.fadeIn}`}>
             <video
               ref={videoRef}
               src={ep.file}
+              poster={ep.poster}
               className={styles.video}
-              onEnded={() => setPlaying(false)}
+              onEnded={() => { setPlaying(false); switchTo((active + 1) % episodes.length) }}
               onError={() => setError(true)}
               playsInline
               preload="metadata"
@@ -81,38 +107,39 @@ export default function PrismeTV() {
               <button className={styles.pauseOverlay} onClick={handlePlay} aria-label="Pause" />
             )}
 
+            {/* Watermark TV */}
+            <div className={styles.tvBug}>
+              <span className={styles.tvBugName}>PRISME</span>
+              <span className={styles.tvBugEp}>Ép. {ep.id}</span>
+            </div>
+
             <div className={styles.badge}>
               <span className={styles.badgeCat}>{ep.category}</span>
               <span className={styles.badgeDur}>{ep.duration}</span>
             </div>
           </div>
 
-          <div className={styles.playerFooter}>
+          <div className={`${styles.playerFooter} ${fading ? styles.fadeOut : styles.fadeIn}`}>
             <div className={styles.playerFooterTitle}>{ep.title}</div>
             <div className={styles.playerFooterDesc}>{ep.description}</div>
           </div>
         </div>
 
         <div className={styles.sidebar}>
-          <div className={styles.sidebarLabel}>Dans cet épisode</div>
+          <div className={styles.sidebarLabel}>Tous les épisodes</div>
           <div className={styles.epList}>
             {episodes.map((e, i) => (
               <button
                 key={e.slug}
                 className={`${styles.epItem} ${i === active ? styles.epItemActive : ''}`}
-                onClick={() => {
-                  setActive(i)
-                  setPlaying(false)
-                  setError(false)
-                  if (videoRef.current) videoRef.current.load()
-                }}
+                onClick={() => switchTo(i)}
               >
-                <span className={styles.epNum}>#{String(i + 1).padStart(2, '0')}</span>
+                <span className={styles.epNum}>#{e.id}</span>
                 <div className={styles.epInfo}>
                   <span className={styles.epItemTitle}>{e.title}</span>
-                  <span className={styles.epCat}>{e.category}</span>
+                  <span className={styles.epCat}>{e.category} · {e.duration}</span>
                 </div>
-                <span className={styles.epDur}>{e.duration}</span>
+                {i === active && <span className={styles.epNow}>▶</span>}
               </button>
             ))}
 

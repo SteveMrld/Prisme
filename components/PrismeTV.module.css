@@ -356,3 +356,35 @@
 /* ── Overflow fixes ── */
 .wrap { overflow: hidden; }
 .playerWrap { overflow: hidden; }
+
+/* ── Transitions ── */
+.fadeIn  { animation: tvIn  0.35s ease forwards; }
+.fadeOut { animation: tvOut 0.35s ease forwards; }
+@keyframes tvIn  { from { opacity:0; transform:scale(0.98); } to { opacity:1; transform:scale(1); } }
+@keyframes tvOut { from { opacity:1; transform:scale(1); } to { opacity:0; transform:scale(0.98); } }
+
+/* ── Watermark bug TV ── */
+.tvBug {
+  position: absolute; top: 12px; right: 12px;
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(196,162,101,0.35);
+  border-radius: 3px; padding: 3px 9px;
+  backdrop-filter: blur(4px); z-index: 5;
+}
+.tvBugName {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; font-weight: 700;
+  color: #fff; letter-spacing: 0.1em;
+}
+.tvBugEp {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px; color: var(--or, #C4A265);
+  letter-spacing: 0.06em;
+}
+
+/* ── Now playing indicator ── */
+.epNow {
+  font-size: 10px; color: var(--or, #C4A265);
+  margin-left: auto; flex-shrink: 0;
+}
