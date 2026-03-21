@@ -11,10 +11,12 @@ import Ticker from './TickerClient'
 import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 
 const signalItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', headline: "QatarEnergy déclare force majeure sur l’ensemble de sa production GNL", date: '20 mars' },
-  { cat: 'Économie', color: 'var(--eco)', headline: 'Brent à 108$ — marchés énergétiques sous tension maximale', date: '20 mars' },
-  { cat: 'Afrique', color: 'var(--geo)', headline: 'Sahel — 50% des morts du terrorisme mondial selon le Global Terrorism Index', date: '20 mars' },
-  { cat: 'Société', color: 'var(--soc)', headline: "Aïd el-Fitr ce vendredi — fin du Ramadan 2026 confirmée en France", date: '20 mars' },
+  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Détroit d'Ormuz — Trump presse ses alliés de déployer des navires, l'Europe refuse", date: '21 mars' },
+  { cat: 'Ukraine', color: 'var(--geo)', headline: "Zelensky à Londres — rencontre Charles III, Starmer et Rutte, discours au Parlement", date: '21 mars' },
+  { cat: 'Économie', color: 'var(--eco)', headline: "Croissance mondiale révisée à 2,7% — droits de douane et incertitude pèsent sur les échanges", date: '21 mars' },
+  { cat: 'Environnement', color: 'var(--env)', headline: "Record de chaleur en mars aux États-Unis — le changement climatique confirmé comme cause", date: '21 mars' },
+  { cat: 'Iran', color: 'var(--geo)', headline: "3e semaine de frappes US-Israël sur l'Iran — l'Europe cherche sa position face à la crise", date: '21 mars' },
+  { cat: 'Tech', color: 'var(--tech)', headline: "L'IA représente 20% de la croissance américaine — moteur structurel ou bulle spéculative ?", date: '21 mars' },
 ]
 
 const categoryLabels: Record<string, string> = {
