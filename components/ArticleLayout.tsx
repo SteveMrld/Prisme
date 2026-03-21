@@ -14,6 +14,7 @@ interface ArticleLayoutProps {
   content: string
   author?: string
   authorRole?: string
+  related?: any[]
 }
 
 const categoryColors: Record<string, string> = {
