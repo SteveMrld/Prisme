@@ -407,15 +407,17 @@
   animation: tvFadeIn 0.4s ease forwards;
 }
 .playerFadeOut {
-  animation: tvFadeOut 0.4s ease forwards;
+  animation: tvFadeOut 0.35s cubic-bezier(0.4,0,0.2,1) forwards;
 }
 @keyframes tvFadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to   { opacity: 1; transform: scale(1); }
+  0%   { opacity:0; transform:scale(1.04); filter:brightness(3) blur(4px); }
+  40%  { filter:brightness(1.2) blur(0px); }
+  100% { opacity:1; transform:scale(1); filter:brightness(1) blur(0px); }
 }
 @keyframes tvFadeOut {
-  from { opacity: 1; transform: scale(1); }
-  to   { opacity: 0; transform: scale(0.98); }
+  0%   { opacity:1; transform:scale(1); filter:brightness(1); }
+  60%  { filter:brightness(2); }
+  100% { opacity:0; transform:scale(0.96); filter:brightness(3) blur(2px); }
 }
 
 /* ── Channel bug (watermark TV) ── */
