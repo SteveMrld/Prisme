@@ -6,6 +6,17 @@ import styles from './PrismeTVPage.module.css'
 
 const episodes = [
   {
+    id: '06',
+    slug: 'asteroide',
+    title: "Nous sommes l'astéroïde",
+    category: 'Biodiversité',
+    duration: '1 min 49',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
+    description: "La Terre a survécu à 5 extinctions de masse. Elle s'en est remise à chaque fois. La 6e est différente — c'est la première causée par une seule espèce. La nôtre.",
+    date: 'Mars 2026',
+  },
+  {
     id: '05',
     slug: 'inegalites',
     title: "8 hommes. 3,5 milliards. Le même patrimoine.",
