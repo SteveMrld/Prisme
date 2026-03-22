@@ -5,6 +5,16 @@ import styles from './PrismeTV.module.css'
 
 const episodes = [
   {
+    id: '05',
+    slug: 'inegalites',
+    title: "8 hommes. 3,5 milliards. Le même patrimoine.",
+    category: 'Économie',
+    duration: '2 min 07',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v2_epj8cy',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v2_epj8cy.jpg',
+    description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA — comment les inégalités s'accélèrent.",
+  },
+  {
     id: '04',
     slug: 'nucleaire',
     title: "L'arme qui a failli nous tuer",
