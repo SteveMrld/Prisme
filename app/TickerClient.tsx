@@ -10,18 +10,16 @@ function todayFr() {
 }
 
 const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Qatar — QatarEnergy déclare force majeure sur l\'ensemble de sa production GNL après de nouvelles frappes iraniennes sur Ras Laffan' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Énergie — Brent à 108$/baril après avoir touché 119$, gaz naturel européen TTF +40% depuis le début du conflit' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran–Israël — Netanyahu : « la guerre finira plus tôt que les gens ne le pensent » — Détroit d\'Ormuz partiellement rouvert' },
-  { cat: 'Afrique', color: 'var(--geo)', text: 'Sahel — l\'Alliance des États du Sahel représente désormais plus de 50% des morts du terrorisme mondial selon l\'IEP' },
-  { cat: 'Afrique', color: 'var(--geo)', text: 'Tchad — un drone d\'origine soudanaise abattu près de N\'Djamena, la guerre civile soudanaise déborde aux frontières' },
-  { cat: 'Société', color: 'var(--soc)', text: 'France — Aïd el-Fitr ce vendredi 20 mars, fin du Ramadan 2026 confirmée par la Grande Mosquée de Paris' },
-  { cat: 'Afrique', color: 'var(--geo)', text: 'Cotonou — sommet militaire trilatéral France–Côte d\'Ivoire–Bénin sur la lutte contre le jihadisme sahélien' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Golfe — Koweït : deux raffineries frappées par des missiles iraniens, Abu Dhabi ferme Habshan après des débris interceptés' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'LNG — 17% de la capacité d\'exportation qatarie hors ligne pour 3 à 5 ans, Europe et Asie en alerte sur les approvisionnements' },
-  { cat: 'Société', color: 'var(--soc)', text: 'France — Municipales 2026 : tractations de dernière minute avant le dépôt des listes du second tour' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Francophonie — 20 mars, Journée internationale sous le signe « jeunesse et paix » dans 88 États membres' },
-  { cat: 'Afrique', color: 'var(--geo)', text: 'Sénégal — score ITIE de 89/100, premier rang mondial en transparence dans la gestion des ressources extractives' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Moyen-Orient — Trump propose un plan de paix, l\'Iran tire des missiles vers Israël, Bahreïn et le Koweït' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran–USA — Téhéran en position de force, pas prêt à céder malgré les menaces, selon l\'ancien conseiller Malley' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Liban — la France s\'oppose à l\'occupation du sud par Israël' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Carburants — prix à la pompe en hausse, le gouvernement refuse toute aide, tensions sociales croissantes' },
+  { cat: 'Tech', color: 'var(--tech)', text: 'OpenAI ferme Sora, son application de vidéos générées par IA' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Bridor — le champion français discret devient leader mondial de la boulangerie industrielle surgelée' },
+  { cat: 'Société', color: 'var(--soc)', text: 'Municipales 2026 — second tour, maires sortants hués, alliance gauche-droite à Strasbourg, Marseille sous tension' },
+  { cat: 'France', color: 'var(--soc)', text: 'Mort de Lionel Jospin — l\'ancien Premier ministre et père des 35 heures s\'est éteint' },
+  { cat: 'Afrique', color: 'var(--geo)', text: 'Sahel — le Sahel représente plus de 50% des morts du terrorisme mondial selon le Global Terrorism Index 2026' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Ingérence électorale — une société israélienne aurait ciblé trois candidats LFI aux municipales selon Le Canard Enchaîné' },
 ]
 
 export default function Ticker() {
