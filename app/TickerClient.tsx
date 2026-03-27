@@ -10,16 +10,16 @@ function todayFr() {
 }
 
 const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Moyen-Orient — Trump propose un plan de paix, l\'Iran tire des missiles vers Israël, Bahreïn et le Koweït' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran–USA — Téhéran en position de force, pas prêt à céder malgré les menaces, selon l\'ancien conseiller Malley' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Liban — la France s\'oppose à l\'occupation du sud par Israël' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Carburants — prix à la pompe en hausse, le gouvernement refuse toute aide, tensions sociales croissantes' },
-  { cat: 'Tech', color: 'var(--tech)', text: 'OpenAI ferme Sora, son application de vidéos générées par IA' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Bridor — le champion français discret devient leader mondial de la boulangerie industrielle surgelée' },
-  { cat: 'Société', color: 'var(--soc)', text: 'Municipales 2026 — second tour, maires sortants hués, alliance gauche-droite à Strasbourg, Marseille sous tension' },
-  { cat: 'France', color: 'var(--soc)', text: 'Mort de Lionel Jospin — l\'ancien Premier ministre et père des 35 heures s\'est éteint' },
-  { cat: 'Afrique', color: 'var(--geo)', text: 'Sahel — le Sahel représente plus de 50% des morts du terrorisme mondial selon le Global Terrorism Index 2026' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Ingérence électorale — une société israélienne aurait ciblé trois candidats LFI aux municipales selon Le Canard Enchaîné' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran–USA — Trump reporte son ultimatum, Téhéran juge la proposition américaine "à sens unique et injuste"' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Détroit d\'Ormuz — Israël élimine le commandant de la marine des Gardiens de la Révolution, responsable du blocage' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Moyen-Orient — manifestations pour le cessez-le-feu dans toute la France ce samedi 28 mars' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Carburants — le gouvernement annonce des aides pour les "gros rouleurs" face à la hausse des prix' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Bourses européennes — rebond attendu à l\'ouverture après le report de l\'ultimatum américain à l\'Iran' },
+  { cat: 'France', color: 'var(--soc)', text: 'Jospin — hommage national aux Invalides jeudi, obsèques au cimetière du Montparnasse, Macron préside la cérémonie' },
+  { cat: 'Europe', color: 'var(--geo)', text: 'UE — le Parlement européen valide la création de "hubs de retour" pour les migrants hors de l\'Union' },
+  { cat: 'France', color: 'var(--soc)', text: 'Présidentielle 2027 — François Fillon définitivement écarté, sa condamnation scelle son avenir politique jusqu\'en 2030' },
+  { cat: 'France', color: 'var(--soc)', text: 'Primaire de la gauche — mal engagée après les municipales, Faure et Tondelier sortent affaiblis du second tour' },
+  { cat: 'Société', color: 'var(--soc)', text: 'Loana — la première star de la téléréalité française retrouvée morte à Nice, décès accidentel selon le parquet' },
 ]
 
 export default function Ticker() {
