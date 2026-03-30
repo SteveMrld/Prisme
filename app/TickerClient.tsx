@@ -10,16 +10,16 @@ function todayFr() {
 }
 
 const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran–USA — Trump reporte son ultimatum, Téhéran juge la proposition américaine "à sens unique et injuste"' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Détroit d\'Ormuz — Israël élimine le commandant de la marine des Gardiens de la Révolution, responsable du blocage' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Moyen-Orient — manifestations pour le cessez-le-feu dans toute la France ce samedi 28 mars' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Carburants — le gouvernement annonce des aides pour les "gros rouleurs" face à la hausse des prix' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Bourses européennes — rebond attendu à l\'ouverture après le report de l\'ultimatum américain à l\'Iran' },
-  { cat: 'France', color: 'var(--soc)', text: 'Jospin — hommage national aux Invalides jeudi, obsèques au cimetière du Montparnasse, Macron préside la cérémonie' },
-  { cat: 'Europe', color: 'var(--geo)', text: 'UE — le Parlement européen valide la création de "hubs de retour" pour les migrants hors de l\'Union' },
-  { cat: 'France', color: 'var(--soc)', text: 'Présidentielle 2027 — François Fillon définitivement écarté, sa condamnation scelle son avenir politique jusqu\'en 2030' },
-  { cat: 'France', color: 'var(--soc)', text: 'Primaire de la gauche — mal engagée après les municipales, Faure et Tondelier sortent affaiblis du second tour' },
-  { cat: 'Société', color: 'var(--soc)', text: 'Loana — la première star de la téléréalité française retrouvée morte à Nice, décès accidentel selon le parquet' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Détroit d\'Ormuz — Trump annonce avoir négocié le passage de 20 pétroliers, premier déblocage depuis le début du conflit' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran — un soldat de l\'ONU tué au Liban, les frappes israélo-américaines continuent sur les infrastructures' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Carburants — opérations escargots des transporteurs routiers sur le périphérique parisien ce lundi matin' },
+  { cat: 'Économie', color: 'var(--eco)', text: 'Semi-conducteurs — la production mondiale pénalisée par une pénurie d\'hélium liée à la guerre au Moyen-Orient' },
+  { cat: 'France', color: 'var(--soc)', text: 'Municipales 2026 — nouveaux maires installés, primaire de la gauche en difficulté avant la présidentielle 2027' },
+  { cat: 'Europe', color: 'var(--geo)', text: 'UE — hubs de retour pour migrants adoptés, vifs débats sur la conformité avec le droit international' },
+  { cat: 'France', color: 'var(--soc)', text: 'Violences périscolaires à Paris — 700 parents exigent des sanctions et un audit indépendant à la mairie' },
+  { cat: 'Justice', color: 'var(--soc)', text: 'Loge Athanor — procès des crimes commandités par une loge maçonnique s\'ouvre ce lundi devant la justice' },
+  { cat: 'Culture', color: 'var(--culture)', text: 'Vol à Florence — trois tableaux de Renoir, Cézanne et Matisse dérobés dans un musée italien' },
+  { cat: 'France', color: 'var(--soc)', text: 'Changement d\'heure — passage à l\'heure d\'été ce dimanche, les horloges ont avancé d\'une heure' },
 ]
 
 export default function Ticker() {
