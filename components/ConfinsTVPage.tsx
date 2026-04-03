@@ -153,7 +153,9 @@ export default function ConfinsTVPage() {
                 className={styles.video}
                 onEnded={handleEnded}
                 playsInline
-                preload="none"
+                controls={playing}
+                preload="metadata"
+                crossOrigin="anonymous"
               />
 
 
