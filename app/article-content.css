@@ -1656,3 +1656,24 @@ sup {
     width: auto !important;
   }
 }
+
+/* ── IFRAME RESPONSIVE ── */
+.article-iframe {
+  width: 100% !important;
+}
+@media (max-width: 768px) {
+  .article-iframe {
+    height: 420px !important;
+  }
+}
+
+/* ── TIMELINE ROW (ia.html, morrison.html, taiwan.html) ── */
+@media (max-width: 768px) {
+  .timeline-row {
+    grid-template-columns: 1fr !important;
+    gap: 4px 0 !important;
+  }
+  .timeline-row > *:nth-child(2) {
+    display: none !important; /* cache le séparateur vertical */
+  }
+}

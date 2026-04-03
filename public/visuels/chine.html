@@ -80,6 +80,14 @@ html,body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--
 .bri-stat-num { font-family:'Playfair Display',serif; font-size:24px; font-weight:300; color:var(--or); letter-spacing:-1px; line-height:1; margin-bottom:4px; }
 .bri-stat-lbl { font-size:10px; color:rgba(255,255,255,0.35); line-height:1.4; }
 </style>
+<style>
+@media (max-width: 768px) {
+  body { font-size: 13px !important; }
+  [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  svg { max-width: 100% !important; height: auto !important; }
+  table { width: 100% !important; overflow-x: auto; display: block; }
+}
+</style>
 </head>
 <body>
 <div class="wrap">
