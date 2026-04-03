@@ -246,7 +246,7 @@ export default function ConfinsTVPage() {
             comme un article de fond, racontée comme un documentaire.
           </p>
           <Link href="/apropos" className={styles.manifestoLink}>
-            En savoir plus sur PRISME →
+            En savoir plus sur CONFINS →
           </Link>
         </div>
       </div>

@@ -27,7 +27,7 @@ export default function NotFound() {
         </div>
       </div>
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Pris<em>me</em></div>
+        <div className={styles.footerLogo}>Con<em>fins</em></div>
         <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>

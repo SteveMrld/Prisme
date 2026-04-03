@@ -69,7 +69,7 @@ export default function ConnexionPage() {
       <Header />
       <div className={styles.page}>
         <div className={styles.card}>
-          <div className={styles.logo}>Pris<em>me</em></div>
+          <div className={styles.logo}>Con<em>fins</em></div>
 
           <div className={styles.tabs}>
             <button

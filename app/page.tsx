@@ -308,7 +308,7 @@ export default function HomePage() {
       </FadeSection>
 
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Pris<em>me</em></div>
+        <div className={styles.footerLogo}>Con<em>fins</em></div>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
           <Link href="/contributeurs">Contributeurs</Link>

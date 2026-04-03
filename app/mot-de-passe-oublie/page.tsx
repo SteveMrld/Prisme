@@ -34,7 +34,7 @@ export default function MotDePasseOubliePage() {
       <Header />
       <div className={styles.page}>
         <div className={styles.card}>
-          <div className={styles.logo}>Pris<em>me</em></div>
+          <div className={styles.logo}>Con<em>fins</em></div>
 
           {sent ? (
             <div className={styles.success}>

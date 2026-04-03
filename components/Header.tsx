@@ -17,7 +17,7 @@ const navItems = [
   { label: 'Culture', href: '/culture', className: 'culture' },
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Visuels', href: '/visuels', className: 'concept' },
-  { label: 'CONFINS TV', href: '/confinstv', className: 'tv' },
+  { label: 'CONFINS TV', href: '/prismetv', className: 'tv' },
   { label: 'Rétrospective 2025', href: '/retrospective', className: 'retro' },
 ]
 

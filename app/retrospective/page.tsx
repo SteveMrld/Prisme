@@ -163,7 +163,7 @@ export default function RetrospectivePage() {
       </div>
 
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Pris<em>me</em></div>
+        <div className={styles.footerLogo}>Con<em>fins</em></div>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
           <Link href="/mentions">Mentions légales</Link>
