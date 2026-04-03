@@ -3,8 +3,8 @@
   <rect x="0" y="0" width="1200" height="4" fill="#C4A265"/>
   
   <!-- Logo -->
-  <text x="600" y="260" font-family="Georgia, serif" font-size="96" font-weight="700" fill="#ECE7DD" text-anchor="middle" letter-spacing="-3">Pris</text>
-  <text x="600" y="260" font-family="Georgia, serif" font-size="96" font-weight="300" font-style="italic" fill="#C4A265" text-anchor="middle" letter-spacing="-3" dx="132">me</text>
+  <text x="600" y="260" font-family="Georgia, serif" font-size="96" font-weight="700" fill="#ECE7DD" text-anchor="middle" letter-spacing="-3">Con</text>
+  <text x="600" y="260" font-family="Georgia, serif" font-size="96" font-weight="300" font-style="italic" fill="#C4A265" text-anchor="middle" letter-spacing="-3" dx="132">fins</text>
 
   <!-- Ligne dorée -->
   <rect x="480" y="300" width="240" height="1" fill="#C4A265" opacity="0.5"/>
