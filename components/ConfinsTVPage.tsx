@@ -1,7 +1,8 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import styles from './ConfinsTV.module.css'
+import { useRef, useState, useEffect, useCallback } from 'react'
+import Link from 'next/link'
+import styles from './ConfinsTVPage.module.css'
 
 const episodes = [
   {
@@ -12,7 +13,8 @@ const episodes = [
     duration: '1 min 49',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
-    description: "69% des vertébrés sauvages disparus depuis 1970. La 6e extinction est différente — c'est la première causée par une seule espèce.",
+    description: "La Terre a survécu à 5 extinctions de masse. Elle s'en est remise à chaque fois. La 6e est différente — c'est la première causée par une seule espèce. La nôtre.",
+    date: 'Mars 2026',
   },
   {
     id: '05',
@@ -22,7 +24,8 @@ const episodes = [
     duration: '2 min 07',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
-    description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA — comment les inégalités s'accélèrent.",
+    description: "1% de la population possède plus que les 99% restants. Les Pandora Papers, les crises, l'IA. Comment les inégalités s'accélèrent — et ce que ça change pour la démocratie.",
+    date: 'Mars 2026',
   },
   {
     id: '04',
@@ -32,7 +35,8 @@ const episodes = [
     duration: '2 min 25',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
-    description: "12 700 ogives. 32 accidents. L'arme censée protéger le monde a failli le détruire.",
+    description: "12 700 ogives. 32 accidents reconnus. Goldsboro, Damascus, Palomares. L'arme censée protéger le monde a failli le détruire. Plusieurs fois.",
+    date: 'Mars 2026',
   },
   {
     id: '03',
@@ -42,7 +46,8 @@ const episodes = [
     duration: '2 min 07',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME3_v4_fixed_ugm8uc',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME3_v4_fixed_ugm8uc.jpg',
-    description: "CRISPR, AlphaFold, Neuralink. L'IA a donné à l'humanité le pouvoir de réécrire le vivant.",
+    description: "CRISPR, AlphaFold, Neuralink. En dix ans, l'intelligence artificielle a donné à l'humanité le pouvoir de lire et réécrire le vivant. La même technologie peut tout guérir — ou tout détruire.",
+    date: 'Mars 2026',
   },
   {
     id: '02',
@@ -52,7 +57,8 @@ const episodes = [
     duration: '2 min 02',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME2_v7-2_mm8oxv.jpg',
-    description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris.",
+    description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris. Ce qu'on ne vous a jamais vraiment expliqué.",
+    date: 'Mars 2026',
   },
   {
     id: '01',
@@ -62,17 +68,17 @@ const episodes = [
     duration: '1 min 19',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/prisme_inde_v10-3_a57ifu.jpg',
-    description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
+    description: "1,44 milliard d'habitants. 7% de croissance par an. Une puissance nucléaire qui refuse de choisir son camp entre Washington et Moscou.",
+    date: 'Mars 2026',
   },
 ]
 
-export default function ConfinsTV() {
+export default function ConfinsTVPage() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [active, setActive] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [error, setError] = useState(false)
-  const [fading, setFading] = useState(false)
-
+  const [active, setActive] = useState(0)
+  const [transitioning, setTransitioning] = useState(false)
+  const [fadeIn, setFadeIn] = useState(true)
   const ep = episodes[active]
 
   const handlePlay = () => {
@@ -81,130 +87,170 @@ export default function ConfinsTV() {
       videoRef.current.pause()
       setPlaying(false)
     } else {
-      videoRef.current.play().catch(() => setError(true))
+      videoRef.current.play()
       setPlaying(true)
     }
   }
 
-  const switchTo = (i: number) => {
-    if (i === active || fading) return
-    setFading(true)
+  const switchEpisode = useCallback((i: number) => {
+    if (i === active || transitioning) return
+    setTransitioning(true)
+    setFadeIn(false)
     setPlaying(false)
     setTimeout(() => {
       setActive(i)
-      setError(false)
       if (videoRef.current) videoRef.current.load()
-      setFading(false)
-    }, 350)
+      setFadeIn(true)
+      setTransitioning(false)
+    }, 400)
+  }, [active, transitioning])
+
+  // Auto-play next episode on end
+  const handleEnded = () => {
+    setPlaying(false)
+    const next = (active + 1) % episodes.length
+    switchEpisode(next)
   }
 
   return (
-    <section className={styles.wrap}>
+    <main className={styles.main}>
 
-      <div className={styles.tvHeader}>
-        <div className={styles.tvHeaderLeft}>
-          <div className={styles.tvLogo}>
-            <span className={styles.tvLogoText}>CONFINS</span>
-            <span className={styles.tvLogoTag}>TV</span>
+      {/* ── Hero header ── */}
+      <div className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={styles.heroTop}>
+            <div className={styles.logoBadge}>
+              <span className={styles.logoText}>CONFINS</span>
+              <span className={styles.logoTV}>TV</span>
+            </div>
+            <div className={styles.heroPulse}>
+              <span className={styles.pulseDot} />
+              <span className={styles.pulseLabel}>Format vidéo</span>
+            </div>
           </div>
-          <div className={styles.tvMeta}>
-            <span className={styles.tvDot} />
-            <span className={styles.tvMetaText}>Analyses en mouvement</span>
-          </div>
-        </div>
-        <div className={styles.tvEpCount}>
-          <span className={styles.tvEpNum}>0{episodes.length}</span>
-          <span className={styles.tvEpLabel}>épisodes</span>
+          <h1 className={styles.heroTitle}>
+            Les grandes questions du monde,<br />
+            <em>vues autrement.</em>
+          </h1>
+          <p className={styles.heroBaseline}>
+            Géopolitique, économie, société — en formats courts, rigoureux et visuels.<br />
+            Un nouvel épisode tous les quinze jours.
+          </p>
+          <div className={styles.heroLine} />
         </div>
       </div>
 
-      <div className={styles.layout}>
+      {/* ── Player section ── */}
+      <div className={styles.playerSection}>
+        <div className={styles.playerInner}>
 
-        <div className={styles.playerOuter}>
-          <div className={`${styles.playerWrap} ${fading ? styles.fadeOut : styles.fadeIn}`}>
-            <video
-              ref={videoRef}
-              src={ep.file}
-              className={styles.video}
-              onEnded={() => { setPlaying(false); switchTo((active + 1) % episodes.length) }}
-              onError={() => setError(true)}
-              playsInline
-              preload="none"
-            />
-
-            {/* Thumbnail overlay — visible avant play, masqué après */}
-            {!playing && !error && (
-              <img
-                src={ep.thumb}
-                alt={ep.title}
-                className={styles.thumb}
-                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+          {/* Player */}
+          <div className={styles.playerCol}>
+            <div className={`${styles.playerWrap} ${fadeIn ? styles.playerFadeIn : styles.playerFadeOut}`}>
+              <video
+                ref={videoRef}
+                src={ep.file}
+                className={styles.video}
+                onEnded={handleEnded}
+                playsInline
+                preload="none"
               />
-            )}
 
-            {!playing && !error && (
-              <button className={styles.playBtn} onClick={handlePlay} aria-label="Lire">
-                <span className={styles.playIcon}>▶</span>
-              </button>
-            )}
+              {/* Thumbnail visible avant lecture */}
+              {!playing && (
+                <img
+                  src={ep.thumb}
+                  alt={ep.title}
+                  className={styles.thumb}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                />
+              )}
 
-            {error && (
-              <div className={styles.errorMsg}>Vidéo indisponible</div>
-            )}
+              {!playing && (
+                <button className={styles.playBtn} onClick={handlePlay}>
+                  <span className={styles.playCircle}>▶</span>
+                </button>
+              )}
+              {playing && (
+                <button className={styles.pauseOverlay} onClick={handlePlay} />
+              )}
 
-            {playing && (
-              <button className={styles.pauseOverlay} onClick={handlePlay} aria-label="Pause" />
-            )}
+              {/* TV channel overlay — top right */}
+              <div className={styles.channelBug}>
+                <span className={styles.channelName}>CONFINS</span>
+                <span className={styles.channelDot}>·</span>
+                <span className={styles.channelEp}>Ép. {ep.id}</span>
+              </div>
 
-            {/* Watermark TV */}
-            <div className={styles.tvBug}>
-              <span className={styles.tvBugName}>CONFINS</span>
-              <span className={styles.tvBugEp}>Ép. {ep.id}</span>
+              <div className={styles.videoBadges}>
+                <span className={styles.catBadge}>{ep.category}</span>
+                <span className={styles.durBadge}>{ep.duration}</span>
+              </div>
             </div>
 
-            <div className={styles.badge}>
-              <span className={styles.badgeCat}>{ep.category}</span>
-              <span className={styles.badgeDur}>{ep.duration}</span>
+            {/* Under player */}
+            <div className={`${styles.epMeta} ${fadeIn ? styles.playerFadeIn : styles.playerFadeOut}`}>
+              <span className={styles.epId}>Épisode #{ep.id}</span>
+              <span className={styles.epDate}>{ep.date}</span>
             </div>
+            <h2 className={`${styles.epTitle} ${fadeIn ? styles.playerFadeIn : styles.playerFadeOut}`}>{ep.title}</h2>
+            <p className={`${styles.epDesc} ${fadeIn ? styles.playerFadeIn : styles.playerFadeOut}`}>{ep.description}</p>
           </div>
 
-          <div className={`${styles.playerFooter} ${fading ? styles.fadeOut : styles.fadeIn}`}>
-            <div className={styles.playerFooterTitle}>{ep.title}</div>
-            <div className={styles.playerFooterDesc}>{ep.description}</div>
-          </div>
-        </div>
+          {/* Sidebar */}
+          <div className={styles.sidebar}>
+            <div className={styles.sidebarTitle}>Tous les épisodes</div>
 
-        <div className={styles.sidebar}>
-          <div className={styles.sidebarLabel}>Tous les épisodes</div>
-          <div className={styles.epList}>
             {episodes.map((e, i) => (
               <button
                 key={e.slug}
-                className={`${styles.epItem} ${i === active ? styles.epItemActive : ''}`}
-                onClick={() => switchTo(i)}
+                className={`${styles.epCard} ${i === active ? styles.epCardActive : ''}`}
+                onClick={() => switchEpisode(i)}
               >
-                <span className={styles.epNum}>#{e.id}</span>
-                <div className={styles.epInfo}>
-                  <span className={styles.epItemTitle}>{e.title}</span>
-                  <span className={styles.epCat}>{e.category} · {e.duration}</span>
+                <div className={styles.epCardNum}>#{e.id}</div>
+                <div className={styles.epCardBody}>
+                  <div className={styles.epCardTitle}>{e.title}</div>
+                  <div className={styles.epCardMeta}>
+                    <span>{e.category}</span>
+                    <span>·</span>
+                    <span>{e.duration}</span>
+                    <span>·</span>
+                    <span>{e.date}</span>
+                  </div>
                 </div>
-                {i === active && <span className={styles.epNow}>▶</span>}
+                {i === active && <span className={styles.epCardNow}>▶ En cours</span>}
               </button>
             ))}
 
-            <div className={styles.epNext}>
-              <span className={styles.epNextLabel}>Prochain épisode</span>
-              <span className={styles.epNextTitle}>À paraître · Dans 15 jours</span>
+            {/* Next episode */}
+            <div className={styles.nextEp}>
+              <div className={styles.nextEpLabel}>Prochain épisode</div>
+              <div className={styles.nextEpTitle}>Dans 15 jours</div>
+              <div className={styles.nextEpHint}>Abonnez-vous pour être notifié</div>
+              <Link href="/abonnement" className={styles.nextEpCta}>
+                S'abonner →
+              </Link>
             </div>
           </div>
 
-          <div className={styles.sidebarNote}>
-            Un nouveau format tous les 15 jours.<br />
-            Analyses visuelles en 60–90 secondes.
-          </div>
         </div>
-
       </div>
-    </section>
+
+      {/* ── Manifesto ── */}
+      <div className={styles.manifesto}>
+        <div className={styles.manifestoInner}>
+          <div className={styles.manifestoLabel}>Notre approche</div>
+          <p className={styles.manifestoText}>
+            CONFINS TV ne fait pas de l'information en continu. On prend le temps d'expliquer,
+            de contextualiser, de sourcer. Chaque épisode est une analyse visuelle — construite
+            comme un article de fond, racontée comme un documentaire.
+          </p>
+          <Link href="/apropos" className={styles.manifestoLink}>
+            En savoir plus sur PRISME →
+          </Link>
+        </div>
+      </div>
+
+    </main>
   )
 }
