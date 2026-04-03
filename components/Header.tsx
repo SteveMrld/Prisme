@@ -46,7 +46,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
       <div className={styles.headerTop}>
         <span className={styles.date}>{date}</span>
         <div className={styles.logoWrap}>
-          <Link href="/" className={styles.logo}>Pris<em>me</em></Link>
+          <Link href="/" className={styles.logo}>Con<em>fins</em></Link>
         </div>
         <div className={styles.actions}>
           <button
