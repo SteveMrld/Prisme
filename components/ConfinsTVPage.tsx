@@ -156,6 +156,31 @@ export default function ConfinsTVPage() {
                 preload="none"
               />
 
+              {/* ── CONFINS overlay permanent — masque tout logo incrusté ── */}
+              {/* Coin supérieur gauche */}
+              <div style={{
+                position:'absolute', top:'12px', left:'14px', zIndex:20,
+                fontFamily:"'DM Mono',monospace", fontSize:'9px', fontWeight:700,
+                letterSpacing:'3px', textTransform:'uppercase',
+                color:'rgba(196,162,101,0.9)', pointerEvents:'none',
+                textShadow:'0 1px 4px rgba(0,0,0,0.8)'
+              }}>CONFINS<span style={{opacity:0.5}}>.FR</span></div>
+              {/* Coin inférieur droit — packshot */}
+              <div style={{
+                position:'absolute', bottom:'12px', right:'14px', zIndex:20,
+                fontFamily:"'DM Mono',monospace", fontSize:'9px', fontWeight:700,
+                letterSpacing:'3px', textTransform:'uppercase',
+                color:'rgba(196,162,101,0.9)', pointerEvents:'none',
+                textShadow:'0 1px 4px rgba(0,0,0,0.8)'
+              }}>CONFINS<span style={{opacity:0.5}}>.FR</span></div>
+              {/* Masque coin supérieur droit (ancien logo Prisme) */}
+              <div style={{
+                position:'absolute', top:0, right:0, zIndex:19,
+                width:'160px', height:'50px',
+                background:'linear-gradient(to bottom left, rgba(0,0,0,0.85) 0%, transparent 100%)',
+                pointerEvents:'none'
+              }} />
+
               {/* Thumbnail visible avant lecture */}
               {!playing && (
                 <img
