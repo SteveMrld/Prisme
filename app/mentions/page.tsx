@@ -3,8 +3,8 @@ import Link from 'next/link'
 import styles from './mentions.module.css'
 
 export const metadata = {
-  title: 'Mentions légales — Prisme',
-  description: 'Mentions légales et politique de confidentialité de Prisme.',
+  title: 'Mentions légales — Confins',
+  description: 'Mentions légales et politique de confidentialité de Confins.',
 }
 
 export default function MentionsPage() {
@@ -19,34 +19,34 @@ export default function MentionsPage() {
         {[
           {
             title: 'Éditeur',
-            content: `Prisme est édité par Steve Moradel, personne physique.
-Contact : contact@prisme.media
+            content: `Confins est édité par Steve Moradel, personne physique.
+Contact : contact@confins.media
 Directeur de la publication : Steve Moradel`,
           },
           {
             title: 'Hébergement',
-            content: `Le site prisme-peach.vercel.app est hébergé par Vercel Inc.
+            content: `Le site confins.fr est hébergé par Vercel Inc.
 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.`,
           },
           {
             title: 'Propriété intellectuelle',
-            content: `L'ensemble des contenus publiés sur Prisme (textes, analyses, visuels, infographies) sont protégés par le droit d'auteur. Toute reproduction, même partielle, est soumise à autorisation préalable de l'éditeur.
+            content: `L'ensemble des contenus publiés sur Confins (textes, analyses, visuels, infographies) sont protégés par le droit d'auteur. Toute reproduction, même partielle, est soumise à autorisation préalable de l'éditeur.
 
 Les citations et références aux sources sont effectuées dans le respect des droits des auteurs cités.`,
           },
           {
             title: 'Données personnelles',
-            content: `Prisme ne collecte pas de données personnelles au-delà des informations strictement nécessaires à la gestion des abonnements.
+            content: `Confins ne collecte pas de données personnelles au-delà des informations strictement nécessaires à la gestion des abonnements.
 
-Aucune donnée n'est revendue ou transmise à des tiers à des fins commerciales. Vous disposez d'un droit d'accès, de rectification et de suppression de vos données en nous contactant à contact@prisme.media.`,
+Aucune donnée n'est revendue ou transmise à des tiers à des fins commerciales. Vous disposez d'un droit d'accès, de rectification et de suppression de vos données en nous contactant à contact@confins.media.`,
           },
           {
             title: 'Cookies',
-            content: `Prisme utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site. Aucun cookie publicitaire ou de traçage tiers n'est utilisé.`,
+            content: `Confins utilise uniquement des cookies techniques nécessaires au bon fonctionnement du site. Aucun cookie publicitaire ou de traçage tiers n'est utilisé.`,
           },
           {
             title: 'Liens externes',
-            content: `Les liens vers des sites tiers présents dans nos articles sont fournis à titre informatif. Prisme ne saurait être tenu responsable du contenu de ces sites externes.`,
+            content: `Les liens vers des sites tiers présents dans nos articles sont fournis à titre informatif. Confins ne saurait être tenu responsable du contenu de ces sites externes.`,
           },
         ].map(s => (
           <section key={s.title} className={styles.section}>
@@ -62,7 +62,7 @@ Aucune donnée n'est revendue ou transmise à des tiers à des fins commerciales
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

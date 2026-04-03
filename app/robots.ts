@@ -22,6 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
     ],
-    sitemap: 'https://prisme-peach.vercel.app/sitemap.xml',
+    sitemap: 'https://confins.fr/sitemap.xml',
   }
 }

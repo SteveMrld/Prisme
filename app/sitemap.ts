@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import articlesData from '../lib/articles.json'
 
-const BASE_URL = 'https://prisme-peach.vercel.app'
+const BASE_URL = 'https://confins.fr'
 
 const CATEGORIES = ['geo', 'eco', 'tech', 'env', 'soc', 'culture', 'portraits', 'visuels']
 

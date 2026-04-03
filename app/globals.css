@@ -131,12 +131,12 @@ body {
   color: #ECE7DD;
 }
 
-[data-theme="dark"] .prisme-article p,
-[data-theme="dark"] .prisme-article li {
+[data-theme="dark"] .confins-article p,
+[data-theme="dark"] .confins-article li {
   color: rgba(236,231,221,0.75);
 }
 
-[data-theme="dark"] .prisme-article h3 {
+[data-theme="dark"] .confins-article h3 {
   color: #ECE7DD;
 }
 

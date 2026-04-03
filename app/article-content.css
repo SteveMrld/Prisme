@@ -510,7 +510,7 @@
 
 /* ── Notes & sources ── */
 /* ═══════════════════════════════════════════════════
-   NOTES & SOURCES — Système typographique Prisme
+   NOTES & SOURCES — Système typographique Confins
    ═══════════════════════════════════════════════════ */
 
 .notes-section {
@@ -655,25 +655,25 @@ ol.notes-list li::before {
   flex-shrink: 0;
 }
 
-/* Dans .prisme-article — override des styles génériques */
-.prisme-article .notes-section {
+/* Dans .confins-article — override des styles génériques */
+.confins-article .notes-section {
   padding-left: 24px;
   padding-right: 24px;
   box-sizing: border-box;
 }
 
-.prisme-article .notes-list li {
+.confins-article .notes-list li {
   max-width: none;
   padding: 10px 0;
 }
 
-.prisme-article .notes-list li em,
-.prisme-article .notes-list li strong {
+.confins-article .notes-list li em,
+.confins-article .notes-list li strong {
   display: inline !important;
 }
 
 /* Numérotation inline dans le texte — superscripts */
-.prisme-article sup,
+.confins-article sup,
 sup {
   font-size: 9px;
   color: var(--or);

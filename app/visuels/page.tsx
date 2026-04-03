@@ -3,7 +3,7 @@ import styles from './visuels.module.css'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Explorations — Prisme',
+  title: 'Explorations — Confins',
   description: 'Motions design, cartes animées, visualisations de données. Comprendre le monde autrement.',
 }
 
@@ -286,7 +286,7 @@ export default function VisuelsPage() {
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

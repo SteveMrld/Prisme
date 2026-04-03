@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import articlesData from '../../lib/articles.json'
 
-const BASE_URL = 'https://prisme-peach.vercel.app'
-const SITE_NAME = 'Prisme'
+const BASE_URL = 'https://confins.fr'
+const SITE_NAME = 'Confins'
 const SITE_DESC = "Média d'analyse indépendant — Géopolitique, économie, technologie, société."
 
 const categoryLabels: Record<string, string> = {

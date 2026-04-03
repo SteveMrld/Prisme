@@ -55,7 +55,7 @@ const signals = [
 ]
 
 export const metadata = {
-  title: 'Signal — Prisme',
+  title: 'Signal — Confins',
   description: 'L\'actualité qui compte. Les faits bruts, sans bruit.',
 }
 
@@ -99,7 +99,7 @@ export default function SignalPage() {
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

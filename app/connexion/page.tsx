@@ -148,7 +148,7 @@ export default function ConnexionPage() {
 
           <div className={styles.divider}><span>Pas encore abonné ?</span></div>
           <Link href="/abonnement" className={styles.subscribe}>
-            Découvrir Prisme →
+            Découvrir Confins →
           </Link>
         </div>
       </div>

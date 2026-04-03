@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from './retrospective.module.css'
 
 export const metadata = {
-  title: 'Rétrospective 2025 — Prisme',
+  title: 'Rétrospective 2025 — Confins',
   description: 'Les douze mois qui ont changé le monde. Retour analytique sur 2025.',
 }
 
@@ -168,7 +168,7 @@ export default function RetrospectivePage() {
           <Link href="/apropos">À propos</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

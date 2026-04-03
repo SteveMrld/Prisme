@@ -4,8 +4,8 @@ import Link from 'next/link'
 import AbonnementClient from './AbonnementClient'
 
 export const metadata = {
-  title: 'S\'abonner — Prisme',
-  description: 'Accédez à l\'intégralité des analyses Prisme.',
+  title: 'S\'abonner — Confins',
+  description: 'Accédez à l\'intégralité des analyses Confins.',
 }
 
 export default function AbonnementPage({

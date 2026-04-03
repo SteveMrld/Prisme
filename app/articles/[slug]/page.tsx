@@ -4,7 +4,7 @@ import articlesData from '../../../lib/articles.json'
 import fs from 'fs'
 import path from 'path'
 
-const BASE_URL = 'https://prisme-peach.vercel.app'
+const BASE_URL = 'https://confins.fr'
 
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url,
       title: cleanTitle,
       description: article.description,
-      siteName: 'Prisme',
+      siteName: 'Confins',
       locale: 'fr_FR',
       images: [
         {

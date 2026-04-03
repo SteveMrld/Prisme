@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import styles from './PrismeTVPage.module.css'
+import styles from './ConfinsTVPage.module.css'
 
 const episodes = [
   {
@@ -11,8 +11,8 @@ const episodes = [
     title: "Nous sommes l'astéroïde",
     category: 'Biodiversité',
     duration: '1 min 49',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/CONFINS6_v2_koofw8',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/CONFINS6_v2_koofw8.jpg',
     description: "La Terre a survécu à 5 extinctions de masse. Elle s'en est remise à chaque fois. La 6e est différente — c'est la première causée par une seule espèce. La nôtre.",
     date: 'Mars 2026',
   },
@@ -22,8 +22,8 @@ const episodes = [
     title: "8 hommes. 3,5 milliards. Le même patrimoine.",
     category: 'Économie',
     duration: '2 min 07',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/CONFINS5_v3_kauhvi',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/CONFINS5_v3_kauhvi.jpg',
     description: "1% de la population possède plus que les 99% restants. Les Pandora Papers, les crises, l'IA. Comment les inégalités s'accélèrent — et ce que ça change pour la démocratie.",
     date: 'Mars 2026',
   },
@@ -33,8 +33,8 @@ const episodes = [
     title: "L'arme qui a failli nous tuer",
     category: 'Géopolitique',
     duration: '2 min 25',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/CONFINS4_v3_otrvbg',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/CONFINS4_v3_otrvbg.jpg',
     description: "12 700 ogives. 32 accidents reconnus. Goldsboro, Damascus, Palomares. L'arme censée protéger le monde a failli le détruire. Plusieurs fois.",
     date: 'Mars 2026',
   },
@@ -44,8 +44,8 @@ const episodes = [
     title: "La biologie devient un logiciel",
     category: 'Science',
     duration: '2 min 07',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME3_v4_fixed_ugm8uc',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME3_v4_fixed_ugm8uc.jpg',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/CONFINS3_v4_fixed_ugm8uc',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/CONFINS3_v4_fixed_ugm8uc.jpg',
     description: "CRISPR, AlphaFold, Neuralink. En dix ans, l'intelligence artificielle a donné à l'humanité le pouvoir de lire et réécrire le vivant. La même technologie peut tout guérir — ou tout détruire.",
     date: 'Mars 2026',
   },
@@ -55,8 +55,8 @@ const episodes = [
     title: "L'Afrique : ce qu'on ne vous a pas appris",
     category: 'Géopolitique',
     duration: '2 min 02',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME2_v7-2_mm8oxv.jpg',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/CONFINS2_v7-2_mm8oxv',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/CONFINS2_v7-2_mm8oxv.jpg',
     description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris. Ce qu'on ne vous a jamais vraiment expliqué.",
     date: 'Mars 2026',
   },
@@ -66,14 +66,14 @@ const episodes = [
     title: "L'Inde, le siècle qui vient",
     category: 'Géopolitique',
     duration: '1 min 19',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/prisme_inde_v10-3_a57ifu.jpg',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/confins_inde_v10-3_a57ifu',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/confins_inde_v10-3_a57ifu.jpg',
     description: "1,44 milliard d'habitants. 7% de croissance par an. Une puissance nucléaire qui refuse de choisir son camp entre Washington et Moscou.",
     date: 'Mars 2026',
   },
 ]
 
-export default function PrismeTVPage() {
+export default function ConfinsTVPage() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
   const [active, setActive] = useState(0)
@@ -120,7 +120,7 @@ export default function PrismeTVPage() {
         <div className={styles.heroInner}>
           <div className={styles.heroTop}>
             <div className={styles.logoBadge}>
-              <span className={styles.logoText}>PRISME</span>
+              <span className={styles.logoText}>CONFINS</span>
               <span className={styles.logoTV}>TV</span>
             </div>
             <div className={styles.heroPulse}>
@@ -177,7 +177,7 @@ export default function PrismeTVPage() {
 
               {/* TV channel overlay — top right */}
               <div className={styles.channelBug}>
-                <span className={styles.channelName}>PRISME</span>
+                <span className={styles.channelName}>CONFINS</span>
                 <span className={styles.channelDot}>·</span>
                 <span className={styles.channelEp}>Ép. {ep.id}</span>
               </div>
@@ -241,12 +241,12 @@ export default function PrismeTVPage() {
         <div className={styles.manifestoInner}>
           <div className={styles.manifestoLabel}>Notre approche</div>
           <p className={styles.manifestoText}>
-            PRISME TV ne fait pas de l'information en continu. On prend le temps d'expliquer,
+            CONFINS TV ne fait pas de l'information en continu. On prend le temps d'expliquer,
             de contextualiser, de sourcer. Chaque épisode est une analyse visuelle — construite
             comme un article de fond, racontée comme un documentaire.
           </p>
           <Link href="/apropos" className={styles.manifestoLink}>
-            En savoir plus sur PRISME →
+            En savoir plus sur CONFINS →
           </Link>
         </div>
       </div>

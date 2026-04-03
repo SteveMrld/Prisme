@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from './diarra.module.css'
 
 export const metadata = {
-  title: 'Cheick Modibo Diarra — Le Grand Entretien · Prisme',
+  title: 'Cheick Modibo Diarra — Le Grand Entretien · Confins',
   description: 'Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali. Un entretien à paraître.',
 }
 
@@ -53,7 +53,7 @@ export default function DiarraPage() {
             <p className={styles.bio}>
               C'est cette trajectoire singulière — la science, le capital technologique
               mondial, le pouvoir politique africain — qui en fait l'interlocuteur
-              idéal pour l'entretien inaugural de Prisme. Un homme qui a navigué entre
+              idéal pour l'entretien inaugural de Confins. Un homme qui a navigué entre
               les étoiles et les palais de gouvernement, et qui peut parler des deux
               sans naïveté.
             </p>
@@ -93,7 +93,7 @@ export default function DiarraPage() {
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

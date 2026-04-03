@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const BREVO_API_KEY = process.env.BREVO_API_KEY || ''
-const LIST_ID = 6 // ID de la liste "Abonnés Prisme" — à ajuster si différent
+const LIST_ID = 6 // ID de la liste "Abonnés Confins" — à ajuster si différent
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json()

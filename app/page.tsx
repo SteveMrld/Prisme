@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
-import PrismeTV from '../components/PrismeTV'
+import ConfinsTV from '../components/ConfinsTV'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -178,12 +178,12 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
-      {/* ── CHAÎNE PRISME ── */}
+      {/* ── CHAÎNE CONFINS ── */}
       <FadeSection>
-        <PrismeTV />
+        <ConfinsTV />
       </FadeSection>
 
-      {/* ── STATS PRISME ── */}
+      {/* ── STATS CONFINS ── */}
       <FadeSection>
       <section style={{
         borderTop: '1px solid var(--bord)',
@@ -276,7 +276,7 @@ export default function HomePage() {
       <section className={styles.nlSection}>
         <div className={styles.nlInner}>
           <div className={styles.nlText}>
-            <div className={styles.nlLabel}>Prisme · Newsletter</div>
+            <div className={styles.nlLabel}>Confins · Newsletter</div>
             <div className={styles.nlTitle}>L'analyse qui manque<br />à votre semaine</div>
             <p className={styles.nlDesc}>Grands formats, Signal, Portraits — sans algorithme, sans bruit. Chaque semaine.</p>
           </div>
@@ -314,7 +314,7 @@ export default function HomePage() {
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

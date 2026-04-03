@@ -104,7 +104,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { category: string } }) {
   const config = CATEGORIES[params.category]
   if (!config) return {}
-  const url = `https://prisme-peach.vercel.app/${params.category}`
+  const url = `https://confins.fr/${params.category}`
   return {
     title: config.labelLong,
     description: config.description,
@@ -112,15 +112,15 @@ export function generateMetadata({ params }: { params: { category: string } }) {
     openGraph: {
       type: 'website',
       url,
-      title: `${config.labelLong} — Prisme`,
+      title: `${config.labelLong} — Confins`,
       description: config.description,
-      siteName: 'Prisme',
+      siteName: 'Confins',
       locale: 'fr_FR',
       images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: config.labelLong }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${config.labelLong} — Prisme`,
+      title: `${config.labelLong} — Confins`,
       description: config.description,
       images: ['/og-default.jpg'],
     },
@@ -232,7 +232,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

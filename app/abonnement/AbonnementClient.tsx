@@ -61,7 +61,7 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
           <span className={styles.eyebrow}>Abonnement</span>
           <h1 className={styles.title}>L'analyse <em>sans compromis</em></h1>
           <p className={styles.subtitle}>
-            Prisme ne dépend d'aucun actionnaire industriel, d'aucune régie publicitaire.
+            Confins ne dépend d'aucun actionnaire industriel, d'aucune régie publicitaire.
             Seulement de lecteurs qui trouvent que l'analyse rigoureuse vaut quelque chose.
           </p>
         </div>
@@ -120,9 +120,9 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
 
       <div className={styles.reassurance}>
         {[
-          { title: 'Indépendance totale', text: 'Aucun annonceur. Aucun actionnaire. Votre abonnement est la seule source de revenus de Prisme.' },
+          { title: 'Indépendance totale', text: 'Aucun annonceur. Aucun actionnaire. Votre abonnement est la seule source de revenus de Confins.' },
           { title: 'Résiliation libre', text: 'Résiliable à tout moment depuis votre espace abonné, sans frais ni préavis.' },
-          { title: 'Paiement sécurisé', text: 'Paiements traités par Stripe. Prisme ne stocke aucune donnée bancaire.' },
+          { title: 'Paiement sécurisé', text: 'Paiements traités par Stripe. Confins ne stocke aucune donnée bancaire.' },
         ].map(r => (
           <div key={r.title} className={styles.reassuranceItem}>
             <div className={styles.reassuranceTitle}>{r.title}</div>
@@ -137,7 +137,7 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
           <Link href="/apropos">À propos</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

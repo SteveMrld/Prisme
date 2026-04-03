@@ -3,8 +3,8 @@ import Link from 'next/link'
 import styles from './contributeurs.module.css'
 
 export const metadata = {
-  title: 'Contributeurs — Prisme',
-  description: 'Les auteurs qui écrivent pour Prisme.',
+  title: 'Contributeurs — Confins',
+  description: 'Les auteurs qui écrivent pour Confins.',
 }
 
 const contributeurs = [
@@ -111,7 +111,7 @@ export default function ContributeursPage() {
         <span className={styles.eyebrow}>Contributeurs</span>
         <h1 className={styles.title}>Celles et ceux <em>qui écrivent</em></h1>
         <p className={styles.desc}>
-          Prisme est construit sur des contributions singulières. Chaque auteur apporte un regard,
+          Confins est construit sur des contributions singulières. Chaque auteur apporte un regard,
           une méthode, un angle. Ce qui les unit : la conviction que l'analyse rigoureuse est utile.
         </p>
       </div>
@@ -144,14 +144,14 @@ export default function ContributeursPage() {
         ))}
 
         <div className={styles.openCall}>
-          <div className={styles.openCallLabel}>Rejoindre Prisme</div>
+          <div className={styles.openCallLabel}>Rejoindre Confins</div>
           <h3 className={styles.openCallTitle}>Vous souhaitez contribuer ?</h3>
           <p className={styles.openCallDesc}>
-            Prisme accueille des contributions ponctuelles ou régulières d'analystes, chercheurs,
+            Confins accueille des contributions ponctuelles ou régulières d'analystes, chercheurs,
             praticiens et journalistes indépendants. Le critère central n'est pas le statut — c'est
             la rigueur et la singularité du point de vue.
           </p>
-          <a href="mailto:contact@prisme.media" className={styles.openCallCta}>
+          <a href="mailto:contact@confins.media" className={styles.openCallCta}>
             Nous écrire →
           </a>
         </div>
@@ -164,7 +164,7 @@ export default function ContributeursPage() {
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )

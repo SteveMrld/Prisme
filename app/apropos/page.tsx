@@ -3,8 +3,8 @@ import Link from 'next/link'
 import styles from './apropos.module.css'
 
 export const metadata = {
-  title: 'À propos — Prisme',
-  description: 'Ce que Prisme est, ce qu\'il n\'est pas, et pourquoi.',
+  title: 'À propos — Confins',
+  description: 'Ce que Confins est, ce qu\'il n\'est pas, et pourquoi.',
 }
 
 export default function AProposPage() {
@@ -16,7 +16,7 @@ export default function AProposPage() {
           <span className={styles.eyebrow}>À propos</span>
           <h1 className={styles.title}>Voir <em>autrement</em></h1>
           <p className={styles.subtitle}>
-            Prisme est un média d'analyse indépendant. Pas un agrégateur. Pas un éditorialiste de plus.
+            Confins est un média d'analyse indépendant. Pas un agrégateur. Pas un éditorialiste de plus.
             Un outil pour comprendre ce qui se passe vraiment.
           </p>
         </div>
@@ -27,7 +27,7 @@ export default function AProposPage() {
           <h2 className={styles.sectionTitle}>La conviction fondatrice</h2>
           <p>
             L'information abonde. La compréhension manque. Chaque jour, des milliers d'articles décrivent
-            des événements sans jamais expliquer les structures qui les produisent. Prisme part du principe
+            des événements sans jamais expliquer les structures qui les produisent. Confins part du principe
             inverse : les événements sont des symptômes. Ce qui mérite analyse, c'est ce qui les rend possibles.
           </p>
           <p>
@@ -37,7 +37,7 @@ export default function AProposPage() {
             d'une idéologie qui a substitué la foi en la technologie à la rigueur analytique.
           </p>
           <p>
-            Prisme écrit sur les structures. Sur ce qui dure. Sur ce qu'il faut avoir compris pour que
+            Confins écrit sur les structures. Sur ce qui dure. Sur ce qu'il faut avoir compris pour que
             les prochains événements ne surprennent pas.
           </p>
         </section>
@@ -62,7 +62,7 @@ export default function AProposPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>L'indépendance, concrètement</h2>
           <p>
-            Prisme n'a pas d'actionnaire industriel. Pas de régie publicitaire. Pas de dépendance à une
+            Confins n'a pas d'actionnaire industriel. Pas de régie publicitaire. Pas de dépendance à une
             subvention publique qui conditionnerait une ligne éditoriale. Le modèle est simple : des lecteurs
             qui paient pour de l'analyse qui leur est utile.
           </p>
@@ -83,10 +83,10 @@ export default function AProposPage() {
                 sur les structures économiques et sociales.
               </p>
               <p>
-                Il a fondé Prisme avec une conviction simple : le niveau moyen du débat public est inférieur
+                Il a fondé Confins avec une conviction simple : le niveau moyen du débat public est inférieur
                 à ce dont nos sociétés ont besoin pour prendre de bonnes décisions. La presse généraliste
                 manque de profondeur. La littérature académique manque d'accessibilité. Il y a un espace
-                entre les deux. C'est cet espace que Prisme cherche à occuper.
+                entre les deux. C'est cet espace que Confins cherche à occuper.
               </p>
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function AProposPage() {
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
       </footer>
     </>
   )
