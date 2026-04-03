@@ -11,7 +11,7 @@ const episodes = [
     title: "Nous sommes l'astéroïde",
     category: 'Biodiversité',
     duration: '1 min 49',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
+    file: 'https://player.cloudinary.com/embed/?cloud_name=dnbyi8fw6&public_id=PRISME6_v2_koofw8&controls=true&autoplay_on_load=false',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
     description: "La Terre a survécu à 5 extinctions de masse. Elle s'en est remise à chaque fois. La 6e est différente — c'est la première causée par une seule espèce. La nôtre.",
     date: 'Mars 2026',
@@ -22,7 +22,7 @@ const episodes = [
     title: "8 hommes. 3,5 milliards. Le même patrimoine.",
     category: 'Économie',
     duration: '2 min 07',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
+    file: 'https://player.cloudinary.com/embed/?cloud_name=dnbyi8fw6&public_id=PRISME5_v3_kauhvi&controls=true&autoplay_on_load=false',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
     description: "1% de la population possède plus que les 99% restants. Les Pandora Papers, les crises, l'IA. Comment les inégalités s'accélèrent — et ce que ça change pour la démocratie.",
     date: 'Mars 2026',
@@ -33,7 +33,7 @@ const episodes = [
     title: "L'arme qui a failli nous tuer",
     category: 'Géopolitique',
     duration: '2 min 25',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
+    file: 'https://player.cloudinary.com/embed/?cloud_name=dnbyi8fw6&public_id=PRISME4_v3_otrvbg&controls=true&autoplay_on_load=false',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
     description: "12 700 ogives. 32 accidents reconnus. Goldsboro, Damascus, Palomares. L'arme censée protéger le monde a failli le détruire. Plusieurs fois.",
     date: 'Mars 2026',
@@ -44,7 +44,7 @@ const episodes = [
     title: "La biologie devient un logiciel",
     category: 'Science',
     duration: '2 min 07',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME3_v4_fixed_ugm8uc',
+    file: 'https://player.cloudinary.com/embed/?cloud_name=dnbyi8fw6&public_id=PRISME3_v4_fixed_ugm8uc&controls=true&autoplay_on_load=false',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME3_v4_fixed_ugm8uc.jpg',
     description: "CRISPR, AlphaFold, Neuralink. En dix ans, l'intelligence artificielle a donné à l'humanité le pouvoir de lire et réécrire le vivant. La même technologie peut tout guérir — ou tout détruire.",
     date: 'Mars 2026',
@@ -55,7 +55,7 @@ const episodes = [
     title: "L'Afrique : ce qu'on ne vous a pas appris",
     category: 'Géopolitique',
     duration: '2 min 02',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
+    file: 'https://player.cloudinary.com/embed/?cloud_name=dnbyi8fw6&public_id=PRISME2_v7-2_mm8oxv&controls=true&autoplay_on_load=false',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME2_v7-2_mm8oxv.jpg',
     description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris. Ce qu'on ne vous a jamais vraiment expliqué.",
     date: 'Mars 2026',
@@ -66,7 +66,7 @@ const episodes = [
     title: "L'Inde, le siècle qui vient",
     category: 'Géopolitique',
     duration: '1 min 19',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/confins_inde_v10-3_a57ifu',
+    file: 'https://player.cloudinary.com/embed/?cloud_name=dnbyi8fw6&public_id=prisme_inde_v10-3_a57ifu&controls=true&autoplay_on_load=false',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/confins_inde_v10-3_a57ifu.jpg',
     description: "1,44 milliard d'habitants. 7% de croissance par an. Une puissance nucléaire qui refuse de choisir son camp entre Washington et Moscou.",
     date: 'Mars 2026',
@@ -156,30 +156,7 @@ export default function ConfinsTVPage() {
                 preload="none"
               />
 
-              {/* ── CONFINS overlay permanent — masque tout logo incrusté ── */}
-              {/* Coin supérieur gauche */}
-              <div style={{
-                position:'absolute', top:'12px', left:'14px', zIndex:20,
-                fontFamily:"'DM Mono',monospace", fontSize:'9px', fontWeight:700,
-                letterSpacing:'3px', textTransform:'uppercase',
-                color:'rgba(196,162,101,0.9)', pointerEvents:'none',
-                textShadow:'0 1px 4px rgba(0,0,0,0.8)'
-              }}>CONFINS<span style={{opacity:0.5}}>.FR</span></div>
-              {/* Coin inférieur droit — packshot */}
-              <div style={{
-                position:'absolute', bottom:'12px', right:'14px', zIndex:20,
-                fontFamily:"'DM Mono',monospace", fontSize:'9px', fontWeight:700,
-                letterSpacing:'3px', textTransform:'uppercase',
-                color:'rgba(196,162,101,0.9)', pointerEvents:'none',
-                textShadow:'0 1px 4px rgba(0,0,0,0.8)'
-              }}>CONFINS<span style={{opacity:0.5}}>.FR</span></div>
-              {/* Masque coin supérieur droit (ancien logo Prisme) */}
-              <div style={{
-                position:'absolute', top:0, right:0, zIndex:19,
-                width:'160px', height:'50px',
-                background:'linear-gradient(to bottom left, rgba(0,0,0,0.85) 0%, transparent 100%)',
-                pointerEvents:'none'
-              }} />
+
 
               {/* Thumbnail visible avant lecture */}
               {!playing && (
