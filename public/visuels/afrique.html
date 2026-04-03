@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Afrique — La fin d'un monde</title>
+<title>Afrique — La fin d'un monde — Confins</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -49,6 +49,8 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
 .stat{background:var(--bg);padding:16px 18px}
 .stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:300;color:var(--or);letter-spacing:-1px;line-height:1;margin-bottom:5px}
 .stat-lbl{font-size:11px;color:rgba(236,231,221,0.35);line-height:1.5}
+#confins-wm{position:fixed;bottom:20px;left:20px;z-index:50;pointer-events:none;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.45)}
+#confins-wm span{color:rgba(196,162,101,0.25)}
 </style>
 <style>
 @media (max-width: 768px) {
@@ -212,5 +214,6 @@ function tog(el){
   el.classList.add('open');
 }
 </script>
+<div id="confins-wm">CONFINS<span>.FR</span></div>
 </body>
 </html>

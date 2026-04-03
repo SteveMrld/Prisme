@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La France face à la loi des empires</title>
+<title>La France face à la loi des empires — Confins</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -42,6 +42,8 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
 .analyse{padding:14px 18px;border-left:3px solid var(--bord);background:rgba(0,0,0,0.02);margin-bottom:1px}
 .a-title{font-size:13px;font-weight:600;margin-bottom:4px}
 .a-desc{font-size:12px;color:#6A6A6A;line-height:1.55;font-style:italic}
+#confins-wm{position:fixed;bottom:20px;left:20px;z-index:50;pointer-events:none;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.45)}
+#confins-wm span{color:rgba(196,162,101,0.25)}
 </style>
 <style>
 @media (max-width: 768px) {
@@ -143,5 +145,6 @@ function showTab(id,el){
   el.classList.add('active');
 }
 </script>
+<div id="confins-wm">CONFINS<span>.FR</span></div>
 </body>
 </html>
