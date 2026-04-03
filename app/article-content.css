@@ -1577,3 +1577,82 @@ sup {
   color: var(--or);
   border-color: var(--encre);
 }
+
+/* ═══════════════════════════════════════════════
+   MOBILE FIXES — grilles multi-colonnes
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Stats row 3 colonnes → 1 colonne */
+  .stats-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats bloc 2 colonnes → 1 colonne */
+  .stats-bloc {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Verso grid 2 colonnes → 1 colonne */
+  .verso-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Axes barres → empilés */
+  .axe {
+    flex-wrap: wrap !important;
+  }
+  .axe-label {
+    min-width: unset !important;
+    width: 100% !important;
+  }
+
+  /* Empire → padding réduit */
+  .empire {
+    padding: 16px 18px !important;
+  }
+
+  /* Art-chart → pleine largeur */
+  .art-chart-wrap {
+    overflow-x: auto !important;
+  }
+
+  /* Visuel inline → pleine largeur */
+  .visuel-inline {
+    margin-left: -20px !important;
+    margin-right: -20px !important;
+  }
+
+  /* Prospectif → padding réduit */
+  .prospectif {
+    padding: 24px 20px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Pull-quote centré */
+  .pull-quote {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Auteur bloc */
+  .auteur {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Newsletter form → colonne */
+  .newsletterInner {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  .newsletterForm {
+    width: 100% !important;
+  }
+  .newsletterInput {
+    flex: 1 !important;
+    width: auto !important;
+  }
+}
