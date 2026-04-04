@@ -1,5 +1,16 @@
 [
   {
+    "slug": "moreno",
+    "title": "Et si la crise démocratique commençait au travail ?",
+    "description": "L'isolement professionnel précède le retrait démocratique. Une étude d'HEC Paris révèle ce lien invisible — et ce que les dirigeants ont le devoir de faire.",
+    "category": "soc",
+    "date": "2026-04-04",
+    "readTime": 5,
+    "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80",
+    "author": "Élisabeth Moreno",
+    "authorRole": "Ancienne ministre · Dirigeante d'entreprise"
+  },
+  {
     "slug": "afrique",
     "title": "La France en Afrique : la fin d'un monde",
     "description": "Coups d'État au Sahel, retrait militaire, perte d'influence face à la Russie et à la Chine. La France n'a pas perdu l'Afrique par accident. Elle l'a perdue par aveuglement.",
