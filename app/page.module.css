@@ -615,13 +615,12 @@
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
   .heroAside { display: none; }
+  .heroImgWrap { height: 220px; }
+  .gfSection { padding: 0 16px; }
   .gfGrid { grid-template-columns: 1fr; }
-  .heroImgWrap { height: 200px; }
-  .heroAside { display: none; }
-  .gfSection { padding: 0 24px; }
-  .gfGrid { grid-template-columns: 1fr; }
-  .gfImgWrap { height: 120px; }
+  .gfImgWrap { height: 140px; }
   .footer { padding: 40px 24px; }
+  .atlanticInner { grid-template-columns: 1fr; }
 }
 
 /* ── DERNIÈRES ANALYSES ── */
@@ -1202,8 +1201,17 @@
 }
 
 @media (max-width: 768px) {
-  .atlanticInner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+  /* RESET GLOBAL MOBILE */
+  .atlanticInner { grid-template-columns: 1fr; gap: 32px; }
+  .latestGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .portraitsGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .atlanticSection { padding: 32px 16px; }
+  .latestSection { padding: 32px 16px; }
+  .ge { padding: 28px 16px; }
+  .gfSection { padding: 0 16px; }
+  .hero { grid-template-columns: 1fr; }
+  .heroAside { display: none; }
+  .heroMain { border-right: none; width: 100%; }
+  .nlSection { padding: 40px 16px; }
+  .footer { padding: 32px 16px; }
 }
