@@ -7,10 +7,10 @@
 .article-body p,
 .articleBody p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 21px;
-  line-height: 1.75;
+  font-size: 20px;
+  line-height: 1.65;
   color: #222;
-  margin-bottom: 18px;
+  margin-bottom: 1.4em;
 }
 
 .article-body h2,
@@ -20,9 +20,9 @@
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   color: var(--encre);
-  margin-top: 52px;
-  margin-bottom: 24px;
-  line-height: 1.2;
+  margin-top: 2.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.15;
   letter-spacing: -0.5px;
 }
 

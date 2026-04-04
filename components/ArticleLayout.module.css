@@ -122,10 +122,10 @@
 
 .articleBody p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 21px;
-  line-height: 1.85;
+  font-size: 20px;
+  line-height: 1.65;
   color: #222;
-  margin-bottom: 28px;
+  margin-bottom: 1.4em;
 }
 
 .articleBody h2 {
@@ -134,8 +134,8 @@
   font-weight: 400;
   font-style: italic;
   color: var(--encre);
-  margin-bottom: 28px;
-  margin-top: 56px;
+  margin-bottom: 0.5em;
+  margin-top: 2.2em;
 }
 
 .footer {
