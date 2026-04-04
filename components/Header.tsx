@@ -18,6 +18,7 @@ const navItems = [
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Visuels', href: '/visuels', className: 'concept' },
   { label: 'CONFINS TV', href: '/prismetv', className: 'tv' },
+  { label: 'SIGNAL MAP', href: '/signal-map', className: 'tv' },
   { label: 'Rétrospective 2025', href: '/retrospective', className: 'retro' },
 ]
 

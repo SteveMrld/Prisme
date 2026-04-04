@@ -1217,3 +1217,60 @@
   .nlSection { padding: 40px 16px; }
   .footer { padding: 32px 16px; }
 }
+
+/* ── SIGNAL MAP TEASER ── */
+.signalMapTeaser {
+  background: #07090F;
+  border-top: 1px solid rgba(196,162,101,0.15);
+  border-bottom: 1px solid rgba(196,162,101,0.15);
+}
+
+.signalMapLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+}
+
+.signalMapLink:hover { background: rgba(196,162,101,0.04); }
+
+.signalMapTag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C4A265;
+  margin-bottom: 6px;
+}
+
+.signalMapTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #ECE7DD;
+  margin-bottom: 4px;
+}
+
+.signalMapTitle em { color: #C4A265; font-style: italic; }
+
+.signalMapDesc {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: rgba(196,162,101,0.45);
+  text-transform: uppercase;
+}
+
+.signalMapCta {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #C4A265;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .signalMapLink { padding: 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
+}

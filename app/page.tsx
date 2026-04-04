@@ -97,6 +97,20 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
+      {/* ── SIGNAL MAP TEASER ── */}
+      <FadeSection>
+      <section className={styles.signalMapTeaser}>
+        <a href="/signal-map" className={styles.signalMapLink}>
+          <div className={styles.signalMapLeft}>
+            <div className={styles.signalMapTag}>Confins Signal</div>
+            <div className={styles.signalMapTitle}>La carte des tensions <em>en temps réel</em></div>
+            <div className={styles.signalMapDesc}>Cycle jour/nuit · Routes maritimes · 9 zones suivies</div>
+          </div>
+          <div className={styles.signalMapCta}>Voir la carte →</div>
+        </a>
+      </section>
+      </FadeSection>
+
       {/* HERO */}
       <FadeSection delay={0.1}>
       <section className={styles.hero}>
