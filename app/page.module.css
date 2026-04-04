@@ -613,6 +613,8 @@
   .ge { padding: 36px 24px; gap: 20px; }
   .geDecor { max-width: 100%; }
   .hero { grid-template-columns: 1fr; }
+  .heroMain { border-right: none; width: 100%; }
+  .gfGrid { grid-template-columns: 1fr; }
   .heroImgWrap { height: 200px; }
   .heroAside { display: none; }
   .gfSection { padding: 0 24px; }
