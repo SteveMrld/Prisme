@@ -1204,6 +1204,8 @@
   /* RESET GLOBAL MOBILE */
   .atlanticInner { grid-template-columns: 1fr; gap: 32px; }
   .latestGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .latestGrid > a:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .latestGrid > a:last-child:nth-child(odd) .latestImgWrap { height: 160px; }
   .portraitsGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .atlanticSection { padding: 32px 16px; }
   .latestSection { padding: 32px 16px; }
