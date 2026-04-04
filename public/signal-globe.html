@@ -637,5 +637,30 @@ animate();
 // Hide hint after 4s
 setTimeout(()=>document.getElementById('hint').style.opacity='0',4000);
 </script>
+
+<!-- INTRO OVERLAY -->
+<div id="intro" style="
+  position:fixed;top:52px;left:0;right:300px;z-index:200;
+  background:rgba(7,9,15,0.96);border-bottom:1px solid rgba(196,162,101,0.15);
+  padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+">
+  <div>
+    <div style="font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C4A265;margin-bottom:10px">Confins Signal · Mode d'emploi</div>
+    <div style="font-family:'Playfair Display',serif;font-size:13px;color:rgba(236,231,221,0.8);line-height:1.7;max-width:680px">
+      Cette carte suit en temps réel les zones de tension géopolitique identifiées par la rédaction de Confins. 
+      Le cycle <span style="color:#C4A265">jour/nuit</span> est calculé sur l'heure actuelle. 
+      Les <span style="color:#FC8181">routes maritimes en rouge</span> indiquent les flux bloqués par le conflit en cours — notamment le détroit d'Ormuz. 
+      Cliquez sur un point lumineux ou une zone dans la liste pour accéder à l'analyse complète.
+    </div>
+  </div>
+  <div onclick="document.getElementById('intro').style.display='none'" style="
+    font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5);
+    cursor:pointer;white-space:nowrap;padding:8px 12px;border:1px solid rgba(196,162,101,0.2);
+    flex-shrink:0;transition:color 0.2s;
+  " onmouseover="this.style.color='#C4A265'" onmouseout="this.style.color='rgba(196,162,101,0.5)'">
+    Fermer ✕
+  </div>
+</div>
+
 </body>
 </html>

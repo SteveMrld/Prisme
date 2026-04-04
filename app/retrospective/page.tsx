@@ -1,4 +1,5 @@
 import Header from '../../components/Header'
+import { AnimatedItem, AnimatedStat, HeroAnimated } from './RetroClient'
 import Link from 'next/link'
 import styles from './retrospective.module.css'
 
@@ -116,7 +117,7 @@ export default function RetrospectivePage() {
     <>
       <Header />
 
-      <div className={styles.hero}>
+      <HeroAnimated><div className={styles.hero}>
         <div className={styles.heroInner}>
           <span className={styles.eyebrow}>Rétrospective</span>
           <h1 className={styles.title}>2025 — L'année <em>des ruptures</em></h1>
@@ -126,11 +127,11 @@ export default function RetrospectivePage() {
           </p>
         </div>
         <div className={styles.heroYear}>2025</div>
-      </div>
+      </div></HeroAnimated>
 
       <div className={styles.timeline}>
         {mois.map((item, i) => (
-          <div key={item.slug} className={styles.item}>
+          <AnimatedItem key={item.slug} index={i}><div className={styles.item}>
             <div className={styles.itemMeta}>
               <div className={styles.itemNum}>
                 {String(i + 1).padStart(2, '0')}
@@ -147,7 +148,7 @@ export default function RetrospectivePage() {
               <p className={styles.itemDesc}>{item.desc}</p>
 
               <div className={styles.itemStat}>
-                <span className={styles.statNum}>{item.stat.num}</span>
+                <span className={styles.statNum}><AnimatedStat num={item.stat.num} /></span>
                 {item.stat.unit && <span className={styles.statUnit}>{item.stat.unit}</span>}
                 <span className={styles.statLabel}>{item.stat.label}</span>
               </div>
@@ -158,7 +159,7 @@ export default function RetrospectivePage() {
                 Lire l'analyse →
               </Link>
             </div>
-          </div>
+          </div></AnimatedItem>
         ))}
       </div>
 
