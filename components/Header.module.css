@@ -172,9 +172,10 @@
 }
 
 @media (max-width: 860px) {
-  .headerTop { padding: 0 20px; }
+  .headerTop { padding: 0 16px; }
   .date { display: none; }
   .actions { min-width: auto; }
+  .actionsPlaceholder { min-width: auto; }
 }
 
 .actionsPlaceholder {
