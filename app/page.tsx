@@ -235,36 +235,55 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
-      {/* ── DERNIÈRES PUBLICATIONS ── */}
+      {/* ── DERNIÈRES PUBLICATIONS + POPULAIRES — layout Atlantic ── */}
       <FadeSection>
-      <section className={styles.latestSection}>
-        <div className={styles.latestHead}>
-          <div className={styles.latestLabel}>Dernières publications</div>
-          <Link href="/geo" className={styles.latestSeeAll}>Tout voir →</Link>
-        </div>
-        <div className={styles.latestGrid}>
-          {(articlesData as any[])
-            .filter((a: any) => !a.featured)
-            .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            .slice(0, 6)
-            .map((article: any) => (
-            <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.latestCard}>
-              {article.image && (
-                <div className={styles.latestImgWrap}>
-                  <img src={article.image} alt={article.title} className={styles.latestImg} />
+      <section className={styles.atlanticSection}>
+        <div className={styles.atlanticInner}>
+
+          {/* COLONNE GAUCHE — Dernières */}
+          <div className={styles.atlanticLeft}>
+            <div className={styles.atlanticHead}>
+              <span className={styles.atlanticLabel}>Dernières publications</span>
+              <Link href="/geo" className={styles.atlanticSeeAll}>Tout voir →</Link>
+            </div>
+            {(articlesData as any[])
+              .filter((a: any) => !a.featured)
+              .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+              .slice(0, 6)
+              .map((article: any) => (
+              <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.atlanticItem}>
+                {article.image && (
+                  <img src={article.image} alt={article.title} className={styles.atlanticThumb} />
+                )}
+                <div className={styles.atlanticItemBody}>
+                  <span className={styles.atlanticItemCat} style={{ color: categoryColors[article.category] }}>
+                    {categoryLabels[article.category] || article.category}
+                  </span>
+                  <div className={styles.atlanticItemTitle}><span className={styles.pBadge}>C</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+                  {article.author && <div className={styles.atlanticItemAuthor}>{article.author}</div>}
                 </div>
-              )}
-              <div className={styles.latestBody}>
-                <span className={styles.latestTag} style={{ color: categoryColors[article.category] }}>
-                  {categoryLabels[article.category] || article.category}
-                </span>
-                <div className={styles.latestTitle}><span className={styles.pBadge}>C</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
-                {article.author && <div className={styles.latestAuthor}>Par {article.author}</div>}
-                <p className={styles.latestDesc}>{article.description}</p>
-                <span className={styles.latestTime}>{article.readTime} min</span>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
+
+          {/* COLONNE DROITE — Populaires */}
+          <div className={styles.atlanticRight}>
+            <div className={styles.atlanticHead}>
+              <span className={styles.atlanticLabel}>Populaires</span>
+            </div>
+            {(articlesData as any[])
+              .slice(0, 5)
+              .map((article: any, i: number) => (
+              <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.popularItem}>
+                <span className={styles.popularNum}>{i + 1}</span>
+                <div className={styles.popularBody}>
+                  <div className={styles.popularTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                  {article.author && <div className={styles.popularAuthor}>{article.author}</div>}
+                </div>
+              </Link>
+            ))}
+          </div>
+
         </div>
       </section>
       </FadeSection>
