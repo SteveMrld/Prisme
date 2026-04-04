@@ -148,7 +148,7 @@ export default function RetrospectivePage() {
               <p className={styles.itemDesc}>{item.desc}</p>
 
               <div className={styles.itemStat}>
-                <span className={styles.statNum}><AnimatedStat num={item.stat.num} /></span>
+                <span className={styles.statNum}><AnimatedStat num={item.stat.num} label={item.stat.label} /></span>
                 {item.stat.unit && <span className={styles.statUnit}>{item.stat.unit}</span>}
                 <span className={styles.statLabel}>{item.stat.label}</span>
               </div>
