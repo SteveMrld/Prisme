@@ -318,3 +318,11 @@
   .grid { grid-template-columns: 1fr; }
   .footer { padding: 40px 24px; }
 }
+
+.cardAuthor {
+  font-size: 11px;
+  color: var(--gris-l);
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+  font-style: italic;
+}

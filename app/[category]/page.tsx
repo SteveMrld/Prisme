@@ -212,6 +212,9 @@ export default function CategoryPage({ params }: { params: { category: string } 
                       dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }}
                     />
                     <p className={styles.cardDeck}>{article.description}</p>
+                    {(article as any).author && (
+                      <div className={styles.cardAuthor}>Par {(article as any).author}</div>
+                    )}
                     <span className={styles.cardCta} style={{ color: config.color }}>
                       Lire →
                     </span>
