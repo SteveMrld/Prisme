@@ -68,7 +68,19 @@ body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:
 <body>
 
 <header class="header">
-  <div class="logo">Con<em>fins</em><span class="logo-signal">Signal</span></div>
+  <div style="display:flex;align-items:center;gap:20px">
+    <a href="/" style="
+      display:flex;align-items:center;gap:7px;
+      font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+      color:rgba(196,162,101,0.5);text-decoration:none;
+      border:1px solid rgba(196,162,101,0.15);padding:6px 12px;
+      transition:color 0.2s,border-color 0.2s;
+    " onmouseover="this.style.color='#C4A265';this.style.borderColor='rgba(196,162,101,0.4)'"
+       onmouseout="this.style.color='rgba(196,162,101,0.5)';this.style.borderColor='rgba(196,162,101,0.15)'">
+      ← Accueil
+    </a>
+    <div class="logo">Con<em>fins</em><span class="logo-signal">Signal</span></div>
+  </div>
   <div class="header-r">
     <div class="live"><div class="live-dot"></div>En direct</div>
     <div class="hdate">4 avril 2026</div>
