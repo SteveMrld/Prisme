@@ -109,7 +109,7 @@
 .articleBody {
   max-width: 680px;
   margin: 0 auto;
-  padding: 56px 24px 80px;
+  padding: 56px 24px 32px;
 }
 
 /* Pour les articles avec header interne — on laisse le HTML gérer ses propres marges */
@@ -150,7 +150,7 @@
 
 @media (max-width: 860px) {
   .articleHeader { padding: 40px 20px 32px; border-left: none; border-top: 3px solid; }
-  .articleBody { padding: 40px 20px 60px; }
+  .articleBody { padding: 40px 20px 24px; }
 }
 
 /* ── Responsive complet ── */
@@ -165,7 +165,7 @@
   }
   .title { font-size: clamp(24px, 6vw, 36px); }
   .description { font-size: 19px; }
-  .articleBody { padding: 36px 20px 60px; }
+  .articleBody { padding: 36px 20px 24px; }
   .articleBodyFull { padding: 0 20px; }
 }
 

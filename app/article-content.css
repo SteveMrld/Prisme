@@ -1338,8 +1338,8 @@ sup {
 
 /* ── AUTEUR ── */
 .auteur {
-  margin: 48px 0 0;
-  padding: 20px 24px;
+  margin: 24px 0 0;
+  padding: 16px 20px;
   border-left: 3px solid var(--or);
   font-family: 'Cormorant Garamond', serif;
   font-size: 16px;
