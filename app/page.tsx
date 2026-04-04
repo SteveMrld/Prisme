@@ -206,22 +206,14 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
-      {/* ── DERNIÈRES ANALYSES ── */}
+      {/* ── À LA UNE ── */}
       <FadeSection>
       <section className={styles.latestSection}>
         <div className={styles.latestHead}>
-          <div className={styles.latestLabel}>Dernières analyses</div>
-          <Link href="/geo" className={styles.latestSeeAll}>Tout voir →</Link>
+          <div className={styles.latestLabel}>À la une</div>
         </div>
         <div className={styles.latestGrid}>
-          {[
-            getArticle('semico'),
-            getArticle('blackrock'),
-            getArticle('afrique'),
-            getArticle('reseaux'),
-            getArticle('technosolutionnisme'),
-            getArticle('overton'),
-          ].map((article) => (
+          {(articlesData as any[]).filter((a: any) => a.featured).map((article: any) => (
             <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.latestCard}>
               {article.image && (
                 <div className={styles.latestImgWrap}>
@@ -230,9 +222,44 @@ export default function HomePage() {
               )}
               <div className={styles.latestBody}>
                 <span className={styles.latestTag} style={{ color: categoryColors[article.category] }}>
-                  {article.categoryLabel}
+                  {categoryLabels[article.category] || article.category}
                 </span>
-                <div className={styles.latestTitle}><span className={styles.pBadge}>C</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+                <div className={styles.latestTitle}><span className={styles.pBadge}>C</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+                {article.author && <div className={styles.latestAuthor}>Par {article.author}</div>}
+                <p className={styles.latestDesc}>{article.description}</p>
+                <span className={styles.latestTime}>{article.readTime} min</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      </FadeSection>
+
+      {/* ── DERNIÈRES PUBLICATIONS ── */}
+      <FadeSection>
+      <section className={styles.latestSection}>
+        <div className={styles.latestHead}>
+          <div className={styles.latestLabel}>Dernières publications</div>
+          <Link href="/geo" className={styles.latestSeeAll}>Tout voir →</Link>
+        </div>
+        <div className={styles.latestGrid}>
+          {(articlesData as any[])
+            .filter((a: any) => !a.featured)
+            .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+            .slice(0, 6)
+            .map((article: any) => (
+            <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.latestCard}>
+              {article.image && (
+                <div className={styles.latestImgWrap}>
+                  <img src={article.image} alt={article.title} className={styles.latestImg} />
+                </div>
+              )}
+              <div className={styles.latestBody}>
+                <span className={styles.latestTag} style={{ color: categoryColors[article.category] }}>
+                  {categoryLabels[article.category] || article.category}
+                </span>
+                <div className={styles.latestTitle}><span className={styles.pBadge}>C</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+                {article.author && <div className={styles.latestAuthor}>Par {article.author}</div>}
                 <p className={styles.latestDesc}>{article.description}</p>
                 <span className={styles.latestTime}>{article.readTime} min</span>
               </div>
