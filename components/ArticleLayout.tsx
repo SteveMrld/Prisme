@@ -62,7 +62,7 @@ export default function ArticleLayout({
       <ScrollDepth />
       <Header activeNav={category} />
 
-      {image && !hasInternalHeader && (
+      {image && (
         <div className={styles.heroWrap}>
           <img
             src={image}
@@ -89,35 +89,22 @@ export default function ArticleLayout({
             <span className={styles.audioBadgeArticle} title="Disponible en audio">🎧</span>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
           </div>
-
-          {/* BYLINE HAUT */}
-          <div className={styles.bylineTop}>
-            {portraitUrl(author)
-              ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
-              : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
-            }
-            <div>
-              <div className={styles.bylineTopName}>{author}</div>
-              <div className={styles.bylineTopRole}>{authorRole}</div>
-            </div>
-          </div>
         </div>
       )}
 
-      {hasInternalHeader && (
-        <div className={styles.bylineInternalWrap}>
-          <div className={styles.bylineTop}>
-            {portraitUrl(author)
-              ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
-              : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
-            }
-            <div>
-              <div className={styles.bylineTopName}>{author}</div>
-              <div className={styles.bylineTopRole}>{authorRole}</div>
-            </div>
+      {/* BYLINE — toujours visible, position identique sur tous les articles */}
+      <div className={styles.bylineUniversal}>
+        <div className={styles.bylineTop}>
+          {portraitUrl(author)
+            ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
+            : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
+          }
+          <div>
+            <div className={styles.bylineTopName}>{author}</div>
+            <div className={styles.bylineTopRole}>{authorRole}</div>
           </div>
         </div>
-      )}
+      </div>
 
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />

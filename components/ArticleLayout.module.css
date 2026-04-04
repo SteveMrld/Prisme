@@ -512,3 +512,14 @@
   padding: 0 24px 24px;
   border-bottom: 1px solid var(--bord);
 }
+
+.bylineUniversal {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 16px 24px 20px;
+  border-bottom: 1px solid var(--bord);
+}
+
+@media (max-width: 768px) {
+  .bylineUniversal { padding: 12px 20px 16px; }
+}
