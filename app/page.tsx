@@ -226,7 +226,6 @@ export default function HomePage() {
                 </span>
                 <div className={styles.latestTitle}><span className={styles.pBadge}>C</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
                 {article.author && <div className={styles.latestAuthor}>Par {article.author}</div>}
-                <p className={styles.latestDesc}>{article.description}</p>
                 <span className={styles.latestTime}>{article.readTime} min</span>
               </div>
             </Link>
