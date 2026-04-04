@@ -81,7 +81,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       image={article.image}
       category={article.category}
       categoryLabel={categoryLabels[article.category] || 'Article'}
-      readTime={article.readTime}
+      readTime={String(article.readTime)}
       hasInternalHeader={hasInternalHeader}
       content={content}
       author={(article as any).author || 'Steve Moradel'}
