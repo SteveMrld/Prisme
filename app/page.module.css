@@ -626,7 +626,7 @@
 
 /* ── DERNIÈRES ANALYSES ── */
 .latestSection {
-  padding: 64px;
+  padding: 48px 24px;
   border-top: 1px solid var(--bord);
 }
 
