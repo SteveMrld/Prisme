@@ -19,7 +19,8 @@
     "category": "geo",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Géopolitique & Stratégie"
+    "authorRole": "Géopolitique & Stratégie",
+    "date": "2026-05-07"
   },
   {
     "slug": "arctique",
@@ -29,7 +30,8 @@
     "category": "env",
     "readTime": "12",
     "author": "Steve Moradel",
-    "authorRole": "Environnement & Ressources"
+    "authorRole": "Environnement & Ressources",
+    "date": "2026-04-30"
   },
   {
     "slug": "blackrock",
@@ -40,7 +42,8 @@
     "readTime": "11",
     "author": "Steve Moradel",
     "authorRole": "Économie & Finance",
-    "featured": true
+    "featured": true,
+    "date": "2026-04-03"
   },
   {
     "slug": "chine",
@@ -50,7 +53,8 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Géopolitique & Stratégie"
+    "authorRole": "Géopolitique & Stratégie",
+    "date": "2026-04-23"
   },
   {
     "slug": "cygne",
@@ -60,7 +64,8 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Essai & Concept"
+    "authorRole": "Essai & Concept",
+    "date": "2026-01-29"
   },
   {
     "slug": "eau",
@@ -71,7 +76,8 @@
     "readTime": "18",
     "author": "Steve Moradel",
     "authorRole": "Environnement & Ressources",
-    "featured": true
+    "featured": true,
+    "date": "2026-05-28"
   },
   {
     "slug": "empires",
@@ -81,7 +87,8 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Géopolitique & Stratégie"
+    "authorRole": "Géopolitique & Stratégie",
+    "date": "2026-02-26"
   },
   {
     "slug": "fiscalite",
@@ -91,7 +98,8 @@
     "category": "eco",
     "readTime": "4",
     "author": "Steve Moradel",
-    "authorRole": "Économie & Finance"
+    "authorRole": "Économie & Finance",
+    "date": "2026-04-02"
   },
   {
     "slug": "fragilite",
@@ -101,7 +109,8 @@
     "category": "culture",
     "readTime": "5",
     "author": "Steve Moradel",
-    "authorRole": "Culture & Essai"
+    "authorRole": "Culture & Essai",
+    "date": "2025-12-05"
   },
   {
     "slug": "france_maritime",
@@ -111,7 +120,8 @@
     "category": "geo",
     "readTime": "10",
     "author": "Steve Moradel",
-    "authorRole": "Géopolitique & Stratégie"
+    "authorRole": "Géopolitique & Stratégie",
+    "date": "2026-05-14"
   },
   {
     "slug": "ia",
@@ -121,7 +131,8 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique"
+    "authorRole": "Technologie & Numérique",
+    "date": "2026-02-05"
   },
   {
     "slug": "ia_ecriture",
@@ -131,7 +142,8 @@
     "category": "culture",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique"
+    "authorRole": "Technologie & Numérique",
+    "date": "2026-02-12"
   },
   {
     "slug": "kintsugi",
@@ -141,7 +153,8 @@
     "category": "culture",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Culture & Essai"
+    "authorRole": "Culture & Essai",
+    "date": "2025-12-12"
   },
   {
     "slug": "lecture",
@@ -151,7 +164,8 @@
     "category": "culture",
     "readTime": "9",
     "author": "Jade Desroses",
-    "authorRole": "Culture & Société"
+    "authorRole": "Culture & Société",
+    "date": "2026-01-08"
   },
   {
     "slug": "medias",
@@ -161,7 +175,8 @@
     "category": "soc",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Société & Politique"
+    "authorRole": "Société & Politique",
+    "date": "2026-03-12"
   },
   {
     "slug": "morrison",
@@ -171,7 +186,8 @@
     "category": "portrait",
     "readTime": "9",
     "author": "Steve Moradel",
-    "authorRole": "Portrait"
+    "authorRole": "Portrait",
+    "date": "2026-03-05"
   },
   {
     "slug": "musk",
@@ -181,7 +197,8 @@
     "category": "portrait",
     "readTime": "9",
     "author": "Steve Moradel",
-    "authorRole": "Portrait"
+    "authorRole": "Portrait",
+    "date": "2026-03-07"
   },
   {
     "slug": "nooyi",
@@ -191,7 +208,8 @@
     "category": "portrait",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Portrait"
+    "authorRole": "Portrait",
+    "date": "2026-03-06"
   },
   {
     "slug": "overton",
@@ -201,7 +219,8 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Essai & Concept"
+    "authorRole": "Essai & Concept",
+    "date": "2026-01-22"
   },
   {
     "slug": "pessimisme",
@@ -211,7 +230,8 @@
     "category": "soc",
     "readTime": "9",
     "author": "Steve Moradel",
-    "authorRole": "Société & Politique"
+    "authorRole": "Société & Politique",
+    "date": "2026-01-15"
   },
   {
     "slug": "predateurs",
@@ -221,7 +241,8 @@
     "category": "concept",
     "readTime": "2",
     "author": "Steve Moradel",
-    "authorRole": "Essai & Concept"
+    "authorRole": "Essai & Concept",
+    "date": "2026-02-19"
   },
   {
     "slug": "reseaux",
@@ -231,7 +252,8 @@
     "category": "soc",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique"
+    "authorRole": "Technologie & Numérique",
+    "date": "2026-03-19"
   },
   {
     "slug": "rushkoff",
@@ -241,7 +263,8 @@
     "category": "tech",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique"
+    "authorRole": "Technologie & Numérique",
+    "date": "2026-04-16"
   },
   {
     "slug": "semico",
@@ -251,7 +274,8 @@
     "category": "concept",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique"
+    "authorRole": "Technologie & Numérique",
+    "date": "2026-04-09"
   },
   {
     "slug": "silence",
@@ -261,7 +285,8 @@
     "category": "soc",
     "readTime": "5",
     "author": "Steve Moradel",
-    "authorRole": "Société & Politique"
+    "authorRole": "Société & Politique",
+    "date": "2025-12-19"
   },
   {
     "slug": "taiwan",
@@ -271,7 +296,8 @@
     "category": "geo",
     "readTime": "6",
     "author": "Steve Moradel",
-    "authorRole": "Géopolitique & Stratégie"
+    "authorRole": "Géopolitique & Stratégie",
+    "date": "2026-05-21"
   },
   {
     "slug": "techgeo",
@@ -281,7 +307,8 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique"
+    "authorRole": "Technologie & Numérique",
+    "date": "2026-05-14"
   },
   {
     "slug": "technosolutionnisme",
@@ -291,7 +318,8 @@
     "category": "tech",
     "readTime": "15",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique"
+    "authorRole": "Technologie & Numérique",
+    "date": "2026-03-26"
   },
   {
     "slug": "venezuela",
@@ -301,6 +329,7 @@
     "category": "geo",
     "readTime": "10",
     "author": "Steve Moradel",
-    "authorRole": "Géopolitique & Stratégie"
+    "authorRole": "Géopolitique & Stratégie",
+    "date": "2026-03-20"
   }
 ]
