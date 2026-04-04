@@ -8,7 +8,8 @@
     "readTime": "5",
     "image": "/portraits/moreno-cover.png",
     "author": "Élisabeth Moreno",
-    "authorRole": "Ancienne ministre · Dirigeante d'entreprise"
+    "authorRole": "Ancienne ministre · Dirigeante d'entreprise",
+    "featured": true
   },
   {
     "slug": "afrique",
@@ -38,7 +39,8 @@
     "category": "eco",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Économie & Finance"
+    "authorRole": "Économie & Finance",
+    "featured": true
   },
   {
     "slug": "chine",
@@ -68,7 +70,8 @@
     "category": "env",
     "readTime": "18",
     "author": "Steve Moradel",
-    "authorRole": "Environnement & Ressources"
+    "authorRole": "Environnement & Ressources",
+    "featured": true
   },
   {
     "slug": "empires",
