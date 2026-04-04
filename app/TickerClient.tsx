@@ -10,16 +10,16 @@ function todayFr() {
 }
 
 const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Détroit d\'Ormuz — Trump annonce avoir négocié le passage de 20 pétroliers, premier déblocage depuis le début du conflit' },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: 'Iran — un soldat de l\'ONU tué au Liban, les frappes israélo-américaines continuent sur les infrastructures' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Carburants — opérations escargots des transporteurs routiers sur le périphérique parisien ce lundi matin' },
-  { cat: 'Économie', color: 'var(--eco)', text: 'Semi-conducteurs — la production mondiale pénalisée par une pénurie d\'hélium liée à la guerre au Moyen-Orient' },
-  { cat: 'France', color: 'var(--soc)', text: 'Municipales 2026 — nouveaux maires installés, primaire de la gauche en difficulté avant la présidentielle 2027' },
-  { cat: 'Europe', color: 'var(--geo)', text: 'UE — hubs de retour pour migrants adoptés, vifs débats sur la conformité avec le droit international' },
-  { cat: 'France', color: 'var(--soc)', text: 'Violences périscolaires à Paris — 700 parents exigent des sanctions et un audit indépendant à la mairie' },
-  { cat: 'Justice', color: 'var(--soc)', text: 'Loge Athanor — procès des crimes commandités par une loge maçonnique s\'ouvre ce lundi devant la justice' },
-  { cat: 'Culture', color: 'var(--culture)', text: 'Vol à Florence — trois tableaux de Renoir, Cézanne et Matisse dérobés dans un musée italien' },
-  { cat: 'France', color: 'var(--soc)', text: 'Changement d\'heure — passage à l\'heure d\'été ce dimanche, les horloges ont avancé d\'une heure' },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Moyen-Orient — Un avion américain abattu par l'Iran, escalade au 35e jour du conflit" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Détroit d'Ormuz — L'Iran impose un péage de 2 millions de dollars par navire, soit 20 fois le tarif du canal de Panama" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Trump — Promet de frapper l'Iran 'extrêmement durement' encore 2 à 3 semaines, puis de partir" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Macron — Juge 'irréaliste' une intervention militaire pour libérer Ormuz, appelle à négocier avec Téhéran" },
+  { cat: 'Espace', color: 'var(--tech)', text: "Artemis II — Décollage réussi, 4 astronautes en orbite autour de la Lune pour la 1re fois depuis 1972" },
+  { cat: 'Économie', color: 'var(--eco)', text: "Carburants — Les compagnies pétrolières réalisent 80 millions d'euros de sur-profits par jour selon Greenpeace" },
+  { cat: 'Économie', color: 'var(--eco)', text: "Énergie — 800 000 Français ont renoncé à partir à l'étranger cet été à cause de la hausse des prix" },
+  { cat: 'France', color: 'var(--soc)', text: "Grenoble — 3 rugbymen condamnés en appel pour viol à des peines allant jusqu'à 14 ans de réclusion" },
+  { cat: 'France', color: 'var(--soc)', text: "Saint-Denis — Le nouveau maire appelle à un grand rassemblement citoyen contre le racisme" },
+  { cat: 'Semaine Sainte', color: 'var(--culture)', text: "Pâques 2026 — Le pape Léon XIV préside la veillée pascale à Saint-Pierre de Rome ce samedi soir" },
 ]
 
 export default function Ticker() {
