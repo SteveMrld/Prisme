@@ -207,10 +207,10 @@ export default function CategoryPage({ params }: { params: { category: string } 
                     <div className={styles.cardEyebrow}>
                       <span className={styles.cardTime}>{article.readTime} min</span>
                     </div>
-                    <h3
-                      className={styles.cardTitle}
-                      dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }}
-                    />
+                    <h3 className={styles.cardTitle}>
+                      <span className={styles.pBadge}>C</span>
+                      <span dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }} />
+                    </h3>
                     <p className={styles.cardDeck}>{article.description}</p>
                     {(article as any).author && (
                       <div className={styles.cardAuthor}>Par {(article as any).author}</div>
