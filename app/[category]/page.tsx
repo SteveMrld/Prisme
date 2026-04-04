@@ -179,10 +179,10 @@ export default function CategoryPage({ params }: { params: { category: string } 
                   </span>
                   <span className={styles.featuredTime}>{featured.readTime} min</span>
                 </div>
-                <h2
-                  className={styles.featuredTitle}
-                  dangerouslySetInnerHTML={{ __html: featured.title.replace(/\n/g, ' ') }}
-                />
+                <h2 className={styles.featuredTitle}>
+                  <span className={styles.pBadge}>C</span>
+                  <span dangerouslySetInnerHTML={{ __html: featured.title.replace(/\n/g, ' ') }} />
+                </h2>
                 <p className={styles.featuredDeck}>{featured.description}</p>
                 <span className={styles.featuredCta} style={{ color: config.color }}>
                   Lire l'analyse →
