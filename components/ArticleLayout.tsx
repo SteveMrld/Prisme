@@ -104,6 +104,21 @@ export default function ArticleLayout({
         </div>
       )}
 
+      {hasInternalHeader && (
+        <div className={styles.bylineInternalWrap}>
+          <div className={styles.bylineTop}>
+            {portraitUrl(author)
+              ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
+              : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
+            }
+            <div>
+              <div className={styles.bylineTopName}>{author}</div>
+              <div className={styles.bylineTopRole}>{authorRole}</div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
 
