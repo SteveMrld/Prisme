@@ -614,6 +614,7 @@
   .geDecor { max-width: 100%; }
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
+  .heroAside { display: none; }
   .gfGrid { grid-template-columns: 1fr; }
   .heroImgWrap { height: 200px; }
   .heroAside { display: none; }
