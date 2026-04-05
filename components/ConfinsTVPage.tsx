@@ -6,37 +6,24 @@ import styles from './ConfinsTVPage.module.css'
 
 const episodes = [
   {
-    id: '06',
-    slug: 'asteroide',
-    title: "Nous sommes l'astéroïde",
-    category: 'Biodiversité',
-    duration: '1 min 49',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
-    description: "La Terre a survécu à 5 extinctions de masse. Elle s'en est remise à chaque fois. La 6e est différente — c'est la première causée par une seule espèce. La nôtre.",
-    date: 'Mars 2026',
-  },
-  {
-    id: '05',
-    slug: 'inegalites',
-    title: "8 hommes. 3,5 milliards. Le même patrimoine.",
-    category: 'Économie',
-    duration: '2 min 07',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
-    description: "1% de la population possède plus que les 99% restants. Les Pandora Papers, les crises, l'IA. Comment les inégalités s'accélèrent — et ce que ça change pour la démocratie.",
-    date: 'Mars 2026',
-  },
-  {
-    id: '04',
-    slug: 'nucleaire',
-    title: "L'arme qui a failli nous tuer",
+    id: '01',
+    slug: 'inde',
+    title: "L\'Inde, le siècle qui vient",
     category: 'Géopolitique',
-    duration: '2 min 25',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
-    description: "12 700 ogives. 32 accidents reconnus. Goldsboro, Damascus, Palomares. L'arme censée protéger le monde a failli le détruire. Plusieurs fois.",
-    date: 'Mars 2026',
+    duration: '1 min 19',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/confins_inde_v10-3_a57ifu',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/confins_inde_v10-3_a57ifu.jpg',
+    description: "1,44 milliard d\'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
+  },
+  {
+    id: '02',
+    slug: 'afrique',
+    title: "L\'Afrique : ce qu\'on ne vous a pas appris",
+    category: 'Géopolitique',
+    duration: '2 min 02',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME2_v7-2_mm8oxv.jpg',
+    description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris.",
   },
   {
     id: '03',
@@ -46,30 +33,37 @@ const episodes = [
     duration: '2 min 07',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME3_v4_fixed_ugm8uc',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME3_v4_fixed_ugm8uc.jpg',
-    description: "CRISPR, AlphaFold, Neuralink. En dix ans, l'intelligence artificielle a donné à l'humanité le pouvoir de lire et réécrire le vivant. La même technologie peut tout guérir — ou tout détruire.",
-    date: 'Mars 2026',
+    description: "CRISPR, AlphaFold, Neuralink. L\'IA a donné à l\'humanité le pouvoir de réécrire le vivant.",
   },
   {
-    id: '02',
-    slug: 'afrique',
-    title: "L'Afrique : ce qu'on ne vous a pas appris",
+    id: '04',
+    slug: 'nucleaire',
+    title: "L\'arme qui a failli nous tuer",
     category: 'Géopolitique',
-    duration: '2 min 02',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME2_v7-2_mm8oxv',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME2_v7-2_mm8oxv.jpg',
-    description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris. Ce qu'on ne vous a jamais vraiment expliqué.",
-    date: 'Mars 2026',
+    duration: '2 min 25',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
+    description: "12 700 ogives. 32 accidents. L\'arme censée protéger le monde a failli le détruire.",
   },
   {
-    id: '01',
-    slug: 'inde',
-    title: "L'Inde, le siècle qui vient",
-    category: 'Géopolitique',
-    duration: '1 min 19',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/prisme_inde_v10-3_a57ifu',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/prisme_inde_v10-3_a57ifu.jpg',
-    description: "1,44 milliard d'habitants. 7% de croissance par an. Une puissance nucléaire qui refuse de choisir son camp entre Washington et Moscou.",
-    date: 'Mars 2026',
+    id: '05',
+    slug: 'inegalites',
+    title: "8 hommes. 3,5 milliards. Le même patrimoine.",
+    category: 'Économie',
+    duration: '2 min 07',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
+    description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA — comment les inégalités s\'accélèrent.",
+  },
+  {
+    id: '06',
+    slug: 'asteroide',
+    title: "Nous sommes l\'astéroïde",
+    category: 'Biodiversité',
+    duration: '1 min 49',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
+    description: "69% des vertébrés sauvages disparus depuis 1970. La 6e extinction est différente — c\'est la première causée par une seule espèce.",
   },
 ]
 
@@ -207,15 +201,17 @@ export default function ConfinsTVPage() {
                 className={`${styles.epCard} ${i === active ? styles.epCardActive : ''}`}
                 onClick={() => switchEpisode(i)}
               >
-                <div className={styles.epCardNum}>#{e.id}</div>
+                <div className={styles.epCardThumb}>
+                  <img src={e.thumb} alt={e.title} className={styles.epCardThumbImg} />
+                  {i === active && <span className={styles.epCardThumbPlay}>▶</span>}
+                </div>
                 <div className={styles.epCardBody}>
+                  <div className={styles.epCardNum}>Ép. {e.id}</div>
                   <div className={styles.epCardTitle}>{e.title}</div>
                   <div className={styles.epCardMeta}>
                     <span>{e.category}</span>
                     <span>·</span>
                     <span>{e.duration}</span>
-                    <span>·</span>
-                    <span>{e.date}</span>
                   </div>
                 </div>
                 {i === active && <span className={styles.epCardNow}>▶ En cours</span>}
