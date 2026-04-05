@@ -22,7 +22,7 @@ const navItems = [
 const secondaryItems = [
   { label: 'Confins TV', href: '/prismetv', desc: 'Analyses en mouvement' },
   { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions géopolitiques' },
-  { label: 'Rétrospective 2025', href: '/retrospective', desc: 'Les ruptures de l'année' },
+  { label: 'Rétrospective 2025', href: '/retrospective', desc: "Les ruptures de l'année" },
   { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
   { label: 'Contributeurs', href: '/contributeurs', desc: 'La rédaction Confins' },
   { label: 'À propos', href: '/apropos', desc: 'Notre projet éditorial' },
