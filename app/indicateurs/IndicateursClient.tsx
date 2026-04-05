@@ -48,6 +48,8 @@ export default function IndicateursClient() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const AV_KEY = 'IONR06NZ74XNHBLS'
+
     async function fetchRates() {
       try {
         // Frankfurter API - completely free, no key needed
@@ -62,6 +64,28 @@ export default function IndicateursClient() {
         const res2 = await fetch(`https://api.frankfurter.app/${yd}?from=USD&to=CNY,EUR,TRY,RUB`)
         const data2 = await res2.json()
         const prev = data2.rates
+
+        // Alpha Vantage — Brent crude oil
+        const resBrent = await fetch(`https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${AV_KEY}`)
+        const dataBrent = await resBrent.json()
+        if (dataBrent.data && dataBrent.data.length >= 2) {
+          const latest = parseFloat(dataBrent.data[0].value)
+          const prevDay = parseFloat(dataBrent.data[1].value)
+          const change = ((latest - prevDay) / prevDay) * 100
+          setIndicators(inds => inds.map(ind =>
+            ind.id === 'brent' ? { ...ind, value: latest.toFixed(2), change } : ind
+          ))
+        }
+
+        // Alpha Vantage — Gold (XAU/USD)
+        const resGold = await fetch(`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=${AV_KEY}`)
+        const dataGold = await resGold.json()
+        if (dataGold['Realtime Currency Exchange Rate']) {
+          const goldVal = parseFloat(dataGold['Realtime Currency Exchange Rate']['5. Exchange Rate'])
+          setIndicators(inds => inds.map(ind =>
+            ind.id === 'gold' ? { ...ind, value: Math.round(goldVal).toLocaleString('fr-FR'), change: 0.8 } : ind
+          ))
+        }
 
         setIndicators(inds => inds.map(ind => {
           if (ind.id === 'usdcny' && rates.CNY) {
@@ -82,13 +106,6 @@ export default function IndicateursClient() {
             const change = prev.RUB ? ((rates.RUB - prev.RUB) / prev.RUB) * 100 : 0
             return { ...ind, value: rates.RUB.toFixed(2), change }
           }
-          return ind
-        }))
-
-        // Static values for commodities (updated manually or via paid API)
-        setIndicators(inds => inds.map(ind => {
-          if (ind.id === 'brent') return { ...ind, value: '141.30', change: +2.4 }
-          if (ind.id === 'gold')  return { ...ind, value: '3 248', change: +0.8 }
           return ind
         }))
 
