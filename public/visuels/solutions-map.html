@@ -4,55 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Changer le monde — Confins</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#F2EFE9;font-family:'DM Sans',sans-serif}
-#header{position:fixed;top:0;left:0;right:0;height:52px;z-index:100;background:#F2EFE9;border-bottom:1px solid #DDD9D0;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
-#back{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;text-decoration:none}
-#back:hover{color:#1A1A1A}
-#htitle{font-family:'Playfair Display',serif;font-size:17px;color:#1A1A1A;margin-left:16px}
-#htitle em{color:#C4A265;font-style:italic}
-#hright{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#AAA}
-#wrap{position:fixed;top:52px;left:0;right:0;bottom:0;overflow:hidden}
-svg#map{width:100%;height:100%}
-.land{fill:#E8E4DC;stroke:#D4D0C8;stroke-width:.5}
-.graticule{fill:none;stroke:rgba(0,0,0,0.06);stroke-width:.5}
-.country-dot{cursor:pointer;transition:opacity .2s}
-.country-dot circle{transition:r .2s}
-.country-dot:hover circle.bg{opacity:.2}
-.dot-label{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;fill:#fff;pointer-events:none;dominant-baseline:middle;text-anchor:middle}
-.country-label{font-family:'DM Sans',sans-serif;font-size:9px;fill:#444;pointer-events:none;text-anchor:middle;font-weight:500}
+html,body{width:100%;height:100%;overflow:hidden;background:#0A0A0A;font-family:'DM Sans',sans-serif;color:#FAF9F7}
 
-/* PANEL */
-#panel{position:fixed;top:52px;right:0;bottom:0;width:340px;background:#111;transform:translateX(100%);transition:transform .3s cubic-bezier(.25,.46,.45,.94);z-index:50;display:flex;flex-direction:column}
-#panel.open{transform:translateX(0)}
-#ph{padding:24px 24px 16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0}
-#pcountry{font-family:'Playfair Display',serif;font-size:22px;color:#FAF9F7}
-#pn{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#C4A265;margin-top:3px}
-#pclose{background:none;border:none;color:rgba(255,255,255,.3);font-size:18px;cursor:pointer;padding:2px 6px}
-#pclose:hover{color:#fff}
-#plist{flex:1;overflow-y:auto;padding:8px 0}
-#plist::-webkit-scrollbar{width:2px}
-#plist::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
-.si{padding:14px 24px;border-bottom:1px solid rgba(255,255,255,.05);text-decoration:none;display:block;color:inherit;transition:background .15s}
-.si:hover{background:rgba(255,255,255,.04)}
-.sc{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
-.sn{font-family:'Playfair Display',serif;font-size:15px;color:#FAF9F7;line-height:1.3;margin-bottom:3px}
+/* HEADER */
+#header{
+  position:fixed;top:0;left:0;right:0;height:52px;z-index:100;
+  background:rgba(10,10,10,0.95);border-bottom:1px solid rgba(255,255,255,0.07);
+  display:flex;align-items:center;justify-content:space-between;padding:0 24px;
+  backdrop-filter:blur(8px);
+}
+#back{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+#back:hover{color:#FAF9F7}
+#htitle{font-family:'Playfair Display',serif;font-size:17px;color:#FAF9F7;margin-left:16px}
+#htitle em{color:#C4A265;font-style:italic}
+#hright{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3)}
+
+/* FILTERS */
+#filters{
+  position:fixed;top:52px;left:0;right:0;z-index:90;
+  background:rgba(10,10,10,0.9);border-bottom:1px solid rgba(255,255,255,.06);
+  padding:10px 24px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+  backdrop-filter:blur(8px);
+}
+.fb{
+  font-size:8px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 12px;border:1px solid rgba(255,255,255,.12);background:transparent;
+  color:rgba(255,255,255,.4);cursor:pointer;transition:all .15s;font-family:inherit;
+  white-space:nowrap;
+}
+.fb:hover{border-color:rgba(255,255,255,.4);color:#FAF9F7}
+.fb.active{color:#0A0A0A !important;border-color:transparent !important}
+
+/* CANVAS */
+#wrap{position:fixed;top:104px;left:0;right:0;bottom:0}
+svg{width:100%;height:100%}
+
+/* TOOLTIP */
+#tooltip{
+  position:fixed;z-index:200;pointer-events:none;
+  background:rgba(10,10,10,.97);border:1px solid rgba(255,255,255,.1);
+  padding:14px 18px;max-width:240px;
+  transform:translate(-50%,-100%) translateY(-12px);
+  transition:opacity .15s;
+}
+#tooltip.hidden{opacity:0}
+#tt-cat{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+#tt-name{font-family:'Playfair Display',serif;font-size:16px;color:#FAF9F7;line-height:1.3;margin-bottom:4px}
+#tt-country{font-size:10px;color:rgba(255,255,255,.4)}
+#tt-link{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#C4A265;margin-top:8px}
+
+/* PANEL mobile */
+#panel{
+  position:fixed;bottom:0;left:0;right:0;z-index:150;
+  background:#111;border-top:2px solid #C4A265;
+  transform:translateY(100%);transition:transform .3s cubic-bezier(.25,.46,.45,.94);
+  max-height:55vh;display:flex;flex-direction:column;
+}
+#panel.open{transform:translateY(0)}
+#ph{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+#pcountry{font-family:'Playfair Display',serif;font-size:18px;color:#FAF9F7}
+#pn{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#C4A265}
+#pclose{background:none;border:none;color:rgba(255,255,255,.3);font-size:18px;cursor:pointer}
+#plist{overflow-y:auto;padding:4px 0}
+.si{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.05);text-decoration:none;display:block;color:inherit}
+.si:active{background:rgba(255,255,255,.04)}
+.sc{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.sn{font-family:'Playfair Display',serif;font-size:14px;color:#FAF9F7;line-height:1.3;margin-bottom:2px}
 .sr{font-size:9px;color:rgba(255,255,255,.3)}
-.sl{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#C4A265;margin-top:6px;opacity:0;transition:opacity .15s}
-.si:hover .sl{opacity:1}
-#hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(26,26,26,.35);pointer-events:none;transition:opacity 1s;white-space:nowrap}
-#legend{position:fixed;bottom:16px;left:16px;display:flex;flex-direction:column;gap:5px}
-.li{display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:1px;color:#888;text-transform:uppercase}
-.ld{border-radius:50%;flex-shrink:0}
+
+/* HINT */
+#hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);pointer-events:none;transition:opacity 1s;white-space:nowrap}
+
 @media(max-width:768px){
-  #panel{width:100%;top:auto;height:60vh;transform:translateY(100%);border-top:2px solid #C4A265}
-  #panel.open{transform:translateY(0)}
-  #legend{display:none}
   #hright{display:none}
+  #filters{overflow-x:auto;flex-wrap:nowrap;padding:8px 16px}
+  #wrap{top:98px}
 }
 </style>
 </head>
@@ -62,9 +92,18 @@ svg#map{width:100%;height:100%}
     <a href="/" id="back">← Accueil</a>
     <div id="htitle">Changer le <em>monde</em></div>
   </div>
-  <div id="hright">157 solutions · 31 pays · ChangeNow 2026</div>
+  <div id="hright">157 solutions · ChangeNow 2026 · Grand Palais Paris</div>
 </div>
-<div id="wrap"><svg id="map"></svg></div>
+<div id="filters">
+  <button class="fb active" data-cat="Tout" onclick="filter(this,'Tout')" style="background:#FAF9F7">Tout · 157</button>
+</div>
+<div id="wrap"><svg id="viz"></svg></div>
+<div id="tooltip" class="hidden">
+  <div id="tt-cat"></div>
+  <div id="tt-name"></div>
+  <div id="tt-country"></div>
+  <div id="tt-link">Voir le projet →</div>
+</div>
 <div id="panel">
   <div id="ph">
     <div><div id="pcountry"></div><div id="pn"></div></div>
@@ -72,127 +111,173 @@ svg#map{width:100%;height:100%}
   </div>
   <div id="plist"></div>
 </div>
-<div id="hint">Appuyez sur un point pour explorer</div>
-<div id="legend">
-  <div class="li"><div class="ld" style="width:8px;height:8px;background:#C4A265;opacity:.8"></div>1–5</div>
-  <div class="li"><div class="ld" style="width:13px;height:13px;background:#B86A1A"></div>6–15</div>
-  <div class="li"><div class="ld" style="width:18px;height:18px;background:#1A3E6B"></div>16+</div>
-</div>
+<div id="hint">Survolez ou touchez une bulle</div>
 <script>
-const SOLUTIONS=[{"country": "Australia", "lng": 133.77, "lat": -25.27, "solutions": [{"name": "Coast 4C", "cat": "Océans", "rawCat": "Ocean / Water", "website": "https://www.coast4c.com/"}, {"name": "Syrinx Environmental", "cat": "Eau", "rawCat": "Water / Nature-based Infrastructure", "website": "https://www.syrinx.net.au"}]}, {"country": "Belgium", "lng": 4.47, "lat": 50.5, "solutions": [{"name": "Avecom", "cat": "Autre", "rawCat": "Wastewater / Water Tech", "website": "https://www.avecom.be"}, {"name": "BeeOdiversity", "cat": "Biodiversité", "rawCat": "Biodiversity", "website": "https://beeodiversity.com"}, {"name": "Citronics", "cat": "Économie circulaire", "rawCat": "Circularity / Materials", "website": "https://citronics.eu/"}, {"name": "Euclid Network", "cat": "Autre", "rawCat": "Social Enterprise Network", "website": "https://www.euclidnetwork.eu"}, {"name": "Smart Cities Marketplace", "cat": "Autre", "rawCat": "Smart Cities", "website": "https://smart-cities-marketplace.ec.europa.eu"}, {"name": "Urban Forests", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "website": "https://www.urbanforest.be/en/home-4/"}]}, {"country": "Cameroon", "lng": 12.35, "lat": 5.37, "solutions": [{"name": "Wandusoa", "cat": "Agriculture", "rawCat": "Agri / Food", "website": "https://wandusoa.org/"}]}, {"country": "Canada", "lng": -96.8, "lat": 56.13, "solutions": [{"name": "Oneka Technologies", "cat": "Eau", "rawCat": "Water", "website": "https://www.onekatech.com"}, {"name": "e-Zinc", "cat": "Énergie", "rawCat": "Energy Storage", "website": "https://www.e-zinc.ca"}]}, {"country": "Denmark", "lng": 9.5, "lat": 56.26, "solutions": [{"name": "Lapee", "cat": "Autre", "rawCat": "Sanitation", "website": "https://lapee.com"}, {"name": "REFUNITE", "cat": "Inclusion", "rawCat": "Inclusion / Refugees", "website": "https://refu.nite.org"}]}, {"country": "Dominican Republic", "lng": -70.16, "lat": 18.74, "solutions": [{"name": "SOS Biotech", "cat": "Océans", "rawCat": "Ocean / Water", "website": "https://sosbiotech.co/"}]}, {"country": "Finland", "lng": 25.74, "lat": 61.92, "solutions": [{"name": "Resistomap", "cat": "Eau", "rawCat": "Water / Monitoring", "website": "https://resistomap.com"}]}, {"country": "France", "lng": 2.35, "lat": 46.85, "solutions": [{"name": "Agronnect", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://agronnect.fr"}, {"name": "Amaya", "cat": "Autre", "rawCat": "Social Impact", "website": "https://www.amaya.earth"}, {"name": "Aquaphys", "cat": "Eau", "rawCat": "Water / IoT", "website": "https://aquaphys.com"}, {"name": "Asteria", "cat": "Climat", "rawCat": "Climate / AI", "website": "https://asteria.observer"}, {"name": "BioeSol", "cat": "Énergie", "rawCat": "Energy", "website": "https://www.bioesol.fr"}, {"name": "Biomede", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://www.biomede.fr"}, {"name": "CECACAO", "cat": "Agriculture", "rawCat": "Food / Agriculture", "website": "https://www.cecacao.com"}, {"name": "CHITELIX", "cat": "Autre", "rawCat": "Circular Biomaterials", "website": "https://chitelix.com"}, {"name": "Etendart", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://etendart.com"}, {"name": "FabBRICK", "cat": "Autre", "rawCat": "Circular Materials", "website": "https://fab-brick.com"}, {"name": "Fair Play For Planet", "cat": "Autre", "rawCat": "Sport / Impact", "website": "https://fairplayforplanet.org"}, {"name": "Finemind", "cat": "Autre", "rawCat": "EdTech / Inclusion", "website": "https://www.finemind.co"}, {"name": "Gaiago", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://www.gaiago.eu"}, {"name": "Green Sanctuaries", "cat": "Biodiversité", "rawCat": "Biodiversity", "website": "https://greensanctuaries.com"}, {"name": "HelioRec", "cat": "Énergie", "rawCat": "Energy", "website": "https://www.heliorec.com"}, {"name": "Heliosand", "cat": "Eau", "rawCat": "Water / Desalination", "website": "https://www.heliosand.com"}, {"name": "Hylight", "cat": "Climat", "rawCat": "Climate / Methane Detection", "website": "https://www.hylight.tech"}, {"name": "InovaYa", "cat": "Eau", "rawCat": "Water", "website": "https://inovaya.com"}, {"name": "Intersektion", "cat": "Autre", "rawCat": "Urban / Inclusion", "website": "https://intersektion.co"}, {"name": "Kinomé", "cat": "Autre", "rawCat": "Nature-based Solutions", "website": "https://kinome.fr"}, {"name": "Neolithe", "cat": "Économie circulaire", "rawCat": "Circular / Waste", "website": "https://neolithe.fr"}, {"name": "Novobiom", "cat": "Sciences & Tech", "rawCat": "Biotech", "website": "https://novobiom.com"}, {"name": "Peel Lab", "cat": "Matériaux", "rawCat": "Materials", "website": "https://www.peel-lab.com"}, {"name": "Rebond", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://www.rebond.co"}, {"name": "Revolty", "cat": "Énergie", "rawCat": "Energy Storage", "website": "https://www.revolty.fr"}, {"name": "SolReed", "cat": "Énergie", "rawCat": "Solar / Circularity", "website": "https://www.cea.fr/english/Pages/solreed.aspx"}, {"name": "Solicaz", "cat": "Énergie", "rawCat": "Energy", "website": "https://solicaz.com"}, {"name": "Synovance", "cat": "Sciences & Tech", "rawCat": "Biotech", "website": "https://synovance.com"}, {"name": "The Ocean Package", "cat": "Océans", "rawCat": "Ocean / Circularity", "website": "https://www.theoceanpackage.com"}, {"name": "Toore", "cat": "Autre", "rawCat": "Circularity Software", "website": "https://toore.co"}, {"name": "Trizzy", "cat": "Autre", "rawCat": "Zero Waste", "website": "https://trizzy.io"}, {"name": "Yuka", "cat": "Autre", "rawCat": "Health / Consumer", "website": "https://yuka.io"}]}, {"country": "Germany", "lng": 10.45, "lat": 51.17, "solutions": [{"name": "CataCycle", "cat": "Économie circulaire", "rawCat": "Circularity / PET", "website": "https://catacycle.com"}, {"name": "FASE", "cat": "Autre", "rawCat": "Impact Finance", "website": "https://www.fa-se.de"}, {"name": "FINDS", "cat": "Économie circulaire", "rawCat": "Circularity / Retail Tech", "website": "https://www.getfinds.co"}, {"name": "Klim", "cat": "Autre", "rawCat": "Regenerative Agriculture", "website": "https://klim.eco"}, {"name": "Koralo", "cat": "Autre", "rawCat": "FoodTech", "website": "https://koralo.com"}, {"name": "Planet Wild", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "website": "https://planetwild.com/"}, {"name": "Plastic Fischer", "cat": "Économie circulaire", "rawCat": "Circularity / Waste", "website": "https://plasticfischer.com"}, {"name": "Solaq", "cat": "Énergie", "rawCat": "Energy", "website": "https://www.solaq.energy"}]}, {"country": "Ghana", "lng": -1.02, "lat": 7.95, "solutions": [{"name": "Skin Gourmet", "cat": "Autre", "rawCat": "Sustainable Beauty", "website": "https://skingourmet.com"}]}, {"country": "India", "lng": 78.96, "lat": 20.59, "solutions": [{"name": "Baeru", "cat": "Océans", "rawCat": "Ocean / Water", "website": "https://baeru.in/"}, {"name": "Serein", "cat": "Autre", "rawCat": "Health / Sustainability", "website": "https://www.serein.in"}]}, {"country": "Israel", "lng": 34.85, "lat": 31.05, "solutions": [{"name": "Soilytix", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://www.soilytix.com"}, {"name": "betterSoil", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://bettersoil.co"}]}, {"country": "Italy", "lng": 12.57, "lat": 41.87, "solutions": [{"name": "WSense", "cat": "Océans", "rawCat": "Ocean / Water", "website": "https://wsense.it/"}]}, {"country": "Japan", "lng": 138.25, "lat": 36.2, "solutions": [{"name": "Fermenstation", "cat": "Économie circulaire", "rawCat": "Circularity / Materials", "website": "https://fermenstation.co.jp/"}]}, {"country": "Kenya", "lng": 37.91, "lat": 0.02, "solutions": [{"name": "FarmBizAfrica", "cat": "Agriculture", "rawCat": "AgriTech / Carbon / Advisory", "website": "https://www.farmbizafrica.com"}, {"name": "MAASH", "cat": "Agriculture", "rawCat": "Food / Agri", "website": "https://maashfoods.com"}, {"name": "Reality Academy", "cat": "Autre", "rawCat": "Education / Skills", "website": "https://realityacademy.co"}, {"name": "Small Farm Cities Africa", "cat": "Agriculture", "rawCat": "Food / Agriculture", "website": "https://smallfarmcitiesafrica.com"}]}, {"country": "Luxembourg", "lng": 6.13, "lat": 49.61, "solutions": [{"name": "Nash FintechX", "cat": "Autre", "rawCat": "Climate FinTech / Carbon Markets", "website": "https://www.nashfintechx.com"}, {"name": "RSS-Hydro", "cat": "Autre", "rawCat": "Hydrology / Earth Observation", "website": "https://www.rss-hydro.lu"}]}, {"country": "Mauritania", "lng": -10.94, "lat": 21.0, "solutions": [{"name": "Pan-African Agency of the Great Green Wall", "cat": "Biodiversité", "rawCat": "Biodiversity / Land", "website": "https://grandemurailleverte.org"}]}, {"country": "Netherlands", "lng": 5.29, "lat": 52.13, "solutions": [{"name": "Altamira", "cat": "Autre", "rawCat": "Regenerative Finance / Consulting", "website": "https://www.altamira-regen.com"}, {"name": "Antfarm", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://antfarm.co"}, {"name": "Avenue Consultancy", "cat": "Autre", "rawCat": "Fundraising / Advisory", "website": "https://www.linkedin.com/company/avenue-consultancy/"}, {"name": "ChemReclaim", "cat": "Économie circulaire", "rawCat": "Circularity / Chemicals", "website": "https://chemreclaim.com"}, {"name": "Coding the Curbs", "cat": "Mobilité", "rawCat": "Mobility / Smart City", "website": "https://codingthecurbs.com"}, {"name": "DRK Foundation", "cat": "Autre", "rawCat": "Venture Philanthropy", "website": "https://www.drkfoundation.nl"}, {"name": "EcoVerum", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://ecoverum.nl"}, {"name": "Goodwell Investments", "cat": "Finance d'impact", "rawCat": "Impact Investing", "website": "https://www.goodwell.nl"}, {"name": "Hydraloop", "cat": "Eau", "rawCat": "Water", "website": "https://www.hydraloop.com"}, {"name": "InspireXChange", "cat": "Autre", "rawCat": "Startup Accelerator", "website": "https://inspirexchange.nl"}, {"name": "Justdiggit", "cat": "Biodiversité", "rawCat": "Biodiversity", "website": "https://justdiggit.org"}, {"name": "KICO Kitchen", "cat": "Agriculture", "rawCat": "Agri / Food", "website": "https://www.kico.kitchen/"}, {"name": "Kelp Blue", "cat": "Océans", "rawCat": "Ocean / Water", "website": "https://www.kelp.blue/global"}, {"name": "KiCo", "cat": "Autre", "rawCat": "Food Innovation", "website": "https://www.kico.kitchen"}, {"name": "Life Terra Foundation", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "website": "https://www.lifeterra.eu/en"}, {"name": "Mudland", "cat": "Autre", "rawCat": "Nature-based / Materials", "website": "https://mudland.eco"}, {"name": "Mutual Empathy", "cat": "Autre", "rawCat": "Impact Venture Studio", "website": "https://www.mutualempathy.com"}, {"name": "MycoFarming", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://www.mycofarming.com"}, {"name": "NBC", "cat": "Autre", "rawCat": "Advisory / Impact", "website": "https://www.nbc-int.com"}, {"name": "NOWOS", "cat": "Économie circulaire", "rawCat": "Circularity / Batteries", "website": "https://nowos.world"}, {"name": "Netherlands Advisory Board on Impact Investing", "cat": "Finance d'impact", "rawCat": "Impact Investing", "website": "https://www.nabimpactinvesting.nl"}, {"name": "North Sea Farmers", "cat": "Océans", "rawCat": "Ocean / Agriculture", "website": "https://www.northseafarmers.org"}, {"name": "Pretty Plastic", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://www.prettyplastic.nl"}, {"name": "Rabo Foundation", "cat": "Autre", "rawCat": "Agri-finance / Inclusion", "website": "https://www.rabobank.com/about-us/rabo-foundation"}, {"name": "Roetz Bikes", "cat": "Mobilité", "rawCat": "Mobility", "website": "https://roetz.life"}, {"name": "SeaO2", "cat": "Océans", "rawCat": "Ocean / Carbon Removal", "website": "https://www.seao2.com"}, {"name": "Sensiblue", "cat": "Eau", "rawCat": "Water", "website": "https://sensiblue.com"}, {"name": "Shaping Impact Group", "cat": "Finance d'impact", "rawCat": "Impact Investing / Advisory", "website": "https://www.shapingimpact.group"}, {"name": "Skilledin Green", "cat": "Autre", "rawCat": "Green Jobs / Talent", "website": "https://green.skilledin.io"}, {"name": "Social Impact Fonds Den Haag", "cat": "Finance d'impact", "rawCat": "Impact Investing", "website": "https://www.sifdenhaag.nl"}, {"name": "Space4Good", "cat": "Autre", "rawCat": "Space / Climate Data", "website": "https://space4good.com"}, {"name": "Swarmed", "cat": "Biodiversité", "rawCat": "Biodiversity / Pollinators", "website": "https://www.beeswarmed.org"}, {"name": "Teens Safe Space", "cat": "Inclusion", "rawCat": "Inclusion", "website": "https://teenssafespace.com"}, {"name": "The Great Bubble Barrier", "cat": "Eau", "rawCat": "Water", "website": "https://thegreatbubblebarrier.com"}, {"name": "The Hague Humanity Hub", "cat": "Autre", "rawCat": "Peace / Justice Ecosystem", "website": "https://www.humanityhub.net"}, {"name": "The Roots", "cat": "Autre", "rawCat": "Social Design / Tech for Good", "website": "https://www.theroots.space"}, {"name": "WellDecommissioned", "cat": "Énergie", "rawCat": "Energy", "website": "https://welldecommissioned.com"}, {"name": "World's Youth for Climate Justice", "cat": "Autre", "rawCat": "Climate Justice", "website": "https://www.wy4cj.org"}, {"name": "Yespers", "cat": "Agriculture", "rawCat": "Food / Agriculture", "website": "https://yespers.com"}, {"name": "i-did", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://i-did.nl"}, {"name": "leafy.", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://leafy.place"}]}, {"country": "Norway", "lng": 8.47, "lat": 60.47, "solutions": [{"name": "Over Easy Solar", "cat": "Énergie", "rawCat": "Solar", "website": "https://www.overeasy.no"}]}, {"country": "Poland", "lng": 19.15, "lat": 51.92, "solutions": [{"name": "ETV", "cat": "Autre", "rawCat": "Clean Tech", "website": "https://etvwind.com"}]}, {"country": "Saudi Arabia", "lng": 45.08, "lat": 23.89, "solutions": [{"name": "Darah Solutions Lab", "cat": "Autre", "rawCat": "Textile Circularity", "website": "https://prezi.com/p/zbn-85hkklc7/darah-solutions-lab/"}]}, {"country": "Singapore", "lng": 103.82, "lat": 1.35, "solutions": [{"name": "Flint", "cat": "Énergie", "rawCat": "Energy Storage", "website": "https://flintbattery.com"}]}, {"country": "Slovenia", "lng": 14.99, "lat": 46.15, "solutions": [{"name": "PlanetCare", "cat": "Économie circulaire", "rawCat": "Circular / Microplastics", "website": "https://planetcare.org"}]}, {"country": "South Africa", "lng": 22.94, "lat": -30.56, "solutions": [{"name": "Living Soils", "cat": "Autre", "rawCat": "Regenerative Agriculture", "website": "https://livingsoils.co.za"}]}, {"country": "South Korea", "lng": 127.77, "lat": 35.91, "solutions": [{"name": "Code of Nature", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "website": "https://www.c-of-n.com/en"}]}, {"country": "Spain", "lng": -3.75, "lat": 40.46, "solutions": [{"name": "Strong by Form", "cat": "Matériaux", "rawCat": "Materials", "website": "https://strongbyform.com"}]}, {"country": "Sweden", "lng": 18.64, "lat": 60.13, "solutions": [{"name": "NitroCapt", "cat": "Agriculture", "rawCat": "AgriTech / Fertilizer", "website": "https://nitrocapt.com"}]}, {"country": "Switzerland", "lng": 8.23, "lat": 46.82, "solutions": [{"name": "AgroSustain", "cat": "Agriculture", "rawCat": "AgriTech", "website": "https://www.agrosustain.ch"}, {"name": "HERA Digital Health", "cat": "Santé", "rawCat": "HealthTech", "website": "https://hera-health.com"}, {"name": "ID Genève", "cat": "Autre", "rawCat": "Sustainable Luxury", "website": "https://www.idgenevewatches.com"}, {"name": "NatureRe", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "website": "https://nature-re.com/"}, {"name": "Solskin", "cat": "Autre", "rawCat": "Built Environment", "website": "https://solskin.ch"}, {"name": "Voltiris", "cat": "Énergie", "rawCat": "Energy / Agri", "website": "https://www.voltiris.com"}]}, {"country": "Ukraine", "lng": 31.16, "lat": 48.38, "solutions": [{"name": "Apixmed", "cat": "Santé", "rawCat": "HealthTech", "website": "https://apixmed.com"}, {"name": "Autistic People Friendly", "cat": "Inclusion", "rawCat": "Inclusion", "website": "https://autisticpeople.friendly"}, {"name": "Autistic People Friendly NGO", "cat": "Inclusion", "rawCat": "Inclusion / Autism", "website": "https://autisticpeoplefriendly.com"}, {"name": "Felmar's Lab", "cat": "Santé", "rawCat": "HealthTech", "website": "https://felmars.com"}, {"name": "Go To-U", "cat": "Mobilité", "rawCat": "Mobility / EV", "website": "https://go-tou.com"}, {"name": "Hydratico", "cat": "Eau", "rawCat": "Water", "website": "https://hydratico.com"}, {"name": "Recast Plastic", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://recastplastic.com"}, {"name": "Recup Green", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://recupgreen.com"}, {"name": "S.Lab", "cat": "Matériaux", "rawCat": "Materials", "website": "https://slab.com.ua"}, {"name": "Swapp", "cat": "Autre", "rawCat": "Secondhand Fashion", "website": "https://swappapp.io"}, {"name": "Wood Mood", "cat": "Autre", "rawCat": "Sustainable Home Decor", "website": "https://woodmood.com.ua"}]}, {"country": "United Kingdom", "lng": -1.17, "lat": 52.36, "solutions": [{"name": "Climate Café", "cat": "Autre", "rawCat": "Climate Engagement / Community", "website": "https://www.climatecafe.earth"}, {"name": "Climate Savers", "cat": "Autre", "rawCat": "Climate App / Rewards", "website": "https://www.climatesavers.io"}, {"name": "Flexi-Hex", "cat": "Économie circulaire", "rawCat": "Circularity", "website": "https://flexi-hex.com"}, {"name": "HALO Trust", "cat": "Autre", "rawCat": "Post-conflict land restoration", "website": "https://www.halotrust.org"}, {"name": "Notpla", "cat": "Autre", "rawCat": "Circular Materials", "website": "https://www.notpla.com"}, {"name": "Project Seagrass", "cat": "Océans", "rawCat": "Ocean / Biodiversity", "website": "https://www.projectseagrass.org"}, {"name": "SED Fund", "cat": "Autre", "rawCat": "Climate Philanthropy", "website": "https://www.sed.fund"}, {"name": "Save Your Wardrobe", "cat": "Autre", "rawCat": "Circular Fashion", "website": "https://saveyourwardrobe.com"}, {"name": "Sparxell", "cat": "Matériaux", "rawCat": "Materials", "website": "https://www.sparxell.com"}, {"name": "TETMET", "cat": "Matériaux", "rawCat": "Materials", "website": "https://tetmet.com"}, {"name": "explorer.land", "cat": "Autre", "rawCat": "Nature Finance / Restoration", "website": "https://explorer.land"}]}, {"country": "United States", "lng": -98.58, "lat": 39.83, "solutions": [{"name": "Arbimon", "cat": "Biodiversité", "rawCat": "Biodiversity / Bioacoustics", "website": "https://arbimon.rfcx.org"}, {"name": "Brightest", "cat": "Autre", "rawCat": "ESG / Climate Software", "website": "https://www.brightest.io"}, {"name": "Humanitarian OpenStreetMap Team", "cat": "Inclusion", "rawCat": "Inclusion / Mapping", "website": "https://www.hotosm.org"}, {"name": "Loop", "cat": "Autre", "rawCat": "Circular Reuse", "website": "https://www.loopstore.com"}, {"name": "Mycocycle", "cat": "Économie circulaire", "rawCat": "Circularity / Materials", "website": "https://mycocycle.com/"}, {"name": "Rainforest Connection", "cat": "Biodiversité", "rawCat": "Biodiversity / Monitoring", "website": "https://rfcx.org"}, {"name": "Snova", "cat": "Autre", "rawCat": "Bioinnovation", "website": "https://www.snova.bio"}, {"name": "Werewool", "cat": "Matériaux", "rawCat": "Materials", "website": "https://www.werewool.bio"}, {"name": "World Resources Institute", "cat": "Climat", "rawCat": "Climate / Data / Policy", "website": "https://www.wri.org"}, {"name": "re:3D", "cat": "Économie circulaire", "rawCat": "Circularity / Manufacturing", "website": "https://re3d.org"}]}];
-const CAT_COLORS={'Économie circulaire':'#1A3E6B','Eau':'#2A5A8A','Océans':'#0D3A6B','Agriculture':'#6B4A1A','Biodiversité':'#2A5A2A','Énergie':'#B86A1A','Matériaux':'#5A3A2A','Sciences & Tech':'#4A2080','Climat':'#1A4A5A','Santé':'#7A1A2A','Inclusion':'#5A1A5A',"Finance d'impact":'#2A4A6A','Mobilité':'#1A3A5A','Autre':'#3A3A3A'};
+const DATA=[{"name": "Coast 4C", "cat": "Océans", "rawCat": "Ocean / Water", "country": "Australia", "website": "https://www.coast4c.com/"}, {"name": "Syrinx Environmental", "cat": "Eau", "rawCat": "Water / Nature-based Infrastructure", "country": "Australia", "website": "https://www.syrinx.net.au"}, {"name": "Avecom", "cat": "Autre", "rawCat": "Wastewater / Water Tech", "country": "Belgium", "website": "https://www.avecom.be"}, {"name": "BeeOdiversity", "cat": "Biodiversité", "rawCat": "Biodiversity", "country": "Belgium", "website": "https://beeodiversity.com"}, {"name": "Citronics", "cat": "Économie circulaire", "rawCat": "Circularity / Materials", "country": "Belgium", "website": "https://citronics.eu/"}, {"name": "Euclid Network", "cat": "Autre", "rawCat": "Social Enterprise Network", "country": "Belgium", "website": "https://www.euclidnetwork.eu"}, {"name": "Smart Cities Marketplace", "cat": "Autre", "rawCat": "Smart Cities", "country": "Belgium", "website": "https://smart-cities-marketplace.ec.europa.eu"}, {"name": "Urban Forests", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "country": "Belgium", "website": "https://www.urbanforest.be/en/home-4/"}, {"name": "Wandusoa", "cat": "Agriculture", "rawCat": "Agri / Food", "country": "Cameroon", "website": "https://wandusoa.org/"}, {"name": "Oneka Technologies", "cat": "Eau", "rawCat": "Water", "country": "Canada", "website": "https://www.onekatech.com"}, {"name": "e-Zinc", "cat": "Énergie", "rawCat": "Energy Storage", "country": "Canada", "website": "https://www.e-zinc.ca"}, {"name": "Lapee", "cat": "Autre", "rawCat": "Sanitation", "country": "Denmark", "website": "https://lapee.com"}, {"name": "REFUNITE", "cat": "Inclusion", "rawCat": "Inclusion / Refugees", "country": "Denmark", "website": "https://refu.nite.org"}, {"name": "SOS Biotech", "cat": "Océans", "rawCat": "Ocean / Water", "country": "Dominican Republic", "website": "https://sosbiotech.co/"}, {"name": "Resistomap", "cat": "Eau", "rawCat": "Water / Monitoring", "country": "Finland", "website": "https://resistomap.com"}, {"name": "Agronnect", "cat": "Agriculture", "rawCat": "AgriTech", "country": "France", "website": "https://agronnect.fr"}, {"name": "Amaya", "cat": "Autre", "rawCat": "Social Impact", "country": "France", "website": "https://www.amaya.earth"}, {"name": "Aquaphys", "cat": "Eau", "rawCat": "Water / IoT", "country": "France", "website": "https://aquaphys.com"}, {"name": "Asteria", "cat": "Climat", "rawCat": "Climate / AI", "country": "France", "website": "https://asteria.observer"}, {"name": "BioeSol", "cat": "Énergie", "rawCat": "Energy", "country": "France", "website": "https://www.bioesol.fr"}, {"name": "Biomede", "cat": "Agriculture", "rawCat": "AgriTech", "country": "France", "website": "https://www.biomede.fr"}, {"name": "CECACAO", "cat": "Agriculture", "rawCat": "Food / Agriculture", "country": "France", "website": "https://www.cecacao.com"}, {"name": "CHITELIX", "cat": "Autre", "rawCat": "Circular Biomaterials", "country": "France", "website": "https://chitelix.com"}, {"name": "Etendart", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "France", "website": "https://etendart.com"}, {"name": "FabBRICK", "cat": "Autre", "rawCat": "Circular Materials", "country": "France", "website": "https://fab-brick.com"}, {"name": "Fair Play For Planet", "cat": "Autre", "rawCat": "Sport / Impact", "country": "France", "website": "https://fairplayforplanet.org"}, {"name": "Finemind", "cat": "Autre", "rawCat": "EdTech / Inclusion", "country": "France", "website": "https://www.finemind.co"}, {"name": "Gaiago", "cat": "Agriculture", "rawCat": "AgriTech", "country": "France", "website": "https://www.gaiago.eu"}, {"name": "Green Sanctuaries", "cat": "Biodiversité", "rawCat": "Biodiversity", "country": "France", "website": "https://greensanctuaries.com"}, {"name": "HelioRec", "cat": "Énergie", "rawCat": "Energy", "country": "France", "website": "https://www.heliorec.com"}, {"name": "Heliosand", "cat": "Eau", "rawCat": "Water / Desalination", "country": "France", "website": "https://www.heliosand.com"}, {"name": "Hylight", "cat": "Climat", "rawCat": "Climate / Methane Detection", "country": "France", "website": "https://www.hylight.tech"}, {"name": "InovaYa", "cat": "Eau", "rawCat": "Water", "country": "France", "website": "https://inovaya.com"}, {"name": "Intersektion", "cat": "Autre", "rawCat": "Urban / Inclusion", "country": "France", "website": "https://intersektion.co"}, {"name": "Kinomé", "cat": "Autre", "rawCat": "Nature-based Solutions", "country": "France", "website": "https://kinome.fr"}, {"name": "Neolithe", "cat": "Économie circulaire", "rawCat": "Circular / Waste", "country": "France", "website": "https://neolithe.fr"}, {"name": "Novobiom", "cat": "Sciences & Tech", "rawCat": "Biotech", "country": "France", "website": "https://novobiom.com"}, {"name": "Peel Lab", "cat": "Matériaux", "rawCat": "Materials", "country": "France", "website": "https://www.peel-lab.com"}, {"name": "Rebond", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "France", "website": "https://www.rebond.co"}, {"name": "Revolty", "cat": "Énergie", "rawCat": "Energy Storage", "country": "France", "website": "https://www.revolty.fr"}, {"name": "SolReed", "cat": "Énergie", "rawCat": "Solar / Circularity", "country": "France", "website": "https://www.cea.fr/english/Pages/solreed.aspx"}, {"name": "Solicaz", "cat": "Énergie", "rawCat": "Energy", "country": "France", "website": "https://solicaz.com"}, {"name": "Synovance", "cat": "Sciences & Tech", "rawCat": "Biotech", "country": "France", "website": "https://synovance.com"}, {"name": "The Ocean Package", "cat": "Océans", "rawCat": "Ocean / Circularity", "country": "France", "website": "https://www.theoceanpackage.com"}, {"name": "Toore", "cat": "Autre", "rawCat": "Circularity Software", "country": "France", "website": "https://toore.co"}, {"name": "Trizzy", "cat": "Autre", "rawCat": "Zero Waste", "country": "France", "website": "https://trizzy.io"}, {"name": "Yuka", "cat": "Autre", "rawCat": "Health / Consumer", "country": "France", "website": "https://yuka.io"}, {"name": "CataCycle", "cat": "Économie circulaire", "rawCat": "Circularity / PET", "country": "Germany", "website": "https://catacycle.com"}, {"name": "FASE", "cat": "Autre", "rawCat": "Impact Finance", "country": "Germany", "website": "https://www.fa-se.de"}, {"name": "FINDS", "cat": "Économie circulaire", "rawCat": "Circularity / Retail Tech", "country": "Germany", "website": "https://www.getfinds.co"}, {"name": "Klim", "cat": "Autre", "rawCat": "Regenerative Agriculture", "country": "Germany", "website": "https://klim.eco"}, {"name": "Koralo", "cat": "Autre", "rawCat": "FoodTech", "country": "Germany", "website": "https://koralo.com"}, {"name": "Planet Wild", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "country": "Germany", "website": "https://planetwild.com/"}, {"name": "Plastic Fischer", "cat": "Économie circulaire", "rawCat": "Circularity / Waste", "country": "Germany", "website": "https://plasticfischer.com"}, {"name": "Solaq", "cat": "Énergie", "rawCat": "Energy", "country": "Germany", "website": "https://www.solaq.energy"}, {"name": "Skin Gourmet", "cat": "Autre", "rawCat": "Sustainable Beauty", "country": "Ghana", "website": "https://skingourmet.com"}, {"name": "Baeru", "cat": "Océans", "rawCat": "Ocean / Water", "country": "India", "website": "https://baeru.in/"}, {"name": "Serein", "cat": "Autre", "rawCat": "Health / Sustainability", "country": "India", "website": "https://www.serein.in"}, {"name": "Soilytix", "cat": "Agriculture", "rawCat": "AgriTech", "country": "Israel", "website": "https://www.soilytix.com"}, {"name": "betterSoil", "cat": "Agriculture", "rawCat": "AgriTech", "country": "Israel", "website": "https://bettersoil.co"}, {"name": "WSense", "cat": "Océans", "rawCat": "Ocean / Water", "country": "Italy", "website": "https://wsense.it/"}, {"name": "Fermenstation", "cat": "Économie circulaire", "rawCat": "Circularity / Materials", "country": "Japan", "website": "https://fermenstation.co.jp/"}, {"name": "FarmBizAfrica", "cat": "Agriculture", "rawCat": "AgriTech / Carbon / Advisory", "country": "Kenya", "website": "https://www.farmbizafrica.com"}, {"name": "MAASH", "cat": "Agriculture", "rawCat": "Food / Agri", "country": "Kenya", "website": "https://maashfoods.com"}, {"name": "Reality Academy", "cat": "Autre", "rawCat": "Education / Skills", "country": "Kenya", "website": "https://realityacademy.co"}, {"name": "Small Farm Cities Africa", "cat": "Agriculture", "rawCat": "Food / Agriculture", "country": "Kenya", "website": "https://smallfarmcitiesafrica.com"}, {"name": "Nash FintechX", "cat": "Autre", "rawCat": "Climate FinTech / Carbon Markets", "country": "Luxembourg", "website": "https://www.nashfintechx.com"}, {"name": "RSS-Hydro", "cat": "Autre", "rawCat": "Hydrology / Earth Observation", "country": "Luxembourg", "website": "https://www.rss-hydro.lu"}, {"name": "Pan-African Agency of the Great Green Wall", "cat": "Biodiversité", "rawCat": "Biodiversity / Land", "country": "Mauritania", "website": "https://grandemurailleverte.org"}, {"name": "Altamira", "cat": "Autre", "rawCat": "Regenerative Finance / Consulting", "country": "Netherlands", "website": "https://www.altamira-regen.com"}, {"name": "Antfarm", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "Netherlands", "website": "https://antfarm.co"}, {"name": "Avenue Consultancy", "cat": "Autre", "rawCat": "Fundraising / Advisory", "country": "Netherlands", "website": "https://www.linkedin.com/company/avenue-consultancy/"}, {"name": "ChemReclaim", "cat": "Économie circulaire", "rawCat": "Circularity / Chemicals", "country": "Netherlands", "website": "https://chemreclaim.com"}, {"name": "Coding the Curbs", "cat": "Mobilité", "rawCat": "Mobility / Smart City", "country": "Netherlands", "website": "https://codingthecurbs.com"}, {"name": "DRK Foundation", "cat": "Autre", "rawCat": "Venture Philanthropy", "country": "Netherlands", "website": "https://www.drkfoundation.nl"}, {"name": "EcoVerum", "cat": "Agriculture", "rawCat": "AgriTech", "country": "Netherlands", "website": "https://ecoverum.nl"}, {"name": "Goodwell Investments", "cat": "Finance d'impact", "rawCat": "Impact Investing", "country": "Netherlands", "website": "https://www.goodwell.nl"}, {"name": "Hydraloop", "cat": "Eau", "rawCat": "Water", "country": "Netherlands", "website": "https://www.hydraloop.com"}, {"name": "InspireXChange", "cat": "Autre", "rawCat": "Startup Accelerator", "country": "Netherlands", "website": "https://inspirexchange.nl"}, {"name": "Justdiggit", "cat": "Biodiversité", "rawCat": "Biodiversity", "country": "Netherlands", "website": "https://justdiggit.org"}, {"name": "KICO Kitchen", "cat": "Agriculture", "rawCat": "Agri / Food", "country": "Netherlands", "website": "https://www.kico.kitchen/"}, {"name": "Kelp Blue", "cat": "Océans", "rawCat": "Ocean / Water", "country": "Netherlands", "website": "https://www.kelp.blue/global"}, {"name": "KiCo", "cat": "Autre", "rawCat": "Food Innovation", "country": "Netherlands", "website": "https://www.kico.kitchen"}, {"name": "Life Terra Foundation", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "country": "Netherlands", "website": "https://www.lifeterra.eu/en"}, {"name": "Mudland", "cat": "Autre", "rawCat": "Nature-based / Materials", "country": "Netherlands", "website": "https://mudland.eco"}, {"name": "Mutual Empathy", "cat": "Autre", "rawCat": "Impact Venture Studio", "country": "Netherlands", "website": "https://www.mutualempathy.com"}, {"name": "MycoFarming", "cat": "Agriculture", "rawCat": "AgriTech", "country": "Netherlands", "website": "https://www.mycofarming.com"}, {"name": "NBC", "cat": "Autre", "rawCat": "Advisory / Impact", "country": "Netherlands", "website": "https://www.nbc-int.com"}, {"name": "NOWOS", "cat": "Économie circulaire", "rawCat": "Circularity / Batteries", "country": "Netherlands", "website": "https://nowos.world"}, {"name": "Netherlands Advisory Board on Impact Investing", "cat": "Finance d'impact", "rawCat": "Impact Investing", "country": "Netherlands", "website": "https://www.nabimpactinvesting.nl"}, {"name": "North Sea Farmers", "cat": "Océans", "rawCat": "Ocean / Agriculture", "country": "Netherlands", "website": "https://www.northseafarmers.org"}, {"name": "Pretty Plastic", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "Netherlands", "website": "https://www.prettyplastic.nl"}, {"name": "Rabo Foundation", "cat": "Autre", "rawCat": "Agri-finance / Inclusion", "country": "Netherlands", "website": "https://www.rabobank.com/about-us/rabo-foundation"}, {"name": "Roetz Bikes", "cat": "Mobilité", "rawCat": "Mobility", "country": "Netherlands", "website": "https://roetz.life"}, {"name": "SeaO2", "cat": "Océans", "rawCat": "Ocean / Carbon Removal", "country": "Netherlands", "website": "https://www.seao2.com"}, {"name": "Sensiblue", "cat": "Eau", "rawCat": "Water", "country": "Netherlands", "website": "https://sensiblue.com"}, {"name": "Shaping Impact Group", "cat": "Finance d'impact", "rawCat": "Impact Investing / Advisory", "country": "Netherlands", "website": "https://www.shapingimpact.group"}, {"name": "Skilledin Green", "cat": "Autre", "rawCat": "Green Jobs / Talent", "country": "Netherlands", "website": "https://green.skilledin.io"}, {"name": "Social Impact Fonds Den Haag", "cat": "Finance d'impact", "rawCat": "Impact Investing", "country": "Netherlands", "website": "https://www.sifdenhaag.nl"}, {"name": "Space4Good", "cat": "Autre", "rawCat": "Space / Climate Data", "country": "Netherlands", "website": "https://space4good.com"}, {"name": "Swarmed", "cat": "Biodiversité", "rawCat": "Biodiversity / Pollinators", "country": "Netherlands", "website": "https://www.beeswarmed.org"}, {"name": "Teens Safe Space", "cat": "Inclusion", "rawCat": "Inclusion", "country": "Netherlands", "website": "https://teenssafespace.com"}, {"name": "The Great Bubble Barrier", "cat": "Eau", "rawCat": "Water", "country": "Netherlands", "website": "https://thegreatbubblebarrier.com"}, {"name": "The Hague Humanity Hub", "cat": "Autre", "rawCat": "Peace / Justice Ecosystem", "country": "Netherlands", "website": "https://www.humanityhub.net"}, {"name": "The Roots", "cat": "Autre", "rawCat": "Social Design / Tech for Good", "country": "Netherlands", "website": "https://www.theroots.space"}, {"name": "WellDecommissioned", "cat": "Énergie", "rawCat": "Energy", "country": "Netherlands", "website": "https://welldecommissioned.com"}, {"name": "World's Youth for Climate Justice", "cat": "Autre", "rawCat": "Climate Justice", "country": "Netherlands", "website": "https://www.wy4cj.org"}, {"name": "Yespers", "cat": "Agriculture", "rawCat": "Food / Agriculture", "country": "Netherlands", "website": "https://yespers.com"}, {"name": "i-did", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "Netherlands", "website": "https://i-did.nl"}, {"name": "leafy.", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "Netherlands", "website": "https://leafy.place"}, {"name": "Over Easy Solar", "cat": "Énergie", "rawCat": "Solar", "country": "Norway", "website": "https://www.overeasy.no"}, {"name": "ETV", "cat": "Autre", "rawCat": "Clean Tech", "country": "Poland", "website": "https://etvwind.com"}, {"name": "Darah Solutions Lab", "cat": "Autre", "rawCat": "Textile Circularity", "country": "Saudi Arabia", "website": "https://prezi.com/p/zbn-85hkklc7/darah-solutions-lab/"}, {"name": "Flint", "cat": "Énergie", "rawCat": "Energy Storage", "country": "Singapore", "website": "https://flintbattery.com"}, {"name": "PlanetCare", "cat": "Économie circulaire", "rawCat": "Circular / Microplastics", "country": "Slovenia", "website": "https://planetcare.org"}, {"name": "Living Soils", "cat": "Autre", "rawCat": "Regenerative Agriculture", "country": "South Africa", "website": "https://livingsoils.co.za"}, {"name": "Code of Nature", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "country": "South Korea", "website": "https://www.c-of-n.com/en"}, {"name": "Strong by Form", "cat": "Matériaux", "rawCat": "Materials", "country": "Spain", "website": "https://strongbyform.com"}, {"name": "NitroCapt", "cat": "Agriculture", "rawCat": "AgriTech / Fertilizer", "country": "Sweden", "website": "https://nitrocapt.com"}, {"name": "AgroSustain", "cat": "Agriculture", "rawCat": "AgriTech", "country": "Switzerland", "website": "https://www.agrosustain.ch"}, {"name": "HERA Digital Health", "cat": "Santé", "rawCat": "HealthTech", "country": "Switzerland", "website": "https://hera-health.com"}, {"name": "ID Genève", "cat": "Autre", "rawCat": "Sustainable Luxury", "country": "Switzerland", "website": "https://www.idgenevewatches.com"}, {"name": "NatureRe", "cat": "Biodiversité", "rawCat": "Nature / Biodiversity", "country": "Switzerland", "website": "https://nature-re.com/"}, {"name": "Solskin", "cat": "Autre", "rawCat": "Built Environment", "country": "Switzerland", "website": "https://solskin.ch"}, {"name": "Voltiris", "cat": "Énergie", "rawCat": "Energy / Agri", "country": "Switzerland", "website": "https://www.voltiris.com"}, {"name": "Apixmed", "cat": "Santé", "rawCat": "HealthTech", "country": "Ukraine", "website": "https://apixmed.com"}, {"name": "Autistic People Friendly", "cat": "Inclusion", "rawCat": "Inclusion", "country": "Ukraine", "website": "https://autisticpeople.friendly"}, {"name": "Autistic People Friendly NGO", "cat": "Inclusion", "rawCat": "Inclusion / Autism", "country": "Ukraine", "website": "https://autisticpeoplefriendly.com"}, {"name": "Felmar's Lab", "cat": "Santé", "rawCat": "HealthTech", "country": "Ukraine", "website": "https://felmars.com"}, {"name": "Go To-U", "cat": "Mobilité", "rawCat": "Mobility / EV", "country": "Ukraine", "website": "https://go-tou.com"}, {"name": "Hydratico", "cat": "Eau", "rawCat": "Water", "country": "Ukraine", "website": "https://hydratico.com"}, {"name": "Recast Plastic", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "Ukraine", "website": "https://recastplastic.com"}, {"name": "Recup Green", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "Ukraine", "website": "https://recupgreen.com"}, {"name": "S.Lab", "cat": "Matériaux", "rawCat": "Materials", "country": "Ukraine", "website": "https://slab.com.ua"}, {"name": "Swapp", "cat": "Autre", "rawCat": "Secondhand Fashion", "country": "Ukraine", "website": "https://swappapp.io"}, {"name": "Wood Mood", "cat": "Autre", "rawCat": "Sustainable Home Decor", "country": "Ukraine", "website": "https://woodmood.com.ua"}, {"name": "Climate Café", "cat": "Autre", "rawCat": "Climate Engagement / Community", "country": "United Kingdom", "website": "https://www.climatecafe.earth"}, {"name": "Climate Savers", "cat": "Autre", "rawCat": "Climate App / Rewards", "country": "United Kingdom", "website": "https://www.climatesavers.io"}, {"name": "Flexi-Hex", "cat": "Économie circulaire", "rawCat": "Circularity", "country": "United Kingdom", "website": "https://flexi-hex.com"}, {"name": "HALO Trust", "cat": "Autre", "rawCat": "Post-conflict land restoration", "country": "United Kingdom", "website": "https://www.halotrust.org"}, {"name": "Notpla", "cat": "Autre", "rawCat": "Circular Materials", "country": "United Kingdom", "website": "https://www.notpla.com"}, {"name": "Project Seagrass", "cat": "Océans", "rawCat": "Ocean / Biodiversity", "country": "United Kingdom", "website": "https://www.projectseagrass.org"}, {"name": "SED Fund", "cat": "Autre", "rawCat": "Climate Philanthropy", "country": "United Kingdom", "website": "https://www.sed.fund"}, {"name": "Save Your Wardrobe", "cat": "Autre", "rawCat": "Circular Fashion", "country": "United Kingdom", "website": "https://saveyourwardrobe.com"}, {"name": "Sparxell", "cat": "Matériaux", "rawCat": "Materials", "country": "United Kingdom", "website": "https://www.sparxell.com"}, {"name": "TETMET", "cat": "Matériaux", "rawCat": "Materials", "country": "United Kingdom", "website": "https://tetmet.com"}, {"name": "explorer.land", "cat": "Autre", "rawCat": "Nature Finance / Restoration", "country": "United Kingdom", "website": "https://explorer.land"}, {"name": "Arbimon", "cat": "Biodiversité", "rawCat": "Biodiversity / Bioacoustics", "country": "United States", "website": "https://arbimon.rfcx.org"}, {"name": "Brightest", "cat": "Autre", "rawCat": "ESG / Climate Software", "country": "United States", "website": "https://www.brightest.io"}, {"name": "Humanitarian OpenStreetMap Team", "cat": "Inclusion", "rawCat": "Inclusion / Mapping", "country": "United States", "website": "https://www.hotosm.org"}, {"name": "Loop", "cat": "Autre", "rawCat": "Circular Reuse", "country": "United States", "website": "https://www.loopstore.com"}, {"name": "Mycocycle", "cat": "Économie circulaire", "rawCat": "Circularity / Materials", "country": "United States", "website": "https://mycocycle.com/"}, {"name": "Rainforest Connection", "cat": "Biodiversité", "rawCat": "Biodiversity / Monitoring", "country": "United States", "website": "https://rfcx.org"}, {"name": "Snova", "cat": "Autre", "rawCat": "Bioinnovation", "country": "United States", "website": "https://www.snova.bio"}, {"name": "Werewool", "cat": "Matériaux", "rawCat": "Materials", "country": "United States", "website": "https://www.werewool.bio"}, {"name": "World Resources Institute", "cat": "Climat", "rawCat": "Climate / Data / Policy", "country": "United States", "website": "https://www.wri.org"}, {"name": "re:3D", "cat": "Économie circulaire", "rawCat": "Circularity / Manufacturing", "country": "United States", "website": "https://re3d.org"}];
 
-let selected=null;
-const svg=d3.select('#map');
-const wrap=document.getElementById('wrap');
+const CAT_COLORS={
+  'Économie circulaire':'#4A7FA5','Eau':'#5A8FB5','Océans':'#3A6A95',
+  'Agriculture':'#A57A3A','Biodiversité':'#7A9A5A','Énergie':'#C48A2A',
+  'Matériaux':'#8A6A4A','Sciences & Tech':'#7A5AAA','Climat':'#4A8A8A',
+  'Santé':'#AA4A5A','Inclusion':'#8A4A8A',"Finance d'impact":'#5A7A9A',
+  'Mobilité':'#4A5A8A','Autre':'#6A6A6A',
+};
 
-function dotR(n){return n>=16?16:n>=6?10:5+n*.5}
-function dotColor(n){return n>=16?'#1A3E6B':n>=6?'#B86A1A':'#C4A265'}
+// Count by category
+const catCounts={};
+DATA.forEach(d=>{catCounts[d.cat]=(catCounts[d.cat]||0)+1});
+const cats=Object.entries(catCounts).sort((a,b)=>b[1]-a[1]);
 
-function render(){
-  const W=wrap.clientWidth, H=wrap.clientHeight;
-  svg.attr('viewBox',`0 0 ${W} ${H}`);
-  
-  const proj=d3.geoNaturalEarth1()
-    .scale(Math.min(W/6.3, H/3.3))
-    .translate([W/2, H/2]);
-  const path=d3.geoPath().projection(proj);
-  
-  svg.selectAll('*').remove();
-  
-  // Graticule
-  svg.append('path')
-    .datum(d3.geoGraticule()())
-    .attr('class','graticule')
-    .attr('d',path);
-  
-  // World from CDN
-  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world=>{
-    svg.insert('path','*')
-      .datum({type:'Sphere'})
-      .attr('fill','#EAE7E0')
-      .attr('d',path);
-      
-    svg.append('g')
-      .selectAll('path')
-      .data(topojson.feature(world,world.objects.countries).features)
-      .join('path')
-      .attr('class','land')
-      .attr('d',path);
-      
-    // Borders
-    svg.append('path')
-      .datum(topojson.mesh(world,world.objects.countries,(a,b)=>a!==b))
-      .attr('fill','none')
-      .attr('stroke','#D0CCC4')
-      .attr('stroke-width',.4)
-      .attr('d',path);
+// Build filter buttons
+const filtersEl=document.getElementById('filters');
+cats.forEach(([cat,n])=>{
+  const btn=document.createElement('button');
+  btn.className='fb';
+  btn.setAttribute('data-cat',cat);
+  btn.textContent=cat+' · '+n;
+  btn.style.cssText='';
+  btn.onclick=()=>filter(btn,cat);
+  filtersEl.appendChild(btn);
+});
 
-    // Dots
-    const dots=svg.append('g').attr('class','dots');
-    SOLUTIONS.forEach(c=>{
-      const [x,y]=proj([c.lng,c.lat]);
-      if(!x||!y) return;
-      const n=c.solutions.length;
-      const r=dotR(n);
-      const col=dotColor(n);
-      
-      const g=dots.append('g')
-        .attr('class','country-dot')
-        .attr('transform',`translate(${x},${y})`)
-        .style('cursor','pointer')
-        .on('click',()=>openPanel(c))
-        .on('mouseenter',function(){
-          d3.select(this).select('.main-circle').attr('r',r*1.3);
-          d3.select(this).select('.country-label').style('opacity',1);
-          d3.select(this).append('circle').attr('class','pulse')
-            .attr('r',r).attr('fill','none').attr('stroke',col).attr('stroke-width',1.5).attr('opacity',.5)
-            .transition().duration(600).attr('r',r*2.5).attr('opacity',0).remove();
-        })
-        .on('mouseleave',function(){
-          d3.select(this).select('.main-circle').attr('r',r);
-        });
+let activeFilter='Tout';
+let simulation;
 
-      // Shadow
-      g.append('circle').attr('r',r+1).attr('fill','rgba(0,0,0,0.1)').attr('transform','translate(1,1)');
-      // Main
-      g.append('circle').attr('class','main-circle').attr('r',r).attr('fill',col).attr('stroke','rgba(255,255,255,0.8)').attr('stroke-width',1.5);
-      // Label
-      g.append('text').attr('class','dot-label').attr('dy','.05em').text(n);
-      // Country name (hidden by default)
-      g.append('text').attr('class','country-label')
-        .attr('y',r+11).attr('font-size',9).attr('fill','#444').attr('text-anchor','middle')
-        .style('opacity',0).style('pointer-events','none')
-        .text(c.country.length>12?c.country.split(' ').slice(0,2).join(' '):c.country);
-    });
+function filter(btn,cat){
+  document.querySelectorAll('.fb').forEach(b=>{
+    b.classList.remove('active');
+    b.style.background='';
+    b.style.color='';
+    b.style.borderColor='';
   });
+  btn.classList.add('active');
+  const col=cat==='Tout'?'#FAF9F7':(CAT_COLORS[cat]||'#FAF9F7');
+  btn.style.background=col;
+  btn.style.color='#0A0A0A';
+  btn.style.borderColor='transparent';
+  activeFilter=cat;
+  updateViz();
 }
 
-function openPanel(c){
-  selected=c.country;
-  document.getElementById('pcountry').textContent=c.country;
-  document.getElementById('pn').textContent=c.solutions.length+' solution'+(c.solutions.length>1?'s':'');
+const svg=d3.select('#viz');
+const wrap=document.getElementById('wrap');
+const tooltip=document.getElementById('tooltip');
+const isMobile=window.innerWidth<=768;
+
+function updateViz(){
+  const W=wrap.clientWidth, H=wrap.clientHeight;
+  const filtered=activeFilter==='Tout'?DATA:DATA.filter(d=>d.cat===activeFilter);
+  
+  svg.selectAll('*').remove();
+  if(simulation) simulation.stop();
+
+  const nodes=filtered.map(d=>({...d,r:isMobile?16:20}));
+  
+  // Category cluster centers
+  const catCenters={};
+  const catList=[...new Set(filtered.map(d=>d.cat))];
+  catList.forEach((cat,i)=>{
+    const angle=(i/catList.length)*Math.PI*2 - Math.PI/2;
+    const radius=Math.min(W,H)*0.28;
+    catCenters[cat]={x:W/2+Math.cos(angle)*radius, y:H/2+Math.sin(angle)*radius};
+  });
+
+  simulation=d3.forceSimulation(nodes)
+    .force('charge',d3.forceManyBody().strength(-2))
+    .force('collide',d3.forceCollide(d=>d.r+2).iterations(3))
+    .force('x',d3.forceX(d=>activeFilter==='Tout'?(catCenters[d.cat]?.x||W/2):W/2).strength(.08))
+    .force('y',d3.forceY(d=>activeFilter==='Tout'?(catCenters[d.cat]?.y||H/2):H/2).strength(.08))
+    .on('tick',ticked);
+
+  const g=svg.append('g');
+  
+  const circles=g.selectAll('circle')
+    .data(nodes)
+    .join('circle')
+    .attr('r',0)
+    .attr('fill',d=>CAT_COLORS[d.cat]||'#6A6A6A')
+    .attr('fill-opacity',.75)
+    .attr('stroke',d=>CAT_COLORS[d.cat]||'#6A6A6A')
+    .attr('stroke-width',1.5)
+    .attr('stroke-opacity',.4)
+    .style('cursor','pointer')
+    .transition().duration(600).delay((_,i)=>i*4)
+    .attr('r',d=>d.r);
+
+  // Re-select for events
+  g.selectAll('circle')
+    .on('mouseover',function(event,d){
+      if(isMobile) return;
+      d3.select(this).attr('fill-opacity',1).attr('r',d.r+3);
+      tooltip.classList.remove('hidden');
+      document.getElementById('tt-cat').textContent=d.cat;
+      document.getElementById('tt-cat').style.color=CAT_COLORS[d.cat]||'#C4A265';
+      document.getElementById('tt-name').textContent=d.name;
+      document.getElementById('tt-country').textContent=d.country;
+      document.getElementById('tt-link').style.display=d.website?'block':'none';
+      tooltip.style.left=event.clientX+'px';
+      tooltip.style.top=event.clientY+'px';
+    })
+    .on('mousemove',function(event){
+      if(isMobile) return;
+      tooltip.style.left=event.clientX+'px';
+      tooltip.style.top=event.clientY+'px';
+    })
+    .on('mouseout',function(_,d){
+      if(isMobile) return;
+      d3.select(this).attr('fill-opacity',.75).attr('r',d.r);
+      tooltip.classList.add('hidden');
+    })
+    .on('click',function(_,d){
+      if(d.website) window.open(d.website,'_blank');
+    })
+    .on('touchstart',function(event,d){
+      event.preventDefault();
+      openMobilePanel(d);
+    },{passive:false});
+
+  function ticked(){
+    g.selectAll('circle')
+      .attr('cx',d=>d.x=Math.max(d.r,Math.min(W-d.r,d.x)))
+      .attr('cy',d=>d.y=Math.max(d.r,Math.min(H-d.r,d.y)));
+  }
+
+  // Category labels (desktop only)
+  if(!isMobile && activeFilter==='Tout'){
+    Object.entries(catCenters).forEach(([cat,pos])=>{
+      svg.append('text')
+        .attr('x',pos.x).attr('y',pos.y-55)
+        .attr('text-anchor','middle')
+        .attr('fill',CAT_COLORS[cat]||'#6A6A6A')
+        .attr('font-size',9)
+        .attr('font-weight',600)
+        .attr('letter-spacing',2)
+        .attr('font-family','DM Sans')
+        .attr('opacity',.6)
+        .text(cat.toUpperCase());
+    });
+  }
+}
+
+function openMobilePanel(d){
+  document.getElementById('pcountry').textContent=d.name;
+  document.getElementById('pn').textContent=d.cat+' · '+d.country;
   const list=document.getElementById('plist');
   list.innerHTML='';
-  c.solutions.forEach(s=>{
+  if(d.website){
     const a=document.createElement('a');
-    a.className='si';
-    a.href=s.website||'#';
-    a.target='_blank';a.rel='noopener noreferrer';
-    const col=CAT_COLORS[s.cat]||'#C4A265';
-    a.innerHTML=`<div class="sc" style="color:${col}">${s.cat}</div><div class="sn">${s.name}</div><div class="sr">${s.rawCat}</div>${s.website?'<div class="sl">Voir le projet →</div>':''}`;
+    a.className='si';a.href=d.website;a.target='_blank';a.rel='noopener noreferrer';
+    const col=CAT_COLORS[d.cat]||'#C4A265';
+    a.innerHTML=`<div class="sc" style="color:${col}">${d.cat}</div><div class="sn">${d.name}</div><div class="sr">${d.rawCat} · ${d.country}</div>`;
     list.appendChild(a);
-  });
+  }
   document.getElementById('panel').classList.add('open');
   document.getElementById('hint').style.opacity='0';
 }
-function closePanel(){
-  selected=null;
-  document.getElementById('panel').classList.remove('open');
-}
+function closePanel(){document.getElementById('panel').classList.remove('open')}
 
-window.addEventListener('resize',render);
-render();
+window.addEventListener('resize',()=>{svg.selectAll('*').remove();updateViz()});
+updateViz();
 setTimeout(()=>document.getElementById('hint').style.opacity='0',5000);
 </script>
 </body>
