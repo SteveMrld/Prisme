@@ -54,6 +54,9 @@ RÈGLES STRICTES :
 4. Vise minimum 6 sources différentes dans results
 5. N'invente jamais de position — confidence "faible" si tu n'as qu'une vague indication
 
+Les sourceId EXACTS à utiliser (copie-les tel quel) :
+${SOURCES.map(s => `"${s.id}" = ${s.name}`).join(', ')}
+
 Réponds UNIQUEMENT en JSON valide :
 {
   "topic": "string",

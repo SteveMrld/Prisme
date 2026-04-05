@@ -71,12 +71,14 @@ export default function RecoupementClient() {
       const clean = text.replace(/```json|```/g, '').trim()
       const parsed = JSON.parse(clean)
 
-      const results: SourceResult[] = (parsed.results || []).map((r: any) => ({
-        source: SOURCES.find(s => s.id === r.sourceId) || SOURCES[0],
-        position: r.position,
-        confidence: r.confidence,
-        details: r.details,
-      })).filter((r: any) => r.source)
+      const results: SourceResult[] = (parsed.results || []).map((r: any) => {
+        // Try exact match first, then fuzzy match on name
+        const source = SOURCES.find(s => s.id === r.sourceId)
+          || SOURCES.find(s => r.sourceId?.toLowerCase().includes(s.id.toLowerCase()))
+          || SOURCES.find(s => r.sourceId?.toLowerCase().includes(s.name.toLowerCase().split(' ')[0]))
+          || { id: r.sourceId, name: r.sourceName || r.sourceId, type: '', bias: '', abbr: r.sourceId?.slice(0,2).toUpperCase() || '??' }
+        return { source, position: r.position, confidence: r.confidence, details: r.details }
+      }).filter((r: any) => r.position)
 
       setAnalysis({
         topic: parsed.topic || query,
