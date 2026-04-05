@@ -23,11 +23,12 @@ const STATIC_INDICATORS: Indicator[] = [
 ]
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Énergie': '#C4793A',
-  'Refuge': '#C8A96E',
+  'Énergie':      '#C4793A',
+  'Refuge':       '#C8A96E',
+  'Alimentaire':  '#7A9A3A',
+  'Industrie':    '#9A6A3A',
+  'Change':       '#2D6B4A',
   'Géopolitique': '#1A3E6B',
-  'Change': '#2D6B4A',
-  'Émergents': '#6A4A80',
 }
 
 function Sparkline({ positive }: { positive: boolean }) {
@@ -53,7 +54,7 @@ export default function IndicateursClient() {
     async function fetchRates() {
       try {
         // Frankfurter API - completely free, no key needed
-        const res = await fetch('https://api.frankfurter.app/latest?from=USD&to=CNY,EUR,TRY,RUB')
+        const res = await fetch('https://api.frankfurter.app/latest?from=USD&to=CNY,EUR')
         const data = await res.json()
         const rates = data.rates
 
@@ -61,7 +62,7 @@ export default function IndicateursClient() {
         const yesterday = new Date()
         yesterday.setDate(yesterday.getDate() - 1)
         const yd = yesterday.toISOString().split('T')[0]
-        const res2 = await fetch(`https://api.frankfurter.app/${yd}?from=USD&to=CNY,EUR,TRY,RUB`)
+        const res2 = await fetch(`https://api.frankfurter.app/${yd}?from=USD&to=CNY,EUR`)
         const data2 = await res2.json()
         const prev = data2.rates
 
@@ -74,6 +75,30 @@ export default function IndicateursClient() {
           const change = ((latest - prevDay) / prevDay) * 100
           setIndicators(inds => inds.map(ind =>
             ind.id === 'brent' ? { ...ind, value: latest.toFixed(2), change } : ind
+          ))
+        }
+
+        // Alpha Vantage — Wheat
+        const resWheat = await fetch(`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=${AV_KEY}`)
+        const dataWheat = await resWheat.json()
+        if (dataWheat.data && dataWheat.data.length >= 2) {
+          const latest = parseFloat(dataWheat.data[0].value)
+          const prevDay = parseFloat(dataWheat.data[1].value)
+          const change = ((latest - prevDay) / prevDay) * 100
+          setIndicators(inds => inds.map(ind =>
+            ind.id === 'wheat' ? { ...ind, value: latest.toFixed(2), change } : ind
+          ))
+        }
+
+        // Alpha Vantage — Copper
+        const resCopper = await fetch(`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=${AV_KEY}`)
+        const dataCopper = await resCopper.json()
+        if (dataCopper.data && dataCopper.data.length >= 2) {
+          const latest = parseFloat(dataCopper.data[0].value)
+          const prevDay = parseFloat(dataCopper.data[1].value)
+          const change = ((latest - prevDay) / prevDay) * 100
+          setIndicators(inds => inds.map(ind =>
+            ind.id === 'copper' ? { ...ind, value: latest.toFixed(2), change } : ind
           ))
         }
 
@@ -119,8 +144,8 @@ export default function IndicateursClient() {
           if (ind.id === 'gold')   return { ...ind, value: '3 248',  change: +0.8 }
           if (ind.id === 'usdcny') return { ...ind, value: '7.2841', change: +0.1 }
           if (ind.id === 'eurusd') return { ...ind, value: '1.0821', change: -0.3 }
-          if (ind.id === 'usdtry') return { ...ind, value: '38.42',  change: +0.5 }
-          if (ind.id === 'usdrub') return { ...ind, value: '84.60',  change: -1.2 }
+          if (ind.id === 'wheat')  return { ...ind, value: '5.42',   change: -0.8 }
+          if (ind.id === 'copper') return { ...ind, value: '4.12',   change: +1.1 }
           return ind
         }))
       }
