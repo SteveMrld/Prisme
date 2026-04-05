@@ -523,3 +523,81 @@
 @media (max-width: 768px) {
   .bylineUniversal { padding: 12px 20px 16px; }
 }
+
+/* ── RELATED ARTICLES AMÉLIORÉS ── */
+.relatedHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.relatedLine {
+  flex: 1;
+  height: 1px;
+  background: var(--bord);
+}
+
+.relatedImgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.relatedCard:hover .relatedImgOverlay { opacity: 1; }
+
+.relatedCard {
+  transform: translateY(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.relatedCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+}
+
+.relatedMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.relatedCat {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--or);
+}
+
+.relatedTime {
+  font-size: 9px;
+  color: var(--gris-l);
+  letter-spacing: 1px;
+}
+
+.relatedAuthor {
+  font-size: 10px;
+  color: var(--gris-l);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.relatedCta {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-top: 10px;
+  display: block;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.relatedCard:hover .relatedCta {
+  opacity: 1;
+  transform: translateX(0);
+}

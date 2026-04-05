@@ -126,18 +126,27 @@ export default function ArticleLayout({
       {/* ── ARTICLES LIÉS ── */}
       {related.length > 0 && (
         <div className={styles.related}>
-          <div className={styles.relatedLabel}>Lire aussi</div>
+          <div className={styles.relatedHead}>
+            <div className={styles.relatedLabel}>Lire aussi</div>
+            <div className={styles.relatedLine} />
+          </div>
           <div className={styles.relatedGrid}>
             {related.map((a: any) => (
               <a key={a.slug} href={`/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && (
                   <div className={styles.relatedImgWrap}>
                     <img src={a.image} alt={a.title} className={styles.relatedImg} />
+                    <div className={styles.relatedImgOverlay} />
                   </div>
                 )}
                 <div className={styles.relatedBody}>
-                  <span className={styles.relatedTag}>{a.readTime} min</span>
+                  <div className={styles.relatedMeta}>
+                    <span className={styles.relatedCat}>{a.category?.toUpperCase()}</span>
+                    <span className={styles.relatedTime}>{a.readTime} min</span>
+                  </div>
                   <div className={styles.relatedTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
+                  {a.author && <div className={styles.relatedAuthor}>Par {a.author}</div>}
+                  <span className={styles.relatedCta}>Lire →</span>
                 </div>
               </a>
             ))}
