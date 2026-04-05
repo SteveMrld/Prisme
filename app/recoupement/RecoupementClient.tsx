@@ -78,7 +78,32 @@ export default function RecoupementClient() {
   const [error, setError] = useState('')
   const [loadingMsg, setLoadingMsg] = useState('')
   const [visibleResults, setVisibleResults] = useState<number>(0)
+  const [history, setHistory] = useState<Analysis[]>([])
+  const [showHistory, setShowHistory] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Load history from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('confins_recoupement_history')
+      if (saved) setHistory(JSON.parse(saved))
+    } catch {}
+  }, [])
+
+  const saveToHistory = (a: Analysis) => {
+    try {
+      const updated = [a, ...history].slice(0, 10)
+      setHistory(updated)
+      localStorage.setItem('confins_recoupement_history', JSON.stringify(updated))
+    } catch {}
+  }
+
+  const reliabilityScore = (results: SourceResult[]) => {
+    if (!results.length) return 0
+    const weights = { haute: 3, moyenne: 2, faible: 1 }
+    const total = results.reduce((sum, r) => sum + weights[r.confidence], 0)
+    return Math.round((total / (results.length * 3)) * 100)
+  }
 
   const LOADING_MSGS = [
     'Interrogation des sources…',
@@ -135,6 +160,7 @@ export default function RecoupementClient() {
         date: new Date().toLocaleString('fr-FR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }),
       }
       setAnalysis(finalAnalysis)
+      saveToHistory(finalAnalysis)
 
       // Stagger results reveal
       results.forEach((_, i) => {
@@ -236,6 +262,25 @@ export default function RecoupementClient() {
               <span className={styles.resultsDate}>{analysis.date}</span>
             </div>
           </div>
+
+          {/* RELIABILITY SCORE */}
+          {(() => {
+            const score = reliabilityScore(analysis.results)
+            return (
+              <div className={styles.scoreBlock}>
+                <div className={styles.scoreLabel}>Indice de fiabilité</div>
+                <div className={styles.scoreBar}>
+                  <div className={styles.scoreFill} style={{ width: `${score}%` }} />
+                </div>
+                <div className={styles.scoreValue}>{score}%</div>
+                <div className={styles.scoreNote}>
+                  {score >= 75 ? 'Bien documenté — forte convergence des sources' :
+                   score >= 50 ? 'Partiellement documenté — vérification recommandée' :
+                   'Peu documenté — traiter avec prudence'}
+                </div>
+              </div>
+            )
+          })()}
 
           {/* SYNTHESIS */}
           <div className={styles.synthesis}>

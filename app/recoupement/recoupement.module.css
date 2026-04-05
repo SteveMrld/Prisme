@@ -266,3 +266,65 @@
   .searchInner { flex-direction: column; }
   .searchBtn { width: 100%; }
 }
+
+/* RELIABILITY SCORE */
+.scoreBlock {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 24px; background: #F5F3EF;
+  margin-bottom: 2px; flex-wrap: wrap;
+}
+.scoreLabel {
+  font-size: 8px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gris-l);
+  flex-shrink: 0;
+}
+.scoreBar {
+  flex: 1; min-width: 120px; height: 4px;
+  background: #E0DDD8; overflow: hidden;
+}
+.scoreFill {
+  height: 100%; background: var(--or);
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+}
+.scoreValue {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px; font-weight: 500;
+  color: var(--encre); flex-shrink: 0;
+}
+.scoreNote {
+  font-size: 11px; color: var(--gris-l);
+  font-style: italic; width: 100%;
+}
+
+/* HISTORY */
+.historyBlock { margin-top: 20px; }
+.historyToggle {
+  background: none; border: none; cursor: pointer;
+  font-size: 11px; color: var(--gris-l);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 1px; padding: 0;
+  transition: color .2s;
+}
+.historyToggle:hover { color: var(--encre); }
+.historyList {
+  display: flex; flex-direction: column; gap: 1px;
+  margin-top: 12px; border-top: 1px solid var(--bord);
+}
+.historyItem {
+  display: flex; justify-content: space-between;
+  align-items: baseline; gap: 16px;
+  padding: 12px 0; border-bottom: 1px solid var(--bord);
+  background: none; border-left: none; border-right: none;
+  cursor: pointer; text-align: left;
+  transition: padding-left .2s;
+}
+.historyItem:hover { padding-left: 8px; }
+.historyTopic {
+  font-size: 13px; color: var(--encre);
+  font-family: 'Playfair Display', serif;
+}
+.historyDate {
+  font-size: 10px; color: var(--gris-l);
+  font-family: 'DM Mono', monospace;
+  flex-shrink: 0;
+}

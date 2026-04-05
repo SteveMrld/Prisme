@@ -1,0 +1,31 @@
+[
+  {
+    "date": "2026-04-05",
+    "region": "Moyen-Orient",
+    "items": [
+      { "text": "Trump rappelle que son ultimatum expire dans 48h", "source": "osint613", "url": "https://x.com/osint613/status/2040481761709138317" },
+      { "text": "Risque de fuite radioactive après un nouveau bombardement de la centrale de Bushehr", "source": "ajenews", "url": "https://x.com/ajenews/status/2040431784064647534" },
+      { "text": "Israël s'apprête à attaquer les infrastructures énergétiques d'Iran", "source": "ajenews", "url": "https://x.com/ajenews/status/2040494269815824722" },
+      { "text": "L'Iran a frappé le quartier général de l'état-major israélien à Tel Aviv", "source": "ramabdu", "url": "https://x.com/ramabdu/status/2040430258780852583" },
+      { "text": "Un grand nombre de C-17 traversent l'Atlantique en direction du Moyen-Orient", "source": "marionawfal", "url": "https://x.com/marionawfal/status/2040502516404863404" },
+      { "text": "Critiques de la faible couverture médiatique du possible accident nucléaire en Iran", "source": "markseddon1962", "url": "https://x.com/markseddon1962/status/2040497776081961189" },
+      { "text": "Répression des manifestations anti-guerre à Tel Aviv", "source": "spectateursfr", "url": "https://x.com/spectateursfr/status/2040492940556898749" },
+      { "text": "Récit de l'exfiltration du pilote américain en Iran", "source": "marionawfal", "url": "https://x.com/marionawfal/status/2040650379419959760" },
+      { "text": "Depuis le début de la guerre, 760 écoles et 350 centres de santé auraient été bombardés en Iran", "source": "furkangozukara", "url": "https://x.com/furkangozukara/status/2040560896057999596" },
+      { "text": "Deux centrales électriques et une usine de désalinisation bombardées au Koweït", "source": "kuwaittimesnews", "url": "https://x.com/kuwaittimesnews/status/2040607964373848301" },
+      { "text": "Les US imposent une coupure satellite sur l'ensemble de la zone de guerre", "source": "dropsitenews", "url": "https://x.com/dropsitenews/status/2040585174035952057" }
+    ]
+  },
+  {
+    "date": "2026-04-03",
+    "region": "Moyen-Orient",
+    "items": [
+      { "text": "Hegseth a demandé au chef d'état-major de l'armée américaine de démissionner immédiatement", "source": "shanaka86", "url": "https://x.com/shanaka86/status/2039864630701662461" },
+      { "text": "La France, la Russie et la Chine ont voté contre la résolution à l'ONU pour ouvrir le détroit d'Ormuz par la force", "source": "globeeyenews", "url": "https://x.com/globeeyenews/status/2039918331793396219" },
+      { "text": "Bombardement de l'institut Pasteur d'Iran", "source": "tparsi", "url": "https://x.com/tparsi/status/2039675900661248396" },
+      { "text": "Israël demande aux chrétiens et aux Druzes au Sud-Liban de ne pas cacher de musulmans", "source": "ryangrim", "url": "https://x.com/ryangrim/status/2039684274564051425" },
+      { "text": "Le prix des cargaisons de brut est monté à son plus haut niveau depuis 2008", "source": "ft", "url": "https://x.com/ft/status/2039895774780096969" },
+      { "text": "L'Iran a frappé un centre de données Amazon à Bahreïn", "source": "theintercept", "url": "https://x.com/theintercept/status/2039722309309616546" }
+    ]
+  }
+]

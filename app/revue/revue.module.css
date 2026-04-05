@@ -1,0 +1,56 @@
+.page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
+
+.hero { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--encre); }
+.eyebrow { font-size: 8px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--or); margin-bottom: 10px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 6vw, 56px); font-weight: 300; letter-spacing: -1.5px; color: var(--encre); line-height: 1; margin-bottom: 16px; }
+.title em { font-style: italic; color: var(--or); }
+.subtitle { font-size: 15px; color: var(--gris); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 17px; line-height: 1.55; }
+
+.feed { display: flex; flex-direction: column; gap: 48px; }
+
+.revue { }
+.revueHeader {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--encre);
+}
+.revueDate {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 400; color: var(--encre);
+  text-transform: capitalize;
+}
+.revueRegion {
+  font-size: 8px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--or);
+}
+
+.items { display: flex; flex-direction: column; }
+.item { border-bottom: 1px solid var(--bord); }
+.itemLink {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 16px; padding: 13px 0; text-decoration: none;
+  transition: padding-left .15s;
+}
+.itemLink:hover { padding-left: 8px; }
+.itemText {
+  font-size: 14px; color: var(--encre); line-height: 1.5;
+  flex: 1;
+}
+.itemLink:hover .itemText { color: var(--or); }
+.itemSource {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; font-weight: 500;
+  color: var(--gris-l); flex-shrink: 0;
+  background: #F0EDE7; padding: 2px 6px;
+  letter-spacing: 1px;
+}
+
+.cta { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--bord); }
+.ctaBtn {
+  display: inline-block; padding: 14px 28px;
+  background: var(--encre); color: var(--fond);
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  transition: background .2s;
+}
+.ctaBtn:hover { background: var(--or); color: #0A0A0A; }
