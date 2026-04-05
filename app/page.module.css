@@ -1203,6 +1203,9 @@
 @media (max-width: 768px) {
   /* RESET GLOBAL MOBILE */
   .atlanticInner { grid-template-columns: 1fr; gap: 32px; }
+  .atlanticLeft { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .atlanticItem { border-right: 1px solid var(--bord); }
+  .atlanticItem:nth-child(even) { border-right: none; }
   .latestGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .latestGrid > a:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .latestGrid > a:last-child:nth-child(odd) .latestImgWrap { height: 160px; }
