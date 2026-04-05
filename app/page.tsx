@@ -11,12 +11,18 @@ import Ticker from './TickerClient'
 import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 
 const signalItems = [
-  { cat: 'Moyen-Orient', color: 'var(--geo)', headline: "Détroit d'Ormuz — Iran maintient le blocus sélectif, Trump menace de frapper infrastructures le 6 avril", date: '5 avril' },
-  { cat: 'Énergie', color: 'var(--eco)', headline: "Choc énergétique mondial — le prix du baril franchit 140 dollars, le pire depuis 1973 selon les analystes", date: '4 avril' },
-  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Macron appelle à une 'coalition d'indépendance' face aux influences américaine et chinoise", date: '3 avril' },
-  { cat: 'Iran', color: 'var(--geo)', headline: "35e jour du conflit — Lavrov et l'Égypte appellent au cessez-le-feu, Washington refuse", date: '3 avril' },
-  { cat: 'Tech', color: 'var(--tech)', headline: "Détroit d'Ormuz fermé — l'approvisionnement en énergie des data centers IA menacé en Europe", date: '2 avril' },
-  { cat: 'Économie', color: 'var(--eco)', headline: "FMI révise la croissance mondiale à la baisse — choc géopolitique et énergie redessinentles projections 2026", date: '1 avril' },
+  { cat: 'Moyen-Orient', color: 'var(--geo)', headline: "Détroit d'Ormuz — Iran maintient le blocus, Trump menace de frapper les infrastructures le 6 avril", date: '5 avril' },
+  { cat: 'Énergie', color: 'var(--eco)', headline: "Choc pétrolier — le baril franchit 140 dollars, pire choc depuis 1973, inflation mondiale relancée", date: '4 avril' },
+  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Macron appelle à une coalition d'indépendance européenne face aux influences américaine et chinoise", date: '3 avril' },
+  { cat: 'Iran', color: 'var(--geo)', headline: "35e jour du conflit — Lavrov et l'Égypte appellent au cessez-le-feu, Washington campe sur ses positions", date: '3 avril' },
+  { cat: 'Tech', color: 'var(--tech)', headline: "IA générative — 48% des Français l'utilisent désormais, adoption la plus rapide de toute technologie numérique", date: '2 avril' },
+  { cat: 'Environnement', color: 'var(--env)', headline: "Traité sur la biodiversité marine — les 60 ratifications franchies, la haute mer protégée pour la première fois", date: '2 avril' },
+  { cat: 'Économie', color: 'var(--eco)', headline: "FMI abaisse ses prévisions — choc énergétique et tensions géopolitiques pèsent sur la croissance 2026", date: '1 avril' },
+  { cat: 'Société', color: 'var(--soc)', headline: "Réseaux sociaux — l'exposition aux contenus problématiques concerne 1 jeune sur 3 en France selon l'Arcom", date: '1 avril' },
+  { cat: 'Afrique', color: 'var(--geo)', headline: "Soudan — les RSF contrôlent désormais un territoire plus riche que certains États, poids géopolitique inédit", date: '31 mars' },
+  { cat: 'Environnement', color: 'var(--env)', headline: "Déchets plastiques en Europe — baisse de 40% depuis 2015, les politiques d'interdiction montrent leur effet", date: '30 mars' },
+  { cat: 'Tech', color: 'var(--tech)', headline: "Énergie et IA — la hausse des coûts électriques liée au conflit remet en cause les valorisations des géants du cloud", date: '2 avril' },
+  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Minéraux critiques — la Chine contrôle 90% du raffinage mondial, levier de puissance contre les sanctions occidentales", date: '3 avril' },
 ]
 
 const categoryLabels: Record<string, string> = {
