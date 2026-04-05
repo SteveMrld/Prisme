@@ -14,7 +14,7 @@
 .input::placeholder { color: var(--gris-l); }
 .btn { padding: 14px 24px; background: #0A0A0A; color: #FAF9F7; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .2s; white-space: nowrap; }
 .btn:hover:not(:disabled) { background: var(--or); color: #0A0A0A; }
-.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn:disabled { opacity: 1; cursor: not-allowed; background: #888; color: #FAF9F7; }
 .btn { color: #FAF9F7 !important; }
 .error { margin-top: 10px; font-size: 12px; color: #C04A4A; font-style: italic; }
 
