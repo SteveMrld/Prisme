@@ -613,9 +613,9 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { grid-template-columns: 1fr; min-height: auto; }
-  .geLeft { padding: 36px 20px; }
-  .geRight { min-height: 280px; }
+  .ge { grid-template-columns: 1fr 140px; }
+  .geLeft { padding: 28px 20px; }
+  .geImg { width: 130px; }
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
   .heroAside { display: none; }
@@ -1216,9 +1216,9 @@
   .portraitsGrid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .atlanticSection { padding: 32px 16px; }
   .latestSection { padding: 32px 16px; }
-  .ge { grid-template-columns: 1fr; }
-  .geLeft { padding: 28px 16px; }
-  .geRight { min-height: 240px; order: -1; }
+  .ge { grid-template-columns: 1fr 120px; }
+  .geLeft { padding: 24px 16px; }
+  .geImg { width: 110px; }
   .gfSection { padding: 0 16px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
