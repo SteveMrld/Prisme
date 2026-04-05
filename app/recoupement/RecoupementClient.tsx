@@ -56,47 +56,10 @@ export default function RecoupementClient() {
     setAnalysis(null)
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/api/recoupement', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 4000,
-          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-          system: `Tu es un assistant de recoupement journalistique pour Confins, un média géopolitique français indépendant.
-          
-Ton rôle : analyser un fait d'actualité en croisant les positions des sources suivantes (quand tu les trouves sur le web) :
-${SOURCES.map(s => `- ${s.name} (@${s.id}) : ${s.type}, biais connu: ${s.bias}`).join('\n')}
-
-Pour chaque source que tu trouves, indique sa position sur le fait, le niveau de confiance (haute/moyenne/faible selon la solidité de l'info), et ce qu'elle dit précisément.
-
-Identifie ensuite :
-1. Les points de CONSENSUS entre sources
-2. Les CONTRADICTIONS et divergences 
-3. Une SYNTHÈSE neutre et factuelle
-
-Réponds UNIQUEMENT en JSON valide avec cette structure :
-{
-  "topic": "string",
-  "consensus": ["point 1", "point 2"],
-  "contradictions": ["contradiction 1", "contradiction 2"],
-  "synthesis": "string",
-  "results": [
-    {
-      "sourceId": "string",
-      "position": "string courte (max 20 mots)",
-      "confidence": "haute|moyenne|faible",
-      "details": "string (max 100 mots)"
-    }
-  ]
-}
-
-Ne retourne QUE le JSON, sans markdown, sans texte avant ou après.`,
-          messages: [{
-            role: 'user',
-            content: `Fais un recoupement de sources sur ce fait d'actualité : "${query}"\n\nRecherche ce que les sources listées ont dit sur ce sujet. Cherche en français ET en anglais.`
-          }]
-        })
+        body: JSON.stringify({ query })
       })
 
       const data = await response.json()
