@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './indicateurs.module.css'
 
 const AV_KEY = 'IONR06NZ74XNHBLS'
@@ -27,27 +27,8 @@ const INITIAL: Ind[] = [
 ]
 
 function AnimatedValue({ value, decimals=2 }: { value: number|null, decimals?: number }) {
-  const [displayed, setDisplayed] = useState(0)
-  const [started, setStarted] = useState(false)
-  useEffect(() => {
-    if (value === null) return
-    if (!started) {
-      setStarted(true)
-      const start = Date.now(), dur = 1200, from = 0
-      const tick = () => {
-        const p = Math.min((Date.now()-start)/dur, 1)
-        const ease = 1 - Math.pow(1-p, 3)
-        setDisplayed(from + (value - from) * ease)
-        if (p < 1) requestAnimationFrame(tick)
-        else setDisplayed(value)
-      }
-      requestAnimationFrame(tick)
-    } else {
-      setDisplayed(value)
-    }
-  }, [value])
   if (value === null) return <span className={styles.skeleton} />
-  return <>{displayed.toLocaleString('fr-FR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}</>
+  return <span className={styles.numReveal}>{value.toLocaleString('fr-FR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}</span>
 }
 
 function MiniChart({ history, color }: { history: number[], color: string }) {
@@ -109,7 +90,8 @@ export default function IndicateursClient() {
         await sleep(15000)
         const copper = await fetch(\`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
         if (copper.data?.length >= 7) {
-          const h = copper.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+          // AV returns USD/metric ton, convert to USD/lb (/2204.6)
+          const h = copper.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value)/2204.6)
           setInds(prev => prev.map(ind => ind.id==='copper' ? {...ind, value:h[h.length-1], prev:h[h.length-2], history:h} : ind))
         }
 
