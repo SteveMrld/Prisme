@@ -3,24 +3,22 @@ import { useState, useMemo } from 'react'
 import styles from './solutions.module.css'
 import { solutions, type Solution } from './data'
 
-const CAT_COLORS: Record<string, string> = {
-  'Économie circulaire': '#1A3E6B',
-  'Eau':                 '#2A5A8A',
-  'Océans':              '#0D3A6B',
-  'Agriculture':         '#6B4A1A',
-  'Biodiversité':        '#4A3A1A',
-  'Énergie':             '#B86A1A',
-  'Matériaux':           '#5A3A2A',
-  'Sciences & Tech':     '#4A2080',
-  'Climat':              '#1A4A5A',
-  'Santé':               '#7A1A2A',
-  'Inclusion':           '#5A1A5A',
-  "Finance d'impact":    '#2A4A6A',
-  'Mobilité':            '#1A3A5A',
-  'Autre':               '#3A3A3A',
-}
-
-const CATS = ['Tout', 'Économie circulaire', 'Agriculture', 'Biodiversité', 'Énergie', 'Eau', 'Océans', 'Matériaux', 'Inclusion', "Finance d'impact", 'Climat', 'Mobilité', 'Santé', 'Sciences & Tech']
+const CATS_CONFIG = [
+  { key: 'Économie circulaire', emoji: '♻️', color: '#1A3E6B', bg: '#EEF3FA' },
+  { key: 'Agriculture',         emoji: '🌾', color: '#6B4A1A', bg: '#FAF3EE' },
+  { key: 'Biodiversité',        emoji: '🌿', color: '#2A5A2A', bg: '#F0F7F0' },
+  { key: 'Énergie',             emoji: '⚡', color: '#B86A1A', bg: '#FDF5EE' },
+  { key: 'Eau',                 emoji: '💧', color: '#1A4A7A', bg: '#EEF3FB' },
+  { key: 'Océans',              emoji: '🌊', color: '#0D3A6B', bg: '#EEF2FA' },
+  { key: 'Matériaux',           emoji: '🧱', color: '#5A3A2A', bg: '#F7F3F0' },
+  { key: 'Inclusion',           emoji: '🤝', color: '#5A1A5A', bg: '#F7EEF7' },
+  { key: "Finance d'impact",    emoji: '📊', color: '#1A3A5A', bg: '#EEF2F7' },
+  { key: 'Climat',              emoji: '🌍', color: '#1A4A5A', bg: '#EEF5F5' },
+  { key: 'Mobilité',            emoji: '🚀', color: '#1A3A5A', bg: '#EEF2FA' },
+  { key: 'Santé',               emoji: '❤️', color: '#7A1A2A', bg: '#FAEEf0' },
+  { key: 'Sciences & Tech',     emoji: '🔬', color: '#4A2080', bg: '#F3EEF7' },
+  { key: 'Autre',               emoji: '✨', color: '#3A3A3A', bg: '#F5F5F5' },
+]
 
 const FLAG: Record<string, string> = {
   'France': '🇫🇷', 'Netherlands': '🇳🇱', 'Ukraine': '🇺🇦', 'United Kingdom': '🇬🇧',
@@ -34,96 +32,115 @@ const FLAG: Record<string, string> = {
 }
 
 export default function SolutionsClient() {
-  const [activeCat, setActiveCat] = useState('Tout')
+  const [activeCat, setActiveCat] = useState<string | null>(null)
   const [search, setSearch] = useState('')
 
-  const filtered = useMemo(() => {
-    return solutions.filter((s: Solution) => {
-      const matchCat = activeCat === 'Tout' || s.cat === activeCat
+  const grouped = useMemo(() => {
+    const filtered = solutions.filter((s: Solution) => {
+      const matchCat = !activeCat || s.cat === activeCat
       const matchSearch = !search ||
         s.name.toLowerCase().includes(search.toLowerCase()) ||
-        s.country.toLowerCase().includes(search.toLowerCase()) ||
-        s.rawCat.toLowerCase().includes(search.toLowerCase())
+        s.country.toLowerCase().includes(search.toLowerCase())
       return matchCat && matchSearch
     })
+    const groups: Record<string, Solution[]> = {}
+    filtered.forEach((s: Solution) => {
+      if (!groups[s.cat]) groups[s.cat] = []
+      groups[s.cat].push(s)
+    })
+    return groups
   }, [activeCat, search])
 
-  const counts = useMemo(() => {
-    const c: Record<string, number> = { 'Tout': solutions.length }
-    solutions.forEach((s: Solution) => { c[s.cat] = (c[s.cat] || 0) + 1 })
-    return c
-  }, [])
+  const totalFiltered = Object.values(grouped).flat().length
 
   return (
     <div className={styles.page}>
 
-      {/* FILTRES */}
-      <div className={styles.filtersWrap}>
-        <div className={styles.searchBar}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      {/* BARRE STICKY */}
+      <div className={styles.stickyBar}>
+        <div className={styles.searchWrap}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
           <input
             type="text"
-            placeholder="Rechercher…"
+            placeholder="Rechercher une solution, un pays…"
             value={search}
             onChange={e => setSearch(e.target.value)}
             className={styles.searchInput}
           />
-          {search && <button className={styles.searchClear} onClick={() => setSearch('')}>✕</button>}
+          {search && <button className={styles.clearBtn} onClick={() => setSearch('')}>✕</button>}
         </div>
-        <div className={styles.filters}>
-          {CATS.map(cat => (
+        <div className={styles.catTabs}>
+          <button
+            className={`${styles.catTab} ${!activeCat ? styles.catTabActive : ''}`}
+            onClick={() => setActiveCat(null)}
+          >
+            Tout · {solutions.length}
+          </button>
+          {CATS_CONFIG.filter(c => solutions.some(s => s.cat === c.key)).map(c => (
             <button
-              key={cat}
-              className={`${styles.filterBtn} ${activeCat === cat ? styles.active : ''}`}
-              style={activeCat === cat ? { background: CAT_COLORS[cat] || '#0A0A0A', borderColor: CAT_COLORS[cat] || '#0A0A0A', color: '#fff' } : {}}
-              onClick={() => setActiveCat(cat)}
+              key={c.key}
+              className={`${styles.catTab} ${activeCat === c.key ? styles.catTabActive : ''}`}
+              style={activeCat === c.key ? { background: c.color, color: '#fff', borderColor: c.color } : {}}
+              onClick={() => setActiveCat(activeCat === c.key ? null : c.key)}
             >
-              {cat}
-              <span className={styles.filterCount}>{counts[cat] || 0}</span>
+              {c.emoji} {c.key.split(' ')[0]} · {solutions.filter(s => s.cat === c.key).length}
             </button>
           ))}
         </div>
       </div>
 
-      {/* COMPTEUR */}
-      <div className={styles.counter}>
-        <span className={styles.counterNum}>{filtered.length}</span>
-        <span className={styles.counterLabel}>
-          {activeCat !== 'Tout' ? activeCat : 'solutions'}
-          {search ? ` · "${search}"` : ''}
-        </span>
-      </div>
+      {/* CONTENU */}
+      <div className={styles.content}>
+        {totalFiltered === 0 && (
+          <div className={styles.empty}>Aucun résultat.</div>
+        )}
 
-      {/* LISTE ÉDITORIALE */}
-      <div className={styles.list}>
-        {filtered.map((s: Solution, i: number) => (
-          <a
-            key={i}
-            href={s.website || '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.item}
-          >
-            <div className={styles.itemIndex}>{String(i + 1).padStart(2, '0')}</div>
-            <div className={styles.itemBar} style={{ background: CAT_COLORS[s.cat] || '#3A3A3A' }} />
-            <div className={styles.itemBody}>
-              <div className={styles.itemMeta}>
-                <span className={styles.itemCat} style={{ color: CAT_COLORS[s.cat] || '#3A3A3A' }}>{s.cat}</span>
-                <span className={styles.itemCountry}>{FLAG[s.country] || ''} {s.country}</span>
+        {CATS_CONFIG.filter(c => grouped[c.key]?.length > 0).map(catConf => {
+          const items = grouped[catConf.key]
+          return (
+            <section key={catConf.key} className={styles.catSection}>
+              {/* HEADER CATÉGORIE */}
+              <div className={styles.catHeader} style={{ borderLeftColor: catConf.color }}>
+                <span className={styles.catEmoji}>{catConf.emoji}</span>
+                <div>
+                  <h2 className={styles.catTitle} style={{ color: catConf.color }}>{catConf.key}</h2>
+                  <span className={styles.catCount}>{items.length} solution{items.length > 1 ? 's' : ''}</span>
+                </div>
               </div>
-              <div className={styles.itemName}>{s.name}</div>
-              <div className={styles.itemRaw}>{s.rawCat}</div>
-            </div>
-            <div className={styles.itemArrow}>→</div>
-          </a>
-        ))}
-      </div>
 
-      {filtered.length === 0 && (
-        <div className={styles.empty}>Aucune solution pour cette recherche.</div>
-      )}
+              {/* GRILLE CARDS */}
+              <div className={styles.cardsGrid}>
+                {items.map((s: Solution, i: number) => (
+                  <a
+                    key={i}
+                    href={s.website || '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.card}
+                    style={{
+                      '--cat-color': catConf.color,
+                      '--cat-bg': catConf.bg,
+                    } as any}
+                  >
+                    <div className={styles.cardInner}>
+                      <div className={styles.cardCountry}>
+                        {FLAG[s.country] || ''} {s.country}
+                      </div>
+                      <div className={styles.cardName}>{s.name}</div>
+                      <div className={styles.cardSub}>{s.rawCat}</div>
+                      <div className={styles.cardLink}>
+                        Voir le projet →
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )
+        })}
+      </div>
     </div>
   )
 }
