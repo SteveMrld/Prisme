@@ -51,7 +51,7 @@ const mois = [
     titre: 'La bataille pour les terres rares s\'intensifie',
     desc: 'La Chine contrôle 90% du raffinage mondial. L\'Afrique devient le nouveau terrain de jeu géopolitique.',
     stat: { num: '60', unit: '%', label: 'de l\'extraction mondiale de terres rares par Pékin' },
-    chartType: 'bar',
+    chartType: 'horizbar',
     chartData: [
       { label: 'Chine', value: 60 },
       { label: 'USA', value: 12 },
@@ -65,23 +65,18 @@ const mois = [
     titre: 'L\'eau : première crise géopolitique de l\'été',
     desc: 'Les négociations sur le barrage éthiopien s\'enlisent. L\'Égypte pose ses lignes rouges. Le Nil, première zone de friction hydrique.',
     stat: { num: '4', unit: 'Mds', label: 'de personnes en pénurie d\'eau au moins un mois par an' },
-    chartType: 'bar',
-    chartData: [
-      { label: '2000', value: 1.8 },
-      { label: '2010', value: 2.4 },
-      { label: '2020', value: 3.6 },
-      { label: '2025', value: 4.0 },
-    ],
-    chartLabel: 'Milliards de personnes en stress hydrique'
+    chartType: 'dotgrid',
+    chartData: { total: 8, highlighted: 4 },
+    chartLabel: '4 Mds / 8 Mds d\'humains en stress hydrique'
   },
   {
     m: 'Juin', slug: 'juin', cat: 'geo', catLabel: 'Géopolitique', article: 'afrique',
     titre: 'Le Sahel tourne définitivement le dos à la France',
     desc: 'Mali, Burkina, Niger consolident leur rupture avec Paris. La présence russe et chinoise s\'installe durablement.',
     stat: { num: '30', unit: '%', label: 'des réserves minérales mondiales en Afrique' },
-    chartType: 'gauge',
-    chartData: 8,
-    chartLabel: 'Niveau de rupture France-Sahel'
+    chartType: 'area',
+    chartData: [1, 2, 3, 5, 6, 7, 8, 8, 9, 9, 9, 10],
+    chartLabel: 'Intensité rupture France-Sahel 2013–2025'
   },
   {
     m: 'Juillet', slug: 'juil', cat: 'env', catLabel: 'Environnement', article: 'eau',
@@ -106,14 +101,14 @@ const mois = [
     titre: 'BlackRock dépasse les 11 000 Mds sous gestion',
     desc: "BlackRock, Vanguard, State Street : trois fonds américains gèrent collectivement 28 000 milliards de dollars — plus que le PIB de la Chine. Ils sont actionnaires de presque toutes les grandes entreprises mondiales simultanément. Cette concentration du capital n'a aucun précédent dans l'histoire du capitalisme. Qui contrôle ces fonds contrôle l'économie mondiale.",
     stat: { num: '28 000', unit: 'Mds $', label: 'gérés par BlackRock, Vanguard et State Street réunis' },
-    chartType: 'bar',
+    chartType: 'bubble',
     chartData: [
       { label: 'BlackRock', value: 11 },
       { label: 'Vanguard', value: 9 },
-      { label: 'St. St.', value: 4.5 },
+      { label: 'St.Street', value: 4.5 },
       { label: 'Fidelity', value: 4.2 },
     ],
-    chartLabel: 'AUM (milliers de Mds $)'
+    chartLabel: 'AUM comparé (milliers Mds $)'
   },
   {
     m: 'Octobre', slug: 'oct', cat: 'culture', catLabel: 'Culture', article: 'ia_ecriture',
@@ -129,23 +124,23 @@ const mois = [
     titre: 'Elon Musk entre à la Maison-Blanche',
     desc: 'DOGE, coupes budgétaires massives, restructuration de l\'État fédéral. Un entrepreneur devient acteur politique mondial.',
     stat: { num: '6', unit: '', label: 'entreprises majeures dirigées simultanément par Elon Musk' },
-    chartType: 'bar',
+    chartType: 'radial',
     chartData: [
       { label: 'Tesla', value: 780 },
       { label: 'SpaceX', value: 350 },
-      { label: 'X', value: 20 },
       { label: 'xAI', value: 50 },
+      { label: 'X / Neuralink', value: 30 },
     ],
-    chartLabel: 'Valorisation empire Musk (Mds $)'
+    chartLabel: 'Empire Musk — 6 entités'
   },
   {
     m: 'Décembre', slug: 'dec', cat: 'geo', catLabel: 'Géopolitique', article: 'venezuela',
     titre: 'L\'opération Venezuela — retour de la doctrine Monroe',
     desc: 'Les États-Unis capturent Maduro sans mandat international. Le droit international recule. L\'ordre mondial post-1945 s\'effondre.',
     stat: { num: '90', unit: '%', label: 'de la cocaïne US transite par le Mexique, pas le Venezuela' },
-    chartType: 'gauge',
-    chartData: 9,
-    chartLabel: 'Rupture de l\'ordre international'
+    chartType: 'line',
+    chartData: [2, 2, 3, 3, 4, 5, 5, 6, 7, 8, 9, 10],
+    chartLabel: 'Érosion droit international 2014–2025'
   },
 ]
 
