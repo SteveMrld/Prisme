@@ -140,7 +140,7 @@
   background: #0A0A0A;
   display: grid;
   grid-template-columns: 1fr 420px;
-  min-height: 520px;
+  min-height: 380px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   position: relative;
   overflow: hidden;
