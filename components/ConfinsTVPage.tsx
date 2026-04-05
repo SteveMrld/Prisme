@@ -4,6 +4,9 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import styles from './ConfinsTVPage.module.css'
 
+// EP01 is free, EP02-06 are premium
+const IS_PREMIUM = false // TODO: replace with real auth
+
 const episodes = [
   {
     id: '01',
@@ -17,6 +20,7 @@ const episodes = [
   },
   {
     id: '02',
+    premium: true,
     slug: 'afrique',
     title: "L\'Afrique : ce qu\'on ne vous a pas appris",
     category: 'Géopolitique',
@@ -27,6 +31,7 @@ const episodes = [
   },
   {
     id: '03',
+    premium: true,
     slug: 'biologie',
     title: "La biologie devient un logiciel",
     category: 'Science',
@@ -37,6 +42,7 @@ const episodes = [
   },
   {
     id: '04',
+    premium: true,
     slug: 'nucleaire',
     title: "L\'arme qui a failli nous tuer",
     category: 'Géopolitique',
@@ -47,6 +53,7 @@ const episodes = [
   },
   {
     id: '05',
+    premium: true,
     slug: 'inegalites',
     title: "8 hommes. 3,5 milliards. Le même patrimoine.",
     category: 'Économie',
@@ -57,6 +64,7 @@ const episodes = [
   },
   {
     id: '06',
+    premium: true,
     slug: 'asteroide',
     title: "Nous sommes l\'astéroïde",
     category: 'Biodiversité',
@@ -88,6 +96,11 @@ export default function ConfinsTVPage() {
 
   const switchEpisode = useCallback((i: number) => {
     if (i === active || transitioning) return
+    // Premium check — block episodes 2-6 for non-subscribers
+    if (episodes[i].premium && !IS_PREMIUM) {
+      window.location.href = '/abonnement'
+      return
+    }
     setTransitioning(true)
     setFadeIn(false)
     setPlaying(false)
@@ -215,6 +228,7 @@ export default function ConfinsTVPage() {
                     <span>{e.duration}</span>
                   </div>
                 </div>
+                {(e as any).premium && !IS_PREMIUM && <span className={styles.epLock}>🔒</span>}
                 {i === active && <span className={styles.epCardNow}>▶ En cours</span>}
               </button>
             ))}

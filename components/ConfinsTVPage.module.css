@@ -504,3 +504,10 @@
 .playerWrap .playBtn     { z-index: 3; }
 .playerWrap .channelBug  { z-index: 4; }
 .playerWrap .videoBadges { z-index: 4; }
+
+.epLock {
+  font-size: 12px;
+  opacity: 0.5;
+  flex-shrink: 0;
+  margin-left: auto;
+}
