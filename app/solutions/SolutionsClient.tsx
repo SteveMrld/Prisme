@@ -1,7 +1,7 @@
 'use client'
 import { useState, useMemo } from 'react'
 import styles from './solutions.module.css'
-import { solutions } from './data'
+import { solutions, type Solution } from './data'
 
 const CAT_COLORS: Record<string, string> = {
   'Économie circulaire': '#1A3E6B',
@@ -38,7 +38,7 @@ export default function SolutionsClient() {
   const [search, setSearch] = useState('')
 
   const filtered = useMemo(() => {
-    return (solutions as unknown as any[]).filter(s => {
+    return solutions.filter(s => {
       const matchCat = activeCat === 'Tout' || s.cat === activeCat
       const matchSearch = !search || s.name.toLowerCase().includes(search.toLowerCase()) ||
         s.country.toLowerCase().includes(search.toLowerCase()) ||
@@ -48,8 +48,8 @@ export default function SolutionsClient() {
   }, [activeCat, search])
 
   const counts = useMemo(() => {
-    const c: Record<string, number> = { 'Tout': (solutions as unknown as any[]).length }
-    ;(solutions as unknown as any[]).forEach(s => { c[s.cat] = (c[s.cat] || 0) + 1 })
+    const c: Record<string, number> = { 'Tout': solutions.length }
+    ;solutions.forEach((s: Solution) => { c[s.cat] = (c[s.cat] || 0) + 1 })
     return c
   }, [])
 
@@ -98,7 +98,7 @@ export default function SolutionsClient() {
 
       {/* GRID */}
       <div className={styles.grid}>
-        {filtered.map((s: any, i: number) => (
+        {filtered.map((s: Solution, i: number) => (
           <a
             key={i}
             href={s.website || '#'}
