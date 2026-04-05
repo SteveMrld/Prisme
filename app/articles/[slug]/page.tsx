@@ -69,6 +69,10 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     content.includes('class="atop"') ||
     content.includes('class="article-header"')
 
+  const hasHeroInContent =
+    content.includes('art-hero-wrap') ||
+    content.includes('art-hero-img')
+
   // Articles liés — même catégorie, max 3, exclu l'article courant
   const related = (articlesData as any[])
     .filter(a => a.category === article.category && a.slug !== params.slug)
@@ -83,6 +87,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       categoryLabel={categoryLabels[article.category] || 'Article'}
       readTime={String(article.readTime)}
       hasInternalHeader={hasInternalHeader}
+      hasHeroInContent={hasHeroInContent}
       content={content}
       author={(article as any).author || 'Steve Moradel'}
       authorRole={(article as any).authorRole || 'Fondateur · Directeur de la rédaction'}

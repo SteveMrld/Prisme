@@ -11,6 +11,7 @@ interface ArticleLayoutProps {
   categoryLabel: string
   readTime: string
   hasInternalHeader?: boolean
+  hasHeroInContent?: boolean
   content: string
   author?: string
   authorRole?: string
@@ -47,7 +48,7 @@ function portraitUrl(name: string): string | null {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, hasInternalHeader = false, content,
+  readTime, hasInternalHeader = false, hasHeroInContent = false, content,
   author = 'Steve Moradel',
   authorRole = 'Fondateur · Directeur de la rédaction',
   related = []
@@ -89,8 +90,8 @@ export default function ArticleLayout({
         </div>
       )}
 
-      {/* IMAGE après le titre pour tous sauf portrait */}
-      {category !== 'portrait' && image && (
+      {/* IMAGE après le titre pour tous sauf portrait (skip si déjà dans le contenu) */}
+      {category !== 'portrait' && image && !hasHeroInContent && (
         <div className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg} />
         </div>
