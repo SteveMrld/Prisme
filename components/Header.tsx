@@ -17,15 +17,22 @@ const navItems = [
   { label: 'Culture', href: '/culture', className: 'culture' },
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Visuels', href: '/visuels', className: 'concept' },
-  { label: 'CONFINS TV', href: '/prismetv', className: 'tv' },
-  { label: 'SIGNAL MAP', href: '/signal-map', className: 'tv' },
-  { label: 'Rétrospective 2025', href: '/retrospective', className: 'retro' },
+]
+
+const secondaryItems = [
+  { label: 'Confins TV', href: '/prismetv', desc: 'Analyses en mouvement' },
+  { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions géopolitiques' },
+  { label: 'Rétrospective 2025', href: '/retrospective', desc: 'Les ruptures de l'année' },
+  { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
+  { label: 'Contributeurs', href: '/contributeurs', desc: 'La rédaction Confins' },
+  { label: 'À propos', href: '/apropos', desc: 'Notre projet éditorial' },
 ]
 
 export default function Header({ activeNav }: { activeNav?: string }) {
   const [date, setDate] = useState('')
   const [user, setUser] = useState<any>(undefined)
-  const [searchOpen, setSearchOpen] = useState(false) // undefined = loading
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const supabase = createClient()
 
   useEffect(() => {
@@ -50,6 +57,11 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           <Link href="/" className={styles.logo}>Con<em>fins</em></Link>
         </div>
         <div className={styles.actions}>
+          <button
+            className={styles.moreBtn}
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Plus"
+          >···</button>
           <button
             className={styles.searchBtn}
             onClick={() => setSearchOpen(o => !o)}
@@ -101,6 +113,27 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           </Link>
         ))}
       </nav>
+
+      {/* PANEL PAGES SECONDAIRES */}
+      {menuOpen && (
+        <div className={styles.morePanel}>
+          <div className={styles.morePanelInner}>
+            <div className={styles.morePanelHead}>
+              <span className={styles.morePanelTitle}>Explorer Confins</span>
+              <button className={styles.morePanelClose} onClick={() => setMenuOpen(false)}>✕</button>
+            </div>
+            <div className={styles.morePanelGrid}>
+              {secondaryItems.map(item => (
+                <Link key={item.href} href={item.href} className={styles.morePanelItem} onClick={() => setMenuOpen(false)}>
+                  <div className={styles.morePanelLabel}>{item.label}</div>
+                  <div className={styles.morePanelDesc}>{item.desc}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className={styles.morePanelBackdrop} onClick={() => setMenuOpen(false)} />
+        </div>
+      )}
     </header>
   )
 }
