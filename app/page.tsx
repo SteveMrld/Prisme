@@ -164,8 +164,8 @@ export default function HomePage() {
           <span className={styles.gfSub}>Lectures de fond · 12–18 min</span>
         </div>
         <StaggerGrid className={styles.gfGrid}>
-          {grandsFormats.map((article) => (
-            <StaggerItem key={article.slug}>
+          {grandsFormats.map((article, i) => (
+            <StaggerItem key={article.slug} index={i}>
             <Link href={`/articles/${article.slug}`} className={`${styles.gfCard} ${styles[article.categories[0].color]}`}>
               {article.image && (
                 <div className={styles.gfImgWrap}>
