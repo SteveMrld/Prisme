@@ -651,9 +651,17 @@ setTimeout(()=>document.getElementById('hint').style.opacity='0',4000);
 </script>
 
 <!-- INTRO OVERLAY -->
+<style>
+@media(max-width:768px){
+  #intro{top:auto!important;right:0!important;bottom:0!important;
+    border-bottom:none!important;border-top:2px solid rgba(196,162,101,0.3)!important;
+    padding:16px 20px!important;flex-direction:column!important;align-items:flex-start!important;gap:12px!important;
+  }
+}
+</style>
 <div id="intro" style="
   position:fixed;top:52px;left:0;right:300px;z-index:200;
-  background:rgba(7,9,15,0.96);border-bottom:1px solid rgba(196,162,101,0.15);
+  background:rgba(7,9,15,0.97);border-bottom:1px solid rgba(196,162,101,0.15);
   padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;
 ">
   <div>
