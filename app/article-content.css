@@ -581,6 +581,12 @@
   font-style: italic;
   color: var(--gris-m);
   line-height: 1.6;
+  display: inline;
+}
+.notes-list li em,
+.notes-list li strong {
+  display: inline !important;
+  font-style: italic;
 }
 
 /* Titres d'ouvrages en italique */
