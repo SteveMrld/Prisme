@@ -388,13 +388,13 @@
 }
 .tvBugEp {
   font-family: 'DM Sans', sans-serif;
-  font-size: 9px; color: var(--or, #C4A265);
+  font-size: 9px; color: var(--or, #C8A96E);
   letter-spacing: 0.06em;
 }
 
 /* ── Now playing indicator ── */
 .epNow {
-  font-size: 10px; color: var(--or, #C4A265);
+  font-size: 10px; color: var(--or, #C8A96E);
   margin-left: auto; flex-shrink: 0;
 }
 

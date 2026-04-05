@@ -12,7 +12,7 @@
 body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:hidden;height:100vh}
 .header{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(7,9,15,.98) 0%,transparent 100%)}
 .logo{font-family:'Playfair Display',serif;font-size:22px}
-.logo em{color:#C4A265;font-style:italic}
+.logo em{color:#C8A96E;font-style:italic}
 .logo-signal{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;letter-spacing:3px;color:rgba(196,162,101,.45);margin-left:10px;vertical-align:middle;text-transform:uppercase}
 .header-r{display:flex;align-items:center;gap:20px}
 .live{display:flex;align-items:center;gap:6px;font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#FC8181}
@@ -50,16 +50,16 @@ body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:
 .sn{font-family:'Playfair Display',serif;font-size:20px;line-height:1}
 .sl{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,.35);margin-top:3px}
 /* PANEL INFO */
-#panel{position:fixed;bottom:0;left:0;right:300px;z-index:60;transform:translateY(100%);transition:transform .3s ease;background:rgba(7,9,15,.97);border-top:2px solid #C4A265;padding:20px 28px;display:flex;gap:24px;align-items:flex-start}
+#panel{position:fixed;bottom:0;left:0;right:300px;z-index:60;transform:translateY(100%);transition:transform .3s ease;background:rgba(7,9,15,.97);border-top:2px solid #C8A96E;padding:20px 28px;display:flex;gap:24px;align-items:flex-start}
 #panel.open{transform:translateY(0)}
 .panel-bar{width:3px;flex-shrink:0;align-self:stretch;border-radius:1px}
 .panel-body{flex:1}
 .panel-reg{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,.5);margin-bottom:4px}
 .panel-name{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px}
 .panel-desc{font-size:13px;color:rgba(236,231,221,.65);line-height:1.6;margin-bottom:10px}
-.panel-cta{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#C4A265}
+.panel-cta{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#C8A96E}
 .panel-close{font-size:18px;color:rgba(196,162,101,.4);cursor:pointer;flex-shrink:0;padding:2px 6px}
-.panel-close:hover{color:#C4A265}
+.panel-close:hover{color:#C8A96E}
 /* HINT */
 .hint{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:50;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(236,231,221,.25);pointer-events:none;transition:opacity 1s}
 @media(max-width:768px){.sidebar{display:none}.stats{display:none}#panel{right:0;bottom:calc(64px + env(safe-area-inset-bottom))}#hint{bottom:calc(80px + env(safe-area-inset-bottom))!important}}
@@ -75,7 +75,7 @@ body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:
       color:rgba(196,162,101,0.5);text-decoration:none;
       border:1px solid rgba(196,162,101,0.15);padding:6px 12px;
       transition:color 0.2s,border-color 0.2s;
-    " onmouseover="this.style.color='#C4A265';this.style.borderColor='rgba(196,162,101,0.4)'"
+    " onmouseover="this.style.color='#C8A96E';this.style.borderColor='rgba(196,162,101,0.4)'"
        onmouseout="this.style.color='rgba(196,162,101,0.5)';this.style.borderColor='rgba(196,162,101,0.15)'">
       ← Accueil
     </a>
@@ -678,10 +678,10 @@ if(window.innerWidth<=768){
   padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;
 ">
   <div>
-    <div style="font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C4A265;margin-bottom:10px">Confins Signal · Mode d'emploi</div>
+    <div style="font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C8A96E;margin-bottom:10px">Confins Signal · Mode d'emploi</div>
     <div style="font-family:'Playfair Display',serif;font-size:13px;color:rgba(236,231,221,0.8);line-height:1.7;max-width:680px">
       Cette carte suit en temps réel les zones de tension géopolitique identifiées par la rédaction de Confins. 
-      Le cycle <span style="color:#C4A265">jour/nuit</span> est calculé sur l'heure actuelle. 
+      Le cycle <span style="color:#C8A96E">jour/nuit</span> est calculé sur l'heure actuelle. 
       Les <span style="color:#FC8181">routes maritimes en rouge</span> indiquent les flux bloqués par le conflit en cours — notamment le détroit d'Ormuz. 
       Cliquez sur un point lumineux ou une zone dans la liste pour accéder à l'analyse complète.
     </div>
@@ -690,7 +690,7 @@ if(window.innerWidth<=768){
     font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5);
     cursor:pointer;white-space:nowrap;padding:8px 12px;border:1px solid rgba(196,162,101,0.2);
     flex-shrink:0;transition:color 0.2s;
-  " onmouseover="this.style.color='#C4A265'" onmouseout="this.style.color='rgba(196,162,101,0.5)'">
+  " onmouseover="this.style.color='#C8A96E'" onmouseout="this.style.color='rgba(196,162,101,0.5)'">
     Fermer ✕
   </div>
 </div>

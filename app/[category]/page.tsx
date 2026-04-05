@@ -66,7 +66,7 @@ const CATEGORIES: Record<string, {
     label: 'Portraits',
     labelLong: 'Portraits',
     description: 'Des trajectoires singulières. Des hommes et des femmes qui ont marqué leur époque.',
-    color: '#C4A265',
+    color: '#C8A96E',
     cssVar: 'var(--portrait)',
   },
   visuels: {

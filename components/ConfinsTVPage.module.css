@@ -443,13 +443,13 @@
   letter-spacing: 0.1em;
 }
 .channelDot {
-  color: var(--or, #C4A265);
+  color: var(--or, #C8A96E);
   font-size: 10px;
 }
 .channelEp {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  color: var(--or, #C4A265);
+  color: var(--or, #C8A96E);
   letter-spacing: 0.06em;
 }
 
@@ -457,7 +457,7 @@
 .epCardNow {
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
-  color: var(--or, #C4A265);
+  color: var(--or, #C8A96E);
   letter-spacing: 0.04em;
   white-space: nowrap;
 }

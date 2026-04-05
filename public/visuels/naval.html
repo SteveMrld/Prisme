@@ -8,7 +8,7 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#05090F;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
-:root{--gold:#C4A265;--blue:#4A9AD4;--red:#D45040}
+:root{--gold:#C8A96E;--blue:#4A9AD4;--red:#D45040}
 
 #stage{position:fixed;top:0;left:0;width:100%;height:calc(100% - 56px)}
 #map-svg{position:absolute;top:0;left:0;width:100%;height:100%}
@@ -191,7 +191,7 @@ var chapters=[
    title:'Les détroits qui <em>étranglent</em> le monde',
    body:'Quelques kilomètres de mer concentrent des flux colossaux. Ces points de passage obligé sont les talons d\'Achille de l\'économie mondiale.<br><br><strong>Ormuz</strong> : 20% du pétrole mondial. <strong>Malacca</strong> : 25% du commerce. <strong>Suez</strong> : 12% des échanges.',
    statN:'7',statL:'détroits concentrent\nl\'essentiel du commerce mondial',
-   leg:[{t:'dot',c:'#C4A265',l:'Détroit économique critique'},{t:'dot',c:'#D45040',l:'Détroit à risque géopolitique'}]},
+   leg:[{t:'dot',c:'#C8A96E',l:'Détroit économique critique'},{t:'dot',c:'#D45040',l:'Détroit à risque géopolitique'}]},
   {tag:'III · Domination américaine · En 2026',
    hook:'Depuis 1945, les Etats-Unis garantissent la liberté de navigation. En échange de quoi, ils contrôlent tout.',
    title:'L\'empire <em>des sept mers</em>',
@@ -341,12 +341,12 @@ function buildLayer1(){
   /* Fond carte discret */
   /* lr=true→droite, lr=false→gauche, dy=offset vertical du label vs dot */
   var pts7=[
-    {lon:56.5,lat:26.5,name:'Ormuz',stat:'20% du pétrole mondial',c:'#C4A265',sz:'big',lr:true,dy:0},
-    {lon:103.8,lat:1.5,name:'Malacca',stat:'25% du commerce',c:'#C4A265',sz:'big',lr:true,dy:0},
-    {lon:32.5,lat:30.0,name:'Suez',stat:'12% des échanges',c:'#C4A265',sz:'big',lr:true,dy:18},
-    {lon:-5.4,lat:35.9,name:'Gibraltar',stat:'porte de la Méditerranée',c:'#C4A265',sz:'small',lr:false,dy:0},
-    {lon:29.0,lat:41.5,name:'Bosphore',stat:'accès mer Noire',c:'#C4A265',sz:'small',lr:false,dy:-14},
-    {lon:-79.5,lat:9.0,name:'Panama',stat:'5% du commerce',c:'#C4A265',sz:'small',lr:true,dy:0},
+    {lon:56.5,lat:26.5,name:'Ormuz',stat:'20% du pétrole mondial',c:'#C8A96E',sz:'big',lr:true,dy:0},
+    {lon:103.8,lat:1.5,name:'Malacca',stat:'25% du commerce',c:'#C8A96E',sz:'big',lr:true,dy:0},
+    {lon:32.5,lat:30.0,name:'Suez',stat:'12% des échanges',c:'#C8A96E',sz:'big',lr:true,dy:18},
+    {lon:-5.4,lat:35.9,name:'Gibraltar',stat:'porte de la Méditerranée',c:'#C8A96E',sz:'small',lr:false,dy:0},
+    {lon:29.0,lat:41.5,name:'Bosphore',stat:'accès mer Noire',c:'#C8A96E',sz:'small',lr:false,dy:-14},
+    {lon:-79.5,lat:9.0,name:'Panama',stat:'5% du commerce',c:'#C8A96E',sz:'small',lr:true,dy:0},
     {lon:119.0,lat:23.8,name:'Taïwan',stat:'flashpoint — ligne de front',c:'#D45040',sz:'big',lr:true,dy:-28}
   ];
 

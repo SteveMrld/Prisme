@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--or:#C4A265;--bg:#FAFAF8;--encre:#0A0A0A;--bord:#D8D3C8;--eco:#B86A1A}
+:root{--or:#C8A96E;--bg:#FAFAF8;--encre:#0A0A0A;--bord:#D8D3C8;--eco:#B86A1A}
 html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encre);-webkit-font-smoothing:antialiased}
 .hd{padding:14px 24px;border-bottom:1px solid var(--bord);background:var(--encre);display:flex;align-items:center;justify-content:space-between}
 .hd-tag{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);border:1px solid rgba(196,162,101,0.4);padding:4px 12px}
@@ -23,7 +23,7 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
 /* COURBE AUM */
 .curve-svg{width:100%;height:auto;display:block;background:var(--encre);border-radius:2px}
 .curve-label{fill:rgba(236,231,221,0.4);font-family:'DM Sans',sans-serif;font-size:10px}
-.curve-val{fill:#C4A265;font-family:'Playfair Display',serif;font-size:13px;font-weight:300}
+.curve-val{fill:#C8A96E;font-family:'Playfair Display',serif;font-size:13px;font-weight:300}
 
 .line-path{stroke-dasharray:800;stroke-dashoffset:800;animation:lineDraw 2s ease forwards 0.3s}
 @keyframes lineDraw{to{stroke-dashoffset:0}}
@@ -93,9 +93,9 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
     <!-- Zone sous courbe -->
     <path d="M100,210 L150,200 L200,185 L250,175 L300,160 L350,145 L400,130 L450,105 L500,90 L550,75 L590,55 L590,220 L100,220 Z" fill="rgba(196,162,101,0.06)"/>
     <!-- Courbe -->
-    <path d="M100,210 L150,200 L200,185 L250,175 L300,160 L350,145 L400,130 L450,105 L500,90 L550,75 L590,55" fill="none" stroke="#C4A265" stroke-width="2.5" class="line-path"/>
+    <path d="M100,210 L150,200 L200,185 L250,175 L300,160 L350,145 L400,130 L450,105 L500,90 L550,75 L590,55" fill="none" stroke="#C8A96E" stroke-width="2.5" class="line-path"/>
     <!-- Point final -->
-    <circle cx="590" cy="55" r="5" fill="#C4A265"/>
+    <circle cx="590" cy="55" r="5" fill="#C8A96E"/>
     <text x="595" y="52" class="curve-val">11,5 Mds $</text>
   </svg>
   <div class="stat-row">
@@ -110,7 +110,7 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
     <svg class="donut-svg" viewBox="0 0 180 180">
       <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="30"/>
       <circle cx="90" cy="90" r="70" fill="none" stroke="#B86A1A" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 0.2s ease forwards;--t:180;transform:rotate(-90deg);transform-origin:center"/>
-      <circle cx="90" cy="90" r="70" fill="none" stroke="#C4A265" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 0.7s ease forwards;--t:305;transform:rotate(54deg);transform-origin:center"/>
+      <circle cx="90" cy="90" r="70" fill="none" stroke="#C8A96E" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 0.7s ease forwards;--t:305;transform:rotate(54deg);transform-origin:center"/>
       <circle cx="90" cy="90" r="70" fill="none" stroke="#4A7EC7" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 1s ease forwards;--t:375;transform:rotate(125deg);transform-origin:center"/>
       <circle cx="90" cy="90" r="70" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="30" stroke-dasharray="440" stroke-dashoffset="440" style="animation:da 1.5s 1.2s ease forwards;--t:440;transform:rotate(161deg);transform-origin:center"/>
       <text x="90" y="86" text-anchor="middle" font-family="Playfair Display" font-size="20" font-weight="300" fill="#0A0A0A">Top 3</text>
@@ -119,7 +119,7 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
     </svg>
     <div class="donut-legend">
       <div class="dleg"><div class="dleg-dot" style="background:#B86A1A"></div><div class="dleg-label">BlackRock</div><div class="dleg-val">11,5 Mds</div></div>
-      <div class="dleg"><div class="dleg-dot" style="background:#C4A265"></div><div class="dleg-label">Vanguard</div><div class="dleg-val">9,3 Mds</div></div>
+      <div class="dleg"><div class="dleg-dot" style="background:#C8A96E"></div><div class="dleg-label">Vanguard</div><div class="dleg-val">9,3 Mds</div></div>
       <div class="dleg"><div class="dleg-dot" style="background:#4A7EC7"></div><div class="dleg-label">State Street</div><div class="dleg-val">4,1 Mds</div></div>
       <div class="dleg"><div class="dleg-dot" style="background:rgba(0,0,0,0.15)"></div><div class="dleg-label">Reste du monde</div><div class="dleg-val">—</div></div>
     </div>
@@ -136,7 +136,7 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
     <div class="concern-title" style="color:#B86A1A">Droits de vote dans les grandes entreprises</div>
     <div class="concern-desc">BlackRock, Vanguard et State Street votent collectivement sur les décisions stratégiques de milliers de sociétés. Nomination des PDG, politiques climatiques, rémunérations. Un pouvoir de gouvernance sans précédent.</div>
   </div>
-  <div class="concern" style="border-color:#C4A265">
+  <div class="concern" style="border-color:#C8A96E">
     <div class="concern-title" style="color:#B86A1A">La question de l'intérêt public</div>
     <div class="concern-desc">Ces fonds sont actionnaires simultanément de concurrents directs : Apple et Samsung, Coca-Cola et Pepsi, Delta et United. Le risque théorique : réduire la concurrence en alignant les stratégies.</div>
   </div>

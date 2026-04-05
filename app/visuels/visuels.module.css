@@ -21,7 +21,7 @@
   font-weight: 300; letter-spacing: -2px; line-height: 1.05;
   color: #fff;
 }
-.heroTitle em { font-style: italic; color: #C4A265; }
+.heroTitle em { font-style: italic; color: #C8A96E; }
 .heroDesc {
   font-size: 14px; line-height: 1.8;
   color: rgba(255,255,255,0.45); max-width: 520px;
@@ -35,7 +35,7 @@
 .heroStat span {
   font-family: 'Playfair Display', serif;
   font-size: 36px; font-weight: 300; letter-spacing: -1px;
-  color: #C4A265; line-height: 1;
+  color: #C8A96E; line-height: 1;
 }
 .heroDivider { width: 1px; height: 40px; background: rgba(196,162,101,0.2); }
 
@@ -123,7 +123,7 @@
   font-size: 8px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase;
   background: rgba(196,162,101,0.15);
-  color: #C4A265;
+  color: #C8A96E;
   padding: 3px 10px; border-radius: 20px;
   border: 1px solid rgba(196,162,101,0.25);
 }
@@ -147,7 +147,7 @@
   display: flex; align-items: center; gap: 8px;
   font-size: 11px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
-  color: #C4A265; margin-top: 8px;
+  color: #C8A96E; margin-top: 8px;
   transition: gap 0.2s;
 }
 .featCard:hover .featCta { gap: 12px; }
@@ -316,7 +316,7 @@
   font-size: 20px; font-weight: 300;
   letter-spacing: -0.5px; color: var(--encre);
 }
-.footerLogo em { font-style: italic; color: var(--or, #C4A265); }
+.footerLogo em { font-style: italic; color: var(--or, #C8A96E); }
 .footerLinks { display: flex; gap: 24px; }
 .footerLinks a {
   font-size: 11px; letter-spacing: 1px; text-transform: uppercase;

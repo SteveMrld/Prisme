@@ -26,7 +26,7 @@
 .heroInner { max-width: 640px; position: relative; z-index: 1; }
 .eyebrow {
   font-size: 9px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: #C4A265; display: block; margin-bottom: 20px;
+  text-transform: uppercase; color: #C8A96E; display: block; margin-bottom: 20px;
 }
 .title {
   font-family: 'Playfair Display', serif;
@@ -34,7 +34,7 @@
   font-weight: 400; line-height: 1.05; letter-spacing: -2px;
   color: #FAF9F7; margin-bottom: 20px;
 }
-.title em { color: #C4A265; font-style: italic; }
+.title em { color: #C8A96E; font-style: italic; }
 .subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(16px, 2vw, 20px); font-style: italic;
