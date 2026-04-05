@@ -137,80 +137,56 @@
 }
 
 .ge {
-  background: var(--blanc);
-  border-top: 3px solid var(--encre);
-  border-bottom: 1px solid var(--bord);
-  padding: 52px 64px;
+  background: #0A0A0A;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  min-height: 520px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.geLeft {
+  padding: 64px 64px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  text-align: center;
-  animation: geReveal 0.8s ease both;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 
-.geDecor {
+.geEyebrow {
   display: flex;
   align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 480px;
+  gap: 16px;
 }
 
-.geDecorLine {
-  flex: 1;
-  height: 1px;
-  background: var(--or);
-  transform-origin: left center;
-  animation: lineGrow 1s ease 0.3s both;
+.geN {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--or);
+  border: 1px solid rgba(196,162,101,.3);
+  padding: 4px 12px;
 }
 
-.geDecorN {
+.geLabel {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--or);
-  flex-shrink: 0;
-}
-
-.geTextBlock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.geLabel {
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--or);
-  border: 1px solid var(--or);
-  padding: 5px 16px;
-  width: fit-content;
-}
-
-.gePortraitWrap {
-  flex-shrink: 0;
-  width: 160px;
-}
-
-.gePortrait {
-  width: 100%;
-  height: auto;
-  display: block;
-  mix-blend-mode: multiply;
+  color: rgba(255,255,255,.4);
 }
 
 .geName {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 6vw, 64px);
+  font-size: clamp(40px, 6vw, 72px);
   font-weight: 300;
-  color: var(--encre);
+  color: #FAF9F7;
   letter-spacing: -2px;
-  line-height: 1.05;
+  line-height: 1.0;
 }
 
 .geName em {
@@ -219,12 +195,21 @@
 }
 
 .geRole {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #999;
-  padding: 0;
+  color: rgba(255,255,255,.35);
+  line-height: 1.8;
+}
+
+.geIntro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-style: italic;
+  color: rgba(255,255,255,.55);
+  line-height: 1.7;
+  max-width: 480px;
 }
 
 .geCta {
@@ -232,20 +217,49 @@
   align-items: center;
   gap: 10px;
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--encre);
+  color: #0A0A0A;
+  background: var(--or);
   text-decoration: none;
   padding: 14px 28px;
-  margin-top: 8px;
   width: fit-content;
-  align-self: center;
   transition: background 0.2s;
 }
 
-.geCta:hover { background: var(--or); }
+.geCta:hover { background: #FAF9F7; }
+
+.geBadge {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.2);
+}
+
+.geRight {
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+.geImgWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.geImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  mix-blend-mode: luminosity;
+  opacity: 0.85;
+  filter: contrast(1.1);
+}
 
 /* ── HERO ── */
 .hero {
@@ -611,8 +625,9 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { padding: 36px 24px; gap: 20px; }
-  .geDecor { max-width: 100%; }
+  .ge { grid-template-columns: 1fr; min-height: auto; }
+  .geLeft { padding: 36px 20px; }
+  .geRight { min-height: 280px; }
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
   .heroAside { display: none; }
@@ -1213,7 +1228,9 @@
   .portraitsGrid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .atlanticSection { padding: 32px 16px; }
   .latestSection { padding: 32px 16px; }
-  .ge { padding: 28px 16px; }
+  .ge { grid-template-columns: 1fr; }
+  .geLeft { padding: 28px 16px; }
+  .geRight { min-height: 240px; order: -1; }
   .gfSection { padding: 0 16px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
