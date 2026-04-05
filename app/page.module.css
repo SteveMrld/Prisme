@@ -251,6 +251,7 @@
 .hero {
   display: grid;
   grid-template-columns: 1fr 360px;
+  border-top: 1px solid var(--bord);
   border-bottom: 2px solid var(--encre);
 }
 
