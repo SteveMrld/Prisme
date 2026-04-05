@@ -26,6 +26,7 @@ const secondaryItems = [
   { label: 'Rétrospective 2025', href: '/retrospective', desc: "Les ruptures de l'année" },
   { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
   { label: 'Contributeurs', href: '/contributeurs', desc: 'La rédaction Confins' },
+  { label: 'Changer le monde', href: '/solutions', desc: '157 solutions pour la planète' },
   { label: 'À propos', href: '/apropos', desc: 'Notre projet éditorial' },
 ]
 
