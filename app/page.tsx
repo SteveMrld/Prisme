@@ -11,12 +11,12 @@ import Ticker from './TickerClient'
 import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 
 const signalItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Détroit d'Ormuz — Trump presse ses alliés de déployer des navires, l'Europe refuse", date: '21 mars' },
-  { cat: 'Ukraine', color: 'var(--geo)', headline: "Zelensky à Londres — rencontre Charles III, Starmer et Rutte, discours au Parlement", date: '21 mars' },
-  { cat: 'Économie', color: 'var(--eco)', headline: "Croissance mondiale révisée à 2,7% — droits de douane et incertitude pèsent sur les échanges", date: '21 mars' },
-  { cat: 'Environnement', color: 'var(--env)', headline: "Record de chaleur en mars aux États-Unis — le changement climatique confirmé comme cause", date: '21 mars' },
-  { cat: 'Iran', color: 'var(--geo)', headline: "3e semaine de frappes US-Israël sur l'Iran — l'Europe cherche sa position face à la crise", date: '21 mars' },
-  { cat: 'Tech', color: 'var(--tech)', headline: "L'IA représente 20% de la croissance américaine — moteur structurel ou bulle spéculative ?", date: '21 mars' },
+  { cat: 'Moyen-Orient', color: 'var(--geo)', headline: "Détroit d'Ormuz — Iran maintient le blocus sélectif, Trump menace de frapper infrastructures le 6 avril", date: '5 avril' },
+  { cat: 'Énergie', color: 'var(--eco)', headline: "Choc énergétique mondial — le prix du baril franchit 140 dollars, le pire depuis 1973 selon les analystes", date: '4 avril' },
+  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Macron appelle à une 'coalition d'indépendance' face aux influences américaine et chinoise", date: '3 avril' },
+  { cat: 'Iran', color: 'var(--geo)', headline: "35e jour du conflit — Lavrov et l'Égypte appellent au cessez-le-feu, Washington refuse", date: '3 avril' },
+  { cat: 'Tech', color: 'var(--tech)', headline: "Détroit d'Ormuz fermé — l'approvisionnement en énergie des data centers IA menacé en Europe", date: '2 avril' },
+  { cat: 'Économie', color: 'var(--eco)', headline: "FMI révise la croissance mondiale à la baisse — choc géopolitique et énergie redessinentles projections 2026", date: '1 avril' },
 ]
 
 const categoryLabels: Record<string, string> = {
