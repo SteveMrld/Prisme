@@ -43,6 +43,7 @@ type Analysis = {
 
 export default function RecoupementClient() {
   const [query, setQuery] = useState('')
+  const [isPremium] = useState(false) // TODO: replace with real auth check
   const [loading, setLoading] = useState(false)
   const [analysis, setAnalysis] = useState<Analysis | null>(null)
   const [error, setError] = useState('')
@@ -126,6 +127,28 @@ Ne retourne QUE le JSON, sans markdown, sans texte avant ou après.`,
     } finally {
       setLoading(false)
     }
+  }
+
+  if (!isPremium) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.hero}>
+          <div className={styles.eyebrow}>Confins · Outil éditorial</div>
+          <h1 className={styles.title}>Recoupement de <em>sources</em></h1>
+          <p className={styles.subtitle}>Croisez 20 sources sur un fait d'actualité — médias, OSINT, analystes, institutions.</p>
+        </div>
+        <div className={styles.paywall}>
+          <div className={styles.paywallIcon}>🔍</div>
+          <div className={styles.paywallTitle}>Fonctionnalité Premium</div>
+          <p className={styles.paywallText}>
+            L'outil Recoupement est réservé aux abonnés Confins. Il vous permet de croiser 20 sources
+            géopolitiques sur n'importe quel fait d'actualité et d'identifier consensus et contradictions.
+          </p>
+          <a href="/abonnement" className={styles.paywallBtn}>S'abonner pour y accéder →</a>
+          <a href="/connexion" className={styles.paywallLink}>Déjà abonné ? Se connecter</a>
+        </div>
+      </div>
+    )
   }
 
   return (

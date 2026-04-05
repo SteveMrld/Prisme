@@ -65,3 +65,25 @@
 
 @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
 @media(max-width: 600px) { .searchRow { flex-direction: column; } .consensusGrid { grid-template-columns: 1fr; } }
+
+/* PAYWALL */
+.paywall {
+  text-align: center;
+  padding: 60px 32px;
+  border: 1px solid var(--bord);
+  background: #F8F6F2;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.paywallIcon { font-size: 40px; margin-bottom: 20px; }
+.paywallTitle { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; color: var(--encre); margin-bottom: 16px; }
+.paywallText { font-size: 14px; color: var(--gris); line-height: 1.7; margin-bottom: 28px; }
+.paywallBtn {
+  display: inline-block; padding: 14px 28px;
+  background: var(--encre); color: var(--fond);
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; transition: background .2s;
+}
+.paywallBtn:hover { background: var(--or); color: #0A0A0A; }
+.paywallLink { display: block; margin-top: 16px; font-size: 12px; color: var(--gris-l); text-decoration: none; }
+.paywallLink:hover { color: var(--encre); }
