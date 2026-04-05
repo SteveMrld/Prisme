@@ -80,5 +80,9 @@ Réponds UNIQUEMENT en JSON valide :
   })
 
   const data = await response.json()
+  if (!response.ok) {
+    console.error('Anthropic API error:', data)
+    return NextResponse.json({ error: `API error: ${response.status}`, detail: data }, { status: 502 })
+  }
   return NextResponse.json(data)
 }
