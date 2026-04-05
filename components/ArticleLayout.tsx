@@ -62,21 +62,15 @@ export default function ArticleLayout({
       <ScrollDepth />
       <Header activeNav={category} />
 
-      {image && (
+      {/* PORTRAIT : image d'abord */}
+      {category === 'portrait' && image && (
         <div className={styles.heroWrap}>
-          <img
-            src={image}
-            alt={title}
-            className={styles.heroImg}
-            style={
-              category === 'portrait'
-                ? { height: '420px', objectPosition: 'center 15%' }
-                : {}
-            }
-          />
+          <img src={image} alt={title} className={styles.heroImg}
+            style={{ height: '420px', objectPosition: 'center 15%' }} />
         </div>
       )}
 
+      {/* TOUS SAUF PORTRAIT : titre + chapeau d'abord */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
           <div className={styles.eyebrow}>
@@ -89,6 +83,16 @@ export default function ArticleLayout({
             <span className={styles.audioBadgeArticle} title="Disponible en audio">🎧</span>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
           </div>
+          {description && (
+            <p className={styles.chapeau}>{description}</p>
+          )}
+        </div>
+      )}
+
+      {/* IMAGE après le titre pour tous sauf portrait */}
+      {category !== 'portrait' && image && (
+        <div className={styles.heroWrap}>
+          <img src={image} alt={title} className={styles.heroImg} />
         </div>
       )}
 
