@@ -1,13 +1,15 @@
 /* ── HERO ── */
 .hero {
-  min-height: 70vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 80px 64px 60px;
+  padding: 48px 64px 48px;
   border-bottom: 1px solid var(--bord);
   position: relative;
   overflow: hidden;
+  background: var(--encre);
+  color: #FAF9F7;
 }
 .heroYear {
   position: absolute;
@@ -15,7 +17,7 @@
   bottom: -60px;
   font-size: clamp(180px, 25vw, 320px);
   font-weight: 800;
-  color: var(--bord);
+  color: rgba(250,249,247,0.06);
   letter-spacing: -10px;
   line-height: 1;
   pointer-events: none;
@@ -24,19 +26,19 @@
 .heroInner { max-width: 640px; position: relative; z-index: 1; }
 .eyebrow {
   font-size: 9px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--gris-l); display: block; margin-bottom: 20px;
+  text-transform: uppercase; color: #C4A265; display: block; margin-bottom: 20px;
 }
 .title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(36px, 6vw, 72px);
   font-weight: 400; line-height: 1.05; letter-spacing: -2px;
-  color: var(--encre); margin-bottom: 20px;
+  color: #FAF9F7; margin-bottom: 20px;
 }
-.title em { color: var(--gris-m); font-style: italic; }
+.title em { color: #C4A265; font-style: italic; }
 .subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(16px, 2vw, 20px); font-style: italic;
-  color: var(--gris); line-height: 1.6;
+  color: rgba(250,249,247,0.65); line-height: 1.6;
 }
 .heroStats {
   display: flex; gap: 40px; margin-top: 48px; position: relative; z-index: 1;
@@ -44,9 +46,9 @@
 .heroStatItem { display: flex; flex-direction: column; gap: 4px; }
 .heroStatNum {
   font-size: clamp(28px, 4vw, 42px); font-weight: 700;
-  color: var(--encre); line-height: 1;
+  color: #FAF9F7; line-height: 1;
 }
-.heroStatLabel { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris-l); }
+.heroStatLabel { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(250,249,247,0.5); }
 
 /* ── CAT BAND ── */
 .catBand {
@@ -66,11 +68,12 @@
 .item {
   display: grid;
   grid-template-columns: 4px 120px 1fr 220px;
-  min-height: 160px;
+  min-height: 180px;
   border-bottom: 1px solid var(--bord);
   align-items: stretch;
 }
-.item:hover { background: var(--fond-alt, rgba(0,0,0,0.02)); }
+.item:nth-child(even) { background: rgba(0,0,0,0.018); }
+.item:hover { background: rgba(0,0,0,0.04); }
 
 .itemBar { width: 4px; align-self: stretch; }
 
@@ -86,7 +89,7 @@
 }
 .itemMois {
   font-family: 'Playfair Display', serif;
-  font-size: 18px; font-weight: 400; color: var(--encre);
+  font-size: 22px; font-weight: 400; color: var(--encre);
 }
 .itemCat {
   font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
@@ -103,7 +106,7 @@
   font-size: clamp(16px, 2.2vw, 22px);
   font-weight: 400; line-height: 1.25; color: var(--encre);
 }
-.itemDesc { font-size: 13px; color: var(--gris); line-height: 1.6; }
+.itemDesc { font-size: 13.5px; color: var(--gris); line-height: 1.7; }
 .itemStat {
   display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
   padding-top: 10px; border-top: 1px solid var(--bord);

@@ -17,7 +17,7 @@ const mois = [
   {
     m: 'Janvier', slug: 'jan', cat: 'tech', catLabel: 'Technologie', article: 'semico',
     titre: 'DeepSeek efface 593 Mds de Nvidia en une séance',
-    desc: 'Un modèle chinois entraîné sous contraintes surpasse GPT-4. Le mythe de la suprématie américaine en IA prend un coup historique.',
+    desc: 'Un modèle chinois entraîné sous contraintes surpasse GPT-4 à une fraction du coût. Le mythe de la suprématie américaine en IA prend un coup historique. Les marchés paniquent, Wall Street réévalue tout. La géopolitique technologique ne sera plus jamais la même.',
     stat: { num: '593', unit: 'Mds $', label: 'de capitalisation Nvidia effacés en une séance' },
     chartType: 'bar',
     chartData: [
@@ -86,7 +86,7 @@ const mois = [
   {
     m: 'Juillet', slug: 'juil', cat: 'env', catLabel: 'Environnement', article: 'eau',
     titre: 'Canicule record en Europe du Sud',
-    desc: 'Troisième année consécutive de sécheresse extrême. Les réserves hydriques tombent sous 30%. La PAC est remise en question.',
+    desc: '47°C en Sicile. 45°C à Séville. Troisième été consécutif de sécheresse extrême. Les réserves hydriques espagnoles et italiennes tombent sous 30% de capacité. Des centaines de milliers d'hectares agricoles brûlés. La Politique Agricole Commune, pensée pour l'Europe d'avant le réchauffement, est fondamentalement inadaptée.',
     stat: { num: '47', unit: '°C', label: 'record de température en Sicile en juillet 2025' },
     chartType: 'thermo',
     chartData: { value: 47, max: 55 },
@@ -95,7 +95,7 @@ const mois = [
   {
     m: 'Août', slug: 'aout', cat: 'geo', catLabel: 'Géopolitique', article: 'taiwan',
     titre: 'Taïwan : les exercices militaires chinois franchissent un seuil',
-    desc: 'Pékin franchit la ligne médiane du détroit. Washington envoie un groupe aéronaval. Le monde retient son souffle.',
+    desc: 'Pour la première fois depuis 1996, Pékin franchit la ligne médiane du détroit lors de manœuvres d'une ampleur inédite. Washington envoie le porte-avions Reagan. Taipei active son niveau d'alerte maximal. Un conflit dans le détroit paralyserait 40% du commerce mondial et 90% des puces avancées. Le monde retient son souffle.',
     stat: { num: '10 600', unit: 'Mds $', label: 'coût d\'un conflit dans le détroit la 1ère année' },
     chartType: 'gauge',
     chartData: 9,
@@ -104,7 +104,7 @@ const mois = [
   {
     m: 'Septembre', slug: 'sep', cat: 'eco', catLabel: 'Économie', article: 'blackrock',
     titre: 'BlackRock dépasse les 11 000 Mds sous gestion',
-    desc: 'La concentration du capital atteint un niveau sans précédent. Trois fonds gèrent plus que le PIB de la Chine.',
+    desc: 'BlackRock, Vanguard, State Street : trois fonds américains gèrent collectivement 28 000 milliards de dollars — plus que le PIB de la Chine. Ils sont actionnaires de presque toutes les grandes entreprises mondiales simultanément. Cette concentration du capital n'a aucun précédent dans l'histoire du capitalisme. Qui contrôle ces fonds contrôle l'économie mondiale.',
     stat: { num: '28 000', unit: 'Mds $', label: 'gérés par BlackRock, Vanguard et State Street réunis' },
     chartType: 'bar',
     chartData: [

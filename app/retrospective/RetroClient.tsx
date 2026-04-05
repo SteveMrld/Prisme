@@ -26,13 +26,8 @@ export function HeroAnimated({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    el.style.opacity = '0'
-    el.style.transform = 'translateY(24px)'
-    setTimeout(() => {
-      el.style.transition = 'opacity 1.1s ease, transform 1.1s ease'
-      el.style.opacity = '1'
-      el.style.transform = 'translateY(0)'
-    }, 100)
+    el.style.opacity = '1'
+    el.style.transform = 'translateY(0)'
   }, [])
   return <div ref={ref}>{children}</div>
 }
