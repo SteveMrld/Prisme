@@ -48,6 +48,9 @@ export async function POST(req: NextRequest) {
     { id: 'realscottritter', name: 'Scott Ritter', type: 'Analyste', bias: 'Ex-inspecteur ONU / anti-OTAN' },
     { id: 'sinatoossi', name: 'Sina Toossi', type: 'Analyste', bias: 'Iran / négociation' },
     { id: 'citrinowicz', name: 'Citrinowicz', type: 'Analyste', bias: 'Moyen-Orient / sécurité' },
+    { id: 'nytimes', name: 'New York Times', type: 'Média', bias: 'Centre libéral US / référence mondiale' },
+    { id: 'reuters', name: 'Reuters', type: 'Agence', bias: 'Agence internationale / factuel' },
+    { id: 'ap', name: 'AP', type: 'Agence', bias: 'Agence américaine / factuel' },
   ]
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {

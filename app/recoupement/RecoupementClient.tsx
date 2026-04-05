@@ -207,16 +207,7 @@ export default function RecoupementClient() {
             ))}
           </div>
 
-          <div className={styles.sourcesUsed}>
-            <div className={styles.sourcesUsedLabel}>Sources consultées sur ce sujet · {analysis.results.length} sources</div>
-            <div className={styles.sourcesList}>
-              {analysis.results.map(r => (
-                <span key={r.source.id} className={styles.sourceTag}>
-                  {(r.source as any).abbr} · {r.source.name}
-                </span>
-              ))}
-            </div>
-          </div>
+
         </div>
       )}
 
