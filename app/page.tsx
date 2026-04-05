@@ -54,7 +54,7 @@ const grandsFormatsSlugs = [
   { slug: 'eau',                extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '8 sections · 11 sources' },
   { slug: 'techgeo',            extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '7 sections · 16 sources' },
   { slug: 'taiwan',             extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · 10 sources' },
-  { slug: 'chine',              extraCategories: [{ label: 'Économie', color: 'eco' }],     sections: '8 sections · 14 sources' },
+  { slug: 'semico',             extraCategories: [{ label: 'Technologie', color: 'tech' }],  sections: '6 sections · 10 sources' },
 ]
 const grandsFormats = grandsFormatsSlugs.map(({ slug, extraCategories, sections }) => {
   const a = getArticle(slug)
