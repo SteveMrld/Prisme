@@ -11,7 +11,7 @@ const episodes = [
     category: 'Géopolitique',
     duration: '1 min 19',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/confins_inde_v10-3_a57ifu',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_jpg,so_4,w_800,h_450,c_fill,q_auto/confins_inde_v10-3_a57ifu.jpg',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_jpg,so_2,w_800,h_450,c_fill,q_auto/confins_inde_v10-3_a57ifu.jpg',
     description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
   },
   {
