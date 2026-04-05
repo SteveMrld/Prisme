@@ -130,6 +130,7 @@ export default function ConfinsTV() {
               onError={() => setError(true)}
               playsInline
               preload="none"
+              poster={ep.thumb}
             />
 
             {/* Thumbnail overlay — visible avant play, masqué après */}

@@ -148,6 +148,7 @@ export default function ConfinsTVPage() {
                 onEnded={handleEnded}
                 playsInline
                 preload="none"
+                poster={ep.thumb}
               />
 
               {/* Thumbnail visible avant lecture */}
