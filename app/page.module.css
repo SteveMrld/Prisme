@@ -613,9 +613,10 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { grid-template-columns: 1fr 140px; }
+  .ge { grid-template-columns: 1fr 160px; }
   .geLeft { padding: 28px 20px; }
-  .geImg { width: 130px; }
+  .geRight { padding: 0 12px; }
+  .geImg { width: 140px; }
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
   .heroAside { display: none; }
@@ -1216,9 +1217,10 @@
   .portraitsGrid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .atlanticSection { padding: 32px 16px; }
   .latestSection { padding: 32px 16px; }
-  .ge { grid-template-columns: 1fr 120px; }
-  .geLeft { padding: 24px 16px; }
-  .geImg { width: 110px; }
+  .ge { grid-template-columns: 1fr 130px; }
+  .geLeft { padding: 20px 16px; }
+  .geRight { padding: 0 8px; }
+  .geImg { width: 120px; }
   .gfSection { padding: 0 16px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
