@@ -185,7 +185,7 @@ export default function ConfinsTVPage() {
             {/* Under player */}
             <div className={`${styles.epMeta} ${fadeIn ? styles.playerFadeIn : styles.playerFadeOut}`}>
               <span className={styles.epId}>Épisode #{ep.id}</span>
-              <span className={styles.epDate}>{ep.date}</span>
+              <span className={styles.epDate}>{'2025'}</span>
             </div>
             <h2 className={`${styles.epTitle} ${fadeIn ? styles.playerFadeIn : styles.playerFadeOut}`}>{ep.title}</h2>
             <p className={`${styles.epDesc} ${fadeIn ? styles.playerFadeIn : styles.playerFadeOut}`}>{ep.description}</p>
