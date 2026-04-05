@@ -44,7 +44,13 @@
 .sourceCard { background: var(--fond); padding: 16px 20px; transition: background .15s; }
 .sourceCard:hover { background: #F5F3EF; }
 .sourceHead { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
-.sourceIcon { font-size: 18px; flex-shrink: 0; }
+.sourceAbbr {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--encre); color: var(--fond);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 500; letter-spacing: 1px;
+}
 .sourceName { font-size: 14px; font-weight: 600; color: var(--encre); }
 .sourceMeta { font-size: 10px; color: var(--gris-l); margin-top: 2px; }
 .confidence { margin-left: auto; font-size: 10px; letter-spacing: 2px; flex-shrink: 0; }
@@ -57,7 +63,7 @@
 .sourcesUsed { border-top: 1px solid var(--bord); padding-top: 20px; }
 .sourcesUsedLabel { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gris-l); margin-bottom: 12px; }
 .sourcesList { display: flex; flex-wrap: wrap; gap: 8px; }
-.sourceTag { font-size: 11px; color: var(--gris-m); background: #F5F3EF; padding: 4px 10px; }
+.sourceTag { font-size: 10px; color: var(--gris-m); background: #F5F3EF; padding: 3px 10px; font-family: 'DM Mono', monospace; letter-spacing: .5px; }
 
 .examples { padding: 32px 0; }
 .examplesLabel { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gris-l); margin-bottom: 16px; }

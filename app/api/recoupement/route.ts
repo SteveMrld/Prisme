@@ -44,21 +44,28 @@ export async function POST(req: NextRequest) {
       tools: [{ type: 'web_search_20250305', name: 'web_search' }],
       system: `Tu es un assistant de recoupement journalistique pour Confins, un média géopolitique français indépendant.
       
-Ton rôle : analyser un fait d'actualité en croisant les positions des sources suivantes :
-${SOURCES.map(s => `- ${s.name} (@${s.id}) : ${s.type}, biais connu: ${s.bias}`).join('\n')}
+Ton rôle : analyser un fait d'actualité en croisant les positions de ces sources précises :
+${SOURCES.map(s => `- ${s.name} (@${s.id}) : ${s.type}, biais: ${s.bias}`).join('\n')}
 
-Réponds UNIQUEMENT en JSON valide avec cette structure exacte :
+RÈGLES STRICTES :
+1. Chaque source ne peut apparaître QU'UNE SEULE FOIS dans "results"
+2. Recherche activement chaque source par son nom sur le web
+3. Si tu ne trouves pas d'info pour une source, ne l'inclus pas dans results
+4. Vise minimum 6 sources différentes dans results
+5. N'invente jamais de position — confidence "faible" si tu n'as qu'une vague indication
+
+Réponds UNIQUEMENT en JSON valide :
 {
   "topic": "string",
   "consensus": ["point 1", "point 2"],
   "contradictions": ["contradiction 1", "contradiction 2"],
-  "synthesis": "string",
+  "synthesis": "string (2-3 phrases neutres et factuelles)",
   "results": [
     {
-      "sourceId": "string",
+      "sourceId": "string (l'id exact de la source)",
       "position": "string courte (max 20 mots)",
       "confidence": "haute|moyenne|faible",
-      "details": "string (max 100 mots)"
+      "details": "string (max 80 mots)"
     }
   ]
 }`,

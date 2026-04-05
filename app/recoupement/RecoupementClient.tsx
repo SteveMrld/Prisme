@@ -190,7 +190,7 @@ export default function RecoupementClient() {
             {analysis.results.map((r, i) => (
               <div key={i} className={styles.sourceCard}>
                 <div className={styles.sourceHead}>
-                  <span className={styles.sourceIcon}>{r.source.icon}</span>
+                  <span className={styles.sourceAbbr}>{(r.source as any).abbr}</span>
                   <div>
                     <div className={styles.sourceName}>{r.source.name}</div>
                     <div className={styles.sourceMeta}>{r.source.type} · {r.source.bias}</div>
@@ -210,7 +210,7 @@ export default function RecoupementClient() {
             <div className={styles.sourcesList}>
               {SOURCES.map(s => (
                 <span key={s.id} className={styles.sourceTag}>
-                  {s.icon} {s.name}
+                  {(s as any).abbr} · {s.name}
                 </span>
               ))}
             </div>
