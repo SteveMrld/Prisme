@@ -85,9 +85,7 @@ export default function HomePage() {
             Cheick Modibo<br /><em>Diarra</em>
           </h2>
           <div className={styles.geRole}>
-            Astrophysicien · NASA<br />
-            Microsoft Afrique<br />
-            Ancien Premier ministre du Mali
+            Astrophysicien · NASA · Microsoft Afrique · Ancien Premier ministre du Mali
           </div>
           <p className={styles.geIntro}>
             Il a guidé des sondes spatiales depuis la NASA, restructuré Microsoft en Afrique, 
@@ -100,9 +98,7 @@ export default function HomePage() {
           <div className={styles.geBadge}>Parution · 1er juin 2026</div>
         </div>
         <div className={styles.geRight}>
-          <div className={styles.geImgWrap}>
-            <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.geImg} />
-          </div>
+          <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.geImg} />
         </div>
       </section>
       </FadeSection>
