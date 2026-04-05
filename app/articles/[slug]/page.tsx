@@ -65,6 +65,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     content = '<p>Contenu à venir.</p>'
   }
 
+  const isPremium = (article as any).premium === true
+
   const hasInternalHeader =
     content.includes('class="atop"') ||
     content.includes('class="article-header"')
@@ -88,6 +90,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       readTime={String(article.readTime)}
       hasInternalHeader={hasInternalHeader}
       hasHeroInContent={hasHeroInContent}
+      premium={isPremium}
       content={content}
       author={(article as any).author || 'Steve Moradel'}
       authorRole={(article as any).authorRole || 'Fondateur · Directeur de la rédaction'}

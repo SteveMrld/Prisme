@@ -13,6 +13,7 @@ interface ArticleLayoutProps {
   readTime: string
   hasInternalHeader?: boolean
   hasHeroInContent?: boolean
+  premium?: boolean
   content: string
   author?: string
   authorRole?: string
@@ -49,7 +50,7 @@ function portraitUrl(name: string): string | null {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, hasInternalHeader = false, hasHeroInContent = false, content,
+  readTime, hasInternalHeader = false, hasHeroInContent = false, premium = false, content,
   author = 'Steve Moradel',
   authorRole = 'Fondateur · Directeur de la rédaction',
   related = []
