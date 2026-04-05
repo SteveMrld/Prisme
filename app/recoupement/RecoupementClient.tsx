@@ -101,7 +101,7 @@ export default function RecoupementClient() {
         <div className={styles.hero}>
           <div className={styles.eyebrow}>Confins · Outil éditorial</div>
           <h1 className={styles.title}>Recoupement de <em>sources</em></h1>
-          <p className={styles.subtitle}>Croisez 30 sources sur un fait d'actualité — médias, OSINT, analystes, institutions.</p>
+          <p className={styles.subtitle}>Croisez {SOURCES.length} sources sur un fait d'actualité — médias, OSINT, analystes, institutions.</p>
         </div>
         <div className={styles.paywall}>
           <div className={styles.paywallIcon}>🔍</div>
@@ -208,11 +208,11 @@ export default function RecoupementClient() {
           </div>
 
           <div className={styles.sourcesUsed}>
-            <div className={styles.sourcesUsedLabel}>Sources surveillées · {SOURCES.length} sources</div>
+            <div className={styles.sourcesUsedLabel}>Sources consultées sur ce sujet · {analysis.results.length} sources</div>
             <div className={styles.sourcesList}>
-              {SOURCES.map(s => (
-                <span key={s.id} className={styles.sourceTag}>
-                  {(s as any).abbr} · {s.name}
+              {analysis.results.map(r => (
+                <span key={r.source.id} className={styles.sourceTag}>
+                  {(r.source as any).abbr} · {r.source.name}
                 </span>
               ))}
             </div>

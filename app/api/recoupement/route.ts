@@ -37,6 +37,17 @@ export async function POST(req: NextRequest) {
     { id: 'ryangrim', name: 'Ryan Grim', type: 'Journaliste', bias: 'Investigation / The Intercept' },
     { id: 'viviannereim', name: 'Vivian Nereim', type: 'Journaliste', bias: 'Bloomberg / Arabie Saoudite' },
     { id: 'globeeyenews', name: 'Globe Eye News', type: 'Agrégateur', bias: 'Veille géopolitique globale' },
+    { id: 'nicksortor', name: 'Nick Sortor', type: 'OSINT', bias: 'Breaking news / terrain US' },
+    { id: 'amanpour', name: 'Christiane Amanpour', type: 'Journaliste', bias: 'CNN / international' },
+    { id: 'nexta_tv', name: 'Nexta TV', type: 'Média', bias: 'Est-européen / pro-Ukraine' },
+    { id: 'sprinterpress', name: 'Sprinter Press', type: 'Agrégateur', bias: 'Veille Moyen-Orient' },
+    { id: 'ilangoldenberg', name: 'Ilan Goldenberg', type: 'Analyste', bias: 'Think tank DC / CNAS' },
+    { id: 'glenn_diesen', name: 'Glenn Diesen', type: 'Analyste', bias: 'Académique / Russie-OTAN' },
+    { id: 'theeconomist', name: 'The Economist', type: 'Média', bias: 'Libéral pro-marché' },
+    { id: 'afpfr', name: 'AFP', type: 'Agence', bias: 'Agence officielle française' },
+    { id: 'realscottritter', name: 'Scott Ritter', type: 'Analyste', bias: 'Ex-inspecteur ONU / anti-OTAN' },
+    { id: 'sinatoossi', name: 'Sina Toossi', type: 'Analyste', bias: 'Iran / négociation' },
+    { id: 'citrinowicz', name: 'Citrinowicz', type: 'Analyste', bias: 'Moyen-Orient / sécurité' },
   ]
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
