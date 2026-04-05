@@ -17,7 +17,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 #htitle em{color:#C4A265;font-style:italic}
 #hright{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(236,231,221,.18)}
 #canvas-wrap{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1}
-#labels{position:fixed;top:52px;left:0;right:0;bottom:0;pointer-events:none;z-index:20}
+#labels{position:fixed;top:96px;left:0;right:0;bottom:0;pointer-events:none;z-index:20}
 .zlabel{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;pointer-events:auto;transition:opacity .4s}
 .zbubble{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1px;border:1.5px solid;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);box-shadow:0 0 16px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.1)}
 .zbubble-n{font-size:15px;font-weight:700;line-height:1}
@@ -39,6 +39,21 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 .sr{font-size:9px;color:rgba(236,231,221,.3)}
 .sl{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#C4A265;margin-top:6px;opacity:0;transition:opacity .15s}
 .si:hover .sl,.si:active .sl{opacity:1}
+#filters{
+  position:fixed;top:52px;left:0;right:0;z-index:90;
+  background:rgba(0,0,0,.75);border-bottom:1px solid rgba(196,162,101,.08);
+  padding:8px 20px;display:flex;gap:6px;align-items:center;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;backdrop-filter:blur(10px);
+}
+#filters::-webkit-scrollbar{display:none}
+.fcat{
+  font-size:8px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 12px;border:1px solid rgba(255,255,255,.1);background:transparent;
+  color:rgba(236,231,221,.4);cursor:pointer;font-family:inherit;
+  white-space:nowrap;flex-shrink:0;transition:all .15s;
+}
+.fcat:hover{border-color:rgba(255,255,255,.4);color:#ECE7DD}
+.fcat.on{color:#0A0A0A;border-color:transparent}
 #hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(236,231,221,.15);pointer-events:none;transition:opacity 1s;white-space:nowrap;z-index:50}
 @media(max-width:768px){#hright{display:none}#panel{max-height:62vh}}
 </style>
@@ -50,6 +65,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
     <div id="htitle">Changer le <em>monde</em></div>
   </div>
   <div id="hright">157 solutions · 6 zones · ChangeNow 2026</div>
+</div>
+<div id="filters">
+  <button class="fcat on" id="fc_tout" onclick="setTheme(this,null)" style="background:#ECE7DD">Tout · 157</button>
 </div>
 <div id="canvas-wrap"></div>
 <div id="labels"></div>
@@ -200,7 +218,7 @@ ZONES.forEach(zone=>{
   const d=document.createElement('div');
   d.className='zlabel';d.id='l_'+zone.name.replace(/[^a-zA-Z]/g,'');
   d.innerHTML=`<div class="zbubble" style="border-color:${zone.color};color:${zone.color}"><span class="zbubble-n">${zone.count}</span><span class="zbubble-s">sol.</span></div><div class="zname">${zone.name}</div>`;
-  d.onclick=()=>openPanel(zone);
+  d.onclick=()=>window.openPanel(zone);
   labelsEl.appendChild(d);
 });
 
@@ -228,7 +246,7 @@ renderer.domElement.addEventListener('click',e=>{
   const m=new THREE.Vector2((e.clientX/innerWidth)*2-1,-(e.clientY/innerHeight)*2+1);
   rc.setFromCamera(m,camera);
   const hits=rc.intersectObjects(markers.map(m=>m.dot));
-  if(hits.length){const mk=markers.find(mk=>mk.dot===hits[0].object);if(mk){openPanel(mk.zone);controls.autoRotate=false;setTimeout(()=>controls.autoRotate=true,10000);}}
+  if(hits.length){const mk=markers.find(mk=>mk.dot===hits[0].object);if(mk){window.openPanel(mk.zone);}}
 });
 
 function openPanel(zone){
@@ -264,6 +282,82 @@ window.addEventListener('resize',()=>{
   renderer.setSize(innerWidth,innerHeight);
 });
 setTimeout(()=>document.getElementById('hint').style.opacity='0',5000);
+
+// ── THEMATIC FILTER ──
+const CATS_CONFIG=[
+  {key:'Économie circulaire',color:'#5A8FC0',emoji:'♻️'},
+  {key:'Agriculture',color:'#C09040',emoji:'🌾'},
+  {key:'Biodiversité',color:'#80A850',emoji:'🌿'},
+  {key:'Énergie',color:'#D0901A',emoji:'⚡'},
+  {key:'Eau',color:'#6AAAD0',emoji:'💧'},
+  {key:'Océans',color:'#3A7AB0',emoji:'🌊'},
+  {key:'Matériaux',color:'#A07050',emoji:'🧱'},
+  {key:'Inclusion',color:'#A050A0',emoji:'🤝'},
+  {key:"Finance d'impact",color:'#5080A0',emoji:'📊'},
+  {key:'Climat',color:'#50A0A0',emoji:'🌍'},
+  {key:'Mobilité',color:'#4060A0',emoji:'🚀'},
+  {key:'Santé',color:'#C04060',emoji:'❤️'},
+  {key:'Sciences & Tech',color:'#8060C0',emoji:'🔬'},
+];
+
+const filtersEl=document.getElementById('filters');
+CATS_CONFIG.forEach(c=>{
+  const btn=document.createElement('button');
+  btn.className='fcat';
+  btn.id='fc_'+c.key.replace(/[^a-zA-Z]/g,'');
+  btn.innerHTML=c.emoji+' '+c.key;
+  btn.onclick=()=>setTheme(btn,c.key);
+  filtersEl.appendChild(btn);
+});
+
+let activeTheme=null;
+
+function setTheme(btn,cat){
+  document.querySelectorAll('.fcat').forEach(b=>{b.classList.remove('on');b.style.background='';b.style.color='';b.style.borderColor='';});
+  btn.classList.add('on');
+  if(cat){
+    const cfg=CATS_CONFIG.find(c=>c.key===cat);
+    const col=cfg?cfg.color:'#ECE7DD';
+    btn.style.background=col;btn.style.color='#000';btn.style.borderColor='transparent';
+  } else {
+    btn.style.background='#ECE7DD';btn.style.color='#000';
+  }
+  activeTheme=cat;
+  // Update label counts
+  markers.forEach(({zone,dot})=>{
+    const n=cat?zone.solutions.filter(s=>s.cat===cat).length:zone.solutions.length;
+    const el=document.getElementById('l_'+zone.name.replace(/[^a-zA-Z]/g,''));
+    if(el){
+      el.querySelector('.zbubble-n').textContent=n;
+      el.style.opacity=(n===0)?'0.15':'1';
+    }
+  });
+}
+
+// Override openPanel to respect filter
+const _openPanel=openPanel;
+window.openPanel=function(zone){
+  const solutions=activeTheme?zone.solutions.filter(s=>s.cat===activeTheme):zone.solutions;
+  const n=solutions.length;
+  if(n===0)return;
+  document.getElementById('pzone').textContent=zone.name;
+  document.getElementById('pcount').textContent=n+' solution'+(n>1?'s':''+(activeTheme?' · '+activeTheme:''));
+  document.getElementById('pcount').style.color=zone.color;
+  const list=document.getElementById('plist');list.innerHTML='';
+  solutions.forEach(s=>{
+    const a=document.createElement('a');a.className='si';a.href=s.website||'#';a.target='_blank';a.rel='noopener noreferrer';
+    const col=CAT_COLORS[s.cat]||'#C4A265';
+    a.innerHTML=`<div class="sc" style="color:${col}">${s.cat}</div><div class="sn">${s.name}</div><div class="sr">${s.rawCat}${s.country?' · '+s.country:''}</div>${s.website?'<div class="sl">Voir le projet →</div>':''}`;
+    list.appendChild(a);
+  });
+  document.getElementById('panel').classList.add('open');
+  document.getElementById('hint').style.opacity='0';
+  controls.autoRotate=false;setTimeout(()=>controls.autoRotate=true,10000);
+};
+// Also patch click handler
+markers.forEach(m=>{
+  m.dot.userData.zone=m.zone;
+});
 </script>
 </body>
 </html>
