@@ -126,7 +126,7 @@
 
 .playerWrap {
   position: relative;
-  background: #000;
+  background: linear-gradient(135deg, #0D1520 0%, #1A2535 50%, #0A0F18 100%);
   aspect-ratio: 16/9;
   border-radius: 4px;
   overflow: hidden;
