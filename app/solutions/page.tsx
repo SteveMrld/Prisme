@@ -15,7 +15,7 @@ export default function SolutionsPage() {
 
       {/* HERO */}
       <div style={{
-        background: '#0D3B2A',
+        background: '#0A0A0A',
         padding: '56px 48px 48px',
         borderBottom: '1px solid rgba(255,255,255,0.08)',
         position: 'relative',
@@ -33,7 +33,7 @@ export default function SolutionsPage() {
         <div style={{ maxWidth: 640, position: 'relative', zIndex: 1 }}>
           <span style={{
             fontSize: 9, fontWeight: 700, letterSpacing: '3px',
-            textTransform: 'uppercase', color: '#6BCB8A', display: 'block', marginBottom: 16,
+            textTransform: 'uppercase', color: '#C4A265', display: 'block', marginBottom: 16,
           }}>
             Changer le monde
           </span>
@@ -43,7 +43,7 @@ export default function SolutionsPage() {
             fontWeight: 400, lineHeight: 1.1, letterSpacing: '-1.5px',
             color: '#FAF9F7', marginBottom: 16,
           }}>
-            157 solutions pour <em style={{ color: '#6BCB8A', fontStyle: 'italic' }}>réparer la planète</em>
+            157 solutions pour <em style={{ color: '#C4A265', fontStyle: 'italic' }}>réparer la planète</em>
           </h1>
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
@@ -52,7 +52,7 @@ export default function SolutionsPage() {
           }}>
             Des entreprises, startups et ONG qui prouvent que le monde peut aller mieux.
             Sélection <a href="https://www.changenow.world" target="_blank" rel="noopener noreferrer"
-              style={{ color: '#6BCB8A', textDecoration: 'none' }}>ChangeNow 2026</a> — Grand Palais, Paris.
+              style={{ color: '#C4A265', textDecoration: 'none' }}>ChangeNow 2026</a> — Grand Palais, Paris.
           </p>
 
           {/* Stats */}

@@ -4,20 +4,20 @@ import styles from './solutions.module.css'
 import { solutions } from './data'
 
 const CAT_COLORS: Record<string, string> = {
-  'Économie circulaire': '#2D7A4F',
-  'Eau':                 '#1A6B9A',
-  'Océans':              '#0D4F7A',
-  'Agriculture':         '#5A8A1A',
-  'Biodiversité':        '#3A8A3A',
-  'Énergie':             '#C47A1A',
-  'Matériaux':           '#7A4A1A',
-  'Sciences & Tech':     '#4A2A7A',
-  'Climat':              '#1A5A5A',
-  'Santé':               '#8A1A1A',
-  'Inclusion':           '#7A1A6A',
-  "Finance d'impact":    '#4A6A1A',
-  'Mobilité':            '#1A4A6A',
-  'Autre':               '#4A4A4A',
+  'Économie circulaire': '#1A3E6B',
+  'Eau':                 '#2A5A8A',
+  'Océans':              '#0D3A6B',
+  'Agriculture':         '#6B4A1A',
+  'Biodiversité':        '#4A3A1A',
+  'Énergie':             '#B86A1A',
+  'Matériaux':           '#5A3A2A',
+  'Sciences & Tech':     '#4A2080',
+  'Climat':              '#1A4A5A',
+  'Santé':               '#7A1A2A',
+  'Inclusion':           '#5A1A5A',
+  "Finance d'impact":    '#2A4A2A',
+  'Mobilité':            '#1A3A5A',
+  'Autre':               '#3A3A3A',
 }
 
 const CATS = ['Tout', 'Économie circulaire', 'Agriculture', 'Biodiversité', 'Énergie', 'Eau', 'Océans', 'Matériaux', 'Inclusion', "Finance d'impact", 'Climat', 'Mobilité', 'Santé', 'Sciences & Tech']
