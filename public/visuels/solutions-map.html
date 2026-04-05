@@ -54,6 +54,53 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 }
 .fcat:hover{border-color:rgba(255,255,255,.4);color:#ECE7DD}
 .fcat.on{color:#0A0A0A;border-color:transparent}
+#intro{
+  position:fixed;inset:0;z-index:500;
+  background:#07090F;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:40px 32px;
+  text-align:center;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+#intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+
+#intro-eyebrow{
+  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:#C4A265;margin-bottom:28px;
+}
+#intro-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,7vw,56px);
+  font-weight:400;line-height:1.1;letter-spacing:-1.5px;
+  color:#FAF9F7;margin-bottom:24px;max-width:640px;
+}
+#intro-title em{color:#C4A265;font-style:italic}
+#intro-body{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,2.5vw,20px);font-style:italic;
+  color:rgba(250,249,247,.6);line-height:1.7;
+  max-width:520px;margin-bottom:40px;
+}
+#intro-stats{
+  display:flex;gap:40px;margin-bottom:48px;justify-content:center;flex-wrap:wrap;
+}
+.ist{display:flex;flex-direction:column;gap:4px;align-items:center}
+.ist-n{font-size:36px;font-weight:700;color:#FAF9F7;line-height:1;letter-spacing:-1px}
+.ist-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(250,249,247,.35)}
+#intro-cta{
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:#0A0A0A;background:#C4A265;
+  padding:14px 36px;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:background .2s, transform .15s;
+}
+#intro-cta:hover{background:#FAF9F7;transform:translateY(-1px)}
+#intro-cta:active{transform:translateY(0)}
+#intro-source{
+  margin-top:20px;font-size:9px;letter-spacing:1px;
+  color:rgba(250,249,247,.2);
+}
 #hint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(236,231,221,.15);pointer-events:none;transition:opacity 1s;white-space:nowrap;z-index:50}
 @media(max-width:768px){#hright{display:none}#panel{max-height:62vh}}
 </style>
@@ -68,6 +115,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'DM
 </div>
 <div id="filters">
   <button class="fcat on" id="fc_tout" onclick="setTheme(this,null)" style="background:#ECE7DD">Tout · 173</button>
+</div>
+<div id="intro">
+  <div id="intro-eyebrow">Confins · Changer le monde</div>
+  <h1 id="intro-title">
+    Il n'y a pas que<br>des <em>mauvaises nouvelles</em>
+  </h1>
+  <p id="intro-body">
+    Partout sur la planète, des entrepreneurs, des scientifiques et des ONG
+    inventent des solutions concrètes pour l'eau, l'énergie, la biodiversité,
+    l'éducation et la santé. Confins a voulu les rendre visibles.
+  </p>
+  <div id="intro-stats">
+    <div class="ist"><span class="ist-n">173</span><span class="ist-l">solutions</span></div>
+    <div class="ist"><span class="ist-n">31</span><span class="ist-l">pays</span></div>
+    <div class="ist"><span class="ist-n">14</span><span class="ist-l">domaines</span></div>
+  </div>
+  <button id="intro-cta" onclick="enterGlobe()">Explorer le monde →</button>
+  <div id="intro-source">Sélection ChangeNow 2026 · Grand Palais, Paris</div>
 </div>
 <div id="canvas-wrap"></div>
 <div id="labels"></div>
@@ -281,6 +346,10 @@ window.addEventListener('resize',()=>{
   camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
   renderer.setSize(innerWidth,innerHeight);
 });
+function enterGlobe(){
+  document.getElementById('intro').classList.add('gone');
+  setTimeout(()=>document.getElementById('intro').remove(), 900);
+}
 setTimeout(()=>document.getElementById('hint').style.opacity='0',5000);
 
 // ── THEMATIC FILTER ──
