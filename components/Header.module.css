@@ -280,7 +280,7 @@
   right: 0;
   width: 320px;
   height: 100vh;
-  background: var(--bg);
+  background: var(--fond);
   border-left: 1px solid var(--bord);
   z-index: 1;
   display: flex;
