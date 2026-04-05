@@ -763,7 +763,7 @@ sup {
 
 .pull-quote {
   position: relative;
-  margin: 56px auto;
+  margin: 32px auto;
   max-width: 620px;
   padding: 32px 40px 32px 48px;
   background: transparent;
@@ -1315,8 +1315,8 @@ sup {
 
 /* ── AUTEUR ── */
 .auteur {
-  margin: 24px 0 0;
-  padding: 16px 20px;
+  margin: 12px 0 0;
+  padding: 12px 20px;
   border-left: 3px solid var(--or);
   font-family: 'Cormorant Garamond', serif;
   font-size: 16px;
