@@ -1224,27 +1224,31 @@
 
 /* ── SIGNAL MAP TEASER ── */
 .signalMapTeaser {
-  background: #07090F;
-  position: relative;
-  overflow: hidden;
+  padding: 0 48px;
+  background: transparent;
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
 }
 
 .signalMapLink {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 260px;
   align-items: center;
   text-decoration: none;
   color: inherit;
-  min-height: 180px;
+  min-height: 160px;
+  background: #07090F;
+  overflow: hidden;
+  position: relative;
 }
 
 .signalMapGlobe {
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
   flex-shrink: 0;
   overflow: hidden;
   position: relative;
-  margin: -60px 0;
+  margin: -40px 0;
   justify-self: end;
 }
 
@@ -1286,7 +1290,8 @@
 }
 
 @media (max-width: 768px) {
-  .signalMapLink { grid-template-columns: 1fr 150px; min-height: 140px; }
-  .signalMapLeft { padding: 24px 24px; }
-  .signalMapGlobe { width: 150px; height: 150px; margin: -10px 0; }
+  .signalMapTeaser { padding: 0 16px; }
+  .signalMapLink { grid-template-columns: 1fr 130px; min-height: 130px; }
+  .signalMapLeft { padding: 20px 20px; }
+  .signalMapGlobe { width: 130px; height: 130px; margin: -5px 0; }
 }
