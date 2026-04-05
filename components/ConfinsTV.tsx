@@ -5,44 +5,14 @@ import styles from './ConfinsTV.module.css'
 
 const episodes = [
   {
-    id: '06',
-    slug: 'asteroide',
-    title: "Nous sommes l'astéroïde",
-    category: 'Biodiversité',
-    duration: '1 min 49',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
-    description: "69% des vertébrés sauvages disparus depuis 1970. La 6e extinction est différente — c'est la première causée par une seule espèce.",
-  },
-  {
-    id: '05',
-    slug: 'inegalites',
-    title: "8 hommes. 3,5 milliards. Le même patrimoine.",
-    category: 'Économie',
-    duration: '2 min 07',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
-    description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA — comment les inégalités s'accélèrent.",
-  },
-  {
-    id: '04',
-    slug: 'nucleaire',
-    title: "L'arme qui a failli nous tuer",
+    id: '01',
+    slug: 'inde',
+    title: "L'Inde, le siècle qui vient",
     category: 'Géopolitique',
-    duration: '2 min 25',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
-    description: "12 700 ogives. 32 accidents. L'arme censée protéger le monde a failli le détruire.",
-  },
-  {
-    id: '03',
-    slug: 'biologie',
-    title: "La biologie devient un logiciel",
-    category: 'Science',
-    duration: '2 min 07',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME3_v4_fixed_ugm8uc',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME3_v4_fixed_ugm8uc.jpg',
-    description: "CRISPR, AlphaFold, Neuralink. L'IA a donné à l'humanité le pouvoir de réécrire le vivant.",
+    duration: '1 min 19',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/confins_inde_v10-3_a57ifu',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/confins_inde_v10-3_a57ifu.jpg',
+    description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
   },
   {
     id: '02',
@@ -55,14 +25,44 @@ const episodes = [
     description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris.",
   },
   {
-    id: '01',
-    slug: 'inde',
-    title: "L'Inde, le siècle qui vient",
+    id: '03',
+    slug: 'biologie',
+    title: "La biologie devient un logiciel",
+    category: 'Science',
+    duration: '2 min 07',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME3_v4_fixed_ugm8uc',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME3_v4_fixed_ugm8uc.jpg',
+    description: "CRISPR, AlphaFold, Neuralink. L'IA a donné à l'humanité le pouvoir de réécrire le vivant.",
+  },
+  {
+    id: '04',
+    slug: 'nucleaire',
+    title: "L'arme qui a failli nous tuer",
     category: 'Géopolitique',
-    duration: '1 min 19',
-    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/confins_inde_v10-3_a57ifu',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_2,w_1280,h_720,c_fill,f_jpg,q_80/confins_inde_v10-3_a57ifu.jpg',
-    description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
+    duration: '2 min 25',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME4_v3_otrvbg',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME4_v3_otrvbg.jpg',
+    description: "12 700 ogives. 32 accidents. L'arme censée protéger le monde a failli le détruire.",
+  },
+  {
+    id: '05',
+    slug: 'inegalites',
+    title: "8 hommes. 3,5 milliards. Le même patrimoine.",
+    category: 'Économie',
+    duration: '2 min 07',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
+    description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA — comment les inégalités s'accélèrent.",
+  },
+  {
+    id: '06',
+    slug: 'asteroide',
+    title: "Nous sommes l'astéroïde",
+    category: 'Biodiversité',
+    duration: '1 min 49',
+    file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
+    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_1,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
+    description: "69% des vertébrés sauvages disparus depuis 1970. La 6e extinction est différente — c'est la première causée par une seule espèce.",
   },
 ]
 
@@ -183,12 +183,15 @@ export default function ConfinsTV() {
                 className={`${styles.epItem} ${i === active ? styles.epItemActive : ''}`}
                 onClick={() => switchTo(i)}
               >
-                <span className={styles.epNum}>#{e.id}</span>
+                <div className={styles.epThumb}>
+                  <img src={e.thumb} alt={e.title} className={styles.epThumbImg} />
+                  {i === active && <span className={styles.epThumbPlay}>▶</span>}
+                </div>
                 <div className={styles.epInfo}>
+                  <span className={styles.epNum}>Ép. {e.id}</span>
                   <span className={styles.epItemTitle}>{e.title}</span>
                   <span className={styles.epCat}>{e.category} · {e.duration}</span>
                 </div>
-                {i === active && <span className={styles.epNow}>▶</span>}
               </button>
             ))}
 

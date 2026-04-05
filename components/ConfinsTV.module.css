@@ -250,31 +250,61 @@
 .epItem {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 10px;
+  gap: 12px;
+  padding: 10px;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 3px;
   cursor: pointer;
   text-align: left;
   transition: background 0.15s, border-color 0.15s;
   width: 100%;
 }
 
-.epItem:hover { background: rgba(255,255,255,0.05); }
+.epItem:hover { background: rgba(255,255,255,0.04); }
 
 .epItemActive {
   background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.epThumb {
+  width: 72px;
+  height: 44px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+.epThumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.epItem:hover .epThumbImg,
+.epItemActive .epThumbImg { opacity: 1; }
+
+.epThumbPlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
 }
 
 .epNum {
   font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
+  font-size: 9px;
   color: var(--or);
-  font-weight: 500;
-  flex-shrink: 0;
-  width: 28px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
 .epInfo {
@@ -282,18 +312,22 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-width: 0;
 }
 
 .epItemTitle {
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(255,255,255,0.85);
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .epCat {
   font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   color: rgba(255,255,255,0.3);
   letter-spacing: 0.04em;
 }
