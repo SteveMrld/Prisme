@@ -174,47 +174,6 @@ function shareLinkedIn(e){e.preventDefault();window.open('https://www.linkedin.c
 function shareX(e){e.preventDefault();var t=document.querySelector('.art-title,.atitle');var title=t?t.innerText.replace(/\n/g,' '):'';window.open('https://x.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(title+', Confins.media'),'_blank','width=600,height=400')}
 function copyLink(btn){navigator.clipboard.writeText(window.location.href).then(function(){var msg=btn.querySelector('.share-copied');msg.classList.add('show');setTimeout(function(){msg.classList.remove('show')},2000)})}
 </script>
-
-<div class="verso-section">
-  <div class="verso-header">
-    <span class="verso-title">+Verso</span>
-    <span class="verso-badge">Aller plus loin</span>
-  </div>
-  <div class="verso-grid">
-    <div class="verso-col">
-      <div class="verso-col-label">Comprendre</div>
-      <div class="verso-item">
-        <strong>La Négritude et ses héritages</strong>
-        <span>Mouvement littéraire et philosophique fondé dans les années 1930 par Aimé Césaire, Léopold Sédar Senghor et Léon-Gontran Damas. Morrison en est l'héritière directe, une littérature qui revendique l'expérience noire plutôt que de l'effacer.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Le roman néo-esclavagiste</strong>
-        <span>Genre littéraire qui revisite l'expérience de l'esclavage depuis le point de vue des descendants. Morrison, Colson Whitehead, Toni Cade Bambara, une tradition qui fait de la mémoire un acte de résistance.</span>
-      </div>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Résonances</div>
-      <a href="/articles/ia_ecriture" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Ce que l'IA ne pourra jamais écrire</strong>
-        <span>Morrison incarne ce que l'IA ne peut pas reproduire : une voix ancrée dans une expérience historique singulière et irremplaçable.</span>
-      </a>
-      <a href="/articles/silence" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Le silence aussi est un choix</strong>
-        <span>Morrison a choisi de nommer l'innommable. Ce que cet article dit du silence comme position morale.</span>
-      </a>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Sources</div>
-      <div class="verso-item">
-        <strong>Toni Morrison, Beloved, 1987</strong>
-        <span>Son chef-d'oeuvre. Prix Pulitzer 1988. L'histoire d'une mère esclave qui tue son enfant pour lui épargner la servitude, inspirée d'un fait réel.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Toni Morrison, Playing in the Dark, 1992</strong>
-        <span>Ses conférences à Harvard sur la "présence africaine-américaine" dans la littérature blanche américaine, une analyse du regard et de l'absence.</span>
-      </div>
-    </div>
-  </div>
 </div>
     <div class="art-nav-title">Tout ce qui est brisé peut devenir or</div>
     <div class="art-nav-tag">Culture · Société</div>

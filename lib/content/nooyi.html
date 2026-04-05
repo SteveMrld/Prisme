@@ -140,72 +140,7 @@ function shareLinkedIn(e){e.preventDefault();window.open('https://www.linkedin.c
 function shareX(e){e.preventDefault();var t=document.querySelector('.art-title,.atitle');var title=t?t.innerText.replace(/\n/g,' '):'';window.open('https://x.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(title+', Confins.media'),'_blank','width=600,height=400')}
 function copyLink(btn){navigator.clipboard.writeText(window.location.href).then(function(){var msg=btn.querySelector('.share-copied');msg.classList.add('show');setTimeout(function(){msg.classList.remove('show')},2000)})}
 </script>
-
-<div class="verso-section">
-  <div class="verso-header">
-    <span class="verso-title">+Verso</span>
-    <span class="verso-badge">Aller plus loin</span>
-  </div>
-  <div class="verso-grid">
-    <div class="verso-col">
-      <div class="verso-col-label">Comprendre</div>
-      <div class="verso-item">
-        <strong>Performance with Purpose</strong>
-        <span>Doctrine stratégique déployée par Nooyi chez PepsiCo à partir de 2006 : intégrer des objectifs de santé, d'environnement et de développement humain dans la stratégie core de l'entreprise, et démontrer que cela crée de la valeur à long terme.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Le plafond de verre en chiffres</strong>
-        <span>En 2006, quand Nooyi prend la direction de PepsiCo, moins de 2% des PDG des entreprises Fortune 500 sont des femmes. En 2024, ce chiffre atteint 10,4%, un progrès réel mais qui illustre la lenteur du changement.</span>
-      </div>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Résonances</div>
-      <a href="/articles/musk" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Elon Musk, l'homme qui défie son époque</strong>
-        <span>Deux dirigeants d'exception, deux rapports radicalement différents au pouvoir, au management et à la responsabilité.</span>
-      </a>
-      <a href="/articles/reseaux" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Ce que les plateformes ont fait à notre rapport au monde</strong>
-        <span>Nooyi a identifié dès 2006 les effets de la concentration capitalistique et du court-termisme, un diagnostic qui s'applique directement à l'économie des plateformes.</span>
-      </a>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Sources</div>
-      <div class="verso-item">
-        <strong>Indra Nooyi, My Life in Full, 2021</strong>
-        <span>Ses mémoires, un témoignage rare sur ce que signifie diriger une multinationale en étant femme, immigrante et non-blanche dans l'Amérique des années 2000.</span>
-      </div>
-      <div class="verso-item">
-        <strong>PepsiCo, Performance with Purpose Reports, 2007-2018</strong>
-        <span>Les rapports annuels publiés sous la direction de Nooyi, une démonstration empirique que la durabilité et la performance financière ne sont pas incompatibles.</span>
-      </div>
-    </div>
-  </div>
 </div>
-
-<div class="art-nav">
-  <a href="/articles/musk" class="art-nav-item">
-    <div class="art-nav-dir">Article précédent</div>
-    <div class="art-nav-title">Elon Musk, l'homme qui défie son époque</div>
-    <div class="art-nav-tag">Portraits</div>
-  </a>
-  <a href="/articles/morrison" class="art-nav-item" style="text-align:right">
-    <div class="art-nav-dir">Article suivant</div>
-    <div class="art-nav-title">Toni Morrison, la mémoire comme acte politique</div>
-    <div class="art-nav-tag">Culture · Portraits</div>
-  </a>
-</div>
-
-
-<!-- BYLINE AUTEUR -->
-<div class="byline-card">
-  <div class="byline-avatar">
-    <img src="https://raw.githubusercontent.com/SteveMrld/Confins/main/img_steve_avatar.png" alt="Steve Moradel">
-  </div>
-  <div class="byline-text">
-    <div class="byline-name">Steve Moradel</div>
-    <div class="byline-role">Entrepreneur, écrivain, enseignant. Spécialiste de la stratégie et de la prospective.</div>
-  </div>
   <a class="byline-li" href="https://www.linkedin.com/in/stevemoradel/" target="_blank" rel="noopener" aria-label="LinkedIn">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
   </a>

@@ -163,55 +163,6 @@ function shareLinkedIn(e){e.preventDefault();window.open('https://www.linkedin.c
 function shareX(e){e.preventDefault();var t=document.querySelector('.art-title,.atitle');var title=t?t.innerText.replace(/\n/g,' '):'';window.open('https://x.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(title+', Confins.media'),'_blank','width=600,height=400')}
 function copyLink(btn){navigator.clipboard.writeText(window.location.href).then(function(){var msg=btn.querySelector('.share-copied');msg.classList.add('show');setTimeout(function(){msg.classList.remove('show')},2000)})}
 </script>
-
-<div class="verso-section">
-  <div class="verso-header">
-    <span class="verso-title">+Verso</span>
-    <span class="verso-badge">Aller plus loin</span>
-  </div>
-  <div class="verso-grid">
-    <div class="verso-col">
-      <div class="verso-col-label">Comprendre</div>
-      <div class="verso-item">
-        <strong>Le stress hydrique</strong>
-        <span>Défini par le PNUE comme la situation où la demande dépasse 40% des ressources renouvelables disponibles. Aujourd'hui, 40% de la population mondiale vit dans des régions en stress hydrique.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Water bankruptcy</strong>
-        <span>Concept développé par l'UNU-INWEH : état où la demande en eau dépasse durablement la ressource disponible, sans mécanisme d'ajustement possible. Un point de non-retour hydrologique.</span>
-      </div>
-      <div class="verso-item">
-        <strong>L'empire hydraulique chinois</strong>
-        <span>Concept analysé par les think tanks Stimson Center et International Crisis Group : la capacité de la Chine à influencer le cycle de l'eau de dix États en décidant où construire ses barrages sur le plateau tibétain.</span>
-      </div>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Résonances</div>
-      <a href="/articles/chine" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">La Chine, stratégie d'une conquête</strong>
-        <span>Le contrôle du plateau tibétain comme avantage hydrologique structurel sur dix États, un angle inexploré de la montée en puissance chinoise.</span>
-      </a>
-      <a href="/articles/predateurs" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Le Monde des Prédateurs</strong>
-        <span>Comment les grandes puissances instrumentalisent les ressources naturelles dans leur compétition géopolitique.</span>
-      </a>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Sources</div>
-      <div class="verso-item">
-        <strong>UNESCO, World Water Development Report, annuel</strong>
-        <span>Le rapport de référence sur l'état mondial des ressources en eau, données, projections, gouvernance.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Pacific Institute, Water Conflict Chronology</strong>
-        <span>Base de données recensant les conflits liés à l'eau depuis l'Antiquité, mise à jour annuellement. Outil fondamental pour comprendre les dynamiques de violence hydrique.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Stimson Center, Mekong Dam Monitor</strong>
-        <span>Suivi satellitaire en temps réel des niveaux d'eau du Mékong et de l'impact des barrages chinois sur les pays en aval.</span>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div class="art-nav">

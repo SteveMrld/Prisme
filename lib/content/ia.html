@@ -577,47 +577,6 @@ function shareLinkedIn(e){e.preventDefault();window.open('https://www.linkedin.c
 function shareX(e){e.preventDefault();var t=document.querySelector('.art-title,.atitle');var title=t?t.innerText.replace(/\n/g,' '):'';window.open('https://x.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(title+', Confins.media'),'_blank','width=600,height=400')}
 function copyLink(btn){navigator.clipboard.writeText(window.location.href).then(function(){var msg=btn.querySelector('.share-copied');msg.classList.add('show');setTimeout(function(){msg.classList.remove('show')},2000)})}
 </script>
-
-<div class="verso-section">
-  <div class="verso-header">
-    <span class="verso-title">+Verso</span>
-    <span class="verso-badge">Aller plus loin</span>
-  </div>
-  <div class="verso-grid">
-    <div class="verso-col">
-      <div class="verso-col-label">Comprendre</div>
-      <div class="verso-item">
-        <strong>Les transformers et l'attention</strong>
-        <span>Architecture introduite en 2017 ("Attention Is All You Need", Vaswani et al.) qui a révolutionné le traitement du langage naturel. Tous les grands modèles d'IA actuels en sont dérivés.</span>
-      </div>
-      <div class="verso-item">
-        <strong>La tokenisation</strong>
-        <span>Processus de découpage du texte en unités (tokens) que le modèle peut traiter. GPT-4 fonctionne avec environ 100 000 tokens de vocabulaire. Un token représente environ ¾ de mot en anglais.</span>
-      </div>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Résonances</div>
-      <a href="/articles/ia_ecriture" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Ce que l'IA ne pourra jamais écrire</strong>
-        <span>Comprendre comment l'IA traite le langage éclaire ce qu'elle peut et ne peut pas faire, et pourquoi la prédiction statistique ne produit pas de la littérature.</span>
-      </a>
-      <a href="/articles/technosolutionnisme" class="verso-item" style="text-decoration:none;display:block;transition:background .15s;margin:0 -40px;padding:14px 40px;border-bottom:1px solid var(--bord)">
-        <strong style="color:var(--t-color)">Les limites du techno-solutionnisme</strong>
-        <span>Le coût énergétique et matériel de l'entraînement des grands modèles de langage.</span>
-      </a>
-    </div>
-    <div class="verso-col">
-      <div class="verso-col-label">Sources</div>
-      <div class="verso-item">
-        <strong>Vaswani et al., "Attention Is All You Need", Google Brain, 2017</strong>
-        <span>L'article fondateur des transformers, le modèle d'architecture qui sous-tend GPT, Claude, Gemini et tous leurs successeurs.</span>
-      </div>
-      <div class="verso-item">
-        <strong>Andrej Karpathy, "The Unreasonable Effectiveness of RNNs", 2015</strong>
-        <span>L'une des démonstrations les plus accessibles de la génération de texte par prédiction statistique.</span>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div class="anav">
