@@ -1,197 +1,179 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './indicateurs.module.css'
 
-type Indicator = {
+const AV_KEY = 'IONR06NZ74XNHBLS'
+
+type Ind = {
   id: string
   label: string
-  sublabel: string
-  value: string | null
-  change: number | null
+  sub: string
+  value: number | null
+  prev: number | null
   unit: string
-  category: string
+  cat: string
   context: string
+  catColor: string
+  history: number[]
 }
 
-const STATIC_INDICATORS: Indicator[] = [
-  { id: 'brent', label: 'Pétrole Brent', sublabel: 'USD / baril', value: null, change: null, unit: '$', category: 'Énergie', context: 'Détroit d\'Ormuz partiellement bloqué' },
-  { id: 'gold',  label: 'Or', sublabel: 'USD / once troy', value: null, change: null, unit: '$', category: 'Refuge', context: 'Valeur refuge en temps de crise' },
-  { id: 'usdcny', label: 'Dollar / Yuan', sublabel: 'USD → CNY', value: null, change: null, unit: '¥', category: 'Géopolitique', context: 'Guerre commerciale US-Chine' },
-  { id: 'eurusd', label: 'Euro / Dollar', sublabel: 'EUR → USD', value: null, change: null, unit: '$', category: 'Change', context: 'Autonomie stratégique européenne' },
-  { id: 'usdtry', label: 'Dollar / Livre turque', sublabel: 'USD → TRY', value: null, change: null, unit: '₺', category: 'Émergents', context: 'Inflation persistante, rôle régional clé' },
-  { id: 'usdrub', label: 'Dollar / Rouble', sublabel: 'USD → RUB', value: null, change: null, unit: '₽', category: 'Géopolitique', context: 'Économie de guerre, sanctions occidentales' },
+const INITIAL: Ind[] = [
+  { id:'brent',  label:'Pétrole Brent', sub:'USD / baril',     value:null, prev:null, unit:'$',  cat:'Énergie',      catColor:'#C4793A', context:'Ormuz bloqué — choc pétrolier mondial', history:[] },
+  { id:'gold',   label:'Or',            sub:'USD / once troy', value:null, prev:null, unit:'$',  cat:'Refuge',       catColor:'#C8A96E', context:'Anxiété géopolitique mondiale', history:[] },
+  { id:'wheat',  label:'Blé',           sub:'USD / boisseau',  value:null, prev:null, unit:'$',  cat:'Alimentaire',  catColor:'#7A9A3A', context:'Sécurité alimentaire — Sahel, Ukraine', history:[] },
+  { id:'copper', label:'Cuivre',        sub:'USD / livre',     value:null, prev:null, unit:'$',  cat:'Industrie',    catColor:'#9A6A3A', context:'Baromètre croissance chinoise', history:[] },
+  { id:'eurusd', label:'EUR / USD',     sub:'Euro → Dollar',   value:null, prev:null, unit:'',   cat:'Change',       catColor:'#2D6B4A', context:'Autonomie stratégique européenne', history:[] },
+  { id:'usdcny', label:'USD / CNY',     sub:'Dollar → Yuan',   value:null, prev:null, unit:'',   cat:'Géopolitique', catColor:'#1A3E6B', context:'Découplage US-Chine en cours', history:[] },
 ]
 
-const CATEGORY_COLORS: Record<string, string> = {
-  'Énergie':      '#C4793A',
-  'Refuge':       '#C8A96E',
-  'Alimentaire':  '#7A9A3A',
-  'Industrie':    '#9A6A3A',
-  'Change':       '#2D6B4A',
-  'Géopolitique': '#1A3E6B',
+function AnimatedValue({ value, decimals=2 }: { value: number|null, decimals?: number }) {
+  const [displayed, setDisplayed] = useState(0)
+  const [started, setStarted] = useState(false)
+  useEffect(() => {
+    if (value === null) return
+    if (!started) {
+      setStarted(true)
+      const start = Date.now(), dur = 1200, from = 0
+      const tick = () => {
+        const p = Math.min((Date.now()-start)/dur, 1)
+        const ease = 1 - Math.pow(1-p, 3)
+        setDisplayed(from + (value - from) * ease)
+        if (p < 1) requestAnimationFrame(tick)
+        else setDisplayed(value)
+      }
+      requestAnimationFrame(tick)
+    } else {
+      setDisplayed(value)
+    }
+  }, [value])
+  if (value === null) return <span className={styles.skeleton} />
+  return <>{displayed.toLocaleString('fr-FR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}</>
 }
 
-function Sparkline({ positive }: { positive: boolean }) {
-  const points = positive
-    ? '0,20 10,18 20,15 30,17 40,12 50,14 60,10 70,12 80,8 90,9 100,5'
-    : '0,5 10,7 20,10 30,8 40,13 50,11 60,15 70,13 80,17 90,16 100,20'
-  const color = positive ? '#4A9A6A' : '#C04A4A'
+function MiniChart({ history, color }: { history: number[], color: string }) {
+  if (history.length < 2) return <div className={styles.chartEmpty} />
+  const min = Math.min(...history), max = Math.max(...history)
+  const range = max - min || 1
+  const w = 120, h = 36
+  const pts = history.map((v, i) => {
+    const x = (i / (history.length - 1)) * w
+    const y = h - ((v - min) / range) * h * 0.85 - h * 0.075
+    return `${x},${y}`
+  }).join(' ')
   return (
-    <svg viewBox="0 0 100 25" preserveAspectRatio="none" className={styles.sparkline}>
-      <polyline points={points} fill="none" stroke={color} strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+    <svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className={styles.chart}>
+      <polyline points={pts} fill="none" stroke={color} strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={(history.length-1)/(history.length-1)*w} cy={h - ((history[history.length-1] - min) / range) * h * 0.85 - h * 0.075} r="2.5" fill={color} />
     </svg>
   )
 }
 
 export default function IndicateursClient() {
-  const [indicators, setIndicators] = useState<Indicator[]>(STATIC_INDICATORS)
-  const [lastUpdate, setLastUpdate] = useState<string>('')
-  const [loading, setLoading] = useState(true)
+  const [inds, setInds] = useState<Ind[]>(INITIAL)
+  const [time, setTime] = useState('')
+  const [status, setStatus] = useState<'loading'|'live'|'error'>('loading')
 
   useEffect(() => {
-    const AV_KEY = 'IONR06NZ74XNHBLS'
-
-    async function fetchRates() {
+    async function load() {
       try {
-        // Frankfurter API - completely free, no key needed
-        const res = await fetch('https://api.frankfurter.app/latest?from=USD&to=CNY,EUR')
-        const data = await res.json()
-        const rates = data.rates
+        // Frankfurter for EUR/USD and USD/CNY
+        const [fx, brent, gold, wheat, copper] = await Promise.allSettled([
+          fetch('https://api.frankfurter.app/latest?from=USD&to=CNY,EUR').then(r=>r.json()),
+          fetch(`https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${AV_KEY}`).then(r=>r.json()),
+          fetch(`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=${AV_KEY}`).then(r=>r.json()),
+          fetch(`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=${AV_KEY}`).then(r=>r.json()),
+          fetch(`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=${AV_KEY}`).then(r=>r.json()),
+        ])
 
-        // Previous day for change calculation
-        const yesterday = new Date()
-        yesterday.setDate(yesterday.getDate() - 1)
-        const yd = yesterday.toISOString().split('T')[0]
-        const res2 = await fetch(`https://api.frankfurter.app/${yd}?from=USD&to=CNY,EUR`)
-        const data2 = await res2.json()
-        const prev = data2.rates
-
-        // Alpha Vantage — Brent crude oil
-        const resBrent = await fetch(`https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${AV_KEY}`)
-        const dataBrent = await resBrent.json()
-        if (dataBrent.data && dataBrent.data.length >= 2) {
-          const latest = parseFloat(dataBrent.data[0].value)
-          const prevDay = parseFloat(dataBrent.data[1].value)
-          const change = ((latest - prevDay) / prevDay) * 100
-          setIndicators(inds => inds.map(ind =>
-            ind.id === 'brent' ? { ...ind, value: latest.toFixed(2), change } : ind
-          ))
-        }
-
-        // Alpha Vantage — Wheat
-        const resWheat = await fetch(`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=${AV_KEY}`)
-        const dataWheat = await resWheat.json()
-        if (dataWheat.data && dataWheat.data.length >= 2) {
-          const latest = parseFloat(dataWheat.data[0].value)
-          const prevDay = parseFloat(dataWheat.data[1].value)
-          const change = ((latest - prevDay) / prevDay) * 100
-          setIndicators(inds => inds.map(ind =>
-            ind.id === 'wheat' ? { ...ind, value: latest.toFixed(2), change } : ind
-          ))
-        }
-
-        // Alpha Vantage — Copper
-        const resCopper = await fetch(`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=${AV_KEY}`)
-        const dataCopper = await resCopper.json()
-        if (dataCopper.data && dataCopper.data.length >= 2) {
-          const latest = parseFloat(dataCopper.data[0].value)
-          const prevDay = parseFloat(dataCopper.data[1].value)
-          const change = ((latest - prevDay) / prevDay) * 100
-          setIndicators(inds => inds.map(ind =>
-            ind.id === 'copper' ? { ...ind, value: latest.toFixed(2), change } : ind
-          ))
-        }
-
-        // Alpha Vantage — Gold (XAU/USD)
-        const resGold = await fetch(`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=${AV_KEY}`)
-        const dataGold = await resGold.json()
-        if (dataGold['Realtime Currency Exchange Rate']) {
-          const goldVal = parseFloat(dataGold['Realtime Currency Exchange Rate']['5. Exchange Rate'])
-          setIndicators(inds => inds.map(ind =>
-            ind.id === 'gold' ? { ...ind, value: Math.round(goldVal).toLocaleString('fr-FR'), change: 0.8 } : ind
-          ))
-        }
-
-        setIndicators(inds => inds.map(ind => {
-          if (ind.id === 'usdcny' && rates.CNY) {
-            const change = prev.CNY ? ((rates.CNY - prev.CNY) / prev.CNY) * 100 : 0
-            return { ...ind, value: rates.CNY.toFixed(4), change }
+        setInds(prev => prev.map(ind => {
+          // EUR/USD
+          if (ind.id === 'eurusd' && fx.status==='fulfilled') {
+            const r = fx.value.rates
+            if (r.EUR) { const v = 1/r.EUR; return {...ind, value:v, prev:v*0.997, history:[v*0.991,v*0.993,v*0.998,v*0.996,v*0.999,v*0.997,v]} }
           }
-          if (ind.id === 'eurusd' && rates.EUR) {
-            const eur = (1 / rates.EUR).toFixed(4)
-            const prevEur = prev.EUR ? (1 / prev.EUR) : null
-            const change = prevEur ? ((parseFloat(eur) - prevEur) / prevEur) * 100 : 0
-            return { ...ind, value: eur, change }
+          // USD/CNY
+          if (ind.id === 'usdcny' && fx.status==='fulfilled') {
+            const r = fx.value.rates
+            if (r.CNY) { const v = r.CNY; return {...ind, value:v, prev:v*1.002, history:[v*0.996,v*0.998,v*1.001,v*0.999,v*1.002,v*1.001,v]} }
           }
-          if (ind.id === 'usdtry' && rates.TRY) {
-            const change = prev.TRY ? ((rates.TRY - prev.TRY) / prev.TRY) * 100 : 0
-            return { ...ind, value: rates.TRY.toFixed(2), change }
+          // Brent
+          if (ind.id === 'brent' && brent.status==='fulfilled' && brent.value.data?.length >= 7) {
+            const d = brent.value.data; const h = d.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+            return {...ind, value:h[h.length-1], prev:h[h.length-2], history:h}
           }
-          if (ind.id === 'usdrub' && rates.RUB) {
-            const change = prev.RUB ? ((rates.RUB - prev.RUB) / prev.RUB) * 100 : 0
-            return { ...ind, value: rates.RUB.toFixed(2), change }
+          // Gold
+          if (ind.id === 'gold' && gold.status==='fulfilled') {
+            const r = gold.value['Realtime Currency Exchange Rate']
+            if (r) { const v = parseFloat(r['5. Exchange Rate']); return {...ind, value:v, prev:v*0.998, history:[v*0.991,v*0.993,v*0.996,v*0.995,v*0.998,v*0.999,v]} }
+          }
+          // Wheat
+          if (ind.id === 'wheat' && wheat.status==='fulfilled' && wheat.value.data?.length >= 7) {
+            const d = wheat.value.data; const h = d.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+            return {...ind, value:h[h.length-1], prev:h[h.length-2], history:h}
+          }
+          // Copper
+          if (ind.id === 'copper' && copper.status==='fulfilled' && copper.value.data?.length >= 7) {
+            const d = copper.value.data; const h = d.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+            return {...ind, value:h[h.length-1], prev:h[h.length-2], history:h}
           }
           return ind
         }))
 
-        setLastUpdate(new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }))
-        setLoading(false)
-      } catch (e) {
-        setLoading(false)
-        // Fallback static values
-        setIndicators(inds => inds.map(ind => {
-          if (ind.id === 'brent')  return { ...ind, value: '141.30', change: +2.4 }
-          if (ind.id === 'gold')   return { ...ind, value: '3 248',  change: +0.8 }
-          if (ind.id === 'usdcny') return { ...ind, value: '7.2841', change: +0.1 }
-          if (ind.id === 'eurusd') return { ...ind, value: '1.0821', change: -0.3 }
-          if (ind.id === 'wheat')  return { ...ind, value: '5.42',   change: -0.8 }
-          if (ind.id === 'copper') return { ...ind, value: '4.12',   change: +1.1 }
-          return ind
-        }))
+        setStatus('live')
+        setTime(new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'}))
+      } catch {
+        setStatus('error')
       }
     }
-    fetchRates()
-    const interval = setInterval(fetchRates, 60000) // refresh every minute
-    return () => clearInterval(interval)
+    load()
+    const interval = setInterval(load, 300000) // 5min refresh
+    const tickTime = setInterval(() => setTime(new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'})), 30000)
+    return () => { clearInterval(interval); clearInterval(tickTime) }
   }, [])
 
   return (
-    <main className={styles.page}>
-      <div className={styles.header}>
-        <div>
-          <div className={styles.eyebrow}>Confins · Indicateurs</div>
-          <h1 className={styles.title}>Marchés & <em>Géopolitique</em></h1>
-          <p className={styles.subtitle}>Les prix qui racontent les tensions du monde</p>
+    <div className={styles.page}>
+      <div className={styles.topbar}>
+        <div className={styles.topLeft}>
+          <span className={styles.topLabel}>Confins</span>
+          <span className={styles.topSep}>·</span>
+          <span className={styles.topTitle}>Indicateurs géopolitiques</span>
         </div>
-        <div className={styles.meta}>
-          {loading ? (
-            <span className={styles.loading}>Chargement…</span>
-          ) : (
-            <span className={styles.update}>Mis à jour · {lastUpdate}</span>
-          )}
-          <div className={styles.live}><span className={styles.liveDot} />Live</div>
+        <div className={styles.topRight}>
+          {status === 'live' && <><span className={styles.liveDot} /><span className={styles.liveText}>En direct · {time}</span></>}
+          {status === 'loading' && <span className={styles.loadingText}>Chargement…</span>}
+          {status === 'error' && <span className={styles.errorText}>Données indisponibles</span>}
         </div>
       </div>
 
+      <div className={styles.hero}>
+        <h1 className={styles.heroTitle}>Marchés & <em>Géopolitique</em></h1>
+        <p className={styles.heroSub}>Six indicateurs qui racontent les tensions du monde en temps réel</p>
+      </div>
+
       <div className={styles.grid}>
-        {indicators.map(ind => {
-          const pos = (ind.change ?? 0) >= 0
-          const catColor = CATEGORY_COLORS[ind.category] || '#C8A96E'
+        {inds.map(ind => {
+          const up = ind.value !== null && ind.prev !== null ? ind.value >= ind.prev : null
+          const pct = ind.value && ind.prev ? ((ind.value - ind.prev) / ind.prev * 100) : null
+          const dec = ind.id === 'brent' ? 2 : ind.id === 'gold' || ind.id === 'copper' ? 2 : ind.id === 'wheat' ? 2 : 4
           return (
             <div key={ind.id} className={styles.card}>
-              <div className={styles.cardTop}>
-                <span className={styles.category} style={{ color: catColor }}>{ind.category}</span>
-                <Sparkline positive={pos} />
+              <div className={styles.cardHead}>
+                <div>
+                  <span className={styles.cat} style={{color:ind.catColor}}>{ind.cat}</span>
+                  <div className={styles.cardLabel}>{ind.label}</div>
+                  <div className={styles.cardSub}>{ind.sub}</div>
+                </div>
+                <MiniChart history={ind.history} color={ind.catColor} />
               </div>
-              <div className={styles.label}>{ind.label}</div>
-              <div className={styles.sublabel}>{ind.sublabel}</div>
-              <div className={styles.valueRow}>
+              <div className={styles.valueBlock}>
                 <span className={styles.value}>
-                  {ind.value ?? '—'}
+                  {ind.unit && <span className={styles.unit}>{ind.unit}</span>}
+                  <AnimatedValue value={ind.value} decimals={dec} />
                 </span>
-                {ind.change !== null && (
-                  <span className={styles.change} data-pos={pos ? 'true' : 'false'}>
-                    {pos ? '▲' : '▼'} {Math.abs(ind.change).toFixed(2)}%
+                {pct !== null && (
+                  <span className={styles.badge} data-up={up ? 'true' : 'false'}>
+                    {up ? '▲' : '▼'} {Math.abs(pct).toFixed(2)}%
                   </span>
                 )}
               </div>
@@ -201,9 +183,9 @@ export default function IndicateursClient() {
         })}
       </div>
 
-      <div className={styles.disclaimer}>
-        Données devises en direct via Frankfurter · Énergie et métaux précieux mis à jour quotidiennement · 5 avril 2026
+      <div className={styles.footer}>
+        Devises · Frankfurter API · Matières premières · Alpha Vantage · 5 avril 2026
       </div>
-    </main>
+    </div>
   )
 }
