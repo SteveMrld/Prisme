@@ -1,4 +1,5 @@
 'use client'
+import { useEffect } from 'react'
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth } from './ArticleAnimations'
@@ -55,6 +56,23 @@ export default function ArticleLayout({
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
+
+  useEffect(() => {
+    const article = document.querySelector('.confins-article')
+    if (!article) return
+    // Execute scripts injected via dangerouslySetInnerHTML
+    article.querySelectorAll('script').forEach((oldScript: Element) => {
+      const newScript = document.createElement('script')
+      newScript.textContent = (oldScript as HTMLScriptElement).textContent || ''
+      oldScript.parentNode?.replaceChild(newScript, oldScript)
+    })
+    // Re-trigger iframes
+    article.querySelectorAll('.content-embed iframe').forEach((iframe: Element) => {
+      const el = iframe as HTMLIFrameElement
+      const src = el.getAttribute('src') || ''
+      if (src) { el.src = ''; setTimeout(() => { el.src = src }, 80) }
+    })
+  }, [])
 
   return (
     <>
