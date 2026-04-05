@@ -74,21 +74,21 @@ export default function IndicateursClient() {
 
         // Alpha Vantage — sequential with 15s delay (free tier: 5 calls/min)
         await sleep(0)
-        const brent = await fetch(\`https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
+        const brent = await fetch(`https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${AV_KEY}`).then(r=>r.json())
         if (brent.data?.length >= 7) {
           const h = brent.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
           setInds(prev => prev.map(ind => ind.id==='brent' ? {...ind, value:h[h.length-1], prev:h[h.length-2], history:h} : ind))
         }
 
         await sleep(15000)
-        const wheat = await fetch(\`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
+        const wheat = await fetch(`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=${AV_KEY}`).then(r=>r.json())
         if (wheat.data?.length >= 7) {
           const h = wheat.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value)/100)
           setInds(prev => prev.map(ind => ind.id==='wheat' ? {...ind, value:h[h.length-1], prev:h[h.length-2], history:h} : ind))
         }
 
         await sleep(15000)
-        const copper = await fetch(\`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
+        const copper = await fetch(`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=${AV_KEY}`).then(r=>r.json())
         if (copper.data?.length >= 7) {
           // AV returns USD/metric ton, convert to USD/lb (/2204.6)
           const h = copper.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value)/2204.6)
@@ -96,7 +96,7 @@ export default function IndicateursClient() {
         }
 
         await sleep(15000)
-        const gold = await fetch(\`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=\${AV_KEY}\`).then(r=>r.json())
+        const gold = await fetch(`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=${AV_KEY}`).then(r=>r.json())
         const gr = gold['Realtime Currency Exchange Rate']
         if (gr) {
           const v = parseFloat(gr['5. Exchange Rate'])
