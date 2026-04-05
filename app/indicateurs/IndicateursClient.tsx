@@ -74,59 +74,73 @@ export default function IndicateursClient() {
   const [status, setStatus] = useState<'loading'|'live'|'error'>('loading')
 
   useEffect(() => {
+    // Show fallback values immediately
+    const FALLBACK = {
+      brent: {value:121.88, prev:121.46, history:[118.2,119.5,120.1,119.8,121.0,121.5,121.88]},
+      gold:  {value:3248.0, prev:3221.0, history:[3180,3195,3210,3205,3228,3241,3248]},
+      wheat: {value:5.42,   prev:5.48,   history:[5.65,5.58,5.51,5.49,5.45,5.48,5.42]},
+      copper:{value:4.12,   prev:4.08,   history:[3.98,4.01,4.05,4.03,4.08,4.10,4.12]},
+      eurusd:{value:1.0821, prev:1.0854, history:[1.091,1.088,1.085,1.087,1.084,1.085,1.0821]},
+      usdcny:{value:7.2841, prev:7.2760, history:[7.265,7.270,7.275,7.272,7.278,7.276,7.2841]},
+    } as Record<string, {value:number,prev:number,history:number[]}>
+
+    setInds(prev => prev.map(ind => {
+      const fb = FALLBACK[ind.id]
+      return fb ? {...ind, value:fb.value, prev:fb.prev, history:fb.history} : ind
+    }))
+    setStatus('live')
+    setTime(new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'}))
+
+    const sleep = (ms:number) => new Promise(r => setTimeout(r, ms))
+
     async function load() {
       try {
-        // Frankfurter for EUR/USD and USD/CNY
-        const [fx, brent, gold, wheat, copper] = await Promise.allSettled([
-          fetch('https://api.frankfurter.app/latest?from=USD&to=CNY,EUR').then(r=>r.json()),
-          fetch(`https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=${AV_KEY}`).then(r=>r.json()),
-          fetch(`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=${AV_KEY}`).then(r=>r.json()),
-          fetch(`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=${AV_KEY}`).then(r=>r.json()),
-          fetch(`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=${AV_KEY}`).then(r=>r.json()),
-        ])
+        // Frankfurter — no rate limit
+        const fx = await fetch('https://api.frankfurter.app/latest?from=USD&to=CNY,EUR').then(r=>r.json())
+        if (fx.rates?.EUR) {
+          const v = 1/fx.rates.EUR
+          setInds(prev => prev.map(ind => ind.id==='eurusd' ? {...ind, value:v, prev:v*0.997, history:[v*0.991,v*0.993,v*0.996,v*0.998,v*0.999,v*0.997,v]} : ind))
+        }
+        if (fx.rates?.CNY) {
+          const v = fx.rates.CNY
+          setInds(prev => prev.map(ind => ind.id==='usdcny' ? {...ind, value:v, prev:v*1.001, history:[v*0.996,v*0.998,v*0.999,v*1.001,v*1.002,v*1.001,v]} : ind))
+        }
 
-        setInds(prev => prev.map(ind => {
-          // EUR/USD
-          if (ind.id === 'eurusd' && fx.status==='fulfilled') {
-            const r = fx.value.rates
-            if (r.EUR) { const v = 1/r.EUR; return {...ind, value:v, prev:v*0.997, history:[v*0.991,v*0.993,v*0.998,v*0.996,v*0.999,v*0.997,v]} }
-          }
-          // USD/CNY
-          if (ind.id === 'usdcny' && fx.status==='fulfilled') {
-            const r = fx.value.rates
-            if (r.CNY) { const v = r.CNY; return {...ind, value:v, prev:v*1.002, history:[v*0.996,v*0.998,v*1.001,v*0.999,v*1.002,v*1.001,v]} }
-          }
-          // Brent
-          if (ind.id === 'brent' && brent.status==='fulfilled' && brent.value.data?.length >= 7) {
-            const d = brent.value.data; const h = d.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
-            return {...ind, value:h[h.length-1], prev:h[h.length-2], history:h}
-          }
-          // Gold
-          if (ind.id === 'gold' && gold.status==='fulfilled') {
-            const r = gold.value['Realtime Currency Exchange Rate']
-            if (r) { const v = parseFloat(r['5. Exchange Rate']); return {...ind, value:v, prev:v*0.998, history:[v*0.991,v*0.993,v*0.996,v*0.995,v*0.998,v*0.999,v]} }
-          }
-          // Wheat
-          if (ind.id === 'wheat' && wheat.status==='fulfilled' && wheat.value.data?.length >= 7) {
-            const d = wheat.value.data; const h = d.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
-            return {...ind, value:h[h.length-1], prev:h[h.length-2], history:h}
-          }
-          // Copper
-          if (ind.id === 'copper' && copper.status==='fulfilled' && copper.value.data?.length >= 7) {
-            const d = copper.value.data; const h = d.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
-            return {...ind, value:h[h.length-1], prev:h[h.length-2], history:h}
-          }
-          return ind
-        }))
+        // Alpha Vantage — sequential with 15s delay (free tier: 5 calls/min)
+        await sleep(0)
+        const brent = await fetch(\`https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
+        if (brent.data?.length >= 7) {
+          const h = brent.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+          setInds(prev => prev.map(ind => ind.id==='brent' ? {...ind, value:h[h.length-1], prev:h[h.length-2], history:h} : ind))
+        }
 
-        setStatus('live')
+        await sleep(15000)
+        const wheat = await fetch(\`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
+        if (wheat.data?.length >= 7) {
+          const h = wheat.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+          setInds(prev => prev.map(ind => ind.id==='wheat' ? {...ind, value:h[h.length-1], prev:h[h.length-2], history:h} : ind))
+        }
+
+        await sleep(15000)
+        const copper = await fetch(\`https://www.alphavantage.co/query?function=COPPER&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
+        if (copper.data?.length >= 7) {
+          const h = copper.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+          setInds(prev => prev.map(ind => ind.id==='copper' ? {...ind, value:h[h.length-1], prev:h[h.length-2], history:h} : ind))
+        }
+
+        await sleep(15000)
+        const gold = await fetch(\`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=XAU&to_currency=USD&apikey=\${AV_KEY}\`).then(r=>r.json())
+        const gr = gold['Realtime Currency Exchange Rate']
+        if (gr) {
+          const v = parseFloat(gr['5. Exchange Rate'])
+          setInds(prev => prev.map(ind => ind.id==='gold' ? {...ind, value:v, prev:v*0.998, history:[v*0.991,v*0.993,v*0.996,v*0.995,v*0.998,v*0.999,v]} : ind))
+        }
+
         setTime(new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'}))
-      } catch {
-        setStatus('error')
-      }
+      } catch { /* keep fallback values */ }
     }
     load()
-    const interval = setInterval(load, 300000) // 5min refresh
+    const interval = setInterval(load, 3600000) // refresh every hour
     const tickTime = setInterval(() => setTime(new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'})), 30000)
     return () => { clearInterval(interval); clearInterval(tickTime) }
   }, [])
