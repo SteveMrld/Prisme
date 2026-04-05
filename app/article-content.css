@@ -552,37 +552,29 @@
 }
 
 .notes-list li {
-  display: grid;
-  grid-template-columns: 20px 1fr;
-  gap: 8px;
-  padding: 6px 0;
+  display: block;
+  padding: 7px 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
-  cursor: default;
-}
-
-.notes-list li:last-child { border-bottom: none; }
-.notes-list li:first-child { border-top: none; }
-.notes-list li:hover { background: transparent; margin: 0; padding: 6px 0; }
-
-.notes-list li > span:first-child {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--or);
-  padding-top: 2px;
-  line-height: 1.55;
-  flex-shrink: 0;
-}
-
-.notes-list li > span:last-child,
-.notes-list li > *:not(span:first-child) {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   font-style: italic;
   color: var(--gris-m);
-  line-height: 1.6;
-  display: inline;
+  line-height: 1.65;
 }
+
+.notes-list li:last-child { border-bottom: none; }
+.notes-list li:first-child { border-top: none; }
+.notes-list li:hover { background: transparent; }
+
+.notes-list li > span:first-child {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--or);
+  margin-right: 8px;
+}
+
 .notes-list li em,
 .notes-list li strong {
   display: inline !important;
