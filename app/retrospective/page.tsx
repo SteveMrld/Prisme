@@ -86,7 +86,7 @@ const mois = [
   {
     m: 'Juillet', slug: 'juil', cat: 'env', catLabel: 'Environnement', article: 'eau',
     titre: 'Canicule record en Europe du Sud',
-    desc: '47°C en Sicile. 45°C à Séville. Troisième été consécutif de sécheresse extrême. Les réserves hydriques espagnoles et italiennes tombent sous 30% de capacité. Des centaines de milliers d'hectares agricoles brûlés. La Politique Agricole Commune, pensée pour l'Europe d'avant le réchauffement, est fondamentalement inadaptée.',
+    desc: "47°C en Sicile. 45°C à Séville. Troisième été consécutif de sécheresse extrême. Les réserves hydriques espagnoles et italiennes tombent sous 30% de capacité. Des centaines de milliers d'hectares agricoles brûlés. La PAC, pensée pour l'Europe d'avant le réchauffement, est fondamentalement inadaptée.",
     stat: { num: '47', unit: '°C', label: 'record de température en Sicile en juillet 2025' },
     chartType: 'thermo',
     chartData: { value: 47, max: 55 },
@@ -95,7 +95,7 @@ const mois = [
   {
     m: 'Août', slug: 'aout', cat: 'geo', catLabel: 'Géopolitique', article: 'taiwan',
     titre: 'Taïwan : les exercices militaires chinois franchissent un seuil',
-    desc: 'Pour la première fois depuis 1996, Pékin franchit la ligne médiane du détroit lors de manœuvres d'une ampleur inédite. Washington envoie le porte-avions Reagan. Taipei active son niveau d'alerte maximal. Un conflit dans le détroit paralyserait 40% du commerce mondial et 90% des puces avancées. Le monde retient son souffle.',
+    desc: "Pour la première fois depuis 1996, Pékin franchit la ligne médiane du détroit lors de manœuvres d'une ampleur inédite. Washington envoie le porte-avions Reagan. Taipei active son niveau d'alerte maximal. Un conflit dans le détroit paralyserait 40% du commerce mondial et 90% des puces avancées. Le monde retient son souffle.",
     stat: { num: '10 600', unit: 'Mds $', label: 'coût d\'un conflit dans le détroit la 1ère année' },
     chartType: 'gauge',
     chartData: 9,
@@ -104,7 +104,7 @@ const mois = [
   {
     m: 'Septembre', slug: 'sep', cat: 'eco', catLabel: 'Économie', article: 'blackrock',
     titre: 'BlackRock dépasse les 11 000 Mds sous gestion',
-    desc: 'BlackRock, Vanguard, State Street : trois fonds américains gèrent collectivement 28 000 milliards de dollars — plus que le PIB de la Chine. Ils sont actionnaires de presque toutes les grandes entreprises mondiales simultanément. Cette concentration du capital n'a aucun précédent dans l'histoire du capitalisme. Qui contrôle ces fonds contrôle l'économie mondiale.',
+    desc: "BlackRock, Vanguard, State Street : trois fonds américains gèrent collectivement 28 000 milliards de dollars — plus que le PIB de la Chine. Ils sont actionnaires de presque toutes les grandes entreprises mondiales simultanément. Cette concentration du capital n'a aucun précédent dans l'histoire du capitalisme. Qui contrôle ces fonds contrôle l'économie mondiale.",
     stat: { num: '28 000', unit: 'Mds $', label: 'gérés par BlackRock, Vanguard et State Street réunis' },
     chartType: 'bar',
     chartData: [
