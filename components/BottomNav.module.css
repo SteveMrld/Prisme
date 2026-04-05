@@ -12,6 +12,7 @@
     z-index: 1000;
     background: var(--fond);
     border-top: 1px solid var(--bord);
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.10);
     padding-bottom: env(safe-area-inset-bottom);
   }
 
@@ -27,6 +28,7 @@
     color: var(--gris-l);
     transition: color 0.15s;
     -webkit-tap-highlight-color: transparent;
+    background: var(--fond);
   }
 
   .item.active {
