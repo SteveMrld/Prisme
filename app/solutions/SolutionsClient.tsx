@@ -15,7 +15,7 @@ const CAT_COLORS: Record<string, string> = {
   'Climat':              '#1A4A5A',
   'Santé':               '#7A1A2A',
   'Inclusion':           '#5A1A5A',
-  "Finance d'impact":    '#2A4A2A',
+  "Finance d'impact":    '#2A4A6A',
   'Mobilité':            '#1A3A5A',
   'Autre':               '#3A3A3A',
 }
@@ -38,9 +38,10 @@ export default function SolutionsClient() {
   const [search, setSearch] = useState('')
 
   const filtered = useMemo(() => {
-    return solutions.filter(s => {
+    return solutions.filter((s: Solution) => {
       const matchCat = activeCat === 'Tout' || s.cat === activeCat
-      const matchSearch = !search || s.name.toLowerCase().includes(search.toLowerCase()) ||
+      const matchSearch = !search ||
+        s.name.toLowerCase().includes(search.toLowerCase()) ||
         s.country.toLowerCase().includes(search.toLowerCase()) ||
         s.rawCat.toLowerCase().includes(search.toLowerCase())
       return matchCat && matchSearch
@@ -49,83 +50,79 @@ export default function SolutionsClient() {
 
   const counts = useMemo(() => {
     const c: Record<string, number> = { 'Tout': solutions.length }
-    ;solutions.forEach((s: Solution) => { c[s.cat] = (c[s.cat] || 0) + 1 })
+    solutions.forEach((s: Solution) => { c[s.cat] = (c[s.cat] || 0) + 1 })
     return c
   }, [])
 
   return (
     <div className={styles.page}>
 
-      {/* SEARCH */}
-      <div className={styles.searchBar}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <input
-          type="text"
-          placeholder="Rechercher une solution, un pays…"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className={styles.searchInput}
-        />
-        {search && <button className={styles.searchClear} onClick={() => setSearch('')}>✕</button>}
+      {/* FILTRES */}
+      <div className={styles.filtersWrap}>
+        <div className={styles.searchBar}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            type="text"
+            placeholder="Rechercher…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className={styles.searchInput}
+          />
+          {search && <button className={styles.searchClear} onClick={() => setSearch('')}>✕</button>}
+        </div>
+        <div className={styles.filters}>
+          {CATS.map(cat => (
+            <button
+              key={cat}
+              className={`${styles.filterBtn} ${activeCat === cat ? styles.active : ''}`}
+              style={activeCat === cat ? { background: CAT_COLORS[cat] || '#0A0A0A', borderColor: CAT_COLORS[cat] || '#0A0A0A', color: '#fff' } : {}}
+              onClick={() => setActiveCat(cat)}
+            >
+              {cat}
+              <span className={styles.filterCount}>{counts[cat] || 0}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* FILTERS */}
-      <div className={styles.filters}>
-        {CATS.map(cat => (
-          <button
-            key={cat}
-            className={`${styles.filterBtn} ${activeCat === cat ? styles.active : ''}`}
-            style={activeCat === cat ? { background: CAT_COLORS[cat] || '#0A0A0A', borderColor: CAT_COLORS[cat] || '#0A0A0A' } : {}}
-            onClick={() => setActiveCat(cat)}
-          >
-            {cat}
-            <span className={styles.filterCount}>{counts[cat] || 0}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* RESULTS COUNT */}
-      <div className={styles.resultsInfo}>
-        <span className={styles.resultsCount}>{filtered.length}</span>
-        <span className={styles.resultsLabel}>
-          {filtered.length === 1 ? 'solution' : 'solutions'}
-          {activeCat !== 'Tout' ? ` · ${activeCat}` : ''}
+      {/* COMPTEUR */}
+      <div className={styles.counter}>
+        <span className={styles.counterNum}>{filtered.length}</span>
+        <span className={styles.counterLabel}>
+          {activeCat !== 'Tout' ? activeCat : 'solutions'}
           {search ? ` · "${search}"` : ''}
         </span>
       </div>
 
-      {/* GRID */}
-      <div className={styles.grid}>
+      {/* LISTE ÉDITORIALE */}
+      <div className={styles.list}>
         {filtered.map((s: Solution, i: number) => (
           <a
             key={i}
             href={s.website || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.card}
-            style={{ '--accent': CAT_COLORS[s.cat] || '#2D7A4F' } as any}
+            className={styles.item}
           >
-            <div className={styles.cardTop}>
-              <span className={styles.cardCat} style={{ color: CAT_COLORS[s.cat] || '#2D7A4F' }}>
-                {s.cat}
-              </span>
-              <span className={styles.cardCountry}>
-                {FLAG[s.country] || ''} {s.country}
-              </span>
+            <div className={styles.itemIndex}>{String(i + 1).padStart(2, '0')}</div>
+            <div className={styles.itemBar} style={{ background: CAT_COLORS[s.cat] || '#3A3A3A' }} />
+            <div className={styles.itemBody}>
+              <div className={styles.itemMeta}>
+                <span className={styles.itemCat} style={{ color: CAT_COLORS[s.cat] || '#3A3A3A' }}>{s.cat}</span>
+                <span className={styles.itemCountry}>{FLAG[s.country] || ''} {s.country}</span>
+              </div>
+              <div className={styles.itemName}>{s.name}</div>
+              <div className={styles.itemRaw}>{s.rawCat}</div>
             </div>
-            <div className={styles.cardName}>{s.name}</div>
-            <div className={styles.cardRaw}>{s.rawCat}</div>
-            <div className={styles.cardArrow}>→</div>
+            <div className={styles.itemArrow}>→</div>
           </a>
         ))}
       </div>
 
       {filtered.length === 0 && (
-        <div className={styles.empty}>
-          <p>Aucune solution trouvée pour cette recherche.</p>
-        </div>
+        <div className={styles.empty}>Aucune solution pour cette recherche.</div>
       )}
     </div>
   )

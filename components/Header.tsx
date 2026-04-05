@@ -18,6 +18,7 @@ const navItems = [
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Visuels', href: '/visuels', className: 'concept' },
   { label: 'Rétrospective', href: '/retrospective', className: 'concept' },
+  { label: 'Solutions', href: '/solutions', className: 'env' },
 ]
 
 const secondaryItems = [
