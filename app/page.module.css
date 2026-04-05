@@ -137,10 +137,11 @@
 }
 
 .ge {
-  background: #0A0A0A;
+  background: var(--fond);
   display: grid;
   grid-template-columns: 1fr 280px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-top: 3px solid var(--encre);
+  border-bottom: 1px solid var(--bord);
 }
 
 .geLeft {
@@ -163,7 +164,7 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--or);
-  border: 1px solid rgba(200,169,110,.3);
+  border: 1px solid var(--or);
   padding: 4px 12px;
 }
 
@@ -172,14 +173,14 @@
   font-weight: 600;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
+  color: var(--gris-m);
 }
 
 .geName {
   font-family: 'Playfair Display', serif;
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 300;
-  color: #FAF9F7;
+  color: var(--encre);
   letter-spacing: -2px;
   line-height: 1.0;
 }
@@ -194,7 +195,7 @@
   font-weight: 500;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,.3);
+  color: var(--gris-l);
   line-height: 1.8;
 }
 
@@ -202,7 +203,7 @@
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(15px, 1.8vw, 18px);
   font-style: italic;
-  color: rgba(255,255,255,.55);
+  color: var(--gris);
   line-height: 1.7;
   max-width: 480px;
 }
@@ -215,21 +216,21 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #0A0A0A;
-  background: var(--or);
+  color: #fff;
+  background: var(--encre);
   text-decoration: none;
   padding: 14px 28px;
   width: fit-content;
   transition: background 0.2s;
 }
 
-.geCta:hover { background: #FAF9F7; }
+.geCta:hover { background: var(--or); color: #0A0A0A; }
 
 .geBadge {
   font-size: 9px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(255,255,255,.2);
+  color: var(--gris-l);
 }
 
 .geRight {
@@ -245,9 +246,7 @@
   height: auto;
   display: block;
   object-fit: contain;
-  mix-blend-mode: luminosity;
-  opacity: 0.9;
-  filter: contrast(1.05);
+
 }
 
 /* ── HERO ── */
