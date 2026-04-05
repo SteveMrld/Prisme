@@ -52,11 +52,10 @@ const grandsFormatsSlugs = [
 ]
 const grandsFormats = grandsFormatsSlugs.map(({ slug, extraCategories, sections }) => {
   const a = getArticle(slug)
-  return {
-    ...a,
-    categories: [{ label: a.categoryLabel, color: a.category }, ...extraCategories],
-    sections,
-  }
+  const allCats = [{ label: a.categoryLabel, color: a.category }, ...extraCategories]
+  const seen = new Set<string>()
+  const categories = allCats.filter(cat => { if (seen.has(cat.label)) return false; seen.add(cat.label); return true; })
+  return { ...a, categories, sections }
 })
 
 const categoryColors: Record<string, string> = {
