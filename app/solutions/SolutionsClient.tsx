@@ -38,7 +38,7 @@ export default function SolutionsClient() {
   const [search, setSearch] = useState('')
 
   const filtered = useMemo(() => {
-    return (solutions as any[]).filter(s => {
+    return (solutions as unknown as any[]).filter(s => {
       const matchCat = activeCat === 'Tout' || s.cat === activeCat
       const matchSearch = !search || s.name.toLowerCase().includes(search.toLowerCase()) ||
         s.country.toLowerCase().includes(search.toLowerCase()) ||
@@ -48,8 +48,8 @@ export default function SolutionsClient() {
   }, [activeCat, search])
 
   const counts = useMemo(() => {
-    const c: Record<string, number> = { 'Tout': (solutions as any[]).length }
-    ;(solutions as any[]).forEach(s => { c[s.cat] = (c[s.cat] || 0) + 1 })
+    const c: Record<string, number> = { 'Tout': (solutions as unknown as any[]).length }
+    ;(solutions as unknown as any[]).forEach(s => { c[s.cat] = (c[s.cat] || 0) + 1 })
     return c
   }, [])
 
