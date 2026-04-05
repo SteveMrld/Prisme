@@ -18,12 +18,12 @@ type Ind = {
 }
 
 const INITIAL: Ind[] = [
-  { id:'brent',  label:'Pétrole Brent', sub:'USD / baril',     value:null, prev:null, unit:'$',  cat:'Énergie',      catColor:'#C4793A', context:'Ormuz bloqué — choc pétrolier mondial', history:[] },
-  { id:'gold',   label:'Or',            sub:'USD / once troy', value:null, prev:null, unit:'$',  cat:'Refuge',       catColor:'#C8A96E', context:'Anxiété géopolitique mondiale', history:[] },
-  { id:'wheat',  label:'Blé',           sub:'USD / boisseau',  value:null, prev:null, unit:'$',  cat:'Alimentaire',  catColor:'#7A9A3A', context:'Sécurité alimentaire — Sahel, Ukraine', history:[] },
-  { id:'copper', label:'Cuivre',        sub:'USD / livre',     value:null, prev:null, unit:'$',  cat:'Industrie',    catColor:'#9A6A3A', context:'Baromètre croissance chinoise', history:[] },
-  { id:'eurusd', label:'EUR / USD',     sub:'Euro → Dollar',   value:null, prev:null, unit:'',   cat:'Change',       catColor:'#2D6B4A', context:'Autonomie stratégique européenne', history:[] },
-  { id:'usdcny', label:'USD / CNY',     sub:'Dollar → Yuan',   value:null, prev:null, unit:'',   cat:'Géopolitique', catColor:'#1A3E6B', context:'Découplage US-Chine en cours', history:[] },
+  { id:'brent',  label:'Pétrole Brent', sub:'USD / baril',     value:121.88, prev:121.46, unit:'$',  cat:'Énergie',      catColor:'#C4793A', context:'Ormuz bloqué — choc pétrolier mondial', history:[118.2,119.5,120.1,119.8,121.0,121.5,121.88] },
+  { id:'gold',   label:'Or',            sub:'USD / once troy', value:3248.0, prev:3221.0, unit:'$',  cat:'Refuge',       catColor:'#C8A96E', context:'Anxiété géopolitique mondiale',           history:[3180,3195,3210,3205,3228,3241,3248] },
+  { id:'wheat',  label:'Blé',           sub:'USD / boisseau',  value:5.42,   prev:5.48,   unit:'$',  cat:'Alimentaire',  catColor:'#7A9A3A', context:'Sécurité alimentaire — Sahel, Ukraine',   history:[5.65,5.58,5.51,5.49,5.45,5.48,5.42] },
+  { id:'copper', label:'Cuivre',        sub:'USD / livre',     value:4.12,   prev:4.08,   unit:'$',  cat:'Industrie',    catColor:'#9A6A3A', context:'Baromètre croissance chinoise',            history:[3.98,4.01,4.05,4.03,4.08,4.10,4.12] },
+  { id:'eurusd', label:'EUR / USD',     sub:'Euro → Dollar',   value:1.0821, prev:1.0854, unit:'',   cat:'Change',       catColor:'#2D6B4A', context:'Autonomie stratégique européenne',         history:[1.091,1.088,1.085,1.087,1.084,1.085,1.0821] },
+  { id:'usdcny', label:'USD / CNY',     sub:'Dollar → Yuan',   value:7.2841, prev:7.2760, unit:'',   cat:'Géopolitique', catColor:'#1A3E6B', context:'Découplage US-Chine en cours',             history:[7.265,7.270,7.275,7.272,7.278,7.276,7.2841] },
 ]
 
 function AnimatedValue({ value, decimals=2 }: { value: number|null, decimals?: number }) {
@@ -74,23 +74,8 @@ export default function IndicateursClient() {
   const [status, setStatus] = useState<'loading'|'live'|'error'>('loading')
 
   useEffect(() => {
-    // Show fallback values immediately
-    const FALLBACK = {
-      brent: {value:121.88, prev:121.46, history:[118.2,119.5,120.1,119.8,121.0,121.5,121.88]},
-      gold:  {value:3248.0, prev:3221.0, history:[3180,3195,3210,3205,3228,3241,3248]},
-      wheat: {value:5.42,   prev:5.48,   history:[5.65,5.58,5.51,5.49,5.45,5.48,5.42]},
-      copper:{value:4.12,   prev:4.08,   history:[3.98,4.01,4.05,4.03,4.08,4.10,4.12]},
-      eurusd:{value:1.0821, prev:1.0854, history:[1.091,1.088,1.085,1.087,1.084,1.085,1.0821]},
-      usdcny:{value:7.2841, prev:7.2760, history:[7.265,7.270,7.275,7.272,7.278,7.276,7.2841]},
-    } as Record<string, {value:number,prev:number,history:number[]}>
-
-    setInds(prev => prev.map(ind => {
-      const fb = FALLBACK[ind.id]
-      return fb ? {...ind, value:fb.value, prev:fb.prev, history:fb.history} : ind
-    }))
     setStatus('live')
     setTime(new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'}))
-
     const sleep = (ms:number) => new Promise(r => setTimeout(r, ms))
 
     async function load() {
@@ -117,7 +102,7 @@ export default function IndicateursClient() {
         await sleep(15000)
         const wheat = await fetch(\`https://www.alphavantage.co/query?function=WHEAT&interval=daily&apikey=\${AV_KEY}\`).then(r=>r.json())
         if (wheat.data?.length >= 7) {
-          const h = wheat.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value))
+          const h = wheat.data.slice(0,7).reverse().map((x:any)=>parseFloat(x.value)/100)
           setInds(prev => prev.map(ind => ind.id==='wheat' ? {...ind, value:h[h.length-1], prev:h[h.length-2], history:h} : ind))
         }
 
