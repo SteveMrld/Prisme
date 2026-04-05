@@ -175,3 +175,7 @@ main, article, section:first-of-type {
   z-index: 999;
   transition: width 0.1s linear;
 }
+
+@media (max-width: 768px) {
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+}

@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import './globals.css'
 import './article-content.css'
+import BottomNav from '../components/BottomNav'
 
 const BASE_URL = 'https://confins.fr'
 
@@ -62,7 +63,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        {children}
+        <BottomNav />
+      </body>
     </html>
   )
 }
