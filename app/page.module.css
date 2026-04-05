@@ -139,7 +139,7 @@
 .ge {
   background: var(--fond);
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr 320px;
   border-top: 3px solid var(--encre);
   border-bottom: 1px solid var(--bord);
 }
@@ -242,7 +242,7 @@
 }
 
 .geImg {
-  width: 260px;
+  width: 300px;
   height: auto;
   display: block;
   object-fit: contain;
@@ -612,10 +612,10 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { grid-template-columns: 1fr 160px; }
+  .ge { grid-template-columns: 1fr 180px; }
   .geLeft { padding: 28px 20px; }
-  .geRight { padding: 0 12px; }
-  .geImg { width: 140px; }
+  .geRight { padding: 0 8px; }
+  .geImg { width: 165px; }
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
   .heroAside { display: none; }
@@ -1216,10 +1216,10 @@
   .portraitsGrid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .atlanticSection { padding: 32px 16px; }
   .latestSection { padding: 32px 16px; }
-  .ge { grid-template-columns: 1fr 130px; }
+  .ge { grid-template-columns: 1fr 150px; }
   .geLeft { padding: 20px 16px; }
-  .geRight { padding: 0 8px; }
-  .geImg { width: 120px; }
+  .geRight { padding: 0 4px; }
+  .geImg { width: 140px; }
   .gfSection { padding: 0 16px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
