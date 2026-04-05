@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import { usePremium } from '../lib/usePremium'
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth } from './ArticleAnimations'
@@ -50,7 +51,7 @@ function portraitUrl(name: string): string | null {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, hasInternalHeader = false, hasHeroInContent = false, premium = false, content,
+  readTime, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, content,
   author = 'Steve Moradel',
   authorRole = 'Fondateur · Directeur de la rédaction',
   related = []

@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { usePremium } from '../../lib/usePremium'
 import styles from './recoupement.module.css'
 
 const SOURCES = [
@@ -43,7 +44,7 @@ type Analysis = {
 
 export default function RecoupementClient() {
   const [query, setQuery] = useState('')
-  const [isPremium] = useState(false) // TODO: replace with real auth check
+  const isPremium = usePremium()
   const [loading, setLoading] = useState(false)
   const [analysis, setAnalysis] = useState<Analysis | null>(null)
   const [error, setError] = useState('')

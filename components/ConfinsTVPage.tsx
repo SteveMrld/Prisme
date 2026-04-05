@@ -1,11 +1,11 @@
 'use client'
 
 import { useRef, useState, useEffect, useCallback } from 'react'
+import { usePremium } from '../lib/usePremium'
 import Link from 'next/link'
 import styles from './ConfinsTVPage.module.css'
 
 // EP01 is free, EP02-06 are premium
-const IS_PREMIUM = false // TODO: replace with real auth
 
 const episodes = [
   {
@@ -76,6 +76,7 @@ const episodes = [
 ]
 
 export default function ConfinsTVPage() {
+  const IS_PREMIUM = usePremium()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
   const [active, setActive] = useState(0)
