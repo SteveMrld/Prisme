@@ -234,18 +234,18 @@
 }
 
 .geRight {
+  overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0;
-  overflow: hidden;
 }
 
 .geImg {
   width: 100%;
+  max-width: 300px;
   height: auto;
   display: block;
   object-fit: contain;
+  margin-left: -20px;
 }
 
 /* ── HERO ── */
@@ -614,8 +614,8 @@
 @media (max-width: 900px) {
   .ge { grid-template-columns: 1fr 180px; }
   .geLeft { padding: 28px 20px; }
-  .geRight { padding: 0 8px; }
-  .geImg { width: 165px; }
+  .geRight { }
+  .geImg { max-width: 160px; margin-left: -10px; }
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
   .heroAside { display: none; }
@@ -1218,8 +1218,8 @@
   .latestSection { padding: 32px 16px; }
   .ge { grid-template-columns: 1fr 150px; }
   .geLeft { padding: 20px 16px; }
-  .geRight { padding: 0 4px; }
-  .geImg { width: 140px; }
+  .geRight { }
+  .geImg { max-width: 140px; margin-left: -8px; }
   .gfSection { padding: 0 16px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
