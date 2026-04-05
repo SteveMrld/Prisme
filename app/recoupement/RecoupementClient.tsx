@@ -101,7 +101,7 @@ export default function RecoupementClient() {
         <div className={styles.hero}>
           <div className={styles.eyebrow}>Confins · Outil éditorial</div>
           <h1 className={styles.title}>Recoupement de <em>sources</em></h1>
-          <p className={styles.subtitle}>Croisez 20 sources sur un fait d'actualité — médias, OSINT, analystes, institutions.</p>
+          <p className={styles.subtitle}>Croisez 30 sources sur un fait d'actualité — médias, OSINT, analystes, institutions.</p>
         </div>
         <div className={styles.paywall}>
           <div className={styles.paywallIcon}>🔍</div>

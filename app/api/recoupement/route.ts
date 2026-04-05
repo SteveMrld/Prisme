@@ -28,6 +28,15 @@ export async function POST(req: NextRequest) {
     { id: 'hamidrezaaz', name: 'Hamidreza', type: 'Analyste', bias: 'Iran / stratégie militaire' },
     { id: 'furkangozukara', name: 'Furkan Gözükara', type: 'Journaliste', bias: 'Terrain Moyen-Orient' },
     { id: 'allenanalysis', name: 'Allen Analysis', type: 'Analyste', bias: 'Géopolitique indépendant' },
+    { id: 'nowthis_x_media', name: 'Now This Media', type: 'Média', bias: 'Progressiste américain' },
+    { id: 'ramabdu', name: 'Ram Abdu', type: 'Analyste', bias: 'Moyen-Orient indépendant' },
+    { id: 'markseddon1962', name: 'Mark Seddon', type: 'Journaliste', bias: 'Indépendant, ex-ONU' },
+    { id: 'jamesmartinsj', name: 'James Martin SJ', type: 'Analyste', bias: 'Jésuite / éthique internationale' },
+    { id: 'spectateursfr', name: 'Spectateur FR', type: 'Agrégateur', bias: 'Veille France / Moyen-Orient' },
+    { id: 'kuwaittimesnews', name: 'Kuwait Times', type: 'Média', bias: 'Presse du Golfe' },
+    { id: 'ryangrim', name: 'Ryan Grim', type: 'Journaliste', bias: 'Investigation / The Intercept' },
+    { id: 'viviannereim', name: 'Vivian Nereim', type: 'Journaliste', bias: 'Bloomberg / Arabie Saoudite' },
+    { id: 'globeeyenews', name: 'Globe Eye News', type: 'Agrégateur', bias: 'Veille géopolitique globale' },
   ]
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
