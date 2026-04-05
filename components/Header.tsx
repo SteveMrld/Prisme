@@ -1,7 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+import articlesData from '../lib/articles.json'
 import { createClient } from '../lib/supabase'
 import styles from './Header.module.css'
 import DarkModeToggle from '../app/DarkModeToggle'
@@ -35,6 +37,10 @@ export default function Header({ activeNav }: { activeNav?: string }) {
   const [date, setDate] = useState('')
   const [user, setUser] = useState<any>(undefined)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<any[]>([])
+  const router = useRouter()
+  const inputRef = useRef<HTMLInputElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const supabase = createClient()
 
@@ -52,6 +58,24 @@ export default function Header({ activeNav }: { activeNav?: string }) {
     return () => subscription.unsubscribe()
   }, [])
 
+  const handleSearch = (q: string) => {
+    setSearchQuery(q)
+    if (q.trim().length < 2) { setSearchResults([]); return }
+    const results = (articlesData as any[]).filter(a =>
+      a.title.toLowerCase().includes(q.toLowerCase()) ||
+      a.description?.toLowerCase().includes(q.toLowerCase()) ||
+      a.author?.toLowerCase().includes(q.toLowerCase())
+    ).slice(0, 6)
+    setSearchResults(results)
+  }
+
+  const handleSearchOpen = () => {
+    setSearchOpen(o => !o)
+    setSearchQuery('')
+    setSearchResults([])
+    setTimeout(() => inputRef.current?.focus(), 50)
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.headerTop}>
@@ -67,7 +91,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           >···</button>
           <button
             className={styles.searchBtn}
-            onClick={() => setSearchOpen(o => !o)}
+            onClick={handleSearchOpen}
             aria-label="Rechercher"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -89,18 +113,44 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           )}
         </div>
         {searchOpen && (
-          <div className={styles.searchBar}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-            </svg>
-            <input
-              autoFocus
-              type="text"
-              placeholder="Rechercher un article, un sujet…"
-              className={styles.searchInput}
-              onKeyDown={e => { if (e.key === 'Escape') setSearchOpen(false) }}
-            />
-            <button className={styles.searchClose} onClick={() => setSearchOpen(false)}>✕</button>
+          <div className={styles.searchPanel}>
+            <div className={styles.searchBar}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+              <input
+                ref={inputRef}
+                autoFocus
+                type="text"
+                placeholder="Rechercher un article, un sujet…"
+                className={styles.searchInput}
+                value={searchQuery}
+                onChange={e => handleSearch(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Escape') { setSearchOpen(false); setSearchResults([]) }
+                  if (e.key === 'Enter' && searchResults.length > 0) {
+                    router.push('/articles/' + searchResults[0].slug)
+                    setSearchOpen(false)
+                  }
+                }}
+              />
+              <button className={styles.searchClose} onClick={() => { setSearchOpen(false); setSearchResults([]) }}>✕</button>
+            </div>
+            {searchResults.length > 0 && (
+              <div className={styles.searchResults}>
+                {searchResults.map((a: any) => (
+                  <Link key={a.slug} href={'/articles/' + a.slug}
+                    className={styles.searchResultItem}
+                    onClick={() => { setSearchOpen(false); setSearchResults([]) }}>
+                    <span className={styles.searchResultCat}>{a.category}</span>
+                    <span className={styles.searchResultTitle} dangerouslySetInnerHTML={{ __html: a.title }} />
+                  </Link>
+                ))}
+              </div>
+            )}
+            {searchQuery.length >= 2 && searchResults.length === 0 && (
+              <div className={styles.searchEmpty}>Aucun résultat pour « {searchQuery} »</div>
+            )}
           </div>
         )}
       </div>
