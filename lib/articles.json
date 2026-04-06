@@ -1,5 +1,29 @@
 [
   {
+    "slug": "biden_medias",
+    "title": "Biden et les médias : trois ans d'omerta",
+    "description": "Comment une presse libre a choisi de ne pas voir. De 2021 à 2024, les indices s'accumulaient. Les grands médias regardaient ailleurs.",
+    "category": "soc",
+    "categoryLabel": "Société",
+    "date": "2026-04-06",
+    "readTime": 12,
+    "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800",
+    "premium": true,
+    "hasVisuel": true
+  },
+  {
+    "slug": "covid_labo",
+    "title": "L'hypothèse du laboratoire : de la théorie complotiste à la conclusion officielle",
+    "description": "En 2021, Facebook censurait cette théorie. En 2023, le FBI et la CIA concluaient que c'était l'origine la plus probable. Entre les deux, trois ans de silence institutionnel.",
+    "category": "sciences",
+    "categoryLabel": "Sciences",
+    "date": "2026-04-06",
+    "readTime": 14,
+    "image": "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=800",
+    "premium": true,
+    "hasVisuel": true
+  },
+  {
     "slug": "moreno",
     "title": "Et si la crise démocratique commençait au travail ?",
     "description": "L'isolement professionnel précède le retrait démocratique. Une étude d'HEC Paris révèle ce lien invisible — et ce que les dirigeants ont le devoir de faire.",
