@@ -100,6 +100,7 @@ export default function ArticleLayout({
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
             <span className={styles.readTime}>{readTime} min de lecture</span>
             <span className={styles.readDate}>Mars 2026</span>
+            {slug && <BookmarkButton slug={slug} title={title} />}
           </div>
           <div className={styles.titleRow}>
             <span className={styles.pBadgeArticle}>P</span>
