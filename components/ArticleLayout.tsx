@@ -241,11 +241,7 @@ export default function ArticleLayout({
         {slug && <BookmarkButton slug={slug} title={title} iconOnly />}
       </div>
 
-      {/* ── PARTAGE ── */}
 
-      {/* ── BARRE ACTIONS — casque + partage natif + marque-page ── */}
-              <span id="share-copied" className={styles.shareCopied} style={{opacity:0}}>✓ Lien copié</span>
-      </div>
 
       {/* ── NEWSLETTER ── */}
       <div className={styles.newsletter}>
