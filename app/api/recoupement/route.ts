@@ -96,6 +96,9 @@ Réponds UNIQUEMENT en JSON valide :
   "consensus": ["point 1", "point 2"],
   "contradictions": ["contradiction 1", "contradiction 2"],
   "synthesis": "string (2-3 phrases neutres et factuelles)",
+  "coverage_index": number (0-100, estimation du nombre de sources majeures ayant couvert ce fait),
+  "missing_sources": ["nom de source importante qui n'a PAS couvert ce fait — max 3"],
+  "historical_context": "string (1-2 phrases sur comment ce sujet était traité il y a 3-6 mois, si pertinent)",
   "results": [
     {
       "sourceId": "string (l'id exact de la source)",

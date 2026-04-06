@@ -538,3 +538,57 @@
   border-left: 2px solid rgba(200,169,110,.3);
   line-height: 1.4;
 }
+
+/* COVERAGE BLOCK */
+.coverageBlock {
+  display: flex; flex-direction: column; gap: 2px;
+  margin-bottom: 2px;
+}
+.coverageRow {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.coverageItem, .missingItem {
+  background: #F5F3EF; padding: 20px 24px;
+}
+.coverageLabel {
+  font-size: 8px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--or); margin-bottom: 10px;
+}
+.coverageBar {
+  height: 6px; background: rgba(26,24,20,.08);
+  margin-bottom: 8px; overflow: hidden;
+}
+.coverageFill {
+  height: 100%; background: var(--or);
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.coverageValue {
+  font-family: 'DM Mono', monospace;
+  font-size: 24px; font-weight: 500;
+  color: var(--encre); margin-bottom: 6px;
+}
+.coverageNote {
+  font-size: 11px; color: var(--gris-l);
+  font-style: italic; line-height: 1.4;
+}
+.missingNote {
+  font-size: 11px; color: var(--gris-l);
+  font-style: italic; margin-bottom: 10px; line-height: 1.4;
+}
+.missingList { display: flex; flex-wrap: wrap; gap: 6px; }
+.missingTag {
+  font-size: 10px; font-family: 'DM Mono', monospace;
+  padding: 3px 10px; background: rgba(192,64,64,.06);
+  color: #C04040; letter-spacing: .5px;
+}
+.historicalBlock {
+  background: var(--encre); padding: 20px 24px;
+}
+.historicalBlock .coverageLabel { color: var(--or); }
+.historicalText {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-style: italic;
+  color: rgba(248,245,240,.7); line-height: 1.65;
+}
+@media (max-width: 600px) { .coverageRow { grid-template-columns: 1fr; } }

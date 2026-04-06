@@ -89,6 +89,9 @@ type Analysis = {
   consensus: string[]
   contradictions: string[]
   synthesis: string
+  coverage_index: number
+  missing_sources: string[]
+  historical_context: string
   results: SourceResult[]
   date: string
 }
@@ -213,6 +216,9 @@ export default function RecoupementClient() {
         consensus: parsed.consensus || [],
         contradictions: parsed.contradictions || [],
         synthesis: parsed.synthesis || '',
+        coverage_index: parsed.coverage_index || 0,
+        missing_sources: parsed.missing_sources || [],
+        historical_context: parsed.historical_context || '',
         results,
         date: new Date().toLocaleString('fr-FR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }),
       }
@@ -428,6 +434,43 @@ export default function RecoupementClient() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* COVERAGE INDEX */}
+          <div className={styles.coverageBlock}>
+            <div className={styles.coverageRow}>
+              <div className={styles.coverageItem}>
+                <div className={styles.coverageLabel}>Indice de couverture</div>
+                <div className={styles.coverageBar}>
+                  <div className={styles.coverageFill} style={{ width: `${analysis.coverage_index}%` }} />
+                </div>
+                <div className={styles.coverageValue}>{analysis.coverage_index}%</div>
+                <div className={styles.coverageNote}>
+                  {analysis.coverage_index >= 70 ? 'Fait largement couvert par les médias de référence' :
+                   analysis.coverage_index >= 40 ? 'Couverture partielle — angle mort possible' :
+                   'Faiblement couvert — sujet sous-médiatisé'}
+                </div>
+              </div>
+
+              {analysis.missing_sources.length > 0 && (
+                <div className={styles.missingItem}>
+                  <div className={styles.coverageLabel}>Sources silencieuses</div>
+                  <div className={styles.missingNote}>Ces sources n'ont pas couvert ce fait — l'omission est aussi une information</div>
+                  <div className={styles.missingList}>
+                    {analysis.missing_sources.map((s, i) => (
+                      <span key={i} className={styles.missingTag}>{s}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {analysis.historical_context && (
+              <div className={styles.historicalBlock}>
+                <div className={styles.coverageLabel}>Contexte historique</div>
+                <p className={styles.historicalText}>{analysis.historical_context}</p>
+              </div>
+            )}
           </div>
 
           <div className={styles.sourcesSection}>
