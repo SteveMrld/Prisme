@@ -265,9 +265,7 @@ export default function HomePage() {
               .slice(0, 6)
               .map((article: any) => (
               <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.atlanticItem}>
-                {article.image && (
-                  <img src={article.image} alt={article.title} className={styles.atlanticThumb} />
-                )}
+                <img src={article.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=120'} alt={article.title} className={styles.atlanticThumb} />
                 <div className={styles.atlanticItemBody}>
                   <span className={styles.atlanticItemCat} style={{ color: categoryColors[article.category] }}>
                     {categoryLabels[article.category] || article.category}
