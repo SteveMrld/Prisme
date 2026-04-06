@@ -332,7 +332,7 @@ export default function RecoupementClient() {
               </a>
               <a href="/visuels/covid_consensus.html" target="_blank" className={styles.casCard}>
                 <div className={styles.casTag} style={{color:'#4A8FBF',borderColor:'rgba(74,143,191,.2)'}}>Covid & Institutions</div>
-                <div className={styles.casTitle}>Fuite de labo : censurée en 2021, soutenue par FBI et CIA en 2025</div>
+                <div className={styles.casTitle}>Fuite de labo : censurée avant enquête — origine du Covid encore non déterminée</div>
                 <div className={styles.casDesc}>Conflits d'intérêts documentés · 8 agences US · Timeline de la censure au retournement</div>
                 <div className={styles.casArrow}>Voir l'analyse →</div>
               </a>
