@@ -154,7 +154,12 @@ export default function RecoupementClient() {
       const clean = text.replace(/```json|```/g, '').trim()
       const parsed = JSON.parse(clean)
 
+      // Strip any HTML tags Claude might have included
+      const stripTags = (s: string) => s ? s.replace(/<[^>]*>/g, '') : s
+
       const results: SourceResult[] = (parsed.results || []).map((r: any) => {
+        r.position = stripTags(r.position)
+        r.details = stripTags(r.details)
         const source = SOURCES.find(s => s.id === r.sourceId)
           || SOURCES.find(s => r.sourceId?.toLowerCase().includes(s.id.toLowerCase()))
           || SOURCES.find(s => s.name.toLowerCase().includes((r.sourceId || '').toLowerCase().split('_')[0]))
