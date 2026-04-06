@@ -85,7 +85,7 @@ export default function ArticleLayout({
       <Header activeNav={category} />
 
       {/* PORTRAIT : image d'abord */}
-      {category === 'portrait' && image && (
+      {category === 'portrait' && image && !hasHeroInContent && (
         <div className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg}
             style={{ height: '420px', objectPosition: 'center 15%' }} />
@@ -137,8 +137,8 @@ export default function ArticleLayout({
           <div className={styles.paywallWrap}>
             <div className={styles.paywallContent}>
               <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
+              <div className={styles.paywallGradient} />
             </div>
-            <div className={styles.paywallGradient} />
             <div className={styles.paywallBox}>
               <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
               <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
