@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import ArticleLayout from '../../../components/ArticleLayout'
 import articlesData from '../../../lib/articles.json'
+import { createClient } from '../../../lib/supabase-server'
 import fs from 'fs'
 import path from 'path'
 
@@ -11,6 +12,8 @@ const categoryLabels: Record<string, string> = {
   env: 'Environnement', soc: 'Société', culture: 'Culture',
   portrait: 'Portrait', concept: 'Concept', sciences: 'Sciences'
 }
+
+export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   return articlesData.map((article: any) => ({ slug: article.slug }))
@@ -53,7 +56,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
   const article = articlesData.find((a: any) => a.slug === params.slug)
   if (!article) notFound()
 
@@ -66,6 +69,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   }
 
   const isPremium = (article as any).premium === true
+
+  // Bypass paywall pour l'admin
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const ADMIN_EMAIL = 'steve.moradel@gmail.com'
+  const isAdmin = user?.email === ADMIN_EMAIL
+  const showPaywall = isPremium && !isAdmin
 
   const hasInternalHeader =
     content.includes('class="atop"') ||
@@ -90,7 +100,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       readTime={String(article.readTime)}
       hasInternalHeader={hasInternalHeader}
       hasHeroInContent={hasHeroInContent}
-      premium={isPremium}
+      premium={showPaywall}
       slug={article.slug}
       content={content}
       author={(article as any).author || 'Steve Moradel'}
