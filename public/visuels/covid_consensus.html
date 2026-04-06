@@ -9,7 +9,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#08090D;--s1:#0D0F14;--s2:#111318;
-  --or:#C8A96E;--bleu:#3A7AAA;--pourpre:#7A4A9A;--rouge:#C04040;
+  --or:#C8A96E;--bleu:#3A7AAA;--terracotta:#C4693A;--rouge:#C04040;
   --t:#EAE8F0;--t2:rgba(234,232,240,.42);--t3:rgba(234,232,240,.16);
   --bord:rgba(234,232,240,.07);
 }
@@ -34,7 +34,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .hero-note{display:inline-flex;align-items:center;gap:8px;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--rouge);border:1px solid rgba(192,64,64,.2);padding:5px 14px;margin-bottom:28px;animation:fadeUp .8s .2s both;position:relative}
 #hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,6.5vw,72px);font-weight:300;line-height:1.02;letter-spacing:-2.5px;color:var(--t);max-width:860px;animation:fadeUp .8s .4s both;position:relative}
 #hero h1 em{color:var(--or);font-style:italic}
-#hero h1 strong{color:var(--pourpre);font-weight:300}
+#hero h1 strong{color:var(--terracotta);font-weight:300}
 .hero-deck{font-family:'Playfair Display',serif;font-size:clamp(14px,2vw,18px);font-style:italic;color:var(--t2);margin-top:22px;max-width:600px;line-height:1.65;animation:fadeUp .8s .6s both;position:relative}
 .hero-accuracy{display:inline-block;margin-top:28px;padding:10px 20px;background:rgba(200,169,110,.06);border:1px solid rgba(200,169,110,.2);font-size:10px;color:var(--or);font-style:italic;font-family:'Playfair Display',serif;animation:fadeUp .8s .8s both;position:relative}
 
@@ -43,7 +43,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .section.visible{opacity:1;transform:translateY(0)}
 .sec-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:14px}
 .sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,40px);font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:22px}
-.sec-title em{font-style:italic;color:var(--pourpre)}
+.sec-title em{font-style:italic;color:var(--terracotta)}
 .body{font-size:15px;color:var(--t2);line-height:1.8}
 .body strong{color:var(--t);font-weight:600}
 
@@ -55,7 +55,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .ag-name{font-size:9px;color:var(--t3);line-height:1.35;margin-bottom:10px}
 .ag-verdict{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;display:inline-block}
 .ag-conf{font-size:8px;color:var(--t3);margin-top:6px;font-style:italic}
-.vl{background:rgba(122,74,154,.2);color:var(--pourpre)}
+.vl{background:rgba(122,74,154,.2);color:var(--terracotta)}
 .vz{background:rgba(192,64,64,.15);color:var(--rouge)}
 .vi{background:rgba(200,169,110,.12);color:var(--or)}
 
@@ -77,7 +77,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .tl-det{font-size:12px;color:var(--t2);font-style:italic;line-height:1.55;margin-bottom:7px}
 .tag{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;display:inline-block}
 .tag.censure{background:rgba(192,64,64,.15);color:var(--rouge)}
-.tag.turn{background:rgba(122,74,154,.2);color:var(--pourpre)}
+.tag.turn{background:rgba(122,74,154,.2);color:var(--terracotta)}
 .tag.conflit{background:rgba(200,169,110,.12);color:var(--or)}
 
 /* CONFLICTS */
@@ -127,16 +127,16 @@ footer{padding:32px 48px;border-top:1px solid var(--bord);max-width:900px;margin
   <div class="body"><p>La communauté du renseignement américain est divisée — ce qui illustre que l'hypothèse laboratoire n'a jamais été aussi simple à trancher que le consensus de 2021 le laissait croire. Aucune agence n'a une haute confiance dans sa conclusion.</p></div>
 
   <div class="agencies">
-    <div class="ag"><div class="ag-abbr" style="color:#7A4A9A">FBI</div><div class="ag-name">Federal Bureau of Investigation</div><div class="ag-verdict vl">Fuite de labo</div><div class="ag-conf">Confiance modérée</div></div>
-    <div class="ag"><div class="ag-abbr" style="color:#7A4A9A">DOE</div><div class="ag-name">Département de l'Énergie</div><div class="ag-verdict vl">Fuite de labo</div><div class="ag-conf">Confiance faible</div></div>
-    <div class="ag"><div class="ag-abbr" style="color:#7A4A9A">CIA</div><div class="ag-name">Central Intelligence Agency</div><div class="ag-verdict vl">Fuite probable</div><div class="ag-conf">Faible · Révisé 2025</div></div>
+    <div class="ag"><div class="ag-abbr" style="color:#C4693A">FBI</div><div class="ag-name">Federal Bureau of Investigation</div><div class="ag-verdict vl">Fuite de labo</div><div class="ag-conf">Confiance modérée</div></div>
+    <div class="ag"><div class="ag-abbr" style="color:#C4693A">DOE</div><div class="ag-name">Département de l'Énergie</div><div class="ag-verdict vl">Fuite de labo</div><div class="ag-conf">Confiance faible</div></div>
+    <div class="ag"><div class="ag-abbr" style="color:#C4693A">CIA</div><div class="ag-name">Central Intelligence Agency</div><div class="ag-verdict vl">Fuite probable</div><div class="ag-conf">Faible · Révisé 2025</div></div>
     <div class="ag"><div class="ag-abbr" style="color:#C04040">×4</div><div class="ag-name">4 agences + NIC</div><div class="ag-verdict vz">Origine naturelle</div><div class="ag-conf">Confiance faible</div></div>
   </div>
 
   <div class="donut-section">
     <canvas id="donut" width="160" height="160" style="flex-shrink:0"></canvas>
     <div class="donut-legend">
-      <div class="dl-item"><div class="dl-dot" style="background:#7A4A9A"></div><span class="dl-label">Agences penchant pour fuite de labo (FBI, DOE, CIA)</span><span class="dl-n">3</span></div>
+      <div class="dl-item"><div class="dl-dot" style="background:#C4693A"></div><span class="dl-label">Agences penchant pour fuite de labo (FBI, DOE, CIA)</span><span class="dl-n">3</span></div>
       <div class="dl-item"><div class="dl-dot" style="background:#C04040"></div><span class="dl-label">Agences penchant pour origine naturelle</span><span class="dl-n">4+</span></div>
       <div class="dl-item"><div class="dl-dot" style="background:#C8A96E"></div><span class="dl-label">Indéterminé</span><span class="dl-n">1</span></div>
       <p class="chart-source">ODNI · WSJ · Factcheck.org · 2023–2025<br>Aucune agence à "haute confiance"</p>
@@ -220,7 +220,7 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(!e.isIntersecting) return
     e.target.classList.add('visible')
-    if(e.target.id==='s1') setTimeout(()=>drawDonut('donut',[3,4,1],['#7A4A9A','#C04040','#C8A96E']),200)
+    if(e.target.id==='s1') setTimeout(()=>drawDonut('donut',[3,4,1],['#C4693A','#C04040','#C8A96E']),200)
     if(e.target.id==='s2') animTl()
     obs.unobserve(e.target)
   })

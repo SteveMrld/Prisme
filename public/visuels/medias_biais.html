@@ -13,7 +13,7 @@
   --s2:#131720;
   --or:#C8A96E;
   --bleu:#4A7AAA;
-  --pourpre:#8A4A9A;
+  --terracotta:#C4693A;
   --rouge:#C04040;
   --t:#E8ECF2;
   --t2:rgba(232,236,242,.45);
@@ -45,7 +45,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
   animation:fadeUp .8s .5s both;position:relative;
 }
 #hero h1 em{color:var(--or);font-style:italic}
-#hero h1 strong{color:var(--pourpre);font-weight:300}
+#hero h1 strong{color:var(--terracotta);font-weight:300}
 .hero-deck{
   font-family:'Playfair Display',serif;
   font-size:clamp(15px,2vw,19px);font-style:italic;
@@ -59,7 +59,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .hs{display:flex;flex-direction:column;gap:4px}
 .hs-n{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,60px);font-weight:300;letter-spacing:-2px;line-height:1}
 .hs-n.rouge{color:var(--rouge)}
-.hs-n.pourpre{color:var(--pourpre)}
+.hs-n.terracotta{color:var(--terracotta)}
 .hs-n.bleu{color:var(--bleu)}
 .hs-l{font-size:10px;color:var(--t3);max-width:140px;line-height:1.4;letter-spacing:.3px}
 .hero-source{font-size:8px;color:var(--t3);font-family:'DM Mono',monospace;letter-spacing:1px;margin-top:32px;animation:fadeUp .8s 1.1s both;position:relative}
@@ -69,7 +69,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .section.visible{opacity:1;transform:translateY(0)}
 .sec-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:14px}
 .sec-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,42px);font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:24px}
-.sec-title em{font-style:italic;color:var(--pourpre)}
+.sec-title em{font-style:italic;color:var(--terracotta)}
 .body{font-size:15px;color:var(--t2);line-height:1.8}
 .body strong{color:var(--t);font-weight:600}
 
@@ -87,7 +87,7 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .dual-header{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px}
 .dh{padding:12px 20px;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
 .dh.media{background:rgba(74,122,170,.15);color:var(--bleu)}
-.dh.reality{background:rgba(138,74,154,.15);color:var(--pourpre)}
+.dh.reality{background:rgba(138,74,154,.15);color:var(--terracotta)}
 .dual-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
 .dual-row.visible{opacity:1;transform:translateY(0)}
 .dc{padding:18px 20px}
@@ -101,10 +101,10 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:40px 0}
 .qcard{padding:24px 20px}
 .qcard.before{background:rgba(74,122,170,.07);border-top:2px solid var(--bleu)}
-.qcard.after{background:rgba(138,74,154,.07);border-top:2px solid var(--pourpre)}
+.qcard.after{background:rgba(138,74,154,.07);border-top:2px solid var(--terracotta)}
 .q-tag{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .qcard.before .q-tag{color:var(--bleu)}
-.qcard.after .q-tag{color:var(--pourpre)}
+.qcard.after .q-tag{color:var(--terracotta)}
 .q-text{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--t);line-height:1.6;margin-bottom:10px}
 .q-source{font-size:9px;font-family:'DM Mono',monospace;color:var(--t3);letter-spacing:.5px;line-height:1.5}
 
@@ -159,7 +159,7 @@ footer{padding:32px 48px;border-top:1px solid var(--bord);max-width:900px;margin
       <div class="hs-l">% d'Américains "sérieusement préoccupés" par la compétence mentale de Biden</div>
     </div>
     <div class="hs">
-      <div class="hs-n pourpre" id="c2">0</div>
+      <div class="hs-n terracotta" id="c2">0</div>
       <div class="hs-l">% de démocrates préoccupés — dans les propres sondages de CNN</div>
     </div>
     <div class="hs">
@@ -177,7 +177,7 @@ footer{padding:32px 48px;border-top:1px solid var(--bord);max-width:900px;margin
   <div class="barchart" id="bars">
     <div class="bc-item">
       <div class="bc-label">Américains préoccupés · CNN/SSRS Sept. 2023</div>
-      <div class="bc-track"><div class="bc-fill" data-w="73" style="background:linear-gradient(to right,#8A4A9A,#AA6ABA)"></div></div>
+      <div class="bc-track"><div class="bc-fill" data-w="73" style="background:linear-gradient(to right,#C4693A,#AA6ABA)"></div></div>
       <div class="bc-pct" style="color:#AA6ABA">73%</div>
     </div>
     <div class="bc-item">
