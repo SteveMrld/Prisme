@@ -78,10 +78,10 @@ type SourceResult = {
   details: string
 }
 
-const NIVEAU_LABELS: Record<string, { label: string; color: string }> = {
-  verifie: { label: 'Vérifié',  color: '#4A8FBF' },
-  analyse: { label: 'Analyse',  color: '#8A5AAA' },
-  veille:  { label: 'Veille',   color: '#C8A96E' },
+const NIVEAU_LABELS: Record<string, { label: string; color: string; note?: string }> = {
+  verifie: { label: 'Vérifié',         color: '#4A8FBF' },
+  analyse: { label: 'Analyse',         color: '#8A5AAA' },
+  veille:  { label: 'Veille · non vérifié', color: '#C8A96E', note: 'Signal de terrain — à recouper avec des sources vérifiées avant diffusion' },
 }
 
 type Analysis = {

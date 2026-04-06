@@ -529,3 +529,12 @@
   text-transform: uppercase; margin-left: auto;
   flex-shrink: 0;
 }
+
+.veilleNote {
+  font-size: 9px; color: #C8A96E;
+  font-style: italic; margin-top: 8px;
+  padding: 5px 10px;
+  background: rgba(200,169,110,.06);
+  border-left: 2px solid rgba(200,169,110,.3);
+  line-height: 1.4;
+}
