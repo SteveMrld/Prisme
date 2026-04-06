@@ -129,11 +129,22 @@ export default function RecoupementClient() {
     }, 2200)
 
     try {
-      const response = await fetch('/api/recoupement', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: searchQuery })
-      })
+      // Retry up to 2 times on failure
+      let response: Response | null = null
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          response = await fetch('/api/recoupement', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: searchQuery })
+          })
+          if (response.ok) break
+        } catch (fetchErr) {
+          if (attempt === 1) throw fetchErr
+          await new Promise(r => setTimeout(r, 2000))
+        }
+      }
+      if (!response) throw new Error('No response')
       const data = await response.json()
       const text = data.content
         ?.filter((b: any) => b.type === 'text')

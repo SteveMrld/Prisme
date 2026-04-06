@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const maxDuration = 60 // Vercel max for hobby plan
+
 export async function POST(req: NextRequest) {
   const { query } = await req.json()
   if (!query) return NextResponse.json({ error: 'No query' }, { status: 400 })
