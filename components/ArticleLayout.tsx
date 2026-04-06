@@ -133,28 +133,6 @@ export default function ArticleLayout({
       </div>
 
       {/* ── BARRE ACTIONS — casque + partage natif + marque-page ── */}
-      <div className={styles.actionBar}>
-        <button className={styles.actionBtn} title="Écouter">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
-            <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-          </svg>
-        </button>
-        <button className={styles.actionBtn} title="Partager" onClick={() => {
-          if (typeof navigator !== 'undefined' && navigator.share) {
-            navigator.share({ title: typeof document !== 'undefined' ? document.title : '', url: typeof window !== 'undefined' ? window.location.href : '' })
-          }
-        }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-            <polyline points="16 6 12 2 8 6"/>
-            <line x1="12" y1="2" x2="12" y2="15"/>
-          </svg>
-        </button>
-        {slug && <BookmarkButton slug={slug} title={title} iconOnly />}
-      </div>
-
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         {isPremiumContent ? (
           <div className={styles.paywallWrap}>
@@ -218,6 +196,50 @@ export default function ArticleLayout({
           </div>
         </div>
       )}
+
+      <div className={styles.actionBar}>
+        <button className={styles.actionBtn} title="Écouter">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+            <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+        </button>
+        <button className={styles.actionBtn} title="Partager" onClick={() => {
+          if (typeof navigator !== 'undefined' && navigator.share) {
+            navigator.share({ title: typeof document !== 'undefined' ? document.title : '', url: typeof window !== 'undefined' ? window.location.href : '' })
+          }
+        }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+        </button>
+        {slug && <BookmarkButton slug={slug} title={title} iconOnly />}
+      </div>
+
+      <div className={styles.actionBar}>
+        <button className={styles.actionBtn} title="Écouter">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+            <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+        </button>
+        <button className={styles.actionBtn} title="Partager" onClick={() => {
+          if (typeof navigator !== 'undefined' && navigator.share) {
+            navigator.share({ title: typeof document !== 'undefined' ? document.title : '', url: typeof window !== 'undefined' ? window.location.href : '' })
+          }
+        }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+        </button>
+        {slug && <BookmarkButton slug={slug} title={title} iconOnly />}
+      </div>
 
       {/* ── PARTAGE ── */}
 
