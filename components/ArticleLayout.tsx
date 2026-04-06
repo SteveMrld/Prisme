@@ -103,7 +103,6 @@ export default function ArticleLayout({
           </div>
           <div className={styles.titleRow}>
             <span className={styles.pBadgeArticle}>P</span>
-            <span className={styles.audioBadgeArticle} title="Disponible en audio">🎧</span>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
           </div>
           {description && (
