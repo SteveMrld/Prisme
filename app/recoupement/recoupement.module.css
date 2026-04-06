@@ -389,3 +389,17 @@
   transition: background .2s;
 }
 .retryBtn:hover { background: var(--or); color: #0A0A0A; }
+
+/* HERO META */
+.heroMeta {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; margin-top: 20px;
+}
+.heroMetaItem {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gris-l);
+  background: #F0EDE7; padding: 4px 10px;
+}
+.heroMetaDot { color: var(--bord); font-size: 12px; }

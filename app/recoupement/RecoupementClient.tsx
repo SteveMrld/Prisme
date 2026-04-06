@@ -63,11 +63,16 @@ type Analysis = {
 }
 
 const EXAMPLES = [
-  'Exfiltration du pilote américain en Iran',
-  'Bombardement de la centrale de Bushehr',
-  'Ultimatum de Trump sur le détroit d\'Ormuz',
-  'Position de la Chine sur le conflit Iran-Israël',
-  'Arrestation de Pezeshkian à Téhéran',
+  {
+    query: "Exfiltration du pilote américain en Iran",
+    date: "5 avril 2026",
+    context: "Un F-15E américain abattu au-dessus de l'Iran. Le pilote exfiltré en 48h par les SEAL Team 6. Washington parle de succès total. Téhéran revendique 5 morts civils. Deux récits contradictoires — qui dit vrai ?"
+  },
+  {
+    query: "Bombardement de la centrale nucléaire de Bushehr",
+    date: "28 mars 2026",
+    context: "La centrale iranienne de Bushehr frappée pour la 4e fois. L'AIEA alerte sur un risque de fuite radioactive. La couverture médiatique occidentale est quasi absente. Les sources indépendantes divergent sur l'ampleur des dégâts."
+  },
 ]
 
 export default function RecoupementClient() {
@@ -215,9 +220,21 @@ export default function RecoupementClient() {
         <div className={styles.heroTag}>Confins · Outil éditorial</div>
         <h1 className={styles.heroTitle}>Recoupement de <em>sources</em></h1>
         <p className={styles.heroSub}>
-          L'information telle qu'elle est. Pas telle qu'on vous la raconte.<br />
-          <span className={styles.heroCount}>{SOURCES.length} sources · médias, OSINT, analystes, agences, institutions</span>
+          Sur n'importe quel fait d'actualité géopolitique, cet outil interroge en temps réel
+          {' '}{SOURCES.length} sources indépendantes — médias, agences, analystes, OSINT, institutions.
+          Il identifie ce sur quoi elles s'accordent, ce sur quoi elles divergent,
+          et produit une synthèse éditoriale neutre. Pas pour vous dire quoi penser —
+          pour vous donner toutes les cartes.
         </p>
+        <div className={styles.heroMeta}>
+          <span className={styles.heroMetaItem}>{SOURCES.length} sources surveillées</span>
+          <span className={styles.heroMetaDot}>·</span>
+          <span className={styles.heroMetaItem}>Recherche en temps réel</span>
+          <span className={styles.heroMetaDot}>·</span>
+          <span className={styles.heroMetaItem}>Indice de fiabilité</span>
+          <span className={styles.heroMetaDot}>·</span>
+          <span className={styles.heroMetaItem}>Consensus & contradictions</span>
+        </div>
       </div>
 
       {/* SEARCH */}
