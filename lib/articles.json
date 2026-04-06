@@ -35,7 +35,7 @@
     "author": "Steve Moradel",
     "authorRole": "Environnement & Ressources",
     "date": "2026-05-20",
-    "premium": true
+    "premium": false
   },
   {
     "slug": "blackrock",
@@ -72,7 +72,7 @@
     "author": "Steve Moradel",
     "authorRole": "Essai & Concept",
     "date": "2026-04-01",
-    "premium": true
+    "premium": false
   },
   {
     "slug": "eau",
@@ -97,7 +97,7 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2025-12-17",
-    "premium": true
+    "premium": false
   },
   {
     "slug": "fiscalite",
@@ -109,7 +109,7 @@
     "author": "Steve Moradel",
     "authorRole": "Économie & Finance",
     "date": "2026-04-08",
-    "premium": true
+    "premium": false
   },
   {
     "slug": "fragilite",
@@ -289,7 +289,7 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-04-22",
-    "premium": true
+    "premium": false
   },
   {
     "slug": "semico",
@@ -325,7 +325,7 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-01-14",
-    "premium": true
+    "premium": false
   },
   {
     "slug": "techgeo",
@@ -349,7 +349,7 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-04-29",
-    "premium": true
+    "premium": false
   },
   {
     "slug": "venezuela",
@@ -361,6 +361,6 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-03-06",
-    "premium": true
+    "premium": false
   }
 ]

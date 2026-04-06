@@ -106,7 +106,7 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
               <span className={styles.planAmount}>{plans.yearly.amount}</span>
               <span className={styles.planCurrency}>€ / {plans.yearly.interval}</span>
             </div>
-            <p className={styles.planDesc}>Soit 6 € / mois. Deux mois offerts.</p>
+            <p className={styles.planDesc}>Soit 9,99 € / mois. Deux mois offerts.</p>
             <button
               className={`${styles.planBtn} ${styles.planBtnPrimary}`}
               onClick={() => subscribe('yearly')}
