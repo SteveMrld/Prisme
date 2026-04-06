@@ -3,266 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Covid : l'hypothèse du laboratoire et le consensus brisé · Confins</title>
+<title>Covid : hypothèse censurée avant enquête · Confins</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0D1117;--surface:#131920;--encre:#E8F0F8;
-  --bleu:#4A8FBF;--rouge:#C04040;--vert:#3A9A6A;--or:#C8A96E;--violet:#7A5AA0;
-  --gris:rgba(232,240,248,.45);--bord:rgba(232,240,248,.08);
+  --bg:#08090D;--s1:#0D0F14;--s2:#111318;
+  --or:#C8A96E;--bleu:#3A7AAA;--pourpre:#7A4A9A;--rouge:#C04040;
+  --t:#EAE8F0;--t2:rgba(234,232,240,.42);--t3:rgba(234,232,240,.16);
+  --bord:rgba(234,232,240,.07);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--encre);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:48px 24px;position:relative;overflow:hidden}
-#hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 60%,rgba(74,143,191,.1) 0%,transparent 60%)}
-.hero-tag{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--bleu);border:1px solid rgba(74,143,191,.3);padding:5px 16px;margin-bottom:24px;animation:fadeUp .8s .2s both;position:relative}
-#hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,64px);font-weight:300;line-height:1.05;letter-spacing:-2px;color:var(--encre);max-width:800px;animation:fadeUp .8s .4s both;position:relative}
+/* HERO — identité distincte : grille moléculaire */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;padding:80px 48px;
+  position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(58,122,170,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(58,122,170,.04) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%);
+}
+#hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at 30% 60%,rgba(122,74,154,.1) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 80% 30%,rgba(58,122,170,.07) 0%,transparent 50%)}
+.hero-note{display:inline-flex;align-items:center;gap:8px;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--rouge);border:1px solid rgba(192,64,64,.2);padding:5px 14px;margin-bottom:28px;animation:fadeUp .8s .2s both;position:relative}
+#hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,6.5vw,72px);font-weight:300;line-height:1.02;letter-spacing:-2.5px;color:var(--t);max-width:860px;animation:fadeUp .8s .4s both;position:relative}
 #hero h1 em{color:var(--or);font-style:italic}
-.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(14px,2vw,17px);font-style:italic;color:var(--gris);margin:18px auto 0;max-width:580px;line-height:1.65;animation:fadeUp .8s .6s both;position:relative}
-.hero-note{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,240,248,.2);margin-top:24px;animation:fadeUp .8s .8s both;position:relative}
+#hero h1 strong{color:var(--pourpre);font-weight:300}
+.hero-deck{font-family:'Playfair Display',serif;font-size:clamp(14px,2vw,18px);font-style:italic;color:var(--t2);margin-top:22px;max-width:600px;line-height:1.65;animation:fadeUp .8s .6s both;position:relative}
+.hero-accuracy{display:inline-block;margin-top:28px;padding:10px 20px;background:rgba(200,169,110,.06);border:1px solid rgba(200,169,110,.2);font-size:10px;color:var(--or);font-style:italic;font-family:'Playfair Display',serif;animation:fadeUp .8s .8s both;position:relative}
 
-.section{max-width:780px;margin:0 auto;padding:64px 24px;border-top:1px solid var(--bord);opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+/* SECTIONS */
+.section{max-width:900px;margin:0 auto;padding:80px 48px;border-top:1px solid var(--bord);opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
 .section.visible{opacity:1;transform:translateY(0)}
-.sec-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--bleu);margin-bottom:12px}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,34px);font-weight:300;letter-spacing:-1px;line-height:1.1;margin-bottom:20px}
-.sec-title em{color:var(--or);font-style:italic}
-.body-text{font-size:15px;color:var(--gris);line-height:1.8}
-.body-text strong{color:var(--encre);font-weight:600}
+.sec-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:14px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,40px);font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:22px}
+.sec-title em{font-style:italic;color:var(--pourpre)}
+.body{font-size:15px;color:var(--t2);line-height:1.8}
+.body strong{color:var(--t);font-weight:600}
 
-/* AGENCY CHART */
-.agencies{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:32px 0}
-.agency{background:var(--surface);padding:16px 12px;text-align:center}
-.agency-abbr{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;margin-bottom:6px}
-.agency-name{font-size:9px;color:var(--gris);line-height:1.3;margin-bottom:8px}
-.agency-verdict{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;display:inline-block}
-.agency-conf{font-size:8px;color:rgba(232,240,248,.3);margin-top:4px;font-style:italic}
-.label-leak{background:rgba(58,154,106,.15);color:#3A9A6A}
-.label-zoo{background:rgba(192,64,64,.15);color:#C04040}
-.label-und{background:rgba(200,169,110,.15);color:#C8A96E}
+/* AGENCIES GRID */
+.agencies{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bord);margin:40px 0}
+.ag{background:var(--s1);padding:20px 14px;text-align:center;transition:background .2s}
+.ag:hover{background:var(--s2)}
+.ag-abbr{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;margin-bottom:6px}
+.ag-name{font-size:9px;color:var(--t3);line-height:1.35;margin-bottom:10px}
+.ag-verdict{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;display:inline-block}
+.ag-conf{font-size:8px;color:var(--t3);margin-top:6px;font-style:italic}
+.vl{background:rgba(122,74,154,.2);color:var(--pourpre)}
+.vz{background:rgba(192,64,64,.15);color:var(--rouge)}
+.vi{background:rgba(200,169,110,.12);color:var(--or)}
 
-/* DONUT */
-.chart-wrap{display:flex;gap:32px;align-items:center;margin:32px 0;flex-wrap:wrap}
+/* DONUT canvas */
+.donut-section{display:flex;gap:40px;align-items:center;margin:40px 0;flex-wrap:wrap}
 .donut-legend{flex:1;min-width:200px}
-.legend-item{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.legend-label{font-size:12px;color:var(--gris);line-height:1.35;flex:1}
-.legend-pct{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--encre)}
-.chart-source{font-size:9px;color:rgba(232,240,248,.25);font-style:italic;font-family:'DM Mono',monospace;letter-spacing:.5px;margin-top:8px}
+.dl-item{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.dl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dl-label{font-size:12px;color:var(--t2);flex:1;line-height:1.35}
+.dl-n{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;color:var(--t)}
+.chart-source{font-size:9px;color:var(--t3);font-family:'DM Mono',monospace;letter-spacing:.5px;margin-top:8px;line-height:1.5}
 
 /* TIMELINE */
-.tl{display:flex;flex-direction:column;gap:0;margin:32px 0}
-.tl-item{display:grid;grid-template-columns:72px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--bord);opacity:0;transform:translateX(-8px);transition:opacity .5s,transform .5s}
+.tl{display:flex;flex-direction:column;gap:0;margin:40px 0}
+.tl-item{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--bord);opacity:0;transform:translateX(-10px);transition:opacity .5s,transform .5s}
 .tl-item.visible{opacity:1;transform:translateX(0)}
-.tl-year{font-family:'DM Mono',monospace;font-size:10px;color:var(--or);letter-spacing:1px;padding-top:2px;text-align:right}
-.tl-ev{font-size:13px;font-weight:600;color:var(--encre);margin-bottom:4px;line-height:1.35}
-.tl-det{font-size:12px;color:var(--gris);line-height:1.55;font-style:italic;margin-bottom:6px}
-.tag{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;display:inline-block}
+.tl-yr{font-family:'DM Mono',monospace;font-size:9px;color:var(--or);letter-spacing:1px;text-align:right;padding-top:2px;line-height:1.5}
+.tl-ev{font-size:14px;font-weight:600;color:var(--t);margin-bottom:5px;line-height:1.35}
+.tl-det{font-size:12px;color:var(--t2);font-style:italic;line-height:1.55;margin-bottom:7px}
+.tag{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;display:inline-block}
 .tag.censure{background:rgba(192,64,64,.15);color:var(--rouge)}
-.tag.retournement{background:rgba(58,154,106,.15);color:var(--vert)}
-.tag.conflit{background:rgba(200,169,110,.15);color:var(--or)}
+.tag.turn{background:rgba(122,74,154,.2);color:var(--pourpre)}
+.tag.conflit{background:rgba(200,169,110,.12);color:var(--or)}
 
-/* CONFLICT TABLE */
-.conflict-table{margin:32px 0;display:flex;flex-direction:column;gap:1px}
-.ct-row{display:grid;grid-template-columns:140px 1fr auto;gap:16px;background:var(--surface);padding:16px 20px;align-items:start}
-.ct-name{font-size:13px;font-weight:600;color:var(--encre)}
-.ct-role{font-size:10px;color:var(--bleu);margin-top:2px}
-.ct-conflict{font-size:12px;color:var(--gris);font-style:italic;line-height:1.5}
-.ct-flag{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--rouge);white-space:nowrap;padding-top:2px}
+/* CONFLICTS */
+.conflicts{display:flex;flex-direction:column;gap:1px;margin:40px 0}
+.cf-row{display:grid;grid-template-columns:160px 1fr 120px;gap:20px;background:var(--s1);padding:20px 24px;align-items:start;transition:background .2s}
+.cf-row:hover{background:var(--s2)}
+.cf-name{font-size:14px;font-weight:600;color:var(--t)}
+.cf-role{font-size:9px;color:var(--bleu);margin-top:3px;letter-spacing:.5px}
+.cf-text{font-size:12px;color:var(--t2);font-style:italic;line-height:1.55}
+.cf-flag{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--rouge);text-align:right;padding-top:3px;line-height:1.5}
 
 /* VERDICT */
-.verdict{background:var(--surface);border-top:2px solid var(--bleu);padding:40px 32px;margin:40px 0}
-.verdict-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--bleu);margin-bottom:16px}
-.verdict-text{font-family:'Playfair Display',serif;font-size:clamp(15px,2.5vw,20px);font-style:italic;line-height:1.65;color:var(--encre)}
+.verdict{background:linear-gradient(135deg,rgba(122,74,154,.12) 0%,rgba(58,122,170,.08) 100%);border:1px solid rgba(122,74,154,.2);padding:48px;margin:40px 0}
+.v-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:20px}
+.v-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,21px);font-style:italic;line-height:1.7;color:var(--t)}
 
-.confins-box{background:rgba(200,169,110,.06);border-left:3px solid var(--or);padding:24px 28px;margin-top:32px}
-.cb-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);margin-bottom:10px}
-.cb-text{font-size:13px;color:var(--gris);line-height:1.7}
+.confins{background:rgba(200,169,110,.05);border-left:3px solid var(--or);padding:28px 32px;margin-top:32px}
+.c-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);margin-bottom:10px}
+.c-text{font-size:14px;color:var(--t2);line-height:1.7}
 
-footer{padding:32px 24px;border-top:1px solid var(--bord);text-align:center;max-width:780px;margin:0 auto}
-.fw{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(232,240,248,.15)}
+footer{padding:32px 48px;border-top:1px solid var(--bord);max-width:900px;margin:0 auto}
+.fw{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--t3)}
 .fw em{color:rgba(200,169,110,.3);font-style:normal}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:600px){.agencies{grid-template-columns:repeat(2,1fr)}.ct-row{grid-template-columns:1fr}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:680px){
+  #hero,section.section{padding:60px 24px}
+  .agencies{grid-template-columns:repeat(2,1fr)}
+  .cf-row{grid-template-columns:1fr}
+  .cf-flag{text-align:left}
+}
 </style>
 </head>
 <body>
 
 <section id="hero">
-  <div class="hero-tag">Analyse · Covid & Institutions</div>
-  <h1>L'hypothèse du laboratoire :<br>censurée avant d'être<br><em>enquêtée</em></h1>
-  <p class="hero-sub">L'origine du Covid reste non déterminée. Ce cas analyse un mécanisme précis : comment une hypothèse scientifique légitime a été disqualifiée sans enquête, par des acteurs ayant des intérêts à ne pas la voir confirmée.</p>
-  <div class="hero-note">Note : l'origine du Covid reste incertaine · Ce cas analyse le mécanisme de censure, pas l'hypothèse elle-même</div>
+  <div id="hero-bg"></div>
+  <div class="hero-note">Note · L'origine du Covid reste non déterminée</div>
+  <h1>L'hypothèse du laboratoire :<br>censurée avant d'être<br><em>enquêtée</em> — le cas <strong>Covid</strong></h1>
+  <p class="hero-deck">En 2021, évoquer une fuite de laboratoire valait une suppression sur Facebook. En 2025, CIA, FBI et DOE la considèrent comme l'hypothèse la plus probable. Ce cas documente le mécanisme — pas le verdict.</p>
+  <div class="hero-accuracy">Ce cas analyse la censure d'un débat scientifique légitime, pas l'origine réelle du virus — encore inconnue.</div>
 </section>
 
-<!-- SECTION 1 : RENSEIGNEMENTS US -->
 <section class="section" id="s1">
-  <div class="sec-label">Position des agences de renseignement US · 2023–2025</div>
-  <h2 class="sec-title">Une communauté du<br>renseignement <em>divisée</em></h2>
-  <div class="body-text">
-    <p>En 2023, les 8 agences de renseignement américaines avaient des positions différentes sur l'origine du Covid — illustrant que l'hypothèse laboratoire n'était ni confirmée ni infirmée, mais faisait l'objet d'un débat sérieux que la censure de 2021 avait prématurément clos.</p>
-  </div>
+  <div class="sec-label">Position des agences US · 2023–2025</div>
+  <h2 class="sec-title">8 agences,<br><em>positions divergentes</em></h2>
+  <div class="body"><p>La communauté du renseignement américain est divisée — ce qui illustre que l'hypothèse laboratoire n'a jamais été aussi simple à trancher que le consensus de 2021 le laissait croire. Aucune agence n'a une haute confiance dans sa conclusion.</p></div>
 
   <div class="agencies">
-    <div class="agency">
-      <div class="agency-abbr" style="color:#3A9A6A">FBI</div>
-      <div class="agency-name">Federal Bureau of Investigation</div>
-      <div class="agency-verdict label-leak">Fuite de labo</div>
-      <div class="agency-conf">Confiance modérée</div>
-    </div>
-    <div class="agency">
-      <div class="agency-abbr" style="color:#3A9A6A">DOE</div>
-      <div class="agency-name">Département de l'Énergie</div>
-      <div class="agency-verdict label-leak">Fuite de labo</div>
-      <div class="agency-conf">Confiance faible</div>
-    </div>
-    <div class="agency">
-      <div class="agency-abbr" style="color:#3A9A6A">CIA</div>
-      <div class="agency-name">Central Intelligence Agency</div>
-      <div class="agency-verdict label-leak">Fuite probable</div>
-      <div class="agency-conf">Faible · Révisé 2025</div>
-    </div>
-    <div class="agency">
-      <div class="agency-abbr" style="color:#C04040">×4</div>
-      <div class="agency-name">4 autres agences + NIC</div>
-      <div class="agency-verdict label-zoo">Origine naturelle</div>
-      <div class="agency-conf">Confiance faible</div>
-    </div>
+    <div class="ag"><div class="ag-abbr" style="color:#7A4A9A">FBI</div><div class="ag-name">Federal Bureau of Investigation</div><div class="ag-verdict vl">Fuite de labo</div><div class="ag-conf">Confiance modérée</div></div>
+    <div class="ag"><div class="ag-abbr" style="color:#7A4A9A">DOE</div><div class="ag-name">Département de l'Énergie</div><div class="ag-verdict vl">Fuite de labo</div><div class="ag-conf">Confiance faible</div></div>
+    <div class="ag"><div class="ag-abbr" style="color:#7A4A9A">CIA</div><div class="ag-name">Central Intelligence Agency</div><div class="ag-verdict vl">Fuite probable</div><div class="ag-conf">Faible · Révisé 2025</div></div>
+    <div class="ag"><div class="ag-abbr" style="color:#C04040">×4</div><div class="ag-name">4 agences + NIC</div><div class="ag-verdict vz">Origine naturelle</div><div class="ag-conf">Confiance faible</div></div>
   </div>
 
-  <div class="chart-wrap">
-    <canvas id="donut1" width="160" height="160"></canvas>
+  <div class="donut-section">
+    <canvas id="donut" width="160" height="160" style="flex-shrink:0"></canvas>
     <div class="donut-legend">
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#3A9A6A"></div>
-        <span class="legend-label">Agences US penchant pour fuite de labo (FBI, DOE, CIA en 2025)</span>
-        <span class="legend-pct">3</span>
-      </div>
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#C04040"></div>
-        <span class="legend-label">Agences US penchant pour origine naturelle</span>
-        <span class="legend-pct">4+</span>
-      </div>
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#C8A96E"></div>
-        <span class="legend-label">Indéterminé / pas de conclusion</span>
-        <span class="legend-pct">1</span>
-      </div>
-      <p class="chart-source">Source : ODNI · WSJ · Factcheck.org · 2023–2025<br>Aucune agence n'a une "haute confiance"</p>
+      <div class="dl-item"><div class="dl-dot" style="background:#7A4A9A"></div><span class="dl-label">Agences penchant pour fuite de labo (FBI, DOE, CIA)</span><span class="dl-n">3</span></div>
+      <div class="dl-item"><div class="dl-dot" style="background:#C04040"></div><span class="dl-label">Agences penchant pour origine naturelle</span><span class="dl-n">4+</span></div>
+      <div class="dl-item"><div class="dl-dot" style="background:#C8A96E"></div><span class="dl-label">Indéterminé</span><span class="dl-n">1</span></div>
+      <p class="chart-source">ODNI · WSJ · Factcheck.org · 2023–2025<br>Aucune agence à "haute confiance"</p>
     </div>
   </div>
 </section>
 
-<!-- SECTION 2 : TIMELINE -->
 <section class="section" id="s2">
   <div class="sec-label">Timeline documentée · 2020–2025</div>
   <h2 class="sec-title">De la censure à la<br><em>reconnaissance institutionnelle</em></h2>
-
   <div class="tl" id="tl">
     <div class="tl-item">
-      <div class="tl-year">Fév. 2020</div>
-      <div>
-        <div class="tl-ev">Lettre Lancet : 27 scientifiques condamnent les "théories complotistes"</div>
-        <div class="tl-det">Organisée par Peter Daszak (EcoHealth Alliance) sans déclaration de conflit d'intérêt — Daszak finançait lui-même des recherches à Wuhan avec des fonds NIH.</div>
-        <span class="tag conflit">Conflit d'intérêt non déclaré</span>
-      </div>
+      <div class="tl-yr">Fév. 2020</div>
+      <div><div class="tl-ev">Lettre Lancet : 27 scientifiques condamnent les "théories complotistes"</div><div class="tl-det">Organisée par Peter Daszak (EcoHealth Alliance) sans déclaration de conflit d'intérêt — il finançait lui-même des recherches à Wuhan avec fonds NIH.</div><span class="tag conflit">Conflit non déclaré</span></div>
     </div>
     <div class="tl-item">
-      <div class="tl-year">Mai 2021</div>
-      <div>
-        <div class="tl-ev">Facebook supprime les posts sur la fuite de laboratoire</div>
-        <div class="tl-det">Sur recommandation de fact-checkers liés à l'OMS. L'hypothèse est qualifiée de "désinformation" sans enquête préalable.</div>
-        <span class="tag censure">Censure préventive</span>
-      </div>
+      <div class="tl-yr">Mai 2021</div>
+      <div><div class="tl-ev">Facebook supprime les posts évoquant une fuite de laboratoire</div><div class="tl-det">Sur recommandation de fact-checkers liés à l'OMS. L'hypothèse est qualifiée de "désinformation" sans enquête préalable. Millions de posts supprimés.</div><span class="tag censure">Censure préventive</span></div>
     </div>
     <div class="tl-item">
-      <div class="tl-year">Mai 2021</div>
-      <div>
-        <div class="tl-ev">18 scientifiques (dont Prix Nobel) demandent une enquête dans Science</div>
-        <div class="tl-det">Lettre publiée dans la revue Science : les deux hypothèses méritent une investigation sérieuse. Passée quasi inaperçue dans la presse mainstream.</div>
-        <span class="tag retournement">Signal indépendant ignoré</span>
-      </div>
+      <div class="tl-yr">Mai 2021</div>
+      <div><div class="tl-ev">18 scientifiques dont des Prix Nobel publient dans Science : les deux hypothèses méritent enquête</div><div class="tl-det">Lettre dans la revue Science demandant une investigation sérieuse. Quasi ignorée par la presse mainstream, alors que la censure battait son plein.</div><span class="tag turn">Signal indépendant ignoré</span></div>
     </div>
     <div class="tl-item">
-      <div class="tl-year">Fév. 2023</div>
-      <div>
-        <div class="tl-ev">FBI : fuite de labo "most likely" · DOE : idem (confiance faible)</div>
-        <div class="tl-det">Le FBI déclare publiquement que l'origine la plus probable est une fuite accidentelle. Le DOE change sa position. La presse mainstream : "débat toujours ouvert".</div>
-        <span class="tag retournement">Retournement institutionnel</span>
-      </div>
+      <div class="tl-yr">Fév. 2023</div>
+      <div><div class="tl-ev">FBI et DOE : fuite de labo "most likely"</div><div class="tl-det">Le FBI déclare publiquement que la fuite accidentelle est l'origine la plus probable. Le DOE change de position. La presse mainstream continue de parler de "débat ouvert".</div><span class="tag turn">Retournement institutionnel</span></div>
     </div>
     <div class="tl-item">
-      <div class="tl-year">2024</div>
-      <div>
-        <div class="tl-ev">Congrès US publie emails internes NIH : doutes connus dès jan. 2020</div>
-        <div class="tl-det">Des documents FOIA montrent que des scientifiques du NIH avaient exprimé des doutes privés sur l'origine naturelle en janvier 2020 — mais ne les ont pas rendus publics.</div>
-        <span class="tag conflit">Information retenue</span>
-      </div>
+      <div class="tl-yr">2024</div>
+      <div><div class="tl-ev">Emails NIH publiés : doutes sur l'origine naturelle exprimés en interne dès jan. 2020</div><div class="tl-det">Documents FOIA : des scientifiques du NIH avaient des doutes privés sur l'origine naturelle mais ne les ont pas rendus publics. Biden accorde une grâce présidentielle préventive à Fauci.</div><span class="tag conflit">Information retenue</span></div>
     </div>
     <div class="tl-item">
-      <div class="tl-year">2025</div>
-      <div>
-        <div class="tl-ev">CIA : fuite de labo "plus probable" · Facebook supprime ses restrictions</div>
-        <div class="tl-det">La CIA rejoint FBI et DOE. Facebook retire les restrictions imposées en 2021 sans mea culpa public. Biden avait préalablement accordé une grâce présidentielle à Fauci.</div>
-        <span class="tag retournement">Reconnaissance tardive</span>
-      </div>
+      <div class="tl-yr">2025</div>
+      <div><div class="tl-ev">CIA rejoint FBI et DOE · Facebook supprime ses restrictions</div><div class="tl-det">La CIA révise son évaluation vers "fuite probable" (faible confiance). Facebook retire ses restrictions de 2021 sans mea culpa. EcoHealth Alliance perd son financement fédéral.</div><span class="tag turn">Reconnaissance tardive</span></div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 3 : CONFLITS D'INTÉRÊTS -->
 <section class="section" id="s3">
   <div class="sec-label">Les conflits d'intérêts structurels</div>
-  <h2 class="sec-title">Qui avait une raison de<br>ne pas <em>chercher</em> ?</h2>
-  <div class="body-text" style="margin-bottom:24px"><p>La question n'est pas de savoir si ces acteurs ont menti. La question est : qui avait un intérêt structurel à ce que l'hypothèse laboratoire ne soit pas explorée sérieusement ?</p></div>
-
-  <div class="conflict-table" id="conflicts">
-    <div class="ct-row">
-      <div>
-        <div class="ct-name">Anthony Fauci</div>
-        <div class="ct-role">Directeur NIAID · NIH</div>
-      </div>
-      <div class="ct-conflict">Le NIAID finançait EcoHealth Alliance via des subventions NIH. EcoHealth finançait des recherches à Wuhan. Si une fuite est confirmée, sa responsabilité institutionnelle est directement engagée. Biden lui a accordé une grâce présidentielle préventive en 2025.</div>
-      <div class="ct-flag">Conflit direct</div>
+  <h2 class="sec-title">Qui avait une raison<br>de ne pas <em>chercher</em> ?</h2>
+  <div class="body" style="margin-bottom:28px"><p>La question n'est pas de savoir si ces acteurs ont menti. C'est de comprendre pourquoi le débat a été fermé si rapidement — et qui avait structurellement intérêt à ce qu'il le soit.</p></div>
+  <div class="conflicts">
+    <div class="cf-row">
+      <div><div class="cf-name">Anthony Fauci</div><div class="cf-role">Directeur NIAID · NIH</div></div>
+      <div class="cf-text">Le NIAID finançait EcoHealth Alliance, qui finançait des recherches à Wuhan. Si une fuite est confirmée, sa responsabilité institutionnelle est directement engagée. Biden lui a accordé une grâce présidentielle préventive en 2025.</div>
+      <div class="cf-flag">Conflit direct</div>
     </div>
-    <div class="ct-row">
-      <div>
-        <div class="ct-name">Peter Daszak</div>
-        <div class="ct-role">Président EcoHealth Alliance</div>
-      </div>
-      <div class="ct-conflict">A organisé la lettre du Lancet (fév. 2020) sans déclarer son conflit d'intérêt. A été interdit de financement fédéral en 2025. Son ONG servait d'intermédiaire entre NIH et laboratoires chinois.</div>
-      <div class="ct-flag">Non déclaré</div>
+    <div class="cf-row">
+      <div><div class="cf-name">Peter Daszak</div><div class="cf-role">EcoHealth Alliance</div></div>
+      <div class="cf-text">A organisé la lettre du Lancet (fév. 2020) sans déclarer son conflit d'intérêt. Interdit de financement fédéral en 2025. Servait d'intermédiaire entre NIH et laboratoires chinois.</div>
+      <div class="cf-flag">Non déclaré</div>
     </div>
-    <div class="ct-row">
-      <div>
-        <div class="ct-name">OMS</div>
-        <div class="ct-role">Organisation Mondiale de la Santé</div>
-      </div>
-      <div class="ct-conflict">Dépendante de la coopération et du financement chinois. Son rapport de mars 2021 qualifie la fuite de labo d'"extrêmement improbable" sans avoir eu accès aux données brutes chinoises. La Chine a refusé les audits de laboratoires proposés ensuite.</div>
-      <div class="ct-flag">Dépendance institutionnelle</div>
+    <div class="cf-row">
+      <div><div class="cf-name">OMS</div><div class="cf-role">Organisation Mondiale de la Santé</div></div>
+      <div class="cf-text">Dépendante de la coopération et du financement chinois. Son rapport de mars 2021 qualifie la fuite de labo d'"extrêmement improbable" sans avoir eu accès aux données brutes chinoises.</div>
+      <div class="cf-flag">Dépendance structurelle</div>
     </div>
-    <div class="ct-row">
-      <div>
-        <div class="ct-name">Facebook / Meta</div>
-        <div class="ct-role">Plateforme — 2021</div>
-      </div>
-      <div class="ct-conflict">A censuré l'hypothèse laboratoire en mai 2021 sur recommandation de fact-checkers liés à l'OMS. A rétropédalé en 2024 sans explication publique ni mea culpa. Aucune responsabilité n'a été établie.</div>
-      <div class="ct-flag">Censure rétractée</div>
+    <div class="cf-row">
+      <div><div class="cf-name">Facebook · Meta</div><div class="cf-role">Plateforme · 2021</div></div>
+      <div class="cf-text">A censuré l'hypothèse sur recommandation de fact-checkers liés à l'OMS. A rétropédalé en 2024 sans explication publique ni mea culpa. Aucune responsabilité établie.</div>
+      <div class="cf-flag">Censure rétractée</div>
     </div>
   </div>
-</section>
 
-<section class="section" id="s4">
   <div class="verdict">
-    <div class="verdict-label">Ce que ce cas révèle</div>
-    <div class="verdict-text">L'hypothèse laboratoire n'a pas été réfutée en 2021 — elle a été censurée avant d'être enquêtée. Les conflits d'intérêts étaient réels et documentés. Les institutions qui ont fermé le débat avaient des raisons structurelles de le faire. Aujourd'hui, les mêmes institutions qui censuraient reconnaissent la légitimité de l'hypothèse — sans jamais rendre compte de leur rôle dans l'étouffement du débat initial.</div>
+    <div class="v-label">Ce que ce cas révèle — et ce qu'il ne dit pas</div>
+    <div class="v-text">L'origine du Covid reste inconnue. Ce que ce cas prouve, c'est qu'une hypothèse scientifique légitime a été disqualifiée sans enquête, par des acteurs ayant des raisons structurelles de ne pas la voir confirmée. C'est ce mécanisme — et non le verdict sur l'origine — que Confins documente.</div>
   </div>
 
-  <div class="confins-box">
-    <div class="cb-label">Ce que l'outil Recoupement apporte sur ce type de sujet</div>
-    <div class="cb-text">Sur une question comme celle-ci, l'outil mobilise des sources comme Alina Chan (chercheuse MIT), Matt Taibbi (investigation), Trita Parsi (think tank indépendant) — aux côtés de Reuters et AFP. La pluralité des sources révèle immédiatement quand le consensus institutionnel ne repose pas sur des données mais sur des intérêts.</div>
+  <div class="confins">
+    <div class="c-label">Ce que l'outil Recoupement apporte</div>
+    <div class="c-text">Sur ce sujet, l'outil mobilise Alina Chan (MIT, données génomiques), Matt Taibbi (investigation), Trita Parsi (think tank indépendant) — aux côtés de Reuters et AFP. La pluralité révèle immédiatement quand le consensus institutionnel repose sur des intérêts plutôt que sur des données.</div>
   </div>
 </section>
 
@@ -271,44 +218,42 @@ footer{padding:32px 24px;border-top:1px solid var(--bord);text-align:center;max-
 <script>
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.classList.add('visible')
-      if(e.target.id==='s1') drawDonut('donut1',[3,4,1],['#3A9A6A','#C04040','#C8A96E'])
-      if(e.target.id==='s2') animTl()
-      obs.unobserve(e.target)
-    }
+    if(!e.isIntersecting) return
+    e.target.classList.add('visible')
+    if(e.target.id==='s1') setTimeout(()=>drawDonut('donut',[3,4,1],['#7A4A9A','#C04040','#C8A96E']),200)
+    if(e.target.id==='s2') animTl()
+    obs.unobserve(e.target)
   })
-},{threshold:0.1})
+},{threshold:0.12})
 document.querySelectorAll('.section').forEach(s=>obs.observe(s))
 
 function drawDonut(id, data, colors) {
-  const canvas = document.getElementById(id)
-  if(!canvas) return
-  const ctx = canvas.getContext('2d')
-  const cx=80,cy=80,r=60,iR=38
+  const c = document.getElementById(id); if(!c) return
+  const ctx = c.getContext('2d')
+  const cx=80,cy=80,r=62,ir=40
   let start=-Math.PI/2
   const total=data.reduce((a,b)=>a+b,0)
-  data.forEach((val,i)=>{
-    const angle=(val/total)*Math.PI*2
+  data.forEach((v,i)=>{
+    const a=(v/total)*Math.PI*2
     ctx.beginPath(); ctx.moveTo(cx,cy)
-    ctx.arc(cx,cy,r,start,start+angle)
+    ctx.arc(cx,cy,r,start,start+a)
     ctx.closePath(); ctx.fillStyle=colors[i]; ctx.fill()
-    start+=angle
+    start+=a
   })
-  ctx.beginPath(); ctx.arc(cx,cy,iR,0,Math.PI*2)
-  ctx.fillStyle='#0D1117'; ctx.fill()
-  ctx.fillStyle='#E8F0F8'
-  ctx.font='bold 14px DM Mono,monospace'
+  ctx.beginPath(); ctx.arc(cx,cy,ir,0,Math.PI*2)
+  ctx.fillStyle='#08090D'; ctx.fill()
+  ctx.fillStyle='#EAE8F0'
+  ctx.font='bold 16px DM Mono,monospace'
   ctx.textAlign='center'; ctx.textBaseline='middle'
   ctx.fillText('8',cx,cy-8)
   ctx.font='9px DM Sans,sans-serif'
-  ctx.fillStyle='rgba(232,240,248,.4)'
+  ctx.fillStyle='rgba(234,232,240,.35)'
   ctx.fillText('agences',cx,cy+8)
 }
 
 function animTl(){
   document.querySelectorAll('.tl-item').forEach((item,i)=>{
-    setTimeout(()=>item.classList.add('visible'),i*160)
+    setTimeout(()=>item.classList.add('visible'),i*170)
   })
 }
 </script>
