@@ -204,9 +204,9 @@ export default function RecoupementClient() {
         const source = SOURCES.find(s => s.id === r.sourceId)
           || SOURCES.find(s => r.sourceId?.toLowerCase().includes(s.id.toLowerCase()))
           || SOURCES.find(s => s.name.toLowerCase().includes((r.sourceId || '').toLowerCase().split('_')[0]))
-          || { id: r.sourceId, name: r.sourceId || '??', type: '', bias: '', abbr: (r.sourceId || '??').slice(0, 2).toUpperCase() }
+          || { id: r.sourceId, name: r.sourceId || '??', type: '', bias: '', abbr: (r.sourceId || '??').slice(0, 2).toUpperCase(), niveau: 'verifie' }
         return { source, position: r.position, confidence: r.confidence, details: r.details }
-      }).filter((r: any) => r.position)
+      }).filter((r: any) => r.position && (r.source as any).niveau !== 'veille')
 
       const finalAnalysis: Analysis = {
         topic: parsed.topic || searchQuery,
