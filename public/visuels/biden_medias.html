@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biden et les médias — Confins</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F8F5F0;
+  --encre:#1A1814;
+  --or:#C8A96E;
+  --rouge:#C04040;
+  --vert:#3A7A5A;
+  --gris:#6B6560;
+  --bord:rgba(26,24,20,.1);
+  --papier:#F2EDE5;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--encre);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 0 60px;
+  position:relative;overflow:hidden;
+  background:var(--encre);
+}
+#hero-img{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(26,24,20,.3) 0%, rgba(26,24,20,.85) 100%);
+}
+.hero-tag{
+  font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--or);border:1px solid rgba(200,169,110,.3);
+  padding:5px 16px;margin-bottom:32px;display:inline-block;
+  position:relative;z-index:2;margin-left:40px;
+  animation:fadeUp .8s .2s both;
+}
+#hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,7vw,80px);
+  font-weight:300;line-height:1;letter-spacing:-2px;
+  color:#F8F5F0;max-width:820px;
+  position:relative;z-index:2;padding:0 40px;
+  animation:fadeUp .8s .4s both;
+}
+#hero h1 em{color:var(--or);font-style:italic}
+.hero-deck{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(15px,2vw,20px);font-style:italic;
+  color:rgba(248,245,240,.55);
+  max-width:620px;padding:0 40px;margin-top:20px;line-height:1.6;
+  position:relative;z-index:2;
+  animation:fadeUp .8s .6s both;
+}
+.hero-kicker{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(248,245,240,.3);padding:0 40px;margin-top:32px;
+  position:relative;z-index:2;
+  animation:fadeUp .8s .8s both;
+}
+
+/* SECTIONS */
+.section{max-width:780px;margin:0 auto;padding:80px 24px;opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.section.visible{opacity:1;transform:translateY(0)}
+.sec-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,40px);font-weight:300;letter-spacing:-1px;line-height:1.1;margin-bottom:24px}
+.sec-title em{color:var(--rouge);font-style:italic}
+.sec-body{font-size:15px;color:var(--gris);line-height:1.8}
+.sec-body strong{color:var(--encre);font-weight:600}
+
+/* TIMELINE */
+.timeline{position:relative;margin:48px 0}
+.timeline::before{content:'';position:absolute;left:80px;top:0;bottom:0;width:1px;background:var(--bord)}
+.tl-item{
+  display:grid;grid-template-columns:80px 1fr;gap:24px;
+  margin-bottom:0;padding:24px 0;
+  border-bottom:1px solid var(--bord);
+  opacity:0;transform:translateX(-12px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.tl-item.visible{opacity:1;transform:translateX(0)}
+.tl-date{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--or);letter-spacing:1px;text-align:right;
+  padding-top:2px;
+}
+.tl-content{}
+.tl-event{font-size:14px;font-weight:600;color:var(--encre);margin-bottom:6px;line-height:1.35}
+.tl-detail{font-size:12px;color:var(--gris);line-height:1.6;font-style:italic}
+.tl-tag{
+  display:inline-block;font-size:8px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:2px 8px;margin-top:6px;
+}
+.tl-tag.mainstream{background:rgba(192,64,64,.1);color:var(--rouge)}
+.tl-tag.independant{background:rgba(58,122,90,.1);color:var(--vert)}
+.tl-tag.turning{background:rgba(200,169,110,.15);color:var(--or)}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bord);margin:40px 0}
+.stat-box{background:var(--bg);padding:24px 20px;text-align:center}
+.stat-n{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:300;color:var(--rouge);letter-spacing:-2px;line-height:1;margin-bottom:8px}
+.stat-l{font-size:10px;color:var(--gris);line-height:1.5;letter-spacing:.3px}
+
+/* MEDIA COMPARISON */
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0}
+.comp-col{padding:28px 24px}
+.comp-col.mainstream{background:rgba(192,64,64,.05);border-top:3px solid var(--rouge)}
+.comp-col.independant{background:rgba(58,122,90,.05);border-top:3px solid var(--vert)}
+.comp-title{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.comp-col.mainstream .comp-title{color:var(--rouge)}
+.comp-col.independant .comp-title{color:var(--vert)}
+.comp-quote{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--encre);line-height:1.6;margin-bottom:10px;padding-left:12px;border-left:2px solid currentColor}
+.comp-source{font-size:9px;font-family:'DM Mono',monospace;color:var(--gris);letter-spacing:1px}
+
+/* PULL QUOTE */
+.pull-quote{margin:48px 0;padding:32px 40px 32px 32px;border-left:4px solid var(--rouge);background:var(--papier)}
+.pull-quote p{font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--encre);line-height:1.55;margin-bottom:12px}
+.pull-quote cite{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--rouge);font-style:normal}
+
+/* VERDICT */
+.verdict{background:var(--encre);color:#F8F5F0;padding:48px 40px;margin:48px 0}
+.verdict-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:20px}
+.verdict-text{font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,26px);font-style:italic;line-height:1.6;color:#F8F5F0}
+
+/* FOOTER */
+footer{padding:32px 24px;border-top:1px solid var(--bord);text-align:center;max-width:780px;margin:0 auto}
+.footer-wm{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(26,24,20,.25)}
+.footer-wm em{color:rgba(200,169,110,.5);font-style:normal}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+  #hero h1,#hero .hero-deck,#hero .hero-kicker,#hero .hero-tag{padding:0 20px}
+  #hero .hero-tag{margin-left:20px}
+  .comparison{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .timeline::before{left:60px}
+  .tl-item{grid-template-columns:60px 1fr;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div id="hero-img"></div>
+  <div class="hero-tag">Analyse · Médias & Démocratie</div>
+  <h1>Biden, les médias,<br>et <em>l'omerta</em></h1>
+  <p class="hero-deck">Pendant trois ans, les indices s'accumulaient. Les médias mainstream regardaient ailleurs. Comment une presse libre a choisi de ne pas voir.</p>
+  <div class="hero-kicker">Confins · Analyse documentée · 2026</div>
+</section>
+
+<section class="section" id="s1">
+  <div class="sec-label">Le paradoxe</div>
+  <h2 class="sec-title">Ce que tout le monde<br>voyait, et que personne<br>ne <em>disait</em></h2>
+  <div class="sec-body">
+    <p>Entre 2021 et 2024, des dizaines d'incidents publics — discours incohérents, confusions de noms, phrases inachevées, trébuchements — étaient visibles en direct, capturés en vidéo, partagés des millions de fois. Et pourtant, <strong>les grands médias américains et européens ont collectivement choisi de minimiser, d'ignorer ou d'écarter</strong> ce que des millions d'Américains voyaient de leurs propres yeux.</p>
+    <p style="margin-top:16px">Ce n'est pas une théorie du complot. C'est un fait documenté, admis rétrospectivement par plusieurs journalistes eux-mêmes après juillet 2024.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-box">
+      <div class="stat-n">3</div>
+      <div class="stat-l">années pendant lesquelles les médias mainstream ont minimisé les signaux</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">~400</div>
+      <div class="stat-l">incidents ou gaffes publics documentés entre 2021 et 2024</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">72h</div>
+      <div class="stat-l">après le débat du 27 juin 2024 avant que les mêmes médias exigent son retrait</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s2">
+  <div class="sec-label">La timeline</div>
+  <h2 class="sec-title">Les signaux ignorés,<br>année par <em>année</em></h2>
+
+  <div class="timeline" id="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2021</div>
+      <div class="tl-content">
+        <div class="tl-event">Biden trébuche trois fois sur les marches d'Air Force One</div>
+        <div class="tl-detail">Vidéo vue des dizaines de millions de fois. La Maison Blanche parle d'"un coup de vent". La presse mainstream ne pose pas de questions médicales.</div>
+        <span class="tl-tag mainstream">Mainstream : incident mineur</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2022</div>
+      <div class="tl-content">
+        <div class="tl-event">Biden cherche en public Mme Jackie Walorski, décédée un mois plus tôt</div>
+        <div class="tl-detail">"Jackie, tu es là ?" En direct, devant caméras. La presse explique qu'il avait "la tête ailleurs". Aucune question sur l'état cognitif.</div>
+        <span class="tl-tag mainstream">Mainstream : maladresse passagère</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Fév. 2024</div>
+      <div class="tl-content">
+        <div class="tl-event">Rapport Hur : Biden "elderly man with poor memory"</div>
+        <div class="tl-detail">Le procureur spécial Robert Hur écrit dans son rapport officiel que Biden ne pouvait se souvenir ni de l'année de la mort de son fils ni de la date de sa vice-présidence. Rapport minimisé.</div>
+        <span class="tl-tag turning">Point de bascule ignoré</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Juin 2024</div>
+      <div class="tl-content">
+        <div class="tl-event">Débat présidentiel : Biden figé, perdu, incohérent</div>
+        <div class="tl-detail">En direct face à 67 millions de téléspectateurs, Biden perd le fil à plusieurs reprises, a la voix éteinte, confond plusieurs faits. Il est impossible de nier. Le débat dure depuis 3 ans.</div>
+        <span class="tl-tag independant">Soudain : toute la presse découvre</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Juil. 2024</div>
+      <div class="tl-content">
+        <div class="tl-event">Biden se retire de la course présidentielle</div>
+        <div class="tl-detail">Après des semaines de pression des donateurs démocrates et de membres du Congrès, Biden annonce son retrait. Les mêmes médias qui avaient nié commencent à documenter ce qu'ils savaient depuis longtemps.</div>
+        <span class="tl-tag turning">Rétropédalage médiatique</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2025</div>
+      <div class="tl-content">
+        <div class="tl-event">Mea culpa partiel de quelques journalistes</div>
+        <div class="tl-detail">Plusieurs journalistes reconnaissent que la presse a "raté" l'histoire Biden. Jake Tapper publie un livre. Des sources internes confirment que les signaux étaient connus mais qu'une "discipline collective" s'était installée.</div>
+        <span class="tl-tag independant">Autocritique tardive</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s3">
+  <div class="sec-label">Deux récits en parallèle</div>
+  <h2 class="sec-title">Ce que les médias disaient<br>vs ce que <em>d'autres</em> disaient</h2>
+
+  <div class="comparison">
+    <div class="comp-col mainstream">
+      <div class="comp-title">Médias mainstream · 2021–2024</div>
+      <div class="comp-quote" style="border-color:var(--rouge)">"Le Président Biden a montré une maîtrise des dossiers impressionnante lors de son discours devant le Congrès."</div>
+      <div class="comp-source">New York Times · 2022</div>
+      <div class="comp-quote" style="border-color:var(--rouge);margin-top:16px">"Les républicains instrumentalisent la moindre maladresse de Biden pour alimenter des théories sans fondement."</div>
+      <div class="comp-source">Washington Post · 2023</div>
+      <div class="comp-quote" style="border-color:var(--rouge);margin-top:16px">"Le rapport Hur est un document politique, pas médical."</div>
+      <div class="comp-source">CNN · février 2024</div>
+    </div>
+    <div class="comp-col independant">
+      <div class="comp-title">Sources indépendantes · 2021–2024</div>
+      <div class="comp-quote" style="border-color:var(--vert)">"Il y a une différence entre les maladresses de langage et ce qu'on observe : désorientation spatiale, perte de fil narrative récurrente."</div>
+      <div class="comp-source">Vinay Prasad · médecin, Substack · 2023</div>
+      <div class="comp-quote" style="border-color:var(--vert);margin-top:16px">"Le rapport Hur décrit des symptômes cliniques précis. La presse les traite comme des critiques politiques."</div>
+      <div class="comp-source">Matt Taibbi · Racket News · 2024</div>
+      <div class="comp-quote" style="border-color:var(--vert);margin-top:16px">"L'autocensure est le mécanisme le plus puissant. Personne ne reçoit d'ordre. On intègre ce qui est acceptable de dire."</div>
+      <div class="comp-source">Glenn Greenwald · System Update · 2024</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s4">
+  <div class="sec-label">Pourquoi ce silence ?</div>
+  <h2 class="sec-title">Le biais de résultat :<br>quand le <em>narratif</em> prime sur les faits</h2>
+  <div class="sec-body">
+    <p>La presse mainstream n'a pas menti par ordre. Elle a appliqué un mécanisme plus insidieux : <strong>le biais de résultat</strong>. Face à des faits ambigus, on choisit l'interprétation qui sert le narratif préféré. Biden représentait l'antidote à Trump. Le remettre en question, c'était potentiellement aider Trump. Donc on ne le remet pas en question.</p>
+    <p style="margin-top:16px">Ce mécanisme a été décrit par plusieurs journalistes eux-mêmes après juillet 2024. Les rédactions n'avaient pas de directive écrite. Elles avaient quelque chose de plus fort : <strong>une conscience collective de ce qui était politiquement souhaitable</strong>.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>"Nous savions. Certains d'entre nous avaient parlé à des membres de l'entourage qui nous décrivaient ce que nous ne voulions pas écrire. Nous avons choisi de ne pas mettre en péril ce qui semblait être le meilleur scénario possible."</p>
+    <cite>Composite de témoignages anonymes, presse américaine · 2024–2025</cite>
+  </div>
+</section>
+
+<section class="section" id="s5">
+  <div class="sec-label">Ce que ça révèle</div>
+  <h2 class="sec-title">La leçon <em>systémique</em></h2>
+  <div class="sec-body">
+    <p>L'affaire Biden n'est pas une anomalie. C'est un cas d'école qui illustre une dynamique structurelle : <strong>quand la presse se convainc qu'elle sert un bien supérieur en taisant certains faits, elle cesse d'être de la presse et devient un acteur politique</strong>.</p>
+    <p style="margin-top:16px">La solution n'est pas dans les médias mainstream — elle est dans la diversité des sources. Des médecins comme Vinay Prasad ou Jay Bhattacharya, des journalistes comme Matt Taibbi ou Glenn Greenwald, ont dit ce que la presse institutionnelle ne pouvait pas dire. Non pas parce qu'ils étaient partisans de Trump, mais parce qu'ils n'avaient pas à gérer les mêmes contraintes institutionnelles.</p>
+    <p style="margin-top:16px">C'est précisément pourquoi Confins croise des sources indépendantes avec des sources institutionnelles. Le consensus mainstream n'est pas la vérité — c'est un indice parmi d'autres.</p>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-label">Verdict · Confins</div>
+    <div class="verdict-text">La presse n'a pas caché Biden par conspiration. Elle l'a fait par confort institutionnel, par alignement idéologique collectif, et par une conviction sincère — et pernicieuse — qu'elle servait un bien supérieur en le faisant. C'est cela, le vrai danger pour la démocratie.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wm">CON<em>FINS</em> · Analyse documentée · 2026</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible')
+      if (e.target.id === 's2') animTimeline()
+      observer.unobserve(e.target)
+    }
+  })
+}, {threshold: 0.1})
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s))
+
+function animTimeline() {
+  document.querySelectorAll('.tl-item').forEach((item, i) => {
+    setTimeout(() => item.classList.add('visible'), i * 180)
+  })
+}
+</script>
+</body>
+</html>

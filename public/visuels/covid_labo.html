@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Covid : l'hypothèse du laboratoire — Confins</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0D1117;
+  --surface:#131920;
+  --encre:#E8F0F8;
+  --bleu:#4A8FBF;
+  --rouge:#C04040;
+  --vert:#3A9A6A;
+  --or:#C8A96E;
+  --gris:rgba(232,240,248,.45);
+  --bord:rgba(232,240,248,.08);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--encre);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:48px 24px;position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 60%, rgba(74,143,191,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 20% 20%, rgba(192,64,64,.06) 0%, transparent 50%);
+}
+.hero-tag{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--bleu);border:1px solid rgba(74,143,191,.3);padding:5px 16px;margin-bottom:28px;animation:fadeUp .8s .2s both;position:relative}
+#hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,6.5vw,68px);font-weight:300;line-height:1.05;letter-spacing:-2px;color:var(--encre);max-width:800px;animation:fadeUp .8s .4s both;position:relative}
+#hero h1 em{color:var(--or);font-style:italic}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(14px,2vw,18px);font-style:italic;color:var(--gris);margin-top:20px;max-width:560px;line-height:1.65;animation:fadeUp .8s .6s both;position:relative}
+.hero-warning{
+  margin-top:32px;padding:12px 24px;
+  background:rgba(192,64,64,.1);border:1px solid rgba(192,64,64,.25);
+  font-size:11px;color:rgba(192,64,64,.8);
+  font-family:'DM Mono',monospace;letter-spacing:1px;
+  animation:fadeUp .8s .8s both;position:relative;
+}
+
+/* SECTIONS */
+.section{max-width:780px;margin:0 auto;padding:80px 24px;border-top:1px solid var(--bord);opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.section.visible{opacity:1;transform:translateY(0)}
+.sec-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--bleu);margin-bottom:16px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);font-weight:300;letter-spacing:-1px;line-height:1.1;margin-bottom:24px}
+.sec-title em{color:var(--or);font-style:italic}
+.sec-body{font-size:15px;color:var(--gris);line-height:1.8}
+.sec-body strong{color:var(--encre);font-weight:600}
+
+/* TIMELINE DUAL — deux colonnes gauche/droite */
+.dual-timeline{position:relative;margin:48px 0}
+.dual-timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--bord);transform:translateX(-50%)}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-bottom:1px}
+.dt-cell{padding:20px 24px;background:var(--surface)}
+.dt-cell.left{text-align:right;border-right:2px solid var(--rouge)}
+.dt-cell.right{border-left:2px solid var(--vert)}
+.dt-header{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(255,255,255,.03)}
+.dt-col-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.dt-col-label.red{color:var(--rouge)}
+.dt-col-label.green{color:var(--vert)}
+.dt-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--or);margin-bottom:6px;letter-spacing:1px}
+.dt-event{font-size:13px;font-weight:600;color:var(--encre);margin-bottom:5px;line-height:1.35}
+.dt-detail{font-size:11px;color:var(--gris);line-height:1.55;font-style:italic}
+.dt-row{opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
+.dt-row.visible{opacity:1;transform:translateY(0)}
+
+/* CONSENSUS BOX */
+.consensus-box{
+  background:var(--surface);padding:32px;
+  border-left:3px solid var(--vert);margin:40px 0;
+}
+.cb-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--vert);margin-bottom:16px}
+.cb-items{display:flex;flex-direction:column;gap:10px}
+.cb-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--gris);line-height:1.55}
+.cb-dot{width:6px;height:6px;border-radius:50%;background:var(--vert);flex-shrink:0;margin-top:5px}
+
+/* ACTORS — conflits d'intérêts */
+.actors{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin:40px 0}
+.actor{background:var(--surface);padding:20px}
+.actor-name{font-size:14px;font-weight:600;color:var(--encre);margin-bottom:4px}
+.actor-role{font-size:10px;color:var(--bleu);margin-bottom:8px;letter-spacing:.5px}
+.actor-conflict{font-size:12px;color:var(--gris);line-height:1.55;font-style:italic}
+.actor-flag{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--rouge);margin-top:8px}
+
+/* REVERSAL */
+.reversal{background:rgba(58,154,106,.06);border:1px solid rgba(58,154,106,.2);padding:32px;margin:40px 0}
+.rev-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--vert);margin-bottom:16px}
+.rev-items{display:flex;flex-direction:column;gap:12px}
+.rev-item{display:flex;gap:12px;align-items:flex-start}
+.rev-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--vert);flex-shrink:0;width:60px;padding-top:2px}
+.rev-text{font-size:13px;color:var(--encre);line-height:1.55}
+
+/* VERDICT */
+.verdict{background:rgba(74,143,191,.08);border-top:2px solid var(--bleu);padding:48px 32px;margin:48px 0}
+.verdict-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--bleu);margin-bottom:20px}
+.verdict-text{font-family:'Playfair Display',serif;font-size:clamp(17px,2.5vw,22px);font-style:italic;line-height:1.65;color:var(--encre)}
+
+footer{padding:32px 24px;border-top:1px solid var(--bord);text-align:center;max-width:780px;margin:0 auto}
+.footer-wm{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(232,240,248,.2)}
+.footer-wm em{color:rgba(200,169,110,.35);font-style:normal}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+  .dual-timeline::before{display:none}
+  .dt-row{grid-template-columns:1fr}
+  .dt-cell.left{text-align:left;border-right:none;border-left:2px solid var(--rouge)}
+  .actors{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="hero-tag">Analyse · Covid & Institutions</div>
+  <h1>L'hypothèse du laboratoire :<br>de la <em>conspirationnisme</em><br>à la conclusion officielle</h1>
+  <p class="hero-sub">En 2021, Facebook censure cette théorie. En 2023, le FBI et la CIA concluent que c'est l'origine la plus probable. Entre les deux, trois ans de silence institutionnel.</p>
+  <div class="hero-warning">CONFLIT D'INTÉRÊTS DOCUMENTÉ — Fauci finançait des recherches à Wuhan via EcoHealth Alliance</div>
+</section>
+
+<section class="section" id="s1">
+  <div class="sec-label">La mécanique du déni</div>
+  <h2 class="sec-title">Comment un fait plausible est<br>devenu une <em>théorie complotiste</em></h2>
+  <div class="sec-body">
+    <p>En mai 2021, alors que des scientifiques indépendants — dont plusieurs prix Nobel — demandaient une enquête sérieuse sur l'origine du Covid-19, Facebook supprimait les posts mentionnant une possible fuite de laboratoire. L'OMS qualifiait l'hypothèse d'"extrêmement improbable". Anthony Fauci, directeur du NIAID, traitait les questionnements de "désinformation".</p>
+    <p style="margin-top:16px"><strong>Ce qu'on n'avait pas dit au public :</strong> depuis 2014, le NIAID de Fauci finançait, via l'ONG EcoHealth Alliance, des recherches à gain de fonction au laboratoire de virologie de Wuhan — le même dont on soupçonnait une fuite.</p>
+  </div>
+</section>
+
+<section class="section" id="s2">
+  <div class="sec-label">Timeline parallèle</div>
+  <h2 class="sec-title">Ce que les institutions disaient /<br>ce que la <em>science</em> montrait</h2>
+
+  <div class="dual-timeline" id="dual-tl">
+    <div class="dt-header">
+      <span class="dt-col-label red">Discours officiel & mainstream</span>
+      <span class="dt-col-label green">Signaux indépendants</span>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell left">
+        <div class="dt-date">MAI 2021</div>
+        <div class="dt-event">Facebook censure "fuite de labo"</div>
+        <div class="dt-detail">Meta retire les posts sur l'hypothèse laboratoire sur recommandation des "fact-checkers" liés à l'OMS.</div>
+      </div>
+      <div class="dt-cell right">
+        <div class="dt-date">MAI 2021</div>
+        <div class="dt-event">18 scientifiques demandent une enquête</div>
+        <div class="dt-detail">Lettre dans Science signée par 18 chercheurs dont plusieurs Nobel : les deux hypothèses méritent enquête sérieuse.</div>
+      </div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell left">
+        <div class="dt-date">2021–22</div>
+        <div class="dt-event">Fauci : "pas de financement de recherches dangereuses"</div>
+        <div class="dt-detail">Devant le Congrès, Fauci nie que le NIAID ait financé des recherches à gain de fonction à Wuhan.</div>
+      </div>
+      <div class="dt-cell right">
+        <div class="dt-date">2021–22</div>
+        <div class="dt-event">Documents NIH publiés : financement confirmé</div>
+        <div class="dt-detail">Des documents obtenus via FOIA montrent des subventions NIH/NIAID à EcoHealth Alliance pour des recherches à Wuhan incluant modifications virales.</div>
+      </div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell left">
+        <div class="dt-date">2022</div>
+        <div class="dt-event">OMS : "priorité à l'hypothèse zoonotique"</div>
+        <div class="dt-detail">Le second rapport OMS-Chine exclut de fait l'hypothèse laboratoire de ses recommandations prioritaires d'enquête.</div>
+      </div>
+      <div class="dt-cell right">
+        <div class="dt-date">2022</div>
+        <div class="dt-event">Alina Chan publie "Viral"</div>
+        <div class="dt-detail">La chercheuse du Broad Institute documente méthodiquement les anomalies du virus et les obstacles à l'enquête chinoise.</div>
+      </div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell left">
+        <div class="dt-date">Fév. 2023</div>
+        <div class="dt-event">Mainstream : "toujours incertain"</div>
+        <div class="dt-detail">La presse mainstream maintient l'équivalence des deux hypothèses, sans signaler les nouvelles conclusions gouvernementales.</div>
+      </div>
+      <div class="dt-cell right">
+        <div class="dt-date">Fév. 2023</div>
+        <div class="dt-event">FBI : fuite de labo "most likely"</div>
+        <div class="dt-detail">Le directeur du FBI Christopher Wray déclare que le Bureau conclut à "faible confiance" que le Covid est issu d'une fuite accidentelle en laboratoire.</div>
+      </div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell left">
+        <div class="dt-date">2023</div>
+        <div class="dt-event">Médias : "débat toujours ouvert"</div>
+        <div class="dt-detail">La majorité des grands médias continuent de présenter les deux hypothèses comme équivalentes, malgré les conclusions du renseignement américain.</div>
+      </div>
+      <div class="dt-cell right">
+        <div class="dt-date">2023</div>
+        <div class="dt-event">CIA, DOE : fuite de labo probable</div>
+        <div class="dt-detail">La CIA et le Département de l'Énergie rejoignent le FBI. Sur les 8 agences américaines d'intelligence, 4 penchent pour la fuite de labo.</div>
+      </div>
+    </div>
+    <div class="dt-row">
+      <div class="dt-cell left">
+        <div class="dt-date">2024</div>
+        <div class="dt-event">Congrès : auditions publiques</div>
+        <div class="dt-detail">Le Congrès publie des documents internes montrant que des officiels du NIH étaient au courant du risque de fuite dès 2020 et ont choisi de ne pas le rendre public.</div>
+      </div>
+      <div class="dt-cell right">
+        <div class="dt-date">2024</div>
+        <div class="dt-event">Facebook rétablit les posts supprimés</div>
+        <div class="dt-detail">Meta annonce qu'il ne considère plus l'hypothèse laboratoire comme de la "désinformation" et retire les restrictions imposées en 2021.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s3">
+  <div class="sec-label">Les conflits d'intérêts</div>
+  <h2 class="sec-title">Qui avait une raison de<br>ne pas <em>chercher</em> ?</h2>
+  <div class="sec-body">
+    <p>La question n'est pas de savoir si ces acteurs ont menti. La question est de comprendre pourquoi le débat a été fermé si rapidement — et qui avait intérêt à ce qu'il le soit.</p>
+  </div>
+  <div class="actors">
+    <div class="actor">
+      <div class="actor-name">Anthony Fauci</div>
+      <div class="actor-role">Directeur NIAID · NIH</div>
+      <div class="actor-conflict">Le NIAID finançait EcoHealth Alliance, qui finançait des recherches à Wuhan. Si une fuite est confirmée, sa responsabilité institutionnelle est directement engagée.</div>
+      <div class="actor-flag">Conflit d'intérêt direct</div>
+    </div>
+    <div class="actor">
+      <div class="actor-name">Peter Daszak</div>
+      <div class="actor-role">Président EcoHealth Alliance</div>
+      <div class="actor-conflict">A coordonné la lettre dans The Lancet (février 2020) signée par 27 scientifiques condamnant les "théories complotistes" — sans déclarer son conflit d'intérêt : il finançait lui-même Wuhan.</div>
+      <div class="actor-flag">Conflit d'intérêt non déclaré</div>
+    </div>
+    <div class="actor">
+      <div class="actor-name">OMS</div>
+      <div class="actor-role">Organisation Mondiale de la Santé</div>
+      <div class="actor-conflict">Dépendant du financement chinois et de la coopération de Pékin. Une conclusion défavorable à la Chine risquait de compromettre les futures collaborations de santé publique.</div>
+      <div class="actor-flag">Dépendance institutionnelle</div>
+    </div>
+    <div class="actor">
+      <div class="actor-name">Facebook / Meta</div>
+      <div class="actor-role">Plateforme sociale</div>
+      <div class="actor-conflict">A censuré l'hypothèse laboratoire sur recommandation de "fact-checkers" eux-mêmes liés à des réseaux proches de l'OMS. A rétropédalé en 2024 sans explication publique.</div>
+      <div class="actor-flag">Censure rétractée</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s4">
+  <div class="sec-label">Le retournement</div>
+  <h2 class="sec-title">Ce qui a été officiellement<br><em>reconnu</em> depuis</h2>
+  <div class="reversal">
+    <div class="rev-label">Reconnaissances officielles · 2023–2025</div>
+    <div class="rev-items">
+      <div class="rev-item">
+        <div class="rev-date">Fév. 2023</div>
+        <div class="rev-text">Le FBI conclut à une fuite accidentelle de laboratoire comme origine la plus probable (confiance modérée).</div>
+      </div>
+      <div class="rev-item">
+        <div class="rev-date">Mars 2023</div>
+        <div class="rev-text">Le Département de l'Énergie américain adopte la même conclusion (confiance faible).</div>
+      </div>
+      <div class="rev-item">
+        <div class="rev-date">2023</div>
+        <div class="rev-text">La CIA publie une évaluation "indéterminée" mais reconnaît que l'hypothèse laboratoire est sérieuse.</div>
+      </div>
+      <div class="rev-item">
+        <div class="rev-date">2024</div>
+        <div class="rev-text">Le Congrès publie des emails internes du NIH montrant que des scientifiques avaient des doutes sur l'origine naturelle dès janvier 2020, mais ne les ont pas rendus publics.</div>
+      </div>
+      <div class="rev-item">
+        <div class="rev-date">2024</div>
+        <div class="rev-text">Facebook/Meta supprime ses restrictions sur les contenus évoquant l'hypothèse laboratoire — sans mea culpa public.</div>
+      </div>
+      <div class="rev-item">
+        <div class="rev-date">2025</div>
+        <div class="rev-text">Sous l'administration Trump, le NIH suspend le financement d'EcoHealth Alliance. Peter Daszak est interdit de financement fédéral.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s5">
+  <div class="verdict">
+    <div class="verdict-label">Verdict · Confins</div>
+    <div class="verdict-text">L'hypothèse d'une fuite de laboratoire n'était pas une théorie complotiste. C'était une hypothèse scientifique légitime, censurée par des plateformes et minimisée par des institutions qui avaient des raisons directes de ne pas la voir confirmée. La presse mainstream a relayé ce consensus sans le questionner. Ce cas illustre pourquoi croiser des sources indépendantes — des chercheurs comme Alina Chan, des journalistes comme Matt Taibbi — est indispensable pour accéder à une information complète.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wm">CON<em>FINS</em> · Analyse documentée · 2026</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible')
+      if (e.target.id === 's2') animDualTl()
+      observer.unobserve(e.target)
+    }
+  })
+}, {threshold: 0.1})
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s))
+
+function animDualTl() {
+  document.querySelectorAll('.dt-row').forEach((row, i) => {
+    setTimeout(() => row.classList.add('visible'), i * 200)
+  })
+}
+</script>
+</body>
+</html>
