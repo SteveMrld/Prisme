@@ -451,9 +451,9 @@ export default function RecoupementClient() {
                 </div>
               ))}
             </div>
+          )}
           </div>
 
-          )}
           {/* BRIEFING GENERATOR */}
           {history.length >= 2 && (
             <div className={styles.briefingBlock}>
