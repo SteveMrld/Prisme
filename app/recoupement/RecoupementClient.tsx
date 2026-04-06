@@ -250,7 +250,19 @@ export default function RecoupementClient() {
             ))}
           </div>
         )}
-        {error && <div className={styles.errorMsg}>{error}</div>}
+        {error && (
+        <div className={styles.retryBlock}>
+          <div className={styles.retryIcon}>⏳</div>
+          <div className={styles.retryTitle}>L'analyse prend plus de temps que prévu</div>
+          <p className={styles.retryText}>
+            La recherche en temps réel sur {SOURCES.length} sources peut prendre jusqu'à 30 secondes.
+            Attendez quelques instants puis relancez.
+          </p>
+          <button className={styles.retryBtn} onClick={() => { setError(''); handleSearch() }}>
+            Relancer l'analyse →
+          </button>
+        </div>
+      )}
       </div>
 
       {/* LOADING */}
