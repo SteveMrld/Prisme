@@ -328,3 +328,38 @@
   font-family: 'DM Mono', monospace;
   flex-shrink: 0;
 }
+
+/* EXAMPLE CARDS */
+.examples { display: flex; flex-direction: column; gap: 2px; margin-top: 24px; }
+.exCard {
+  background: #F5F3EF; padding: 20px 24px;
+  border-left: 2px solid transparent;
+  transition: border-color .2s, background .2s;
+}
+.exCard:hover { border-left-color: var(--or); background: #F0EDE7; }
+.exCardTop {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 8px;
+}
+.exCardDate {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--gris-l);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.exCardBtn {
+  background: none; border: none; cursor: pointer;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--or);
+  font-family: 'DM Sans', sans-serif;
+  transition: color .2s; padding: 0;
+}
+.exCardBtn:hover { color: var(--encre); }
+.exCardQuery {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 400;
+  color: var(--encre); margin-bottom: 8px; line-height: 1.3;
+}
+.exCardContext {
+  font-size: 12px; color: var(--gris);
+  line-height: 1.65; font-style: italic;
+}
