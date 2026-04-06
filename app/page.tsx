@@ -283,6 +283,8 @@ export default function HomePage() {
               <span className={styles.atlanticLabel}>Populaires</span>
             </div>
             {(articlesData as any[])
+              .filter((a: any) => ['afrique', 'lecture', 'chine', 'empires', 'ia'].includes(a.slug))
+              .sort((a: any, b: any) => ['afrique', 'lecture', 'chine', 'empires', 'ia'].indexOf(a.slug) - ['afrique', 'lecture', 'chine', 'empires', 'ia'].indexOf(b.slug))
               .slice(0, 5)
               .map((article: any, i: number) => (
               <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.popularItem}>
