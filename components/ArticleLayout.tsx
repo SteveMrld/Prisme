@@ -156,7 +156,23 @@ export default function ArticleLayout({
       </div>
 
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
-        <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
+        {isPremiumContent ? (
+          <div className={styles.paywallWrap}>
+            <div className={styles.paywallContent}>
+              <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
+            </div>
+            <div className={styles.paywallGradient} />
+            <div className={styles.paywallBox}>
+              <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
+              <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
+              <p className={styles.paywallDesc}>Accédez à l'intégralité de cet article et à tous les grands formats Confins.</p>
+              <a href="/abonnement" className={styles.paywallCta}>S'abonner — dès 6€/mois</a>
+              <a href="/connexion" className={styles.paywallLogin}>Déjà abonné ? Se connecter</a>
+            </div>
+          </div>
+        ) : (
+          <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
+        )}
 
         {/* SIGNATURE BAS */}
         <div className={styles.authorSignature}>
