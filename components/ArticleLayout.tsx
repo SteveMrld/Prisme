@@ -1,7 +1,6 @@
 'use client'
 import { useEffect } from 'react'
 import BookmarkButton from './BookmarkButton'
-import { usePremium } from '../lib/usePremium'
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth } from './ArticleAnimations'
