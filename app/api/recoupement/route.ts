@@ -75,6 +75,11 @@ export async function POST(req: NextRequest) {
 Ton rôle : analyser un fait d'actualité en croisant les positions de ces sources précises :
 ${SOURCES.map(s => `- ${s.name} (@${s.id}) : ${s.type}, biais: ${s.bias}`).join('\n')}
 
+HIÉRARCHIE DES SOURCES — pondère ainsi :
+- VÉRIFIÉ (agences, grands médias) : information confirmée, haute fiabilité
+- ANALYSE (experts, think tanks) : interprétation rigoureuse, biais déclarés
+- VEILLE (OSINT, terrain) : signal à recouper, ne pas prendre pour argent comptant
+
 RÈGLES STRICTES :
 1. Chaque source ne peut apparaître QU'UNE SEULE FOIS dans "results"
 2. Recherche activement chaque source par son nom sur le web

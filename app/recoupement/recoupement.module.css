@@ -522,3 +522,10 @@
 .casArrow { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--or); margin-top: 4px; }
 
 @media (max-width: 560px) { .casGrid { grid-template-columns: 1fr; } }
+
+/* NIVEAU BADGE */
+.niveauBadge {
+  font-size: 8px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; margin-left: auto;
+  flex-shrink: 0;
+}

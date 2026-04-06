@@ -78,6 +78,12 @@ type SourceResult = {
   details: string
 }
 
+const NIVEAU_LABELS: Record<string, { label: string; color: string }> = {
+  verifie: { label: 'Vérifié',  color: '#4A8FBF' },
+  analyse: { label: 'Analyse',  color: '#8A5AAA' },
+  veille:  { label: 'Veille',   color: '#C8A96E' },
+}
+
 type Analysis = {
   topic: string
   consensus: string[]
@@ -476,6 +482,9 @@ export default function RecoupementClient() {
                       <div className={styles.cardInfo}>
                         <div className={styles.cardName}>{r.source.name}</div>
                         <div className={styles.cardMeta}>{r.source.type}{r.source.bias ? ` · ${r.source.bias}` : ''}</div>
+                      </div>
+                      <div className={styles.niveauBadge} style={{color: NIVEAU_LABELS[(r.source as any).niveau || 'verifie']?.color}}>
+                        {NIVEAU_LABELS[(r.source as any).niveau || 'verifie']?.label}
                       </div>
                       <div className={styles.cardConf} data-level={r.confidence}>
                         {r.confidence === 'haute' ? '●●●' : r.confidence === 'moyenne' ? '●●○' : '●○○'}
