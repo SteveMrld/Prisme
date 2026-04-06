@@ -724,3 +724,22 @@
   gap: 12px;
   margin-bottom: 8px;
 }
+
+/* ACTION BAR */
+.actionBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 20px 0;
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  margin: 24px 0 32px;
+}
+.actionBtn {
+  background: none; border: none; cursor: pointer;
+  color: var(--gris-m); padding: 4px;
+  transition: color .2s;
+  display: flex; align-items: center;
+}
+.actionBtn:hover { color: var(--encre); }

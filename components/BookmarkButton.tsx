@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import styles from './BookmarkButton.module.css'
 
-export default function BookmarkButton({ slug, title }: { slug: string; title: string }) {
+export default function BookmarkButton({ slug, title, iconOnly }: { slug: string; title: string; iconOnly?: boolean }) {
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
@@ -30,15 +30,15 @@ export default function BookmarkButton({ slug, title }: { slug: string; title: s
 
   return (
     <button
-      className={`${styles.btn} ${saved ? styles.saved : ''}`}
+      className={iconOnly ? `${styles.actionBtn} ${saved ? styles.actionSaved : ''}` : `${styles.btn} ${saved ? styles.saved : ''}`}
       onClick={toggle}
       title={saved ? 'Retirer des lectures' : 'Sauvegarder'}
       aria-label={saved ? 'Retirer des lectures' : 'Sauvegarder'}
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill={saved ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill={saved ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
       </svg>
-      <span className={styles.label}>{saved ? 'Sauvegardé' : 'Sauvegarder'}</span>
+      {!iconOnly && <span className={styles.label}>{saved ? 'Sauvegardé' : 'Sauvegarder'}</span>}
     </button>
   )
 }

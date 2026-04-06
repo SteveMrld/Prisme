@@ -10,3 +10,12 @@
 .btn:hover { border-color: var(--encre); color: var(--encre); }
 .btn.saved { border-color: var(--or); color: var(--or); background: rgba(200,169,110,.06); }
 .label { font-size: 9px; }
+
+.actionBtn {
+  background: none; border: none; cursor: pointer;
+  color: var(--gris-m); padding: 4px;
+  transition: color .2s;
+  display: flex; align-items: center;
+}
+.actionBtn:hover { color: var(--encre); }
+.actionSaved { color: var(--or) !important; }
