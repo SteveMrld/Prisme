@@ -492,3 +492,33 @@
   font-size: 10px; color: var(--gris-l); margin-top: 12px;
   font-family: 'DM Sans', sans-serif; text-decoration: underline;
 }
+
+/* CAS DOCUMENTÉS */
+.casSection { margin-top: 40px; }
+.casLabel {
+  font-size: 8px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gris-l);
+  margin-bottom: 12px;
+}
+.casGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.casCard {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 22px 20px; background: #F5F3EF;
+  text-decoration: none; border-left: 2px solid transparent;
+  transition: border-color .2s, background .15s;
+}
+.casCard:hover { border-left-color: var(--or); background: #F0EDE7; }
+.casTag {
+  font-size: 8px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; border: 1px solid;
+  padding: 3px 10px; display: inline-block; width: fit-content;
+}
+.casTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; font-weight: 400;
+  color: var(--encre); line-height: 1.35;
+}
+.casDesc { font-size: 11px; color: var(--gris-l); font-style: italic; line-height: 1.4; }
+.casArrow { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--or); margin-top: 4px; }
+
+@media (max-width: 560px) { .casGrid { grid-template-columns: 1fr; } }

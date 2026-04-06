@@ -319,6 +319,27 @@ export default function RecoupementClient() {
           </div>
         )}
 
+        {/* CAS DOCUMENTÉS */}
+        {!analysis && !loading && (
+          <div className={styles.casSection}>
+            <div className={styles.casLabel}>Cas documentés · Pourquoi croiser les sources</div>
+            <div className={styles.casGrid}>
+              <a href="/visuels/medias_biais.html" target="_blank" className={styles.casCard}>
+                <div className={styles.casTag} style={{color:'#C04040',borderColor:'rgba(192,64,64,.2)'}}>Médias & Démocratie</div>
+                <div className={styles.casTitle}>Biden et les médias : 73% des Américains préoccupés, la presse disait "hystérie"</div>
+                <div className={styles.casDesc}>Sondages réels · Admissions journalistiques · Timeline documentée 2021–2025</div>
+                <div className={styles.casArrow}>Voir l'analyse →</div>
+              </a>
+              <a href="/visuels/covid_consensus.html" target="_blank" className={styles.casCard}>
+                <div className={styles.casTag} style={{color:'#4A8FBF',borderColor:'rgba(74,143,191,.2)'}}>Covid & Institutions</div>
+                <div className={styles.casTitle}>Fuite de labo : censurée en 2021, soutenue par FBI et CIA en 2025</div>
+                <div className={styles.casDesc}>Conflits d'intérêts documentés · 8 agences US · Timeline de la censure au retournement</div>
+                <div className={styles.casArrow}>Voir l'analyse →</div>
+              </a>
+            </div>
+          </div>
+        )}
+
         {error === 'timeout' && (
           <div className={styles.retryBlock}>
             <div className={styles.retryIcon}>⏳</div>
