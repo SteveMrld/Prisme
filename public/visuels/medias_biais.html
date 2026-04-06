@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comment les médias mainstream se trompent — Cas Biden · Confins</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F8F5F0;
+  --encre:#1A1814;
+  --or:#C8A96E;
+  --rouge:#C04040;
+  --vert:#3A7A5A;
+  --bleu:#2D5A8A;
+  --gris:#6B6560;
+  --papier:#F2EDE5;
+  --bord:rgba(26,24,20,.1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--encre);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+
+/* HERO */
+#hero{background:var(--encre);padding:80px 28px 60px;text-align:center}
+.hero-tag{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);border:1px solid rgba(200,169,110,.3);padding:5px 16px;margin-bottom:24px;display:inline-block;animation:fadeUp .8s .2s both}
+#hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,6vw,64px);font-weight:300;line-height:1.05;letter-spacing:-2px;color:#F8F5F0;max-width:800px;margin:0 auto;animation:fadeUp .8s .4s both}
+#hero h1 em{color:var(--or);font-style:italic}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(14px,2vw,18px);font-style:italic;color:rgba(248,245,240,.5);margin:16px auto 0;max-width:560px;line-height:1.65;animation:fadeUp .8s .6s both}
+.hero-method{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(248,245,240,.25);margin-top:24px;animation:fadeUp .8s .8s both}
+
+/* INTRO */
+.intro{max-width:780px;margin:0 auto;padding:60px 24px 0;font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--gris);line-height:1.75;border-bottom:1px solid var(--bord);padding-bottom:40px}
+.intro strong{color:var(--encre);font-style:normal}
+
+/* SECTIONS */
+.section{max-width:780px;margin:0 auto;padding:64px 24px;border-bottom:1px solid var(--bord);opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.section.visible{opacity:1;transform:translateY(0)}
+.sec-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:12px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,34px);font-weight:300;letter-spacing:-1px;line-height:1.1;margin-bottom:20px}
+.sec-title em{color:var(--rouge);font-style:italic}
+.body-text{font-size:15px;color:var(--gris);line-height:1.8}
+.body-text strong{color:var(--encre);font-weight:600}
+
+/* DONUT CHART */
+.chart-wrap{display:flex;gap:40px;align-items:center;margin:40px 0;flex-wrap:wrap}
+.donut{flex-shrink:0}
+.donut-legend{display:flex;flex-direction:column;gap:12px;flex:1;min-width:200px}
+.legend-item{display:flex;align-items:center;gap:10px}
+.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.legend-label{font-size:12px;color:var(--gris);line-height:1.4}
+.legend-pct{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;color:var(--encre);margin-left:auto}
+.chart-source{font-size:9px;color:rgba(107,101,96,.5);font-style:italic;margin-top:8px;font-family:'DM Mono',monospace;letter-spacing:.5px}
+
+/* BAR CHART */
+.bar-chart{margin:32px 0}
+.bc-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bc-label{width:160px;font-size:11px;color:var(--gris);flex-shrink:0;text-align:right;line-height:1.3}
+.bc-track{flex:1;height:8px;background:rgba(26,24,20,.08);overflow:hidden}
+.bc-fill{height:100%;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.bc-pct{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;width:36px;flex-shrink:0;color:var(--encre)}
+
+/* TIMELINE COMPARISON */
+.tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:32px 0}
+.tl-header{padding:10px 16px;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.tl-header.media{background:rgba(192,64,64,.08);color:var(--rouge)}
+.tl-header.reality{background:rgba(58,122,90,.08);color:var(--vert)}
+.tl-cell{padding:16px;border-bottom:1px solid var(--bord)}
+.tl-cell.media{background:rgba(192,64,64,.03)}
+.tl-cell.reality{background:rgba(58,122,90,.03)}
+.tl-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--or);margin-bottom:5px;letter-spacing:1px}
+.tl-text{font-size:12px;color:var(--encre);line-height:1.5;font-weight:500;margin-bottom:4px}
+.tl-source{font-size:10px;color:var(--gris);font-style:italic}
+.tl-row{opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
+.tl-row.visible{opacity:1;transform:translateY(0)}
+
+/* QUOTES */
+.quotes-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:32px 0}
+.quote-card{padding:20px;border-top:3px solid}
+.quote-card.media{background:rgba(192,64,64,.04);border-color:var(--rouge)}
+.quote-card.reality{background:rgba(58,122,90,.04);border-color:var(--vert)}
+.quote-label{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.quote-card.media .quote-label{color:var(--rouge)}
+.quote-card.reality .quote-label{color:var(--vert)}
+.quote-text{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:var(--encre);line-height:1.55;margin-bottom:8px}
+.quote-source{font-size:9px;font-family:'DM Mono',monospace;color:var(--gris);letter-spacing:.5px}
+
+/* VERDICT */
+.verdict{background:var(--encre);color:#F8F5F0;padding:40px 32px;margin:40px 0}
+.verdict-label{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--or);margin-bottom:16px}
+.verdict-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,21px);font-style:italic;line-height:1.65}
+
+/* CONFINS BOX */
+.confins-box{background:var(--papier);border-left:4px solid var(--or);padding:28px 32px;margin-top:40px}
+.cb-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--or);margin-bottom:12px}
+.cb-text{font-size:14px;color:var(--gris);line-height:1.75}
+
+footer{padding:32px 24px;text-align:center;max-width:780px;margin:0 auto}
+.fw{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(26,24,20,.2)}
+.fw em{color:rgba(200,169,110,.4);font-style:normal}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+  .tl-grid,.quotes-grid{grid-template-columns:1fr}
+  .chart-wrap{flex-direction:column}
+  .bc-label{width:100px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="hero-tag">Analyse · Médias & Démocratie</div>
+  <h1>Quand les médias refusent<br>de voir — le cas <em>Biden</em></h1>
+  <p class="hero-sub">73% des Américains étaient préoccupés. Les grands médias disaient "hystérie républicaine". Voilà comment un consensus médiatique peut travestir la réalité.</p>
+  <div class="hero-method">Analyse documentée · Données sondages réels · Admissions journalistiques · 2026</div>
+</section>
+
+<div class="intro">
+  <p>Ce cas d'étude n'est pas un jugement sur Biden. C'est une analyse de mécanique médiatique : <strong>comment la presse mainstream, par peur d'être perçue comme partisane, a collectivement choisi de minimiser ce que les sondages, les médecins indépendants et les Américains eux-mêmes voyaient clairement</strong>. Et comment cette déformation a été admise après coup par les journalistes eux-mêmes.</p>
+</div>
+
+<!-- SECTION 1 : LES CHIFFRES -->
+<section class="section" id="s1">
+  <div class="sec-label">Les données réelles · 2021–2024</div>
+  <h2 class="sec-title">Ce que les Américains<br>pensaient — en chiffres</h2>
+  <div class="body-text">
+    <p>Pendant que les grandes chaînes câblées qualifiaient de "politiques" les inquiétudes sur l'état cognitif de Biden, les sondages racontaient une tout autre histoire — y compris auprès des électeurs démocrates.</p>
+  </div>
+
+  <div class="chart-wrap" style="margin-top:32px">
+    <canvas id="donut1" width="160" height="160" class="donut"></canvas>
+    <div class="donut-legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#C04040"></div>
+        <span class="legend-label">Américains "sérieusement préoccupés" par la compétence mentale de Biden</span>
+        <span class="legend-pct">73%</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#3A7A5A"></div>
+        <span class="legend-label">Pas sérieusement préoccupés</span>
+        <span class="legend-pct">27%</span>
+      </div>
+      <p class="chart-source">Source : CNN/SSRS · Septembre 2023 · n=1 503 adultes</p>
+    </div>
+  </div>
+
+  <div class="bar-chart" id="bars1">
+    <div class="bc-row">
+      <div class="bc-label">Américains préoccupés (CNN/SSRS Sep. 2023)</div>
+      <div class="bc-track"><div class="bc-fill" data-w="73" style="background:#C04040"></div></div>
+      <div class="bc-pct" style="color:#C04040">73%</div>
+    </div>
+    <div class="bc-row">
+      <div class="bc-label">Américains préoccupés (NBC News Juin 2023)</div>
+      <div class="bc-track"><div class="bc-fill" data-w="68" style="background:#C04040"></div></div>
+      <div class="bc-pct" style="color:#C04040">68%</div>
+    </div>
+    <div class="bc-row">
+      <div class="bc-label">Américains "préoccupation majeure" (NBC 2023)</div>
+      <div class="bc-track"><div class="bc-fill" data-w="55" style="background:#C86040"></div></div>
+      <div class="bc-pct" style="color:#C86040">55%</div>
+    </div>
+    <div class="bc-row">
+      <div class="bc-label">Démocrates préoccupés (CNN Sep. 2023)</div>
+      <div class="bc-track"><div class="bc-fill" data-w="56" style="background:#8A3A3A"></div></div>
+      <div class="bc-pct" style="color:#8A3A3A">56%</div>
+    </div>
+    <div class="bc-row">
+      <div class="bc-label">Américains "mentalement apte" (Avr. 2024)</div>
+      <div class="bc-track"><div class="bc-fill" data-w="21" style="background:#3A7A5A"></div></div>
+      <div class="bc-pct" style="color:#3A7A5A">21%</div>
+    </div>
+    <p class="chart-source" style="margin-top:12px">Sources : CNN/SSRS Sept. 2023 · NBC News Jun. 2023 · NPR/PBS Marist Mai 2023 · CNN Avr. 2024</p>
+  </div>
+</section>
+
+<!-- SECTION 2 : CE QUE LES MÉDIAS DISAIENT VS CE QUI SE PASSAIT -->
+<section class="section" id="s2">
+  <div class="sec-label">Deux réalités parallèles · 2021–2024</div>
+  <h2 class="sec-title">Ce que les médias disaient /<br><em>ce qui se passait</em></h2>
+
+  <div class="tl-grid" id="tl-grid">
+    <div class="tl-header media">Médias mainstream</div>
+    <div class="tl-header reality">Réalité documentée</div>
+
+    <div class="tl-row">
+      <div class="tl-cell media">
+        <div class="tl-date">2021</div>
+        <div class="tl-text">Biden trébuche 3 fois sur Air Force One</div>
+        <div class="tl-source">→ Médias : "coup de vent", moquerie républicaine</div>
+      </div>
+      <div class="tl-cell reality">
+        <div class="tl-date">2021</div>
+        <div class="tl-text">Médecin de Biden alerte les aides sur risque de chute grave</div>
+        <div class="tl-source">Source : Livre "Original Sin", Tapper & Thompson 2025</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-cell media">
+        <div class="tl-date">Fév. 2024</div>
+        <div class="tl-text">Rapport Hur : "Elderly man with poor memory"</div>
+        <div class="tl-source">→ CNN : "rapport politique, pas médical"</div>
+      </div>
+      <div class="tl-cell reality">
+        <div class="tl-date">Fév. 2024</div>
+        <div class="tl-text">Biden ne se souvient pas de l'année de mort de son fils Beau</div>
+        <div class="tl-source">Source : Rapport Hur, Département de Justice US</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-cell media">
+        <div class="tl-date">Mars 2024</div>
+        <div class="tl-text">Joe Scarborough (MSNBC) : "Biden le plus cognitivement en forme de toute sa carrière"</div>
+        <div class="tl-source">→ En direct, MSNBC Morning Joe</div>
+      </div>
+      <div class="tl-cell reality">
+        <div class="tl-date">Juin 2024</div>
+        <div class="tl-text">Débat présidentiel : Biden figé, perdu, incohérent devant 67M téléspectateurs</div>
+        <div class="tl-source">3 mois après les déclarations de Scarborough</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-cell media">
+        <div class="tl-date">Juin 2024</div>
+        <div class="tl-text">WSJ publie "Biden montre des signes de déclin" (45+ témoins)</div>
+        <div class="tl-source">→ MSNBC : "embarrassant pour le WSJ"</div>
+      </div>
+      <div class="tl-cell reality">
+        <div class="tl-date">Juil. 2024</div>
+        <div class="tl-text">Biden se retire sous pression des donateurs démocrates et élus</div>
+        <div class="tl-source">Confirmant en creux tout ce que le WSJ avait écrit</div>
+      </div>
+    </div>
+
+    <div class="tl-row">
+      <div class="tl-cell media">
+        <div class="tl-date">2025</div>
+        <div class="tl-text">Jake Tapper publie "Original Sin" documentant le cover-up</div>
+        <div class="tl-source">→ Tapper était lui-même l'un des défenseurs de Biden</div>
+      </div>
+      <div class="tl-cell reality">
+        <div class="tl-date">2025</div>
+        <div class="tl-text">Alex Thompson (Axios) admet à la WHCD que la presse était "trop déférente"</div>
+        <div class="tl-source">Source : Robby Soave, Reason.com · Mai 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 : ADMISSIONS -->
+<section class="section" id="s3">
+  <div class="sec-label">Les mea culpa · 2024–2025</div>
+  <h2 class="sec-title">Ce que les journalistes<br>ont <em>finalement admis</em></h2>
+
+  <div class="quotes-grid">
+    <div class="quote-card media">
+      <div class="quote-label">Ce qu'ils disaient avant</div>
+      <div class="quote-text">"Les inquiétudes sur la santé de Biden sont principalement basées sur les observations de républicains."</div>
+      <div class="quote-source">Jake Tapper · CNN · 2023<br>(avant de co-écrire un livre sur le cover-up)</div>
+    </div>
+    <div class="quote-card reality">
+      <div class="quote-label">Ce qu'ils ont admis après</div>
+      <div class="quote-text">"La presse était trop déférente envers l'entourage de Biden sur la question de son aptitude."</div>
+      <div class="quote-source">Alex Thompson · Axios<br>White House Correspondents' Dinner · Mai 2025</div>
+    </div>
+    <div class="quote-card media">
+      <div class="quote-label">Ce qu'ils disaient avant</div>
+      <div class="quote-text">"Cette version de Biden, intellectuellement et analytiquement, est le meilleur Biden qu'on ait jamais eu."</div>
+      <div class="quote-source">Joe Scarborough · MSNBC Morning Joe<br>Mars 2024 — 3 mois avant le débat catastrophique</div>
+    </div>
+    <div class="quote-card reality">
+      <div class="quote-label">La vraie raison du silence</div>
+      <div class="quote-text">"Les médias mainstream avaient peur d'être perçus comme aidant Trump s'ils rapportaient le déclin cognitif de Biden."</div>
+      <div class="quote-source">Chuck Todd · ex-NBC News<br>Piers Morgan Uncensored · 2025</div>
+    </div>
+  </div>
+
+  <!-- Second donut : renseignements -->
+  <div class="chart-wrap" style="margin-top:40px">
+    <canvas id="donut2" width="160" height="160" class="donut"></canvas>
+    <div class="donut-legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#C04040"></div>
+        <span class="legend-label">Couverture médiatique mainstream "rassurante" sur Biden 2021–2024</span>
+        <span class="legend-pct">~80%</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#3A7A5A"></div>
+        <span class="legend-label">Couverture questionnant réellement son état cognitif</span>
+        <span class="legend-pct">~20%</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:#2D5A8A"></div>
+        <span class="legend-label">Opinion publique préoccupée pendant la même période</span>
+        <span class="legend-pct">62–73%</span>
+      </div>
+      <p class="chart-source">Estimation basée sur analyse qualitative · Sources sondages réelles</p>
+    </div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section class="section" id="s4">
+  <div class="verdict">
+    <div class="verdict-label">Ce que ce cas révèle</div>
+    <div class="verdict-text">Quand 73% des Américains sont préoccupés et que la presse qualifie ces inquiétudes d'"hystérie républicaine", ce n'est plus du journalisme — c'est de l'advocacy. Le problème n'était pas l'ignorance : la presse savait. C'était la peur de "paraître aider Trump". C'est exactement cela que Confins cherche à contrebalancer en croisant sources institutionnelles et sources indépendantes.</div>
+  </div>
+
+  <div class="confins-box">
+    <div class="cb-label">Pourquoi l'outil Recoupement change ça</div>
+    <div class="cb-text">Sur ce type de sujet, l'outil Recoupement aurait mobilisé Vinay Prasad (médecin, données cliniques), Matt Taibbi (investigation), Glenn Greenwald (mécanismes d'autocensure) — aux côtés du NYT et de CNN. Le contraste des positions aurait été immédiatement visible. C'est la pluralité des sources qui protège de ce biais.</div>
+  </div>
+</section>
+
+<footer><div class="fw">CON<em>FINS</em> · Analyse documentée · Sources citées · 2026</div></footer>
+
+<script>
+// IntersectionObserver
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible')
+      const id = e.target.id
+      if(id==='s1') { drawDonut('donut1',[73,27],['#C04040','#3A7A5A']); animBars() }
+      if(id==='s2') animTl()
+      if(id==='s3') drawDonut('donut2',[80,20],['#C04040','#3A7A5A'])
+      obs.unobserve(e.target)
+    }
+  })
+},{threshold:0.1})
+document.querySelectorAll('.section').forEach(s=>obs.observe(s))
+
+// Donut chart
+function drawDonut(id, data, colors) {
+  const canvas = document.getElementById(id)
+  if(!canvas) return
+  const ctx = canvas.getContext('2d')
+  const cx=80,cy=80,r=60,iR=38
+  let start=-Math.PI/2
+  const total=data.reduce((a,b)=>a+b,0)
+  data.forEach((val,i)=>{
+    const angle=(val/total)*Math.PI*2
+    ctx.beginPath()
+    ctx.moveTo(cx,cy)
+    ctx.arc(cx,cy,r,start,start+angle)
+    ctx.closePath()
+    ctx.fillStyle=colors[i]
+    ctx.fill()
+    start+=angle
+  })
+  ctx.beginPath()
+  ctx.arc(cx,cy,iR,0,Math.PI*2)
+  ctx.fillStyle=getComputedStyle(document.body).getPropertyValue('--bg').trim()||'#F8F5F0'
+  ctx.fill()
+  // Center text
+  ctx.fillStyle='#1A1814'
+  ctx.font='bold 20px DM Mono, monospace'
+  ctx.textAlign='center'
+  ctx.textBaseline='middle'
+  ctx.fillText(data[0]+'%',cx,cy)
+}
+
+function animBars(){
+  document.querySelectorAll('#bars1 .bc-fill').forEach((bar,i)=>{
+    setTimeout(()=>{ bar.style.width=bar.dataset.w+'%' },i*150)
+  })
+}
+
+function animTl(){
+  document.querySelectorAll('.tl-row').forEach((row,i)=>{
+    setTimeout(()=>row.classList.add('visible'),i*150)
+  })
+}
+</script>
+</body>
+</html>
