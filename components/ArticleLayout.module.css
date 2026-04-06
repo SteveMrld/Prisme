@@ -750,10 +750,10 @@
   align-items: center;
   justify-content: center;
   gap: 36px;
-  padding: 16px 0;
+  padding: 14px 0;
   border-top: 1px solid var(--bord);
   border-bottom: 1px solid var(--bord);
-  margin: 0 0 32px;
+  margin: 0 0 0;
 }
 .actionBtn {
   background: none; border: none; cursor: pointer;
