@@ -635,29 +635,7 @@
   transform: translateX(0);
 }
 
-/* ── PAYWALL ── */
-.paywall {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
 
-.paywallFade {
-  height: 200px;
-  background: linear-gradient(to bottom, transparent, var(--fond) 70%);
-  pointer-events: none;
-}
-
-.paywallBox {
-  background: var(--fond);
-  padding: 40px 32px;
-  text-align: center;
-  border-top: 2px solid var(--encre);
-  max-width: 540px;
-  margin: 0 auto;
-}
 
 .paywallLogo {
   font-family: 'Playfair Display', serif;
@@ -774,6 +752,7 @@
   text-align: center;
   padding: 0 24px 48px;
   background: #fff;
+  border: none;
   margin-top: 0;
 }
 .paywallEyebrow {
