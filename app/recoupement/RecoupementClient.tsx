@@ -46,6 +46,15 @@ const SOURCES = [
   { id: 'citrinowicz', name: 'Citrinowicz', type: 'Analyste', bias: 'Moyen-Orient / sécurité', abbr: 'CI' },
 ]
 
+// Geographic narrative zones
+const ZONES: Record<string, { label: string, sources: string[], color: string }> = {
+  occident:     { label: 'Occident',           color: '#2D6B9A', sources: ['ft','nytimes','washingtonpost','reuters','ap','theeconomist','afpfr'] },
+  monde_arabe:  { label: 'Monde arabe & Golfe', color: '#C4793A', sources: ['ajenews','middleeasteye','kuwaittimesnews','ramabdu'] },
+  axe_resistance:{ label: 'Axe résistance',    color: '#7A3A3A', sources: ['thecradlemedia','hamidrezaaz','furkangozukara','iaeaorg'] },
+  independants: { label: 'Analystes indépendants', color: '#3A7A5A', sources: ['rnaudbertrand','karimbitar','tparsi','sinatoossi','ilangoldenberg','glenn_diesen','realscottritter','citrinowicz'] },
+  osint_terrain:{ label: 'OSINT & Terrain',    color: '#8A6A2A', sources: ['sentdefender','clashreport','marionawfal','shanaka86','allenanalysis','ryangrim','viviannereim','amanpour'] },
+}
+
 type SourceResult = {
   source: typeof SOURCES[0]
   position: string
@@ -85,6 +94,26 @@ export default function RecoupementClient() {
   const [visibleResults, setVisibleResults] = useState<number>(0)
   const [history, setHistory] = useState<Analysis[]>([])
   const [showHistory, setShowHistory] = useState(false)
+  const [narrativeMode, setNarrativeMode] = useState(false)
+  const [briefing, setBriefing] = useState<any>(null)
+  const [briefingLoading, setBriefingLoading] = useState(false)
+
+  const generateBriefing = async () => {
+    if (!history.length) return
+    setBriefingLoading(true)
+    try {
+      const res = await fetch('/api/briefing', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ analyses: history.slice(0, 5) })
+      })
+      const data = await res.json()
+      const text = data.content?.filter((b: any) => b.type === 'text').map((b: any) => b.text).join('') || ''
+      const parsed = JSON.parse(text.replace(/```json|```/g, '').trim())
+      setBriefing(parsed)
+    } catch {}
+    setBriefingLoading(false)
+  }
   const inputRef = useRef<HTMLInputElement>(null)
 
   // Load history from localStorage
@@ -363,8 +392,39 @@ export default function RecoupementClient() {
           <div className={styles.sourcesSection}>
             <div className={styles.sourcesTitle}>
               Position par source
-              <span className={styles.sourcesCount}>{analysis.results.length} sources analysées</span>
+              <div className={styles.viewToggle}>
+                <button className={`${styles.viewBtn} ${!narrativeMode ? styles.viewBtnActive : ''}`} onClick={() => setNarrativeMode(false)}>Sources</button>
+                <button className={`${styles.viewBtn} ${narrativeMode ? styles.viewBtnActive : ''}`} onClick={() => setNarrativeMode(true)}>Narratifs</button>
+              </div>
             </div>
+
+            {narrativeMode ? (
+              <div className={styles.narrativeGrid}>
+                {Object.entries(ZONES).map(([zoneId, zone]) => {
+                  const zoneResults = analysis.results.filter(r => zone.sources.includes(r.source.id))
+                  if (!zoneResults.length) return null
+                  return (
+                    <div key={zoneId} className={styles.narrativeZone}>
+                      <div className={styles.narrativeZoneLabel} style={{ borderColor: zone.color, color: zone.color }}>
+                        {zone.label}
+                        <span className={styles.narrativeZoneCount}>{zoneResults.length} source{zoneResults.length > 1 ? 's' : ''}</span>
+                      </div>
+                      <div className={styles.narrativeZoneSummary}>
+                        {zoneResults.map((r, i) => (
+                          <div key={i} className={styles.narrativeItem}>
+                            <span className={styles.narrativeAbbr} style={{ background: zone.color }}>{r.source.abbr}</span>
+                            <div>
+                              <div className={styles.narrativePosition}>{r.position}</div>
+                              <div className={styles.narrativeDetail}>{r.details}</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            ) : (
             <div className={styles.sourceCards}>
               {analysis.results.map((r, i) => (
                 <div
@@ -392,6 +452,35 @@ export default function RecoupementClient() {
               ))}
             </div>
           </div>
+
+          )}
+          {/* BRIEFING GENERATOR */}
+          {history.length >= 2 && (
+            <div className={styles.briefingBlock}>
+              <div className={styles.briefingLabel}>Briefing hebdomadaire</div>
+              <p className={styles.briefingDesc}>
+                Générez une synthèse éditoriale de vos {Math.min(history.length, 5)} derniers recoupements.
+              </p>
+              {!briefing && (
+                <button className={styles.briefingBtn} onClick={generateBriefing} disabled={briefingLoading}>
+                  {briefingLoading ? 'Génération…' : 'Générer le briefing →'}
+                </button>
+              )}
+              {briefing && (
+                <div className={styles.briefingResult}>
+                  <div className={styles.briefingTitle}>{briefing.titre}</div>
+                  <p className={styles.briefingIntro}>{briefing.intro}</p>
+                  <ul className={styles.briefingPoints}>
+                    {(briefing.points || []).map((p: string, i: number) => (
+                      <li key={i} className={styles.briefingPoint}>{p}</li>
+                    ))}
+                  </ul>
+                  <p className={styles.briefingConclusion}>{briefing.conclusion}</p>
+                  <button className={styles.briefingReset} onClick={() => setBriefing(null)}>Régénérer</button>
+                </div>
+              )}
+            </div>
+          )}
 
           <button className={styles.newSearch} onClick={() => { setAnalysis(null); setQuery(''); inputRef.current?.focus() }}>
             ← Nouvelle analyse
