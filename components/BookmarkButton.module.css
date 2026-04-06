@@ -1,0 +1,12 @@
+.btn {
+  display: flex; align-items: center; gap: 6px;
+  background: none; border: 1px solid var(--bord);
+  cursor: pointer; padding: 7px 14px;
+  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--gris-m);
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+}
+.btn:hover { border-color: var(--encre); color: var(--encre); }
+.btn.saved { border-color: var(--or); color: var(--or); background: rgba(200,169,110,.06); }
+.label { font-size: 9px; }

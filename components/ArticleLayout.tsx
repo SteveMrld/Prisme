@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import BookmarkButton from './BookmarkButton'
 import { usePremium } from '../lib/usePremium'
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
@@ -15,6 +16,7 @@ interface ArticleLayoutProps {
   hasInternalHeader?: boolean
   hasHeroInContent?: boolean
   premium?: boolean
+  slug?: string
   content: string
   author?: string
   authorRole?: string
@@ -51,7 +53,7 @@ function portraitUrl(name: string): string | null {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, content,
+  readTime, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, content, slug = '',
   author = 'Steve Moradel',
   authorRole = 'Fondateur · Directeur de la rédaction',
   related = []

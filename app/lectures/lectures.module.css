@@ -1,0 +1,20 @@
+.page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
+.hero { margin-bottom: 40px; padding-bottom: 24px; border-bottom: 2px solid var(--encre); }
+.eyebrow { font-size: 8px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--or); margin-bottom: 8px; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 48px); font-weight: 300; letter-spacing: -1.5px; color: var(--encre); line-height: 1; }
+.title em { font-style: italic; color: var(--or); }
+.count { font-size: 12px; color: var(--gris-l); margin-top: 8px; font-family: 'DM Mono', monospace; letter-spacing: 1px; }
+.empty { text-align: center; padding: 80px 24px; }
+.emptyIcon { color: var(--gris-l); margin-bottom: 16px; }
+.emptyText { font-size: 15px; color: var(--gris); font-style: italic; margin-bottom: 20px; }
+.emptyLink { font-size: 12px; color: var(--encre); text-decoration: none; font-weight: 600; }
+.list { display: flex; flex-direction: column; gap: 0; }
+.item { display: flex; align-items: center; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--bord); }
+.thumb { width: 80px; height: 56px; object-fit: cover; flex-shrink: 0; }
+.body { flex: 1; }
+.cat { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--or); margin-bottom: 4px; }
+.itemTitle { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 400; color: var(--encre); text-decoration: none; line-height: 1.35; display: block; }
+.itemTitle:hover { color: var(--or); }
+.itemMeta { display: flex; gap: 6px; font-size: 10px; color: var(--gris-l); margin-top: 6px; flex-wrap: wrap; }
+.removeBtn { background: none; border: none; cursor: pointer; color: var(--gris-l); padding: 4px; flex-shrink: 0; transition: color .2s; }
+.removeBtn:hover { color: var(--encre); }

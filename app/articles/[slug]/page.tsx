@@ -91,6 +91,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       hasInternalHeader={hasInternalHeader}
       hasHeroInContent={hasHeroInContent}
       premium={isPremium}
+      slug={article.slug}
       content={content}
       author={(article as any).author || 'Steve Moradel'}
       authorRole={(article as any).authorRole || 'Fondateur · Directeur de la rédaction'}
