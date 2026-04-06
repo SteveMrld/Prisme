@@ -82,8 +82,6 @@
   color: var(--or);
   border: 1px solid var(--or);
   padding: 4px 12px;
-  margin-top: 20px;
-  display: inline-block;
 }
 
 .adate {
