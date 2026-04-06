@@ -1208,7 +1208,7 @@
 @media (max-width: 768px) {
   /* RESET GLOBAL MOBILE */
   .atlanticInner { grid-template-columns: 1fr; gap: 32px; }
-  .atlanticLeft { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: start; }
+  .atlanticLeft { display: flex; flex-direction: column; gap: 0; }
   .atlanticItem { border-right: 1px solid var(--bord); }
   .atlanticItem:nth-child(even) { border-right: none; }
   .latestGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
