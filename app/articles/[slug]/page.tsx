@@ -1,9 +1,12 @@
 import { notFound } from 'next/navigation'
 import ArticleLayout from '../../../components/ArticleLayout'
+import GrandFormatLayout from '../../../components/GrandFormatLayout'
 import articlesData from '../../../lib/articles.json'
 import { createClient } from '../../../lib/supabase-server'
 import fs from 'fs'
 import path from 'path'
+
+const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico']
 
 const BASE_URL = 'https://confins.fr'
 
@@ -89,6 +92,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const related = (articlesData as any[])
     .filter(a => a.category === article.category && a.slug !== params.slug)
     .slice(0, 3)
+
+  // Grand format → layout dédié
+  if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
+    return (
+      <GrandFormatLayout slug={params.slug} content={content} />
+    )
+  }
 
   return (
     <ArticleLayout
