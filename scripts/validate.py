@@ -43,6 +43,11 @@ for fname in sorted(os.listdir(CONTENT_DIR)):
     if o != c:
         err(f'[{slug}] div imbalance {c-o:+d}')
 
+
+    # Contenu minimum (évite articles vidés)
+    text_only = re.sub(r'<[^>]+>', '', content).strip()
+    if len(text_only) < 400:
+        err(f'[{slug}] CONTENU TROP COURT: {len(text_only)} chars — article peut-être vidé')
     # Orphaned nav blocks
     if re.search(r'class="(art-nav|anav)"', content):
         err(f'[{slug}] bloc nav orphelin présent')
