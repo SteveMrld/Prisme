@@ -1302,7 +1302,8 @@
    ═══════════════════════════════════════════════ */
 
 .uneSection {
-  padding: 0 0 64px;
+  padding: 0;
+  border-bottom: 1px solid var(--bord);
 }
 
 .uneLabel {
