@@ -241,12 +241,12 @@
 }
 
 .geImg {
-  width: 100%;
-  max-width: 260px;
+  width: 85%;
+  max-width: 280px;
   height: auto;
   display: block;
   object-fit: contain;
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
 /* ── HERO ── */
@@ -331,8 +331,7 @@
   font-style: italic;
   color: var(--gris);
   line-height: 1.6;
-  padding: 0 32px;
-  flex: 1;
+  padding: 0 32px 20px;
 }
 
 .heroMeta {
@@ -1731,4 +1730,51 @@
   .manifeste { padding: 36px 24px; }
   .manifesteMeta { flex-wrap: wrap; gap: 8px; }
   .manifesteDot { display: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   DESKTOP LARGE — Conteneurs max-width
+   ═══════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  .ge {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .gfSection {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .uneSection {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .atlanticSection {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .portraitsSection {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 48px 60px;
+  }
+
+  .nlSection {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .signalSection {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
 }
