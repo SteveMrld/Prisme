@@ -1551,47 +1551,39 @@
    HOVER EFFECTS — niveau éditorial
    ═══════════════════════════════════════════════ */
 
-/* ── Underline animé sur tous les titres de cartes ── */
-.heroTitle,
-.heroAsideTitle,
-.gfTitle,
-.latestTitle,
-.portraitName,
-.atlanticItemTitle,
-.uneCardTitle,
-.signalHeadline {
-  background-image: linear-gradient(var(--or), var(--or));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 1px;
-  transition: background-size 0.35s cubic-bezier(0.22,1,0.36,1);
-  display: inline;
-}
+/* ── Underline animé — desktop uniquement (pas de hover sur mobile) ── */
+@media (hover: hover) {
+  .heroTitle,
+  .heroAsideTitle,
+  .gfTitle,
+  .latestTitle,
+  .portraitName,
+  .atlanticItemTitle,
+  .uneCardTitle,
+  .signalHeadline {
+    background-image: linear-gradient(var(--or), var(--or));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size 0.35s cubic-bezier(0.22,1,0.36,1);
+    display: inline;
+  }
 
-/* uneHeroTitle — underline sans display:inline pour garder le block */
-.uneHeroTitle {
-  background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 1px;
-  transition: background-size 0.35s cubic-bezier(0.22,1,0.36,1);
-}
+  .heroMain:hover .heroTitle,
+  .heroAsideItem:hover .heroAsideTitle,
+  .gfCard:hover .gfTitle,
+  .latestCard:hover .latestTitle,
+  .portraitCard:hover .portraitName,
+  .atlanticItem:hover .atlanticItemTitle,
+  .uneCard:hover .uneCardTitle,
+  .signalItem:hover .signalHeadline {
+    background-size: 100% 1px;
+  }
 
-.heroMain:hover .heroTitle,
-.heroAsideItem:hover .heroAsideTitle,
-.gfCard:hover .gfTitle,
-.latestCard:hover .latestTitle,
-.portraitCard:hover .portraitName,
-.atlanticItem:hover .atlanticItemTitle,
-.uneCard:hover .uneCardTitle,
-.signalItem:hover .signalHeadline {
-  background-size: 100% 1px;
-}
-
-/* uneHero — l'underline sur le titre overlay */
-.uneHero:hover .uneHeroTitle {
-  background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6));
-  background-size: 100% 1px;
+  .uneHero:hover .uneHeroTitle {
+    background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6));
+    background-size: 100% 1px;
+  }
 }
 
 /* ── Lift subtil sur les cartes ── */
