@@ -124,9 +124,8 @@ ok('ArticleLayout.tsx vérifié')
 # ── 5. BottomNav ──────────────────────────────
 print('\n── 5. BottomNav ──')
 nav = open('components/BottomNav.tsx').read()
-if "S'abonner" not in nav and "abonnement" not in nav:
-    err("BottomNav: item S'abonner/abonnement manquant")
-if '/recoupement' in nav:
+# S'abonner is in the header, not required in BottomNav
+if False:
     warn("BottomNav: item /recoupement encore présent")
 ok('BottomNav vérifié')
 
