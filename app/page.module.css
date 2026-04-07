@@ -1311,8 +1311,7 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--encre);
-  padding: 24px 24px 20px;
-  border-bottom: 1px solid var(--bord);
+  padding: 20px 24px 20px;
 }
 
 /* ── HERO pleine largeur ── */
