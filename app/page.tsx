@@ -214,7 +214,11 @@ export default function HomePage() {
               <Link href={`/articles/${hero.slug}`} className={styles.uneHero}>
                 {hero.image && (
                   <div className={styles.uneHeroImg}>
-                    <HeroParallax src={hero.image} alt={hero.title} />
+                    <img
+                      src={hero.image}
+                      alt={hero.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
+                    />
                     <div className={styles.uneHeroOverlay} />
                   </div>
                 )}
