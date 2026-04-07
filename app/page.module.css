@@ -1733,27 +1733,27 @@
 
   /* ── GRAND ENTRETIEN ── */
   .ge {
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 380px;
     padding: 0 0 0 64px;
     overflow: hidden;
+    min-height: 340px;
   }
   .geLeft { padding: 52px 48px 52px 0; }
   .geRight {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 0;
+    position: relative;
     overflow: hidden;
     align-self: stretch;
   }
   .geImg {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    max-width: none;
     object-fit: cover;
-    object-position: center top;
-    margin: 0;
+    object-position: center 10%;
     display: block;
+    max-width: none;
+    margin: 0;
   }
 
   /* ── HERO ── */
