@@ -116,7 +116,7 @@ export default function ArticleLayout({
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
           <div className={styles.eyebrow}>
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
-            <span className={styles.readTime}>{readTime} min de lecture</span>
+            <span className={styles.readTime}>{isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}</span>
             <span className={styles.readDate}>Mars 2026</span>
           </div>
           <div className={styles.titleRow}>
@@ -206,7 +206,7 @@ export default function ArticleLayout({
                 <div className={styles.relatedBody}>
                   <div className={styles.relatedMeta}>
                     <span className={styles.relatedCat}>{a.category?.toUpperCase()}</span>
-                    <span className={styles.relatedTime}>{a.readTime} min</span>
+                    <span className={styles.relatedTime}>{isNaN(parseInt(a.readTime)) ? a.readTime : `${a.readTime} min`}</span>
                   </div>
                   <div className={styles.relatedTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
                   {a.author && <div className={styles.relatedAuthor}>Par {a.author}</div>}

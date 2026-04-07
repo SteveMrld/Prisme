@@ -123,12 +123,12 @@ export default function HomePage() {
               {heroArticle.categoryLabel}
             </span>
             <span className={styles.heroFormat}>Grand format</span>
-            <span className={styles.heroTime}>{heroArticle.readTime} min</span>
+            <span className={styles.heroTime}>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min`}</span>
           </div>
           <h2 className={styles.heroTitle}><span className={styles.pBadge}>C</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: heroArticle.title }} /></h2>
           <p className={styles.heroDeck}>{heroArticle.description}</p>
           <div className={styles.heroMeta}>
-            <span>{heroArticle.readTime} min de lecture</span>
+            <span>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min de lecture`}</span>
             <span className={styles.heroCta}>Lire l'analyse →</span>
           </div>
         </Link>
@@ -175,7 +175,7 @@ export default function HomePage() {
                   </span>
                 ))}
                 <span className={styles.gfFormat}>Grand format</span>
-                <span className={styles.gfReading}>{article.readTime} min</span>
+                <span className={styles.gfReading}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span>
               </div>
               <div className={styles.gfTitle}><span className={styles.pBadge}>C</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
               <p className={styles.gfDeck}>{article.description}</p>
@@ -248,7 +248,7 @@ export default function HomePage() {
                   <div className={styles.uneHeroMeta}>
                     <span>{hero.author || 'Steve Moradel'}</span>
                     <span className={styles.uneHeroDot}>·</span>
-                    <span>{hero.readTime} min de lecture</span>
+                    <span>{isNaN(parseInt(hero.readTime)) ? hero.readTime : `${hero.readTime} min de lecture`}</span>
                   </div>
                 </div>
               </Link>
@@ -269,7 +269,7 @@ export default function HomePage() {
                         </span>
                         <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
                         {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
-                        <span className={styles.uneCardMeta}>{article.readTime} min · {article.author || 'Steve Moradel'}</span>
+                        <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
                       </div>
                     </Link>
                   ))}
