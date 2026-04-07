@@ -50,6 +50,7 @@ const heroAside = heroAsideSlugs.map(slug => {
 })
 
 const grandsFormatsSlugs = [
+  { slug: 'dette-souveraine',   extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · données en temps réel' },
   { slug: 'france_maritime',    extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '7 sections · 12 sources' },
   { slug: 'eau',                extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '8 sections · 11 sources' },
   { slug: 'techgeo',            extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '7 sections · 16 sources' },
@@ -151,7 +152,7 @@ export default function HomePage() {
         <StaggerGrid className={styles.gfGrid}>
           {grandsFormats.map((article, i) => (
             <StaggerItem key={article.slug} index={i}>
-            <Link href={`/articles/${article.slug}`} className={`${styles.gfCard} ${styles[article.categories[0].color]}`}>
+            <Link href={(article as typeof article & {customRoute?:string}).customRoute || `/articles/${article.slug}`} className={`${styles.gfCard} ${styles[article.categories[0].color]}`}>
               {article.image && (
                 <div className={styles.gfImgWrap}>
                   <img src={article.image} alt={article.title} className={styles.gfImg} />

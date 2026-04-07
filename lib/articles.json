@@ -13,6 +13,21 @@
     "premium": false
   },
   {
+    "slug": "dette-souveraine",
+    "title": "L'État <em>insolvable</em>",
+    "description": "La dette publique mondiale a franchi 100 000 milliards de dollars. Ce n'est pas la dette qui inquiète. C'est ce qu'elle révèle : des démocraties qui ont hypothéqué l'avenir de ceux qui n'ont pas encore voix au chapitre.",
+    "category": "eco",
+    "categoryLabel": "Économie politique",
+    "date": "2026-04-08",
+    "readTime": "12",
+    "image": "",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Prisme",
+    "featured": false,
+    "premium": false,
+    "customRoute": "/grands-formats/dette-souveraine"
+  },
+  {
     "slug": "afrique",
     "title": "La France en Afrique : la fin d'un monde",
     "description": "Coups d'État au Sahel, retrait militaire, perte d'influence face à la Russie et à la Chine. La France n'a pas perdu l'Afrique par accident. Elle l'a perdue par aveuglement.",
