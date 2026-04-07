@@ -6,7 +6,7 @@ import ConfinsTV from '../components/ConfinsTV'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
-import { FadeSection, FadeCard, StaggerGrid, StaggerItem } from './HomeClient'
+import { FadeSection, FadeCard, StaggerGrid, StaggerItem, HeroParallax } from './HomeClient'
 import Ticker from './TickerClient'
 import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 
@@ -235,7 +235,7 @@ export default function HomePage() {
               <Link href={`/articles/${hero.slug}`} className={styles.uneHero}>
                 {hero.image && (
                   <div className={styles.uneHeroImg}>
-                    <img src={hero.image} alt={hero.title} />
+                    <HeroParallax src={hero.image} alt={hero.title} />
                     <div className={styles.uneHeroOverlay} />
                   </div>
                 )}

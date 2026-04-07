@@ -63,6 +63,7 @@ export default function ArticleLayout({
   useEffect(() => {
     const article = document.querySelector('.confins-article')
     if (!article) return
+
     // Execute scripts injected via dangerouslySetInnerHTML
     article.querySelectorAll('script').forEach((oldScript: Element) => {
       const newScript = document.createElement('script')
@@ -75,6 +76,23 @@ export default function ArticleLayout({
       const src = el.getAttribute('src') || ''
       if (src) { el.src = ''; setTimeout(() => { el.src = src }, 80) }
     })
+
+    // Scroll reveal — stagger par élément
+    const targets = article.querySelectorAll('h2, h3, .pull-quote, .essentiel, .art-hero-wrap, .content-embed, .notes-section')
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement
+          el.style.transitionDelay = `${i * 0.04}s`
+          el.style.opacity = '1'
+          el.style.transform = 'translateY(0)'
+          obs.unobserve(el)
+        }
+      })
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+
+    targets.forEach(el => obs.observe(el))
+    return () => obs.disconnect()
   }, [])
 
   return (
