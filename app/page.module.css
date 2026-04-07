@@ -444,9 +444,10 @@
 .gfGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--encre);
+  gap: 0;
   margin-bottom: 0;
+  border-top: 1px solid var(--bord);
+  border-left: 1px solid var(--bord);
 }
 
 .gfCard {
@@ -458,26 +459,20 @@
   position: relative;
   overflow: hidden;
   transition: background 0.15s;
+  border-right: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
 }
 
-.gfCard::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-}
 
-.gfCard::before { background: var(--encre); }
 
 .gfCard:hover { background: var(--papier); }
 
 .gfImgWrap {
-  height: 160px;
+  height: 200px;
   overflow: hidden;
   margin-bottom: 16px;
   position: relative;
+  background: var(--papier);
 }
 
 .gfImg {
@@ -1643,14 +1638,7 @@
   background: none;
 }
 
-/* ── gfCard — barre gauche s'épaissit au survol ── */
-.gfCard::before {
-  transition: width 0.3s cubic-bezier(0.22,1,0.36,1);
-}
 
-.gfCard:hover::before {
-  width: 5px;
-}
 
 /* ═══════════════════════════════════════════════
    SECTION HEADERS UNIFIÉS — standard NYT
