@@ -1,26 +1,31 @@
+/* ═══════════════════════════════════════════════
+   CONFINS TV — Design éditorial blanc
+   Standard NYT/Arte
+   ═══════════════════════════════════════════════ */
+
 .main {
   min-height: 100vh;
-  background: var(--encre);
-  color: #fff;
+  background: #fff;
+  color: var(--encre);
 }
 
-/* ── Hero ── */
+/* ── HERO HEADER ── */
 .hero {
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--bord);
+  padding: 56px 0 48px;
 }
 
 .heroInner {
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 64px;
+  padding: 0 24px;
 }
 
 .heroTop {
   display: flex;
   align-items: center;
-  gap: 24px;
-  margin-bottom: 32px;
+  gap: 20px;
+  margin-bottom: 28px;
 }
 
 .logoBadge {
@@ -31,22 +36,26 @@
 
 .logoText {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.06em;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--encre);
+  letter-spacing: -0.5px;
+}
+
+.logoText em {
+  font-style: italic;
 }
 
 .logoTV {
   font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--or);
-  background: rgba(196,162,101,0.12);
-  border: 1px solid rgba(196,162,101,0.3);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--encre);
+  background: var(--encre);
+  color: #fff;
   padding: 3px 8px;
-  border-radius: 2px;
 }
 
 .heroPulse {
@@ -59,7 +68,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--or);
+  background: #E53E3E;
   display: inline-block;
   animation: pulse 2s infinite;
 }
@@ -70,74 +79,92 @@
 }
 
 .pulseLabel {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 0.06em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
 }
 
 .heroTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5vw, 52px);
-  font-weight: 700;
-  line-height: 1.2;
-  color: #fff;
-  margin-bottom: 20px;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--encre);
+  margin-bottom: 16px;
+  letter-spacing: -1px;
 }
 
 .heroTitle em {
   font-style: italic;
-  color: var(--or);
+  color: var(--encre);
 }
 
 .heroBaseline {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 300;
-  color: rgba(255,255,255,0.45);
-  line-height: 1.7;
-  margin-bottom: 36px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.65;
+  max-width: 560px;
 }
 
 .heroLine {
-  width: 60px;
-  height: 2px;
-  background: var(--or);
+  display: none;
 }
 
-/* ── Player section ── */
+/* ── PLAYER SECTION ── */
 .playerSection {
-  padding: 56px 0 72px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 0 64px;
+  border-bottom: 1px solid var(--bord);
 }
 
 .playerInner {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 64px;
+  padding: 0 24px;
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr 320px;
   gap: 48px;
   align-items: start;
 }
 
-/* Player */
+/* ── PLAYER ── */
 .playerCol {}
 
 .playerWrap {
   position: relative;
-  background: linear-gradient(135deg, #0D1520 0%, #1A2535 50%, #0A0F18 100%);
-  aspect-ratio: 16/9;
-  border-radius: 4px;
+  background: #000;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  margin-bottom: 20px;
+  width: 100%;
+}
+
+.playerFadeIn {
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+
+.playerFadeOut {
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .video {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
+  display: block;
+}
+
+.thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .playBtn {
@@ -146,31 +173,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,0,0.25);
+  background: none;
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  z-index: 10;
 }
-.playBtn:hover { background: rgba(0,0,0,0.45); }
 
 .playCircle {
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: rgba(196,162,101,0.92);
+  background: rgba(255,255,255,0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  color: #0a0a0a;
-  padding-left: 5px;
-  transition: transform 0.2s, background 0.2s;
-  line-height: 72px;
-  text-align: center;
+  font-size: 20px;
+  color: var(--encre);
+  padding-left: 4px;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
 }
+
 .playBtn:hover .playCircle {
   transform: scale(1.08);
-  background: var(--or);
+  background: #fff;
 }
 
 .pauseOverlay {
@@ -179,224 +205,288 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  z-index: 5;
+}
+
+.channelBug {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  z-index: 20;
+}
+
+.channelName {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+}
+
+.channelDot { color: var(--or); font-size: 8px; }
+
+.channelEp {
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--or);
 }
 
 .videoBadges {
   position: absolute;
-  top: 14px;
+  bottom: 14px;
   left: 14px;
   display: flex;
   gap: 8px;
-  pointer-events: none;
+  z-index: 20;
 }
 
 .catBadge {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #fff;
   background: var(--geo);
-  padding: 3px 9px;
-  border-radius: 2px;
+  padding: 3px 8px;
 }
 
 .durBadge {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  color: rgba(255,255,255,0.6);
-  background: rgba(0,0,0,0.55);
-  padding: 3px 9px;
-  border-radius: 2px;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.5);
+  padding: 3px 8px;
 }
 
+/* ── EPISODE META UNDER PLAYER ── */
 .epMeta {
   display: flex;
-  gap: 16px;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 8px;
 }
 
 .epId {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--or);
 }
 
 .epDate {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  color: rgba(255,255,255,0.3);
+  font-size: 9px;
+  color: var(--gris-l);
+  letter-spacing: 1px;
 }
 
 .epTitle {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 14px;
-  line-height: 1.3;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400;
+  color: var(--encre);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
 }
 
 .epDesc {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 300;
-  color: rgba(255,255,255,0.45);
-  line-height: 1.7;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.6;
 }
 
-/* Sidebar */
-.sidebar {}
+/* ── SIDEBAR — liste épisodes ── */
+.sidebar {
+  border-left: 1px solid var(--bord);
+  padding-left: 32px;
+}
 
 .sidebarTitle {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-  margin-bottom: 12px;
+  color: var(--encre);
+  margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 2px solid var(--encre);
 }
 
 .epCard {
-  width: 100%;
   display: flex;
-  gap: 14px;
   align-items: flex-start;
-  padding: 14px 12px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 3px;
+  gap: 12px;
+  width: 100%;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--bord-l);
   text-align: left;
-  transition: background 0.15s, border-color 0.15s;
-  margin-bottom: 4px;
+  transition: background 0.15s;
+  position: relative;
 }
-.epCard:hover { background: rgba(255,255,255,0.04); }
+
+.epCard:last-of-type {
+  border-bottom: none;
+}
+
+.epCard:hover {
+  background: var(--papier);
+  margin: 0 -12px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 .epCardActive {
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(255,255,255,0.1);
+  background: var(--papier) !important;
+  margin: 0 -12px;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
 }
 
 .epCardThumb {
   width: 80px;
-  height: 50px;
+  height: 45px;
+  overflow: hidden;
   flex-shrink: 0;
   position: relative;
-  overflow: hidden;
-  background: #111;
+  background: #000;
 }
+
 .epCardThumbImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.8;
-  transition: opacity 0.2s;
   display: block;
 }
-.epCard:hover .epCardThumbImg,
-.epCardActive .epCardThumbImg { opacity: 1; }
+
 .epCardThumbPlay {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(0,0,0,0.4);
+  color: var(--or);
   font-size: 14px;
-  color: #fff;
-  background: rgba(0,0,0,0.35);
+}
+
+.epCardBody {
+  flex: 1;
+  min-width: 0;
 }
 
 .epCardNum {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--or);
   margin-bottom: 3px;
 }
 
 .epCardTitle {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  color: rgba(255,255,255,0.85);
-  line-height: 1.4;
-  margin-bottom: 5px;
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--encre);
+  line-height: 1.35;
+  margin-bottom: 4px;
 }
 
 .epCardMeta {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
+  font-size: 10px;
+  color: var(--gris-l);
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 
-/* Next episode */
+.epLock {
+  position: absolute;
+  top: 14px;
+  right: 0;
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+.epCardNow {
+  display: none;
+}
+
+/* ── NEXT EPISODE ── */
 .nextEp {
-  margin-top: 16px;
-  padding: 18px 14px;
-  border: 1px dashed rgba(255,255,255,0.1);
-  border-radius: 3px;
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid var(--bord);
+  background: var(--papier);
 }
 
 .nextEpLabel {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--or);
-  opacity: 0.7;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .nextEpTitle {
   font-family: 'Playfair Display', serif;
   font-size: 16px;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 6px;
+  color: var(--encre);
+  margin-bottom: 4px;
 }
 
 .nextEpHint {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  color: rgba(255,255,255,0.2);
+  font-size: 11px;
+  color: var(--gris-l);
   margin-bottom: 14px;
 }
 
 .nextEpCta {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--or);
+  display: inline-block;
+  background: var(--encre);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 20px;
   text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: opacity 0.2s;
+  transition: background 0.2s;
 }
-.nextEpCta:hover { opacity: 0.7; }
 
-/* ── Manifesto ── */
+.nextEpCta:hover { background: var(--or); color: var(--encre); }
+
+/* ── MANIFESTO ── */
 .manifesto {
-  padding: 64px 0 80px;
+  padding: 64px 24px;
+  background: var(--encre);
 }
 
 .manifestoInner {
   max-width: 680px;
   margin: 0 auto;
-  padding: 0 64px;
+  text-align: center;
 }
 
 .manifestoLabel {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--or);
   margin-bottom: 20px;
@@ -404,110 +494,49 @@
 
 .manifestoText {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 400;
+  font-size: clamp(18px, 2.5vw, 22px);
   font-style: italic;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
   margin-bottom: 28px;
 }
 
 .manifestoLink {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: rgba(255,255,255,0.35);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.manifestoLink:hover { color: var(--or); }
-
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .heroInner, .manifestoInner { padding: 0 24px; }
-  .playerInner {
-    padding: 0 24px;
-    grid-template-columns: 1fr;
-  }
-  .hero { padding: 48px 0 40px; }
-}
-
-/* ── Transitions TV ── */
-.playerFadeIn {
-  animation: tvFadeIn 0.4s ease forwards;
-}
-.playerFadeOut {
-  animation: tvFadeOut 0.35s cubic-bezier(0.4,0,0.2,1) forwards;
-}
-@keyframes tvFadeIn {
-  0%   { opacity:0; transform:scale(1.04); filter:brightness(3) blur(4px); }
-  40%  { filter:brightness(1.2) blur(0px); }
-  100% { opacity:1; transform:scale(1); filter:brightness(1) blur(0px); }
-}
-@keyframes tvFadeOut {
-  0%   { opacity:1; transform:scale(1); filter:brightness(1); }
-  60%  { filter:brightness(2); }
-  100% { opacity:0; transform:scale(0.96); filter:brightness(3) blur(2px); }
-}
-
-/* ── Channel bug (watermark TV) ── */
-.channelBug {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(0,0,0,0.45);
-  border: 1px solid rgba(196,162,101,0.3);
-  border-radius: 3px;
-  padding: 4px 10px;
-  backdrop-filter: blur(4px);
-  z-index: 5;
-}
-.channelName {
-  font-family: 'Playfair Display', serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.1em;
-}
-.channelDot {
-  color: var(--or, #C8A96E);
-  font-size: 10px;
-}
-.channelEp {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  color: var(--or, #C8A96E);
-  letter-spacing: 0.06em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or);
+  text-decoration: none;
 }
 
-/* ── Active card indicator ── */
-.epCardNow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  color: var(--or, #C8A96E);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+.manifestoLink:hover { color: #fff; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .playerInner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .sidebar {
+    border-left: none;
+    border-top: 2px solid var(--encre);
+    padding-left: 0;
+    padding-top: 24px;
+  }
+
+  .epCard:hover,
+  .epCardActive {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
-/* ── Thumbnail overlay ── */
-.thumb {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  border-radius: inherit;
-}
-.playerWrap .playBtn     { z-index: 3; }
-.playerWrap .channelBug  { z-index: 4; }
-.playerWrap .videoBadges { z-index: 4; }
-
-.epLock {
-  font-size: 12px;
-  opacity: 0.5;
-  flex-shrink: 0;
-  margin-left: auto;
+@media (max-width: 480px) {
+  .hero { padding: 40px 0 32px; }
+  .heroTitle { letter-spacing: -0.5px; }
+  .playCircle { width: 52px; height: 52px; font-size: 16px; }
+  .manifesto { padding: 48px 24px; }
 }
