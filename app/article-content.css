@@ -205,31 +205,34 @@
   padding: 48px 24px 64px;
 }
 
-/* ── L'essentiel (encadré résumé) ── */
+/* ── L'essentiel — style NYT ── */
 .essentiel {
-  background: var(--papier);
-  border-left: 3px solid var(--or);
-  padding: 28px 32px;
-  margin: 0 auto 48px;
+  background: #fff;
+  border-top: 3px solid var(--encre);
+  border-bottom: 1px solid var(--bord);
+  padding: 24px 0 28px;
+  margin: 0 auto 40px;
   max-width: 680px;
 }
 
 .essentiel-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 12px;
   margin-bottom: 20px;
 }
 
 .essentiel-label {
-  font-size: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--or);
+  color: var(--encre);
 }
 
 .essentiel-sub {
+  font-family: 'DM Sans', sans-serif;
   font-size: 9px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -240,25 +243,34 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
   padding: 0;
 }
 
 .essentiel-list li {
   display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 12px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  color: var(--gris);
-  line-height: 1.65;
+  grid-template-columns: 28px 1fr;
+  gap: 0;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--bord-l);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--encre);
+  line-height: 1.6;
+}
+
+.essentiel-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .essentiel-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  font-weight: 300;
-  color: var(--or);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--encre);
+  padding-top: 2px;
   flex-shrink: 0;
 }
 
