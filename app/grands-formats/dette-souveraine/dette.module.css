@@ -1,0 +1,152 @@
+.page {
+  background: #F9F7F3;
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.hero {
+  border-bottom: 1.5px solid #DDD9D2;
+  padding: 72px 0 52px;
+  background: #F9F7F3;
+}
+
+.heroInner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #92400E;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  color: #111;
+  margin: 0 0 16px;
+}
+
+.title em {
+  font-style: italic;
+  color: #B91C1C;
+}
+
+.subtitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(15px, 1.8vw, 19px);
+  font-style: italic;
+  color: #6B7280;
+  line-height: 1.55;
+  margin: 0 0 32px;
+}
+
+.meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ── ARTICLE BODY ── */
+.body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 52px 0 0;
+}
+
+.section p {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.78;
+  color: #1F2937;
+  margin: 0 0 24px;
+}
+
+.section p strong {
+  font-weight: 700;
+  color: #111;
+}
+
+.divider {
+  border: none;
+  border-top: 1.5px solid #DDD9D2;
+  margin: 52px 0 0;
+}
+
+/* ── WIDGET WRAPPER ── */
+.widgetWrap {
+  margin: 52px -24px;
+  border-top: 1.5px solid #DDD9D2;
+  border-bottom: 1.5px solid #DDD9D2;
+}
+
+@media (min-width: 900px) {
+  .widgetWrap {
+    margin: 52px calc((100vw - 960px) / -2);
+  }
+}
+
+.widget {
+  background: #F9F7F3;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  .widget {
+    height: auto;
+    min-height: 420px;
+  }
+}
+
+/* ── PULL QUOTE ── */
+.pullQuote {
+  border-left: 3px solid #B91C1C;
+  padding: 4px 0 4px 28px;
+  margin: 40px 0;
+}
+
+.pullQuote p {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(18px, 2vw, 23px) !important;
+  font-style: italic;
+  line-height: 1.5 !important;
+  color: #111 !important;
+  margin: 0 !important;
+}
+
+/* ── AUTHOR BIO ── */
+.bio {
+  padding: 48px 0 80px;
+  border-top: 1.5px solid #DDD9D2;
+  margin-top: 52px;
+}
+
+.bio p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #9CA3AF;
+  line-height: 1.7;
+}
