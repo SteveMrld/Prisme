@@ -1367,14 +1367,15 @@
 }
 
 .uneHeroTag {
-  display: inline-block;
+  display: block;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: #fff;
   padding: 4px 10px;
-  margin-bottom: 20px;
+  width: fit-content;
+  margin-bottom: 16px;
 }
 
 .uneHeroTitle {
