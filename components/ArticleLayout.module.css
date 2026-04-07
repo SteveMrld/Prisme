@@ -198,7 +198,6 @@
   margin-right: auto;
 }
 
-.description { font-size: 19px; }
   .articleBody { padding: 36px 20px 24px; }
   .articleBodyFull { padding: 0 20px; }
 }
@@ -600,16 +599,6 @@
 
 .relatedCard:hover .relatedImgOverlay { opacity: 1; }
 
-.relatedCard {
-  transform: translateY(0);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.relatedCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-}
-
 .relatedMeta {
   display: flex;
   align-items: center;
@@ -653,56 +642,6 @@
   opacity: 1;
   transform: translateX(0);
 }
-
-
-
-.paywallLogo {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--encre);
-  margin-bottom: 16px;
-  letter-spacing: -1px;
-}
-
-.paywallLogo em {
-  font-style: italic;
-  color: var(--or);
-}
-
-.paywallTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--encre);
-  margin-bottom: 12px;
-}
-
-.paywallText {
-  font-size: 14px;
-  color: var(--gris);
-  line-height: 1.65;
-  margin-bottom: 24px;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.paywallBtn {
-  display: inline-block;
-  background: var(--encre);
-  color: var(--fond);
-  padding: 14px 32px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background .2s;
-  margin-bottom: 12px;
-}
-
-.paywallBtn:hover { background: var(--or); color: #0A0A0A; }
 
 .paywallLink {
   display: block;
