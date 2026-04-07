@@ -313,8 +313,8 @@
 }
 
 .epThumb {
-  width: 68px;
-  height: 40px;
+  width: 96px;
+  height: 54px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;

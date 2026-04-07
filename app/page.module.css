@@ -399,9 +399,7 @@
 }
 
 .heroAsideExcerpt {
-  font-size: 13px;
-  color: var(--gris-m);
-  line-height: 1.5;
+  display: none;
 }
 
 .heroAsideArrow {
@@ -446,7 +444,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--bord);
+  background: var(--bord-l);
   margin-bottom: 0;
 }
 
