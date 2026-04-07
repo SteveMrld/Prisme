@@ -140,6 +140,31 @@ ess = sum(1 for a in arts if 'essentiel' in open(f'lib/content/{a["slug"]}.html'
 pq = sum(1 for a in arts if 'pull-quote' in open(f'lib/content/{a["slug"]}.html').read())
 ok(f'{ess}/{len(arts)} essentiel, {pq}/{len(arts)} pull-quote')
 
+
+# ── 7. Intégrité articles vs backup ──────────────
+print()
+print("── 7. Intégrité articles ──")
+import shutil
+BACKUP_DIR = "scripts/backup"
+os.makedirs(BACKUP_DIR, exist_ok=True)
+for a in arts:
+    slug = a["slug"]
+    path = f"lib/content/{slug}.html"
+    if not os.path.exists(path): continue
+    content_a = open(path, encoding="utf-8").read()
+    text_a = re.sub(r"<[^>]+>", "", content_a).strip()
+    visual = slug in ["cygne", "ia", "overton", "predateurs"]
+    min_c = 200 if visual else 1000
+    if len(text_a) < min_c:
+        err(f"[{slug}] contenu trop court: {len(text_a)} chars — article peut-être vidé")
+    backup = f"{BACKUP_DIR}/{slug}.html"
+    if os.path.exists(backup):
+        bt = re.sub(r"<[^>]+>", "", open(backup).read()).strip()
+        if len(bt) > 500 and len(text_a) < len(bt) * 0.7:
+            err(f"[{slug}] contenu réduit à {int(len(text_a)/len(bt)*100)}% du backup — vérifier")
+    # Update backup
+    shutil.copy2(path, backup)
+ok(f"{len(arts)} articles intègres, backups à jour")
 # ── RÉSUMÉ ────────────────────────────────────
 print('\n' + '═'*50)
 if errors:
