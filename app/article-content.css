@@ -1728,3 +1728,125 @@ sup {
     padding: 14px 20px 18px;
   }
 }
+
+/* ── GRAND FORMAT OVERRIDES ─────────────────────────────────────────────────
+   Priorité maximale pour le nouveau layout unifié des grands formats         */
+
+.grand-format-body .atop {
+  max-width: 100%;
+  padding: 0 0 32px;
+}
+
+.grand-format-body .art-hero-wrap {
+  margin: 0 0 0;
+  max-height: 520px;
+}
+
+.grand-format-body .art-hero-img {
+  height: 520px;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.grand-format-body .atitle {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(36px, 5.5vw, 68px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.0 !important;
+  color: #111 !important;
+  margin-bottom: 20px !important;
+}
+
+.grand-format-body .atitle em {
+  font-style: italic !important;
+  color: #B91C1C !important;
+}
+
+.grand-format-body .adeck {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(15px, 1.7vw, 19px) !important;
+  font-style: italic !important;
+  color: #6B7280 !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.grand-format-body .aey {
+  margin-bottom: 20px;
+}
+
+.grand-format-body .atag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.grand-format-body .adate {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: #CBD5E1;
+}
+
+.grand-format-body .afmt {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: #B91C1C;
+  border-color: #B91C1C;
+}
+
+.grand-format-body .article-body p,
+.grand-format-body .confins-article p {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(16px, 1.45vw, 18px);
+  line-height: 1.82;
+  color: #1F2937;
+  margin: 0 0 26px;
+}
+
+.grand-format-body h2 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(22px, 2.5vw, 30px) !important;
+  font-weight: 700 !important;
+  color: #111 !important;
+  letter-spacing: -0.02em !important;
+  margin: 52px 0 20px !important;
+  line-height: 1.2 !important;
+}
+
+.grand-format-body .pull-quote,
+.grand-format-body blockquote {
+  border-left: 3px solid #B91C1C !important;
+  padding: 4px 0 4px 28px !important;
+  margin: 40px 0 !important;
+  background: none !important;
+}
+
+.grand-format-body .pull-quote p,
+.grand-format-body blockquote p {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(18px, 2vw, 23px) !important;
+  font-style: italic !important;
+  line-height: 1.5 !important;
+  color: #111 !important;
+}
+
+.grand-format-body .sbloc-num {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  color: #B91C1C !important;
+  font-weight: 900 !important;
+}
+
+/* Masquer la byline interne — remplacée par celle du layout */
+.grand-format-body .art-byline-injected {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  .grand-format-body .art-hero-img { height: 280px; }
+  .grand-format-body .atop { padding: 0 0 24px; }
+}

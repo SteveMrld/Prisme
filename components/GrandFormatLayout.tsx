@@ -150,7 +150,7 @@ export default function GrandFormatLayout({
       )}
 
       {/* ── BODY ── */}
-      <div className={styles.body}>
+      <div className={`${styles.body} grand-format-body`}>
         {/* Contenu HTML classique */}
         {content && (
           <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
