@@ -12,6 +12,15 @@ export default function DettePage() {
     <div className={styles.page}>
       <Header />
 
+      {/* ── COVER ── */}
+      <div style={{ width:"100%", maxHeight:"480px", overflow:"hidden", lineHeight:0 }}>
+        <img
+          src="/dette-souveraine-cover.jpg"
+          alt="L'État insolvable — illustration"
+          style={{ width:"100%", height:"480px", objectFit:"cover", objectPosition:"center 30%", display:"block" }}
+        />
+      </div>
+
       {/* ── HERO ── */}
       <div className={styles.hero}>
         <div className={styles.heroInner}>
