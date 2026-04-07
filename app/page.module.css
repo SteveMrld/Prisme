@@ -1719,3 +1719,165 @@
 }
 
 
+
+/* ═══════════════════════════════════════════════
+   DESKTOP — Refonte complète
+   Architecture NYT : padding 64px, grille propre
+   Toutes les règles desktop ici, nulle part ailleurs
+   ═══════════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+
+  /* ── CONTENEUR UNIVERSEL ── */
+  /* Toutes les sections : pleine largeur, padding 64px comme le header */
+
+  /* ── GRAND ENTRETIEN ── */
+  .ge {
+    grid-template-columns: 1fr 280px;
+    padding: 0 64px;
+  }
+  .geLeft { padding: 48px 0; }
+  .geRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .geImg {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    border-bottom: 2px solid var(--encre);
+  }
+  .heroMain { border-right: 1px solid var(--bord); }
+  .heroImgWrap { height: 360px; }
+  .heroAside { display: flex; flex-direction: column; }
+  .heroAsideItem {
+    flex: 1;
+    border-bottom: 1px solid var(--bord);
+    padding: 20px 24px;
+  }
+  .heroAsideItem:last-child { border-bottom: none; }
+
+  /* ── GRANDS FORMATS ── */
+  .gfSection { padding: 0 64px; }
+  .gfHeader {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--bord);
+    margin-bottom: 0;
+  }
+  .gfGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-left: 1px solid var(--bord);
+  }
+  .gfCard {
+    padding: 28px 32px;
+    border-right: 1px solid var(--bord);
+    border-bottom: 1px solid var(--bord);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fff;
+  }
+  .gfImgWrap {
+    aspect-ratio: 16 / 9;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    background: var(--papier);
+  }
+  .gfImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gfDeck { flex: 1; }
+  .gfFooter {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--bord);
+  }
+
+  /* ── DERNIÈRES + POPULAIRES ── */
+  .atlanticSection { padding: 40px 64px 60px; }
+  .atlanticInner {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    padding: 0;
+    max-width: none;
+    margin: 0;
+  }
+  .atlanticHead {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--bord);
+    padding-bottom: 10px;
+    margin-bottom: 0;
+  }
+  .atlanticItem {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bord-l);
+  }
+  .atlanticThumb { width: 110px; height: 74px; object-fit: cover; }
+
+  /* ── PORTRAITS ── */
+  .portraitsSection { padding: 40px 64px 60px; }
+  .portraitsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-left: 1px solid var(--bord);
+  }
+  .portraitCard {
+    border-right: 1px solid var(--bord);
+    border-bottom: 1px solid var(--bord);
+  }
+
+  /* ── SIGNAL ── */
+  .signalSection { padding: 0; }
+  .signalHead { padding: 20px 64px; }
+  .signalGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-left: 1px solid var(--bord);
+  }
+  .signalItem {
+    border-right: 1px solid var(--bord);
+    border-bottom: 1px solid var(--bord);
+    padding: 20px 24px;
+  }
+
+  /* ── NEWSLETTER ── */
+  .nlSection { padding: 64px; }
+  .nlInner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  /* ── UNE ── */
+  .uneSection { padding: 0; }
+  .uneLabel { padding: 16px 64px; }
+  .uneGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-left: 1px solid var(--bord);
+  }
+  .uneCard {
+    border-right: 1px solid var(--bord);
+    border-bottom: 1px solid var(--bord);
+  }
+
+}
