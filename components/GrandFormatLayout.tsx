@@ -140,7 +140,7 @@ export default function GrandFormatLayout({
       {!hasInternalHeader && (
         <div className={styles.byline}>
           <div className={styles.avatar}>
-            {portrait ? <img src={portrait} alt={author} /> : author.split(' ').map(n => n[0]).join('')}
+            {portrait ? <img src={portrait} alt={author} /> : author.split(' ').map((n: string) => n[0]).join('')}
           </div>
           <div>
             <div className={styles.authorName}>{author}</div>
@@ -161,7 +161,7 @@ export default function GrandFormatLayout({
         {/* Signature bas */}
         <div className={styles.signature}>
           <div className={styles.avatar}>
-            {portrait ? <img src={portrait} alt={author} /> : author.split(' ').map(n => n[0]).join('')}
+            {portrait ? <img src={portrait} alt={author} /> : author.split(' ').map((n: string) => n[0]).join('')}
           </div>
           <div>
             <div className={styles.sigLabel}>Auteur</div>
