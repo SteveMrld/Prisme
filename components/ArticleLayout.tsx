@@ -162,7 +162,9 @@ export default function ArticleLayout({
         </div>
       )}
 
-      {/* ── BARRE ACTIONS — casque + partage natif + marque-page ── */}
+      {/* ── LAYOUT DESKTOP : article + sidebar ── */}
+      <div className={styles.articlePageLayout}>
+      <div className={styles.articleMainCol}>
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         {isPremiumContent ? (
           <div className={styles.paywallWrap}>
@@ -196,7 +198,26 @@ export default function ArticleLayout({
         </div>
       </div>
 
-      {/* ── ARTICLES LIÉS ── */}
+      </div>{/* articleMainCol */}
+
+      {/* ── SIDEBAR DROITE — articles liés (desktop uniquement) ── */}
+      {related.length > 0 && (
+        <div className={styles.articleSidebar}>
+          <div className={styles.sidebarTitle}>À lire aussi</div>
+          {related.map((a: any) => (
+            <a key={a.slug} href={`/articles/${a.slug}`} className={styles.sidebarItem}>
+              {a.image && <img src={a.image} alt={a.title} className={styles.sidebarThumb} />}
+              <div>
+                <div className={styles.sidebarCat}>{a.categoryLabel || a.category?.toUpperCase()}</div>
+                <div className={styles.sidebarItemTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+      </div>{/* articlePageLayout */}
+
+      {/* ── ARTICLES LIÉS (mobile uniquement) ── */}
       {related.length > 0 && (
         <div className={styles.related}>
           <div className={styles.relatedHead}>

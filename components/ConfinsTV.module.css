@@ -102,6 +102,8 @@
   display: grid;
   grid-template-columns: 1fr 280px;
   align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 /* ── Player ── */

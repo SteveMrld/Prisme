@@ -237,15 +237,16 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .geImg {
   width: 100%;
-  max-width: 300px;
+  max-width: 260px;
   height: auto;
   display: block;
   object-fit: contain;
-  margin-left: -20px;
+  margin: 0 auto;
 }
 
 /* ── HERO ── */
@@ -352,6 +353,7 @@
 .heroAside {
   display: flex;
   flex-direction: column;
+  justify-content: stretch;
 }
 
 .heroAsideItem {
