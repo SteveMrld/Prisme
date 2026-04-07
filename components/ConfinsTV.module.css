@@ -386,15 +386,17 @@
 }
 
 .epNextLabel {
+  display: block;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--or);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .epNextTitle {
+  display: block;
   font-size: 13px;
   font-family: 'Playfair Display', serif;
   color: var(--encre);
