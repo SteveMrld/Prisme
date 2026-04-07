@@ -410,7 +410,6 @@
 /* ── GRANDS FORMATS ── */
 .gfSection {
   padding: 0 64px;
-  border-bottom: 3px double var(--encre);
 }
 
 .gfHeader {
@@ -1331,6 +1330,7 @@
 .uneHeroImg {
   position: absolute;
   inset: 0;
+  background: var(--encre);
 }
 
 .uneHeroImg img {
@@ -1679,16 +1679,17 @@
   position: static !important;
 }
 
-/* La règle dorée avant chaque label */
+/* La règle noire pleine largeur avant chaque section */
+.gfSection,
+.portraitsSection,
+.atlanticSection {
+  border-top: 2px solid var(--encre);
+}
+
 .gfHeader,
 .portraitsHead,
 .atlanticHead {
-  border-top: 2px solid var(--encre) !important;
-  padding-top: 16px !important;
-}
-
-.gfHeader {
-  padding-bottom: 0 !important;
+  border-top: none !important;
 }
 
 /* Manifeste éditorial */
@@ -1727,5 +1728,6 @@
 
 @media (max-width: 768px) {
   .manifeste { padding: 36px 24px; }
-  .manifesteMeta { flex-direction: column; gap: 6px; }
+  .manifesteMeta { flex-wrap: wrap; gap: 8px; }
+  .manifesteDot { display: none; }
 }
