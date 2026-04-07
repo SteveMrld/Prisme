@@ -1546,3 +1546,113 @@
     display: none;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   HOVER EFFECTS — niveau éditorial
+   ═══════════════════════════════════════════════ */
+
+/* ── Underline animé sur tous les titres de cartes ── */
+.heroTitle,
+.heroAsideTitle,
+.gfTitle,
+.latestTitle,
+.portraitName,
+.atlanticItemTitle,
+.uneCardTitle,
+.uneHeroTitle,
+.signalHeadline {
+  background-image: linear-gradient(var(--or), var(--or));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 0.35s cubic-bezier(0.22,1,0.36,1);
+  display: inline;
+}
+
+.heroMain:hover .heroTitle,
+.heroAsideItem:hover .heroAsideTitle,
+.gfCard:hover .gfTitle,
+.latestCard:hover .latestTitle,
+.portraitCard:hover .portraitName,
+.atlanticItem:hover .atlanticItemTitle,
+.uneCard:hover .uneCardTitle,
+.signalItem:hover .signalHeadline {
+  background-size: 100% 1px;
+}
+
+/* uneHero — l'underline sur le titre overlay */
+.uneHero:hover .uneHeroTitle {
+  background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6));
+  background-size: 100% 1px;
+}
+
+/* ── Lift subtil sur les cartes ── */
+.heroMain,
+.gfCard,
+.latestCard,
+.portraitCard,
+.uneCard {
+  transition: background 0.2s ease, box-shadow 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+
+.heroMain:hover,
+.gfCard:hover,
+.latestCard:hover,
+.portraitCard:hover,
+.uneCard:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+/* ── Image — plus lumineuse au survol (plus naturel que scale seul) ── */
+.heroImg,
+.gfImg,
+.latestImg,
+.portraitImg,
+.atlanticThumb,
+.uneCardImg img {
+  filter: brightness(0.95);
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1),
+              filter 0.5s ease;
+}
+
+.heroMain:hover .heroImg,
+.gfCard:hover .gfImg,
+.latestCard:hover .latestImg,
+.portraitCard:hover .portraitImg {
+  filter: brightness(1.03);
+}
+
+/* ── atlanticItem — trait gauche doré au survol ── */
+.atlanticItem {
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+  margin-left: -14px;
+  transition: border-color 0.25s ease, background 0.2s ease;
+}
+
+.atlanticItem:hover {
+  border-left-color: var(--or);
+  background: var(--papier);
+}
+
+/* ── signalItem — idem ── */
+.signalItem {
+  border-left: 2px solid transparent;
+  padding-left: 14px;
+  margin-left: 0;
+  transition: border-color 0.25s ease, background 0.2s ease;
+}
+
+.signalItem:hover {
+  border-left-color: var(--or);
+  background: none;
+}
+
+/* ── gfCard — barre gauche s'épaissit au survol ── */
+.gfCard::before {
+  transition: width 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+
+.gfCard:hover::before {
+  width: 5px;
+}
