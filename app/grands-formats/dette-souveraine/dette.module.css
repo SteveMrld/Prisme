@@ -93,15 +93,9 @@
 
 /* ── WIDGET WRAPPER ── */
 .widgetWrap {
-  margin: 52px -24px;
+  margin: 52px 0;
   border-top: 1.5px solid #DDD9D2;
   border-bottom: 1.5px solid #DDD9D2;
-}
-
-@media (min-width: 900px) {
-  .widgetWrap {
-    margin: 52px calc((100vw - 960px) / -2);
-  }
 }
 
 .widget {
