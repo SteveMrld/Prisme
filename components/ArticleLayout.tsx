@@ -136,19 +136,22 @@ export default function ArticleLayout({
         </div>
       )}
 
-      {/* BYLINE — toujours visible, position identique sur tous les articles */}
-      <div className={styles.bylineUniversal}>
-        <div className={styles.bylineTop}>
-          {portraitUrl(author)
-            ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
-            : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
-          }
-          <div>
-            <div className={styles.bylineTopName}>{author}</div>
-            <div className={styles.bylineTopRole}>{authorRole}</div>
+      {/* BYLINE — uniquement pour les articles sans header interne
+          (les articles avec header interne ont leur propre structure dans le HTML) */}
+      {!hasInternalHeader && (
+        <div className={styles.bylineUniversal}>
+          <div className={styles.bylineTop}>
+            {portraitUrl(author)
+              ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
+              : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
+            }
+            <div>
+              <div className={styles.bylineTopName}>{author}</div>
+              <div className={styles.bylineTopRole}>{authorRole}</div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* ── BARRE ACTIONS — casque + partage natif + marque-page ── */}
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>

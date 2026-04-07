@@ -1687,3 +1687,48 @@ sup {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ── BYLINE INJECTÉ (articles avec header interne) ── */
+.art-byline-injected {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px 24px 20px;
+  border-bottom: 1px solid var(--bord);
+}
+
+.art-byline-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--encre);
+  color: rgba(255,255,255,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.art-byline-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--encre);
+}
+
+.art-byline-role {
+  font-size: 10px;
+  color: var(--gris-l);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .art-byline-injected {
+    padding: 14px 20px 18px;
+  }
+}
