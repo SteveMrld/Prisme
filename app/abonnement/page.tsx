@@ -16,12 +16,12 @@ export default function AbonnementPage({
   const plans = {
     monthly: {
       priceId: process.env.STRIPE_PRICE_MONTHLY!,
-      amount: 8,
+      amount: 9.99,
       interval: 'mois',
     },
     yearly: {
       priceId: process.env.STRIPE_PRICE_YEARLY!,
-      amount: 72,
+      amount: 99,
       interval: 'an',
     },
   }
