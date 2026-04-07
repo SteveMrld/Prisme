@@ -42,10 +42,29 @@
   }
 
   .label {
-    font-size: 8.5px;
+    font-size: 7.5px;
     font-weight: 500;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     white-space: nowrap;
+  }
+
+  .itemSubscribe {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 2px 8px;
+    text-decoration: none;
+    color: var(--or);
+    transition: color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .itemSubscribe .label {
+    color: var(--or);
+    font-weight: 700;
   }
 }
