@@ -101,6 +101,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       hasInternalHeader={hasInternalHeader}
       hasHeroInContent={hasHeroInContent}
       premium={showPaywall}
+      date={(article as any).date}
       slug={article.slug}
       content={content}
       author={(article as any).author || 'Steve Moradel'}

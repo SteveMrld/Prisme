@@ -12,6 +12,7 @@ interface ArticleLayoutProps {
   category: string
   categoryLabel: string
   readTime: string
+  date?: string
   hasInternalHeader?: boolean
   hasHeroInContent?: boolean
   premium?: boolean
@@ -52,13 +53,22 @@ function portraitUrl(name: string): string | null {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, content, slug = '',
+  readTime, date, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, content, slug = '',
   author = 'Steve Moradel',
   authorRole = 'Fondateur · Directeur de la rédaction',
   related = []
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
+
+  const MONTHS_FR: Record<string, string> = {
+    '01': 'Janvier', '02': 'Février', '03': 'Mars', '04': 'Avril',
+    '05': 'Mai', '06': 'Juin', '07': 'Juillet', '08': 'Août',
+    '09': 'Septembre', '10': 'Octobre', '11': 'Novembre', '12': 'Décembre'
+  }
+  const displayDate = date
+    ? (() => { const [y, m] = date.split('-'); return `${MONTHS_FR[m] || m} ${y}` })()
+    : 'Mars 2026'
 
   useEffect(() => {
     const article = document.querySelector('.confins-article')
@@ -117,7 +127,7 @@ export default function ArticleLayout({
           <div className={styles.eyebrow}>
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
             <span className={styles.readTime}>{isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}</span>
-            <span className={styles.readDate}>Mars 2026</span>
+            <span className={styles.readDate}>{displayDate}</span>
           </div>
           <div className={styles.titleRow}>
             <span className={styles.pBadgeArticle}>P</span>
