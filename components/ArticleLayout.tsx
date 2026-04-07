@@ -130,7 +130,6 @@ export default function ArticleLayout({
             <span className={styles.readDate}>{displayDate}</span>
           </div>
           <div className={styles.titleRow}>
-            <span className={styles.pBadgeArticle}>P</span>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
           </div>
           {description && (

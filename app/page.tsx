@@ -83,9 +83,7 @@ export default function HomePage() {
       <FadeSection>
       <section className={styles.ge}>
         <div className={styles.geLeft}>
-          <div className={styles.geEyebrow}>
-            <span className={styles.geN}>N°1</span>
-            <span className={styles.geLabel}>Le Grand Entretien</span>
+          <div className={styles.geEyebrow}> <span className={styles.geN}>N°1</span> <span className={styles.geLabel}>Le Grand Entretien</span>
           </div>
           <h2 className={styles.geName}>
             Cheick Modibo<br /><em>Diarra</em>
@@ -118,18 +116,13 @@ export default function HomePage() {
           <div className={styles.heroImgWrap}>
             <img src={heroArticle.image} alt={heroArticle.title} className={styles.heroImg} />
           </div>
-          <div className={styles.heroEyebrow}>
-            <span className={styles.heroTag} style={{ color: categoryColors[heroArticle.category] }}>
+          <div className={styles.heroEyebrow}> <span className={styles.heroTag} style={{ color: categoryColors[heroArticle.category] }}>
               {heroArticle.categoryLabel}
-            </span>
-            <span className={styles.heroFormat}>Grand format</span>
-            <span className={styles.heroTime}>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min`}</span>
+            </span> <span className={styles.heroFormat}>Grand format</span> <span className={styles.heroTime}>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min`}</span>
           </div>
-          <h2 className={styles.heroTitle}><span className={styles.pBadge}>C</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: heroArticle.title }} /></h2>
+          <h2 className={styles.heroTitle}><span dangerouslySetInnerHTML={{ __html: heroArticle.title }} /></h2>
           <p className={styles.heroDeck}>{heroArticle.description}</p>
-          <div className={styles.heroMeta}>
-            <span>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min de lecture`}</span>
-            <span className={styles.heroCta}>Lire l'analyse →</span>
+          <div className={styles.heroMeta}> <span>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min de lecture`}</span> <span className={styles.heroCta}>Lire l'analyse →</span>
           </div>
         </Link>
         <div className={styles.heroAside}>
@@ -139,13 +132,11 @@ export default function HomePage() {
                 <div className={styles.heroAsideImgWrap}>
                   <img src={item.image} alt={item.title} className={styles.heroAsideImg} />
                 </div>
-              )}
-              <span className={styles.heroAsideTag} style={{ color: categoryColors[item.category] }}>
+              )} <span className={styles.heroAsideTag} style={{ color: categoryColors[item.category] }}>
                 {item.categoryLabel}
               </span>
               <div className={styles.heroAsideTitle}>{item.title}</div>
-              <div className={styles.heroAsideExcerpt}>{item.excerpt}</div>
-              <span className={styles.heroAsideArrow}>→</span>
+              <div className={styles.heroAsideExcerpt}>{item.excerpt}</div> <span className={styles.heroAsideArrow}>→</span>
             </Link>
           ))}
         </div>
@@ -155,9 +146,7 @@ export default function HomePage() {
       {/* GRANDS FORMATS */}
       <FadeSection delay={0.05}>
       <section className={styles.gfSection}>
-        <div className={styles.gfHeader}>
-          <span className={styles.gfLabel}>Grands formats</span>
-          <span className={styles.gfSub}>Lectures de fond · 12–18 min</span>
+        <div className={styles.gfHeader}> <span className={styles.gfLabel}>Grands formats</span> <span className={styles.gfSub}>Lectures de fond · 12–18 min</span>
         </div>
         <StaggerGrid className={styles.gfGrid}>
           {grandsFormats.map((article, i) => (
@@ -173,15 +162,11 @@ export default function HomePage() {
                   <span key={cat.label} className={styles.gfTag} style={{ background: categoryColors[cat.color] }}>
                     {cat.label}
                   </span>
-                ))}
-                <span className={styles.gfFormat}>Grand format</span>
-                <span className={styles.gfReading}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span>
+                ))} <span className={styles.gfFormat}>Grand format</span> <span className={styles.gfReading}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span>
               </div>
-              <div className={styles.gfTitle}><span className={styles.pBadge}>C</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+              <div className={styles.gfTitle}><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
               <p className={styles.gfDeck}>{article.description}</p>
-              <div className={styles.gfFooter}>
-                <span className={styles.gfSections}>{article.sections}</span>
-                <span className={styles.gfCta} style={{ color: categoryColors[article.categories[0].color] }}>
+              <div className={styles.gfFooter}> <span className={styles.gfSections}>{article.sections}</span> <span className={styles.gfCta} style={{ color: categoryColors[article.categories[0].color] }}>
                   Lire l'analyse →
                 </span>
               </div>
@@ -197,26 +182,20 @@ export default function HomePage() {
         <ConfinsTV />
       </FadeSection>
 
-      {/* ── STATS CONFINS ── */}
+      {/* ── MANIFESTE ── */}
       <FadeSection>
-      <section style={{
-        borderTop: '1px solid var(--bord)',
-        borderBottom: '1px solid var(--bord)',
-        padding: '0 64px',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: '0',
-      }}>
-        {[
-          { value: 29, suffix: '', label: 'Analyses publiées', prefix: '' },
-          { value: 18, suffix: ' min', label: 'Lecture la plus longue', prefix: '' },
-          { value: 8, suffix: '', label: 'Minutes de lecture en moyenne', prefix: '' },
-          { value: 11, suffix: '', label: 'Contributeurs', prefix: '' },
-        ].map((s, i) => (
-          <div key={i} style={{ padding: '32px 28px', borderRight: i < 3 ? '1px solid var(--bord)' : 'none' }}>
-            <StatCount value={s.value} suffix={s.suffix} prefix={s.prefix} label={s.label} />
-          </div>
-        ))}
+      <section className={styles.manifeste}>
+        <p className={styles.manifesteText}>
+          Confins est un média d'analyse indépendant. Pas un agrégateur. Pas un éditorialiste de plus.
+          Un outil pour comprendre ce qui se passe vraiment — sans algorithme, sans actionnaire, sans bruit.
+        </p>
+        <div className={styles.manifesteMeta}>
+          <span>30 analyses publiées</span>
+          <span className={styles.manifesteDot}>·</span>
+          <span>11 contributeurs</span>
+          <span className={styles.manifesteDot}>·</span>
+          <span>Fondé en 2026</span>
+        </div>
       </section>
       </FadeSection>
 
@@ -239,16 +218,12 @@ export default function HomePage() {
                     <div className={styles.uneHeroOverlay} />
                   </div>
                 )}
-                <div className={styles.uneHeroBody}>
-                  <span className={styles.uneHeroTag} style={{ background: categoryColors[hero.category] }}>
+                <div className={styles.uneHeroBody}> <span className={styles.uneHeroTag} style={{ background: categoryColors[hero.category] }}>
                     {categoryLabels[hero.category] || hero.category}
                   </span>
                   <h2 className={styles.uneHeroTitle} dangerouslySetInnerHTML={{ __html: hero.title }} />
                   {hero.description && <p className={styles.uneHeroDesc}>{hero.description}</p>}
-                  <div className={styles.uneHeroMeta}>
-                    <span>{hero.author || 'Steve Moradel'}</span>
-                    <span className={styles.uneHeroDot}>·</span>
-                    <span>{isNaN(parseInt(hero.readTime)) ? hero.readTime : `${hero.readTime} min de lecture`}</span>
+                  <div className={styles.uneHeroMeta}> <span>{hero.author || 'Steve Moradel'}</span> <span className={styles.uneHeroDot}>·</span> <span>{isNaN(parseInt(hero.readTime)) ? hero.readTime : `${hero.readTime} min de lecture`}</span>
                   </div>
                 </div>
               </Link>
@@ -263,13 +238,11 @@ export default function HomePage() {
                           <img src={article.image} alt={article.title} />
                         </div>
                       )}
-                      <div className={styles.uneCardBody}>
-                        <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
+                      <div className={styles.uneCardBody}> <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
                           {categoryLabels[article.category] || article.category}
                         </span>
                         <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
-                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
-                        <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
+                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>} <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
                       </div>
                     </Link>
                   ))}
@@ -288,8 +261,7 @@ export default function HomePage() {
 
           {/* COLONNE GAUCHE — Dernières */}
           <div className={styles.atlanticLeft}>
-            <div className={styles.atlanticHead}>
-              <span className={styles.atlanticLabel}>Dernières publications</span>
+            <div className={styles.atlanticHead}> <span className={styles.atlanticLabel}>Dernières publications</span>
               <Link href="/geo" className={styles.atlanticSeeAll}>Tout voir →</Link>
             </div>
             {(articlesData as any[])
@@ -299,11 +271,10 @@ export default function HomePage() {
               .map((article: any) => (
               <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.atlanticItem}>
                 <img src={article.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=120'} alt={article.title} className={styles.atlanticThumb} />
-                <div className={styles.atlanticItemBody}>
-                  <span className={styles.atlanticItemCat} style={{ color: categoryColors[article.category] }}>
+                <div className={styles.atlanticItemBody}> <span className={styles.atlanticItemCat} style={{ color: categoryColors[article.category] }}>
                     {categoryLabels[article.category] || article.category}
                   </span>
-                  <div className={styles.atlanticItemTitle}><span className={styles.pBadge}>C</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+                  <div className={styles.atlanticItemTitle}> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
                   {article.author && <div className={styles.atlanticItemAuthor}>{article.author}</div>}
                 </div>
               </Link>
@@ -312,16 +283,14 @@ export default function HomePage() {
 
           {/* COLONNE DROITE — Populaires */}
           <div className={styles.atlanticRight}>
-            <div className={styles.atlanticHead}>
-              <span className={styles.atlanticLabel}>Populaires</span>
+            <div className={styles.atlanticHead}> <span className={styles.atlanticLabel}>Populaires</span>
             </div>
             {(articlesData as any[])
               .filter((a: any) => ['afrique', 'lecture', 'chine', 'empires', 'ia'].includes(a.slug))
               .sort((a: any, b: any) => ['afrique', 'lecture', 'chine', 'empires', 'ia'].indexOf(a.slug) - ['afrique', 'lecture', 'chine', 'empires', 'ia'].indexOf(b.slug))
               .slice(0, 5)
               .map((article: any, i: number) => (
-              <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.popularItem}>
-                <span className={styles.popularNum}>{i + 1}</span>
+              <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.popularItem}> <span className={styles.popularNum}>{i + 1}</span>
                 <div className={styles.popularBody}>
                   <div className={styles.popularTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
                   {article.author && <div className={styles.popularAuthor}>{article.author}</div>}
@@ -351,11 +320,9 @@ export default function HomePage() {
               <div className={styles.portraitImgWrap}>
                 <img src={article.image} alt={article.title} className={styles.portraitImg} />
               </div>
-              <div className={styles.portraitBody}>
-                <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
-                <div className={styles.portraitTitle}><span className={styles.pBadge}>C</span><span className={styles.audioBadge} title="Disponible en audio">🎧</span>{article.title}</div>
-                <p className={styles.portraitDesc}>{article.description}</p>
-                <span className={styles.portraitCta}>Lire →</span>
+              <div className={styles.portraitBody}> <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
+                <div className={styles.portraitTitle}>{article.title}</div>
+                <p className={styles.portraitDesc}>{article.description}</p> <span className={styles.portraitCta}>Lire →</span>
               </div>
             </Link>
           ))}
@@ -381,17 +348,14 @@ export default function HomePage() {
       <FadeSection>
       <section className={styles.signalSection}>
         <div className={styles.signalHead}>
-          <div className={styles.signalLabel}>
-            <span className={styles.signalDot} />
+          <div className={styles.signalLabel}> <span className={styles.signalDot} />
             Signal
           </div>
           <Link href="/signal" className={styles.signalSeeAll}>Tout le signal →</Link>
         </div>
         <div className={styles.signalGrid}>
           {signalItems.map((item, i) => (
-            <Link key={i} href="/signal" className={styles.signalItem}>
-              <span className={styles.signalCat} style={{ color: item.color }}>{item.cat}</span>
-              <span className={styles.signalDate}>{item.date}</span>
+            <Link key={i} href="/signal" className={styles.signalItem}> <span className={styles.signalCat} style={{ color: item.color }}>{item.cat}</span> <span className={styles.signalDate}>{item.date}</span>
               <div className={styles.signalHeadline}>{item.headline}</div>
             </Link>
           ))}
