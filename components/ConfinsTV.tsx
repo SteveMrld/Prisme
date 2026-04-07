@@ -100,6 +100,7 @@ export default function ConfinsTV() {
 
   return (
     <section className={styles.wrap}>
+      <div className={styles.tvInner}>
 
       <div className={styles.tvHeader}>
         <div className={styles.tvHeaderLeft}>
@@ -209,6 +210,7 @@ export default function ConfinsTV() {
         </div>
 
       </div>
+      </div>{/* tvInner */}
     </section>
   )
 }

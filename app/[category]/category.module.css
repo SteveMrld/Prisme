@@ -59,7 +59,7 @@
 /* ── FEATURED ── */
 .featured {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 460px 1fr;
   text-decoration: none;
   color: inherit;
   border-bottom: 2px solid var(--encre);

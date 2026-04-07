@@ -8,6 +8,11 @@
   overflow: hidden;
 }
 
+.tvInner {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
 /* ── Header ── */
 .tvHeader {
   display: flex;

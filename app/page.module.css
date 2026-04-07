@@ -252,9 +252,10 @@
 /* ── HERO ── */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 320px;
   border-top: 1px solid var(--bord);
   border-bottom: 2px solid var(--encre);
+  align-items: stretch;
 }
 
 .heroMain {
