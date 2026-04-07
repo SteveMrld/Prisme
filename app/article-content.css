@@ -1661,31 +1661,17 @@ sup {
 }
 
 /* ═══════════════════════════════════════════════
-   SCROLL REVEAL — éléments article
+   SCROLL REVEAL — éléments article (non-structurels)
    ═══════════════════════════════════════════════ */
 
-.confins-article h3,
-.confins-article h2,
 .confins-article .pull-quote,
 .confins-article .essentiel,
-.confins-article .art-hero-wrap,
 .confins-article .content-embed,
 .confins-article .notes-section {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
-              transform 0.65s cubic-bezier(0.22,1,0.36,1);
-}
-
-.confins-article.revealed h3,
-.confins-article.revealed h2,
-.confins-article.revealed .pull-quote,
-.confins-article.revealed .essentiel,
-.confins-article.revealed .art-hero-wrap,
-.confins-article.revealed .content-embed,
-.confins-article.revealed .notes-section {
-  opacity: 1;
-  transform: translateY(0);
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+              transform 0.6s cubic-bezier(0.22,1,0.36,1);
 }
 
 /* ── BYLINE INJECTÉ (articles avec header interne) ── */

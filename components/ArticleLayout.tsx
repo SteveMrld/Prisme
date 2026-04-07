@@ -78,7 +78,7 @@ export default function ArticleLayout({
     })
 
     // Scroll reveal — stagger par élément
-    const targets = article.querySelectorAll('h2, h3, .pull-quote, .essentiel, .art-hero-wrap, .content-embed, .notes-section')
+    const targets = article.querySelectorAll('.pull-quote, .essentiel, .content-embed, .notes-section')
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
