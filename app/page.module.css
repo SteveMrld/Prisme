@@ -445,7 +445,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: var(--bord-l);
+  background: var(--encre);
   margin-bottom: 0;
 }
 
@@ -458,7 +458,6 @@
   position: relative;
   overflow: hidden;
   transition: background 0.15s;
-  min-height: 320px;
 }
 
 .gfCard::before {
@@ -470,10 +469,7 @@
   width: 3px;
 }
 
-.gfCard.geo::before { background: var(--geo); }
-.gfCard.tech::before { background: var(--tech); }
-.gfCard.env::before { background: var(--env); }
-.gfCard.soc::before { background: var(--soc); }
+.gfCard::before { background: var(--encre); }
 
 .gfCard:hover { background: var(--papier); }
 
