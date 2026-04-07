@@ -30,7 +30,7 @@ export function FadeSection({ children, delay = 0 }: { children: React.ReactNode
       ref={ref}
       style={{
         opacity: 0,
-        transform: 'translateY(32px)',
+        transform: 'translateY(16px)',
         transition: `opacity 0.75s ${EASE} ${delay}s, transform 0.75s ${EASE} ${delay}s`,
       }}
       onTransitionEnd={() => {}}

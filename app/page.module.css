@@ -1303,7 +1303,6 @@
 
 .uneSection {
   padding: 0 0 64px;
-  border-top: 1px solid var(--bord);
 }
 
 .uneLabel {
@@ -1634,8 +1633,7 @@
 /* ── atlanticItem — trait gauche doré au survol ── */
 .atlanticItem {
   border-left: 2px solid transparent;
-  padding-left: 12px;
-  margin-left: -14px;
+  padding-left: 0;
   transition: border-color 0.25s ease, background 0.2s ease;
 }
 
@@ -1674,8 +1672,7 @@
 /* Remplace toutes les variations de labels */
 .gfLabel,
 .portraitsLabel,
-.atlanticLabel,
-.uneLabel {
+.atlanticLabel {
   font-family: 'DM Sans', sans-serif !important;
   font-size: 9px !important;
   font-weight: 700 !important;
@@ -1691,7 +1688,8 @@
 /* La règle noire pleine largeur avant chaque section */
 .gfSection,
 .portraitsSection,
-.atlanticSection {
+.atlanticSection,
+.uneSection {
   border-top: 2px solid var(--encre);
 }
 
