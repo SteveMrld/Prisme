@@ -123,9 +123,9 @@ export function HeroParallax({ src, alt }: { src: string; alt: string }) {
       src={src}
       alt={alt}
       style={{
-        width: '100%', height: '108%', objectFit: 'cover',
+        width: '100%', height: '112%', objectFit: 'cover',
         display: 'block', willChange: 'transform',
-        marginTop: '-4%',
+        marginTop: '-6%',
       }}
     />
   )
