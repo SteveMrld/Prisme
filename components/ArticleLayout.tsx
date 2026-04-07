@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import BookmarkButton from './BookmarkButton'
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
-import { ReadingProgress, ReadingTimeCounter, ScrollDepth } from './ArticleAnimations'
+import { ReadingProgress, ReadingTimeCounter, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 
 interface ArticleLayoutProps {
   title: string
@@ -82,6 +82,7 @@ export default function ArticleLayout({
       <ReadingProgress />
       <ReadingTimeCounter totalMinutes={minutes} />
       <ScrollDepth />
+      <StickyReadingHeader title={title} categoryLabel={categoryLabel} color={color} />
       <Header activeNav={category} />
 
       {/* PORTRAIT : image d'abord */}

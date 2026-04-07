@@ -94,3 +94,48 @@ export function ScrollDepth() {
     </motion.div>
   )
 }
+
+// ── STICKY READING HEADER ──
+export function StickyReadingHeader({ title, categoryLabel, color }: { title: string; categoryLabel: string; color: string }) {
+  const { scrollYProgress } = useScroll()
+  const [visible, setVisible] = useState(false)
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    return scrollYProgress.on('change', (v) => {
+      setVisible(v > 0.08 && v < 0.97)
+      setProgress(Math.round(v * 100))
+    })
+  }, [scrollYProgress])
+
+  const cleanTitle = title.replace(/<[^>]+>/g, '')
+
+  return (
+    <div style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
+      background: 'rgba(255,255,255,0.96)',
+      backdropFilter: 'blur(8px)',
+      WebkitBackdropFilter: 'blur(8px)',
+      borderBottom: '1px solid var(--bord)',
+      display: 'flex', alignItems: 'center', gap: 16,
+      padding: '0 24px', height: 48,
+      transform: visible ? 'translateY(0)' : 'translateY(-100%)',
+      transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)',
+    }}>
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0,
+        height: 2, background: 'var(--or)',
+        width: `${progress}%`, transition: 'width 0.1s linear',
+      }} />
+      <span style={{
+        fontSize: 8, fontWeight: 700, letterSpacing: '2px',
+        textTransform: 'uppercase', color, flexShrink: 0,
+      }}>{categoryLabel}</span>
+      <span style={{
+        fontFamily: "'Playfair Display', serif", fontSize: 14,
+        fontWeight: 400, color: 'var(--encre)', letterSpacing: '-0.2px',
+        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1,
+      }}>{cleanTitle}</span>
+    </div>
+  )
+}

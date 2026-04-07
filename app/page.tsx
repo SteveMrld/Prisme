@@ -220,31 +220,64 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
-      {/* ── À LA UNE ── */}
+      {/* ── À LA UNE — NYT hero layout ── */}
       <FadeSection>
-      <section className={styles.latestSection}>
-        <div className={styles.latestHead}>
-          <div className={styles.latestLabel}>À la une</div>
-        </div>
-        <div className={styles.latestGrid}>
-          {(articlesData as any[]).filter((a: any) => a.featured).map((article: any) => (
-            <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.latestCard}>
-              {article.image && (
-                <div className={styles.latestImgWrap}>
-                  <img src={article.image} alt={article.title} className={styles.latestImg} />
+      <section className={styles.uneSection}>
+        <div className={styles.uneLabel}>À la une</div>
+        {(() => {
+          const featured = (articlesData as any[]).filter((a: any) => a.featured)
+          const hero = featured[0]
+          const rest = featured.slice(1)
+          if (!hero) return null
+          return (
+            <>
+              {/* HERO — pleine largeur */}
+              <Link href={`/articles/${hero.slug}`} className={styles.uneHero}>
+                {hero.image && (
+                  <div className={styles.uneHeroImg}>
+                    <img src={hero.image} alt={hero.title} />
+                    <div className={styles.uneHeroOverlay} />
+                  </div>
+                )}
+                <div className={styles.uneHeroBody}>
+                  <span className={styles.uneHeroTag} style={{ background: categoryColors[hero.category] }}>
+                    {categoryLabels[hero.category] || hero.category}
+                  </span>
+                  <h2 className={styles.uneHeroTitle} dangerouslySetInnerHTML={{ __html: hero.title }} />
+                  {hero.description && <p className={styles.uneHeroDesc}>{hero.description}</p>}
+                  <div className={styles.uneHeroMeta}>
+                    <span>{hero.author || 'Steve Moradel'}</span>
+                    <span className={styles.uneHeroDot}>·</span>
+                    <span>{hero.readTime} min de lecture</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* GRILLE — articles suivants */}
+              {rest.length > 0 && (
+                <div className={styles.uneGrid}>
+                  {rest.map((article: any) => (
+                    <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.uneCard}>
+                      {article.image && (
+                        <div className={styles.uneCardImg}>
+                          <img src={article.image} alt={article.title} />
+                        </div>
+                      )}
+                      <div className={styles.uneCardBody}>
+                        <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
+                          {categoryLabels[article.category] || article.category}
+                        </span>
+                        <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
+                        <span className={styles.uneCardMeta}>{article.readTime} min · {article.author || 'Steve Moradel'}</span>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               )}
-              <div className={styles.latestBody}>
-                <span className={styles.latestTag} style={{ color: categoryColors[article.category] }}>
-                  {categoryLabels[article.category] || article.category}
-                </span>
-                <div className={styles.latestTitle}><span className={styles.pBadge}>C</span> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
-                {article.author && <div className={styles.latestAuthor}>Par {article.author}</div>}
-                <span className={styles.latestTime}>{article.readTime} min</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+            </>
+          )
+        })()}
       </section>
       </FadeSection>
 
