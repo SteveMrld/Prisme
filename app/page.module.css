@@ -444,7 +444,6 @@
 .gfGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 1fr;
   gap: 0;
   margin-bottom: 0;
   border-top: 1px solid var(--bord);
@@ -462,6 +461,7 @@
   transition: background 0.15s;
   border-right: 1px solid var(--bord);
   border-bottom: 1px solid var(--bord);
+  height: 100%;
 }
 
 
@@ -534,6 +534,7 @@
   color: var(--gris);
   line-height: 1.6;
   margin-bottom: 24px;
+  flex: 1;
 }
 
 .gfFooter {
@@ -542,6 +543,7 @@
   align-items: center;
   border-top: 1px solid var(--bord);
   padding-top: 16px;
+  margin-top: auto;
 }
 
 .gfSections {
