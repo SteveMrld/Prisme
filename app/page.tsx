@@ -98,9 +98,18 @@ export default function HomePage() {
 
         {/* Centre — logo + Grand Entretien */}
         <div className={styles.atlanticCenter}>
-          <div className={styles.atlanticLogoWrap}><div className={styles.atlanticLogo}><em>C</em></div></div>
-          <span className={styles.atlanticMainTag}>Grand Entretien &nbsp;·&nbsp; N°1</span>
-          <div className={styles.atlanticDivider} />
+          {/* Bloc 1 — C */}
+          <div className={styles.blocC}>
+            <div className={styles.atlanticLogo}><em>C</em></div>
+          </div>
+
+          {/* Bloc 2 — Tag */}
+          <div className={styles.blocTag}>
+            <span className={styles.atlanticMainTag}>Grand Entretien &nbsp;·&nbsp; N°1</span>
+            <div className={styles.atlanticDivider} />
+          </div>
+
+          {/* Bloc 3 — Portrait */}
           <Link href="/entretien/diarra" className={styles.atlanticMain}>
             <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
             <h2 className={styles.atlanticMainTitle}>Cheick Modibo <em>Diarra</em></h2>

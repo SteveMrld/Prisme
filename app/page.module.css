@@ -2086,3 +2086,18 @@
   margin-top: -60px;
   margin-bottom: 20px;
 }
+
+/* 3 blocs indépendants du centre */
+.blocC {
+  width: 100%;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 0;
+}
+
+.blocTag {
+  width: 100%;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
