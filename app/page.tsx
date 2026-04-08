@@ -98,7 +98,7 @@ export default function HomePage() {
 
         {/* Centre — logo + Grand Entretien */}
         <div className={styles.atlanticCenter}>
-          <div className={styles.atlanticLogo}><em>C</em></div>
+          <div className={styles.atlanticLogoWrap}><div className={styles.atlanticLogo}><em>C</em></div></div>
           <span className={styles.atlanticMainTag}>Grand Entretien &nbsp;·&nbsp; N°1</span>
           <div className={styles.atlanticDivider} />
           <Link href="/entretien/diarra" className={styles.atlanticMain}>
