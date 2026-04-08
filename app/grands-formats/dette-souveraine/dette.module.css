@@ -11,7 +11,7 @@
 }
 
 .heroInner {
-  max-width: 800px;
+  max-width: 780px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -63,7 +63,7 @@
 
 /* ── ARTICLE BODY ── */
 .body {
-  max-width: 800px;
+  max-width: 780px;
   margin: 0 auto;
   padding: 0 24px;
 }
