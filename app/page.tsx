@@ -98,26 +98,24 @@ export default function HomePage() {
 
         {/* Centre — logo + Grand Entretien */}
         <div className={styles.atlanticCenter}>
-          {/* Bloc 1 — C */}
-          <div className={styles.blocC}>
+          {/* B1 — C */}
+          <div className={styles.cb1}>
             <div className={styles.atlanticLogo}><em>C</em></div>
           </div>
 
-          {/* Bloc 2 — Tag */}
-          <div className={styles.blocTag}>
+          {/* B2 — Grand Entretien */}
+          <div className={styles.cb2}>
             <span className={styles.atlanticMainTag}>Grand Entretien &nbsp;·&nbsp; N°1</span>
             <div className={styles.atlanticDivider} />
           </div>
 
-          {/* Bloc 3 — Photo */}
-          <div className={styles.blocPhoto}>
-            <Link href="/entretien/diarra" style={{display:"block",textAlign:"center"}}>
-              <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
-            </Link>
+          {/* B3 — Photo */}
+          <div className={styles.cb3}>
+            <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
           </div>
 
-          {/* Bloc 4 — Texte */}
-          <Link href="/entretien/diarra" className={styles.atlanticMain}>
+          {/* B4 — Texte */}
+          <Link href="/entretien/diarra" className={styles.cb4}>
             <h2 className={styles.atlanticMainTitle}>Cheick Modibo <em>Diarra</em></h2>
             <p className={styles.atlanticMainDeck}>Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali. L'entretien inaugural de Prisme.</p>
             <span className={styles.atlanticMainCta}>Lire dès la parution →</span>

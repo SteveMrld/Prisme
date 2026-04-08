@@ -1978,8 +1978,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 32px 32px;
+  justify-content: space-evenly;
+  padding: 20px 32px;
   gap: 0;
+  height: 100%;
 }
 
 .atlanticLogo {
@@ -2110,3 +2112,19 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+/* 4 blocs centre indépendants */
+.cb1, .cb2, .cb3, .cb4 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cb4 {
+  text-decoration: none;
+  gap: 8px;
+  transition: opacity 0.2s;
+}
+.cb4:hover { opacity: 0.75; }
