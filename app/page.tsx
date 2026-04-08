@@ -111,7 +111,7 @@ export default function HomePage() {
 
           {/* Bloc 3 — Photo */}
           <div className={styles.blocPhoto}>
-            <Link href="/entretien/diarra">
+            <Link href="/entretien/diarra" style={{display:"block",textAlign:"center"}}>
               <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
             </Link>
           </div>
