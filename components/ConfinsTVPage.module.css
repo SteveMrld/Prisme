@@ -358,8 +358,8 @@
 }
 
 .epCardThumb {
-  width: 80px;
-  height: 45px;
+  width: 120px;
+  height: 68px;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
