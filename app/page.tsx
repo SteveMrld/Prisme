@@ -44,7 +44,7 @@ const heroArticle = {
 }
 
 const heroAsideSlugs = ['afrique', 'rushkoff', 'ia_ecriture']
-const rightColSlugs = ['chine', 'taiwan', 'semico']
+const rightColSlugs = ['chine', 'taiwan', 'semico', 'orbite']
 const rightCol = rightColSlugs.map(slug => getArticle(slug))
 const heroAside = heroAsideSlugs.map(slug => {
   const a = getArticle(slug)
@@ -133,7 +133,7 @@ export default function HomePage() {
                 <div style={{fontFamily:"'Playfair Display',serif",fontSize:'15px',fontWeight:700,color:'#1a1a1a',lineHeight:1.3}} dangerouslySetInnerHTML={{ __html: item.title }} />
                 <div style={{fontSize:'12px',color:'#888',lineHeight:1.5,display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden'}}>{item.description}</div>
               </div>
-              {item.image && <img src={item.image} alt={item.title} style={{width:'120px',height:'90px',objectFit:'cover',flexShrink:0}} />}
+              {item.image && <img src={item.image} alt={item.title} style={{width:'140px',height:'100px',objectFit:'cover',flexShrink:0}} />}
             </Link>
           ))}
         </div>
@@ -377,4 +377,4 @@ export default function HomePage() {
     </>
   )
 }
-// force deploy Wed Apr  8 12:29:54 UTC 2026
+// Wed Apr  8 12:29:54 UTC 2026
