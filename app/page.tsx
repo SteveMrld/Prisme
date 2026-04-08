@@ -99,10 +99,10 @@ export default function HomePage() {
         {/* Centre — logo + Grand Entretien */}
         <div className={styles.atlanticCenter}>
           <div className={styles.atlanticLogo}><em>C</em></div>
+          <span className={styles.atlanticMainTag}>Grand Entretien &nbsp;·&nbsp; N°1</span>
           <div className={styles.atlanticDivider} />
           <Link href="/entretien/diarra" className={styles.atlanticMain}>
             <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
-            <span className={styles.atlanticMainTag}>Grand Entretien · N°1</span>
             <h2 className={styles.atlanticMainTitle}>Cheick Modibo <em>Diarra</em></h2>
             <p className={styles.atlanticMainDeck}>Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali. L'entretien inaugural de Prisme.</p>
             <span className={styles.atlanticMainCta}>Lire dès la parution →</span>
