@@ -2021,6 +2021,8 @@
   max-width: 200px;
   height: auto;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
   background: #F9F7F3;
 }
 
