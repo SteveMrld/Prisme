@@ -2012,6 +2012,7 @@
   text-align: center;
   text-decoration: none;
   gap: 10px;
+  margin-top: 12px;
   transition: opacity 0.2s;
 }
 .atlanticMain:hover { opacity: 0.8; }
