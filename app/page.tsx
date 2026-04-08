@@ -44,7 +44,7 @@ const heroArticle = {
 }
 
 const heroAsideSlugs = ['afrique', 'rushkoff', 'ia_ecriture']
-const rightColSlugs = ['chine', 'ia_ecriture', 'musk']
+const rightColSlugs = ['orbite', 'ia_ecriture', 'musk']
 const rightCol = rightColSlugs.map(slug => getArticle(slug))
 const heroAside = heroAsideSlugs.map(slug => {
   const a = getArticle(slug)
