@@ -2112,3 +2112,8 @@
   margin-top: 16px;
   margin-bottom: 0;
 }
+
+.blocPhoto a {
+  display: block;
+  text-align: center;
+}
