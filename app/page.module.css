@@ -138,10 +138,33 @@
 
 .ge {
   background: var(--fond);
-  display: grid;
-  grid-template-columns: 1fr 300px;
   border-top: 3px solid var(--encre);
   border-bottom: 1px solid var(--bord);
+  max-width: 780px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.gePortraitBlock {
+  background: #F9F7F3;
+  display: flex;
+  justify-content: center;
+  padding: 48px 24px 0;
+}
+
+.gePortraitImg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+}
+
+.geBody {
+  padding: 36px 24px 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .geLeft {
@@ -607,10 +630,6 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .ge { grid-template-columns: 1fr 180px; }
-  .geLeft { padding: 28px 20px; }
-  .geRight { }
-  .geImg { max-width: 160px; margin-left: -10px; }
   .hero { grid-template-columns: 1fr; }
   .heroMain { border-right: none; width: 100%; }
   .heroAside { display: none; }
@@ -1210,10 +1229,6 @@
   .portraitsGrid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .atlanticSection { padding: 32px 16px; }
   .latestSection { padding: 32px 16px; }
-  .ge { grid-template-columns: 1fr 150px; }
-  .geLeft { padding: 20px 16px; }
-  .geRight { }
-  .geImg { max-width: 140px; margin-left: -8px; }
   .gfSection { padding: 0 16px; }
   .hero { grid-template-columns: 1fr; }
   .heroAside { display: none; }
@@ -1732,38 +1747,9 @@
   /* Toutes les sections : pleine largeur, padding 64px comme le header */
 
   /* ── GRAND ENTRETIEN ── */
-  .ge {
-    display: block;
-    padding: 0 64px;
-  }
-  .geInner { padding: 52px 0; }
-  .geHero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0;
-    margin-top: 20px;
-  }
-  .geText {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 580px;
-  }
-  .geImgWrap {
-    flex-shrink: 0;
-    width: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-  .geImg {
-    width: 220px;
-    height: auto;
-    display: block;
-    object-fit: contain;
-  }
+  .ge { max-width: 100%; }
+  .gePortraitImg { max-width: 340px; }
+  .geBody { padding: 28px 20px 40px; }
 
   /* ── HERO ── */
   .hero {
@@ -1897,4 +1883,13 @@
     border-bottom: 1px solid var(--bord);
   }
 
+}
+
+/* ── GE actions row ── */
+.geActions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 8px;
 }

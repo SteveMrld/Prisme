@@ -83,26 +83,24 @@ export default function HomePage() {
       {/* GRAND ENTRETIEN */}
       <FadeSection>
       <section className={styles.ge}>
-        <div className={styles.geInner}>
+        <div className={styles.gePortraitBlock}>
+          <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.gePortraitImg} />
+        </div>
+        <div className={styles.geBody}>
           <div className={styles.geEyebrow}>
             <span className={styles.geN}>N°1</span>
             <span className={styles.geLabel}>Le Grand Entretien</span>
           </div>
-          <div className={styles.geHero}>
-            <div className={styles.geText}>
-              <h2 className={styles.geName}>Cheick Modibo<br /><em>Diarra</em></h2>
-              <div className={styles.geRole}>Astrophysicien · NASA · Microsoft Afrique · Ancien Premier ministre du Mali</div>
-              <p className={styles.geIntro}>
-                Il a guidé des sondes spatiales depuis la NASA, restructuré Microsoft en Afrique,
-                et gouverné le Mali dans la tourmente. Cheick Modibo Diarra pense le continent
-                depuis les étoiles — et depuis le terrain.
-              </p>
-              <Link href="/entretien/diarra" className={styles.geCta}>Lire l'entretien dès sa parution →</Link>
-              <div className={styles.geBadge}>Parution · 1er juin 2026</div>
-            </div>
-            <div className={styles.geImgWrap}>
-              <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.geImg} />
-            </div>
+          <h2 className={styles.geName}>Cheick Modibo <em>Diarra</em></h2>
+          <div className={styles.geRole}>Astrophysicien · NASA &nbsp;·&nbsp; Microsoft Afrique &nbsp;·&nbsp; Ancien Premier ministre du Mali</div>
+          <p className={styles.geIntro}>
+            Il a guidé des sondes spatiales depuis la NASA, restructuré Microsoft en Afrique,
+            et gouverné le Mali dans la tourmente. Cheick Modibo Diarra pense le continent
+            depuis les étoiles — et depuis le terrain.
+          </p>
+          <div className={styles.geActions}>
+            <Link href="/entretien/diarra" className={styles.geCta}>Lire l'entretien dès sa parution →</Link>
+            <div className={styles.geBadge}>Parution · 1er juin 2026</div>
           </div>
         </div>
       </section>
