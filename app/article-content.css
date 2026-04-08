@@ -307,11 +307,12 @@
 
 /* ── Stats bloc (2 colonnes larges) ── */
 .stats-bloc {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  background: #DDD9D2;
-  margin: 40px -12px;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+  gap: 1px !important;
+  background: #DDD9D2 !important;
+  border: none !important;
+  margin: 40px -12px !important;
 }
 
 .sbloc {
