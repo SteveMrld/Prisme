@@ -2163,3 +2163,13 @@
   object-fit: cover;
   flex-shrink: 0;
 }
+
+.portraitNameAbove {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--encre);
+  text-align: center;
+  padding: 12px 12px 8px;
+  line-height: 1.3;
+}

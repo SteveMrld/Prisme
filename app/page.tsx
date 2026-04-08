@@ -319,6 +319,7 @@ export default function HomePage() {
             getArticle('nooyi'),
           ].map((article) => (
             <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitCard}>
+              <div className={styles.portraitNameAbove}>{article.title}</div>
               <div className={styles.portraitImgWrap}>
                 <img src={article.image} alt={article.title} className={styles.portraitImg} />
               </div>
