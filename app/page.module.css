@@ -1978,8 +1978,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 20px 32px 32px;
+  padding: 12px 32px 32px;
   gap: 0;
 }
 
@@ -2013,8 +2012,6 @@
   text-align: center;
   text-decoration: none;
   gap: 10px;
-  margin-top: auto;
-  padding-top: 16px;
   transition: opacity 0.2s;
 }
 .atlanticMain:hover { opacity: 0.8; }
@@ -2024,7 +2021,6 @@
   max-width: 200px;
   height: auto;
   display: block;
-  margin: 0 auto;
   background: #F9F7F3;
 }
 
@@ -2109,13 +2105,6 @@
 .blocPhoto {
   width: 100%;
   text-align: center;
-  margin-top: 16px;
+  margin-top: 0;
   margin-bottom: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.blocPhoto a {
-  display: block;
-  text-align: center;
 }
