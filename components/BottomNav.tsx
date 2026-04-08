@@ -26,14 +26,12 @@ const items = [
     )
   },
   {
-    label: 'Grands formats',
-    href: '/geo',
+    label: 'Explorer',
+    href: '/explorer',
     icon: (active: boolean) => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2 : 1.5} strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="1"/>
-        <line x1="3" y1="9" x2="21" y2="9"/>
-        <line x1="8" y1="14" x2="16" y2="14"/>
-        <line x1="8" y1="17" x2="14" y2="17"/>
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
       </svg>
     )
   },
