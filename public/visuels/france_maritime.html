@@ -13,7 +13,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 #zoom-wrap{position:absolute;width:100%;height:100%;transition:transform 1.3s cubic-bezier(0.4,0,0.2,1),transform-origin 1.3s cubic-bezier(0.4,0,0.2,1)}
 #map-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 #map-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-#panel{position:absolute;right:0;bottom:0;height:auto;max-height:38%;width:100%;background:linear-gradient(to top,rgba(3,8,16,0.97) 60%,rgba(3,8,16,0.7) 85%,transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:16px 24px 20px;pointer-events:none;z-index:10}
+#panel{position:absolute;left:0;bottom:60px;width:clamp(200px,30%,280px);height:auto;background:linear-gradient(to right,rgba(3,8,16,0.92) 70%,transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:16px 24px 20px;pointer-events:none;z-index:10}
 .p-ch{font-size:7px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:rgba(196,162,101,0.5);margin-bottom:10px}
 .p-hk{font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:rgba(236,231,221,0.36);line-height:1.6;margin-bottom:14px;padding-bottom:13px;border-bottom:1px solid var(--bord)}
 .p-ti{font-family:'Playfair Display',serif;font-size:clamp(16px,2.1vw,26px);font-weight:300;line-height:1.15;letter-spacing:-0.5px;margin-bottom:13px}
@@ -51,8 +51,8 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 #wm{position:fixed;bottom:74px;left:16px;z-index:50;pointer-events:none;font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.25)}
 .sd{display:none}
 @media(max-width:680px){
-  #panel{position:absolute;inset:auto 0 0 0;width:100%;height:28%;background:rgba(3,8,16,0.97);padding:10px 16px;justify-content:flex-start;overflow-y:auto;border-top:1px solid var(--bord)}
-  #stage{height:calc(72% - 60px)}
+  #panel{position:absolute;left:0;bottom:60px;width:100%;height:auto;max-height:22%;background:linear-gradient(to top,rgba(3,8,16,0.95) 60%,transparent);padding:10px 16px;justify-content:flex-end;overflow:hidden;}
+  #stage{height:calc(100% - 60px)}
   .p-ti{font-size:14px}.sn{font-size:24px}
   #leg{display:none}
 }
