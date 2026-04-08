@@ -73,7 +73,7 @@ export default function GrandFormatLayout({
 
   // Détection header interne (articles HTML existants)
   const hasInternalHeader = !!(content?.includes('class="atop"') || content?.includes('class="article-header"'))
-  const hasHeroInContent  = !!(content?.includes('art-hero-wrap') || content?.includes('art-hero-img'))
+  const hasHeroInContent  = !!(content?.includes('art-hero-wrap') || content?.includes('art-hero-img') || content?.includes('portrait-hero'))
 
   // Articles liés
   const related = (articlesData as any[])

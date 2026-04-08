@@ -1877,3 +1877,20 @@ sup {
   color: #1a1a1a !important;
   margin: 0 0 24px !important;
 }
+
+/* ── PORTRAIT HERO — style Grand Entretien Diarra ── */
+.portrait-hero {
+  margin: 0 -24px;
+  background: #F9F7F3;
+  display: flex;
+  justify-content: center;
+  padding: 48px 24px 0;
+}
+
+.portrait-hero-img {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  object-fit: contain;
+}
