@@ -1984,7 +1984,7 @@
 
 .atlanticLogo {
   font-family: 'Playfair Display', serif;
-  font-size: 100px;
+  font-size: 86px;
   font-weight: 700;
   color: var(--encre);
   line-height: 1;
@@ -2091,7 +2091,7 @@
 .blocC {
   width: 100%;
   text-align: center;
-  margin-top: 24px;
+  margin-top: 28px;
   margin-bottom: 0;
 }
 
