@@ -124,15 +124,16 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Colonne droite — style Atlantic */}
-        <div className={styles.atlanticRight}>
+        {/* Colonne droite — vignettes */}
+        <div style={{borderLeft:'1px solid #DDD9D2',paddingLeft:'32px',display:'flex',flexDirection:'column',gap:'0',padding:'32px 0 32px 32px'}}>
           {rightCol.map((item) => (
-            <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.atlanticRightItem}>
-              <div className={styles.atlanticRightText}>
-                <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
-                <div className={styles.atlanticRightTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
+            <Link key={item.slug} href={`/articles/${item.slug}`} style={{display:'flex',flexDirection:'row',alignItems:'flex-start',gap:'14px',textDecoration:'none',padding:'16px 0',borderBottom:'1px solid #EEE8E0'}}>
+              <div style={{flex:1,display:'flex',flexDirection:'column',gap:'4px'}}>
+                <span style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:categoryColors[item.category]}}>{item.categoryLabel}</span>
+                <div style={{fontFamily:"'Playfair Display',serif",fontSize:'15px',fontWeight:700,color:'#1a1a1a',lineHeight:1.3}} dangerouslySetInnerHTML={{ __html: item.title }} />
+                <div style={{fontSize:'12px',color:'#888',lineHeight:1.5,display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden'}}>{item.description}</div>
               </div>
-              {item.image && <img src={item.image} alt={item.title} className={styles.atlanticRightThumb} />}
+              {item.image && <img src={item.image} alt={item.title} style={{width:'72px',height:'72px',objectFit:'cover',flexShrink:0}} />}
             </Link>
           ))}
         </div>
