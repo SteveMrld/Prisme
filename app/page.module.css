@@ -1911,9 +1911,8 @@
   grid-template-columns: 1fr 520px 1fr;
   gap: 0;
   border-bottom: 1px solid var(--bord);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
+  max-width: 100%;
+  padding: 0 64px;
 }
 
 /* Colonnes latérales */
