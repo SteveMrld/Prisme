@@ -98,7 +98,7 @@ export default function HomePage() {
 
         {/* Centre — logo + Grand Entretien */}
         <div className={styles.atlanticCenter}>
-          <div className={styles.atlanticLogo}>Con<em>fins</em></div>
+          <div className={styles.atlanticLogo}><em>C</em></div>
           <div className={styles.atlanticDivider} />
           <Link href="/entretien/diarra" className={styles.atlanticMain}>
             <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
