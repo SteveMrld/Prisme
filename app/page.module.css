@@ -1901,3 +1901,178 @@
   flex-wrap: wrap;
   margin-top: 8px;
 }
+
+/* ═══════════════════════════════════
+   ATLANTIC HERO
+   ═══════════════════════════════════ */
+
+.atlanticHero {
+  display: grid;
+  grid-template-columns: 1fr 340px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--bord);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Colonnes latérales */
+.atlanticLeft,
+.atlanticRight {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 32px 0;
+}
+
+.atlanticLeft { border-right: 1px solid var(--bord); padding-right: 32px; }
+.atlanticRight { border-left: 1px solid var(--bord); padding-left: 32px; }
+
+.atlanticSideItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--bord-l);
+  transition: opacity 0.2s;
+}
+.atlanticSideItem:last-child { border-bottom: none; }
+.atlanticSideItem:hover { opacity: 0.75; }
+
+.atlanticSideImg {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.atlanticSideCat {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.atlanticSideTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--encre);
+  line-height: 1.3;
+}
+
+.atlanticSideExcerpt {
+  font-size: 13px;
+  color: var(--gris-m);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Centre */
+.atlanticCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 32px;
+  gap: 0;
+}
+
+.atlanticLogo {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: var(--encre);
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.atlanticLogo em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.atlanticDivider {
+  width: 100%;
+  height: 1px;
+  background: var(--bord);
+  margin: 16px 0;
+}
+
+.atlanticMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  gap: 10px;
+  transition: opacity 0.2s;
+}
+.atlanticMain:hover { opacity: 0.8; }
+
+.atlanticMainImg {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  display: block;
+  background: #F9F7F3;
+}
+
+.atlanticMainTag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+.atlanticMainTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  color: var(--encre);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.atlanticMainTitle em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--or);
+}
+
+.atlanticMainDeck {
+  font-size: 13px;
+  color: var(--gris-m);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.atlanticMainCta {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--encre);
+  border-bottom: 1px solid var(--encre);
+  padding-bottom: 2px;
+}
+
+/* Mobile — stack vertical */
+@media (max-width: 900px) {
+  .atlanticHero {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+  .atlanticLeft { border-right: none; padding-right: 0; border-bottom: 1px solid var(--bord); }
+  .atlanticRight { border-left: none; padding-left: 0; }
+  .atlanticCenter { padding: 28px 0; }
+  .atlanticLogo { font-size: 38px; }
+}

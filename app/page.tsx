@@ -80,65 +80,47 @@ export default function HomePage() {
       {/* TICKER LIVE */}
       <Ticker />
 
-      {/* GRAND ENTRETIEN */}
+      {/* ATLANTIC HERO */}
       <FadeSection>
-      <section className={styles.ge}>
-        <div className={styles.gePortraitBlock}>
-          <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.gePortraitImg} />
-        </div>
-        <div className={styles.geBody}>
-          <div className={styles.geEyebrow}>
-            <span className={styles.geN}>N°1</span>
-            <span className={styles.geLabel}>Le Grand Entretien</span>
-          </div>
-          <h2 className={styles.geName}>Cheick Modibo <em>Diarra</em></h2>
-          <div className={styles.geRole}>Astrophysicien · NASA &nbsp;·&nbsp; Microsoft Afrique &nbsp;·&nbsp; Ancien Premier ministre du Mali</div>
-          <p className={styles.geIntro}>
-            Il a guidé des sondes spatiales depuis la NASA, restructuré Microsoft en Afrique,
-            et gouverné le Mali dans la tourmente. Cheick Modibo Diarra pense le continent
-            depuis les étoiles — et depuis le terrain.
-          </p>
-          <div className={styles.geActions}>
-            <Link href="/entretien/diarra" className={styles.geCta}>Lire l'entretien dès sa parution →</Link>
-            <div className={styles.geBadge}>Parution · 1er juin 2026</div>
-          </div>
-        </div>
-      </section>
-      </FadeSection>
+      <section className={styles.atlanticHero}>
 
-
-
-      {/* HERO */}
-      <FadeSection delay={0.1}>
-      <section className={styles.hero}>
-        <Link href={`/articles/${heroArticle.slug}`} className={styles.heroMain}>
-          <div className={styles.heroImgWrap}>
-            <img src={heroArticle.image} alt={heroArticle.title} className={styles.heroImg} />
-          </div>
-          <div className={styles.heroEyebrow}> <span className={styles.heroTag} style={{ color: categoryColors[heroArticle.category] }}>
-              {heroArticle.categoryLabel}
-            </span> <span className={styles.heroFormat}>Grand format</span> <span className={styles.heroTime}>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min`}</span>
-          </div>
-          <h2 className={styles.heroTitle}><span dangerouslySetInnerHTML={{ __html: heroArticle.title }} /></h2>
-          <p className={styles.heroDeck}>{heroArticle.description}</p>
-          <div className={styles.heroMeta}> <span>{isNaN(parseInt(heroArticle.readTime)) ? heroArticle.readTime : `${heroArticle.readTime} min de lecture`}</span> <span className={styles.heroCta}>Lire l'analyse →</span>
-          </div>
-        </Link>
-        <div className={styles.heroAside}>
-          {heroAside.map((item) => (
-            <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.heroAsideItem}>
-              {item.image && (
-                <div className={styles.heroAsideImgWrap}>
-                  <img src={item.image} alt={item.title} className={styles.heroAsideImg} />
-                </div>
-              )} <span className={styles.heroAsideTag} style={{ color: categoryColors[item.category] }}>
-                {item.categoryLabel}
-              </span>
-              <div className={styles.heroAsideTitle}>{item.title}</div>
-              <div className={styles.heroAsideExcerpt}>{item.excerpt}</div> <span className={styles.heroAsideArrow}>→</span>
+        {/* Colonne gauche */}
+        <div className={styles.atlanticLeft}>
+          {heroAside.slice(0, 2).map((item) => (
+            <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.atlanticSideItem}>
+              {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}
+              <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
+              <div className={styles.atlanticSideTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
+              <div className={styles.atlanticSideExcerpt}>{item.excerpt}</div>
             </Link>
           ))}
         </div>
+
+        {/* Centre — logo + Grand Entretien */}
+        <div className={styles.atlanticCenter}>
+          <div className={styles.atlanticLogo}>Con<em>fins</em></div>
+          <div className={styles.atlanticDivider} />
+          <Link href="/entretien/diarra" className={styles.atlanticMain}>
+            <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
+            <span className={styles.atlanticMainTag}>Grand Entretien · N°1</span>
+            <h2 className={styles.atlanticMainTitle}>Cheick Modibo <em>Diarra</em></h2>
+            <p className={styles.atlanticMainDeck}>Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali. L'entretien inaugural de Prisme.</p>
+            <span className={styles.atlanticMainCta}>Lire dès la parution →</span>
+          </Link>
+        </div>
+
+        {/* Colonne droite */}
+        <div className={styles.atlanticRight}>
+          {[heroArticle, ...heroAside.slice(2)].slice(0, 2).map((item) => (
+            <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.atlanticSideItem}>
+              {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}
+              <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
+              <div className={styles.atlanticSideTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
+              <div className={styles.atlanticSideExcerpt}>{item.excerpt}</div>
+            </Link>
+          ))}
+        </div>
+
       </section>
       </FadeSection>
 
