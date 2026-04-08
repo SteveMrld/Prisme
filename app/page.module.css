@@ -1989,8 +1989,8 @@
   color: var(--encre);
   line-height: 1;
   text-align: center;
-  margin-top: -24px;
-  margin-bottom: 0;
+  margin-top: -40px;
+  margin-bottom: 8px;
 }
 
 .atlanticLogo em {
