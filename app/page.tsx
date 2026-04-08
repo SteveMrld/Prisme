@@ -44,6 +44,8 @@ const heroArticle = {
 }
 
 const heroAsideSlugs = ['afrique', 'rushkoff', 'ia_ecriture']
+const rightColSlugs = ['chine', 'ia_ecriture', 'musk']
+const rightCol = rightColSlugs.map(slug => getArticle(slug))
 const heroAside = heroAsideSlugs.map(slug => {
   const a = getArticle(slug)
   return { ...a, excerpt: a.description }
@@ -122,14 +124,15 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Colonne droite */}
+        {/* Colonne droite — style Atlantic */}
         <div className={styles.atlanticRight}>
-          {[heroArticle, ...heroAside.slice(2)].slice(0, 2).map((item) => (
-            <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.atlanticSideItem}>
-              {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}
-              <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
-              <div className={styles.atlanticSideTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
-              <div className={styles.atlanticSideExcerpt}>{(item as any).excerpt || item.description}</div>
+          {rightCol.map((item) => (
+            <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.atlanticRightItem}>
+              <div className={styles.atlanticRightText}>
+                <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
+                <div className={styles.atlanticRightTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
+              </div>
+              {item.image && <img src={item.image} alt={item.title} className={styles.atlanticRightThumb} />}
             </Link>
           ))}
         </div>
