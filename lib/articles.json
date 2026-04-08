@@ -377,5 +377,17 @@
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-03-10",
     "premium": false
+  },
+  {
+    "slug": "orbite",
+    "title": "La guerre pour l'<em>orbite</em>",
+    "description": "L'orbite basse de la Terre est en train d'être colonisée. Par des entreprises privées, par des États, dans une course sans arbitre ni règles. Ce qui se joue là-haut déterminera qui contrôle, sur Terre, l'information, les communications militaires et la connectivité de milliards de personnes.",
+    "author": "Steve Moradel",
+    "authorRole": "Géopolitique & Numérique",
+    "category": "Géopolitique & Numérique",
+    "date": "2026-04-08",
+    "readTime": "12 min de lecture",
+    "image": "https://res.cloudinary.com/dnbyi8fw6/image/upload/v1775639141/orbite_ebbbjd.png",
+    "featured": false
   }
 ]
