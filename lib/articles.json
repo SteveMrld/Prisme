@@ -389,5 +389,18 @@
     "readTime": "12 min de lecture",
     "image": "/img-orbite.png",
     "featured": false
+  },
+  {
+    "slug": "obama",
+    "title": "Barack Obama, <em>la promesse du Caire</em>",
+    "description": "Le discours du Caire avait ouvert une fenêtre sur une autre Amérique. Huit ans plus tard, Donald Trump entrait à la Maison Blanche. Entre les deux, un bilan qui résiste à tout verdict simple.",
+    "author": "Steve Moradel",
+    "authorRole": "Portrait",
+    "category": "portrait",
+    "date": "2026-04-08",
+    "readTime": "15 min de lecture",
+    "image": "https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/placeholder/obama.jpg",
+    "featured": false,
+    "premium": false
   }
 ]
