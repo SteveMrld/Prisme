@@ -6,7 +6,28 @@ import { useRouter } from 'next/navigation'
 import articlesData from '../lib/articles.json'
 import { createClient } from '../lib/supabase'
 import styles from './Header.module.css'
-import DarkModeToggle from '../app/DarkModeToggle'
+
+const rubriques = [
+  { label: 'Géopolitique', href: '/geo' },
+  { label: 'Économie', href: '/eco' },
+  { label: 'Tech', href: '/tech' },
+  { label: 'Environnement', href: '/env' },
+  { label: 'Société', href: '/soc' },
+  { label: 'Sciences', href: '/sciences' },
+  { label: 'Culture', href: '/culture' },
+  { label: 'Portraits', href: '/portraits' },
+  { label: 'Indicateurs', href: '/indicateurs' },
+]
+
+const formats = [
+  { label: 'Prisme TV', href: '/prismetv', desc: 'Analyses en mouvement' },
+  { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions en temps réel' },
+  { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
+  { label: 'Recoupement', href: '/recoupement', desc: 'Vérification par IA' },
+  { label: 'Changer le monde', href: '/solutions', desc: '157 solutions ChangeNow 2026' },
+  { label: 'Rétrospective', href: '/retrospective', desc: "Les ruptures de 2025" },
+  { label: 'Grands Formats', href: '/visuels', desc: 'Visualisations interactives' },
+]
 
 const navItems = [
   { label: 'Signal', href: '/signal', className: 'signal' },
@@ -24,39 +45,32 @@ const navItems = [
   { label: 'Solutions', href: '/solutions', className: 'env' },
 ]
 
-const secondaryItems = [
-  { label: 'Confins TV', href: '/prismetv', desc: 'Analyses en mouvement' },
-  { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions géopolitiques' },
-  { label: 'Rétrospective 2025', href: '/retrospective', desc: "Les ruptures de l'année" },
-  { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
-  { label: 'Contributeurs', href: '/contributeurs', desc: 'La rédaction Confins' },
-  { label: 'Changer le monde', href: '/solutions', desc: '157 solutions pour la planète' },
-  { label: 'À propos', href: '/apropos', desc: 'Notre projet éditorial' },
-]
-
 export default function Header({ activeNav }: { activeNav?: string }) {
   const [date, setDate] = useState('')
   const [user, setUser] = useState<any>(undefined)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<any[]>([])
+  const [menuOpen, setMenuOpen] = useState(false)
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
-  const [menuOpen, setMenuOpen] = useState(false)
   const supabase = createClient()
 
   useEffect(() => {
     const d = new Date()
     setDate(d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))
-
-    // Auth state
     supabase.auth.getUser().then(({ data }) => setUser(data.user ?? null))
-
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
     })
-
     return () => subscription.unsubscribe()
+  }, [])
+
+  // Fermer menu sur Escape
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') { setMenuOpen(false); setSearchOpen(false) } }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
   }, [])
 
   const handleSearch = (q: string) => {
@@ -70,38 +84,30 @@ export default function Header({ activeNav }: { activeNav?: string }) {
     setSearchResults(results)
   }
 
-  const handleSearchOpen = () => {
-    setSearchOpen(o => !o)
-    setSearchQuery('')
-    setSearchResults([])
-    setTimeout(() => inputRef.current?.focus(), 50)
-  }
-
   return (
     <header className={styles.header}>
-      <div className={styles.headerTop}>
-        <span className={styles.date}>{date}</span>
-        <div className={styles.logoWrap}>
-          <Link href="/" className={styles.logo}>Con<em>fins</em></Link>
-        </div>
-        <div className={styles.actions}>
+
+      {/* ── DESKTOP HEADER ── */}
+      <div className={styles.desktopHeader}>
+        <div className={styles.desktopLeft}>
           <button
-            className={styles.moreBtn}
+            className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setMenuOpen(o => !o)}
-            aria-label="Plus"
-          >···</button>
-          <button
-            className={styles.searchBtn}
-            onClick={handleSearchOpen}
-            aria-label="Rechercher"
+            aria-label="Menu"
           >
+            <span /><span /><span />
+          </button>
+          <button className={styles.searchBtn} onClick={() => { setSearchOpen(o => !o); setTimeout(() => inputRef.current?.focus(), 50) }} aria-label="Rechercher">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
             </svg>
           </button>
-          {user === undefined ? (
-            <div className={styles.actionsPlaceholder} />
-          ) : user ? (
+        </div>
+
+        <Link href="/" className={styles.desktopLogo}>Con<em>fins</em></Link>
+
+        <div className={styles.desktopRight}>
+          {user === undefined ? <div className={styles.actionsPlaceholder} /> : user ? (
             <>
               <Link href="/compte" className={styles.btnLogin}>Mon compte</Link>
               <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
@@ -113,81 +119,123 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             </>
           )}
         </div>
-        {searchOpen && (
-          <div className={styles.searchPanel}>
-            <div className={styles.searchBar}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-              </svg>
-              <input
-                ref={inputRef}
-                autoFocus
-                type="text"
-                placeholder="Rechercher un article, un sujet…"
-                className={styles.searchInput}
-                value={searchQuery}
-                onChange={e => handleSearch(e.target.value)}
-                onKeyDown={e => {
-                  if (e.key === 'Escape') { setSearchOpen(false); setSearchResults([]) }
-                  if (e.key === 'Enter' && searchResults.length > 0) {
-                    router.push('/articles/' + searchResults[0].slug)
-                    setSearchOpen(false)
-                  }
-                }}
-              />
-              <button className={styles.searchClose} onClick={() => { setSearchOpen(false); setSearchResults([]) }}>✕</button>
-            </div>
-            {searchResults.length > 0 && (
-              <div className={styles.searchResults}>
-                {searchResults.map((a: any) => (
-                  <Link key={a.slug} href={'/articles/' + a.slug}
-                    className={styles.searchResultItem}
-                    onClick={() => { setSearchOpen(false); setSearchResults([]) }}>
-                    <span className={styles.searchResultCat}>{a.category}</span>
-                    <span className={styles.searchResultTitle} dangerouslySetInnerHTML={{ __html: a.title }} />
+      </div>
+
+      {/* ── MEGA MENU DESKTOP ── */}
+      {menuOpen && (
+        <>
+          <div className={styles.megaMenu}>
+            <div className={styles.megaMenuInner}>
+              <div className={styles.megaCol}>
+                <div className={styles.megaColTitle}>Rubriques</div>
+                {rubriques.map(r => (
+                  <Link key={r.href} href={r.href} className={styles.megaLink} onClick={() => setMenuOpen(false)}>
+                    {r.label}
                   </Link>
                 ))}
               </div>
-            )}
-            {searchQuery.length >= 2 && searchResults.length === 0 && (
-              <div className={styles.searchEmpty}>Aucun résultat pour « {searchQuery} »</div>
-            )}
-          </div>
-        )}
-      </div>
-      <nav className={styles.nav}>
-        {navItems.map(item => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`${styles.navItem} ${styles[item.className]} ${activeNav === item.className ? styles.active : ''}`}
-          >
-            {item.label}
-            {item.className === 'signal' && <span className={styles.signalDot}></span>}
-          </Link>
-        ))}
-      </nav>
-
-      {/* PANEL PAGES SECONDAIRES */}
-      {menuOpen && (
-        <div className={styles.morePanel}>
-          <div className={styles.morePanelInner}>
-            <div className={styles.morePanelHead}>
-              <span className={styles.morePanelTitle}>Explorer Confins</span>
-              <button className={styles.morePanelClose} onClick={() => setMenuOpen(false)}>✕</button>
+              <div className={styles.megaDivider} />
+              <div className={styles.megaCol}>
+                <div className={styles.megaColTitle}>Formats</div>
+                {formats.map(f => (
+                  <Link key={f.href} href={f.href} className={styles.megaLinkFmt} onClick={() => setMenuOpen(false)}>
+                    <span className={styles.megaLinkLabel}>{f.label}</span>
+                    <span className={styles.megaLinkDesc}>{f.desc}</span>
+                  </Link>
+                ))}
+              </div>
+              <div className={styles.megaDivider} />
+              <div className={styles.megaCol}>
+                <div className={styles.megaColTitle}>Prisme</div>
+                <Link href="/apropos" className={styles.megaLink} onClick={() => setMenuOpen(false)}>À propos</Link>
+                <Link href="/contributeurs" className={styles.megaLink} onClick={() => setMenuOpen(false)}>Contributeurs</Link>
+                <Link href="/abonnement" className={styles.megaLink} onClick={() => setMenuOpen(false)}>S'abonner</Link>
+                <Link href="/mentions" className={styles.megaLink} onClick={() => setMenuOpen(false)}>Mentions légales</Link>
+              </div>
             </div>
-            <div className={styles.morePanelGrid}>
-              {secondaryItems.map(item => (
-                <Link key={item.href} href={item.href} className={styles.morePanelItem} onClick={() => setMenuOpen(false)}>
-                  <div className={styles.morePanelLabel}>{item.label}</div>
-                  <div className={styles.morePanelDesc}>{item.desc}</div>
+          </div>
+          <div className={styles.megaBackdrop} onClick={() => setMenuOpen(false)} />
+        </>
+      )}
+
+      {/* ── SEARCH PANEL DESKTOP ── */}
+      {searchOpen && (
+        <div className={styles.searchPanel}>
+          <div className={styles.searchBar}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <input
+              ref={inputRef}
+              autoFocus
+              type="text"
+              placeholder="Rechercher un article, un sujet…"
+              className={styles.searchInput}
+              value={searchQuery}
+              onChange={e => handleSearch(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === 'Escape') { setSearchOpen(false); setSearchResults([]) }
+                if (e.key === 'Enter' && searchResults.length > 0) {
+                  router.push('/articles/' + searchResults[0].slug)
+                  setSearchOpen(false)
+                }
+              }}
+            />
+            <button className={styles.searchClose} onClick={() => { setSearchOpen(false); setSearchResults([]) }}>✕</button>
+          </div>
+          {searchResults.length > 0 && (
+            <div className={styles.searchResults}>
+              {searchResults.map((a: any) => (
+                <Link key={a.slug} href={'/articles/' + a.slug}
+                  className={styles.searchResultItem}
+                  onClick={() => { setSearchOpen(false); setSearchResults([]) }}>
+                  <span className={styles.searchResultCat}>{a.category}</span>
+                  <span className={styles.searchResultTitle} dangerouslySetInnerHTML={{ __html: a.title }} />
                 </Link>
               ))}
             </div>
-          </div>
-          <div className={styles.morePanelBackdrop} onClick={() => setMenuOpen(false)} />
+          )}
+          {searchQuery.length >= 2 && searchResults.length === 0 && (
+            <div className={styles.searchEmpty}>Aucun résultat pour « {searchQuery} »</div>
+          )}
         </div>
       )}
+
+      {/* ── MOBILE HEADER (inchangé) ── */}
+      <div className={styles.mobileHeader}>
+        <div className={styles.headerTop}>
+          <span className={styles.date}>{date}</span>
+          <div className={styles.logoWrap}>
+            <Link href="/" className={styles.logo}>Con<em>fins</em></Link>
+          </div>
+          <div className={styles.actions}>
+            <button className={styles.moreBtn} onClick={() => setMenuOpen(o => !o)} aria-label="Plus">···</button>
+            <button className={styles.searchBtn} onClick={() => { setSearchOpen(o => !o); setTimeout(() => inputRef.current?.focus(), 50) }} aria-label="Rechercher">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </button>
+            {user === undefined ? <div className={styles.actionsPlaceholder} /> : user ? (
+              <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
+            ) : (
+              <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
+            )}
+          </div>
+        </div>
+        <nav className={styles.nav}>
+          {navItems.map(item => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${styles.navItem} ${styles[item.className]} ${activeNav === item.className ? styles.active : ''}`}
+            >
+              {item.label}
+              {item.className === 'signal' && <span className={styles.signalDot}></span>}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
     </header>
   )
 }
