@@ -91,7 +91,7 @@ export default function HomePage() {
               {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}
               <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
               <div className={styles.atlanticSideTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
-              <div className={styles.atlanticSideExcerpt}>{item.excerpt}</div>
+              <div className={styles.atlanticSideExcerpt}>{(item as any).excerpt || item.description}</div>
             </Link>
           ))}
         </div>
@@ -116,7 +116,7 @@ export default function HomePage() {
               {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}
               <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
               <div className={styles.atlanticSideTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
-              <div className={styles.atlanticSideExcerpt}>{item.excerpt}</div>
+              <div className={styles.atlanticSideExcerpt}>{(item as any).excerpt || item.description}</div>
             </Link>
           ))}
         </div>
