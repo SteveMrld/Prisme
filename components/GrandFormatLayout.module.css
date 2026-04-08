@@ -182,14 +182,23 @@
 }
 
 .body :global(h2),
-.body :global(.article-body h2) {
+.body :global(.article-body h2),
+.body :global(h3),
+.body :global(.article-body h3) {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(22px, 2.5vw, 30px);
-  font-weight: 700;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 700 !important;
+  font-style: normal !important;
   color: #111;
   letter-spacing: -0.02em;
   margin: 52px 0 20px;
   line-height: 1.2;
+}
+
+.body :global(h3 em),
+.body :global(.article-body h3 em) {
+  font-style: italic;
+  color: #B91C1C !important;
 }
 
 .body :global(.pull-quote),
