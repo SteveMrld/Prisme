@@ -1894,3 +1894,14 @@ sup {
   height: auto;
   object-fit: contain;
 }
+
+/* Crédit photo */
+.photo-credit {
+  font-size: 10px;
+  color: var(--gris-l);
+  font-style: italic;
+  margin-top: 48px;
+  padding-top: 12px;
+  border-top: 1px solid var(--bord-l);
+  line-height: 1.6;
+}

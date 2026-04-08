@@ -399,7 +399,7 @@
     "category": "portrait",
     "date": "2026-04-08",
     "readTime": "15 min de lecture",
-    "image": "https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/placeholder/obama.jpg",
+    "image": "/portraits/obama.png",
     "featured": false,
     "premium": false
   }
