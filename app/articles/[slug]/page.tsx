@@ -86,7 +86,9 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
   const hasHeroInContent =
     content.includes('art-hero-wrap') ||
-    content.includes('art-hero-img')
+    content.includes('art-hero-img') ||
+    content.includes('portrait-hero') ||
+    (article as any).category === 'portrait'
 
   // Articles liés — même catégorie, max 3, exclu l'article courant
   const related = (articlesData as any[])
