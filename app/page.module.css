@@ -468,7 +468,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  margin-bottom: 0;
   border-top: 1px solid var(--bord);
   border-left: 1px solid var(--bord);
 }
@@ -676,8 +675,9 @@
 .latestGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--bord);
+  gap: 0;
+  border-top: 1px solid var(--bord);
+  border-left: 1px solid var(--bord);
 }
 
 .latestCard {
@@ -686,14 +686,18 @@
   display: flex;
   flex-direction: column;
   transition: background 0.15s;
+  border-right: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  overflow: hidden;
 }
 .latestCard:hover { background: var(--papier); }
 
 .latestImgWrap {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 200px;
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
 }
 
 .latestImg {
@@ -802,8 +806,9 @@
 .portraitsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--bord);
+  gap: 0;
+  border-top: 1px solid var(--bord);
+  border-left: 1px solid var(--bord);
 }
 
 .portraitCard {
@@ -812,15 +817,20 @@
   display: flex;
   flex-direction: column;
   transition: background 0.15s;
+  border-right: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
   border-left: 3px solid var(--portrait);
+  overflow: hidden;
+  height: 440px;
 }
 .portraitCard:hover { background: var(--papier); }
 
 .portraitImgWrap {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 220px;
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
 }
 
 .portraitImg {
