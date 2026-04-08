@@ -109,9 +109,15 @@ export default function HomePage() {
             <div className={styles.atlanticDivider} />
           </div>
 
-          {/* Bloc 3 — Portrait */}
+          {/* Bloc 3 — Photo */}
+          <div className={styles.blocPhoto}>
+            <Link href="/entretien/diarra">
+              <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
+            </Link>
+          </div>
+
+          {/* Bloc 4 — Texte */}
           <Link href="/entretien/diarra" className={styles.atlanticMain}>
-            <img src="/portraits/diarra.png" alt="Cheick Modibo Diarra" className={styles.atlanticMainImg} />
             <h2 className={styles.atlanticMainTitle}>Cheick Modibo <em>Diarra</em></h2>
             <p className={styles.atlanticMainDeck}>Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali. L'entretien inaugural de Prisme.</p>
             <span className={styles.atlanticMainCta}>Lire dès la parution →</span>

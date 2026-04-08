@@ -2101,3 +2101,10 @@
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+.blocPhoto {
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
