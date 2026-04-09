@@ -103,7 +103,7 @@ export default function SoaraTV() {
       <div className={styles.tvHeader}>
         <div className={styles.tvHeaderLeft}>
           <div className={styles.tvLogo}>
-            <span className={styles.tvLogoText}>CONFINS</span>
+            <span className={styles.tvLogoText}>SOARA</span>
             <span className={styles.tvLogoTag}>TV</span>
           </div>
           <div className={styles.tvMeta}>
@@ -158,7 +158,7 @@ export default function SoaraTV() {
 
             {/* Watermark TV */}
             <div className={styles.tvBug}>
-              <span className={styles.tvBugName}>CONFINS</span>
+              <span className={styles.tvBugName}>SOARA</span>
               <span className={styles.tvBugEp}>Ép. {ep.id}</span>
             </div>
 
