@@ -405,3 +405,119 @@
     display: none;
   }
 }
+
+/* ── FILTRES NATIONS ────────────────────────────────────────── */
+.nationFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.nationBtn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1.5px solid #D4CFC7;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.83rem;
+  transition: all 0.15s;
+}
+
+.nationActive {
+  color: #fff;
+  font-weight: 600;
+}
+
+.nationInactive {
+  background: #F5F3EF;
+  color: #8A8480;
+}
+
+.nationFlag {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.nationName {
+  font-weight: 600;
+}
+
+.nationCount {
+  font-size: 0.72rem;
+  opacity: 0.8;
+  background: rgba(255,255,255,0.2);
+  padding: 1px 5px;
+  border-radius: 10px;
+}
+
+.nationInactive .nationCount {
+  background: rgba(0,0,0,0.08);
+}
+
+/* ── TOOLTIP nation ─────────────────────────────────────────── */
+.ttNation {
+  font-size: 0.72rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 4px;
+}
+
+.ttCertainty {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: #9A9590;
+}
+
+/* ── LÉGENDE FIABILITÉ ──────────────────────────────────────── */
+.certLegend {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid #DDD9D2;
+  border-radius: 5px;
+  padding: 10px 12px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.certTitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6A6560;
+  margin-bottom: 6px;
+}
+
+.certItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #4A4540;
+  margin-bottom: 3px;
+}
+
+/* ── FICHE — nation ─────────────────────────────────────────── */
+.cardNation {
+  font-size: 0.78rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 6px;
+}
+
+.cardCertaintyBadge {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: italic;
+  opacity: 0.8;
+}
