@@ -102,7 +102,7 @@ export default function HomePage() {
         <div className={styles.atlanticCenter}>
           {/* B1 — C */}
           <div className={styles.cb1}>
-            <div className={styles.atlanticLogo}><em>C</em></div>
+            <div className={styles.atlanticLogo}><em>S</em></div>
           </div>
 
           {/* B2 — Grand Entretien */}
