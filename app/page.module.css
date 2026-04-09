@@ -2023,7 +2023,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background: #F9F7F3;
+  background: transparent;
+  mix-blend-mode: multiply;
 }
 
 .atlanticMainTag {
