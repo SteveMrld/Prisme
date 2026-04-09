@@ -32,13 +32,13 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
       readTime: 'Interactif',
     },
     {
-      slug: 'prismetv',
-      title: 'Prisme <em>TV</em>',
-      description: 'Des analyses géopolitiques en format court. Le monde en mouvement, sans bruit.',
+      slug: 'inde-video',
+      title: 'L'Inde, <em>la puissance silencieuse</em>',
+      description: 'Un milliard et demi d'habitants, la plus grande démocratie du monde, une ambition géopolitique qui ne dit pas encore son nom.',
       category: 'tv',
-      image: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/twCGQsPB/img-afrique.jpg',
+      image: 'https://res.cloudinary.com/dnbyi8fw6/image/upload/f_auto,q_auto/prisme_inde_v10-3_a57ifu.jpg',
       customRoute: '/prismetv',
-      readTime: 'Vidéo',
+      readTime: 'Vidéo · 3 min',
     },
     {
       slug: 'grand-entretien',
