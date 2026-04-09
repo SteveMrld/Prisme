@@ -324,7 +324,7 @@ export default function HomePage() {
                 <img src={article.image} alt={article.title} className={styles.portraitImg} />
               </div>
               <div className={styles.portraitBody}> <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
-                <div className={styles.portraitTitle}>{article.title}</div>
+                <div className={styles.portraitTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
                 <p className={styles.portraitDesc}>{article.description}</p> <span className={styles.portraitCta}>Lire →</span>
               </div>
             </Link>

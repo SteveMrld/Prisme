@@ -821,7 +821,6 @@
   border-bottom: 1px solid var(--bord);
   border-left: 3px solid var(--portrait);
   overflow: hidden;
-  height: 440px;
 }
 .portraitCard:hover { background: var(--papier); }
 
