@@ -597,15 +597,17 @@
 }
 
 .mobilePanel {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 80%;
   max-width: 320px;
-  height: 100%;
+  height: 100vh;
   background: var(--blanc);
   overflow-y: auto;
   padding: 0 0 40px;
+  z-index: 501;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
 }
 
 .mobilePanelHead {
