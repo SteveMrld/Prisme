@@ -33,8 +33,8 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
     },
     {
       slug: 'inde-video',
-      title: 'L'Inde, <em>la puissance silencieuse</em>',
-      description: 'Un milliard et demi d'habitants, la plus grande démocratie du monde, une ambition géopolitique qui ne dit pas encore son nom.',
+      title: "L'Inde, <em>la puissance silencieuse</em>",
+      description: "Un milliard et demi d'habitants, la plus grande démocratie du monde, une ambition géopolitique qui ne dit pas encore son nom.",
       category: 'tv',
       image: 'https://res.cloudinary.com/dnbyi8fw6/image/upload/f_auto,q_auto/prisme_inde_v10-3_a57ifu.jpg',
       customRoute: '/prismetv',
