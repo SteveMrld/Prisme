@@ -20,10 +20,52 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
   const touchStartY = useRef(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Sélection : articles avec image, variés
-  const featured = articles
-    .filter(a => a.image && a.image !== '')
-    .slice(0, 12)
+  // Formats spéciaux
+  const specialFormats = [
+    {
+      slug: 'signal-map',
+      title: 'Signal Map — <em>La carte des tensions</em>',
+      description: 'Un globe interactif en temps réel. Les zones de tension, les routes maritimes, les arcs de connexion géopolitique.',
+      category: 'visuel',
+      image: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/jvvQx1mw/img-arctique.jpg',
+      customRoute: '/signal-map',
+      readTime: 'Interactif',
+    },
+    {
+      slug: 'prismetv',
+      title: 'Prisme <em>TV</em>',
+      description: 'Des analyses géopolitiques en format court. Le monde en mouvement, sans bruit.',
+      category: 'tv',
+      image: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/twCGQsPB/img-afrique.jpg',
+      customRoute: '/prismetv',
+      readTime: 'Vidéo',
+    },
+    {
+      slug: 'grand-entretien',
+      title: 'Grand Entretien — <em>Cheick Modibo Diarra</em>',
+      description: 'Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali.',
+      category: 'portrait',
+      image: '/portraits/diarra.png',
+      customRoute: '/entretien/diarra',
+      readTime: 'À paraître',
+    },
+    {
+      slug: 'solutions',
+      title: 'Changer <em>le monde</em>',
+      description: '157 solutions concrètes sélectionnées par ChangeNow 2026. Un globe, des données, des idées.',
+      category: 'visuel',
+      image: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/nN5hN0sQ/img-empires.jpg',
+      customRoute: '/solutions',
+      readTime: 'Interactif',
+    },
+  ]
+
+  const articlesFeatured = articles
+    .filter((a: any) => a.image && a.image !== '')
+    .slice(0, 10)
+
+  const allItems = [...specialFormats, ...articlesFeatured]
+  const featured = allItems
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartY.current = e.touches[0].clientY
