@@ -52,6 +52,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<any[]>([])
   const [menuOpen, setMenuOpen] = useState(false)
+  const [mobilePanelOpen, setMobilePanelOpen] = useState(false)
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const supabase = createClient()
@@ -209,7 +210,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link href="/" className={styles.logo}>Con<em>fins</em></Link>
           </div>
           <div className={styles.actions}>
-            <button className={styles.moreBtn} onClick={() => setMenuOpen(o => !o)} aria-label="Plus">···</button>
+<button className={styles.moreBtn} onClick={() => setMobilePanelOpen(o => !o)} aria-label="Plus">···</button>
             <button className={styles.searchBtn} onClick={() => { setSearchOpen(o => !o); setTimeout(() => inputRef.current?.focus(), 50) }} aria-label="Rechercher">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
@@ -235,6 +236,35 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           ))}
         </nav>
       </div>
+
+      {/* Panel mobile */}
+      {mobilePanelOpen && (
+        <div className={styles.mobilePanelOverlay} onClick={() => setMobilePanelOpen(false)}>
+          <div className={styles.mobilePanel} onClick={e => e.stopPropagation()}>
+            <div className={styles.mobilePanelHead}>
+              <span className={styles.mobilePanelTitle}>Menu</span>
+              <button onClick={() => setMobilePanelOpen(false)} className={styles.mobilePanelClose}>✕</button>
+            </div>
+            <div className={styles.mobilePanelSection}>Rubriques</div>
+            <Link href="/geo" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Géopolitique</Link>
+            <Link href="/eco" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Économie</Link>
+            <Link href="/tech" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Tech</Link>
+            <Link href="/env" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Environnement</Link>
+            <Link href="/soc" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Société</Link>
+            <Link href="/portraits" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Portraits</Link>
+            <div className={styles.mobilePanelSection}>Formats</div>
+            <Link href="/signal-map" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Signal Map</Link>
+            <Link href="/prismetv" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Prisme TV</Link>
+            <Link href="/entretien/diarra" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grand Entretien</Link>
+            <Link href="/solutions" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Changer le monde</Link>
+            <Link href="/retrospective" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Rétrospective</Link>
+            <div className={styles.mobilePanelSection}>À propos</div>
+            <Link href="/apropos" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>À propos</Link>
+            <Link href="/contributeurs" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Contributeurs</Link>
+            <Link href="/mentions" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Mentions légales</Link>
+          </div>
+        </div>
+      )}
 
     </header>
   )
