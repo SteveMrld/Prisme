@@ -534,13 +534,13 @@ export default function DetteClient() {
         display:"flex", justifyContent:"space-between", flexShrink:0, flexWrap:"wrap", gap:"4px" }}>
         <span style={{ fontFamily:mono, fontSize:"8px", color:"#CBD5E1",
           letterSpacing:"0.1em", textTransform:"uppercase" }}>
-          Prisme · prisme.media · Avril 2026
+          Soara · soara.media · Avril 2026
         </span>
         <span style={{ fontFamily:mono, fontSize:"8px", color:"#CBD5E1" }}>
           {vue === "france"
             ? "INSEE mars 2026 · Cour des comptes · DGFiP"
             : vue === "monde"
-            ? "FMI · OCDE · Banque mondiale · calculs Prisme"
+            ? "FMI · OCDE · Banque mondiale · calculs Soara"
             : "DGFiP · PLF 2025 · Cour des comptes · FMI"}
         </span>
       </div>

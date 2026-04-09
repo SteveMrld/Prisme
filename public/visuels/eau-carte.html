@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carte des bassins transfrontaliers — Confins</title>
+<title>Carte des bassins transfrontaliers — Soara</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -86,8 +86,8 @@ html,body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--
 .nav-btn:hover:not(:disabled) { border-color:var(--or); color:var(--or); }
 .nav-btn:disabled { opacity:0.2; cursor:default; }
 .nav-btn.next { border-color:rgba(196,162,101,0.4); color:var(--or); }
-#confins-wm{position:fixed;bottom:20px;left:20px;z-index:50;pointer-events:none;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.45)}
-#confins-wm span{color:rgba(196,162,101,0.25)}
+#soara-wm{position:fixed;bottom:20px;left:20px;z-index:50;pointer-events:none;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(196,162,101,0.45)}
+#soara-wm span{color:rgba(196,162,101,0.25)}
 </style>
 <style>
 @media (max-width: 768px) {
@@ -353,6 +353,6 @@ function showCh(i) {
 function next() { if (cur < total - 1) showCh(cur + 1); }
 function prev() { if (cur > 0) showCh(cur - 1); }
 </script>
-<div id="confins-wm">CONFINS<span>.FR</span></div>
+<div id="soara-wm">SOARA<span>.FR</span></div>
 </body>
 </html>

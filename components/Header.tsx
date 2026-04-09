@@ -20,7 +20,7 @@ const rubriques = [
 ]
 
 const formats = [
-  { label: 'Prisme TV', href: '/prismetv', desc: 'Analyses en mouvement' },
+  { label: 'Soara TV', href: '/prismetv', desc: 'Analyses en mouvement' },
   { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions en temps réel' },
   { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
   { label: 'Recoupement', href: '/recoupement', desc: 'Vérification par IA' },
@@ -147,7 +147,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
               </div>
               <div className={styles.megaDivider} />
               <div className={styles.megaCol}>
-                <div className={styles.megaColTitle}>Prisme</div>
+                <div className={styles.megaColTitle}>Soara</div>
                 <Link href="/apropos" className={styles.megaLink} onClick={() => setMenuOpen(false)}>À propos</Link>
                 <Link href="/contributeurs" className={styles.megaLink} onClick={() => setMenuOpen(false)}>Contributeurs</Link>
                 <Link href="/abonnement" className={styles.megaLink} onClick={() => setMenuOpen(false)}>S'abonner</Link>
@@ -254,7 +254,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link href="/portraits" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Portraits</Link>
             <div className={styles.mobilePanelSection}>Formats</div>
             <Link href="/signal-map" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Signal Map</Link>
-            <Link href="/prismetv" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Prisme TV</Link>
+            <Link href="/prismetv" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Soara TV</Link>
             <Link href="/entretien/diarra" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grand Entretien</Link>
             <Link href="/solutions" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Changer le monde</Link>
             <Link href="/retrospective" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Rétrospective</Link>

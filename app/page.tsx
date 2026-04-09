@@ -119,7 +119,7 @@ export default function HomePage() {
           {/* B4 — Texte */}
           <Link href="/entretien/diarra" className={styles.cb4}>
             <h2 className={styles.atlanticMainTitle}>Cheick Modibo <em>Diarra</em></h2>
-            <p className={styles.atlanticMainDeck}>Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali. L'entretien inaugural de Prisme.</p>
+            <p className={styles.atlanticMainDeck}>Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali. L'entretien inaugural de Soara.</p>
             <span className={styles.atlanticMainCta}>Lire dès la parution →</span>
           </Link>
         </div>

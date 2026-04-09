@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from './diarra.module.css'
 
 export const metadata = {
-  title: 'Cheick Modibo Diarra — Le Grand Entretien · Prisme',
+  title: 'Cheick Modibo Diarra — Le Grand Entretien · Soara',
   description: "Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali.",
 }
 
@@ -51,7 +51,7 @@ export default function DiarraPage() {
             pendant dix ans, ancien Premier ministre du Mali en 2012–2013 dans un contexte
             de crise institutionnelle majeure. C'est cette trajectoire singulière — la science,
             le capital technologique mondial, le pouvoir politique africain — qui en fait
-            l'interlocuteur idéal pour l'entretien inaugural de Prisme.
+            l'interlocuteur idéal pour l'entretien inaugural de Soara.
           </p>
 
           <div className={styles.questionsSection}>
@@ -84,7 +84,7 @@ export default function DiarraPage() {
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Prisme · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Soara · Média d'analyse indépendant</div>
       </footer>
     </>
   )

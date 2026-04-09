@@ -2,13 +2,13 @@ import GrandFormatLayout from "../../../components/GrandFormatLayout";
 import DetteClient from "./DetteClient";
 
 export const metadata = {
-  title: "L'État insolvable — Prisme",
+  title: "L'État insolvable — Soara",
   description: "La dette publique mondiale a franchi 100 000 milliards de dollars. Ce n'est pas la dette qui inquiète. C'est ce qu'elle révèle.",
 };
 
 export default function DettePage() {
   return (
-    <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole="Fondateur · Prisme">
+    <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole="Fondateur · Soara">
       <div style={{ margin:"0 -40px 48px", borderTop:"1.5px solid #DDD9D2", borderBottom:"1.5px solid #DDD9D2" }}>
         <DetteClient />
       </div>
