@@ -101,7 +101,7 @@ export default function IndicateursClient() {
     <div className={styles.page}>
       <div className={styles.topbar}>
         <div className={styles.topLeft}>
-          <span className={styles.topLabel}>Confins</span>
+          <span className={styles.topLabel}>Soara</span>
           <span className={styles.topSep}>·</span>
           <span className={styles.topTitle}>Indicateurs géopolitiques</span>
         </div>

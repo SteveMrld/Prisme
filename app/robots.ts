@@ -22,6 +22,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
     ],
-    sitemap: 'https://confins.fr/sitemap.xml',
+    sitemap: 'https://soara.fr/sitemap.xml',
   }
 }

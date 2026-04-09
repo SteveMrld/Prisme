@@ -11,7 +11,7 @@ export default function LecturesClient() {
 
   useEffect(() => {
     try {
-      const saved = JSON.parse(localStorage.getItem('confins_bookmarks') || '[]')
+      const saved = JSON.parse(localStorage.getItem('soara_bookmarks') || '[]')
       setBookmarks(saved.sort((a: Bookmark, b: Bookmark) => new Date(b.savedAt).getTime() - new Date(a.savedAt).getTime()))
     } catch {}
   }, [])
@@ -19,7 +19,7 @@ export default function LecturesClient() {
   const remove = (slug: string) => {
     const updated = bookmarks.filter(b => b.slug !== slug)
     setBookmarks(updated)
-    localStorage.setItem('confins_bookmarks', JSON.stringify(updated))
+    localStorage.setItem('soara_bookmarks', JSON.stringify(updated))
   }
 
   const getArticle = (slug: string) => (articlesData as any[]).find(a => a.slug === slug)
@@ -27,7 +27,7 @@ export default function LecturesClient() {
   return (
     <div className={styles.page}>
       <div className={styles.hero}>
-        <div className={styles.eyebrow}>Confins · Personnel</div>
+        <div className={styles.eyebrow}>Soara · Personnel</div>
         <h1 className={styles.title}>Mes <em>lectures</em></h1>
         <p className={styles.count}>{bookmarks.length} article{bookmarks.length !== 1 ? 's' : ''} sauvegardé{bookmarks.length !== 1 ? 's' : ''}</p>
       </div>
@@ -40,7 +40,7 @@ export default function LecturesClient() {
             </svg>
           </div>
           <p className={styles.emptyText}>Aucun article sauvegardé pour l'instant.</p>
-          <Link href="/" className={styles.emptyLink}>Explorer Confins →</Link>
+          <Link href="/" className={styles.emptyLink}>Explorer Soara →</Link>
         </div>
       ) : (
         <div className={styles.list}>

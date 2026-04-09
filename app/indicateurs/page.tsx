@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import IndicateursClient from './IndicateursClient'
 
 export const metadata = {
-  title: 'Indicateurs — Confins',
+  title: 'Indicateurs — Soara',
   description: 'Les indicateurs économiques et géopolitiques clés : énergie, devises, matières premières, tensions mondiales.',
 }
 

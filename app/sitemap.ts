@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import articlesData from '../lib/articles.json'
 
-const BASE_URL = 'https://confins.fr'
+const BASE_URL = 'https://soara.fr'
 
 const CATEGORIES = ['geo', 'eco', 'tech', 'env', 'soc', 'culture', 'portraits', 'visuels']
 

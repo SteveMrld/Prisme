@@ -522,7 +522,7 @@
 
 /* ── Notes & sources ── */
 /* ═══════════════════════════════════════════════════
-   NOTES & SOURCES — Système typographique Confins
+   NOTES & SOURCES — Système typographique Soara
    ═══════════════════════════════════════════════════ */
 
 .notes-section {
@@ -644,25 +644,25 @@ ol.notes-list li::before {
   flex-shrink: 0;
 }
 
-/* Dans .confins-article — override des styles génériques */
-.confins-article .notes-section {
+/* Dans .soara-article — override des styles génériques */
+.soara-article .notes-section {
   padding-left: 24px;
   padding-right: 24px;
   box-sizing: border-box;
 }
 
-.confins-article .notes-list li {
+.soara-article .notes-list li {
   max-width: none;
   padding: 10px 0;
 }
 
-.confins-article .notes-list li em,
-.confins-article .notes-list li strong {
+.soara-article .notes-list li em,
+.soara-article .notes-list li strong {
   display: inline !important;
 }
 
 /* Numérotation inline dans le texte — superscripts */
-.confins-article sup,
+.soara-article sup,
 sup {
   font-size: 9px;
   color: var(--or);
@@ -1676,9 +1676,9 @@ sup {
    SCROLL REVEAL — éléments article (non-structurels)
    ═══════════════════════════════════════════════ */
 
-.confins-article .pull-quote,
-.confins-article .content-embed,
-.confins-article .notes-section {
+.soara-article .pull-quote,
+.soara-article .content-embed,
+.soara-article .notes-section {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
@@ -1801,7 +1801,7 @@ sup {
 }
 
 .grand-format-body .article-body p,
-.grand-format-body .confins-article p {
+.grand-format-body .soara-article p {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(16px, 1.45vw, 18px);
   line-height: 1.82;
@@ -1852,8 +1852,8 @@ sup {
   .grand-format-body .atop { padding: 0 0 24px; }
 }
 
-/* ── H2/H3 dans confins-article (children React) ── */
-.confins-article h2 {
+/* ── H2/H3 dans soara-article (children React) ── */
+.soara-article h2 {
   font-family: 'Playfair Display', Georgia, serif !important;
   font-size: clamp(22px, 2.5vw, 30px) !important;
   font-weight: 700 !important;
@@ -1862,7 +1862,7 @@ sup {
   margin: 52px 0 20px !important;
   line-height: 1.2 !important;
 }
-.confins-article h3 {
+.soara-article h3 {
   font-family: 'Playfair Display', Georgia, serif !important;
   font-size: clamp(18px, 2vw, 24px) !important;
   font-weight: 700 !important;
@@ -1870,7 +1870,7 @@ sup {
   margin: 40px 0 16px !important;
   line-height: 1.25 !important;
 }
-.confins-article p {
+.soara-article p {
   font-family: 'Cormorant Garamond', Georgia, serif !important;
   font-size: clamp(17px, 1.5vw, 20px) !important;
   line-height: 1.85 !important;

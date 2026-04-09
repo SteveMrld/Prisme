@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
       model: 'claude-sonnet-4-20250514',
       max_tokens: 4000,
       tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-      system: `Tu es un assistant de recoupement journalistique pour Confins, un média géopolitique français indépendant.
+      system: `Tu es un assistant de recoupement journalistique pour Soara, un média géopolitique français indépendant.
       
 Ton rôle : analyser un fait d'actualité en croisant les positions de ces sources précises :
 ${SOURCES.map(s => `- ${s.name} (@${s.id}) : ${s.type}, biais: ${s.bias}`).join('\n')}

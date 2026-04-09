@@ -8,7 +8,7 @@ import path from 'path'
 
 const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico']
 
-const BASE_URL = 'https://confins.fr'
+const BASE_URL = 'https://soara.fr'
 
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url,
       title: cleanTitle,
       description: article.description,
-      siteName: 'Confins',
+      siteName: 'Soara',
       locale: 'fr_FR',
       images: [
         {

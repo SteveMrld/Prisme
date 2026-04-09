@@ -105,7 +105,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
           </button>
         </div>
 
-        <Link href="/" className={styles.desktopLogo}>Con<em>fins</em></Link>
+        <Link href="/" className={styles.desktopLogo}>So<em>ara</em></Link>
 
         <div className={styles.desktopRight}>
           {user === undefined ? <div className={styles.actionsPlaceholder} /> : user ? (
@@ -207,7 +207,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
         <div className={styles.headerTop}>
           <span className={styles.date}>{date}</span>
           <div className={styles.logoWrap}>
-            <Link href="/" className={styles.logo}>Con<em>fins</em></Link>
+            <Link href="/" className={styles.logo}>So<em>ara</em></Link>
           </div>
           <div className={styles.actions}>
 <button className={styles.moreBtn} onClick={() => setMobilePanelOpen(o => !o)} aria-label="Plus">···</button>

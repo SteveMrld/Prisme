@@ -3,7 +3,7 @@ import styles from './visuels.module.css'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Explorations — Confins',
+  title: 'Explorations — Soara',
   description: 'Motions design, cartes animées, visualisations de données. Comprendre le monde autrement.',
 }
 
@@ -280,13 +280,13 @@ export default function VisuelsPage() {
       </div>
 
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Con<em>fins</em></div>
+        <div className={styles.footerLogo}>So<em>ara</em></div>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Soara · Média d'analyse indépendant</div>
       </footer>
     </>
   )

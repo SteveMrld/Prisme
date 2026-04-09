@@ -5,7 +5,7 @@ export default function DarkModeToggle() {
   const [dark, setDark] = useState(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem('confins-theme')
+    const stored = localStorage.getItem('soara-theme')
     if (stored === 'dark') {
       setDark(true)
       document.documentElement.setAttribute('data-theme', 'dark')
@@ -16,7 +16,7 @@ export default function DarkModeToggle() {
     const next = !dark
     setDark(next)
     document.documentElement.setAttribute('data-theme', next ? 'dark' : 'light')
-    localStorage.setItem('confins-theme', next ? 'dark' : 'light')
+    localStorage.setItem('soara-theme', next ? 'dark' : 'light')
   }
 
   return (

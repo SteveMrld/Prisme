@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 export default function AdminUnlock() {
   const router = useRouter()
   useEffect(() => {
-    document.cookie = 'confins_premium=true; path=/; max-age=31536000'
+    document.cookie = 'soara_premium=true; path=/; max-age=31536000'
     setTimeout(() => router.push('/'), 1500)
   }, [])
   return (

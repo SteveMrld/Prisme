@@ -69,7 +69,7 @@ export default function ConnexionPage() {
       <Header />
       <div className={styles.page}>
         <div className={styles.card}>
-          <div className={styles.logo}>Con<em>fins</em></div>
+          <div className={styles.logo}>So<em>ara</em></div>
 
           <div className={styles.tabs}>
             <button
@@ -148,7 +148,7 @@ export default function ConnexionPage() {
 
           <div className={styles.divider}><span>Pas encore abonné ?</span></div>
           <Link href="/abonnement" className={styles.subscribe}>
-            Découvrir Confins →
+            Découvrir Soara →
           </Link>
         </div>
       </div>

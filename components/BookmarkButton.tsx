@@ -7,7 +7,7 @@ export default function BookmarkButton({ slug, title, iconOnly }: { slug: string
 
   useEffect(() => {
     try {
-      const bookmarks = JSON.parse(localStorage.getItem('confins_bookmarks') || '[]')
+      const bookmarks = JSON.parse(localStorage.getItem('soara_bookmarks') || '[]')
       setSaved(bookmarks.some((b: any) => b.slug === slug))
     } catch {}
   }, [slug])
@@ -16,14 +16,14 @@ export default function BookmarkButton({ slug, title, iconOnly }: { slug: string
     e.preventDefault()
     e.stopPropagation()
     try {
-      const bookmarks = JSON.parse(localStorage.getItem('confins_bookmarks') || '[]')
+      const bookmarks = JSON.parse(localStorage.getItem('soara_bookmarks') || '[]')
       let updated
       if (saved) {
         updated = bookmarks.filter((b: any) => b.slug !== slug)
       } else {
         updated = [...bookmarks, { slug, title, savedAt: new Date().toISOString() }]
       }
-      localStorage.setItem('confins_bookmarks', JSON.stringify(updated))
+      localStorage.setItem('soara_bookmarks', JSON.stringify(updated))
       setSaved(!saved)
     } catch {}
   }

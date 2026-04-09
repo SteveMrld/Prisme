@@ -104,7 +104,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { category: string } }) {
   const config = CATEGORIES[params.category]
   if (!config) return {}
-  const url = `https://confins.fr/${params.category}`
+  const url = `https://soara.fr/${params.category}`
   return {
     title: config.labelLong,
     description: config.description,
@@ -112,15 +112,15 @@ export function generateMetadata({ params }: { params: { category: string } }) {
     openGraph: {
       type: 'website',
       url,
-      title: `${config.labelLong} — Confins`,
+      title: `${config.labelLong} — Soara`,
       description: config.description,
-      siteName: 'Confins',
+      siteName: 'Soara',
       locale: 'fr_FR',
       images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: config.labelLong }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${config.labelLong} — Confins`,
+      title: `${config.labelLong} — Soara`,
       description: config.description,
       images: ['/og-default.jpg'],
     },
@@ -229,13 +229,13 @@ export default function CategoryPage({ params }: { params: { category: string } 
       )}
 
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Con<em>fins</em></div>
+        <div className={styles.footerLogo}>So<em>ara</em></div>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Soara · Média d'analyse indépendant</div>
       </footer>
     </>
   )

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Confins Signal — Carte des tensions géopolitiques',
-  description: 'Les zones de tension suivies par Confins en temps réel. Cycle jour/nuit, routes maritimes, crises actives.',
+  title: 'Soara Signal — Carte des tensions géopolitiques',
+  description: 'Les zones de tension suivies par Soara en temps réel. Cycle jour/nuit, routes maritimes, crises actives.',
 }
 
 export default function SignalMapPage() {
@@ -16,7 +16,7 @@ export default function SignalMapPage() {
         border: 'none',
         zIndex: 0,
       }}
-      title="Confins Signal"
+      title="Soara Signal"
       allowFullScreen
     />
   )

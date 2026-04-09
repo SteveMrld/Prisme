@@ -11,7 +11,7 @@ export function usePremium() {
     async function check() {
       // Cookie Stripe premium
       const cookies = document.cookie.split(';').map(c => c.trim())
-      if (cookies.some(c => c === 'confins_premium=true')) {
+      if (cookies.some(c => c === 'soara_premium=true')) {
         setIsPremium(true)
         return
       }

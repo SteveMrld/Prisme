@@ -133,12 +133,12 @@ body {
   color: #ECE7DD;
 }
 
-[data-theme="dark"] .confins-article p,
-[data-theme="dark"] .confins-article li {
+[data-theme="dark"] .soara-article p,
+[data-theme="dark"] .soara-article li {
   color: rgba(236,231,221,0.75);
 }
 
-[data-theme="dark"] .confins-article h3 {
+[data-theme="dark"] .soara-article h3 {
   color: #ECE7DD;
 }
 

@@ -3,8 +3,8 @@ import Link from 'next/link'
 import styles from './contributeurs.module.css'
 
 export const metadata = {
-  title: 'Contributeurs — Confins',
-  description: 'Les auteurs qui écrivent pour Confins.',
+  title: 'Contributeurs — Soara',
+  description: 'Les auteurs qui écrivent pour Soara.',
 }
 
 const contributeurs = [
@@ -111,7 +111,7 @@ export default function ContributeursPage() {
         <span className={styles.eyebrow}>Contributeurs</span>
         <h1 className={styles.title}>Celles et ceux <em>qui écrivent</em></h1>
         <p className={styles.desc}>
-          Confins est construit sur des contributions singulières. Chaque auteur apporte un regard,
+          Soara est construit sur des contributions singulières. Chaque auteur apporte un regard,
           une méthode, un angle. Ce qui les unit : la conviction que l'analyse rigoureuse est utile.
         </p>
       </div>
@@ -144,27 +144,27 @@ export default function ContributeursPage() {
         ))}
 
         <div className={styles.openCall}>
-          <div className={styles.openCallLabel}>Rejoindre Confins</div>
+          <div className={styles.openCallLabel}>Rejoindre Soara</div>
           <h3 className={styles.openCallTitle}>Vous souhaitez contribuer ?</h3>
           <p className={styles.openCallDesc}>
-            Confins accueille des contributions ponctuelles ou régulières d'analystes, chercheurs,
+            Soara accueille des contributions ponctuelles ou régulières d'analystes, chercheurs,
             praticiens et journalistes indépendants. Le critère central n'est pas le statut — c'est
             la rigueur et la singularité du point de vue.
           </p>
-          <a href="mailto:contact@confins.media" className={styles.openCallCta}>
+          <a href="mailto:contact@soara.media" className={styles.openCallCta}>
             Nous écrire →
           </a>
         </div>
       </div>
 
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Con<em>fins</em></div>
+        <div className={styles.footerLogo}>So<em>ara</em></div>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Soara · Média d'analyse indépendant</div>
       </footer>
     </>
   )

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from './not-found.module.css'
 
 export const metadata = {
-  title: '404 — Page introuvable · Confins',
+  title: '404 — Page introuvable · Soara',
 }
 
 export default function NotFound() {
@@ -27,8 +27,8 @@ export default function NotFound() {
         </div>
       </div>
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Con<em>fins</em></div>
-        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
+        <div className={styles.footerLogo}>So<em>ara</em></div>
+        <div className={styles.footerCopy}>© 2026 Soara · Média d'analyse indépendant</div>
       </footer>
     </>
   )

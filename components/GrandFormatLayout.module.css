@@ -150,7 +150,7 @@
 }
 
 /* Typography override pour le contenu HTML injecté */
-.body :global(.confins-article) p,
+.body :global(.soara-article) p,
 .body :global(.article-body) p {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(16px, 1.45vw, 18px);

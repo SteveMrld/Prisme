@@ -120,7 +120,7 @@ export default function RecoupementClient() {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('confins_recoupement_history')
+      const saved = localStorage.getItem('soara_recoupement_history')
       if (saved) setHistory(JSON.parse(saved))
     } catch {}
   }, [])
@@ -129,7 +129,7 @@ export default function RecoupementClient() {
     try {
       const updated = [a, ...history].slice(0, 10)
       setHistory(updated)
-      localStorage.setItem('confins_recoupement_history', JSON.stringify(updated))
+      localStorage.setItem('soara_recoupement_history', JSON.stringify(updated))
     } catch {}
   }
 
@@ -239,7 +239,7 @@ export default function RecoupementClient() {
     return (
       <div className={styles.page}>
         <div className={styles.heroWrap}>
-          <div className={styles.heroTag}>Confins · Outil éditorial</div>
+          <div className={styles.heroTag}>Soara · Outil éditorial</div>
           <h1 className={styles.heroTitle}>Recoupement de <em>sources</em></h1>
           <p className={styles.heroSub}>L'information telle qu'elle est. Pas telle qu'on vous la raconte.</p>
         </div>
@@ -256,7 +256,7 @@ export default function RecoupementClient() {
   return (
     <div className={styles.page}>
       <div className={styles.heroWrap}>
-        <div className={styles.heroTag}>Confins · Outil éditorial</div>
+        <div className={styles.heroTag}>Soara · Outil éditorial</div>
         <h1 className={styles.heroTitle}>Recoupement de <em>sources</em></h1>
         <p className={styles.heroSub}>
           Sur n'importe quel fait d'actualité géopolitique, cet outil interroge en temps réel

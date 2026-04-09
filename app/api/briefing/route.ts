@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 2000,
-      system: `Tu es l'éditeur de Confins, un média géopolitique indépendant français.
+      system: `Tu es l'éditeur de Soara, un média géopolitique indépendant français.
 Tu reçois une liste de recoupements de sources effectués cette semaine.
 Rédige un briefing hebdomadaire éditorial en français, sobre et analytique.
 
@@ -29,7 +29,7 @@ Structure :
 3. 3-4 points clés tirés des recoupements, avec les contradictions les plus significatives
 4. Une conclusion sur ce que révèlent ces divergences de sources sur l'état de l'information
 
-Ton : analytique, sobre, sans sensationnalisme. Style Confins — probité, rigueur, indépendance.
+Ton : analytique, sobre, sans sensationnalisme. Style Soara — probité, rigueur, indépendance.
 Réponds en JSON : { "titre": "", "intro": "", "points": ["","",""], "conclusion": "" }`,
       messages: [{
         role: 'user',

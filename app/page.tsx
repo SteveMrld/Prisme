@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
-import ConfinsTV from '../components/ConfinsTV'
+import SoaraTV from '../components/SoaraTV'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -177,14 +177,14 @@ export default function HomePage() {
 
       {/* ── CHAÎNE CONFINS ── */}
       <FadeSection>
-        <ConfinsTV />
+        <SoaraTV />
       </FadeSection>
 
       {/* ── MANIFESTE ── */}
       <FadeSection>
       <section className={styles.manifeste}>
         <p className={styles.manifesteText}>
-          Confins est un média d'analyse indépendant. Pas un agrégateur. Pas un éditorialiste de plus.
+          Soara est un média d'analyse indépendant. Pas un agrégateur. Pas un éditorialiste de plus.
           Un outil pour comprendre ce qui se passe vraiment — sans algorithme, sans actionnaire, sans bruit.
         </p>
         <div className={styles.manifesteMeta}>
@@ -338,7 +338,7 @@ export default function HomePage() {
       <section className={styles.nlSection}>
         <div className={styles.nlInner}>
           <div className={styles.nlText}>
-            <div className={styles.nlLabel}>Confins · Newsletter</div>
+            <div className={styles.nlLabel}>Soara · Newsletter</div>
             <div className={styles.nlTitle}>L'analyse qui manque<br />à votre semaine</div>
             <p className={styles.nlDesc}>Grands formats, Signal, Portraits — sans algorithme, sans bruit. Chaque semaine.</p>
           </div>
@@ -367,13 +367,13 @@ export default function HomePage() {
       </FadeSection>
 
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Con<em>fins</em></div>
+        <div className={styles.footerLogo}>So<em>ara</em></div>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
           <Link href="/contributeurs">Contributeurs</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Soara · Média d'analyse indépendant</div>
       </footer>
     </>
   )

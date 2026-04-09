@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import styles from './ConfinsTV.module.css'
+import styles from './SoaraTV.module.css'
 
 const episodes = [
   {
@@ -66,7 +66,7 @@ const episodes = [
   },
 ]
 
-export default function ConfinsTV() {
+export default function SoaraTV() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [active, setActive] = useState(0)
   const [playing, setPlaying] = useState(false)

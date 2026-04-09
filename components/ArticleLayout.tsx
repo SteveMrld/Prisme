@@ -71,7 +71,7 @@ export default function ArticleLayout({
     : 'Mars 2026'
 
   useEffect(() => {
-    const article = document.querySelector('.confins-article')
+    const article = document.querySelector('.soara-article')
     if (!article) return
 
     // Execute scripts injected via dangerouslySetInnerHTML
@@ -169,19 +169,19 @@ export default function ArticleLayout({
         {isPremiumContent ? (
           <div className={styles.paywallWrap}>
             <div className={styles.paywallContent}>
-              <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
+              <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
               <div className={styles.paywallGradient} />
             </div>
             <div className={styles.paywallBox}>
               <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
               <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
-              <p className={styles.paywallDesc}>Accédez à l'intégralité de cet article et à tous les grands formats Confins.</p>
+              <p className={styles.paywallDesc}>Accédez à l'intégralité de cet article et à tous les grands formats Soara.</p>
               <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner — dès 9,99€/mois</a>
               <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
             </div>
           </div>
         ) : (
-          <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
+          <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
         )}
 
         {/* SIGNATURE BAS */}
@@ -278,7 +278,7 @@ export default function ArticleLayout({
       <div className={styles.newsletter}>
         <div className={styles.newsletterInner}>
           <div className={styles.newsletterText}>
-            <div className={styles.newsletterLabel}>Confins · Newsletter</div>
+            <div className={styles.newsletterLabel}>Soara · Newsletter</div>
             <div className={styles.newsletterTitle}>Recevoir les analyses chaque semaine</div>
             <p className={styles.newsletterDesc}>Les grands formats, le Signal, les portraits. Sans algorithme, sans bruit.</p>
           </div>
@@ -290,7 +290,7 @@ export default function ArticleLayout({
       </div>
 
       <footer className={styles.footer}>
-        Confins &nbsp;·&nbsp; Média d'analyse indépendant &nbsp;·&nbsp; 2026
+        Soara &nbsp;·&nbsp; Média d'analyse indépendant &nbsp;·&nbsp; 2026
       </footer>
     </>
   )

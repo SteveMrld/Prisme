@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { usePremium } from '../lib/usePremium'
 import Link from 'next/link'
-import styles from './ConfinsTVPage.module.css'
+import styles from './SoaraTVPage.module.css'
 
 // EP01 is free, EP02-06 are premium
 
@@ -75,7 +75,7 @@ const episodes = [
   },
 ]
 
-export default function ConfinsTVPage() {
+export default function SoaraTVPage() {
   const IS_PREMIUM = usePremium()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)

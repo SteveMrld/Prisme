@@ -12,7 +12,7 @@ export default function DettePage() {
       <div style={{ margin:"0 -40px 48px", borderTop:"1.5px solid #DDD9D2", borderBottom:"1.5px solid #DDD9D2" }}>
         <DetteClient />
       </div>
-      <div className="confins-article">
+      <div className="soara-article">
         <p><strong>Cent mille milliards de dollars.</strong> Prenons un instant pour mesurer ce que ce chiffre représente. Pas une projection catastrophiste, pas un scénario dystopique forgé par des économistes alarmistes. La dette publique mondiale a franchi ce seuil. Elle dépasse désormais 95&nbsp;% du PIB mondial. Ce n'est pas la dette qui inquiète. Ce que la dette révèle, voilà le vrai sujet&nbsp;: des sociétés qui ont systématiquement préféré emprunter au futur plutôt que de trancher dans le présent. La facture arrive. Pas sous forme de krach spectaculaire. Sous celle, bien plus sourde, d'un État qui rétrécit, qui renonce à éduquer ses enfants, à soigner ses malades, à défendre ses frontières. La dette publique n'est pas un problème de comptabilité nationale. C'est un révélateur anthropologique.</p>
         <p>Cinq pays concentrent à eux seuls près de 70&nbsp;% de cette masse&nbsp;: les États-Unis, la Chine, le Japon, la France et l'Italie. Leurs trajectoires divergent. Leur diagnostic commun est le même&nbsp;: la dette n'est plus chez eux un instrument de politique publique. Elle est devenue la contrainte qui s'est substituée à la politique.</p>
 

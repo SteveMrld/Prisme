@@ -61,7 +61,7 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
           <span className={styles.eyebrow}>Abonnement</span>
           <h1 className={styles.title}>L'analyse <em>sans compromis</em></h1>
           <p className={styles.subtitle}>
-            Confins ne dépend d'aucun actionnaire industriel, d'aucune régie publicitaire.
+            Soara ne dépend d'aucun actionnaire industriel, d'aucune régie publicitaire.
             Seulement de lecteurs qui trouvent que l'analyse rigoureuse vaut quelque chose.
           </p>
         </div>
@@ -120,9 +120,9 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
 
       <div className={styles.reassurance}>
         {[
-          { title: 'Indépendance totale', text: 'Aucun annonceur. Aucun actionnaire. Votre abonnement est la seule source de revenus de Confins.' },
+          { title: 'Indépendance totale', text: 'Aucun annonceur. Aucun actionnaire. Votre abonnement est la seule source de revenus de Soara.' },
           { title: 'Résiliation libre', text: 'Résiliable à tout moment depuis votre espace abonné, sans frais ni préavis.' },
-          { title: 'Paiement sécurisé', text: 'Paiements traités par Stripe. Confins ne stocke aucune donnée bancaire.' },
+          { title: 'Paiement sécurisé', text: 'Paiements traités par Stripe. Soara ne stocke aucune donnée bancaire.' },
         ].map(r => (
           <div key={r.title} className={styles.reassuranceItem}>
             <div className={styles.reassuranceTitle}>{r.title}</div>
@@ -132,12 +132,12 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
       </div>
 
       <footer className={styles.footer}>
-        <div className={styles.footerLogo}>Con<em>fins</em></div>
+        <div className={styles.footerLogo}>So<em>ara</em></div>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
           <Link href="/mentions">Mentions légales</Link>
         </div>
-        <div className={styles.footerCopy}>© 2026 Confins · Média d'analyse indépendant</div>
+        <div className={styles.footerCopy}>© 2026 Soara · Média d'analyse indépendant</div>
       </footer>
     </>
   )

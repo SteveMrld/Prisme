@@ -5,7 +5,7 @@ import Link from 'next/link'
 import AccountClient from './AccountClient'
 
 export const metadata = {
-  title: 'Mon compte — Confins',
+  title: 'Mon compte — Soara',
 }
 
 export default async function ComptePage({

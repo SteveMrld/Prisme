@@ -4,8 +4,8 @@ import revues from '../../lib/revues.json'
 import styles from './revue.module.css'
 
 export const metadata = {
-  title: 'Revue quotidienne — Confins',
-  description: 'La revue de presse géopolitique quotidienne de Confins — les faits qui comptent, les sources qui les rapportent.',
+  title: 'Revue quotidienne — Soara',
+  description: 'La revue de presse géopolitique quotidienne de Soara — les faits qui comptent, les sources qui les rapportent.',
 }
 
 const SOURCE_ABBR: Record<string, string> = {
@@ -31,7 +31,7 @@ export default function RevuePage() {
       <Header />
       <div className={styles.page}>
         <div className={styles.hero}>
-          <div className={styles.eyebrow}>Confins · Revue quotidienne</div>
+          <div className={styles.eyebrow}>Soara · Revue quotidienne</div>
           <h1 className={styles.title}>Revue <em>géopolitique</em></h1>
           <p className={styles.subtitle}>
             Les faits qui comptent. Les sources qui les rapportent. Sans filtre éditorial mainstream.

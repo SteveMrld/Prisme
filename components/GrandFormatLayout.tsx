@@ -82,7 +82,7 @@ export default function GrandFormatLayout({
 
   useEffect(() => {
     if (!content) return
-    const art = document.querySelector('.confins-article')
+    const art = document.querySelector('.soara-article')
     if (!art) return
     art.querySelectorAll('script').forEach((old: Element) => {
       const s = document.createElement('script')
@@ -153,7 +153,7 @@ export default function GrandFormatLayout({
       <div className={`${styles.body} grand-format-body`}>
         {/* Contenu HTML classique */}
         {content && (
-          <div className="confins-article" dangerouslySetInnerHTML={{ __html: content }} />
+          <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
         )}
         {/* Contenu React (dette-souveraine, etc.) */}
         {children}
