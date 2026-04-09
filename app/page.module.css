@@ -674,7 +674,7 @@
 
 .latestGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   border-top: 1px solid var(--bord);
   border-left: 1px solid var(--bord);
@@ -805,7 +805,7 @@
 
 .portraitsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   border-top: 1px solid var(--bord);
   border-left: 1px solid var(--bord);
@@ -884,7 +884,7 @@
 
 @media (max-width: 900px) {
   .portraitsSection { padding: 40px 20px; }
-  .portraitsGrid { grid-template-columns: repeat(3, 1fr); gap: 8px; background: transparent; }
+  .portraitsGrid { grid-template-columns: repeat(2, 1fr); gap: 8px; background: transparent; }
   .portraitImgWrap { aspect-ratio: unset; height: 140px; }
   .portraitBody { padding: 12px 14px 16px; gap: 6px; }
   .portraitTitle { font-size: 13px; }

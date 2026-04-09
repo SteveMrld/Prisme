@@ -314,6 +314,7 @@ export default function HomePage() {
         </div>
         <div className={styles.portraitsGrid}>
           {[
+            getArticle('obama'),
             getArticle('musk'),
             getArticle('morrison'),
             getArticle('nooyi'),
