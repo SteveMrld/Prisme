@@ -30,7 +30,7 @@ const EVICTION = [
   { label:"Budget Défense",     year:"2025", val:47.2, color:"#1E3A8A", live:false,
     note:"Pays doté de l'arme nucléaire, membre du CS ONU" },
   { label:"Budget Éducation",   year:"2025", val:63.0, color:"#065F46", live:false,
-    note:"Hors pensions — 1er employeur de France" },
+    note:"Hors pensions, 1er employeur de France" },
   { label:"Budget Recherche",   year:"2025", val:25.7, color:"#92400E", live:false,
     note:"Enseignement supérieur + recherche publique" },
 ];

@@ -1,7 +1,7 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "La fabrique de l'impossible — Soara",
+  title: "La fabrique de l'impossible, Soara",
   description: "Quatre-vingt ans de Skunk Works : du cirque de Burbank à la détection d'un battement de cœur dans le désert iranien.",
 };
 
@@ -26,7 +26,7 @@ export default function SkunkWorksPage() {
         {/* IMAGE HERO */}
         <figure style={{ margin: "56px -40px" }}>
           <img src="/grands-formats/skunkworks/hangar-1943.png"
-            alt="Le hangar de Burbank, juin 1943 — illustration éditoriale"
+            alt="Le hangar de Burbank, juin 1943, illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Burbank, Californie, juin 1943. Johnson et son équipe travaillent sous une tente de cirque louée à la hâte. En 143 jours, ils livrent le premier chasseur à réaction américain. © Soara.
@@ -37,7 +37,7 @@ export default function SkunkWorksPage() {
 
         <p>Kelly Johnson n&apos;était pas un manager. C&apos;était un ingénieur obsessionnel qui avait appris, à ses dépens, ce que la bureaucratie fait à l&apos;innovation : elle la noie. Sa réponse fut un code de quatorze règles qu&apos;il appliquait avec une rigidité quasi religieuse, publiées aujourd&apos;hui sur le site de Lockheed Martin dans leur version originale.</p>
 
-        <p>Le chef de projet a une autorité pratiquement totale. L&apos;équipe est réduite à dix à vingt-cinq pour cent des effectifs d&apos;un programme "normal". Les rapports sont limités au strict minimum. L&apos;accès au projet est contrôlé avec une sévérité qu&apos;il qualifiait lui-même de "quasi-vicieuse". Le contractant doit pouvoir tester son produit en vol — s&apos;il ne le fait pas, il perd rapidement la compétence de concevoir le suivant.</p>
+        <p>Le chef de projet a une autorité pratiquement totale. L&apos;équipe est réduite à dix à vingt-cinq pour cent des effectifs d&apos;un programme "normal". Les rapports sont limités au strict minimum. L&apos;accès au projet est contrôlé avec une sévérité qu&apos;il qualifiait lui-même de "quasi-vicieuse". Le contractant doit pouvoir tester son produit en vol, s&apos;il ne le fait pas, il perd rapidement la compétence de concevoir le suivant.</p>
 
         <p>Ce que ces règles décrivent, c&apos;est l&apos;exact opposé du Pentagone. Là où un programme militaire standard mobilise des milliers de personnes, des comités d&apos;évaluation et des chaînes d&apos;approbation qui transforment chaque décision en marathon administratif, Johnson opérait avec une poignée de gens de confiance et une hiérarchie plate. Il disait : un bon ingénieur vaut dix mauvais. Il agissait en conséquence.</p>
 
@@ -47,7 +47,7 @@ export default function SkunkWorksPage() {
           </p>
         </div>
 
-        <p>Sa devise tenait en trois mots. Ce modèle a depuis été copié, réinterprété, invoqué. Apple, Amazon, Google — toutes ont à un moment présenté tel ou tel projet interne comme leur "Skunk Works". Aucune n&apos;a livré un avion espion en sept mois sur une poignée de main.</p>
+        <p>Sa devise tenait en trois mots. Ce modèle a depuis été copié, réinterprété, invoqué. Apple, Amazon, Google, toutes ont à un moment présenté tel ou tel projet interne comme leur "Skunk Works". Aucune n&apos;a livré un avion espion en sept mois sur une poignée de main.</p>
 
         <hr style={{ margin: "56px 0", border: "none", borderTop: "1px solid #DDD9D2" }} />
 
@@ -56,7 +56,7 @@ export default function SkunkWorksPage() {
         {/* IMAGE U-2 */}
         <figure style={{ margin: "48px -40px 56px" }}>
           <img src="/grands-formats/skunkworks/u2-survol.png"
-            alt="Le U-2 au-dessus de l'URSS — illustration éditoriale"
+            alt="Le U-2 au-dessus de l'URSS, illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             De 1956 à 1960, le U-2 survola impunément le territoire soviétique à 21 000 mètres. Le 1er mai 1960, Gary Powers fut abattu. © Soara.
@@ -72,14 +72,14 @@ export default function SkunkWorksPage() {
         {/* IMAGE TITANE */}
         <figure style={{ margin: "48px -40px 56px" }}>
           <img src="/grands-formats/skunkworks/titane-sovietique.png"
-            alt="Le titane soviétique — illustration éditoriale"
+            alt="Le titane soviétique, illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Le paradoxe du Blackbird : la CIA acheta le titane à l&apos;URSS via des sociétés fantômes pour construire l&apos;avion destiné à espionner l&apos;URSS. © Soara.
           </figcaption>
         </figure>
 
-        <p>Pour résister aux températures que génère un vol à Mach 3,2 — les bords d&apos;attaque atteignent 560 degrés Celsius — il fallait du titane. Beaucoup de titane. Le plus grand producteur mondial en 1960 était l&apos;Union soviétique. La CIA créa donc une série de sociétés fantômes dans des pays tiers et obtint, via de fausses commandes, suffisamment de métal pour construire trente-deux SR-71. L&apos;une des histoires qui circule dans les milieux de l&apos;aéronautique évoque des "fours à pizza" comme couverture.</p>
+        <p>Pour résister aux températures que génère un vol à Mach 3,2, les bords d&apos;attaque atteignent 560 degrés Celsius, il fallait du titane. Beaucoup de titane. Le plus grand producteur mondial en 1960 était l&apos;Union soviétique. La CIA créa donc une série de sociétés fantômes dans des pays tiers et obtint, via de fausses commandes, suffisamment de métal pour construire trente-deux SR-71. L&apos;une des histoires qui circule dans les milieux de l&apos;aéronautique évoque des "fours à pizza" comme couverture.</p>
 
         <p>Les Soviétiques, selon l&apos;ingénieur Ben Rich qui travailla sur le programme, "n&apos;avaient aucune idée de la façon dont ils contribuaient à la construction de l&apos;avion conçu pour espionner leur pays." Le métal vendu par l&apos;URSS pour se chauffer des pizzas fut utilisé pour construire l&apos;avion chargé de surveiller ses arsenaux nucléaires. Le Blackbird vola à partir de 1966. Il ne fut jamais abattu. Il détient encore les records de vitesse et d&apos;altitude pour un avion à réaction avec équipage.</p>
 
@@ -94,14 +94,14 @@ export default function SkunkWorksPage() {
         {/* IMAGE GHOST MURMUR */}
         <figure style={{ margin: "48px -40px 56px" }}>
           <img src="/grands-formats/skunkworks/ghost-murmur.png"
-            alt="Ghost Murmur — illustration éditoriale"
+            alt="Ghost Murmur, illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             "Dude 44 Bravo", officier de systèmes d&apos;armes, 36 heures dans une fissure rocheuse en Iran. Retrouvé, selon des sources anonymes, grâce à la détection de son battement de cœur. © Soara.
           </figcaption>
         </figure>
 
-        <p>Le 3 avril 2026, un F-15E américain est abattu au-dessus du sud de l&apos;Iran. L&apos;officier de systèmes d&apos;armes — identifié uniquement par son indicatif d&apos;appel "Dude 44 Bravo" — disparaît dans la nature, blessé, 200 miles en territoire ennemi, avec une prime sur sa tête. Il se cache dans une fissure rocheuse en montagne pendant trente-six heures.</p>
+        <p>Le 3 avril 2026, un F-15E américain est abattu au-dessus du sud de l&apos;Iran. L&apos;officier de systèmes d&apos;armes, identifié uniquement par son indicatif d&apos;appel "Dude 44 Bravo" — disparaît dans la nature, blessé, 200 miles en territoire ennemi, avec une prime sur sa tête. Il se cache dans une fissure rocheuse en montagne pendant trente-six heures.</p>
 
         <p>Le 6 avril, Trump et le directeur de la CIA John Ratcliffe convoquent la presse. Ratcliffe parle de "technologies exquises qu&apos;aucun autre service de renseignement ne possède." Trump dit que la CIA a localisé l&apos;aviateur à quarante miles de distance. Deux jours plus tard, le <em>New York Post</em> rapporte, citant deux sources anonymes, que l&apos;outil s&apos;appelle Ghost Murmur. Développé par le Skunk Works. Première utilisation opérationnelle. Le système combine magnétométrie quantique et intelligence artificielle pour détecter la signature électromagnétique d&apos;un battement de cœur humain à soixante-cinq kilomètres de distance.</p>
 
@@ -121,7 +121,7 @@ export default function SkunkWorksPage() {
         {/* IMAGE SR-72 */}
         <figure style={{ margin: "48px -40px 56px" }}>
           <img src="/grands-formats/skunkworks/sr72-fantome.png"
-            alt="Le SR-72, programme fantôme — illustration éditoriale"
+            alt="Le SR-72, programme fantôme, illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Palmdale, désert californien. Ce que Lockheed construit ici, personne ne le sait officiellement. 1,8 milliard de dollars perdus sur un programme sans nom. © Soara.
@@ -130,7 +130,7 @@ export default function SkunkWorksPage() {
 
         <p>En juillet 2024, Lockheed Martin annonça une perte de 950 millions de dollars sur un seul programme aéronautique classifié, due à "des défis continus de conception, d&apos;intégration et de test." En janvier 2025, 555 millions supplémentaires sur le même programme. En ajoutant les dépassements antérieurs, le total dépasse 1,8 milliard de dollars sur un projet dont Lockheed n&apos;a révélé ni le nom, ni la nature, ni la destination. Le PDG a qualifié ce programme de "capacité révolutionnaire." C&apos;est tout ce qu&apos;il a dit.</p>
 
-        <p>La communauté des analystes de défense s&apos;accorde à penser qu&apos;il s&apos;agit du SR-72, successeur hypersonique du Blackbird annoncé en 2013. Capable, selon les spécifications déclarées, de voler à Mach 6 — soit plus de 7 000 kilomètres par heure. À cette vitesse, un avion peut traverser n&apos;importe quel espace aérien défendu avant que les systèmes sol-air aient le temps de calculer une trajectoire. Des sources évoquent la livraison de "premiers articles" à l&apos;armée de l&apos;air. Lockheed avait évoqué un premier vol démonstratif "au milieu des années 2020". Nous sommes en 2026. Le silence est absolu.</p>
+        <p>La communauté des analystes de défense s&apos;accorde à penser qu&apos;il s&apos;agit du SR-72, successeur hypersonique du Blackbird annoncé en 2013. Capable, selon les spécifications déclarées, de voler à Mach 6, soit plus de 7 000 kilomètres par heure. À cette vitesse, un avion peut traverser n&apos;importe quel espace aérien défendu avant que les systèmes sol-air aient le temps de calculer une trajectoire. Des sources évoquent la livraison de "premiers articles" à l&apos;armée de l&apos;air. Lockheed avait évoqué un premier vol démonstratif "au milieu des années 2020". Nous sommes en 2026. Le silence est absolu.</p>
 
         <p>Un directeur de programme du Skunk Works avait dit un jour : "Le problème avec nos programmes, c&apos;est qu&apos;ils obtiennent généralement le crédit d&apos;avoir changé l&apos;histoire longtemps après l&apos;avoir effectivement changée."</p>
 
@@ -138,13 +138,13 @@ export default function SkunkWorksPage() {
 
         <h2>V. Pourquoi ça compte maintenant</h2>
 
-        <p>Le Skunk Works n&apos;a jamais été une curiosité technique. C&apos;est l&apos;instrument par lequel les États-Unis ont maintenu, depuis 1943, une avance structurelle dans la maîtrise des cieux sur tous leurs adversaires. Le U-2 a donné à Eisenhower les photographies qui lui ont permis d&apos;évaluer l&apos;arsenal soviétique — et c&apos;est un U-2 qui a photographié les missiles soviétiques à Cuba en octobre 1962, déclenchant la crise. Le SR-71 a survolé impunément chaque théâtre de conflit américain pendant trente ans. Le F-117 a ouvert les guerres de la décennie 1990 avec une démonstration que l&apos;adversaire ne pouvait pas comprendre, faute d&apos;avoir jamais vu l&apos;avion.</p>
+        <p>Le Skunk Works n&apos;a jamais été une curiosité technique. C&apos;est l&apos;instrument par lequel les États-Unis ont maintenu, depuis 1943, une avance structurelle dans la maîtrise des cieux sur tous leurs adversaires. Le U-2 a donné à Eisenhower les photographies qui lui ont permis d&apos;évaluer l&apos;arsenal soviétique, et c&apos;est un U-2 qui a photographié les missiles soviétiques à Cuba en octobre 1962, déclenchant la crise. Le SR-71 a survolé impunément chaque théâtre de conflit américain pendant trente ans. Le F-117 a ouvert les guerres de la décennie 1990 avec une démonstration que l&apos;adversaire ne pouvait pas comprendre, faute d&apos;avoir jamais vu l&apos;avion.</p>
 
         <p>Cette mécanique fonctionne parce qu&apos;elle s&apos;appuie sur une asymétrie fondamentale : l&apos;adversaire ne sait pas ce qu&apos;il ne voit pas. Le moment où cette asymétrie disparaît est le moment où la menace devient existentielle.</p>
 
-        <p>La Chine investit massivement dans l&apos;hypersonique. Le missile DF-17, les planeurs hypersoniques testés en 2021 qui ont, selon les mots d&apos;un officiel du Pentagone, "tout le monde sur le cul", les programmes de chasseurs de sixième génération exposés au salon de Zhuhai — Beijing a compris que la prochaine confrontation se gagnera ou se perdra dans les couches supérieures de l&apos;atmosphère, à des vitesses où les systèmes de défense actuels ne fonctionnent plus.</p>
+        <p>La Chine investit massivement dans l&apos;hypersonique. Le missile DF-17, les planeurs hypersoniques testés en 2021 qui ont, selon les mots d&apos;un officiel du Pentagone, "tout le monde sur le cul", les programmes de chasseurs de sixième génération exposés au salon de Zhuhai, Beijing a compris que la prochaine confrontation se gagnera ou se perdra dans les couches supérieures de l&apos;atmosphère, à des vitesses où les systèmes de défense actuels ne fonctionnent plus.</p>
 
-        <p>Dans ce contexte, la question de ce que le Skunk Works construit dans ses hangars de Palmdale — et de ce que Ghost Murmur représente réellement — cesse d&apos;être une question de passionnés d&apos;aéronautique pour devenir une question géopolitique directe.</p>
+        <p>Dans ce contexte, la question de ce que le Skunk Works construit dans ses hangars de Palmdale, et de ce que Ghost Murmur représente réellement, cesse d&apos;être une question de passionnés d&apos;aéronautique pour devenir une question géopolitique directe.</p>
 
         {/* ÉPILOGUE */}
         <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "40px", marginTop: "56px" }}>

@@ -1,7 +1,7 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "L'architecture du désordre — Soara",
+  title: "L'architecture du désordre, Soara",
   description: "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne.",
 };
 
@@ -26,7 +26,7 @@ export default function ArchitectureDesordre() {
 
         <p>La question du veto faillit faire échouer la conférence. Les petites puissances voyaient la mécanique : l&apos;architecture du nouvel ordre mondial garantissait aux vainqueurs de la guerre le droit permanent de bloquer toute décision contraire à leurs intérêts. L&apos;ONU note dans sa propre histoire officielle que "les petites puissances se sont inclinées pour ne pas faire obstacle à la création de l&apos;Organisation."</p>
 
-        <p>La scène s&apos;était déjà jouée. En 1235, Soundiata Keïta fonde l&apos;Empire du Mali après la bataille de Kirina. Il proclame la Charte du Manden, texte de gouvernance qui garantit la justice et la protection des individus — plusieurs siècles avant les déclarations européennes. Un siècle plus tard, Mansa Musa règne sur l&apos;empire le plus riche du monde médiéval. Lors de son pèlerinage à La Mecque en 1324, il traverse Le Caire avec une caravane de dix mille personnes et plusieurs tonnes d&apos;or. Il distribue tant de métal précieux que le cours de l&apos;or s&apos;effondre en Égypte pour des années. L&apos;Atlas catalan de 1375 le représente comme le souverain le plus puissant du monde. La Charte du Manden proclamait l&apos;universalité. Le mansa tenait le pouvoir. Les deux coexistaient sans se contredire — mais sans être égaux.</p>
+        <p>La scène s&apos;était déjà jouée. En 1235, Soundiata Keïta fonde l&apos;Empire du Mali après la bataille de Kirina. Il proclame la Charte du Manden, texte de gouvernance qui garantit la justice et la protection des individus, plusieurs siècles avant les déclarations européennes. Un siècle plus tard, Mansa Musa règne sur l&apos;empire le plus riche du monde médiéval. Lors de son pèlerinage à La Mecque en 1324, il traverse Le Caire avec une caravane de dix mille personnes et plusieurs tonnes d&apos;or. Il distribue tant de métal précieux que le cours de l&apos;or s&apos;effondre en Égypte pour des années. L&apos;Atlas catalan de 1375 le représente comme le souverain le plus puissant du monde. La Charte du Manden proclamait l&apos;universalité. Le mansa tenait le pouvoir. Les deux coexistaient sans se contredire — mais sans être égaux.</p>
 
         <p>Même structure à Westphalie en 1648. Après trente ans de guerre européenne, la France, la Suède et les Habsbourg négocient les règles du système des États-nations. Les petits États d&apos;Empire sont convoqués pour ratifier. L&apos;ordre international proclame l&apos;égalité souveraine de tous. Les puissances qui l&apos;ont rédigé restent au-dessus.</p>
 
@@ -36,7 +36,7 @@ export default function ArchitectureDesordre() {
 
         <p>L&apos;article 2 de la Charte interdit le recours à la force dans les relations internationales. C&apos;est la norme cardinale, le jus cogens, la règle dont aucune dérogation n&apos;est possible. Mais le chapitre VII donne au Conseil de sécurité seul l&apos;autorité d&apos;autoriser l&apos;usage de cette force. Et les cinq membres permanents disposent chacun d&apos;un veto sur toute décision du Conseil.</p>
 
-        <p>Si les grandes puissances sont d&apos;accord, elles agissent. Si elles ne le sont pas, le système se bloque. La paix internationale dépend du consensus permanent entre Washington, Moscou, Pékin, Londres et Paris. En 1947, deux ans après San Francisco, la Guerre froide paralysait déjà le Conseil. Entre 1945 et 1991, l&apos;URSS a utilisé son veto 119 fois. Les États-Unis 82 fois. Depuis la fin de la Guerre froide, Washington est de loin le premier utilisateur du veto — majoritairement pour bloquer les résolutions sur le conflit israélo-palestinien.</p>
+        <p>Si les grandes puissances sont d&apos;accord, elles agissent. Si elles ne le sont pas, le système se bloque. La paix internationale dépend du consensus permanent entre Washington, Moscou, Pékin, Londres et Paris. En 1947, deux ans après San Francisco, la Guerre froide paralysait déjà le Conseil. Entre 1945 et 1991, l&apos;URSS a utilisé son veto 119 fois. Les États-Unis 82 fois. Depuis la fin de la Guerre froide, Washington est de loin le premier utilisateur du veto, majoritairement pour bloquer les résolutions sur le conflit israélo-palestinien.</p>
 
         <h2>III. Les exceptions</h2>
 
