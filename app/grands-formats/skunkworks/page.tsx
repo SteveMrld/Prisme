@@ -10,7 +10,7 @@ export default function SkunkWorksPage() {
     <GrandFormatLayout
       slug="skunkworks"
       author="La rédaction"
-      authorRole="Soara"
+      authorRole=""
     >
       <div className="soara-article">
 

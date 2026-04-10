@@ -11,7 +11,7 @@ export default function BasesMilitairesPage() {
     <GrandFormatLayout
       slug="bases-militaires"
       author="Steve Moradel"
-      authorRole="Fondateur · Soara"
+      authorRole=""
       title="L'Empire invisible"
       description="Les 800 bases militaires américaines dans le monde"
       category="geo"

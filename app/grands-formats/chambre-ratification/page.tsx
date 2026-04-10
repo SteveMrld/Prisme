@@ -10,7 +10,7 @@ export default function ChambreRatificationPage() {
     <GrandFormatLayout
       slug="chambre-ratification"
       author="Steve Moradel"
-      authorRole="Fondateur · Soara"
+      authorRole=""
     >
       <div className="soara-article">
 

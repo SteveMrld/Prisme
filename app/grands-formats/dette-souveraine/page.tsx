@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function DettePage() {
   return (
-    <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole="Fondateur · Soara">
+    <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole="">
       <div style={{ margin:"0 -40px 48px", borderTop:"1.5px solid #DDD9D2", borderBottom:"1.5px solid #DDD9D2" }}>
         <DetteClient />
       </div>

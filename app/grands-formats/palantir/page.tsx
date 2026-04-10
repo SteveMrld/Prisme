@@ -10,7 +10,7 @@ export default function PalantirPage() {
     <GrandFormatLayout
       slug="palantir"
       author="Steve Moradel"
-      authorRole="Fondateur · Soara"
+      authorRole=""
     >
       <div className="soara-article">
 

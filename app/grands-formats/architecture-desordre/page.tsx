@@ -10,7 +10,7 @@ export default function ArchitectureDesordre() {
     <GrandFormatLayout
       slug="architecture-desordre"
       author="Steve Moradel"
-      authorRole="Fondateur · Soara"
+      authorRole=""
     >
       <div className="soara-article">
 
