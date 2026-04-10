@@ -63,7 +63,7 @@ const MOCK_ANALYSES: Record<string, any> = {
   covid: {
     topic: "Origine du Covid-19 : laboratoire ou marché ?",
     date: "Janvier 2021",
-    synthesis: "L'origine du SARS-CoV-2 reste non déterminée. Deux thèses coexistent : transmission zoonotique depuis un marché de Wuhan, et fuite accidentelle de l'Institut de virologie de Wuhan. Le FBI et le Department of Energy américains jugent la piste laboratoire "probable". L'OMS et la majorité des virologies publiées dans Nature penchent vers l'origine animale. L'enquête internationale a été compromise par l'absence d'accès aux données chinoises.",
+    synthesis: "L'origine du SARS-CoV-2 reste non déterminée. Deux thèses coexistent : transmission zoonotique depuis un marché de Wuhan, et fuite accidentelle de l'Institut de virologie de Wuhan. Le FBI et le Department of Energy américains jugent la piste laboratoire probable. L'OMS et la majorité des virologies publiées dans Nature penchent vers l'origine animale. L'enquête internationale a été compromise par l'absence d'accès aux données chinoises.",
     consensus: [
       "Le virus est apparu à Wuhan fin 2019",
       "Aucune preuve directe de manipulation génétique intentionnelle",
@@ -80,7 +80,7 @@ const MOCK_ANALYSES: Record<string, any> = {
     missing_sources: ["Global Times", "CGTN", "Xinhua"],
     historical_context: "En février 2021, Facebook supprimait automatiquement les posts évoquant une fuite de laboratoire. En mai 2023, le Sénat américain votait à l'unanimité pour déclassifier les documents sur l'origine du Covid. Le retournement médiatique illustre comment le consensus scientifique peut être instrumentalisé.",
     results: [
-      { source: { id: "nytimes", name: "New York Times", abbr: "NYT", type: "Média", bias: "Centre-gauche" }, position: "Origine zoonotique probable", details: "Couvre principalement les études en faveur d'une origine naturelle. La thèse laboratoire qualifiée de "théorie du complot" jusqu'en 2021.", reliability: "veille" },
+      { source: { id: "nytimes", name: "New York Times", abbr: "NYT", type: "Média", bias: "Centre-gauche" }, position: "Origine zoonotique probable", details: "Couvre principalement les études en faveur d'une origine naturelle. La thèse laboratoire qualifiée de théorie du complot jusqu'en 2021.", reliability: "veille" },
       { source: { id: "theintercept", name: "The Intercept", abbr: "INT", type: "Média", bias: "Indépendant" }, position: "Fuite de laboratoire plausible", details: "A publié les documents déclassifiés montrant le financement par EcoHealth Alliance de recherches à l'IVW.", reliability: "verifie" },
       { source: { id: "reuters", name: "Reuters", abbr: "REU", type: "Agence", bias: "Neutre" }, position: "Enquête entravée", details: "Documente les refus d'accès aux données chinoises et les pressions diplomatiques sur l'OMS.", reliability: "verifie" },
     ]
@@ -88,7 +88,7 @@ const MOCK_ANALYSES: Record<string, any> = {
   biden: {
     topic: "Biden et le déclin cognitif : ce que la presse savait",
     date: "Juillet 2024",
-    synthesis: "Les signes de déclin cognitif de Joe Biden étaient documentés depuis au moins 2021 dans des sources indépendantes et des sondages publics. La presse mainstream américaine a largement sous-couvert le sujet jusqu'au débat du 27 juin 2024. Plusieurs rédactions ont depuis publié des autocritiques. Le rapport du procureur spécial Hur (février 2024) décrivait déjà un homme "aux souvenirs défaillants".",
+    synthesis: "Les signes de déclin cognitif de Joe Biden étaient documentés depuis au moins 2021. La presse mainstream américaine a largement sous-couvert le sujet jusqu'au débat du 27 juin 2024. Le rapport Hur décrivait un homme aux souvenirs défaillants.",
     consensus: [
       "73% des Américains exprimaient des inquiétudes cognitives dès 2023 (Pew Research)",
       "Le rapport Hur de février 2024 documentait des défaillances mémorielles",
@@ -96,14 +96,14 @@ const MOCK_ANALYSES: Record<string, any> = {
       "Biden a annoncé son retrait le 21 juillet 2024"
     ],
     contradictions: [
-      "NYT et WashPost : signes minimisés ou qualifiés d'"hystérie républicaine" avant juin 2024",
+      "NYT et WashPost : signes minimisés ou qualifiés d'hystérie républicaine avant juin 2024",
       "Axios et Politico avaient publié des témoignages de proches dès 2022, sans suite éditoriale",
       "La Maison Blanche a activement nié les rapports d'incapacité jusqu'au débat",
       "Plusieurs journalistes admettent avoir exercé une autocensure par crainte d'aider Trump"
     ],
     coverage_index: 28,
     missing_sources: ["MSNBC", "CNN Politics", "Politico Playbook"],
-    historical_context: "Le cas Biden illustre un phénomène documenté de "capture éditoriale" — quand la proximité idéologique entre une rédaction et un sujet politique produit des angles morts systématiques. Le New Yorker a publié une autocritique explicite en août 2024.",
+    historical_context: "Le cas Biden illustre un phénomène documenté de capture éditoriale — quand la proximité idéologique entre une rédaction et un sujet politique produit des angles morts systématiques. Le New Yorker a publié une autocritique explicite en août 2024.",
     results: [
       { source: { id: "nytimes", name: "New York Times", abbr: "NYT", type: "Média", bias: "Centre-gauche" }, position: "Couverture tardive", details: "A minimisé les signaux cognitifs jusqu'au débat. Autocritique publiée en juillet 2024.", reliability: "veille" },
       { source: { id: "washingtonpost", name: "Washington Post", abbr: "WP", type: "Média", bias: "Centre-gauche" }, position: "Omission documentée", details: "Sources internes citées par le Columbia Journalism Review évoquent des pressions éditoriales.", reliability: "veille" },
