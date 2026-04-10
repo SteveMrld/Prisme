@@ -117,7 +117,7 @@ export default function ArticleLayout({
       {category === 'portrait' && image && !hasHeroInContent && (
         <div className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg}
-            style={{ height: '420px', objectPosition: 'center 15%' }} />
+            style={{ height: '420px', objectFit: 'contain', objectPosition: 'center center', background: '#fff' }} />
         </div>
       )}
 
