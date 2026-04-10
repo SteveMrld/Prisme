@@ -69,19 +69,19 @@ export default function ChambreRatificationPage() {
 
         <p>Le lendemain, dans une réunion réservée aux seuls officiels américains, les services de renseignement livrèrent leur verdict. Les deux premiers objectifs — décapiter le régime et démanteler les capacités militaires iraniennes — étaient réalisables. Le soulèvement populaire et le changement de régime étaient «&nbsp;détachés de la réalité.&nbsp;»</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1C1814", color: "#EDE6DA", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
+        <blockquote style={{ margin: "40px 0", padding: "24px 32px 24px 28px", background: "#F7F4EF", borderLeft: "4px solid #1a1a1a", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.85", color: "#1a1a1a" }}>
           «&nbsp;Farcical.&nbsp;»<br />
-          <span style={{ opacity: 0.7, fontSize: "14px" }}>John Ratcliffe, directeur de la CIA.</span>
+          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>John Ratcliffe, directeur de la CIA.</span>
           <br /><br />
           «&nbsp;In other words, it&apos;s bullshit.&nbsp;»<br />
-          <span style={{ opacity: 0.7, fontSize: "14px" }}>Marco Rubio, Secrétaire d&apos;État.</span>
+          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Marco Rubio, Secrétaire d&apos;État.</span>
           <br /><br />
           «&nbsp;Sir, this is, in my experience, standard operating procedure for the Israelis. They oversell, and their plans are not always well-developed. They know they need us, and that&apos;s why they&apos;re hard-selling.&nbsp;»<br />
-          <span style={{ opacity: 0.7, fontSize: "14px" }}>Général Dan Caine, chef d&apos;état-major interarmées.</span>
+          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Général Dan Caine, chef d&apos;état-major interarmées.</span>
           <br /><br />
           «&nbsp;If our goal is regime change or an uprising, we shouldn&apos;t do it. But if the goal is to destroy Iran&apos;s missile program, that&apos;s a goal we can achieve.&nbsp;»<br />
-          <span style={{ opacity: 0.7, fontSize: "14px" }}>Marco Rubio, réunion finale du 26 février.</span>
-          <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#6b6355" }}>
+          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Marco Rubio, réunion finale du 26 février.</span>
+          <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
             Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
           </span>
         </blockquote>
@@ -90,13 +90,13 @@ export default function ChambreRatificationPage() {
 
         <p>Le 26 février, réunion finale. Vance&nbsp;: «&nbsp;You know I think this is a bad idea, but if you want to do it, I&apos;ll support you.&nbsp;» Hegseth, seul enthousiaste&nbsp;: «&nbsp;We&apos;re going to have to take care of the Iranians eventually, so we might as well do it now.&nbsp;» Chacun formula ses réserves. Chacun se rangea.</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1C1814", color: "#EDE6DA", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
+        <blockquote style={{ margin: "40px 0", padding: "24px 32px 24px 28px", background: "#F7F4EF", borderLeft: "4px solid #1a1a1a", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.85", color: "#1a1a1a" }}>
           «&nbsp;I think we need to do it.&nbsp;»<br />
-          <span style={{ opacity: 0.7, fontSize: "14px" }}>Donald Trump, réunion finale du Situation Room, 26 février 2026.</span>
+          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Donald Trump, réunion finale du Situation Room, 26 février 2026.</span>
           <br /><br />
           «&nbsp;Operation Epic Fury is approved. No aborts. Good luck.&nbsp;»<br />
-          <span style={{ opacity: 0.7, fontSize: "14px" }}>Ordre transmis depuis Air Force One, 27 février — 22 minutes avant la deadline fixée par le général Caine.</span>
-          <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#6b6355" }}>
+          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Ordre transmis depuis Air Force One, 27 février — 22 minutes avant la deadline fixée par le général Caine.</span>
+          <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
             Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
           </span>
         </blockquote>
