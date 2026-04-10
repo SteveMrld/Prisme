@@ -43,7 +43,7 @@
     "authorRole": "Fondateur · Prisme",
     "featured": false,
     "premium": false,
-    "grandFormat": true,
+    "grandFormat": false,
     "grandFormatUrl": "/grands-formats/palantir"
   },
   {
