@@ -20,6 +20,7 @@
   max-width: 520px;
   height: auto;
   object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 /* ── Texte ── */

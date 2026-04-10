@@ -837,6 +837,7 @@
   display: block;
   object-fit: contain;
   object-position: center center;
+  mix-blend-mode: multiply;
   transition: transform 0.4s ease;
 }
 .portraitCard:hover .portraitImg { transform: scale(1.03); }
