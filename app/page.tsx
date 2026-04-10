@@ -179,7 +179,9 @@ export default function HomePage() {
       {/* GRANDS FORMATS */}
       <FadeSection delay={0.05}>
       <section className={styles.gfSection}>
-        <div className={styles.gfHeader}> <span className={styles.gfLabel}>Grands formats</span> <span className={styles.gfSub}>Lectures de fond · 12–18 min</span>
+        <div style={{ background: '#0D1F3C', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', color: '#E8D9C0' }}>Grands formats</span>
+          <span style={{ fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(232,217,192,0.5)' }}>Lectures de fond · 12–18 min</span>
         </div>
         <StaggerGrid className={styles.gfGrid}>
           {grandsFormats.map((article, i) => (
