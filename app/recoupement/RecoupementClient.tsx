@@ -60,14 +60,14 @@ const ZONES: Record<string, { label: string; sources: string[]; color: string }>
 
 const EXAMPLES = [
   {
-    query: "Exfiltration du pilote américain en Iran",
-    date: "5 avril 2026",
-    context: "Un F-15E américain abattu au-dessus de l'Iran. Le pilote exfiltré en 48h par les SEAL Team 6. Washington parle de succès total. Téhéran revendique 5 morts civils. Deux récits contradictoires — qui dit vrai ?"
+    query: "Origine du Covid-19 : laboratoire ou marché ?",
+    date: "Janvier 2021",
+    context: "La thèse d'une fuite de laboratoire à Wuhan, longtemps écartée, revient au cœur du débat. Les agences de renseignement américaines sont divisées. La Chine bloque les enquêtes indépendantes. Qu'est-ce que les sources scientifiques et les documents déclassifiés disent vraiment ?"
   },
   {
-    query: "Bombardement de la centrale nucléaire de Bushehr",
-    date: "28 mars 2026",
-    context: "La centrale iranienne de Bushehr frappée pour la 4e fois. L'AIEA alerte sur un risque de fuite radioactive. La couverture médiatique occidentale est quasi absente. Les sources indépendantes divergent sur l'ampleur des dégâts."
+    query: "Biden et le déclin cognitif : ce que la presse savait",
+    date: "Juillet 2024",
+    context: "Après le débat désastreux face à Trump, la presse américaine admet avoir minimisé les signes de déclin cognitif du président pendant des mois. Quelles sources avaient alerté ? Lesquelles avaient tu ? Le recoupement révèle l'écart entre ce qui était su et ce qui était publié."
   },
 ]
 
