@@ -58,6 +58,60 @@ const ZONES: Record<string, { label: string; sources: string[]; color: string }>
   osint:         { label: 'OSINT & Terrain',        color: '#8A6A2A', sources: ['sentdefender','clashreport','marionawfal','shanaka86','allenanalysis','ryangrim','viviannereim','amanpour'] },
 }
 
+
+const MOCK_ANALYSES: Record<string, any> = {
+  covid: {
+    topic: "Origine du Covid-19 : laboratoire ou marché ?",
+    date: "Janvier 2021",
+    synthesis: "L'origine du SARS-CoV-2 reste non déterminée. Deux thèses coexistent : transmission zoonotique depuis un marché de Wuhan, et fuite accidentelle de l'Institut de virologie de Wuhan. Le FBI et le Department of Energy américains jugent la piste laboratoire "probable". L'OMS et la majorité des virologies publiées dans Nature penchent vers l'origine animale. L'enquête internationale a été compromise par l'absence d'accès aux données chinoises.",
+    consensus: [
+      "Le virus est apparu à Wuhan fin 2019",
+      "Aucune preuve directe de manipulation génétique intentionnelle",
+      "L'enquête internationale a été entravée par Pékin",
+      "Les deux thèses restent scientifiquement possibles"
+    ],
+    contradictions: [
+      "OMS et Nature : origine zoonotique probable — FBI et DOE : fuite de laboratoire probable",
+      "Peter Daszak (EcoHealth) siégeait dans la commission d'enquête tout en finançant l'IVW",
+      "Les premiers lanceurs d'alerte chinois ont été réduits au silence en janvier 2020",
+      "La thèse laboratoire, censurée en 2020, est aujourd'hui jugée crédible par les services US"
+    ],
+    coverage_index: 42,
+    missing_sources: ["Global Times", "CGTN", "Xinhua"],
+    historical_context: "En février 2021, Facebook supprimait automatiquement les posts évoquant une fuite de laboratoire. En mai 2023, le Sénat américain votait à l'unanimité pour déclassifier les documents sur l'origine du Covid. Le retournement médiatique illustre comment le consensus scientifique peut être instrumentalisé.",
+    results: [
+      { source: { id: "nytimes", name: "New York Times", abbr: "NYT", type: "Média", bias: "Centre-gauche" }, position: "Origine zoonotique probable", details: "Couvre principalement les études en faveur d'une origine naturelle. La thèse laboratoire qualifiée de "théorie du complot" jusqu'en 2021.", reliability: "veille" },
+      { source: { id: "theintercept", name: "The Intercept", abbr: "INT", type: "Média", bias: "Indépendant" }, position: "Fuite de laboratoire plausible", details: "A publié les documents déclassifiés montrant le financement par EcoHealth Alliance de recherches à l'IVW.", reliability: "verifie" },
+      { source: { id: "reuters", name: "Reuters", abbr: "REU", type: "Agence", bias: "Neutre" }, position: "Enquête entravée", details: "Documente les refus d'accès aux données chinoises et les pressions diplomatiques sur l'OMS.", reliability: "verifie" },
+    ]
+  },
+  biden: {
+    topic: "Biden et le déclin cognitif : ce que la presse savait",
+    date: "Juillet 2024",
+    synthesis: "Les signes de déclin cognitif de Joe Biden étaient documentés depuis au moins 2021 dans des sources indépendantes et des sondages publics. La presse mainstream américaine a largement sous-couvert le sujet jusqu'au débat du 27 juin 2024. Plusieurs rédactions ont depuis publié des autocritiques. Le rapport du procureur spécial Hur (février 2024) décrivait déjà un homme "aux souvenirs défaillants".",
+    consensus: [
+      "73% des Américains exprimaient des inquiétudes cognitives dès 2023 (Pew Research)",
+      "Le rapport Hur de février 2024 documentait des défaillances mémorielles",
+      "Le débat du 27 juin 2024 a rendu la question impossible à ignorer",
+      "Biden a annoncé son retrait le 21 juillet 2024"
+    ],
+    contradictions: [
+      "NYT et WashPost : signes minimisés ou qualifiés d'"hystérie républicaine" avant juin 2024",
+      "Axios et Politico avaient publié des témoignages de proches dès 2022, sans suite éditoriale",
+      "La Maison Blanche a activement nié les rapports d'incapacité jusqu'au débat",
+      "Plusieurs journalistes admettent avoir exercé une autocensure par crainte d'aider Trump"
+    ],
+    coverage_index: 28,
+    missing_sources: ["MSNBC", "CNN Politics", "Politico Playbook"],
+    historical_context: "Le cas Biden illustre un phénomène documenté de "capture éditoriale" — quand la proximité idéologique entre une rédaction et un sujet politique produit des angles morts systématiques. Le New Yorker a publié une autocritique explicite en août 2024.",
+    results: [
+      { source: { id: "nytimes", name: "New York Times", abbr: "NYT", type: "Média", bias: "Centre-gauche" }, position: "Couverture tardive", details: "A minimisé les signaux cognitifs jusqu'au débat. Autocritique publiée en juillet 2024.", reliability: "veille" },
+      { source: { id: "washingtonpost", name: "Washington Post", abbr: "WP", type: "Média", bias: "Centre-gauche" }, position: "Omission documentée", details: "Sources internes citées par le Columbia Journalism Review évoquent des pressions éditoriales.", reliability: "veille" },
+      { source: { id: "reuters", name: "Reuters", abbr: "REU", type: "Agence", bias: "Neutre" }, position: "Faits documentés", details: "A relayé les sondages et le rapport Hur sans prise de position éditoriale.", reliability: "verifie" },
+    ]
+  }
+}
+
 const EXAMPLES = [
   {
     query: "Origine du Covid-19 : laboratoire ou marché ?",
@@ -250,59 +304,70 @@ export default function RecoupementClient() {
             Comment ça fonctionne
           </p>
 
-          {/* Exemple 1 — Covid */}
-          <div style={{ border: '1px solid #DDD9D2', borderRadius: '2px', marginBottom: '32px', overflow: 'hidden' }}>
-            <div style={{ background: '#F7F4EF', padding: '12px 20px', borderBottom: '1px solid #DDD9D2' }}>
-              <span style={{ fontSize: '10px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8a7f72' }}>Janvier 2021 · Exemple de recoupement</span>
+                    {/* Exemples avec vrai rendu abonné */}
+          {(['covid', 'biden'] as const).map((key) => {
+            const mock = MOCK_ANALYSES[key]
+            const score = Math.round(mock.results.filter((r: any) => r.reliability === 'verifie').length / mock.results.length * 100)
+            return (
+          <div key={key} className={styles.results} style={{ marginBottom: '32px', opacity: 1 }}>
+            <div style={{ background: '#F7F4EF', padding: '10px 20px', marginBottom: '16px', borderBottom: '1px solid #DDD9D2' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8a7f72' }}>{mock.date} · Exemple de recoupement</span>
             </div>
-            <div style={{ padding: '20px 20px 8px' }}>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: '#1a1a1a', marginBottom: '16px' }}>Origine du Covid-19 : laboratoire ou marché ?</div>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(192,64,64,0.08)', color: '#C04040', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>Divergence majeure</span>
-                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(74,143,191,0.08)', color: '#4A8FBF', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>8 sources contradictoires</span>
+            <div className={styles.resultsHeader}>
+              <div className={styles.resultsRule} />
+              <div className={styles.resultsMeta}>
+                <span className={styles.resultsTopic}>{mock.topic}</span>
+                <span className={styles.resultsDate}>{mock.date}</span>
               </div>
-              <div style={{ borderLeft: '3px solid #C04040', paddingLeft: '14px', marginBottom: '10px' }}>
-                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#C04040', letterSpacing: '1px', marginBottom: '4px' }}>THÈSE OFFICIELLE · OMS · Nature</div>
-                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Origine zoonotique probable. Aucune preuve directe de manipulation en laboratoire. Enquête compromise par absence d'accès au site.</p>
+            </div>
+            <div className={styles.scoreBlock}>
+              <div className={styles.scoreLabel}>Indice de fiabilité</div>
+              <div className={styles.scoreBar}><div className={styles.scoreFill} style={{ width: `${mock.coverage_index}%` }} /></div>
+              <div className={styles.scoreValue}>{mock.coverage_index}%</div>
+              <div className={styles.scoreNote}>Couverture partielle — angle mort documenté</div>
+            </div>
+            <div className={styles.synthesis}>
+              <div className={styles.synthLabel}>Synthèse</div>
+              <p className={styles.synthText}>{mock.synthesis}</p>
+            </div>
+            <div className={styles.dualBlock}>
+              <div className={styles.consensusCol}>
+                <div className={styles.colLabel} data-type="consensus">Points de consensus</div>
+                <div className={styles.colItems}>{mock.consensus.map((item: string, i: number) => (
+                  <div key={i} className={styles.consensusItem}><span className={styles.dot} data-type="consensus" /><span>{item}</span></div>
+                ))}</div>
               </div>
-              <div style={{ borderLeft: '3px solid #4A8FBF', paddingLeft: '14px', marginBottom: '10px' }}>
-                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#4A8FBF', letterSpacing: '1px', marginBottom: '4px' }}>THÈSE LABORATOIRE · FBI · DOE · The Intercept</div>
-                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Fuite accidentelle de l'Institut de virologie de Wuhan jugée "probable" par deux agences US. Documents déclassifiés révèlent financement de recherche gain-of-function.</p>
+              <div className={styles.contraCol}>
+                <div className={styles.colLabel} data-type="contra">Contradictions</div>
+                <div className={styles.colItems}>{mock.contradictions.map((item: string, i: number) => (
+                  <div key={i} className={styles.contradictionItem}><span className={styles.dot} data-type="contra" /><span>{item}</span></div>
+                ))}</div>
               </div>
-              <div style={{ borderLeft: '3px solid #8a7f72', paddingLeft: '14px', marginBottom: '16px' }}>
-                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#8a7f72', letterSpacing: '1px', marginBottom: '4px' }}>POINT DE FRICTION · The Lancet · Science</div>
-                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Conflits d'intérêts documentés dans le comité d'enquête. Peter Daszak (EcoHealth Alliance) finançait l'IVW tout en siégeant dans la commission d'investigation.</p>
+            </div>
+            <div className={styles.coverageBlock}>
+              <div className={styles.coverageRow}>
+                <div className={styles.coverageItem}>
+                  <div className={styles.coverageLabel}>Indice de couverture</div>
+                  <div className={styles.coverageBar}><div className={styles.coverageFill} style={{ width: `${mock.coverage_index}%` }} /></div>
+                  <div className={styles.coverageValue}>{mock.coverage_index}%</div>
+                  <div className={styles.coverageNote}>Couverture partielle — angle mort possible</div>
+                </div>
+                <div className={styles.missingItem}>
+                  <div className={styles.coverageLabel}>Sources silencieuses</div>
+                  <div className={styles.missingNote}>Ces sources n'ont pas couvert ce fait</div>
+                  <div className={styles.missingList}>{mock.missing_sources.map((s: string, i: number) => (
+                    <span key={i} className={styles.missingTag}>{s}</span>
+                  ))}</div>
+                </div>
               </div>
-              <div style={{ fontSize: '11px', fontFamily: 'monospace', color: '#8a7f72', padding: '12px 0', borderTop: '1px solid #DDD9D2' }}>44 sources croisées · Médias indépendants · Agences · OSINT · Think tanks</div>
+              <div className={styles.historicalBlock}>
+                <div className={styles.coverageLabel}>Contexte historique</div>
+                <p className={styles.historicalText}>{mock.historical_context}</p>
+              </div>
             </div>
           </div>
-
-          {/* Exemple 2 — Biden */}
-          <div style={{ border: '1px solid #DDD9D2', borderRadius: '2px', marginBottom: '32px', overflow: 'hidden' }}>
-            <div style={{ background: '#F7F4EF', padding: '12px 20px', borderBottom: '1px solid #DDD9D2' }}>
-              <span style={{ fontSize: '10px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8a7f72' }}>Juillet 2024 · Exemple de recoupement</span>
-            </div>
-            <div style={{ padding: '20px 20px 8px' }}>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: '#1a1a1a', marginBottom: '16px' }}>Biden et le déclin cognitif : ce que la presse savait</div>
-              <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(192,64,64,0.08)', color: '#C04040', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>Omission documentée</span>
-                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(74,143,191,0.08)', color: '#4A8FBF', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>6 sources croisées</span>
-              </div>
-              <div style={{ borderLeft: '3px solid #C04040', paddingLeft: '14px', marginBottom: '10px' }}>
-                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#C04040', letterSpacing: '1px', marginBottom: '4px' }}>PRESSE MAINSTREAM · NYT · WashPost · Politico</div>
-                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Couverture minimisée jusqu'au débat du 27 juin 2024. Les signaux documentés depuis 2021 qualifiés d'"hystérie républicaine" ou écartés par manque de preuves formelles.</p>
-              </div>
-              <div style={{ borderLeft: '3px solid #4A8FBF', paddingLeft: '14px', marginBottom: '10px' }}>
-                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#4A8FBF', letterSpacing: '1px', marginBottom: '4px' }}>SOURCES INDÉPENDANTES · Special Counsel · Axios</div>
-                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Le rapport Hur (février 2024) décrit un homme "aux souvenirs défaillants." 73% des Américains exprimaient leurs inquiétudes dans les sondages dès 2023, selon Pew Research.</p>
-              </div>
-              <div style={{ borderLeft: '3px solid #8a7f72', paddingLeft: '14px', marginBottom: '16px' }}>
-                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#8a7f72', letterSpacing: '1px', marginBottom: '4px' }}>ADMISSION POST-DÉBAT · NYT · Atlantic</div>
-                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Après le débat, plusieurs rédactions admettent publiquement avoir sous-couvert le sujet. Le New Yorker publie une autocritique explicite sur la culture du silence dans la presse proche du Parti démocrate.</p>
-              </div>
-              <div style={{ fontSize: '11px', fontFamily: 'monospace', color: '#8a7f72', padding: '12px 0', borderTop: '1px solid #DDD9D2' }}>44 sources croisées · Médias indépendants · Agences · OSINT · Think tanks</div>
-            </div>
-          </div>
+            )
+          })}
 
           {/* Sources cachées — juste le chiffre */}
           <div style={{ marginBottom: '40px' }}>
