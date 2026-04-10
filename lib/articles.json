@@ -16,6 +16,22 @@
     "grandFormatUrl": "/grands-formats/chambre-ratification"
   },
   {
+    "slug": "skunkworks",
+    "title": "La fabrique de l'impossible",
+    "description": "Quatre-vingt ans de Skunk Works : du cirque de Burbank à Ghost Murmur, la technologie qui détecte un battement de cœur dans le désert iranien.",
+    "category": "tech",
+    "categoryLabel": "Grand Format",
+    "date": "2026-04-10",
+    "readTime": "14",
+    "image": "/grands-formats/skunkworks/hangar-1943.png",
+    "author": "La rédaction",
+    "authorRole": "Prisme",
+    "featured": false,
+    "premium": false,
+    "grandFormat": true,
+    "grandFormatUrl": "/grands-formats/skunkworks"
+  },
+  {
     "slug": "moreno",
     "title": "Et si la crise démocratique commençait au travail ?",
     "description": "L'isolement professionnel précède le retrait démocratique. Une étude d'HEC Paris révèle ce lien invisible — et ce que les dirigeants ont le devoir de faire.",
