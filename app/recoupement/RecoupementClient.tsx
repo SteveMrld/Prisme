@@ -250,32 +250,65 @@ export default function RecoupementClient() {
             Comment ça fonctionne
           </p>
 
-          {EXAMPLES.map((ex, i) => (
-            <div key={i} style={{ borderLeft: '3px solid #DDD9D2', paddingLeft: '20px', marginBottom: '32px', opacity: 0.85 }}>
-              <div style={{ fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '6px' }}>{ex.date}</div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px' }}>{ex.query}</div>
-              <p style={{ fontSize: '14px', color: '#6B6355', lineHeight: '1.65', margin: 0 }}>{ex.context}</p>
+          {/* Exemple 1 — Covid */}
+          <div style={{ border: '1px solid #DDD9D2', borderRadius: '2px', marginBottom: '32px', overflow: 'hidden' }}>
+            <div style={{ background: '#F7F4EF', padding: '12px 20px', borderBottom: '1px solid #DDD9D2' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8a7f72' }}>Janvier 2021 · Exemple de recoupement</span>
             </div>
-          ))}
+            <div style={{ padding: '20px 20px 8px' }}>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: '#1a1a1a', marginBottom: '16px' }}>Origine du Covid-19 : laboratoire ou marché ?</div>
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(192,64,64,0.08)', color: '#C04040', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>Divergence majeure</span>
+                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(74,143,191,0.08)', color: '#4A8FBF', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>8 sources contradictoires</span>
+              </div>
+              <div style={{ borderLeft: '3px solid #C04040', paddingLeft: '14px', marginBottom: '10px' }}>
+                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#C04040', letterSpacing: '1px', marginBottom: '4px' }}>THÈSE OFFICIELLE · OMS · Nature</div>
+                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Origine zoonotique probable. Aucune preuve directe de manipulation en laboratoire. Enquête compromise par absence d'accès au site.</p>
+              </div>
+              <div style={{ borderLeft: '3px solid #4A8FBF', paddingLeft: '14px', marginBottom: '10px' }}>
+                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#4A8FBF', letterSpacing: '1px', marginBottom: '4px' }}>THÈSE LABORATOIRE · FBI · DOE · The Intercept</div>
+                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Fuite accidentelle de l'Institut de virologie de Wuhan jugée "probable" par deux agences US. Documents déclassifiés révèlent financement de recherche gain-of-function.</p>
+              </div>
+              <div style={{ borderLeft: '3px solid #8a7f72', paddingLeft: '14px', marginBottom: '16px' }}>
+                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#8a7f72', letterSpacing: '1px', marginBottom: '4px' }}>POINT DE FRICTION · The Lancet · Science</div>
+                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Conflits d'intérêts documentés dans le comité d'enquête. Peter Daszak (EcoHealth Alliance) finançait l'IVW tout en siégeant dans la commission d'investigation.</p>
+              </div>
+              <div style={{ fontSize: '11px', fontFamily: 'monospace', color: '#8a7f72', padding: '12px 0', borderTop: '1px solid #DDD9D2' }}>44 sources croisées · Médias indépendants · Agences · OSINT · Think tanks</div>
+            </div>
+          </div>
 
-          {/* Sources preview */}
-          <div style={{ marginBottom: '40px' }}>
-            <p style={{ fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '16px' }}>
-              {SOURCES.length} sources croisées
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {SOURCES.slice(0, 18).map(s => (
-                <span key={s.id} style={{
-                  fontSize: '11px', padding: '4px 10px',
-                  border: '1px solid #DDD9D2', borderRadius: '2px',
-                  color: '#6B6355', fontFamily: 'monospace',
-                  background: '#F5F0E8'
-                }}>{s.name}</span>
-              ))}
-              <span style={{ fontSize: '11px', padding: '4px 10px', color: '#B8860B', fontFamily: 'monospace' }}>
-                +{SOURCES.length - 18} autres
-              </span>
+          {/* Exemple 2 — Biden */}
+          <div style={{ border: '1px solid #DDD9D2', borderRadius: '2px', marginBottom: '32px', overflow: 'hidden' }}>
+            <div style={{ background: '#F7F4EF', padding: '12px 20px', borderBottom: '1px solid #DDD9D2' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8a7f72' }}>Juillet 2024 · Exemple de recoupement</span>
             </div>
+            <div style={{ padding: '20px 20px 8px' }}>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', fontWeight: 700, color: '#1a1a1a', marginBottom: '16px' }}>Biden et le déclin cognitif : ce que la presse savait</div>
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(192,64,64,0.08)', color: '#C04040', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>Omission documentée</span>
+                <span style={{ fontSize: '10px', padding: '3px 8px', background: 'rgba(74,143,191,0.08)', color: '#4A8FBF', fontFamily: 'monospace', letterSpacing: '1px', textTransform: 'uppercase' }}>6 sources croisées</span>
+              </div>
+              <div style={{ borderLeft: '3px solid #C04040', paddingLeft: '14px', marginBottom: '10px' }}>
+                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#C04040', letterSpacing: '1px', marginBottom: '4px' }}>PRESSE MAINSTREAM · NYT · WashPost · Politico</div>
+                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Couverture minimisée jusqu'au débat du 27 juin 2024. Les signaux documentés depuis 2021 qualifiés d'"hystérie républicaine" ou écartés par manque de preuves formelles.</p>
+              </div>
+              <div style={{ borderLeft: '3px solid #4A8FBF', paddingLeft: '14px', marginBottom: '10px' }}>
+                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#4A8FBF', letterSpacing: '1px', marginBottom: '4px' }}>SOURCES INDÉPENDANTES · Special Counsel · Axios</div>
+                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Le rapport Hur (février 2024) décrit un homme "aux souvenirs défaillants." 73% des Américains exprimaient leurs inquiétudes dans les sondages dès 2023, selon Pew Research.</p>
+              </div>
+              <div style={{ borderLeft: '3px solid #8a7f72', paddingLeft: '14px', marginBottom: '16px' }}>
+                <div style={{ fontSize: '10px', fontFamily: 'monospace', color: '#8a7f72', letterSpacing: '1px', marginBottom: '4px' }}>ADMISSION POST-DÉBAT · NYT · Atlantic</div>
+                <p style={{ fontSize: '13px', color: '#1a1a1a', lineHeight: '1.6', margin: 0 }}>Après le débat, plusieurs rédactions admettent publiquement avoir sous-couvert le sujet. Le New Yorker publie une autocritique explicite sur la culture du silence dans la presse proche du Parti démocrate.</p>
+              </div>
+              <div style={{ fontSize: '11px', fontFamily: 'monospace', color: '#8a7f72', padding: '12px 0', borderTop: '1px solid #DDD9D2' }}>44 sources croisées · Médias indépendants · Agences · OSINT · Think tanks</div>
+            </div>
+          </div>
+
+          {/* Sources cachées — juste le chiffre */}
+          <div style={{ marginBottom: '40px' }}>
+            <p style={{ fontSize: '12px', fontFamily: 'monospace', letterSpacing: '0.1em', color: '#8a7f72' }}>
+              {SOURCES.length} sources · Médias indépendants · Agences · OSINT · Think tanks
+            </p>
           </div>
 
           {/* CTA */}
