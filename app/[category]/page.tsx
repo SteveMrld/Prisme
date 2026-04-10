@@ -166,7 +166,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
           {/* ARTICLE FEATURED */}
           {featured && (
             <AnimFeatured>
-            <Link href={`/articles/${featured.slug}`} className={styles.featured}>
+            <Link href={featured.grandFormatUrl || `/articles/${featured.slug}`} className={styles.featured}>
               {featured.image && (
                 <div className={styles.featuredImgWrap}>
                   <img src={featured.image} alt={featured.title} className={styles.featuredImg} />
@@ -197,7 +197,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
             <AnimGrid className={styles.grid}>
               {rest.map(article => (
                 <AnimCard key={article.slug}>
-                <Link href={`/articles/${article.slug}`} className={styles.card}>
+                <Link href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.card}>
                   {article.image && (
                     <div className={styles.cardImgWrap}>
                       <img src={article.image} alt={article.title} className={styles.cardImg} />

@@ -53,6 +53,7 @@ const heroAside = heroAsideSlugs.map(slug => {
 })
 
 const grandsFormatsSlugs = [
+  { slug: 'chambre-ratification', extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '5 sections · 4 illustrations' },
   { slug: 'dette-souveraine',   extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · données en temps réel' },
   { slug: 'france_maritime',    extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '7 sections · 12 sources' },
   { slug: 'eau',                extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '8 sections · 11 sources' },
