@@ -106,10 +106,7 @@ export default function SoaraTV() {
             <span className={styles.tvLogoText}>SOARA</span>
             <span className={styles.tvLogoTag}>TV</span>
           </div>
-          <div className={styles.tvMeta}>
-            <span className={styles.tvDot} />
-            <span className={styles.tvMetaText}>Analyses en mouvement</span>
-          </div>
+
         </div>
         <div className={styles.tvEpCount}>
           <span className={styles.tvEpNum}>0{episodes.length}</span>
