@@ -63,8 +63,8 @@ export default function VisuelsPage() {
 
           {/* Card featured — navale */}
           <a href="/visuels/naval.html" target="_blank" rel="noopener noreferrer" className={styles.featCard}>
-            <div className={styles.featBg}>
-              <div className={styles.featGlobe}/>
+<div className={styles.featBg} style={{background:"linear-gradient(135deg,#0a0f1a 0%,#0d2035 50%,#1a0d25 100%)"}}>
+              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 30% 60%, rgba(29,78,216,0.4) 0%, transparent 50%), radial-gradient(circle at 70% 35%, rgba(100,29,127,0.3) 0%, transparent 45%)"}} />
             </div>
             <div className={styles.featBody}>
               <div className={styles.featEyebrow}>
@@ -86,8 +86,8 @@ export default function VisuelsPage() {
 
           {/* Prédateurs — carte interactive */}
           <a href="/visuels/predateurs.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-            <div className={styles.featBg}>
-              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 60% 50%, rgba(160,120,32,0.07) 0%, transparent 60%)'}}/>
+<div className={styles.featBg} style={{background:"linear-gradient(135deg,#120d02 0%,#2e1f04 50%,#1a1508 100%)"}}>
+              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 25% 50%, rgba(180,120,20,0.45) 0%, transparent 50%), radial-gradient(circle at 72% 38%, rgba(216,160,29,0.2) 0%, transparent 45%)"}} />
             </div>
             <div className={styles.featBody}>
               <div className={styles.featEyebrow}>
@@ -108,8 +108,8 @@ export default function VisuelsPage() {
 
           {/* Grand format — L'eau */}
           <a href="/visuels/eau.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-            <div className={styles.featBg}>
-              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 50% 60%, rgba(45,107,74,0.1) 0%, transparent 60%)'}}/>
+<div className={styles.featBg} style={{background:"linear-gradient(135deg,#060f08 0%,#0a2e12 50%,#0f1a10 100%)"}}>
+              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 30% 55%, rgba(34,120,60,0.5) 0%, transparent 50%), radial-gradient(circle at 70% 40%, rgba(29,216,100,0.2) 0%, transparent 45%)"}} />
             </div>
             <div className={styles.featBody}>
               <div className={styles.featEyebrow}>
@@ -131,8 +131,8 @@ export default function VisuelsPage() {
 
           {/* France maritime */}
           <a href="/visuels/france_maritime.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-            <div className={styles.featBg}>
-              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 50% 55%, rgba(13,110,253,0.09) 0%, transparent 60%)'}}/>
+<div className={styles.featBg} style={{background:"linear-gradient(135deg,#1a0a0a 0%,#3d0e0e 50%,#1a2035 100%)"}}>
+              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 25% 50%, rgba(127,29,29,0.5) 0%, transparent 50%), radial-gradient(circle at 75% 40%, rgba(29,78,216,0.3) 0%, transparent 45%)"}} />
             </div>
             <div className={styles.featBody}>
               <div className={styles.featEyebrow}>
@@ -154,8 +154,8 @@ export default function VisuelsPage() {
 
           {/* Câbles sous-marins */}
           <a href="/visuels/cables.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-            <div className={styles.featBg}>
-              <div className={styles.featGlobe} style={{background:'radial-gradient(ellipse at 40% 60%, rgba(100,150,255,0.07) 0%, transparent 60%)'}}/>
+<div className={styles.featBg} style={{background:"linear-gradient(135deg,#060d1a 0%,#0a1f3d 50%,#10152a 100%)"}}>
+              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 20% 50%, rgba(29,100,216,0.45) 0%, transparent 50%), radial-gradient(circle at 75% 40%, rgba(100,200,255,0.2) 0%, transparent 45%)"}} />
             </div>
             <div className={styles.featBody}>
               <div className={styles.featEyebrow}>
