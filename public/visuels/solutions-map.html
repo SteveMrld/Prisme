@@ -363,8 +363,10 @@ window.addEventListener('resize',()=>{
 });
 function enterGlobe(){
   document.getElementById('intro').classList.add('gone');
-  setTimeout(()=>document.getElementById('intro').remove(), 900);
+  setTimeout(()=>{ const el=document.getElementById('intro'); if(el) el.remove(); }, 900);
 }
+// Auto-skip intro
+window.addEventListener('load', ()=>setTimeout(enterGlobe, 100));
 setTimeout(()=>document.getElementById('hint').style.opacity='0',5000);
 
 // ── THEMATIC FILTER ──
