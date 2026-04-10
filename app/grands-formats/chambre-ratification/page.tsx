@@ -69,7 +69,7 @@ export default function ChambreRatificationPage() {
 
         <p>Le lendemain, dans une réunion réservée aux seuls officiels américains, les services de renseignement livrèrent leur verdict. Les deux premiers objectifs — décapiter le régime et démanteler les capacités militaires iraniennes — étaient réalisables. Le soulèvement populaire et le changement de régime étaient «&nbsp;détachés de la réalité.&nbsp;»</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1A2744", color: "#e8e0d0", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
+        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1C1814", color: "#EDE6DA", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
           «&nbsp;Farcical.&nbsp;»<br />
           <span style={{ opacity: 0.7, fontSize: "14px" }}>John Ratcliffe, directeur de la CIA.</span>
           <br /><br />
@@ -90,7 +90,7 @@ export default function ChambreRatificationPage() {
 
         <p>Le 26 février, réunion finale. Vance&nbsp;: «&nbsp;You know I think this is a bad idea, but if you want to do it, I&apos;ll support you.&nbsp;» Hegseth, seul enthousiaste&nbsp;: «&nbsp;We&apos;re going to have to take care of the Iranians eventually, so we might as well do it now.&nbsp;» Chacun formula ses réserves. Chacun se rangea.</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1A2744", color: "#e8e0d0", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
+        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1C1814", color: "#EDE6DA", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
           «&nbsp;I think we need to do it.&nbsp;»<br />
           <span style={{ opacity: 0.7, fontSize: "14px" }}>Donald Trump, réunion finale du Situation Room, 26 février 2026.</span>
           <br /><br />
@@ -217,15 +217,15 @@ export default function ChambreRatificationPage() {
         <p>Le <em>New York Times</em> rapporte que les conseillers de Trump le voyaient comme «&nbsp;un grand homme de l&apos;histoire&nbsp;» avec une confiance presque superstitieuse en ses instincts — et que sa décision «&nbsp;was not driven by intelligence assessments or a strategic consensus among his advisers, which did not exist.&nbsp;» Kennedy se méfiait de ses instincts. Il les soumettait à l&apos;épreuve des faits, de l&apos;histoire, de la logique de l&apos;adversaire. Ce n&apos;est pas un trait de caractère&nbsp;: c&apos;est une méthode. Et la méthode fait la différence entre une délibération et un film.</p>
 
         {/* ÉPILOGUE */}
-        <div style={{ background: "#1A2744", color: "#c8bfaa", padding: "48px 40px", margin: "0 -40px" }}>
-          <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8860B", marginBottom: "20px" }}>Épilogue</div>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.7", color: "#e8e0d0", marginBottom: "1.4em" }}>
+        <div style={{ background: "#1C1814", color: "#e8e0d0", padding: "48px 40px", margin: "0 -40px" }}>
+          <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C8A96E", marginBottom: "20px" }}>Épilogue</div>
+          <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.7", color: "#EDE6DA", marginBottom: "1.4em" }}>
             Le cessez-le-feu a été annoncé. L&apos;Iran dit que le détroit est fermé. Netanyahu dit que le doigt est sur la gâchette. L&apos;uranium enrichi n&apos;a pas été retiré. Et Reza Pahlavi est toujours à Washington.
           </p>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.7", color: "#e8e0d0", marginBottom: "1.4em" }}>
+          <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.7", color: "#EDE6DA", marginBottom: "1.4em" }}>
             Soixante-dix ans après que son père fut installé au pouvoir par la CIA, le fils attend dans les coulisses d&apos;une histoire qui se répète — sans même se donner la peine de changer de titre.
           </p>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "22px", fontWeight: 700, fontStyle: "italic", lineHeight: "1.5", color: "#f5f0e8", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "28px", marginTop: "28px", marginBottom: 0 }}>
+          <p style={{ fontFamily: "Georgia, serif", fontSize: "22px", fontWeight: 700, fontStyle: "italic", lineHeight: "1.5", color: "#FFFFFF", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "28px", marginTop: "28px", marginBottom: 0 }}>
             Si Washington est devenu une chambre de ratification, la question suivante est immédiate&nbsp;: ratification de quoi, et par qui, la prochaine fois&nbsp;?
           </p>
         </div>
