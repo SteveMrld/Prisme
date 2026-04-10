@@ -158,9 +158,12 @@ renderer.toneMappingExposure=1.1;
 document.getElementById('canvas-wrap').appendChild(renderer.domElement);
 
 let _drag=false,_px=0,_py=0,_autoRotate=true;
-renderer.domElement.addEventListener('mousedown',e=>{_drag=true;_px=e.clientX;_py=e.clientY;_autoRotate=false;});
-document.addEventListener('mouseup',()=>{_drag=false;setTimeout(()=>_autoRotate=true,8000);});
-document.addEventListener('mousemove',e=>{
+const cvs=renderer.domElement;
+cvs.style.cursor='grab';
+cvs.addEventListener('mousedown',e=>{e.preventDefault();_drag=true;_px=e.clientX;_py=e.clientY;_autoRotate=false;cvs.style.cursor='grabbing';});
+cvs.addEventListener('mouseup',()=>{_drag=false;cvs.style.cursor='grab';setTimeout(()=>_autoRotate=true,8000);});
+cvs.addEventListener('mouseleave',()=>{_drag=false;cvs.style.cursor='grab';});
+cvs.addEventListener('mousemove',e=>{
   if(!_drag)return;
   const dx=e.clientX-_px,dy=e.clientY-_py;
   _px=e.clientX;_py=e.clientY;
