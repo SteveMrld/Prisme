@@ -51,7 +51,7 @@ export default function ChambreRatificationPage() {
             alt="Le Situation Room, 11 février 2026 — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Le Situation Room, 11 février 2026. Scène reconstituée par le <em>New York Times</em> à partir de témoignages de responsables américains. Illustration éditoriale pour Prisme.
+            Le Situation Room, 11 février 2026. Scène reconstituée par le <em>New York Times</em> à partir de témoignages de responsables américains. © Soara.
           </figcaption>
         </figure>
 
@@ -113,7 +113,7 @@ export default function ChambreRatificationPage() {
             alt="Kennedy seul, octobre 1962 — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Octobre 1962. Kennedy seul avec les photos U-2 et <em>The Guns of August</em> de Barbara Tuchman. Illustration éditoriale pour Prisme.
+            Octobre 1962. Kennedy seul avec les photos U-2 et <em>The Guns of August</em> de Barbara Tuchman. © Soara.
           </figcaption>
         </figure>
 
@@ -178,7 +178,7 @@ export default function ChambreRatificationPage() {
             alt="Téhéran, août 1953 — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Téhéran, août 1953. L&apos;opération Ajax renverse Mohammad Mossadegh. La boucle commence. Illustration éditoriale pour Prisme.
+            Téhéran, août 1953. L&apos;opération Ajax renverse Mohammad Mossadegh. La boucle commence. © Soara.
           </figcaption>
         </figure>
 
@@ -194,7 +194,7 @@ export default function ChambreRatificationPage() {
             alt="La boucle 1953-2026 — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            1953 — 2026. Le Shah et son fils. Le coup d&apos;État de la CIA et la présentation du Mossad. Soixante-dix ans du même film. Illustration éditoriale pour Prisme.
+            1953 — 2026. Le Shah et son fils. Le coup d&apos;État de la CIA et la présentation du Mossad. Soixante-dix ans du même film. © Soara.
           </figcaption>
         </figure>
 

@@ -29,7 +29,7 @@ export default function SkunkWorksPage() {
             alt="Le hangar de Burbank, juin 1943 — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Burbank, Californie, juin 1943. Johnson et son équipe travaillent sous une tente de cirque louée à la hâte. En 143 jours, ils livrent le premier chasseur à réaction américain. Illustration éditoriale pour Prisme.
+            Burbank, Californie, juin 1943. Johnson et son équipe travaillent sous une tente de cirque louée à la hâte. En 143 jours, ils livrent le premier chasseur à réaction américain. © Soara.
           </figcaption>
         </figure>
 
@@ -59,7 +59,7 @@ export default function SkunkWorksPage() {
             alt="Le U-2 au-dessus de l'URSS — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            De 1956 à 1960, le U-2 survola impunément le territoire soviétique à 21 000 mètres. Le 1er mai 1960, Gary Powers fut abattu. Illustration éditoriale pour Prisme.
+            De 1956 à 1960, le U-2 survola impunément le territoire soviétique à 21 000 mètres. Le 1er mai 1960, Gary Powers fut abattu. © Soara.
           </figcaption>
         </figure>
 
@@ -75,7 +75,7 @@ export default function SkunkWorksPage() {
             alt="Le titane soviétique — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Le paradoxe du Blackbird : la CIA acheta le titane à l&apos;URSS via des sociétés fantômes pour construire l&apos;avion destiné à espionner l&apos;URSS. Illustration éditoriale pour Prisme.
+            Le paradoxe du Blackbird : la CIA acheta le titane à l&apos;URSS via des sociétés fantômes pour construire l&apos;avion destiné à espionner l&apos;URSS. © Soara.
           </figcaption>
         </figure>
 
@@ -97,7 +97,7 @@ export default function SkunkWorksPage() {
             alt="Ghost Murmur — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            "Dude 44 Bravo", officier de systèmes d&apos;armes, 36 heures dans une fissure rocheuse en Iran. Retrouvé, selon des sources anonymes, grâce à la détection de son battement de cœur. Illustration éditoriale pour Prisme.
+            "Dude 44 Bravo", officier de systèmes d&apos;armes, 36 heures dans une fissure rocheuse en Iran. Retrouvé, selon des sources anonymes, grâce à la détection de son battement de cœur. © Soara.
           </figcaption>
         </figure>
 
@@ -124,7 +124,7 @@ export default function SkunkWorksPage() {
             alt="Le SR-72, programme fantôme — illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Palmdale, désert californien. Ce que Lockheed construit ici, personne ne le sait officiellement. 1,8 milliard de dollars perdus sur un programme sans nom. Illustration éditoriale pour Prisme.
+            Palmdale, désert californien. Ce que Lockheed construit ici, personne ne le sait officiellement. 1,8 milliard de dollars perdus sur un programme sans nom. © Soara.
           </figcaption>
         </figure>
 

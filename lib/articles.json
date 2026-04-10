@@ -1,5 +1,21 @@
 [
   {
+    "slug": "architecture-desordre",
+    "title": "L'architecture du désordre",
+    "description": "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne — de Cyrus à San Francisco.",
+    "category": "geo",
+    "categoryLabel": "Géopolitique",
+    "date": "2026-04-28",
+    "readTime": "10",
+    "image": "/grands-formats/chambre-hero.jpg",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Prisme",
+    "featured": false,
+    "premium": false,
+    "grandFormat": false,
+    "grandFormatUrl": "/grands-formats/architecture-desordre"
+  },
+  {
     "slug": "chambre-ratification",
     "title": "La chambre de ratification",
     "description": "Comment Benjamin Netanyahu a décidé une guerre américaine. Une enquête en miroir : le Situation Room en 2026, le Situation Room en 1962, et soixante-dix ans d'une boucle qui ne se referme pas.",
@@ -36,7 +52,7 @@
     "description": "Comment une entreprise née d'un coup d'État de salle de réunion est devenue l'infrastructure cognitive des États qui ne la contrôlent pas.",
     "category": "tech",
     "categoryLabel": "Grand Format",
-    "date": "2026-04-10",
+    "date": "2026-05-02",
     "readTime": "12",
     "image": "/grands-formats/palantir/palantir-reseau.png",
     "author": "Steve Moradel",
