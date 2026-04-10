@@ -52,12 +52,13 @@ const heroAside = heroAsideSlugs.map(slug => {
 
 const grandsFormatsSlugs = [
   { slug: 'chambre-ratification', extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '5 sections · 4 illustrations' },
-  { slug: 'dette-souveraine',   extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · données en temps réel' },
-  { slug: 'france_maritime',    extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '7 sections · 12 sources' },
-  { slug: 'eau',                extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '8 sections · 11 sources' },
-  { slug: 'techgeo',            extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '7 sections · 16 sources' },
-  { slug: 'taiwan',             extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · 10 sources' },
-  { slug: 'semico',             extraCategories: [{ label: 'Technologie', color: 'tech' }],  sections: '6 sections · 10 sources' },
+  { slug: 'skunkworks',           extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '5 sections · 5 illustrations' },
+  { slug: 'dette-souveraine',     extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · données en temps réel' },
+  { slug: 'france_maritime',      extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '7 sections · 12 sources' },
+  { slug: 'eau',                  extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '8 sections · 11 sources' },
+  { slug: 'techgeo',              extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '7 sections · 16 sources' },
+  { slug: 'taiwan',               extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · 10 sources' },
+  { slug: 'semico',               extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '6 sections · 10 sources' },
 ]
 const grandsFormats = grandsFormatsSlugs.map(({ slug, extraCategories, sections }) => {
   const a = getArticle(slug)
