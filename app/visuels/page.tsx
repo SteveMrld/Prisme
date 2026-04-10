@@ -44,135 +44,27 @@ export default function VisuelsPage() {
 
           {/* Card — bases militaires américaines */}
           <a href="/grands-formats/bases-militaires" className={styles.featCard} style={{marginTop:'1px'}}>
-            <div className={styles.featBg} style={{background:"linear-gradient(135deg,#1a0a0a 0%,#3d0e0e 50%,#1a2035 100%)"}}>
-              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 25% 50%, rgba(127,29,29,0.5) 0%, transparent 50%), radial-gradient(circle at 75% 40%, rgba(29,78,216,0.3) 0%, transparent 45%)"}} />
-            </div>
-            <div className={styles.featBody}>
-              <div className={styles.featEyebrow}>
-                <span className={styles.featTag} style={{color:'#EF9090'}}>Géopolitique · Carte interactive</span>
-                <span className={styles.featBadge}>Disponible</span>
-              </div>
-              <h3 className={styles.featTitle}>L'Empire invisible</h3>
-              <p className={styles.featSub}>6 puissances · 17 sources vérifiées · Zoom & filtres</p>
-              <p className={styles.featDesc}>
-                750 bases américaines, 145 britanniques, 21 russes, 6 françaises.
-                La carte interactive des empreintes militaires mondiales — avec les données les plus récentes disponibles.
-              </p>
-            </div>
-          </a>
-
-          {/* Card featured — navale */}
-          <a href="/visuels/naval.html" target="_blank" rel="noopener noreferrer" className={styles.featCard}>
-<div className={styles.featBg} style={{background:"linear-gradient(135deg,#0a0f1a 0%,#0d2035 50%,#1a0d25 100%)"}}>
-              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 30% 60%, rgba(29,78,216,0.4) 0%, transparent 50%), radial-gradient(circle at 70% 35%, rgba(100,29,127,0.3) 0%, transparent 45%)"}} />
-            </div>
-            <div className={styles.featBody}>
-              <div className={styles.featEyebrow}>
-                <span className={styles.featTag} style={{color:'var(--geo)'}}>Géopolitique · Carte animée</span>
-                <span className={styles.featBadge}>Disponible</span>
-              </div>
-              <h3 className={styles.featTitle}>Les mers du pouvoir</h3>
-              <p className={styles.featSub}>Routes commerciales · Détroits · Marines militaires · Zones de tension</p>
-              <p className={styles.featDesc}>
-                80% du commerce mondial circule sur l'eau. Qui contrôle les mers contrôle l'économie mondiale.
-                Une carte animée en 5 chapitres qui révèle les enjeux invisibles du monde maritime.
-              </p>
-              <div className={styles.featCta}>
-                <span>Explorer la carte</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
-              </div>
-            </div>
+            
           </a>
 
           {/* Prédateurs — carte interactive */}
           <a href="/visuels/predateurs.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-<div className={styles.featBg} style={{background:"linear-gradient(135deg,#120d02 0%,#2e1f04 50%,#1a1508 100%)"}}>
-              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 25% 50%, rgba(180,120,20,0.45) 0%, transparent 50%), radial-gradient(circle at 72% 38%, rgba(216,160,29,0.2) 0%, transparent 45%)"}} />
-            </div>
-            <div className={styles.featBody}>
-              <div className={styles.featEyebrow}>
-                <span className={styles.featTag} style={{color:'var(--geo)'}}>Géopolitique · Carte interactive</span>
-                <span className={styles.featBadge}>Disponible</span>
-              </div>
-              <h3 className={styles.featTitle}>Le Monde des Prédateurs</h3>
-              <p className={styles.featSub}>États-Unis · Russie · Chine — zones d&apos;influence mondiales</p>
-              <p className={styles.featDesc}>
-                Trois puissances, trois doctrines. Une carte choroplèthe mondiale cliquable et interactive qui révèle comment USA, Russie et Chine se partagent le monde — avec un focus sur l&apos;Arctique et les points de friction.
-              </p>
-              <div className={styles.featCta}>
-                <span>Explorer la carte</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
-              </div>
-            </div>
+
           </a>
 
           {/* Grand format — L'eau */}
           <a href="/visuels/eau.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-<div className={styles.featBg} style={{background:"linear-gradient(135deg,#060f08 0%,#0a2e12 50%,#0f1a10 100%)"}}>
-              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 30% 55%, rgba(34,120,60,0.5) 0%, transparent 50%), radial-gradient(circle at 70% 40%, rgba(29,216,100,0.2) 0%, transparent 45%)"}} />
-            </div>
-            <div className={styles.featBody}>
-              <div className={styles.featEyebrow}>
-                <span className={styles.featTag} style={{color:'var(--env)'}}>Environnement · Géopolitique · Carte animée</span>
-                <span className={styles.featBadge}>Disponible</span>
-              </div>
-              <h3 className={styles.featTitle}>L&apos;eau : la prochaine grande fracture</h3>
-              <p className={styles.featSub}>Glaciers · Barrages · Conflits · Géopolitique de l&apos;eau</p>
-              <p className={styles.featDesc}>
-                Des glaciers himalayens aux barrages africains. Comment la maîtrise de l&apos;eau
-                redessine les rapports de puissance — une carte animée en 5 chapitres.
-              </p>
-              <div className={styles.featCta}>
-                <span>Explorer la carte</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
-              </div>
-            </div>
+
           </a>
 
           {/* France maritime */}
           <a href="/visuels/france_maritime.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-<div className={styles.featBg} style={{background:"linear-gradient(135deg,#1a0a0a 0%,#3d0e0e 50%,#1a2035 100%)"}}>
-              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 25% 50%, rgba(127,29,29,0.5) 0%, transparent 50%), radial-gradient(circle at 75% 40%, rgba(29,78,216,0.3) 0%, transparent 45%)"}} />
-            </div>
-            <div className={styles.featBody}>
-              <div className={styles.featEyebrow}>
-                <span className={styles.featTag} style={{color:'var(--geo)'}}>Géopolitique · Carte animée</span>
-                <span className={styles.featBadge}>Disponible</span>
-              </div>
-              <h3 className={styles.featTitle}>La France maritime</h3>
-              <p className={styles.featSub}>ZEE · Pacifique · Atlantique · Océan Indien</p>
-              <p className={styles.featDesc}>
-                La France possède la 2e zone économique exclusive mondiale — et presque personne ne le sait.
-                Une révélation en 6 chapitres sur l&apos;empire maritime invisible de la République.
-              </p>
-              <div className={styles.featCta}>
-                <span>Explorer la carte</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
-              </div>
-            </div>
+
           </a>
 
           {/* Câbles sous-marins */}
           <a href="/visuels/cables.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
-<div className={styles.featBg} style={{background:"linear-gradient(135deg,#060d1a 0%,#0a1f3d 50%,#10152a 100%)"}}>
-              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 20% 50%, rgba(29,100,216,0.45) 0%, transparent 50%), radial-gradient(circle at 75% 40%, rgba(100,200,255,0.2) 0%, transparent 45%)"}} />
-            </div>
-            <div className={styles.featBody}>
-              <div className={styles.featEyebrow}>
-                <span className={styles.featTag} style={{color:'var(--tech)'}}>Tech · Géopolitique · Visualisation</span>
-                <span className={styles.featBadge}>Disponible</span>
-              </div>
-              <h3 className={styles.featTitle}>Câbles sous-marins</h3>
-              <p className={styles.featSub}>Vue en coupe · Réseau de flux · Enjeux stratégiques</p>
-              <p className={styles.featDesc}>
-                99% d&apos;internet circule sous les océans. Qui contrôle ces câbles contrôle l&apos;information mondiale.
-                Vue en coupe animée, réseau de flux et décryptage des enjeux géopolitiques.
-              </p>
-              <div className={styles.featCta}>
-                <span>Explorer la visualisation</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
-              </div>
-            </div>
+
           </a>
 
 
