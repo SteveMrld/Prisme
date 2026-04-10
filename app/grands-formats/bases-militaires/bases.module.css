@@ -1,523 +1,264 @@
-.wrapper {
-  font-family: Georgia, "Times New Roman", serif;
-}
+.wrapper { font-family: Georgia, "Times New Roman", serif; }
 
-/* ── INTRO ─────────────────────────────────────────────────── */
-.intro {
-  margin-bottom: 32px;
-}
+.intro { margin-bottom: 28px; }
+.chapeau { font-size: 1.05rem; line-height: 1.75; color: #2A2A2A; margin: 0; }
 
-.chapeau {
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: #2A2A2A;
-  margin-bottom: 10px;
-}
-
-.source {
-  font-size: 0.78rem;
-  color: #8A8480;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-style: normal;
-  border-left: 2px solid #DDD9D2;
-  padding-left: 12px;
-  line-height: 1.5;
-}
-
-/* ── STATS ─────────────────────────────────────────────────── */
-.statsRow {
+/* ── LAYOUT ── */
+.mainLayout {
   display: flex;
-  align-items: center;
-  gap: 0;
-  background: #1A1A2E;
-  border-radius: 4px;
-  padding: 20px 28px;
-  margin-bottom: 24px;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  gap: 4px;
-}
-
-.statNum {
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: #F4EFE4;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: -0.02em;
-}
-
-.statLabel {
-  font-size: 0.72rem;
-  color: #8A9BB8;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  text-align: center;
-}
-
-.statDivider {
-  width: 1px;
-  height: 40px;
-  background: rgba(255,255,255,0.12);
-  flex-shrink: 0;
-}
-
-/* ── CONTRÔLES ─────────────────────────────────────────────── */
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  gap: 20px;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
-.toggle {
-  display: flex;
-  border: 1px solid #D4CFC7;
-  border-radius: 4px;
-  overflow: hidden;
-  flex-shrink: 0;
+/* ── BARRE ── */
+.barPanel {
+  flex: 0 0 280px;
+  background: #FFFFFF;
+  border: 1px solid #E0DCD4;
+  border-radius: 8px;
+  padding: 18px 18px 14px;
 }
-
-.toggleBtn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  padding: 8px 16px;
-  background: #FAF8F4;
-  border: none;
-  cursor: pointer;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #5A5550;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  transition: background 0.15s, color 0.15s;
-}
-
-.toggleBtn + .toggleBtn {
-  border-left: 1px solid #D4CFC7;
-}
-
-.toggleActive {
-  background: #1A1A2E;
-  color: #F4EFE4;
-}
-
-.toggleSub {
-  font-size: 0.67rem;
-  font-weight: 400;
-  opacity: 0.7;
-}
-
-.regionFilters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.regionBtn {
-  padding: 6px 12px;
-  border: 1px solid #D4CFC7;
-  border-radius: 20px;
-  background: #FAF8F4;
-  font-size: 0.78rem;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  cursor: pointer;
-  color: #5A5550;
-  transition: all 0.15s;
-}
-
-.regionBtn:hover {
-  border-color: #888;
-  color: #222;
-}
-
-.regionActive {
-  font-weight: 600;
-}
-
-/* ── CARTE ─────────────────────────────────────────────────── */
-.mapContainer {
-  position: relative;
-  width: 100%;
-  background: #EEF2F7;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid #DDD9D2;
-  margin-bottom: 24px;
-}
-
-.mapSvg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* ── TOOLTIP ───────────────────────────────────────────────── */
-.tooltip {
-  position: absolute;
-  background: rgba(20, 20, 35, 0.95);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 6px;
-  padding: 12px 15px;
-  pointer-events: none;
-  z-index: 10;
-  min-width: 220px;
-  max-width: 280px;
-  backdrop-filter: blur(8px);
-}
-
-.ttBranch {
+.barTitle {
   font-size: 0.72rem;
-  font-family: "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 4px;
-}
-
-.ttName {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #F4EFE4;
+  letter-spacing: 0.1em;
+  color: #2A2A2A;
   font-family: "Helvetica Neue", Arial, sans-serif;
   margin-bottom: 2px;
-  line-height: 1.3;
 }
-
-.ttLoc {
-  font-size: 0.78rem;
+.barSubtitle {
+  font-size: 0.64rem;
   color: #9A9590;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  font-style: italic;
 }
-
-.ttRow {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.78rem;
-  color: #C4BFB8;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 6px;
-}
-
-/* ── LÉGENDE TAILLE ────────────────────────────────────────── */
-.sizeLegend {
-  position: absolute;
-  bottom: 14px;
-  left: 14px;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid #DDD9D2;
-  border-radius: 5px;
-  padding: 10px 12px;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-}
-
-.sizeLegendTitle {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: #6A6560;
-  margin-bottom: 6px;
-}
-
-.sizeLegendItem {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  color: #5A5550;
-  margin-bottom: 2px;
-}
-
-/* ── LÉGENDE RÉGIONS ───────────────────────────────────────── */
-.regionLegend {
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid #DDD9D2;
-  border-radius: 5px;
-  padding: 10px 12px;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-}
-
-.regionLegendItem {
+.barRow { margin-bottom: 12px; }
+.barMeta {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.72rem;
-  color: #3A3530;
   margin-bottom: 4px;
 }
-
-.regionDot {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+.barFlag { font-size: 1rem; line-height: 1; flex-shrink: 0; }
+.barInfo { flex: 1; min-width: 0; }
+.barNation {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.2;
+}
+.barDetail {
+  display: block;
+  font-size: 0.62rem;
+  color: #8A8480;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.3;
+}
+.barCount {
+  font-size: 1rem;
+  font-weight: 900;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   flex-shrink: 0;
 }
-
-/* ── FICHE BASE SÉLECTIONNÉE ───────────────────────────────── */
-.baseCard {
-  position: relative;
-  background: #FAF8F4;
-  border: 1.5px solid #DDD9D2;
-  border-left: 4px solid #1A1A2E;
-  border-radius: 6px;
-  padding: 24px 28px;
-  margin-bottom: 32px;
+.barTrack {
+  background: #EDE9E0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 3px;
 }
-
-.cardClose {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  color: #8A8480;
+.barFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.barSource {
+  font-size: 0.6rem;
+  color: #AAA5A0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-style: italic;
+}
+.usaToggle { display: flex; gap: 5px; margin-top: 6px; }
+.toggleChip {
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid #D4CFC7;
+  background: #F5F1EB;
+  font-size: 0.65rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   cursor: pointer;
-  line-height: 1;
-  padding: 0 4px;
-}
-
-.cardClose:hover {
-  color: #222;
-}
-
-.cardRegion {
-  font-size: 0.75rem;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-}
-
-.cardName {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #1A1A1A;
-  margin: 0 0 4px;
-  font-family: Georgia, serif;
-}
-
-.cardLoc {
-  font-size: 0.85rem;
   color: #6A6560;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  margin-bottom: 16px;
+  transition: all 0.15s;
 }
+.toggleChipActive { color: #fff; }
 
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-bottom: 16px;
-  border-top: 1px solid #DDD9D2;
-  border-bottom: 1px solid #DDD9D2;
-  padding: 14px 0;
-}
-
-.cardStat {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  text-align: center;
-}
-
-.cardStatNum {
-  font-size: 1.1rem;
-  font-weight: 700;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  color: #1A1A2E;
-}
-
-.cardStatLabel {
-  font-size: 0.68rem;
-  color: #8A8480;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.cardNote {
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: #3A3530;
-  margin: 0;
-}
-
-.cardVine {
-  margin-top: 12px;
-  font-size: 0.76rem;
-  color: #8A6830;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #FDF6E8;
-  border: 1px solid #E8D8B0;
+.sourcesBtn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 8px;
+  background: #F5F1EB;
+  border: 1px solid #DDD9D2;
   border-radius: 4px;
-  padding: 7px 12px;
+  font-size: 0.72rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #5A5550;
+  cursor: pointer;
 }
+.sourcesBtn:hover { background: #EDE9DF; }
 
-/* ── RESPONSIVE ─────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .statsRow {
-    padding: 14px 12px;
-    gap: 0;
-  }
-
-  .statNum {
-    font-size: 1.3rem;
-  }
-
-  .statLabel {
-    font-size: 0.62rem;
-  }
-
-  .controls {
-    flex-direction: column;
-  }
-
-  .toggle {
-    width: 100%;
-  }
-
-  .toggleBtn {
-    flex: 1;
-  }
-
-  .cardGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .sizeLegend,
-  .regionLegend {
-    display: none;
-  }
-}
-
-/* ── FILTRES NATIONS ────────────────────────────────────────── */
-.nationFilters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
+/* ── CARTE ── */
+.mapPanel { flex: 1; min-width: 0; }
+.nationFilters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .nationBtn {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 14px;
-  border-radius: 4px;
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 11px; border-radius: 20px;
   border: 1.5px solid #D4CFC7;
   cursor: pointer;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.83rem;
+  font-size: 0.73rem;
   transition: all 0.15s;
 }
+.nationBtnActive { color: #fff; font-weight: 700; }
+.nationBtnOff { background: #F5F1EB; color: #9A9590; }
+.nationBtnName { font-weight: 600; }
 
-.nationActive {
-  color: #fff;
-  font-weight: 600;
-}
-
-.nationInactive {
-  background: #F5F3EF;
-  color: #8A8480;
-}
-
-.nationFlag {
-  font-size: 1.1rem;
-  line-height: 1;
-}
-
-.nationName {
-  font-weight: 600;
-}
-
-.nationCount {
-  font-size: 0.72rem;
-  opacity: 0.8;
-  background: rgba(255,255,255,0.2);
-  padding: 1px 5px;
-  border-radius: 10px;
-}
-
-.nationInactive .nationCount {
-  background: rgba(0,0,0,0.08);
-}
-
-/* ── TOOLTIP nation ─────────────────────────────────────────── */
-.ttNation {
-  font-size: 0.72rem;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 4px;
-}
-
-.ttCertainty {
-  font-size: 0.72rem;
-  font-style: italic;
-  color: #9A9590;
-}
-
-/* ── LÉGENDE FIABILITÉ ──────────────────────────────────────── */
-.certLegend {
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  background: rgba(255,255,255,0.92);
+.mapWrap {
+  position: relative;
+  background: #C8D9EC;
   border: 1px solid #DDD9D2;
-  border-radius: 5px;
-  padding: 10px 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 420px;
+}
+
+/* ── TOOLTIP ── */
+.tooltip {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(20,20,30,0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 10px 14px;
+  pointer-events: none;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  max-width: 220px;
+  z-index: 10;
+}
+.ttNation { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
+.ttName   { font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.ttCountry{ font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+.ttRow    { display: flex; justify-content: space-between; font-size: 0.72rem; color: rgba(255,255,255,0.8); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 5px; }
+.ttCert[data-c="confirmée"] { color: #86efac; }
+.ttCert[data-c="probable"]  { color: #fde68a; }
+.ttCert[data-c="alléguée"]  { color: #fca5a5; }
+
+/* ── LÉGENDE FIABILITÉ ── */
+.certLegend {
+  position: absolute; bottom: 12px; right: 12px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid #DDD9D2; border-radius: 5px;
+  padding: 8px 11px;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
+.certTitle { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #6A6560; margin-bottom: 5px; }
+.certItem  { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; color: #4A4540; margin-bottom: 3px; }
 
-.certTitle {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: #6A6560;
-  margin-bottom: 6px;
+/* ── FICHE BASE ── */
+.baseCard {
+  position: relative;
+  background: #fff;
+  border: 1px solid #E0DCD4;
+  border-left: 4px solid #ccc;
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
 }
-
-.certItem {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.cardClose { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 1.3rem; color: #8A8480; cursor: pointer; }
+.cardNation { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-family: "Helvetica Neue", Arial, sans-serif; margin-bottom: 5px; }
+.cardName { font-size: 1.15rem; font-weight: 700; margin: 0 0 4px; }
+.cardCountry { font-size: 0.82rem; color: #6A6560; font-family: "Helvetica Neue", Arial, sans-serif; margin-bottom: 10px; }
+.cardNote { font-size: 0.88rem; line-height: 1.65; color: #3A3530; margin: 0 0 10px; }
+.certBadge { font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; opacity: 0.8; }
+.cardSource {
+  display: inline-block;
   font-size: 0.72rem;
-  color: #4A4540;
-  margin-bottom: 3px;
+  color: #5A6580;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-decoration: none;
+  border: 1px solid #D4D9E4;
+  border-radius: 3px;
+  padding: 4px 9px;
 }
+.cardSource:hover { background: #F0F3FA; }
 
-/* ── FICHE — nation ─────────────────────────────────────────── */
-.cardNation {
+/* ── SOURCES ── */
+.sourcesPanel {
+  background: #fff;
+  border: 1px solid #E0DCD4;
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin-bottom: 28px;
+}
+.sourcesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.sourcesTitle { font-size: 0.92rem; font-weight: 700; font-family: "Helvetica Neue", Arial, sans-serif; color: #1A1A1A; margin-bottom: 3px; }
+.sourcesSub   { font-size: 0.72rem; color: #8A8480; font-family: "Helvetica Neue", Arial, sans-serif; font-style: italic; }
+.sourcesTabs  { display: flex; gap: 5px; flex-wrap: wrap; }
+.sourceTab {
+  padding: 4px 10px; border-radius: 20px;
+  border: 1.5px solid #D4CFC7;
+  background: #F5F1EB;
   font-size: 0.78rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 6px;
+  cursor: pointer; color: #6A6560;
+  transition: all 0.15s;
+}
+.sourceTabActive { background: #1A1A2E; color: #fff; border-color: #1A1A2E; }
+.sourcesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.sourceCard {
+  display: block;
+  text-decoration: none;
+  background: #FAF8F4;
+  border: 1px solid #E5E0D8;
+  border-radius: 6px;
+  padding: 12px 14px;
+  transition: border-color 0.15s;
+}
+.sourceCard:hover { border-color: #AAA5A0; background: #F5F1EB; }
+.sourceCardNation { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-family: "Helvetica Neue", Arial, sans-serif; margin-bottom: 5px; }
+.sourceCardLabel  { font-size: 0.8rem; font-weight: 600; color: #1A1A1A; font-family: "Helvetica Neue", Arial, sans-serif; margin-bottom: 4px; line-height: 1.3; }
+.sourceCardNote   { font-size: 0.72rem; color: #6A6560; font-family: "Helvetica Neue", Arial, sans-serif; line-height: 1.4; margin-bottom: 6px; }
+.sourceCardLink   { font-size: 0.68rem; color: #5A6580; font-family: "Helvetica Neue", Arial, sans-serif; }
+.methodNote {
+  background: #F5F1EB;
+  border-left: 3px solid #DDD9D2;
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: #4A4540;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  border-radius: 0 4px 4px 0;
 }
 
-.cardCertaintyBadge {
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0;
-  font-style: italic;
-  opacity: 0.8;
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .mainLayout { flex-direction: column; }
+  .barPanel { flex: none; width: 100%; }
+  .mapWrap { height: 300px; }
+  .sourcesGrid { grid-template-columns: 1fr; }
 }
