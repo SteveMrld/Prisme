@@ -386,20 +386,7 @@ export default function BasesClient() {
                 </div>
               </div>
             )}
-            {(["confirmée","probable","alléguée"] as Certainty[]).map(c => (
-                <div key={c} className={styles.certItem}>
-                  <svg width={16} height={16}>
-                    <circle cx={8} cy={8} r={4} fill="#5A5550"
-                      opacity={c === "confirmée" ? 0.85 : c === "probable" ? 0.55 : 0.3}
-                      stroke={c !== "confirmée" ? "#5A5550" : "none"}
-                      strokeDasharray={c !== "confirmée" ? "2,1.5" : undefined}
-                      strokeWidth="1"
-                    />
-                  </svg>
-                  <span>{c}</span>
-                </div>
-              ))}
-            </div>
+
           </div>
         </div>
       </div>
