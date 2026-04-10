@@ -12,18 +12,16 @@ import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
 import HeroSlider from '../components/HeroSlider'
 
 const signalItems = [
-  { cat: 'Moyen-Orient', color: 'var(--geo)', headline: "Détroit d'Ormuz — Iran maintient le blocus, Trump menace de frapper les infrastructures le 6 avril", date: '5 avril' },
-  { cat: 'Énergie', color: 'var(--eco)', headline: "Choc pétrolier — le baril franchit 140 dollars, pire choc depuis 1973, inflation mondiale relancée", date: '4 avril' },
-  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Macron appelle à une coalition d'indépendance européenne face aux influences américaine et chinoise", date: '3 avril' },
-  { cat: 'Iran', color: 'var(--geo)', headline: "35e jour du conflit — Lavrov et l'Égypte appellent au cessez-le-feu, Washington campe sur ses positions", date: '3 avril' },
-  { cat: 'Tech', color: 'var(--tech)', headline: "IA générative — 48% des Français l'utilisent désormais, adoption la plus rapide de toute technologie numérique", date: '2 avril' },
-  { cat: 'Environnement', color: 'var(--env)', headline: "Traité sur la biodiversité marine — les 60 ratifications franchies, la haute mer protégée pour la première fois", date: '2 avril' },
-  { cat: 'Économie', color: 'var(--eco)', headline: "FMI abaisse ses prévisions — choc énergétique et tensions géopolitiques pèsent sur la croissance 2026", date: '1 avril' },
-  { cat: 'Société', color: 'var(--soc)', headline: "Réseaux sociaux — l'exposition aux contenus problématiques concerne 1 jeune sur 3 en France selon l'Arcom", date: '1 avril' },
-  { cat: 'Afrique', color: 'var(--geo)', headline: "Soudan — les RSF contrôlent désormais un territoire plus riche que certains États, poids géopolitique inédit", date: '31 mars' },
-  { cat: 'Environnement', color: 'var(--env)', headline: "Déchets plastiques en Europe — baisse de 40% depuis 2015, les politiques d'interdiction montrent leur effet", date: '30 mars' },
-  { cat: 'Tech', color: 'var(--tech)', headline: "Énergie et IA — la hausse des coûts électriques liée au conflit remet en cause les valorisations des géants du cloud", date: '2 avril' },
-  { cat: 'Géopolitique', color: 'var(--geo)', headline: "Minéraux critiques — la Chine contrôle 90% du raffinage mondial, levier de puissance contre les sanctions occidentales", date: '3 avril' },
+  { cat: 'Moyen-Orient', color: 'var(--geo)', headline: "Cessez-le-feu Iran–États-Unis — 3e jour fragile, sirènes en Israël après tirs de roquettes du Liban, Netanyahu dit «le doigt sur la gâchette»", date: '10 avril' },
+  { cat: 'Détroit d\'Ormuz', color: 'var(--geo)', headline: "Trump met en garde l'Iran contre tout péage dans le détroit d'Ormuz — «Ce n'est pas l'accord que nous avons», dit-il sur Truth Social", date: '10 avril' },
+  { cat: 'Liban', color: 'var(--geo)', headline: "Pourparlers Israël–Liban prévus la semaine prochaine à Washington — 303 morts dans les frappes israéliennes de mercredi, le Hezbollah revendique des tirs en représailles", date: '10 avril' },
+  { cat: 'Iran', color: 'var(--geo)', headline: "Négociations Iran–États-Unis à Islamabad dès vendredi — Téhéran exige enrichissement de l'uranium, retrait américain du Golfe et réparations de guerre dans son plan en 10 points", date: '10 avril' },
+  { cat: 'Énergie', color: 'var(--eco)', headline: "Pétrole — baril de Brent remonte à 96,77 $ après la trêve, trafic dans le détroit d'Ormuz reste très limité, deux navires non-iraniens autorisés", date: '10 avril' },
+  { cat: 'Koweït', color: 'var(--geo)', headline: "Premier drone attack dans le Golfe depuis le cessez-le-feu — les défenses aériennes koweïtiennes activées, «installations vitales» visées", date: '10 avril' },
+  { cat: 'Ukraine', color: 'var(--geo)', headline: "Poutine annonce un cessez-le-feu de 48h pour la Pâque orthodoxe — Zelensky maintient les experts en drones ukrainiens déployés au Moyen-Orient", date: '10 avril' },
+  { cat: 'Géopolitique', color: 'var(--geo)', headline: "«L'Iran a remporté une grande victoire» — Moscou et Pékin jubilent, un axe Chine–Iran–Russie contrôlant 30% du pétrole mondial inquiète Washington", date: '10 avril' },
+  { cat: 'Tarifs', color: 'var(--eco)', headline: "Trump suspend 90 jours de droits de douane sur la plupart des partenaires commerciaux, maintient 145% sur la Chine — les Bourses rebondissent fortement", date: '10 avril' },
+  { cat: 'Soudan', color: 'var(--geo)', headline: "Soudan — les FSR renforcent leur emprise sur le Darfour, l'ONU dénonce la pire crise humanitaire mondiale, 14 millions de déplacés", date: '10 avril' },
 ]
 
 const categoryLabels: Record<string, string> = {
