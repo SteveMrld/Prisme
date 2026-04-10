@@ -1,5 +1,21 @@
 [
   {
+    "slug": "chambre-ratification",
+    "title": "La chambre de ratification",
+    "description": "Comment Benjamin Netanyahu a décidé une guerre américaine. Une enquête en miroir : le Situation Room en 2026, le Situation Room en 1962, et soixante-dix ans d'une boucle qui ne se referme pas.",
+    "category": "geo",
+    "categoryLabel": "Grand Format",
+    "date": "2026-04-10",
+    "readTime": "18",
+    "image": "/grands-formats/chambre-hero.jpg",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Prisme",
+    "featured": true,
+    "premium": false,
+    "grandFormat": true,
+    "grandFormatUrl": "/grands-formats/chambre-ratification"
+  },
+  {
     "slug": "moreno",
     "title": "Et si la crise démocratique commençait au travail ?",
     "description": "L'isolement professionnel précède le retrait démocratique. Une étude d'HEC Paris révèle ce lien invisible — et ce que les dirigeants ont le devoir de faire.",
