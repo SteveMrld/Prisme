@@ -212,7 +212,8 @@
     "author": "Jade Desroses",
     "authorRole": "Culture & Société",
     "date": "2026-01-30",
-    "premium": false
+    "premium": false,
+    "featured": true
   },
   {
     "slug": "medias",
