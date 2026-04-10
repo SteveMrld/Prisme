@@ -37,7 +37,7 @@ export default function VisuelsPage() {
         {/* ═══ GRANDS FORMATS ═══ */}
         <section className={styles.section}>
           <div className={styles.sectionHead}>
-            <div className={styles.sectionTag} style={{color:'var(--geo)'}}>Grands formats</div>
+            <div className={styles.sectionTag} style={{color:'var(--geo)'}}>Atlas</div>
             <h2 className={styles.sectionTitle}>Cartes &amp; Animations immersives</h2>
             <p className={styles.sectionDesc}>Des animations plein écran pensées pour les sujets qui demandent de l'espace — géopolitique, géographie, data.</p>
           </div>

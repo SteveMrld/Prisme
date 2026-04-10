@@ -65,7 +65,7 @@ export default function AProposPage() {
               { label: 'Grands formats', desc: 'Des analyses de fond de 10 à 20 minutes. Géopolitique, économie, technologie, environnement. Sourcées, structurées, sans jargon inutile.' },
               { label: 'Signal', desc: 'L\'actualité qui compte, sans bruit. Les faits bruts, contextualisés en trois phrases.' },
               { label: 'Portraits', desc: 'Des trajectoires singulières. Des femmes et des hommes dont les vies éclairent leur époque mieux que n\'importe quelle synthèse abstraite.' },
-              { label: 'Visuels', desc: 'Infographies, animations, visualisations interactives. Les idées qui se comprennent mieux quand on les voit.' },
+              { label: 'Atlas', desc: 'Cartes, animations, visualisations interactives. Les idées qui se comprennent mieux quand on les voit.' },
             ].map(c => (
               <div key={c.label} className={styles.card}>
                 <div className={styles.cardLabel}>{c.label}</div>

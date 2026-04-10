@@ -70,8 +70,8 @@ const CATEGORIES: Record<string, {
     cssVar: 'var(--portrait)',
   },
   visuels: {
-    label: 'Visuels',
-    labelLong: 'Visuels & Concepts',
+    label: 'Atlas',
+    labelLong: 'Atlas',
     description: 'Infographies, animations, concepts. Les idées qui se comprennent mieux en les voyant.',
     color: '#1A1A3E',
     cssVar: 'var(--concept)',

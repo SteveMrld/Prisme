@@ -11,7 +11,7 @@ const features = [
   'Signal quotidien — l\'actualité qui compte',
   'Archives complètes depuis le lancement',
   'Grand Entretien en avant-première',
-  'Visuels et infographies interactives',
+  'Atlas · Cartes & visualisations interactives',
   'Sans publicité, sans traceur tiers',
 ]
 

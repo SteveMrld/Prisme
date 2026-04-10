@@ -26,7 +26,7 @@ const formats = [
   { label: 'Recoupement', href: '/recoupement', desc: 'Vérification par IA' },
   { label: 'Changer le monde', href: '/solutions', desc: '157 solutions ChangeNow 2026' },
   { label: 'Rétrospective', href: '/retrospective', desc: "Les ruptures de 2025" },
-  { label: 'Grands Formats', href: '/visuels', desc: 'Visualisations interactives' },
+  { label: 'Atlas', href: '/visuels', desc: 'Cartes & visualisations' },
 ]
 
 const navItems = [
@@ -40,7 +40,7 @@ const navItems = [
   { label: 'Culture', href: '/culture', className: 'culture' },
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Indicateurs', href: '/indicateurs', className: 'eco' },
-  { label: 'Visuels', href: '/visuels', className: 'concept' },
+  { label: 'Atlas', href: '/visuels', className: 'concept' },
   { label: 'Rétrospective', href: '/retrospective', className: 'concept' },
   { label: 'Solutions', href: '/solutions', className: 'env' },
 ]
@@ -258,7 +258,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link href="/entretien/diarra" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grand Entretien</Link>
             <Link href="/solutions" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Changer le monde</Link>
             <Link href="/retrospective" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Rétrospective</Link>
-            <Link href="/visuels" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grands Formats</Link>
+            <Link href="/visuels" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Atlas</Link>
             <div className={styles.mobilePanelSection}>À propos</div>
             <Link href="/apropos" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>À propos</Link>
             <Link href="/contributeurs" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Contributeurs</Link>
