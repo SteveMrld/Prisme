@@ -258,7 +258,7 @@ export default function HomePage() {
                 <div className={styles.atlanticItemBody}> <span className={styles.atlanticItemCat} style={{ color: categoryColors[article.category] }}>
                     {categoryLabels[article.category] || article.category}
                   </span>
-                  <div className={styles.atlanticItemTitle}> <span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+                  <div className={styles.atlanticItemTitle}><span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:"14px",height:"14px",background:"#0a0a0a",color:"#C8A96E",fontFamily:"'DM Sans',sans-serif",fontSize:"8px",fontWeight:700,lineHeight:1,marginRight:"6px",flexShrink:0,verticalAlign:"middle",position:"relative",top:"-1px"}}>S</span><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
                   {article.author && <div className={styles.atlanticItemAuthor}>{article.author}</div>}
                 </div>
               </Link>
@@ -276,7 +276,7 @@ export default function HomePage() {
               .map((article: any, i: number) => (
               <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.popularItem}> <span className={styles.popularNum}>{i + 1}</span>
                 <div className={styles.popularBody}>
-                  <div className={styles.popularTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                  <div className={styles.popularTitle}><span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:"14px",height:"14px",background:"#0a0a0a",color:"#C8A96E",fontFamily:"'DM Sans',sans-serif",fontSize:"8px",fontWeight:700,lineHeight:1,marginRight:"6px",flexShrink:0,verticalAlign:"middle",position:"relative",top:"-1px"}}>S</span><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
                   {article.author && <div className={styles.popularAuthor}>{article.author}</div>}
                 </div>
               </Link>
