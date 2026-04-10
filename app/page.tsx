@@ -9,6 +9,7 @@ import articlesData from '../lib/articles.json'
 import { FadeSection, FadeCard, StaggerGrid, StaggerItem, HeroParallax } from './HomeClient'
 import Ticker from './TickerClient'
 import { EnCeMoment, StatCount, AnimatedGrain } from './HomeEnhancements'
+import HeroSlider from '../components/HeroSlider'
 
 const signalItems = [
   { cat: 'Moyen-Orient', color: 'var(--geo)', headline: "Détroit d'Ormuz — Iran maintient le blocus, Trump menace de frapper les infrastructures le 6 avril", date: '5 avril' },
@@ -197,54 +198,36 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
-      {/* ── À LA UNE — NYT hero layout ── */}
+      {/* ── À LA UNE — slider ── */}
       <FadeSection>
       <section className={styles.uneSection}>
         <div className={styles.uneLabel}>À la une</div>
         {(() => {
           const featured = (articlesData as any[]).filter((a: any) => a.featured)
-          const hero = featured[0]
-          const rest = featured.slice(1)
-          if (!hero) return null
+          const sliderArticles = featured.slice(0, 4)
+          const rest = featured.slice(4)
           return (
             <>
-              {/* HERO — pleine largeur */}
-              <Link href={`/articles/${hero.slug}`} className={styles.uneHero}>
-                {hero.image && (
-                  <div className={styles.uneHeroImg}>
-                    <img
-                      src={hero.image}
-                      alt={hero.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
-                    />
-                    <div className={styles.uneHeroOverlay} />
-                  </div>
-                )}
-                <div className={styles.uneHeroBody}> <span className={styles.uneHeroTag} style={{ background: categoryColors[hero.category] }}>
-                    {categoryLabels[hero.category] || hero.category}
-                  </span>
-                  <h2 className={styles.uneHeroTitle} dangerouslySetInnerHTML={{ __html: hero.title }} />
-                  {hero.description && <p className={styles.uneHeroDesc}>{hero.description}</p>}
-                  <div className={styles.uneHeroMeta}> <span>{hero.author || 'Steve Moradel'}</span> <span className={styles.uneHeroDot}>·</span> <span>{isNaN(parseInt(hero.readTime)) ? hero.readTime : `${hero.readTime} min de lecture`}</span>
-                  </div>
-                </div>
-              </Link>
+              {/* HERO SLIDER */}
+              <HeroSlider articles={sliderArticles} />
 
-              {/* GRILLE — articles suivants */}
+              {/* GRILLE — articles suivants si plus de 4 featured */}
               {rest.length > 0 && (
                 <div className={styles.uneGrid}>
                   {rest.map((article: any) => (
-                    <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.uneCard}>
+                    <Link key={article.slug} href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.uneCard}>
                       {article.image && (
                         <div className={styles.uneCardImg}>
                           <img src={article.image} alt={article.title} />
                         </div>
                       )}
-                      <div className={styles.uneCardBody}> <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
+                      <div className={styles.uneCardBody}>
+                        <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
                           {categoryLabels[article.category] || article.category}
                         </span>
                         <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
-                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>} <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
+                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
+                        <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
                       </div>
                     </Link>
                   ))}
