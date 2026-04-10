@@ -117,7 +117,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       slug={article.slug}
       content={content}
       author={(article as any).author || 'Steve Moradel'}
-      authorRole={(article as any).authorRole || 'Fondateur · Directeur de la rédaction'}
+      authorRole={(article as any).authorRole || ''}
       related={related}
     />
   )
