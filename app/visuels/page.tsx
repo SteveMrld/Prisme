@@ -175,19 +175,7 @@ export default function VisuelsPage() {
             </div>
           </a>
 
-          {/* Coming soon grands formats */}
-          <div className={styles.comingSoonGrid}>
-            {[
-              {title:"La Chine, stratégie d'une conquête",sub:'Timeline — carte expansion',cat:'Géopolitique'},
-            ].map((item,i) => (
-              <div key={i} className={styles.comingSoonCard}>
-                <div className={styles.csTag}>{item.cat}</div>
-                <div className={styles.csTitle}>{item.title}</div>
-                <div className={styles.csSub}>{item.sub}</div>
-                <div className={styles.csBadge}>Bientôt</div>
-              </div>
-            ))}
-          </div>
+
         </section>
 
         {/* ═══ TRILOGIE DOLLAR ═══ */}
