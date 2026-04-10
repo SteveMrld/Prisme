@@ -1,7 +1,7 @@
 /* ── TICKER ── */
 .ticker {
   background: var(--encre);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 2px solid rgba(196,162,101,0.5);
   display: flex;
   align-items: center;
   height: 44px;
