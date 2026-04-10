@@ -239,15 +239,65 @@ export default function RecoupementClient() {
     return (
       <div className={styles.page}>
         <div className={styles.heroWrap}>
-          <div className={styles.heroTag}>Soara · Outil éditorial</div>
+          <div className={styles.heroTag}>Prisme · Outil éditorial</div>
           <h1 className={styles.heroTitle}>Recoupement de <em>sources</em></h1>
           <p className={styles.heroSub}>L'information telle qu'elle est. Pas telle qu'on vous la raconte.</p>
         </div>
-        <div className={styles.paywall}>
-          <div className={styles.paywallTitle}>Fonctionnalité réservée aux abonnés</div>
-          <p className={styles.paywallText}>Croisez {SOURCES.length} sources géopolitiques indépendantes sur n'importe quel fait d'actualité.</p>
-          <a href="/abonnement" className={styles.paywallBtn}>S'abonner →</a>
-          <a href="/connexion" className={styles.paywallLink}>Déjà abonné ? Se connecter</a>
+
+        {/* USE CASES */}
+        <div style={{ maxWidth: '720px', margin: '0 auto 48px', padding: '0 24px' }}>
+          <p style={{ fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '24px' }}>
+            Comment ça fonctionne
+          </p>
+
+          {EXAMPLES.map((ex, i) => (
+            <div key={i} style={{ borderLeft: '3px solid #DDD9D2', paddingLeft: '20px', marginBottom: '32px', opacity: 0.85 }}>
+              <div style={{ fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '6px' }}>{ex.date}</div>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '17px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px' }}>{ex.query}</div>
+              <p style={{ fontSize: '14px', color: '#6B6355', lineHeight: '1.65', margin: 0 }}>{ex.context}</p>
+            </div>
+          ))}
+
+          {/* Sources preview */}
+          <div style={{ marginBottom: '40px' }}>
+            <p style={{ fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '16px' }}>
+              {SOURCES.length} sources croisées
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {SOURCES.slice(0, 18).map(s => (
+                <span key={s.id} style={{
+                  fontSize: '11px', padding: '4px 10px',
+                  border: '1px solid #DDD9D2', borderRadius: '2px',
+                  color: '#6B6355', fontFamily: 'monospace',
+                  background: '#F5F0E8'
+                }}>{s.name}</span>
+              ))}
+              <span style={{ fontSize: '11px', padding: '4px 10px', color: '#B8860B', fontFamily: 'monospace' }}>
+                +{SOURCES.length - 18} autres
+              </span>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div style={{ textAlign: 'center', padding: '40px 24px', border: '1px solid #DDD9D2' }}>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 400, color: '#1a1a1a', marginBottom: '10px' }}>
+              Fonctionnalité réservée aux abonnés
+            </div>
+            <p style={{ fontSize: '14px', color: '#6B6355', marginBottom: '28px', lineHeight: '1.65' }}>
+              Accédez au recoupement en temps réel sur n'importe quel sujet géopolitique.
+            </p>
+            <a href="/abonnement" style={{
+              display: 'inline-block', padding: '14px 36px',
+              background: '#1a1a1a', color: '#F5F0E8',
+              fontSize: '11px', fontWeight: 700, letterSpacing: '2px',
+              textTransform: 'uppercase', textDecoration: 'none',
+              marginBottom: '16px'
+            }}>S'abonner →</a>
+            <br />
+            <a href="/connexion" style={{ fontSize: '12px', color: '#8a7f72', textDecoration: 'none' }}>
+              Déjà abonné ? Se connecter
+            </a>
+          </div>
         </div>
       </div>
     )
