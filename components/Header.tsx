@@ -258,6 +258,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link href="/entretien/diarra" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grand Entretien</Link>
             <Link href="/solutions" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Changer le monde</Link>
             <Link href="/retrospective" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Rétrospective</Link>
+            <Link href="/visuels" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grands Formats</Link>
             <div className={styles.mobilePanelSection}>À propos</div>
             <Link href="/apropos" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>À propos</Link>
             <Link href="/contributeurs" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Contributeurs</Link>
