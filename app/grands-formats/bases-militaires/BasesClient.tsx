@@ -6,6 +6,7 @@ import {
   Geographies,
   Geography,
   Marker,
+  ZoomableGroup,
 } from "react-simple-maps";
 import styles from "./bases.module.css";
 
@@ -181,6 +182,8 @@ export default function BasesClient() {
   const [sourceFilter, setSourceFilter] = useState<Nation | "all">("all");
   const [usaMode, setUsaMode] = useState<"vine" | "officiel">("vine");
   const [barProgress] = useState(1);
+  const [zoom, setZoom] = useState(1);
+  const [center, setCenter] = useState<[number, number]>([15, 10]);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   const toggleNation = (n: Nation) => {
@@ -226,6 +229,7 @@ export default function BasesClient() {
         <div className={styles.barPanel}>
           <div className={styles.barTitle}>Bases militaires à l'étranger — 2025</div>
           <div className={styles.barSubtitle}>Données vérifiées · Sources primaires</div>
+          <div className={styles.barGrid}>
           {BAR_DATA.map((d) => {
             const count = d.nation === "usa" && usaMode === "officiel" ? d.official : d.count;
             const pct = (count / 750) * 100 * barProgress;
@@ -262,6 +266,7 @@ export default function BasesClient() {
               </div>
             );
           })}
+          </div>
           <button className={styles.sourcesBtn} onClick={() => setShowSources(s => !s)}>
             {showSources ? "▲ Masquer les sources" : "▼ Voir les 17 sources"}
           </button>
@@ -285,11 +290,23 @@ export default function BasesClient() {
 
           {/* Carte */}
           <div className={styles.mapWrap}>
+            <div className={styles.zoomControls}>
+              <button className={styles.zoomBtn} onClick={() => setZoom(z => Math.min(z * 1.5, 16))} title="Zoom avant">+</button>
+              <button className={styles.zoomBtn} onClick={() => { setZoom(1); setCenter([15, 10]); }} title="Réinitialiser">⌂</button>
+              <button className={styles.zoomBtn} onClick={() => setZoom(z => Math.max(z / 1.5, 1))} title="Zoom arrière">−</button>
+            </div>
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{ scale: 130, center: [15, 15] }}
               style={{ width: "100%", height: "100%" }}
             >
+              <ZoomableGroup
+                zoom={zoom}
+                center={center}
+                onMoveEnd={({ zoom: z, coordinates }) => { setZoom(z); setCenter(coordinates as [number, number]); }}
+                minZoom={1}
+                maxZoom={16}
+              >
               <Geographies geography={GEO_URL}>
                 {({ geographies }) =>
                   geographies.map(geo => (
@@ -352,6 +369,7 @@ export default function BasesClient() {
                   </Marker>
                 );
               })}
+              </ZoomableGroup>
             </ComposableMap>
 
             {/* Tooltip */}

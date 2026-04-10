@@ -6,18 +6,23 @@
 /* ── LAYOUT ── */
 .mainLayout {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
 /* ── BARRE ── */
 .barPanel {
-  flex: 0 0 280px;
   background: #FFFFFF;
   border: 1px solid #E0DCD4;
   border-radius: 8px;
-  padding: 18px 18px 14px;
+  padding: 16px 20px 12px;
+}
+.barGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 24px;
+  margin-bottom: 0;
 }
 .barTitle {
   font-size: 0.72rem;
@@ -110,7 +115,7 @@
 .sourcesBtn:hover { background: #EDE9DF; }
 
 /* ── CARTE ── */
-.mapPanel { flex: 1; min-width: 0; }
+.mapPanel { width: 100%; }
 .nationFilters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .nationBtn {
   display: flex; align-items: center; gap: 5px;
@@ -131,8 +136,36 @@
   border: 1px solid #DDD9D2;
   border-radius: 8px;
   overflow: hidden;
-  height: 420px;
+  height: 560px;
+  cursor: grab;
 }
+.mapWrap:active { cursor: grabbing; }
+.zoomControls {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.zoomBtn {
+  width: 30px;
+  height: 30px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid #DDD9D2;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #3A3530;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  transition: background 0.15s;
+}
+.zoomBtn:hover { background: #fff; }
 
 /* ── TOOLTIP ── */
 .tooltip {
@@ -257,8 +290,10 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .mainLayout { flex-direction: column; }
-  .barPanel { flex: none; width: 100%; }
-  .mapWrap { height: 300px; }
+  .barGrid { grid-template-columns: 1fr 1fr; }
+  .mapWrap { height: 360px; }
   .sourcesGrid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .barGrid { grid-template-columns: 1fr; }
 }
