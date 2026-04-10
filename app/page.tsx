@@ -131,7 +131,7 @@ export default function HomePage() {
             <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.atlanticSideItem}>
               {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}
               <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
-              <div className={styles.atlanticSideTitle} dangerouslySetInnerHTML={{ __html: item.title }} />
+              <div className={styles.atlanticSideTitle}><span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:"14px",height:"14px",background:"#0a0a0a",color:"#C8A96E",fontFamily:"'DM Sans',sans-serif",fontSize:"8px",fontWeight:700,lineHeight:1,marginRight:"6px",flexShrink:0,verticalAlign:"middle",position:"relative",top:"-1px"}}>S</span><span dangerouslySetInnerHTML={{ __html: item.title }} /></div>
               <div className={styles.atlanticSideExcerpt}>{(item as any).excerpt || item.description}</div>
             </Link>
           ))}
@@ -201,7 +201,7 @@ export default function HomePage() {
                   </span>
                 ))} <span className={styles.gfFormat}>Grand format</span> <span className={styles.gfReading}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span>
               </div>
-              <div className={styles.gfTitle}><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+              <div className={styles.gfTitle}><span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:"14px",height:"14px",background:"#0a0a0a",color:"#C8A96E",fontFamily:"'DM Sans',sans-serif",fontSize:"8px",fontWeight:700,lineHeight:1,marginRight:"6px",flexShrink:0,verticalAlign:"middle",position:"relative",top:"-1px"}}>S</span><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
               <p className={styles.gfDeck}>{article.description}</p>
               <div className={styles.gfFooter}> <span className={styles.gfSections}>{article.sections}</span> <span className={styles.gfCta} style={{ color: categoryColors[article.categories[0].color] }}>
                   Lire l'analyse →
