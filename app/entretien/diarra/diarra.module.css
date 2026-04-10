@@ -8,7 +8,7 @@
 /* ── Portrait bloc ── */
 .portraitBlock {
   margin: 0 -24px;
-  background: #F9F7F3;
+  background: #fff;
   display: flex;
   justify-content: center;
   padding: 40px 24px 0;

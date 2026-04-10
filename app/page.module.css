@@ -146,7 +146,7 @@
 }
 
 .gePortraitBlock {
-  background: #F9F7F3;
+  background: #fff;
   display: flex;
   justify-content: center;
   padding: 48px 24px 0;
@@ -827,7 +827,7 @@
   overflow: hidden;
   position: relative;
   flex-shrink: 0;
-  background: #F9F7F3;
+  background: #fff;
   aspect-ratio: 1/1;
 }
 
