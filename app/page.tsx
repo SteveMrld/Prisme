@@ -84,6 +84,44 @@ export default function HomePage() {
       {/* TICKER LIVE */}
       <Ticker />
 
+      {/* ── À LA UNE — slider ── */}
+      <FadeSection>
+      <section className={styles.uneSection}>
+        <div className={styles.uneLabel}>À la une</div>
+        {(() => {
+          const featured = (articlesData as any[]).filter((a: any) => a.featured)
+          const sliderArticles = featured.slice(0, 4)
+          const rest = featured.slice(4)
+          return (
+            <>
+              <HeroSlider articles={sliderArticles} />
+              {rest.length > 0 && (
+                <div className={styles.uneGrid}>
+                  {rest.map((article: any) => (
+                    <Link key={article.slug} href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.uneCard}>
+                      {article.image && (
+                        <div className={styles.uneCardImg}>
+                          <img src={article.image} alt={article.title} />
+                        </div>
+                      )}
+                      <div className={styles.uneCardBody}>
+                        <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
+                          {categoryLabels[article.category] || article.category}
+                        </span>
+                        <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
+                        <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </>
+          )
+        })()}
+      </section>
+      </FadeSection>
+
       {/* ATLANTIC HERO */}
       <FadeSection>
       <section className={styles.atlanticHero}>
@@ -199,46 +237,7 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
-      {/* ── À LA UNE — slider ── */}
-      <FadeSection>
-      <section className={styles.uneSection}>
-        <div className={styles.uneLabel}>À la une</div>
-        {(() => {
-          const featured = (articlesData as any[]).filter((a: any) => a.featured)
-          const sliderArticles = featured.slice(0, 4)
-          const rest = featured.slice(4)
-          return (
-            <>
-              {/* HERO SLIDER */}
-              <HeroSlider articles={sliderArticles} />
 
-              {/* GRILLE — articles suivants si plus de 4 featured */}
-              {rest.length > 0 && (
-                <div className={styles.uneGrid}>
-                  {rest.map((article: any) => (
-                    <Link key={article.slug} href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.uneCard}>
-                      {article.image && (
-                        <div className={styles.uneCardImg}>
-                          <img src={article.image} alt={article.title} />
-                        </div>
-                      )}
-                      <div className={styles.uneCardBody}>
-                        <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
-                          {categoryLabels[article.category] || article.category}
-                        </span>
-                        <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
-                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
-                        <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </>
-          )
-        })()}
-      </section>
-      </FadeSection>
 
       {/* ── DERNIÈRES PUBLICATIONS + POPULAIRES — layout Atlantic ── */}
       <FadeSection>
