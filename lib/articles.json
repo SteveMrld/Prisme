@@ -28,8 +28,23 @@
     "authorRole": "Prisme",
     "featured": false,
     "premium": false,
+    "grandFormat": false
+  },
+  {
+    "slug": "palantir",
+    "title": "Palantir. L'ontologie de l'ennemi",
+    "description": "Comment une entreprise née d'un coup d'État de salle de réunion est devenue l'infrastructure cognitive des États qui ne la contrôlent pas.",
+    "category": "tech",
+    "categoryLabel": "Grand Format",
+    "date": "2026-04-10",
+    "readTime": "12",
+    "image": "/grands-formats/palantir/palantir-hero.png",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur · Prisme",
+    "featured": false,
+    "premium": false,
     "grandFormat": true,
-    "grandFormatUrl": "/grands-formats/skunkworks"
+    "grandFormatUrl": "/grands-formats/palantir"
   },
   {
     "slug": "moreno",
