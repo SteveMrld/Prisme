@@ -21,10 +21,9 @@
 
 .heroImg {
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  height: 520px;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 30%;
   display: block;
 }
 
@@ -272,7 +271,7 @@
   .body :global(.content-embed) { margin: 32px 0; }
   .articleHeader { margin-left: 0; border-left: none; border-top: 3px solid #B91C1C; padding: 40px 20px 28px; }
   .byline { margin-left: 0; padding: 16px 20px; }
-  .heroImg { height: auto; aspect-ratio: 16 / 9; }
+  .heroImg { height: 280px; }
   .body { padding: 32px 20px 60px; }
 }
 
