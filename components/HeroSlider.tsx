@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import styles from './app/page.module.css'
+import styles from '../app/page.module.css'
 
 interface Article {
   slug: string
