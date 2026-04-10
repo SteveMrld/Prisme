@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#030810;color:#ECE7DD;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;}
+html,body{margin:0;padding:0;width:100%;overflow:hidden;background:#030810;color:#ECE7DD;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;}
 :root{--or:#C8A96E;--bord:rgba(255,255,255,0.07)}
 #stage{position:absolute;top:0;left:0;width:100%;height:calc(100% - 60px);overflow:hidden;}
 #zoom-wrap{position:absolute;width:100%;height:100%;transition:transform 1.3s cubic-bezier(0.4,0,0.2,1),transform-origin 1.3s cubic-bezier(0.4,0,0.2,1)}
@@ -50,8 +50,9 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 #bk:hover{color:var(--or)}
 .sd{display:none}
 @media(max-width:900px){
-  #panel{position:absolute;left:0;bottom:60px;width:100%;height:auto;max-height:22%;background:linear-gradient(to top,rgba(3,8,16,0.95) 60%,transparent);padding:10px 16px;justify-content:flex-end;overflow:hidden;}
-  #stage{height:calc(100% - 60px)}
+  html,body{overflow:auto;height:auto}
+  #stage{position:relative;height:56vw;min-height:220px;overflow:hidden;width:100%}
+  #panel{position:relative;left:auto;bottom:auto;width:100%;max-height:none;height:auto;background:rgba(3,8,16,0.98);padding:16px 18px 24px;justify-content:flex-start;overflow:visible;pointer-events:auto;border-top:1px solid rgba(255,255,255,0.07)}
   .p-ti{font-size:14px}.sn{font-size:24px}
   #leg{display:none}
 }
