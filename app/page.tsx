@@ -181,7 +181,7 @@ export default function HomePage() {
       <section className={styles.gfSection}>
         <div style={{ background: '#0D1F3C', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0' }}>
           <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', color: '#E8D9C0' }}>Grands formats</span>
-          <span style={{ fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(232,217,192,0.5)' }}>Lectures de fond · 12–18 min</span>
+          <span style={{ fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(232,217,192,0.65)' }}>Lectures de fond · 12–18 min</span>
         </div>
         <StaggerGrid className={styles.gfGrid}>
           {grandsFormats.map((article, i) => (
@@ -214,6 +214,10 @@ export default function HomePage() {
 
       {/* ── CHAÎNE CONFINS ── */}
       <FadeSection>
+        <div style={{ background: '#0D1F3C', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', color: '#E8D9C0' }}>Soara TV</span>
+          <span style={{ fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(232,217,192,0.5)' }}>Analyses en mouvement</span>
+        </div>
         <SoaraTV />
       </FadeSection>
 
