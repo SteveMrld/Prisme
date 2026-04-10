@@ -22,16 +22,6 @@ export default function PalantirPage() {
 
         <h2>I. La Mafia</h2>
 
-        {/* IMAGE 2 — Salle de réunion */}
-        <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/palantir/palantir-gotham.png"
-            alt="La salle de réunion vide, nuit — illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
-          <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            San Francisco, septembre 2000. Quelqu&apos;un vient de partir. Illustration éditoriale pour Prisme.
-          </figcaption>
-        </figure>
-
         <p>La "PayPal Mafia" est l&apos;expression inventée par la presse américaine pour désigner la vingtaine d&apos;anciens de PayPal qui, après la vente de l&apos;entreprise à eBay en 2002 pour 1,5 milliard de dollars, sont repartis avec leurs chèques et leurs carnets d&apos;adresses pour fonder un empire parallèle. LinkedIn, YouTube, SpaceX, Palantir, Anduril : autant d&apos;entreprises nées du même réseau, du même capital de départ, des mêmes dîners à Palo Alto.</p>
 
         <p>Thiel en est le parrain. Founders Fund, son véhicule d&apos;investissement, est l&apos;un des premiers actionnaires de SpaceX, de Palantir, d&apos;Anduril. David Sacks, ancien de PayPal, est aujourd&apos;hui le conseiller IA et crypto de la Maison Blanche. JD Vance, vice-président, est son protégé politique direct. Musk dirige le DOGE. "Ils sont passés de types malins qui esquivaient la régulation gouvernementale à être le gouvernement, en une génération", résume Steve Blank, enseignant à Stanford.</p>
@@ -39,16 +29,6 @@ export default function PalantirPage() {
         <p>Musk voulait l&apos;infrastructure physique du monde. Rockets, voitures, cerveau connecté. Thiel voulait quelque chose de différent : définir ce qui constitue une menace.</p>
 
         <h2>II. Ce que Gotham fait vraiment</h2>
-
-        {/* IMAGE 1 — Gotham écran */}
-        <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/palantir/palantir-hero.png"
-            alt="L'écran Gotham dans l'obscurité — illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
-          <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Les points rouges sont cerclés. Personne n&apos;explique les critères de désignation. Illustration éditoriale pour Prisme.
-          </figcaption>
-        </figure>
 
         <p>Palantir vend deux produits principaux. Gotham est destiné aux agences gouvernementales et militaires : il connecte des bases de données hétérogènes, croise des trajectoires, des transactions, des communications, des déplacements, pour faire apparaître des patterns invisibles à l&apos;analyse humaine. Foundry transpose la même logique au secteur privé. AIP ajoute une couche d&apos;intelligence artificielle qui automatise les recommandations opérationnelles.</p>
 
@@ -65,16 +45,6 @@ export default function PalantirPage() {
         <p>Gotham automatise ce mécanisme. Il parcourt des millions de points de données pour désigner statistiquement ce qui ressemble à une menace. Ce processus de désignation appartient, dans une démocratie, à des juges, des procureurs, des agents assermentés soumis à un contrôle démocratique. Il a été partiellement délégué à un algorithme dont les paramètres sont propriété d&apos;une entreprise privée américaine. Les États qui ont signé des contrats avec Palantir n&apos;ont généralement aucune visibilité sur ces paramètres.</p>
 
         <h2>IV. La toile</h2>
-
-        {/* IMAGE 3 — Réseau */}
-        <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/palantir/palantir-reseau.png"
-            alt="Le réseau de données — illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
-          <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            DGSI, Pentagone, Ministry of Defence britannique, armée ukrainienne, armée israélienne. La toile Palantir. Illustration éditoriale pour Prisme.
-          </figcaption>
-        </figure>
 
         <p>La France utilise Palantir à la DGSI depuis 2016, peu après les attentats du 13 novembre, dans l&apos;urgence d&apos;un État qui avait besoin de traiter des volumes de données que ses propres outils ne pouvaient pas absorber. Le contrat a été renouvelé en 2019, en 2022, et à nouveau en décembre 2025, jusqu&apos;en 2028. À chaque renouvellement, la même formule officielle : "dans l&apos;attente du déploiement d&apos;un outil souverain français." Cette attente dure depuis dix ans.</p>
 
@@ -101,7 +71,6 @@ export default function PalantirPage() {
 
         <p>On n&apos;achète pas un logiciel. On adopte une épistémologie.</p>
 
-        {/* ÉPILOGUE */}
         <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "40px", marginTop: "56px" }}>
           <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8860B", marginBottom: "24px" }}>Épilogue</div>
           <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.75", color: "#2a2a2a", marginBottom: "1.4em" }}>
@@ -112,7 +81,6 @@ export default function PalantirPage() {
           </p>
         </div>
 
-        {/* SOURCES */}
         <div style={{ marginTop: "48px", paddingTop: "24px", borderTop: "2px solid #DDD9D2" }}>
           <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#8a7f72", marginBottom: "12px" }}>Sources</div>
           <p style={{ fontSize: "13px", color: "#8a7f72", lineHeight: "1.6" }}>
