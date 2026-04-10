@@ -386,11 +386,7 @@ export default function BasesClient() {
                 </div>
               </div>
             )}
-
-            {/* Légende fiabilité */}
-            <div className={styles.certLegend}>
-              <div className={styles.certTitle}>Fiabilité</div>
-              {(["confirmée","probable","alléguée"] as Certainty[]).map(c => (
+            {(["confirmée","probable","alléguée"] as Certainty[]).map(c => (
                 <div key={c} className={styles.certItem}>
                   <svg width={16} height={16}>
                     <circle cx={8} cy={8} r={4} fill="#5A5550"
