@@ -53,7 +53,7 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-05-12",
-    "featured": true,
+    "featured": false,
     "premium": false
   },
   {
@@ -77,7 +77,7 @@
     "readTime": "11",
     "author": "Steve Moradel",
     "authorRole": "Économie & Finance",
-    "featured": true,
+    "featured": false,
     "date": "2026-04-17",
     "premium": true
   },
@@ -114,7 +114,7 @@
     "readTime": "18",
     "author": "Steve Moradel",
     "authorRole": "Environnement & Ressources",
-    "featured": true,
+    "featured": false,
     "date": "2026-04-07",
     "premium": true
   },
