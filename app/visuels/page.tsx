@@ -42,6 +42,25 @@ export default function VisuelsPage() {
             <p className={styles.sectionDesc}>Des animations plein écran pensées pour les sujets qui demandent de l'espace — géopolitique, géographie, data.</p>
           </div>
 
+          {/* Card — bases militaires américaines */}
+          <a href="/grands-formats/bases-militaires" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBg} style={{background:"linear-gradient(135deg,#1a0a0a 0%,#3d0e0e 50%,#1a2035 100%)"}}>
+              <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 25% 50%, rgba(127,29,29,0.5) 0%, transparent 50%), radial-gradient(circle at 75% 40%, rgba(29,78,216,0.3) 0%, transparent 45%)"}} />
+            </div>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'#EF9090'}}>Géopolitique · Carte interactive</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>L'Empire invisible</h3>
+              <p className={styles.featSub}>6 puissances · 17 sources vérifiées · Zoom & filtres</p>
+              <p className={styles.featDesc}>
+                750 bases américaines, 145 britanniques, 21 russes, 6 françaises.
+                La carte interactive des empreintes militaires mondiales — avec les données les plus récentes disponibles.
+              </p>
+            </div>
+          </a>
+
           {/* Card featured — navale */}
           <a href="/visuels/naval.html" target="_blank" rel="noopener noreferrer" className={styles.featCard}>
             <div className={styles.featBg}>
