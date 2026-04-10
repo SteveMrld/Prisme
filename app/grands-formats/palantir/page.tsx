@@ -1,7 +1,7 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "Palantir. L'ontologie de l'ennemi — Prisme",
+  title: "Palantir. L'ontologie de l'ennemi — Soara",
   description: "Comment une entreprise née d'un coup d'État de salle de réunion est devenue l'infrastructure cognitive des États qui ne la contrôlent pas.",
 };
 
@@ -10,7 +10,7 @@ export default function PalantirPage() {
     <GrandFormatLayout
       slug="palantir"
       author="Steve Moradel"
-      authorRole="Fondateur · Prisme"
+      authorRole="Fondateur · Soara"
     >
       <div className="soara-article">
 

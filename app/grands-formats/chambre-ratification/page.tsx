@@ -1,7 +1,7 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "La chambre de ratification — Prisme",
+  title: "La chambre de ratification — Soara",
   description: "Comment Benjamin Netanyahu a décidé une guerre américaine. Une enquête en miroir : le Situation Room en 2026, le Situation Room en 1962, et soixante-dix ans d'une boucle qui ne se referme pas.",
 };
 
@@ -10,7 +10,7 @@ export default function ChambreRatificationPage() {
     <GrandFormatLayout
       slug="chambre-ratification"
       author="Steve Moradel"
-      authorRole="Fondateur · Prisme"
+      authorRole="Fondateur · Soara"
     >
       <div className="soara-article">
 

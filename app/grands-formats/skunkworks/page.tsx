@@ -1,7 +1,7 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "La fabrique de l'impossible — Prisme",
+  title: "La fabrique de l'impossible — Soara",
   description: "Quatre-vingt ans de Skunk Works : du cirque de Burbank à la détection d'un battement de cœur dans le désert iranien.",
 };
 
@@ -10,7 +10,7 @@ export default function SkunkWorksPage() {
     <GrandFormatLayout
       slug="skunkworks"
       author="La rédaction"
-      authorRole="Prisme"
+      authorRole="Soara"
     >
       <div className="soara-article">
 

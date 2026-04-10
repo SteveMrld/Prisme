@@ -1,7 +1,7 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "L'architecture du désordre — Prisme",
+  title: "L'architecture du désordre — Soara",
   description: "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne.",
 };
 
@@ -10,7 +10,7 @@ export default function ArchitectureDesordre() {
     <GrandFormatLayout
       slug="architecture-desordre"
       author="Steve Moradel"
-      authorRole="Fondateur · Prisme"
+      authorRole="Fondateur · Soara"
     >
       <div className="soara-article">
 

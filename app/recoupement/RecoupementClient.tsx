@@ -239,7 +239,7 @@ export default function RecoupementClient() {
     return (
       <div className={styles.page}>
         <div className={styles.heroWrap}>
-          <div className={styles.heroTag}>Prisme · Outil éditorial</div>
+          <div className={styles.heroTag}>Soara · Outil éditorial</div>
           <h1 className={styles.heroTitle}>Recoupement de <em>sources</em></h1>
           <p className={styles.heroSub}>L'information telle qu'elle est. Pas telle qu'on vous la raconte.</p>
         </div>
