@@ -245,7 +245,7 @@ export default function RecoupementClient() {
         </div>
 
         {/* USE CASES */}
-        <div style={{ maxWidth: '720px', margin: '0 auto 48px', padding: '0 24px' }}>
+        <div style={{ maxWidth: '720px', margin: '0 auto 48px', padding: '48px 24px 0' }}>
           <p style={{ fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '24px' }}>
             Comment ça fonctionne
           </p>
@@ -258,24 +258,14 @@ export default function RecoupementClient() {
             </div>
           ))}
 
-          {/* Sources preview */}
+          {/* Sources preview — noms masqués */}
           <div style={{ marginBottom: '40px' }}>
-            <p style={{ fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '16px' }}>
+            <p style={{ fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#B8860B', marginBottom: '8px' }}>
               {SOURCES.length} sources croisées
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-              {SOURCES.slice(0, 18).map(s => (
-                <span key={s.id} style={{
-                  fontSize: '11px', padding: '4px 10px',
-                  border: '1px solid #DDD9D2', borderRadius: '2px',
-                  color: '#6B6355', fontFamily: 'monospace',
-                  background: '#F5F0E8'
-                }}>{s.name}</span>
-              ))}
-              <span style={{ fontSize: '11px', padding: '4px 10px', color: '#B8860B', fontFamily: 'monospace' }}>
-                +{SOURCES.length - 18} autres
-              </span>
-            </div>
+            <p style={{ fontSize: '12px', color: '#8a7f72', fontFamily: 'monospace', letterSpacing: '0.05em' }}>
+              Médias indépendants · Agences · OSINT · Think tanks
+            </p>
           </div>
 
           {/* CTA */}
