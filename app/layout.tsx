@@ -41,7 +41,12 @@ export const metadata: Metadata = {
     creator: '@soaradotmedia',
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon-32.png',
+    apple: '/favicon-32.png',
   },
   robots: {
     index: false,
