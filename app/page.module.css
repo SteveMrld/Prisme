@@ -446,14 +446,12 @@
 
 .gfLabel {
   font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 3px;
+  font-weight: 700;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--or);
-  border: 1px solid var(--or);
-  padding: 5px 14px;
-  position: relative;
-  overflow: hidden;
+  color: #E8D9C0;
+  background: #0D1F3C;
+  padding: 6px 16px;
 }
 
 .gfSub {
@@ -1325,11 +1323,14 @@
 .uneLabel {
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--encre);
-  padding: 16px 24px;
+  color: #E8D9C0;
+  background: #0D1F3C;
+  padding: 14px 24px;
   text-align: center;
+  display: block;
+  width: 100%;
 }
 
 /* ── HERO pleine largeur ── */
