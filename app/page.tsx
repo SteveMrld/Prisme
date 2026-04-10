@@ -140,10 +140,10 @@ export default function HomePage() {
         {/* Centre — logo + Grand Entretien */}
         <div className={styles.atlanticCenter}>
           {/* B1+B2 — bandeau bordeaux */}
-          <div style={{ width: '100%', background: '#6B1A1A', padding: '24px 16px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '72px', fontWeight: 700, color: '#F5E6D0', lineHeight: 1, fontStyle: 'italic' }}>S</div>
-            <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(245,230,208,0.7)', marginTop: '4px' }}>Grand Entretien &nbsp;·&nbsp; N°1</span>
-            <div style={{ width: '40px', height: '1px', background: 'rgba(245,230,208,0.3)', marginTop: '4px' }} />
+          <div style={{ width: '100%', background: '#8B1A1A', padding: '20px 16px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '56px', fontWeight: 700, color: '#F5E6D0', lineHeight: 1, fontStyle: 'italic' }}>S</div>
+            <div style={{ width: '32px', height: '1px', background: 'rgba(245,230,208,0.4)', margin: '2px 0' }} />
+            <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', color: '#F5E6D0' }}>Grand Entretien &nbsp;·&nbsp; N°1</span>
           </div>
 
           {/* B3 — Photo */}
