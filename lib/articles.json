@@ -316,6 +316,18 @@
     "premium": false
   },
   {
+    "slug": "tutu",
+    "title": "Desmond Tutu, <em>l'homme qui a dit non à ses amis</em>",
+    "description": "Archevêque, Prix Nobel de la paix, père de l'ubuntu. Il a combattu l'apartheid avec une robe violette et des mots. Puis il a retourné la même exigence morale contre Mandela, contre l'ANC, contre Zuma.",
+    "image": "/portraits/tutu.png",
+    "category": "portrait",
+    "readTime": "10",
+    "author": "Steve Moradel",
+    "authorRole": "Portrait",
+    "date": "2026-04-11",
+    "premium": false
+  },
+  {
     "slug": "musk",
     "title": "Elon Musk, l'homme qui défie son époque",
     "description": "De l'Afrique du Sud à la Maison-Blanche, de SpaceX à X, la trajectoire d'un entrepreneur devenu acteur politique mondial, et les questions qu'elle soulève.",
