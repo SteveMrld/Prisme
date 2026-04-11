@@ -302,6 +302,7 @@ export default function HomePage() {
             getArticle('musk'),
             getArticle('morrison'),
             getArticle('nooyi'),
+            getArticle('morin'),
           ].map((article) => (
             <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitCard}>
               <div className={styles.portraitImgWrap}>
