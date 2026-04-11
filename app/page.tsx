@@ -212,7 +212,7 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
-      {/* ── CHAÎNE CONFINS ── */}
+      {/* ── SOARA TV ── */}
       <FadeSection>
         <div style={{ background: '#0D1F3C', padding: '14px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '4px', textTransform: 'uppercase', color: '#E8D9C0' }}>Soara TV</span>

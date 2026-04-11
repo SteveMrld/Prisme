@@ -128,7 +128,7 @@ export default function SoaraTVPage() {
         <div className={styles.heroInner}>
           <div className={styles.heroTop}>
             <div className={styles.logoBadge}>
-              <span className={styles.logoText}>CONFINS</span>
+              <span className={styles.logoText}>SOARA</span>
               <span className={styles.logoTV}>TV</span>
             </div>
             <div className={styles.heroPulse}>
@@ -186,7 +186,7 @@ export default function SoaraTVPage() {
 
               {/* TV channel overlay — top right */}
               <div className={styles.channelBug}>
-                <span className={styles.channelName}>CONFINS</span>
+                <span className={styles.channelName}>SOARA</span>
                 <span className={styles.channelDot}>·</span>
                 <span className={styles.channelEp}>Ép. {ep.id}</span>
               </div>
@@ -253,12 +253,12 @@ export default function SoaraTVPage() {
         <div className={styles.manifestoInner}>
           <div className={styles.manifestoLabel}>Notre approche</div>
           <p className={styles.manifestoText}>
-            CONFINS TV ne fait pas de l'information en continu. On prend le temps d'expliquer,
+            SOARA TV ne fait pas de l'information en continu. On prend le temps d'expliquer,
             de contextualiser, de sourcer. Chaque épisode est une analyse visuelle — construite
             comme un article de fond, racontée comme un documentaire.
           </p>
           <Link href="/apropos" className={styles.manifestoLink}>
-            En savoir plus sur CONFINS →
+            En savoir plus sur SOARA →
           </Link>
         </div>
       </div>

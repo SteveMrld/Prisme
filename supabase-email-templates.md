@@ -2,7 +2,7 @@
 # Supabase → Authentication → Email Templates
 
 ## Confirmation d'inscription (Confirm signup)
-Sujet : Confirmez votre adresse email — Confins
+Sujet : Confirmez votre adresse email — SOARA
 
 ```html
 <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;padding:40px 24px;background:#FAFAF8;color:#0A0A0A">
@@ -13,22 +13,22 @@ Sujet : Confirmez votre adresse email — Confins
     Confirmez votre adresse email
   </h1>
   <p style="font-size:17px;font-style:italic;color:#6A6A6A;line-height:1.65;margin-bottom:32px">
-    Cliquez sur le bouton ci-dessous pour activer votre compte Confins.
+    Cliquez sur le bouton ci-dessous pour activer votre compte SOARA.
   </p>
   <a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#0A0A0A;color:#fff;padding:14px 32px;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase">
     Confirmer mon email →
   </a>
   <p style="font-size:13px;color:#9A9590;margin-top:32px;line-height:1.55">
-    Si vous n'avez pas créé de compte Confins, ignorez cet email.
+    Si vous n'avez pas créé de compte SOARA, ignorez cet email.
   </p>
   <div style="border-top:1px solid #D8D3C8;margin-top:40px;padding-top:16px;font-size:11px;color:#9A9590;letter-spacing:1px;text-transform:uppercase">
-    Confins · Média d'analyse indépendant
+    SOARA · Média d'analyse indépendant
   </div>
 </div>
 ```
 
 ## Lien magique (Magic Link)
-Sujet : Votre lien de connexion — Confins
+Sujet : Votre lien de connexion — SOARA
 
 ```html
 <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;padding:40px 24px;background:#FAFAF8;color:#0A0A0A">
@@ -48,13 +48,13 @@ Sujet : Votre lien de connexion — Confins
     Si vous n'avez pas demandé ce lien, ignorez cet email.
   </p>
   <div style="border-top:1px solid #D8D3C8;margin-top:40px;padding-top:16px;font-size:11px;color:#9A9590;letter-spacing:1px;text-transform:uppercase">
-    Confins · Média d'analyse indépendant
+    SOARA · Média d'analyse indépendant
   </div>
 </div>
 ```
 
 ## Réinitialisation mot de passe (Reset Password)
-Sujet : Réinitialisez votre mot de passe — Confins
+Sujet : Réinitialisez votre mot de passe — SOARA
 
 ```html
 <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;padding:40px 24px;background:#FAFAF8;color:#0A0A0A">
@@ -74,7 +74,7 @@ Sujet : Réinitialisez votre mot de passe — Confins
     Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.
   </p>
   <div style="border-top:1px solid #D8D3C8;margin-top:40px;padding-top:16px;font-size:11px;color:#9A9590;letter-spacing:1px;text-transform:uppercase">
-    Confins · Média d'analyse indépendant
+    SOARA · Média d'analyse indépendant
   </div>
 </div>
 ```
