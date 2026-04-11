@@ -14,12 +14,12 @@ const PREVIEWS = [
 ]
 
 const FEATURES = [
-  'Accès illimité aux grands formats (10–20 min)',
-  'Signal quotidien — l'actualité qui compte',
-  'Recoupement de sources — 44 sources en temps réel',
-  'Grand Entretien en avant-première',
-  'Atlas · Cartes & visualisations interactives',
-  'Soara TV · 6 épisodes disponibles',
+  "Accès illimité aux grands formats (10–20 min)",
+  "Signal quotidien — l'actualité qui compte",
+  "Recoupement de sources — 44 sources en temps réel",
+  "Grand Entretien en avant-première",
+  "Atlas · Cartes & visualisations interactives",
+  "Soara TV · 6 épisodes disponibles",
   'Sans publicité, sans traceur tiers',
 ]
 
