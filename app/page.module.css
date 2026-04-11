@@ -821,8 +821,8 @@
   width: 100%;
   position: relative;
   flex-shrink: 0;
-  background: #fff;
-  aspect-ratio: 3/4;
+  background: #ffffff;
+  aspect-ratio: 1/1;
 }
 
 .portraitImg {
@@ -831,7 +831,6 @@
   display: block;
   object-fit: contain;
   object-position: center center;
-  mix-blend-mode: multiply;
   transition: transform 0.4s ease;
 }
 .portraitCard:hover .portraitImg { transform: scale(1.03); }
@@ -880,7 +879,7 @@
 @media (max-width: 900px) {
   .portraitsSection { padding: 40px 20px; }
   .portraitsGrid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .portraitImgWrap { aspect-ratio: 3/4; }
+  .portraitImgWrap { aspect-ratio: 1/1; }
   .portraitBody { padding: 12px 14px 16px; gap: 6px; }
   .portraitTitle { font-size: 13px; }
   .portraitDesc { display: none; }
