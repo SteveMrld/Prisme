@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Terres rares : la guerre invisible · Soara</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#06090f;-webkit-font-smoothing:antialiased}
+#stage{position:fixed;inset:0}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+#flow-canvas{pointer-events:none}
+#label-svg{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.nlabel{position:absolute;pointer-events:none;font-family:"DM Mono",monospace;line-height:1.3;transition:opacity .6s}
+.nlabel .nm{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.nlabel .ns{font-size:7px;font-weight:300;color:rgba(200,205,222,.42);margin-top:2px;letter-spacing:.05em}
+.nlabel.hub .nm{font-size:11px}
+
+/* ── CHAPTER OVERLAY (below globe, centered) ── */
+#chapter-overlay{
+  position:fixed;
+  bottom:148px;
+  left:0;right:0;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  padding:0 24px;
+  pointer-events:none;z-index:8;
+  font-family:"DM Mono",monospace;
+}
+#ch-eyebrow{font-size:7px;letter-spacing:.28em;text-transform:uppercase;color:rgba(232,166,66,.5);margin-bottom:6px;transition:opacity .5s}
+#ch-title{font-family:"Playfair Display",serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#f0ede8;line-height:1.15;margin-bottom:7px;transition:opacity .5s}
+#ch-title em{font-style:italic;color:#9ec4e0}
+#ch-stat-wrap{display:flex;align-items:baseline;justify-content:center;gap:10px;transition:opacity .5s}
+#ch-stat{font-size:clamp(22px,3vw,34px);font-weight:500;letter-spacing:-.03em;line-height:1}
+#ch-detail{font-size:clamp(9px,1vw,11px);color:rgba(200,205,222,.48);letter-spacing:.05em;max-width:320px;line-height:1.55;white-space:pre-line}
+
+/* ── PROGRESS BAR ── */
+#progress-wrap{
+  position:fixed;bottom:62px;left:0;right:0;
+  height:1px;background:rgba(255,255,255,.06);
+  z-index:9;
+}
+#progress-bar{height:100%;width:0%;background:rgba(200,205,222,.32);transition:none}
+
+/* ── CHAPTER DOTS ── */
+#ch-dots{
+  position:fixed;bottom:70px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:9;pointer-events:auto;
+}
+.ch-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:background .3s,transform .3s}
+.ch-dot.active{background:rgba(200,205,222,.7);transform:scale(1.3)}
+
+/* ── BOTTOM BAR ── */
+#bottom-bar{
+  position:fixed;bottom:0;left:0;right:0;height:62px;
+  background:rgba(6,9,15,.92);
+  border-top:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;
+  padding:0 28px;gap:24px;z-index:10;pointer-events:none;
+  font-family:"DM Mono",monospace;
+}
+.bb-item{display:flex;align-items:center;gap:7px}
+.bb-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.bb-label{font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(170,175,200,.4)}
+.bb-sep{width:1px;height:18px;background:rgba(255,255,255,.07);flex-shrink:0}
+.bb-credit{font-size:7px;letter-spacing:.08em;color:rgba(100,105,125,.28);margin-left:auto}
+
+/* Nav buttons */
+#nav-prev,#nav-next{
+  position:fixed;bottom:64px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  color:rgba(200,205,222,.45);font-family:"DM Mono",monospace;font-size:7px;
+  letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;cursor:pointer;
+  z-index:9;transition:background .2s,color .2s;pointer-events:auto;
+}
+#nav-prev{left:20px}#nav-next{right:20px}
+#nav-prev:hover,#nav-next:hover{background:rgba(255,255,255,.1);color:rgba(200,205,222,.8)}
+
+#back{position:fixed;top:20px;right:20px;display:flex;align-items:center;gap:6px;font-family:"DM Mono",monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,205,222,.28);text-decoration:none;transition:color .2s;z-index:15}
+#back:hover{color:rgba(232,166,66,.7)}
+#loading{position:fixed;inset:0;background:#06090f;display:flex;align-items:center;justify-content:center;z-index:30;font-family:"DM Mono",monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(200,205,222,.25)}
+</style>
+</head>
+<body>
+<div id="loading">Chargement…</div>
+<div id="stage">
+  <canvas id="map-canvas"></canvas>
+  <canvas id="flow-canvas"></canvas>
+  <svg id="label-svg"></svg>
+</div>
+
+<!-- Chapter overlay -->
+<div id="chapter-overlay">
+  <div id="ch-eyebrow">Soara · Ressources critiques — <span id="ch-num">1 / 5</span></div>
+  <div id="ch-title"></div>
+  <div id="ch-stat-wrap">
+    <div id="ch-stat"></div>
+    <div id="ch-detail"></div>
+  </div>
+</div>
+
+<!-- Progress + nav -->
+<div id="progress-wrap"><div id="progress-bar"></div></div>
+<div id="ch-dots"></div>
+<button id="nav-prev">← Préc.</button>
+<button id="nav-next">Suiv. →</button>
+
+<!-- Bottom bar -->
+<div id="bottom-bar">
+  <div class="bb-item"><div class="bb-dot" style="background:#e8a642;box-shadow:0 0 4px #e8a64288"></div><span class="bb-label">Pays extracteurs</span></div>
+  <div class="bb-sep"></div>
+  <div class="bb-item"><div class="bb-dot" style="background:#9ec4e0;box-shadow:0 0 4px #9ec4e088"></div><span class="bb-label">Hub de raffinage</span></div>
+  <div class="bb-sep"></div>
+  <div class="bb-item"><div class="bb-dot" style="background:#5a8ab8;box-shadow:0 0 4px #5a8ab888"></div><span class="bb-label">Marchés consommateurs</span></div>
+  <div class="bb-credit">Visualisation éditoriale · Soara · 2025</div>
+</div>
+
+<a href="/visuels" id="back">
+  Atlas <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+
+<script>
+// ── CHAPTERS ──────────────────────────────────────────────────────────────────
+const CHAPTERS = [
+  {
+    eyebrow: "Chapitre 1 · L'extraction",
+    title: "Le sous-sol<br><em>du monde</em>",
+    statCol: "#e8a642",
+    stat: "70%",
+    detail: "du cobalt mondial extrait au Katanga,\ndans l'est du Congo (RDC)",
+    activeFlows: [],
+    glowNodes: ["drc","andes"],
+    dimNodes: ["china","eu","usa","japan"],
+    alertChina: false,
+  },
+  {
+    eyebrow: "Chapitre 2 · La concentration",
+    title: "Le verrou<br><em>chinois</em>",
+    statCol: "#9ec4e0",
+    stat: "85%",
+    detail: "du raffinage mondial passe\npar les fonderies chinoises",
+    activeFlows: ["drc→china","andes→china"],
+    glowNodes: ["china"],
+    dimNodes: ["eu","usa","japan"],
+    alertChina: false,
+  },
+  {
+    eyebrow: "Chapitre 3 · La redistribution",
+    title: "L'Occident<br><em>au bout de la chaîne</em>",
+    statCol: "#5a8ab8",
+    stat: "23%",
+    detail: "de la demande mondiale — l'Europe\ndépend structurellement de Pékin",
+    activeFlows: ["china→eu","china→usa","china→japan"],
+    glowNodes: ["eu","usa","japan"],
+    dimNodes: ["drc","andes"],
+    alertChina: false,
+  },
+  {
+    eyebrow: "Chapitre 4 · L'arme commerciale",
+    title: "Juillet 2023<br><em>l'embargo silencieux</em>",
+    statCol: "#e05050",
+    stat: "−99%",
+    detail: "d'exports de gallium vers le Japon\naprès les restrictions chinoises",
+    activeFlows: [],
+    glowNodes: ["china"],
+    dimNodes: ["drc","andes","eu","usa","japan"],
+    alertChina: true,
+  },
+  {
+    eyebrow: "Chapitre 5 · La réponse",
+    title: "La course<br><em>à l'indépendance</em>",
+    statCol: "#7ab87a",
+    stat: "2030",
+    detail: "objectif UE : 10% d'extraction locale\nCritical Raw Materials Act · IRA (US)",
+    activeFlows: ["drc→eu","china→eu","china→usa","andes→china"],
+    glowNodes: ["eu","usa","drc","andes"],
+    dimNodes: [],
+    alertChina: false,
+  },
+];
+
+// ── NODES ────────────────────────────────────────────────────────────────────
+const NODES = [
+  {id:"drc",   label:"Congo (RDC)", sub:"Cobalt · Coltan",      geo:[ 23.6, -4.0], role:"source", col:"#e8a642", lox: 85, loy: 50},
+  {id:"andes", label:"Andes",       sub:"Lithium · Cuivre",     geo:[-67.0,-22.0], role:"source", col:"#e8a642", lox:-85, loy: 35},
+  {id:"china", label:"Chine",       sub:"Raffinage · Contrôle", geo:[103.8, 35.0], role:"hub",    col:"#9ec4e0", lox: 18, loy:-58},
+  {id:"eu",    label:"Europe",      sub:"Consommation",         geo:[ 10.0, 51.0], role:"dest",   col:"#5a8ab8", lox:-14, loy:-54},
+  {id:"usa",   label:"États-Unis",  sub:"Consommation",         geo:[-100.0,38.0], role:"dest",   col:"#5a8ab8", lox:-88, loy:-28},
+  {id:"japan", label:"Japon",       sub:"Consommation",         geo:[138.0, 36.0], role:"dest",   col:"#5a8ab8", lox: 78, loy:-18},
+];
+
+const ALL_FLOWS = [
+  {id:"drc→china",   f:"drc",   t:"china", w:5.2, col:"#e8a642"},
+  {id:"andes→china", f:"andes", t:"china", w:4.0, col:"#e8a642"},
+  {id:"drc→eu",      f:"drc",   t:"eu",    w:2.2, col:"#c07820"},
+  {id:"china→eu",    f:"china", t:"eu",    w:5.0, col:"#9ec4e0"},
+  {id:"china→usa",   f:"china", t:"usa",   w:3.8, col:"#9ec4e0"},
+  {id:"china→japan", f:"china", t:"japan", w:3.2, col:"#9ec4e0"},
+];
+
+const HIGHLIGHT={
+  source:new Set([180,152,68,604]),hub:new Set([156]),
+  dest:new Set([840,392,276,250,380,724,826,528,56,40,620,752,578,208,246,372,300,203,348,703,705,616,233,428,440,100,642,498]),
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let currentChapter = 0;
+let chapterTimer = null;
+let progressStart = null;
+const CHAPTER_DURATION = 5000;
+let flowAlphas = {}; // flowId → current alpha 0-1
+let nodeAlphas = {}; // nodeId → current alpha 0-1
+ALL_FLOWS.forEach(f=>flowAlphas[f.id]=0);
+NODES.forEach(n=>nodeAlphas[n.id]=1);
+
+// ── CANVAS ────────────────────────────────────────────────────────────────────
+const mapCv=document.getElementById('map-canvas');
+const flowCv=document.getElementById('flow-canvas');
+const svgEl=document.getElementById('label-svg');
+const mCtx=mapCv.getContext('2d'), fCtx=flowCv.getContext('2d');
+let W,H,proj,pathGen,particles={},worldData=null;
+let currentTransform=d3.zoomIdentity;
+
+function resize(){
+  W=mapCv.width=flowCv.width=window.innerWidth;
+  H=mapCv.height=flowCv.height=window.innerHeight;
+  svgEl.setAttribute('width',W); svgEl.setAttribute('height',H);
+}
+function buildProjection(t){
+  const bh=62+90, scale=Math.min(W/5.2,(H-bh)/2.85)*t.k;
+  proj=d3.geoNaturalEarth1().scale(scale).translate([W*0.46*t.k+t.x,(H-bh)*0.48*t.k+t.y]);
+  pathGen=d3.geoPath(proj,mCtx);
+}
+function hr(h){return{r:parseInt(h.slice(1,3),16),g:parseInt(h.slice(3,5),16),b:parseInt(h.slice(5,7),16)}}
+function arcMid(p1,p2){const dx=p2[0]-p1[0],dy=p2[1]-p1[1],l=Math.hypot(dx,dy),mx=(p1[0]+p2[0])/2,my=(p1[1]+p2[1])/2;return[mx-dy/l*l*.24,my+dx/l*l*.24]}
+function bz(t,p1,m,p2){const u=1-t;return[u*u*p1[0]+2*u*t*m[0]+t*t*p2[0],u*u*p1[1]+2*u*t*m[1]+t*t*p2[1]]}
+
+function drawMap(){
+  if(!worldData)return;
+  mCtx.clearRect(0,0,W,H);
+  const bg=mCtx.createRadialGradient(W*.46,H*.48,0,W*.46,H*.48,W*.72);
+  bg.addColorStop(0,'#0b1122');bg.addColorStop(1,'#06090f');
+  mCtx.fillStyle=bg;mCtx.fillRect(0,0,W,H);
+  const grat=d3.geoGraticule()();
+  mCtx.beginPath();pathGen(grat);mCtx.strokeStyle='rgba(255,255,255,.024)';mCtx.lineWidth=.4;mCtx.stroke();
+  const countries=topojson.feature(worldData,worldData.objects.countries);
+  countries.features.forEach(f=>{
+    const id=+f.id;let fill='#0f1726',stroke='#182438';
+    if(HIGHLIGHT.hub.has(id)){fill='#132030';stroke='#204055';}
+    else if(HIGHLIGHT.source.has(id)){fill='#1b1608';stroke='#352c10';}
+    else if(HIGHLIGHT.dest.has(id)){fill='#101b2e';stroke='#1a2e4a';}
+    mCtx.beginPath();pathGen(f);mCtx.fillStyle=fill;mCtx.fill();mCtx.strokeStyle=stroke;mCtx.lineWidth=.5;mCtx.stroke();
+  });
+  const b=topojson.mesh(worldData,worldData.objects.countries,(a,b)=>a!==b);
+  mCtx.beginPath();pathGen(b);mCtx.strokeStyle='rgba(255,255,255,.045)';mCtx.lineWidth=.4;mCtx.stroke();
+  mCtx.beginPath();pathGen({type:'Sphere'});mCtx.strokeStyle='rgba(255,255,255,.06)';mCtx.lineWidth=1;mCtx.stroke();
+}
+
+// ── PARTICLES ─────────────────────────────────────────────────────────────────
+function initFlowParticles(flowId){
+  const fl=ALL_FLOWS.find(f=>f.id===flowId);
+  if(!fl)return;
+  const fn=NODES.find(n=>n.id===fl.f),tn=NODES.find(n=>n.id===fl.t);
+  const p1=proj(fn.geo),p2=proj(tn.geo);
+  const m=arcMid(p1,p2),cnt=Math.round(fl.w*7);
+  particles[flowId]=[];
+  for(let i=0;i<cnt;i++)
+    particles[flowId].push({t:i/cnt,sp:(.0011+Math.random()*.0009),sz:2.6+Math.random()*2,al:.65+Math.random()*.35,p1,m,p2,col:fl.col,tr:20+Math.floor(Math.random()*12)});
+}
+function initAllParticles(){
+  ALL_FLOWS.forEach(fl=>initFlowParticles(fl.id));
+}
+
+// ── CHAPTER SYSTEM ────────────────────────────────────────────────────────────
+function applyChapter(idx, instant=false){
+  const ch=CHAPTERS[idx];
+  const targetFlows={};
+  ALL_FLOWS.forEach(f=>targetFlows[f.id]=ch.activeFlows.includes(f.id)?1:0);
+  const targetNodes={};
+  NODES.forEach(n=>targetNodes[n.id]=ch.dimNodes.includes(n.id)?0.22:1);
+
+  if(instant){
+    ALL_FLOWS.forEach(f=>flowAlphas[f.id]=targetFlows[f.id]);
+    NODES.forEach(n=>nodeAlphas[n.id]=targetNodes[n.id]);
+  } else {
+    // Store targets for lerp in draw loop
+    window._targetFlows=targetFlows;
+    window._targetNodes=targetNodes;
+  }
+  window._alertChina=ch.alertChina;
+
+  // Update UI
+  document.getElementById('ch-eyebrow').textContent=`${ch.eyebrow} · ${idx+1} / 5`;
+  document.getElementById('ch-title').innerHTML=ch.title;
+  document.getElementById('ch-stat').style.color=ch.statCol;
+  document.getElementById('ch-stat').textContent=ch.stat;
+  document.getElementById('ch-detail').textContent=ch.detail;
+
+  document.querySelectorAll('.ch-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+
+  // Update labels opacity
+  updateLabels();
+}
+
+function goToChapter(idx){
+  currentChapter=((idx%5)+5)%5;
+  applyChapter(currentChapter);
+  resetProgress();
+}
+
+function resetProgress(){
+  progressStart=performance.now();
+  const bar=document.getElementById('progress-bar');
+  bar.style.transition='none';bar.style.width='0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    bar.style.transition=`width ${CHAPTER_DURATION}ms linear`;
+    bar.style.width='100%';
+  }));
+  if(chapterTimer)clearTimeout(chapterTimer);
+  chapterTimer=setTimeout(()=>goToChapter(currentChapter+1),CHAPTER_DURATION);
+}
+
+// ── LABELS ────────────────────────────────────────────────────────────────────
+function updateLabels(){
+  while(svgEl.firstChild)svgEl.removeChild(svgEl.firstChild);
+  document.querySelectorAll('.nlabel').forEach(e=>e.remove());
+  const ch=CHAPTERS[currentChapter];
+  const bh=62,margin=14,estH=32;
+
+  NODES.forEach(nd=>{
+    const np=proj(nd.geo);if(!np)return;
+    const nx=np[0],ny=np[1];
+    const isDim=ch.dimNodes.includes(nd.id);
+    const opacity=isDim?0.25:0.9;
+
+    const lx=nx+nd.lox, ly=ny+nd.loy;
+    const estW=nd.label.length*7+16;
+    let finalX=nd.lox>=0?Math.min(lx,W-estW-margin):Math.max(lx-estW,margin);
+    let finalY=Math.max(margin+80,Math.min(ly-8,H-bh-estH-margin));
+
+    const c=hr(nd.col);
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',nx);line.setAttribute('y1',ny);
+    line.setAttribute('x2',nd.lox>=0?finalX:finalX+estW);line.setAttribute('y2',finalY+8);
+    line.setAttribute('stroke',`rgba(${c.r},${c.g},${c.b},${isDim?0.1:0.28})`);
+    line.setAttribute('stroke-width','0.7');line.setAttribute('stroke-dasharray','3,3');
+    svgEl.appendChild(line);
+
+    const div=document.createElement('div');
+    div.className='nlabel'+(nd.role==='hub'?' hub':'');
+    div.style.cssText=`left:${finalX}px;top:${finalY}px;opacity:${opacity};text-align:${nd.lox<0?'right':'left'}`;
+    div.innerHTML=`<div class="nm" style="color:${nd.col}">${nd.label.toUpperCase()}</div><div class="ns">${nd.sub}</div>`;
+    document.getElementById('stage').appendChild(div);
+  });
+}
+
+// ── DRAW LOOP ─────────────────────────────────────────────────────────────────
+function drawFrame(ts){
+  fCtx.clearRect(0,0,W,H);
+  const lerp=(a,b,t)=>a+(b-a)*t;
+
+  // Lerp alphas
+  if(window._targetFlows) ALL_FLOWS.forEach(f=>{flowAlphas[f.id]=lerp(flowAlphas[f.id],window._targetFlows[f.id],.04)});
+  if(window._targetNodes) NODES.forEach(n=>{nodeAlphas[n.id]=lerp(nodeAlphas[n.id],window._targetNodes[n.id],.04)});
+
+  // Draw base arcs + particles per flow
+  ALL_FLOWS.forEach(fl=>{
+    const a=flowAlphas[fl.id];if(a<0.01)return;
+    const fn=NODES.find(n=>n.id===fl.f),tn=NODES.find(n=>n.id===fl.t);
+    const p1=proj(fn.geo),p2=proj(tn.geo),m=arcMid(p1,p2);
+    const c=hr(fl.col);
+    fCtx.beginPath();fCtx.moveTo(p1[0],p1[1]);fCtx.quadraticCurveTo(m[0],m[1],p2[0],p2[1]);
+    fCtx.strokeStyle=`rgba(${c.r},${c.g},${c.b},${0.07*a})`;fCtx.lineWidth=fl.w*.5;fCtx.stroke();
+
+    const pts=particles[fl.id]||[];
+    pts.forEach(p=>{
+      p.t+=p.sp;if(p.t>1)p.t-=1;
+      const fade=p.t<.07?p.t/.07:p.t>.93?(1-p.t)/.07:1,al=p.al*fade*a;
+      const c2=hr(p.col);
+      for(let ti=0;ti<p.tr;ti++){
+        const pos=bz(Math.max(0,p.t-ti*.007),p.p1,p.m,p.p2);
+        fCtx.beginPath();fCtx.arc(pos[0],pos[1],p.sz*(1-ti/p.tr*.65),0,Math.PI*2);
+        fCtx.fillStyle=`rgba(${c2.r},${c2.g},${c2.b},${al*(1-ti/p.tr)*.52})`;fCtx.fill();
+      }
+      const pos=bz(p.t,p.p1,p.m,p.p2);
+      const g=fCtx.createRadialGradient(pos[0],pos[1],0,pos[0],pos[1],p.sz*4.5);
+      g.addColorStop(0,`rgba(${c2.r},${c2.g},${c2.b},${al})`);
+      g.addColorStop(.35,`rgba(${c2.r},${c2.g},${c2.b},${al*.3})`);
+      g.addColorStop(1,`rgba(${c2.r},${c2.g},${c2.b},0)`);
+      fCtx.beginPath();fCtx.arc(pos[0],pos[1],p.sz*4.5,0,Math.PI*2);fCtx.fillStyle=g;fCtx.fill();
+      fCtx.beginPath();fCtx.arc(pos[0],pos[1],p.sz*.7,0,Math.PI*2);fCtx.fillStyle=`rgba(255,255,255,${al*.9})`;fCtx.fill();
+    });
+  });
+
+  // Draw nodes
+  NODES.forEach(nd=>{
+    const p=proj(nd.geo);if(!p)return;
+    const nx=p[0],ny=p[1],a=nodeAlphas[nd.id];
+    const isHub=nd.role==='hub',ch=CHAPTERS[currentChapter];
+    const isGlow=ch.glowNodes.includes(nd.id);
+    const c=hr(nd.col),R=isHub?13:8,r=isGlow?R*1.4:R;
+
+    // Alert chapter: red pulse on China
+    if(window._alertChina&&nd.id==='china'){
+      const pulse=(Math.sin(ts*.006)+1)/2;
+      const ar=fCtx.createRadialGradient(nx,ny,0,nx,ny,r*10);
+      ar.addColorStop(0,`rgba(220,60,60,${.2*pulse})`);ar.addColorStop(1,'rgba(220,60,60,0)');
+      fCtx.beginPath();fCtx.arc(nx,ny,r*10,0,Math.PI*2);fCtx.fillStyle=ar;fCtx.fill();
+      fCtx.beginPath();fCtx.arc(nx,ny,r+4+pulse*30,0,Math.PI*2);
+      fCtx.strokeStyle=`rgba(220,60,60,${.4*(1-pulse)})`;fCtx.lineWidth=2;fCtx.stroke();
+    }
+
+    const og=fCtx.createRadialGradient(nx,ny,0,nx,ny,r*(isGlow?6:4));
+    og.addColorStop(0,`rgba(${c.r},${c.g},${c.b},${isGlow?.32:.14})`);og.addColorStop(1,`rgba(${c.r},${c.g},${c.b},0)`);
+    fCtx.globalAlpha=a;
+    fCtx.beginPath();fCtx.arc(nx,ny,r*(isGlow?6:4),0,Math.PI*2);fCtx.fillStyle=og;fCtx.fill();
+
+    for(let ri=0;ri<(isHub?3:isGlow?2:1);ri++){
+      const pulse=(Math.sin(ts*.0017+ri*2.1+nd.geo[0]*.03)+1)/2;
+      fCtx.beginPath();fCtx.arc(nx,ny,r+3+pulse*(isGlow?20:10)+ri*8,0,Math.PI*2);
+      fCtx.strokeStyle=`rgba(${c.r},${c.g},${c.b},${((isHub||isGlow)?.24:.12)*(1-pulse)})`;
+      fCtx.lineWidth=isHub?1.4:1;fCtx.stroke();
+    }
+    fCtx.beginPath();fCtx.arc(nx,ny,r+2.5,0,Math.PI*2);
+    fCtx.strokeStyle=`rgba(${c.r},${c.g},${c.b},.32)`;fCtx.lineWidth=isHub?1.8:1.2;fCtx.stroke();
+    const cg=fCtx.createRadialGradient(nx-r*.3,ny-r*.3,0,nx,ny,r);
+    cg.addColorStop(0,'rgba(255,255,255,.97)');cg.addColorStop(.55,`rgba(${c.r},${c.g},${c.b},.9)`);cg.addColorStop(1,`rgba(${Math.round(c.r*.35)},${Math.round(c.g*.35)},${Math.round(c.b*.35)},.85)`);
+    fCtx.beginPath();fCtx.arc(nx,ny,r,0,Math.PI*2);fCtx.fillStyle=cg;fCtx.fill();
+    fCtx.globalAlpha=1;
+  });
+
+  requestAnimationFrame(drawFrame);
+}
+
+// ── ZOOM ──────────────────────────────────────────────────────────────────────
+const zoom=d3.zoom().scaleExtent([1,8]).on('zoom',e=>{
+  currentTransform=e.transform;
+  buildProjection(e.transform);
+  drawMap();initAllParticles();updateLabels();
+});
+d3.select('#map-canvas').call(zoom);
+
+// ── DOTS + NAV ─────────────────────────────────────────────────────────────────
+const dotsWrap=document.getElementById('ch-dots');
+CHAPTERS.forEach((_,i)=>{
+  const d=document.createElement('div');d.className='ch-dot'+(i===0?' active':'');
+  d.addEventListener('click',()=>goToChapter(i));dotsWrap.appendChild(d);
+});
+document.getElementById('nav-prev').addEventListener('click',()=>goToChapter(currentChapter-1));
+document.getElementById('nav-next').addEventListener('click',()=>goToChapter(currentChapter+1));
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+async function init(){
+  resize();buildProjection(d3.zoomIdentity);
+  worldData=await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+  document.getElementById('loading').style.display='none';
+  drawMap();initAllParticles();
+  applyChapter(0,true);
+  resetProgress();
+  window.addEventListener('resize',()=>{resize();buildProjection(currentTransform);drawMap();initAllParticles();updateLabels()});
+  requestAnimationFrame(drawFrame);
+}
+init();
+</script>
+</body>
+</html>

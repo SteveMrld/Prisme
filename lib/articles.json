@@ -1,5 +1,22 @@
 [
   {
+    "slug": "terres-rares",
+    "title": "Terres rares : la guerre invisible qui alimente la transition verte",
+    "description": "Du cobalt du Katanga au verrou chinois du raffinage, la transition énergétique a créé une nouvelle géographie de la dépendance. Enquête sur la ressource qui redessine les rapports de force mondiaux.",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "category": "geo",
+    "categoryLabel": "Géopolitique",
+    "secondaryCategory": "env",
+    "secondaryCategoryLabel": "Environnement",
+    "date": "2026-04-11",
+    "readTime": "8 min de lecture",
+    "image": "/articles/terres-rares.png",
+    "featured": false,
+    "premium": false,
+    "grandFormat": false
+  },
+  {
     "slug": "architecture-desordre",
     "title": "L'architecture du désordre",
     "description": "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne — de Cyrus à San Francisco.",

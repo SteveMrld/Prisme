@@ -58,6 +58,26 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* Card — terres rares */}
+          <a href="/visuels/terres-rares.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--geo)'}}>Géopolitique · Ressources · Animation</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>Terres rares : la guerre invisible</h3>
+              <p className={styles.featSub}>Congo · Chili · Bolivie · Chine · Europe · États-Unis</p>
+              <p className={styles.featDesc}>
+                Du cobalt du Katanga au raffinage de Guangdong, une visualisation animée des flux qui alimentent
+                la transition verte — et la nouvelle géographie de la dépendance mondiale.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la visualisation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Card featured — navale */}
           <a href="/visuels/naval.html" target="_blank" rel="noopener noreferrer" className={styles.featCard}>
             <div className={styles.featBody}>
