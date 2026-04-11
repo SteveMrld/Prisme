@@ -3,8 +3,8 @@ import styles from './visuels.module.css'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Explorations — Soara',
-  description: 'Motions design, cartes animées, visualisations de données. Comprendre le monde autrement.',
+  title: 'Atlas — Soara',
+  description: 'Cartes interactives, animations, visualisations de données géopolitiques. Atlas Soara.',
 }
 
 export default function VisuelsPage() {
@@ -15,7 +15,7 @@ export default function VisuelsPage() {
       {/* ═══ HERO ═══ */}
       <div className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={styles.heroLabel}>Explorations</div>
+          <div className={styles.heroLabel}>Atlas</div>
           <h1 className={styles.heroTitle}>
             Les idées qui se comprennent<br />
             <em>mieux en les voyant</em>
