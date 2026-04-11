@@ -201,7 +201,15 @@ function animCounters(){
   },300);
 }
 function tog(el){document.querySelectorAll('.tl-row').forEach(r=>r.classList.remove('open'));el.classList.add('open')}
-window.addEventListener('load',function(){setTimeout(animCounters,400)});
+window.addEventListener('load',function(){
+  setTimeout(animCounters,400);
+  function sendHeight(){
+    var h = document.documentElement.scrollHeight;
+    window.parent.postMessage({iframeHeight: h, src: 'musk'}, '*');
+  }
+  sendHeight();
+  new ResizeObserver(sendHeight).observe(document.body);
+});
 </script>
 </body>
 </html>

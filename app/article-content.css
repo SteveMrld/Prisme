@@ -1657,7 +1657,8 @@ sup {
 }
 @media (max-width: 768px) {
   .article-iframe {
-    height: 420px !important;
+    height: auto !important;
+    min-height: 600px;
   }
 }
 
