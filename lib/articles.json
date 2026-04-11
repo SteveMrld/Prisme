@@ -466,20 +466,5 @@
     "image": "/portraits/obama.png",
     "featured": false,
     "premium": false
-  },
-  {
-    "slug": "bases-militaires",
-    "title": "L'Empire invisible — Les 800 bases militaires américaines dans le monde",
-    "description": "Comment les États-Unis projettent leur puissance depuis 80 pays. Une carte interactive de l'empreinte militaire américaine mondiale.",
-    "date": "2026-04-09",
-    "category": "geo",
-    "categoryLabel": "Géopolitique",
-    "readTime": "12 min",
-    "author": "Steve Moradel",
-    "authorRole": "",
-    "image": "/grands-formats/chambre-hero.jpg",
-    "featured": false,
-    "customRoute": "/grands-formats/bases-militaires",
-    "format": "grand-format"
   }
 ]
