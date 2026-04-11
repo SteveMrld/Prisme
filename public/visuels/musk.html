@@ -75,15 +75,15 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
     <div class="empire-card">
       <div class="empire-sector" style="color:#C75A5A">Automobile / Energie</div>
       <div class="empire-name">Tesla</div>
-      <div class="empire-val" id="ev1">0</div>
-      <div class="empire-desc">milliards $ de capitalisation. Premier constructeur mondial de véhicules électriques. Stockage d'énergie.</div>
+      <div class="empire-val">70 M$</div>
+      <div class="empire-desc">investis personnellement dès 2004. Devient PDG en 2008. Premier constructeur mondial de véhicules électriques. Introduction en bourse en 2010.</div>
       <div class="empire-bar" style="width:85%;background:#C75A5A"></div>
     </div>
     <div class="empire-card">
       <div class="empire-sector" style="color:#4A7EC7">Espace</div>
       <div class="empire-name">SpaceX</div>
-      <div class="empire-val" id="ev2">0</div>
-      <div class="empire-desc">milliards $ de valorisation (privée). Monopole de facto du lancement commercial américain. Starship.</div>
+      <div class="empire-val">100 M$</div>
+      <div class="empire-desc">investis à la fondation en 2002, tirés de la vente de PayPal. Monopole de facto du lancement commercial américain. Programme Starship en cours.</div>
       <div class="empire-bar" style="width:70%;background:#4A7EC7"></div>
     </div>
     <div class="empire-card">
@@ -110,8 +110,8 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
     <div class="empire-card">
       <div class="empire-sector" style="color:#B86A1A">Gouvernement</div>
       <div class="empire-name">DOGE</div>
-      <div class="empire-val">1 000</div>
-      <div class="empire-desc">milliards $ d'économies promises sur le budget fédéral américain. Accès sans précédent aux systèmes gouvernementaux.</div>
+      <div class="empire-val">2025</div>
+      <div class="empire-desc">Nommé à la tête du Département pour l'efficacité gouvernementale par Trump. Accès sans précédent aux systèmes et données fédéraux américains.</div>
       <div class="empire-bar" style="width:55%;background:#B86A1A"></div>
     </div>
   </div>
@@ -174,7 +174,7 @@ html,body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--encr
   </div>
   <div class="stat-row">
     <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">entreprises majeures dirigées simultanément — record absolu pour un chef d'entreprise</div></div>
-    <div class="stat"><div class="stat-num">200 Mds</div><div class="stat-lbl">fortune estimée — equivalent au PIB du Portugal</div></div>
+    
   </div>
 </div>
 
@@ -195,10 +195,7 @@ function animCounter(el,val,suf){
   },16);
 }
 function animCounters(){
-  setTimeout(function(){
-    animCounter(document.getElementById('ev1'),800,' Mds');
-    animCounter(document.getElementById('ev2'),175,' Mds');
-  },300);
+
 }
 function tog(el){document.querySelectorAll('.tl-row').forEach(r=>r.classList.remove('open'));el.classList.add('open')}
 window.addEventListener('load',function(){
