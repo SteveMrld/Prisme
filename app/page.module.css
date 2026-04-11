@@ -808,7 +808,7 @@
 }
 
 .portraitCard {
-  background: transparent;
+  background: #ffffff;
   text-decoration: none;
   display: flex;
   flex-direction: column;
