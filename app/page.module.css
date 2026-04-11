@@ -817,7 +817,6 @@
   transition: background 0.15s;
   border-right: 1px solid var(--bord);
   border-bottom: 1px solid var(--bord);
-  border-left: 3px solid var(--portrait);
   overflow: hidden;
 }
 .portraitCard:hover { background: var(--papier); }
@@ -827,7 +826,7 @@
   position: relative;
   flex-shrink: 0;
   background: #fff;
-  aspect-ratio: 1/1;
+  aspect-ratio: 3/4;
 }
 
 .portraitImg {
@@ -835,7 +834,7 @@
   height: 100%;
   display: block;
   object-fit: contain;
-  object-position: center center;
+  object-position: center bottom;
   mix-blend-mode: multiply;
   transition: transform 0.4s ease;
 }
