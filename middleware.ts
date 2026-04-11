@@ -40,6 +40,13 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
+  // Route admin — réservée à steve.moradel@gmail.com
+  if (request.nextUrl.pathname.startsWith('/admin') || request.nextUrl.pathname.startsWith('/api/admin')) {
+    if (!user || user.email !== 'steve.moradel@gmail.com') {
+      return NextResponse.redirect(new URL('/connexion', request.url))
+    }
+  }
+
   // Routes protégées — compte abonné
   if (request.nextUrl.pathname.startsWith('/compte')) {
     if (!user) {
