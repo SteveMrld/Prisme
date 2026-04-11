@@ -132,7 +132,7 @@ const CHAPTERS = [
     stat: "70%",
     detail: "du cobalt mondial extrait au Katanga,\ndans l'est du Congo (RDC)",
     activeFlows: [],
-    glowNodes: ["drc","andes"],
+    glowNodes: ["drc","andes","aus","myanmar","safr","brazil"],
     dimNodes: ["china","eu","usa","japan"],
     alertChina: false,
   },
@@ -142,7 +142,7 @@ const CHAPTERS = [
     statCol: "#9ec4e0",
     stat: "85%",
     detail: "du raffinage mondial passe\npar les fonderies chinoises",
-    activeFlows: ["drc→china","andes→china"],
+    activeFlows: ["drc→china","andes→china","aus→china","myanmar→china","safr→china","brazil→china"],
     glowNodes: ["china"],
     dimNodes: ["eu","usa","japan"],
     alertChina: false,
@@ -155,7 +155,7 @@ const CHAPTERS = [
     detail: "de la demande mondiale — l'Europe\ndépend structurellement de Pékin",
     activeFlows: ["china→eu","china→usa","china→japan"],
     glowNodes: ["eu","usa","japan"],
-    dimNodes: ["drc","andes"],
+    dimNodes: ["drc","andes","aus","myanmar","safr","brazil"],
     alertChina: false,
   },
   {
@@ -166,7 +166,7 @@ const CHAPTERS = [
     detail: "d'exports de gallium vers le Japon\naprès les restrictions chinoises",
     activeFlows: [],
     glowNodes: ["china"],
-    dimNodes: ["drc","andes","eu","usa","japan"],
+    dimNodes: ["drc","andes","aus","myanmar","safr","brazil","eu","usa","japan"],
     alertChina: true,
   },
   {
@@ -175,8 +175,8 @@ const CHAPTERS = [
     statCol: "#7ab87a",
     stat: "2030",
     detail: "objectif UE : 10% d'extraction locale\nCritical Raw Materials Act · IRA (US)",
-    activeFlows: ["drc→eu","china→eu","china→usa","andes→china"],
-    glowNodes: ["eu","usa","drc","andes"],
+    activeFlows: ["drc→eu","china→eu","china→usa","andes→china","aus→china"],
+    glowNodes: ["eu","usa","drc","andes","aus"],
     dimNodes: [],
     alertChina: false,
   },
@@ -184,25 +184,33 @@ const CHAPTERS = [
 
 // ── NODES ────────────────────────────────────────────────────────────────────
 const NODES = [
-  {id:"drc",   label:"Congo (RDC)", sub:"Cobalt · Coltan",      geo:[ 23.6, -4.0], role:"source", col:"#e8a642", lox: 85, loy: 50},
-  {id:"andes", label:"Andes",       sub:"Lithium · Cuivre",     geo:[-67.0,-22.0], role:"source", col:"#e8a642", lox:-85, loy: 35},
-  {id:"china", label:"Chine",       sub:"Raffinage · Contrôle", geo:[103.8, 35.0], role:"hub",    col:"#9ec4e0", lox: 18, loy:-58},
-  {id:"eu",    label:"Europe",      sub:"Consommation",         geo:[ 10.0, 51.0], role:"dest",   col:"#5a8ab8", lox:-14, loy:-54},
-  {id:"usa",   label:"États-Unis",  sub:"Consommation",         geo:[-100.0,38.0], role:"dest",   col:"#5a8ab8", lox:-88, loy:-28},
-  {id:"japan", label:"Japon",       sub:"Consommation",         geo:[138.0, 36.0], role:"dest",   col:"#5a8ab8", lox: 78, loy:-18},
+  {id:"drc",    label:"Congo (RDC)",   sub:"Cobalt · Coltan",           geo:[ 23.6, -4.0],  role:"source", col:"#e8a642", lox: 85, loy: 40},
+  {id:"andes",  label:"Andes",         sub:"Lithium · Cuivre",          geo:[-67.0,-22.0],  role:"source", col:"#e8a642", lox:-85, loy: 30},
+  {id:"aus",    label:"Australie",     sub:"Lithium · Terres rares",    geo:[133.0,-27.0],  role:"source", col:"#e8a642", lox: 65, loy: 45},
+  {id:"myanmar",label:"Myanmar",       sub:"Terres rares magnétiques",  geo:[ 96.5, 19.0],  role:"source", col:"#e8a642", lox:-85, loy: 35},
+  {id:"safr",   label:"Afr. du Sud",   sub:"Platine · Manganèse",       geo:[ 25.0,-30.0],  role:"source", col:"#e8a642", lox:-88, loy: 25},
+  {id:"brazil", label:"Brésil",        sub:"Niobium · Terres rares",    geo:[-52.0,-15.0],  role:"source", col:"#e8a642", lox: 72, loy: 55},
+  {id:"china",  label:"Chine",         sub:"Raffinage · Contrôle",      geo:[103.8, 35.0],  role:"hub",    col:"#9ec4e0", lox: 18, loy:-58},
+  {id:"eu",     label:"Europe",        sub:"Consommation",              geo:[ 10.0, 51.0],  role:"dest",   col:"#5a8ab8", lox:-14, loy:-54},
+  {id:"usa",    label:"États-Unis",    sub:"Consommation",              geo:[-100.0,38.0],  role:"dest",   col:"#5a8ab8", lox:-88, loy:-28},
+  {id:"japan",  label:"Japon",         sub:"Consommation",              geo:[138.0, 36.0],  role:"dest",   col:"#5a8ab8", lox: 78, loy:-18},
 ];
 
 const ALL_FLOWS = [
-  {id:"drc→china",   f:"drc",   t:"china", w:5.2, col:"#e8a642"},
-  {id:"andes→china", f:"andes", t:"china", w:4.0, col:"#e8a642"},
-  {id:"drc→eu",      f:"drc",   t:"eu",    w:2.2, col:"#c07820"},
-  {id:"china→eu",    f:"china", t:"eu",    w:5.0, col:"#9ec4e0"},
-  {id:"china→usa",   f:"china", t:"usa",   w:3.8, col:"#9ec4e0"},
-  {id:"china→japan", f:"china", t:"japan", w:3.2, col:"#9ec4e0"},
+  {id:"drc→china",     f:"drc",    t:"china", w:5.2, col:"#e8a642"},
+  {id:"andes→china",   f:"andes",  t:"china", w:4.0, col:"#e8a642"},
+  {id:"aus→china",     f:"aus",    t:"china", w:3.5, col:"#e8a642"},
+  {id:"myanmar→china", f:"myanmar",t:"china", w:3.0, col:"#d4922a"},
+  {id:"safr→china",    f:"safr",   t:"china", w:2.5, col:"#d4922a"},
+  {id:"brazil→china",  f:"brazil", t:"china", w:2.0, col:"#d4922a"},
+  {id:"drc→eu",        f:"drc",    t:"eu",    w:2.2, col:"#c07820"},
+  {id:"china→eu",      f:"china",  t:"eu",    w:5.0, col:"#9ec4e0"},
+  {id:"china→usa",     f:"china",  t:"usa",   w:3.8, col:"#9ec4e0"},
+  {id:"china→japan",   f:"china",  t:"japan", w:3.2, col:"#9ec4e0"},
 ];
 
 const HIGHLIGHT={
-  source:new Set([180,152,68,604]),hub:new Set([156]),
+  source:new Set([180,152,68,604,36,104,710,76]),hub:new Set([156]),
   dest:new Set([840,392,276,250,380,724,826,528,56,40,620,752,578,208,246,372,300,203,348,703,705,616,233,428,440,100,642,498]),
 };
 
