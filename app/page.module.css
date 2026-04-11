@@ -803,23 +803,19 @@
 
 .portraitsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--bord);
-  border-left: 1px solid var(--bord);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
 
 .portraitCard {
-  background: var(--bg);
+  background: transparent;
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  transition: background 0.15s;
-  border-right: 1px solid var(--bord);
-  border-bottom: 1px solid var(--bord);
+  transition: opacity 0.15s;
   overflow: hidden;
 }
-.portraitCard:hover { background: var(--papier); }
+.portraitCard:hover { opacity: 0.85; }
 
 .portraitImgWrap {
   width: 100%;
@@ -834,7 +830,7 @@
   height: 100%;
   display: block;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center center;
   mix-blend-mode: multiply;
   transition: transform 0.4s ease;
 }
@@ -883,8 +879,8 @@
 
 @media (max-width: 900px) {
   .portraitsSection { padding: 40px 20px; }
-  .portraitsGrid { grid-template-columns: repeat(2, 1fr); gap: 0; background: transparent; }
-  .portraitImgWrap { aspect-ratio: unset; height: 140px; }
+  .portraitsGrid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .portraitImgWrap { aspect-ratio: 3/4; }
   .portraitBody { padding: 12px 14px 16px; gap: 6px; }
   .portraitTitle { font-size: 13px; }
   .portraitDesc { display: none; }
