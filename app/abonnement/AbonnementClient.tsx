@@ -76,7 +76,7 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
             </p>
             <div className={styles.heroCta}>
               <button className={styles.heroBtn} onClick={() => subscribe('yearly')} disabled={loading !== null}>
-                {loading === 'yearly' ? 'Chargement…' : 'S'abonner — 99€ / an'}
+                {loading === 'yearly' ? 'Chargement…' : "S'abonner — 99€ / an"}
               </button>
               <span className={styles.heroOr}>ou</span>
               <button className={styles.heroMonthly} onClick={() => subscribe('monthly')} disabled={loading !== null}>
