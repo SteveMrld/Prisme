@@ -90,10 +90,11 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     content.includes('portrait-hero') ||
     (article as any).category === 'portrait'
 
-  // Articles liés — même catégorie, max 3, exclu l'article courant
+  // Articles liés — même catégorie, exclu l'article courant
+  // Pour les portraits : tous les autres portraits
   const related = (articlesData as any[])
     .filter(a => a.category === article.category && a.slug !== params.slug)
-    .slice(0, 3)
+    .slice(0, article.category === 'portrait' ? 10 : 3)
 
   // Grand format → layout dédié
   if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
