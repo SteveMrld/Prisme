@@ -10,16 +10,14 @@ function todayFr() {
 }
 
 const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Moyen-Orient — Un avion américain abattu par l'Iran, escalade au 35e jour du conflit" },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Détroit d'Ormuz — L'Iran impose un péage de 2 millions de dollars par navire, soit 20 fois le tarif du canal de Panama" },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Trump — Promet de frapper l'Iran 'extrêmement durement' encore 2 à 3 semaines, puis de partir" },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Macron — Juge 'irréaliste' une intervention militaire pour libérer Ormuz, appelle à négocier avec Téhéran" },
-  { cat: 'Espace', color: 'var(--tech)', text: "Artemis II — Décollage réussi, 4 astronautes en orbite autour de la Lune pour la 1re fois depuis 1972" },
-  { cat: 'Économie', color: 'var(--eco)', text: "Carburants — Les compagnies pétrolières réalisent 80 millions d'euros de sur-profits par jour selon Greenpeace" },
-  { cat: 'Économie', color: 'var(--eco)', text: "Énergie — 800 000 Français ont renoncé à partir à l'étranger cet été à cause de la hausse des prix" },
-  { cat: 'France', color: 'var(--soc)', text: "Grenoble — 3 rugbymen condamnés en appel pour viol à des peines allant jusqu'à 14 ans de réclusion" },
-  { cat: 'France', color: 'var(--soc)', text: "Saint-Denis — Le nouveau maire appelle à un grand rassemblement citoyen contre le racisme" },
-  { cat: 'Semaine Sainte', color: 'var(--culture)', text: "Pâques 2026 — Le pape Léon XIV préside la veillée pascale à Saint-Pierre de Rome ce samedi soir" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Iran–États-Unis — La délégation iranienne arrive au Pakistan pour les négociations de paix, première rencontre directe depuis le début du conflit" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Moyen-Orient — Trêve au Liban, déblocage partiel du détroit d'Ormuz : les points de négociation entre Téhéran et Washington" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Liban — La présidence annonce des discussions avec Israël mardi à Washington, Netanyahou sous pression sur le cessez-le-feu" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Iran — Enrichissement d'uranium au cœur des négociations au Pakistan, Trump maintient sa pression sur Téhéran" },
+  { cat: 'Espace', color: 'var(--tech)', text: "Artemis II — L'équipage devient les humains les plus éloignés de la Terre de toute l'histoire, à plus de 406 000 km" },
+  { cat: 'Économie', color: 'var(--eco)', text: "Carburants — 12% des stations-essence françaises en rupture partielle, les prix continuent de peser sur le pouvoir d'achat" },
+  { cat: 'Tech', color: 'var(--tech)', text: "Terafab — La méga-usine de semi-conducteurs annoncée par Musk s'inscrit dans un écosystème Tesla-SpaceX-xAI visant la souveraineté spatiale américaine" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Soudan — L'ONU documente plus de 1000 civils tués dans le camp de Zamzam, la pire crise humanitaire mondiale se poursuit" },
 ]
 
 export default function Ticker() {
