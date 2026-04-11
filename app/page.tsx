@@ -298,12 +298,12 @@ export default function HomePage() {
         </div>
         <div className={styles.portraitsGrid}>
           {[
-            getArticle('obama'),
-            getArticle('musk'),
-            getArticle('morrison'),
-            getArticle('nooyi'),
             getArticle('morin'),
+            getArticle('obama'),
+            getArticle('morrison'),
+            getArticle('musk'),
             getArticle('tutu'),
+            getArticle('nooyi'),
           ].map((article) => (
             <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitCard}>
               <div className={styles.portraitImgWrap}>
