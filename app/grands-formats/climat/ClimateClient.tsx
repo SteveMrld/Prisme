@@ -232,26 +232,24 @@ export default function ClimateClient() {
         .bg-layer { position:absolute; inset:0; background-size:cover; background-position:center; transition:opacity 2s ease; will-change:transform; }
       `}</style>
 
-      {/* ── HERO avec fond Ken Burns ───────────────────────────────────────── */}
-      <div style={{ position:"relative", minHeight:"100vh", display:"flex", flexDirection:"column", overflow:"hidden" }}>
-
-        {/* Couches d'images Ken Burns */}
+      {/* ── FOND KEN BURNS FIXE ── couvre toute la page au scroll ─────────── */}
+      <div style={{ position:"fixed", inset:0, zIndex:0, overflow:"hidden" }}>
         {BACKGROUNDS.map((bg, i) => (
           <div key={i} className="bg-layer"
             style={{
               backgroundImage:`url(${bg.src})`,
               opacity: i === activeBg ? 1 : 0,
-              filter:"brightness(0.38) blur(5px) saturate(0.85)",
+              filter:"brightness(0.52) blur(3px) saturate(0.95)",
               ...kbStyles[bg.kb],
             }}
           />
         ))}
+        <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(4,6,13,0.05) 0%, rgba(4,6,13,0.45) 65%, rgba(4,6,13,0.88) 100%)" }}/>
+      </div>
 
-        {/* Gradient overlay pour lisibilité */}
-        <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(4,6,13,0.3) 0%, rgba(4,6,13,0.55) 50%, rgba(4,6,13,0.9) 85%, #04060d 100%)", zIndex:1 }}/>
-
-        {/* Contenu par-dessus */}
-        <div style={{ position:"relative", zIndex:2, flex:1, display:"flex", flexDirection:"column" }}>
+      {/* ── CONTENU au-dessus du fond ────────────────────────────────────── */}
+      <div style={{ position:"relative", zIndex:1, minHeight:"100vh", display:"flex", flexDirection:"column" }}>
+        <div style={{ flex:1, display:"flex", flexDirection:"column" }}>
 
           {/* Header */}
           <div style={{ padding:"52px 52px 40px", borderBottom:"1px solid rgba(255,255,255,0.06)" }}>
@@ -284,7 +282,7 @@ export default function ClimateClient() {
 
           {/* Graphique */}
           <div style={{ padding:"24px 52px 0", flex:1 }}>
-            <div style={{ position:"relative", border:"1px solid rgba(255,255,255,0.08)", background:"rgba(4,6,13,0.5)", backdropFilter:"blur(4px)" }}>
+            <div style={{ position:"relative", border:"1px solid rgba(255,255,255,0.07)", background:"rgba(4,6,13,0.15)", backdropFilter:"blur(2px)" }}>
               <svg viewBox={`0 0 ${W} ${H}`} style={{ width:"100%", display:"block" }}>
                 <defs>
                   <filter id="lg"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -331,11 +329,10 @@ export default function ClimateClient() {
               <span style={{ fontSize:9, color:"rgba(255,255,255,0.2)", flexShrink:0 }}>maintenant</span>
             </div>
           </div>
-        </div>
       </div>
 
       {/* ── COMPARAISON DES VITESSES ────────────────────────────────────────── */}
-      <div style={{ padding:"0 52px 80px", opacity:reveal?1:0, transform:reveal?"translateY(0)":"translateY(32px)", transition:"opacity 1.4s ease, transform 1.4s ease" }}>
+      <div style={{ padding:"0 52px 80px", background:"rgba(4,6,13,0.3)", backdropFilter:"blur(2px)", opacity:reveal?1:0, transform:reveal?"translateY(0)":"translateY(32px)", transition:"opacity 1.4s ease, transform 1.4s ease" }}>
 
         <div style={{ paddingTop:64, marginBottom:36 }}>
           <h2 style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:"clamp(24px,3.5vw,46px)", fontWeight:300, color:"#f0ede8", margin:"0 0 10px", lineHeight:1.15 }}>
@@ -357,7 +354,7 @@ export default function ClimateClient() {
             const endT=Math.min(T1-0.05, ratePerYear*150)
             const isNow=s.current
             return (
-              <div key={idx} style={{ background:isNow?"#0f0505":"rgba(8,12,24,0.8)", border:`1px solid ${isNow?"rgba(220,38,38,0.25)":"rgba(255,255,255,0.06)"}`, position:"relative" }}>
+              <div key={idx} style={{ background:isNow?"rgba(30,5,5,0.75)":"rgba(8,12,24,0.6)", border:`1px solid ${isNow?"rgba(220,38,38,0.25)":"rgba(255,255,255,0.06)"}`, position:"relative" }}>
                 <svg viewBox={`0 0 ${PW} ${PH}`} width="100%" style={{ display:"block" }}>
                   <line x1={PPL} y1={pys(0)} x2={PPL+pcW} y2={pys(0)} stroke="rgba(255,255,255,0.07)" strokeWidth={0.8}/>
                   <line x1={PPL} y1={pys(1.5)} x2={PPL+pcW} y2={pys(1.5)} stroke="#dc2626" strokeWidth={0.5} strokeDasharray="2 4" strokeOpacity={0.25}/>
