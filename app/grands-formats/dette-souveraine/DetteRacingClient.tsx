@@ -97,12 +97,12 @@ export default function CourbesRacing() {
     yrRef.current=Number(e.target.value); setYr(yrRef.current); setPlaying(false);
   };
 
-  const W=780, H=280, PL=50, PT=16, PB=32;
+  const W=780, H=340, PL=50, PT=18, PB=40;
   const cW=W-PL, cH=H-PT-PB;
   const gV = (c: Pays, y: number) => mode==="pct" ? getRV(c,y) : getAbsV(c,y);
 
   const allVals = PAYS_RACING.flatMap(c => c.hist.map(p => mode==="pct" ? p.v : getAbsV(c,p.y)));
-  const VMIN = mode==="pct" ? 20 : 0;
+  const VMIN = mode==="pct" ? 15 : 0;
   const VMAX = mode==="pct" ? 250 : Math.ceil(Math.max(...allVals)*1.1/1000)*1000;
 
   const xS = (y: number) => (y-YMIN)/(YMAX-YMIN+1.5)*cW;
@@ -183,6 +183,7 @@ export default function CourbesRacing() {
       </div>
 
       {/* SVG */}
+      <div style={{ overflow:"visible", position:"relative" }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display:"block", overflow:"visible" }}>
         <defs>
           {PAYS_RACING.map(c => (
@@ -267,6 +268,8 @@ export default function CourbesRacing() {
           );
         })}
       </svg>
+
+      </div>
 
       {/* Projection toggle */}
       <div style={{ marginTop:8, display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
