@@ -32,7 +32,8 @@
     "premium": false,
     "grandFormat": false,
     "grandFormatUrl": "/grands-formats/architecture-desordre",
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "customRoute": "/grands-formats/architecture-desordre"
   },
   {
     "slug": "chambre-ratification",
@@ -49,7 +50,8 @@
     "premium": false,
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/chambre-ratification",
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "customRoute": "/grands-formats/chambre-ratification"
   },
   {
     "slug": "skunkworks",
@@ -65,7 +67,8 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "customRoute": "/grands-formats/skunkworks"
   },
   {
     "slug": "palantir",
@@ -82,7 +85,8 @@
     "premium": false,
     "grandFormat": false,
     "grandFormatUrl": "/grands-formats/palantir",
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "customRoute": "/grands-formats/palantir"
   },
   {
     "slug": "moreno",
