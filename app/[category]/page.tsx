@@ -180,7 +180,6 @@ export default function CategoryPage({ params }: { params: { category: string } 
                   <span className={styles.featuredTime}>{featured.readTime} min</span>
                 </div>
                 <h2 className={styles.featuredTitle}>
-                  <span className={styles.pBadge}>S</span>
                   <span dangerouslySetInnerHTML={{ __html: featured.title.replace(/\n/g, ' ') }} />
                 </h2>
                 <p className={styles.featuredDeck}>{featured.description}</p>
@@ -208,7 +207,6 @@ export default function CategoryPage({ params }: { params: { category: string } 
                       <span className={styles.cardTime}>{article.readTime} min</span>
                     </div>
                     <h3 className={styles.cardTitle}>
-                      <span className={styles.pBadge}>S</span>
                       <span dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }} />
                     </h3>
                     <p className={styles.cardDeck}>{article.description}</p>
