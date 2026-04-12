@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
+import CourbesRacing from "./DetteRacingClient";
 import styles from "./dette.module.css";
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
