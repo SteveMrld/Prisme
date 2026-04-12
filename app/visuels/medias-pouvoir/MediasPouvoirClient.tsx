@@ -235,7 +235,7 @@ const TTBar=({active,payload,label})=>{
   </div>);
 };
 
-function CrisisViz() {
+export function CrisisViz() {
   const [ecoCountry,setEcoCountry]=useState("États-Unis");
   const [ownerCountry,setOwnerCountry]=useState("France");
   const [expandedOwner,setExpandedOwner]=useState(null);
@@ -651,7 +651,7 @@ function ArcDiagram({ owners }) {
   );
 }
 
-function OwnershipMap() {
+export function OwnershipMap() {
   const [country, setCountry] = useState("France");
   const [visible,  setVisible]  = useState(false);
   const countries = Object.keys(OWNERS_DATA);

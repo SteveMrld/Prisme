@@ -1,11 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import GrandFormatLayout from "../../../components/GrandFormatLayout";
+import GrandFormatLayout from "../../../components/GrandFormatLayout"
+import MediasVizClient from "./MediasVizClient"
 
 export const metadata = {
   title: "La désaffection — Soara",
   description: "Confiance en chute libre, évitement croissant, pouvoir médiatique concentré entre quelques mains. Le divorce entre le public occidental et ses médias est structurel. Anatomie d'une rupture.",
-};
+}
 
 export default function MediasGrandFormat() {
   const contentPath = path.join(process.cwd(), 'lib', 'content', 'medias.html')
@@ -19,10 +20,16 @@ export default function MediasGrandFormat() {
   return (
     <GrandFormatLayout
       slug="medias"
-      content={content}
-      category="soc"
-      categoryLabel="Société · Médias"
-      readTime="10"
-    />
-  );
+      author="Steve Moradel"
+      authorRole=""
+    >
+      {/* Visualisations interactives */}
+      <div style={{ margin: "0 -40px 48px", borderTop: "1.5px solid #DDD9D2", borderBottom: "1.5px solid #DDD9D2" }}>
+        <MediasVizClient />
+      </div>
+
+      {/* Texte de l'article */}
+      <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
+    </GrandFormatLayout>
+  )
 }
