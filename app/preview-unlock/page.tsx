@@ -1,18 +1,16 @@
 'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 const CODE = 'SOARA2026'
 
 export default function PreviewUnlock() {
   const [input, setInput] = useState('')
   const [error, setError] = useState(false)
-  const router = useRouter()
 
   const handleSubmit = () => {
     if (input.trim().toUpperCase() === CODE) {
       document.cookie = 'soara_preview=true; path=/; max-age=31536000'
-      router.push('/')
+      window.location.href = '/'
     } else {
       setError(true)
       setTimeout(() => setError(false), 1500)
