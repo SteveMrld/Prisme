@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./dette.module.css";
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
@@ -517,7 +517,7 @@ export default function DetteClient() {
             </div>
           </div>
           <div style={{ flex:1, minHeight:0 }}>
-            <Courbes ratios={ratios}/>
+            <CourbesRacing />
           </div>
           <div style={{ marginTop:"6px", fontFamily:mono, fontSize:"8px", color:"#CBD5E1",
             letterSpacing:"0.06em", flexShrink:0 }}>
