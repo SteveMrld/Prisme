@@ -1,8 +1,8 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "Quand les médias perdent le fil de la vérité — Soara",
-  description: "La désinformation prospère moins parce que le mensonge est devenu habile que parce que la rigueur journalistique s'est érodée. Entre polarisation éditoriale, économie de l'attention et concentration du pouvoir médiatique, le diagnostic.",
+  title: "La désaffection — Soara",
+  description: "Confiance en chute libre, évitement croissant, pouvoir médiatique concentré entre quelques mains. Le divorce entre le public occidental et ses médias est structurel. Anatomie d'une rupture.",
 };
 
 export default function MediasGrandFormat() {
