@@ -6,7 +6,7 @@ import { createClient } from '../../../lib/supabase-server'
 import fs from 'fs'
 import path from 'path'
 
-const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico']
+const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico', 'medias']
 
 const BASE_URL = 'https://soara.fr'
 
