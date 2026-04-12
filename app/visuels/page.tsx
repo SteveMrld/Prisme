@@ -42,6 +42,26 @@ export default function VisuelsPage() {
             <p className={styles.sectionDesc}>Des animations plein écran pensées pour les sujets qui demandent de l'espace — géopolitique, géographie, data.</p>
           </div>
 
+          {/* Card — Médias : chiffres, pouvoir et nouveaux acteurs */}
+          <a href="/visuels/medias-pouvoir" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--soc)'}}>Médias · Société · Dataviz interactive</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>Médias occidentaux : chiffres, pouvoir et nouveaux acteurs</h3>
+              <p className={styles.featSub}>Reuters Institute 2025 · 48 pays · Newsfluenceurs · Concentration du capital</p>
+              <p className={styles.featDesc}>
+                Désaffection du public, concentration du pouvoir médiatique entre les mains d'une poignée de milliardaires,
+                émergence des newsfluenceurs. Une analyse en deux parties fondée sur les données les plus récentes disponibles.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer l'analyse</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Card — bases militaires américaines */}
           <a href="/grands-formats/bases-militaires" className={styles.featCard} style={{marginTop:'1px'}}>
             <div className={styles.featBody}>
