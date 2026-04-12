@@ -8,9 +8,12 @@ export async function middleware(request: NextRequest) {
   // prisme-peach.vercel.app reste accessible (VERCEL_ENV !== 'production')
   const isProd = process.env.VERCEL_ENV === 'production'
 
-  if (process.env.MAINTENANCE_MODE === 'true' && isProd) {
+  const previewCookie = request.cookies.get('soara_preview')?.value === 'true'
+
+  if (process.env.MAINTENANCE_MODE === 'true' && isProd && !previewCookie) {
     const { pathname } = request.nextUrl
-    if (pathname !== '/bientot' && !pathname.startsWith('/_next') && !pathname.startsWith('/favicon')) {
+    const isAllowed = pathname === '/bientot' || pathname === '/preview-unlock' || pathname.startsWith('/_next') || pathname.startsWith('/favicon')
+    if (!isAllowed) {
       return NextResponse.redirect(new URL('/bientot', request.url))
     }
     return NextResponse.next()
