@@ -4,10 +4,11 @@ import { NextResponse, type NextRequest } from 'next/server'
 export async function middleware(request: NextRequest) {
   // Maintenance mode — redirige tout vers /bientot sauf la page elle-même
   // Exception : prisme-peach.vercel.app reste toujours accessible (env preview)
-  const hostname = request.nextUrl.hostname
-  const isPreview = hostname === 'prisme-peach.vercel.app' || hostname === 'localhost' || hostname === '127.0.0.1'
+  // Maintenance mode : actif uniquement en production (soara.fr)
+  // prisme-peach.vercel.app reste accessible (VERCEL_ENV !== 'production')
+  const isProd = process.env.VERCEL_ENV === 'production'
 
-  if (process.env.MAINTENANCE_MODE === 'true' && !isPreview) {
+  if (process.env.MAINTENANCE_MODE === 'true' && isProd) {
     const { pathname } = request.nextUrl
     if (pathname !== '/bientot' && !pathname.startsWith('/_next') && !pathname.startsWith('/favicon')) {
       return NextResponse.redirect(new URL('/bientot', request.url))
