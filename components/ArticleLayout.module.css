@@ -26,7 +26,7 @@
 .articleHeader {
   max-width: 720px;
   margin: 0 auto;
-  padding: 48px 24px 36px;
+  padding: 32px 24px 24px;
   text-align: center;
 }
 
@@ -171,8 +171,8 @@
 }
 
 @media (max-width: 860px) {
-  .articleHeader { padding: 40px 20px 32px; border-left: none; border-top: 3px solid; }
-  .articleBody { padding: 40px 20px 24px; }
+  .articleHeader { padding: 24px 20px 20px; border-left: none; border-top: 3px solid; }
+  .articleBody { padding: 24px 20px 20px; }
 }
 
 /* ── Responsive complet ── */
@@ -393,7 +393,7 @@
 /* ── NEWSLETTER ── */
 .newsletter {
   background: var(--encre);
-  padding: 52px 40px;
+  padding: 36px 24px;
 }
 .newsletterInner {
   max-width: 740px;
@@ -470,7 +470,7 @@
 .related {
   max-width: 740px;
   margin: 0 auto;
-  padding: 48px 40px;
+  padding: 32px 24px;
   border-top: 2px solid var(--encre);
 }
 
@@ -710,7 +710,7 @@
 .paywallBox {
   position: relative;
   text-align: center;
-  padding: 0 24px 48px;
+  padding: 0 24px 32px;
   background: #fff;
   border: none;
   margin-top: 0;
