@@ -490,7 +490,7 @@ export default function DetteClient() {
       {/* ── VUE MONDE ── */}
       {vue === "monde" && (
         <div style={{ flex:1, display:"flex", flexDirection:"column",
-          padding:"22px 44px 12px", overflow:"hidden" }}>
+          padding:"22px 44px 12px", overflow:"auto" }}>
           <div style={{ display:"flex", justifyContent:"space-between",
             alignItems:"flex-end", marginBottom:"14px", flexShrink:0, flexWrap:"wrap", gap:"12px" }}>
             <div>
