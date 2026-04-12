@@ -4,8 +4,8 @@ import { NextResponse, type NextRequest } from 'next/server'
 export async function middleware(request: NextRequest) {
   // Maintenance mode — redirige tout vers /bientot sauf la page elle-même
   // Exception : prisme-peach.vercel.app reste toujours accessible (env preview)
-  const host = request.headers.get('host') || ''
-  const isPreview = host.includes('prisme-peach.vercel.app') || host.includes('localhost')
+  const hostname = request.nextUrl.hostname
+  const isPreview = hostname === 'prisme-peach.vercel.app' || hostname === 'localhost' || hostname === '127.0.0.1'
 
   if (process.env.MAINTENANCE_MODE === 'true' && !isPreview) {
     const { pathname } = request.nextUrl
