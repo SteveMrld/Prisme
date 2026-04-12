@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import ArticleLayout from '../../../components/ArticleLayout'
 import GrandFormatLayout from '../../../components/GrandFormatLayout'
 import articlesData from '../../../lib/articles.json'
@@ -7,6 +7,16 @@ import fs from 'fs'
 import path from 'path'
 
 const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico', 'medias']
+
+// Ces slugs ont leur contenu dans /grands-formats/[slug]/page.tsx (JSX inline)
+const REDIRECT_TO_GRAND_FORMAT = [
+  'chambre-ratification',
+  'architecture-desordre',
+  'skunkworks',
+  'palantir',
+  'bases-militaires',
+  'dette-souveraine',
+]
 
 const BASE_URL = 'https://soara.fr'
 
@@ -62,6 +72,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
   const article = articlesData.find((a: any) => a.slug === params.slug)
   if (!article) notFound()
+
+  // Redirection vers la page grand format dédiée
+  if (REDIRECT_TO_GRAND_FORMAT.includes(params.slug)) {
+    redirect(`/grands-formats/${params.slug}`)
+  }
 
   const contentPath = path.join(process.cwd(), 'lib', 'content', `${params.slug}.html`)
   let content = ''
