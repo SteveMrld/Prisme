@@ -316,7 +316,8 @@
     "date": "2026-04-02",
     "premium": false,
     "imageCredit": "© SOARA",
-    "grandFormatUrl": "/grands-formats/medias"
+    "grandFormatUrl": "/grands-formats/medias",
+    "customRoute": "/grands-formats/medias"
   },
   {
     "slug": "morrison",

@@ -51,6 +51,7 @@ const heroAside = heroAsideSlugs.map(slug => {
 })
 
 const grandsFormatsSlugs = [
+  { slug: 'medias',              extraCategories: [{ label: 'Société', color: 'soc' }],         sections: '5 sections · données Reuters 2025' },
   { slug: 'chambre-ratification', extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '5 sections · 4 illustrations' },
   { slug: 'skunkworks',           extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '5 sections · 5 illustrations' },
   { slug: 'dette-souveraine',     extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '6 sections · données en temps réel' },
