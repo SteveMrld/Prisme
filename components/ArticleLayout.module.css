@@ -2,7 +2,7 @@
   position: relative;
   overflow: hidden;
   width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  
   background: #fff;
 }
 
@@ -131,7 +131,7 @@
 .articleBody {
   max-width: 680px;
   margin: 0 auto;
-  padding: 20px 24px 20px;
+  padding: 16px 24px 16px;
 }
 
 /* Pour les articles avec header interne — on laisse le HTML gérer ses propres marges */
@@ -171,8 +171,8 @@
 }
 
 @media (max-width: 860px) {
-  .articleHeader { padding: 24px 20px 20px; border-left: none; border-top: 3px solid; }
-  .articleBody { padding: 24px 20px 20px; }
+  .articleHeader { padding: 16px 20px 12px; border-left: none; border-top: 3px solid; }
+  .articleBody { padding: 12px 20px 12px; }
 }
 
 /* ── Responsive complet ── */
@@ -253,8 +253,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-top: 8px;
-  padding: 20px 0;
+  margin-top: 0;
+  padding: 16px 0;
   border-top: 1px solid var(--bord);
   border-bottom: 1px solid var(--bord);
 }
