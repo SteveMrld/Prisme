@@ -3,7 +3,11 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
   // Maintenance mode — redirige tout vers /bientot sauf la page elle-même
-  if (process.env.MAINTENANCE_MODE === 'true') {
+  // Exception : prisme-peach.vercel.app reste toujours accessible (env preview)
+  const host = request.headers.get('host') || ''
+  const isPreview = host.includes('prisme-peach.vercel.app') || host.includes('localhost')
+
+  if (process.env.MAINTENANCE_MODE === 'true' && !isPreview) {
     const { pathname } = request.nextUrl
     if (pathname !== '/bientot' && !pathname.startsWith('/_next') && !pathname.startsWith('/favicon')) {
       return NextResponse.redirect(new URL('/bientot', request.url))
