@@ -21,6 +21,7 @@ interface ArticleLayoutProps {
   author?: string
   authorRole?: string
   related?: any[]
+  imageCredit?: string
 }
 
 const categoryColors: Record<string, string> = {
@@ -56,7 +57,8 @@ export default function ArticleLayout({
   readTime, date, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, content, slug = '',
   author = 'Steve Moradel',
   authorRole = 'Fondateur · Directeur de la rédaction',
-  related = []
+  related = [],
+  imageCredit = ''
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -140,9 +142,10 @@ export default function ArticleLayout({
 
       {/* IMAGE après le titre pour tous sauf portrait (skip si déjà dans le contenu) */}
       {category !== 'portrait' && image && !hasHeroInContent && (
-        <div className={styles.heroWrap}>
+        <figure className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg} />
-        </div>
+          {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
+        </figure>
       )}
 
       {/* BYLINE — uniquement pour les articles sans header interne

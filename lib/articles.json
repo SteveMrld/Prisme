@@ -14,7 +14,8 @@
     "image": "/articles/terres-rares.png",
     "featured": true,
     "premium": false,
-    "grandFormat": false
+    "grandFormat": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "architecture-desordre",
@@ -30,7 +31,8 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "grandFormatUrl": "/grands-formats/architecture-desordre"
+    "grandFormatUrl": "/grands-formats/architecture-desordre",
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "chambre-ratification",
@@ -46,7 +48,8 @@
     "featured": true,
     "premium": false,
     "grandFormat": true,
-    "grandFormatUrl": "/grands-formats/chambre-ratification"
+    "grandFormatUrl": "/grands-formats/chambre-ratification",
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "skunkworks",
@@ -61,7 +64,8 @@
     "authorRole": "Soara",
     "featured": false,
     "premium": false,
-    "grandFormat": false
+    "grandFormat": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "palantir",
@@ -77,7 +81,8 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "grandFormatUrl": "/grands-formats/palantir"
+    "grandFormatUrl": "/grands-formats/palantir",
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "moreno",
@@ -90,7 +95,8 @@
     "author": "Élisabeth Moreno",
     "authorRole": "Ancienne ministre · Dirigeante d'entreprise",
     "featured": true,
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "dette-souveraine",
@@ -105,7 +111,8 @@
     "authorRole": "",
     "featured": false,
     "premium": false,
-    "customRoute": "/grands-formats/dette-souveraine"
+    "customRoute": "/grands-formats/dette-souveraine",
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "afrique",
@@ -118,7 +125,8 @@
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-05-12",
     "featured": false,
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "arctique",
@@ -130,7 +138,8 @@
     "author": "Steve Moradel",
     "authorRole": "Environnement & Ressources",
     "date": "2026-05-20",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "blackrock",
@@ -143,7 +152,8 @@
     "authorRole": "Économie & Finance",
     "featured": false,
     "date": "2026-04-17",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "chine",
@@ -155,7 +165,8 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-05-15",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "cygne",
@@ -167,7 +178,8 @@
     "author": "Steve Moradel",
     "authorRole": "Essai & Concept",
     "date": "2026-04-04",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "eau",
@@ -180,7 +192,8 @@
     "authorRole": "Environnement & Ressources",
     "featured": false,
     "date": "2026-04-07",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "empires",
@@ -192,7 +205,8 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2025-12-19",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "fiscalite",
@@ -204,7 +218,8 @@
     "author": "Steve Moradel",
     "authorRole": "Économie & Finance",
     "date": "2026-04-10",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "fragilite",
@@ -216,7 +231,8 @@
     "author": "Steve Moradel",
     "authorRole": "Culture & Essai",
     "date": "2025-12-05",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "france_maritime",
@@ -228,7 +244,8 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-02-13",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "ia",
@@ -240,7 +257,8 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-02-06",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "ia_ecriture",
@@ -252,7 +270,8 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-02-20",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "kintsugi",
@@ -264,7 +283,8 @@
     "author": "Steve Moradel",
     "authorRole": "Culture & Essai",
     "date": "2025-12-26",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "lecture",
@@ -277,7 +297,8 @@
     "authorRole": "Culture & Société",
     "date": "2026-01-30",
     "premium": false,
-    "featured": true
+    "featured": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "medias",
@@ -289,7 +310,8 @@
     "author": "Steve Moradel",
     "authorRole": "Société & Politique",
     "date": "2026-04-02",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "morrison",
@@ -301,7 +323,8 @@
     "author": "Steve Moradel",
     "authorRole": "Portrait",
     "date": "2026-03-06",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© John Mathew Smith / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
   },
   {
     "slug": "morin",
@@ -313,7 +336,8 @@
     "author": "Steve Moradel",
     "authorRole": "Portrait",
     "date": "2026-04-11",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© Luc Legay / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
   },
   {
     "slug": "tutu",
@@ -325,7 +349,8 @@
     "author": "Steve Moradel",
     "authorRole": "Portrait",
     "date": "2026-04-11",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© John Mathew Smith / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
   },
   {
     "slug": "musk",
@@ -337,7 +362,8 @@
     "author": "Steve Moradel",
     "authorRole": "Portrait",
     "date": "2026-03-26",
-    "premium": true
+    "premium": true,
+    "imageCredit": "Justin Pacheco / U.S. Air Force, Domaine public, modifiée par SOARA"
   },
   {
     "slug": "nooyi",
@@ -349,7 +375,8 @@
     "author": "Steve Moradel",
     "authorRole": "Portrait",
     "date": "2026-03-19",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© Andy Mettler / World Economic Forum / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
   },
   {
     "slug": "overton",
@@ -361,7 +388,8 @@
     "author": "Steve Moradel",
     "authorRole": "Essai & Concept",
     "date": "2026-01-23",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "pessimisme",
@@ -373,7 +401,8 @@
     "author": "Steve Moradel",
     "authorRole": "Société & Politique",
     "date": "2026-01-08",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "predateurs",
@@ -385,7 +414,8 @@
     "author": "Steve Moradel",
     "authorRole": "Essai & Concept",
     "date": "2026-02-27",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "reseaux",
@@ -397,7 +427,8 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-04-14",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "rushkoff",
@@ -409,7 +440,8 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-04-24",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "semico",
@@ -421,7 +453,8 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-05-08",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "silence",
@@ -433,7 +466,8 @@
     "author": "Steve Moradel",
     "authorRole": "Société & Politique",
     "date": "2025-12-12",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "taiwan",
@@ -445,7 +479,8 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-01-16",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "techgeo",
@@ -457,7 +492,8 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-03-14",
-    "premium": true
+    "premium": true,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "technosolutionnisme",
@@ -469,7 +505,8 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-04-30",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "venezuela",
@@ -481,7 +518,8 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-03-10",
-    "premium": false
+    "premium": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "orbite",
@@ -493,7 +531,8 @@
     "date": "2026-04-08",
     "readTime": "12 min de lecture",
     "image": "/img-orbite.png",
-    "featured": false
+    "featured": false,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "obama",
@@ -506,6 +545,7 @@
     "readTime": "15 min de lecture",
     "image": "/portraits/obama.png",
     "featured": false,
-    "premium": false
+    "premium": false,
+    "imageCredit": "The White House, Domaine public, modifiée par SOARA"
   }
 ]
