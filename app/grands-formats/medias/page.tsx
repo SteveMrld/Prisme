@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
@@ -6,9 +8,18 @@ export const metadata = {
 };
 
 export default function MediasGrandFormat() {
+  const contentPath = path.join(process.cwd(), 'lib', 'content', 'medias.html')
+  let content = ''
+  try {
+    content = fs.readFileSync(contentPath, 'utf-8')
+  } catch {
+    content = '<p>Contenu à venir.</p>'
+  }
+
   return (
     <GrandFormatLayout
       slug="medias"
+      content={content}
       category="soc"
       categoryLabel="Société · Médias"
       readTime="10"
