@@ -131,7 +131,7 @@
 .articleBody {
   max-width: 680px;
   margin: 0 auto;
-  padding: 32px 24px 24px;
+  padding: 20px 24px 20px;
 }
 
 /* Pour les articles avec header interne — on laisse le HTML gérer ses propres marges */
