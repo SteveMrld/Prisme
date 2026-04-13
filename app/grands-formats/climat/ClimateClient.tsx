@@ -10,34 +10,66 @@ const BGS = [
   { src:"/grands-formats/climat/06-hiver-petitAge.jpg",  kb:"kb6", r:[0.001,0] },
 ]
 
-const GEO = [
+// Géologique — 500M ans, axe linéaire en Ma
+const GEO_500M = [
   [500,6.2],[480,4.2],[460,1.5],[445,-4.8],[440,-3.5],[430,1.5],
   [420,4.2],[400,5.2],[380,4.2],[360,2.2],[340,0.0],[330,-1.5],
   [310,-3.2],[290,1.2],[270,3.5],[252,9.8],[240,7.5],[220,5.8],
   [200,4.8],[180,5.8],[160,6.5],[100,9.2],[90,8.8],[70,7.0],[66,6.5],
   [55.5,8.2],[50,6.2],[40,4.2],[34,2.2],[20,2.5],[10,1.5],[5,1.0],
   [2.8,-0.8],[2.5,-2.5],[1.0,-1.8],[0.6,-3.2],[0.020,-5.8],
-  [0.010,-1.2],[0.008,0.1],[0.003,-0.2],[0.00050,-0.22],
-  [0.00015,-0.08],[0.00010,0.0],[0.00004,0.22],[0.00002,0.37],
-  [0.000005,0.68],[0.0000008,1.15],[0.00000001,1.62],
+  [0.010,-1.2],[0.001,-0.3],
 ]
 
-const SLOPES = [
-  { l:"Ordovicien",    d:500000, v:8,   c:"#7dd3fc", n:"500 000 ans" },
-  { l:"Fin-Permien",  d:60000,  v:9,   c:"#fb923c", n:"60 000 ans" },
-  { l:"PETM",         d:20000,  v:5,   c:"#f87171", n:"20 000 ans" },
-  { l:"Post-glaciaire",d:10000, v:6,   c:"#93c5fd", n:"10 000 ans" },
-  { l:"Aujourd'hui",  d:150,    v:1.62,c:"#dc2626", n:"150 ans", now:true },
+// 500 dernières années — axe linéaire en années
+const RECENT = [
+  [1500,-0.22],[1520,-0.25],[1550,-0.32],[1580,-0.28],[1600,-0.40],
+  [1620,-0.38],[1645,-0.44],[1650,-0.46],[1680,-0.34],[1700,-0.28],
+  [1720,-0.25],[1750,-0.20],[1783,-0.38],[1800,-0.21],[1815,-0.53],
+  [1820,-0.24],[1840,-0.17],[1850,-0.08],[1870,-0.06],[1890,-0.14],
+  [1900,-0.08],[1910,-0.14],[1920,-0.05],[1930,+0.03],[1940,+0.10],
+  [1950,+0.03],[1960,+0.07],[1970,+0.08],[1980,+0.22],[1985,+0.26],
+  [1990,+0.37],[1995,+0.38],[2000,+0.52],[2005,+0.62],[2010,+0.68],
+  [2015,+0.87],[2016,+1.01],[2018,+0.83],[2020,+1.15],[2022,+0.99],
+  [2023,+1.45],[2024,+1.62],
 ]
 
-function gT(ma) {
-  for(let i=1;i<GEO.length;i++) {
-    if(ma>=GEO[i][0]) {
-      const t=(ma-GEO[i-1][0])/(GEO[i][0]-GEO[i-1][0])
-      return GEO[i-1][1]+(GEO[i][1]-GEO[i-1][1])*t
+const EVENTS_500M = [
+  { ma:445,  label:"Glaciation", sub:"−5°C" },
+  { ma:252,  label:"Fin-Permien", sub:"−96% espèces" },
+  { ma:55.5, label:"PETM", sub:"+8°C" },
+  { ma:0.020,label:"Ère glac.", sub:"−6°C" },
+]
+
+const EVENTS_RECENT = [
+  { yr:1600, label:"Petit Âge Glaciaire" },
+  { yr:1815, label:"Tambora" },
+  { yr:1850, label:"Révolution\nindustrielle" },
+  { yr:1988, label:"Alerte\nHansen" },
+  { yr:2015, label:"Accord\nde Paris" },
+]
+
+function gT500(ma) {
+  const d=GEO_500M
+  for(let i=1;i<d.length;i++) {
+    if(ma>=d[i][0]) {
+      const t=(ma-d[i-1][0])/(d[i][0]-d[i-1][0])
+      return d[i-1][1]+(d[i][1]-d[i-1][1])*t
     }
   }
-  return GEO[GEO.length-1][1]
+  return d[d.length-1][1]
+}
+function gTR(yr) {
+  const d=RECENT
+  if(yr<=d[0][0]) return d[0][1]
+  if(yr>=d[d.length-1][0]) return d[d.length-1][1]
+  for(let i=1;i<d.length;i++) {
+    if(yr<=d[i][0]) {
+      const t=(yr-d[i-1][0])/(d[i][0]-d[i-1][0])
+      return d[i-1][1]+(d[i][1]-d[i-1][1])*t
+    }
+  }
+  return d[d.length-1][1]
 }
 function col(v) {
   const s=[[-6,[100,180,255]],[-3,[140,200,240]],[-1,[180,210,225]],
@@ -56,31 +88,39 @@ function gBg(ma) {
   for(let i=0;i<BGS.length;i++) if(ma<=BGS[i].r[0]&&ma>=BGS[i].r[1]) return i
   return BGS.length-1
 }
-function gSl(ma) {
-  if(ma>420) return 0; if(ma>66) return 1; if(ma>2.5) return 2
-  if(ma>0.001) return 3; return 4
-}
 
 export default function CC() {
-  const [p,setP]=useState(0)
-  const [play,setPlay]=useState(false)
-  const [bg,setBg]=useState(0)
-  const [sl,setSl]=useState(0)
-  const [ok,setOk]=useState(false)
+  const [p, setP]     = useState(0)   // 0→1 pour le graphique 500M
+  const [p2, setP2]   = useState(0)   // 0→1 pour le graphique récent
+  const [play, setPlay] = useState(false)
+  const [bg, setBg]   = useState(0)
+  const [ok, setOk]   = useState(false)
   const raf=useRef(null), last=useRef(null), pr=useRef(0)
-  const DUR=28000
+  const DUR1=18000, DUR2=10000 // 18s géo + 10s récent
 
   useEffect(()=>{setOk(true);setTimeout(()=>setPlay(true),400)},[])
 
   const tick=useCallback((ts)=>{
     if(!last.current) last.current=ts
     const dt=ts-last.current; last.current=ts
-    const sp=pr.current>0.88?0.22:1
-    pr.current=Math.min(pr.current+(dt/DUR)*sp,1)
-    const ma=500*(1-pr.current)
-    setBg(gBg(ma)); setSl(gSl(ma)); setP(pr.current)
-    if(pr.current<1) raf.current=requestAnimationFrame(tick)
-    else setPlay(false)
+
+    // Phase 1 : graphique géologique
+    if(pr.current<1) {
+      pr.current=Math.min(pr.current+dt/DUR1,1)
+      const ma=500*(1-pr.current)
+      setBg(gBg(ma))
+      setP(pr.current)
+      if(pr.current<1) { raf.current=requestAnimationFrame(tick); return }
+    }
+
+    // Phase 2 : graphique récent (démarre quand phase 1 finie)
+    // On utilise un ref séparé
+    setP2(pp=>{
+      const np=Math.min(pp+dt/DUR2,1)
+      if(np>=1) setPlay(false)
+      return np
+    })
+    if(true) raf.current=requestAnimationFrame(tick)
   },[])
 
   useEffect(()=>{
@@ -90,46 +130,54 @@ export default function CC() {
   },[play,tick])
 
   const onPlay=()=>{
-    if(pr.current>=1){pr.current=0;setP(0);setBg(0);setSl(0)}
+    if(pr.current>=1&&p2>=1){pr.current=0;setP(0);setP2(0);setBg(0)}
     setPlay(x=>!x)
   }
-  const onSlide=(e)=>{
-    pr.current=Number(e.target.value)
-    const ma=500*(1-pr.current)
-    setBg(gBg(ma));setSl(gSl(ma));setP(pr.current);setPlay(false)
+
+  const ma=500*(1-p)
+  const currentT=gT500(ma)
+
+  // ── GRAPHIQUE 1 : 500M ans (axe linéaire en Ma) ──
+  const W1=400,H1=200,PL1=44,PR1=8,PT1=16,PB1=32
+  const cW1=W1-PL1-PR1,cH1=H1-PT1-PB1
+  const TMIN=-7,TMAX=11
+  // Axe linéaire — 500 Ma à gauche, 0 à droite
+  const x1=(mav)=>PL1+(500-mav)/500*cW1
+  const y1=(tv)=>PT1+cH1-(tv-TMIN)/(TMAX-TMIN)*cH1
+
+  // Segments animés jusqu'à Ma courant
+  const segs1=[]
+  for(let i=1;i<GEO_500M.length;i++){
+    if(GEO_500M[i][0]>ma) continue
+    const m1=Math.min(GEO_500M[i-1][0],ma), m2=GEO_500M[i][0]
+    const t1=gT500(m1), t2=gT500(m2)
+    segs1.push({x1:x1(m1),y1:y1(t1),x2:x1(m2),y2:y1(t2),c:col((t1+t2)/2)})
   }
 
-  const ma=500*(1-p), t=gT(ma)
+  // ── GRAPHIQUE 2 : 500 dernières années (axe linéaire) ──
+  const W2=400,H2=200,PL2=44,PR2=8,PT2=16,PB2=32
+  const cW2=W2-PL2-PR2,cH2=H2-PT2-PB2
+  const TMIN2=-0.7, TMAX2=1.8
+  const currentYr=1500+p2*(2024-1500)
+  const x2=(yr)=>PL2+(yr-1500)/(2024-1500)*cW2
+  const y2=(tv)=>PT2+cH2-(tv-TMIN2)/(TMAX2-TMIN2)*cH2
 
-  // SVG courbe
-  const W=820,H=180,PL=46,PR=10,PT=14,PB=28
-  const cW=W-PL-PR,cH=H-PT-PB
-  const xL=(m)=>PL+(Math.log10(Math.max(m,5e-9))-Math.log10(5e-9))/(Math.log10(500)-Math.log10(5e-9))*cW
-  const yS=(v)=>PT+cH-(v-(-7))/(11-(-7))*cH
-
-  const segs=[]
-  for(let i=1;i<GEO.length;i++){
-    if(GEO[i][0]>ma) continue
-    const steps=Math.max(2,Math.ceil((GEO[i-1][0]-GEO[i][0])/0.8))
-    for(let s=0;s<steps;s++){
-      const m1=GEO[i-1][0]-(GEO[i-1][0]-GEO[i][0])*s/steps
-      const m2=GEO[i-1][0]-(GEO[i-1][0]-GEO[i][0])*(s+1)/steps
-      if(m2>ma) break
-      segs.push({x1:xL(m1),y1:yS(gT(m1)),x2:xL(m2),y2:yS(gT(m2)),c:col((gT(m1)+gT(m2))/2)})
-    }
+  const segs2=[]
+  for(let i=1;i<RECENT.length;i++){
+    if(RECENT[i][0]>currentYr) break
+    segs2.push({
+      x1:x2(RECENT[i-1][0]),y1:y2(RECENT[i-1][1]),
+      x2:x2(Math.min(RECENT[i][0],currentYr)),y2:y2(gTR(Math.min(RECENT[i][0],currentYr))),
+      c:col((RECENT[i-1][1]+RECENT[i][1])/2)
+    })
   }
-  const hx=xL(Math.max(ma,5e-9)),hy=yS(t)
-
-  // Panneaux
-  const PW=120,PH=110,PPL=7,PPR=5,PPT=10,PPB=18
-  const pW=PW-PPL-PPR,pH=PH-PPT-PPB
-  const T0=-0.5,T1=2.0
-  const py=(v)=>PPT+pH-(v-T0)/(T1-T0)*pH
+  const hx2=x2(Math.min(currentYr,2024))
+  const hy2=y2(gTR(Math.min(currentYr,2024)))
 
   if(!ok) return null
 
   return (
-    <div style={{background:"#04060d",minHeight:"100vh",color:"#fff",fontFamily:"'DM Mono',monospace",position:"relative",overflow:"hidden"}}>
+    <div style={{background:"#04060d",color:"#fff",fontFamily:"'DM Mono',monospace",position:"relative",overflow:"hidden",minHeight:"100vh"}}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=DM+Mono:wght@300;400&display=swap');
         @keyframes kb1{from{transform:scale(1.0)translate(0,0)}to{transform:scale(1.18)translate(-3%,-2%)}}
@@ -137,192 +185,217 @@ export default function CC() {
         @keyframes kb4{from{transform:scale(1.1)translate(1%,-1%)}to{transform:scale(1.0)translate(-2%,1%)}}
         @keyframes kb5{from{transform:scale(1.0)translate(3%,0)}to{transform:scale(1.18)translate(-3%,-1%)}}
         @keyframes kb6{from{transform:scale(1.05)translate(-1%,1%)}to{transform:scale(1.18)translate(2%,-2%)}}
-        @keyframes dh{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
-        @keyframes dv{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
       `}</style>
 
-      {/* FOND KB — couvre toute la page */}
+      {/* Fond KB */}
       {BGS.map((b,i)=>(
         <div key={i} style={{
           position:"fixed",inset:0,zIndex:0,
           backgroundImage:`url(${b.src})`,backgroundSize:"cover",backgroundPosition:"center",
-          opacity:i===bg?0.5:0,transition:"opacity 2.5s ease",
-          filter:"brightness(0.6) saturate(0.8)",
+          opacity:i===bg?0.45:0,transition:"opacity 2.5s ease",
+          filter:"brightness(0.55) saturate(0.8)",
           animation:`${b.kb} 22s ease-in-out infinite alternate`,
         }}/>
       ))}
-      {/* Voile sombre uniforme */}
       <div style={{position:"fixed",inset:0,zIndex:1,background:"rgba(4,6,13,0.55)"}}/>
 
-      {/* TOUT LE CONTENU — au-dessus du fond */}
-      <div style={{position:"relative",zIndex:2,padding:"20px 32px 32px",display:"flex",flexDirection:"column",gap:12,minHeight:"100vh"}}>
+      {/* Contenu */}
+      <div style={{position:"relative",zIndex:2,padding:"20px 32px 28px",display:"flex",flexDirection:"column",gap:14}}>
 
-        {/* Titre + température */}
-        <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:16}}>
+        {/* Titre */}
+        <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:12}}>
           <div>
-            <div style={{fontSize:8,letterSpacing:4,color:"rgba(255,255,255,0.35)",textTransform:"uppercase",marginBottom:8}}>
+            <div style={{fontSize:8,letterSpacing:4,color:"rgba(255,255,255,0.3)",textTransform:"uppercase",marginBottom:8}}>
               Soara · Scotese 2021 · HadCRUT5 · NASA GISS
             </div>
-            <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(20px,3.2vw,38px)",fontWeight:300,color:"#fff",margin:"0 0 4px",lineHeight:1.1}}>
+            <h1 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(20px,3vw,38px)",fontWeight:300,color:"#fff",margin:"0 0 4px",lineHeight:1.1}}>
               La Terre a toujours changé <em style={{fontWeight:600}}>de température.</em>
             </h1>
-            <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(12px,1.5vw,16px)",fontWeight:300,color:"#dc2626",margin:0}}>
+            <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(12px,1.4vw,16px)",fontWeight:300,color:"#dc2626",margin:0}}>
               Ce qui est sans précédent, c'est la vitesse.
             </p>
           </div>
           <div style={{textAlign:"right",flexShrink:0}}>
-            <div style={{fontSize:8,letterSpacing:2,color:"rgba(255,255,255,0.4)",marginBottom:4,whiteSpace:"nowrap"}}>
-              {ma>1?`−${Math.round(ma)} Ma`:ma>0.001?`−${Math.round(ma*1000)}k ans`:"aujourd'hui"}
+            <div style={{fontSize:7,letterSpacing:2,color:"rgba(255,255,255,0.35)",marginBottom:3}}>
+              {p<1?(ma>1?`−${Math.round(ma)} Ma`:ma>0.001?`−${Math.round(ma*1000)}k ans`:"passé récent"):`${Math.round(currentYr)}`}
             </div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(28px,4vw,52px)",fontWeight:700,lineHeight:1,color:col(t),letterSpacing:"-1px",textShadow:`0 0 30px ${col(t)}55`,transition:"color 0.3s"}}>
-              {t>=0?"+":""}{t.toFixed(2)}<span style={{fontSize:"0.38em",opacity:0.6}}>°C</span>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(26px,3.8vw,48px)",fontWeight:700,lineHeight:1,color:col(p<1?currentT:gTR(Math.min(currentYr,2024))),letterSpacing:"-1px",transition:"color 0.3s"}}>
+              {(p<1?currentT:gTR(Math.min(currentYr,2024)))>=0?"+":""}{(p<1?currentT:gTR(Math.min(currentYr,2024))).toFixed(2)}<span style={{fontSize:"0.38em",opacity:0.6}}>°C</span>
             </div>
           </div>
         </div>
 
-        {/* Barre couleur légende */}
+        {/* Barre couleur */}
         <div style={{display:"flex",alignItems:"center",gap:8}}>
-          <span style={{fontSize:7,color:"rgba(255,255,255,0.5)",letterSpacing:2,flexShrink:0}}>FROID</span>
+          <span style={{fontSize:7,color:"rgba(255,255,255,0.45)",letterSpacing:1,flexShrink:0}}>−7°C</span>
           <div style={{height:4,flex:1,borderRadius:2,background:"linear-gradient(to right,#7dd3fc,#bcd9ec,#cdc5a0,#f5b87a,#f07040,#e03020,#9b0000)"}}/>
-          <span style={{fontSize:7,color:"rgba(255,255,255,0.5)",letterSpacing:2,flexShrink:0}}>CHAUD</span>
+          <span style={{fontSize:7,color:"rgba(255,255,255,0.45)",letterSpacing:1,flexShrink:0}}>+11°C</span>
         </div>
 
-        {/* COURBE */}
-        <div style={{border:"1px solid rgba(255,255,255,0.15)",background:"rgba(4,6,13,0.4)",backdropFilter:"blur(4px)"}}>
-          <svg viewBox={`0 0 ${W} ${H}`} style={{width:"100%",display:"block"}}>
-            <defs>
-              <filter id="g1"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-              <filter id="g2" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            </defs>
+        {/* DEUX GRAPHIQUES CÔTE À CÔTE */}
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:4}}>
 
-            {/* Zones chaud/froid */}
-            <rect x={PL} y={PT} width={cW} height={yS(0)-PT} fill="rgba(210,70,30,0.05)"/>
-            <rect x={PL} y={yS(0)} width={cW} height={cH-(yS(0)-PT)} fill="rgba(100,160,255,0.05)"/>
+          {/* ── GRAPHIQUE 1 : 500 millions d'années ── */}
+          <div style={{border:"1px solid rgba(255,255,255,0.15)",background:"rgba(4,6,13,0.4)",backdropFilter:"blur(4px)"}}>
+            <div style={{padding:"8px 10px 4px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:"clamp(11px,1.4vw,14px)",color:"#fff"}}>Il y a 500 millions d'années → aujourd'hui</div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:7,color:"rgba(255,255,255,0.35)",marginTop:2}}>Anomalie °C · Chaque point = millions d'années</div>
+            </div>
+            <svg viewBox={`0 0 ${W1} ${H1}`} style={{width:"100%",display:"block"}}>
+              <defs>
+                <filter id="g1"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <filter id="g2" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
 
-            {/* Grid Y blanc visible */}
-            {[-6,-3,0,3,6,9].map(v=>(
-              <g key={v}>
-                <line x1={PL} y1={yS(v)} x2={PL+cW} y2={yS(v)}
-                  stroke={v===0?"rgba(255,255,255,0.5)":"rgba(255,255,255,0.12)"}
-                  strokeWidth={v===0?1:0.6} strokeDasharray={v===0?"none":"3 8"}/>
-                <text x={PL-6} y={yS(v)+4} textAnchor="end"
-                  fill={v===0?"#ffffff":"rgba(255,255,255,0.6)"}
-                  fontSize={9} fontFamily="'DM Mono',monospace" fontWeight={v===0?600:300}>
-                  {v>=0?`+${v}°`:`${v}°`}
-                </text>
+              {/* Zones */}
+              <rect x={PL1} y={PT1} width={cW1} height={y1(0)-PT1} fill="rgba(210,70,30,0.06)"/>
+              <rect x={PL1} y={y1(0)} width={cW1} height={cH1-(y1(0)-PT1)} fill="rgba(100,160,255,0.06)"/>
+
+              {/* Grid Y */}
+              {[-6,-3,0,3,6,9].map(v=>(
+                <g key={v}>
+                  <line x1={PL1} y1={y1(v)} x2={PL1+cW1} y2={y1(v)}
+                    stroke={v===0?"rgba(255,255,255,0.45)":"rgba(255,255,255,0.1)"}
+                    strokeWidth={v===0?1:0.5} strokeDasharray={v===0?"none":"3 7"}/>
+                  <text x={PL1-5} y={y1(v)+4} textAnchor="end"
+                    fill={v===0?"#fff":"rgba(255,255,255,0.55)"}
+                    fontSize={8.5} fontFamily="'DM Mono',monospace" fontWeight={v===0?600:300}>
+                    {v>=0?`+${v}°`:`${v}°`}
+                  </text>
+                </g>
+              ))}
+
+              {/* X ticks linéaires */}
+              {[500,400,300,200,100,50,0].map(ma=>(
+                <g key={ma}>
+                  <line x1={x1(ma)} y1={PT1+cH1} x2={x1(ma)} y2={PT1+cH1+4} stroke="rgba(255,255,255,0.2)"/>
+                  <text x={x1(ma)} y={PT1+cH1+14} textAnchor="middle"
+                    fill="rgba(255,255,255,0.45)" fontSize={6.5} fontFamily="'DM Mono',monospace">
+                    {ma===0?"auj.":`${ma} Ma`}
+                  </text>
+                </g>
+              ))}
+
+              {/* Labels chaud/froid */}
+              <text x={PL1+4} y={PT1+10} fill="rgba(220,80,40,0.8)" fontSize={7} fontFamily="'DM Mono',monospace" letterSpacing={1}>CHAUD</text>
+              <text x={PL1+4} y={PT1+cH1-4} fill="rgba(100,160,255,0.8)" fontSize={7} fontFamily="'DM Mono',monospace" letterSpacing={1}>FROID</text>
+
+              {/* Courbe animée */}
+              <g filter="url(#g1)">
+                {segs1.map((s,i)=><line key={i} x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2} stroke={s.c} strokeWidth={2} strokeLinecap="round"/>)}
               </g>
-            ))}
 
-            {/* CHAUD / FROID labels */}
-            <text x={PL+4} y={PT+11} fill="rgba(220,80,40,0.7)" fontSize={7} fontFamily="'DM Mono',monospace" letterSpacing={2}>CHAUD</text>
-            <text x={PL+4} y={PT+cH-4} fill="rgba(100,160,255,0.7)" fontSize={7} fontFamily="'DM Mono',monospace" letterSpacing={2}>FROID</text>
+              {/* Dot */}
+              {p>0.01&&p<1&&(
+                <g filter="url(#g2)">
+                  <circle cx={x1(ma)} cy={y1(currentT)} r={4} fill={col(currentT)}/>
+                  <circle cx={x1(ma)} cy={y1(currentT)} r={1.8} fill="#fff" opacity={0.9}/>
+                </g>
+              )}
 
-            {/* X labels */}
-            {[[500,"500 Ma"],[100,"100 Ma"],[10,"10 Ma"],[0.1,"100 ka"],[0.001,"1 000 ans"]].map(([m,l])=>(
-              <g key={m}>
-                <line x1={xL(m)} y1={PT+cH} x2={xL(m)} y2={PT+cH+3} stroke="rgba(255,255,255,0.2)"/>
-                <text x={xL(m)} y={PT+cH+14} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize={7} fontFamily="'DM Mono',monospace">{l}</text>
+              {/* Annotations */}
+              {EVENTS_500M.filter(e=>e.ma>=ma).map((ev,i)=>{
+                const ex=x1(ev.ma), ey=y1(gT500(ev.ma))
+                return(
+                  <g key={i}>
+                    <circle cx={ex} cy={ey} r={2.5} fill="rgba(255,255,255,0.5)"/>
+                    <text x={ex} y={ey-7} textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize={6} fontFamily="'DM Mono',monospace">{ev.label}</text>
+                  </g>
+                )
+              })}
+            </svg>
+          </div>
+
+          {/* ── GRAPHIQUE 2 : 500 dernières années ── */}
+          <div style={{border:"1px solid rgba(255,255,255,0.15)",background:"rgba(4,6,13,0.4)",backdropFilter:"blur(4px)"}}>
+            <div style={{padding:"8px 10px 4px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:"clamp(11px,1.4vw,14px)",color:"#fff"}}>1500 → aujourd'hui · Zoom</div>
+              <div style={{fontFamily:"'DM Mono',monospace",fontSize:7,color:"rgba(255,255,255,0.35)",marginTop:2}}>Même axe Y · Chaque point = années</div>
+            </div>
+            <svg viewBox={`0 0 ${W2} ${H2}`} style={{width:"100%",display:"block"}}>
+              {/* Grid Y identique */}
+              {[-6,-3,0,3,6,9].map(v=>(
+                <g key={v}>
+                  <line x1={PL2} y1={y2(v)} x2={PL2+cW2} y2={y2(v)}
+                    stroke={v===0?"rgba(255,255,255,0.45)":"rgba(255,255,255,0.1)"}
+                    strokeWidth={v===0?1:0.5} strokeDasharray={v===0?"none":"3 7"}/>
+                  <text x={PL2-5} y={y2(v)+4} textAnchor="end"
+                    fill={v===0?"#fff":"rgba(255,255,255,0.55)"}
+                    fontSize={8.5} fontFamily="'DM Mono',monospace" fontWeight={v===0?600:300}>
+                    {v>=0?`+${v}°`:`${v}°`}
+                  </text>
+                </g>
+              ))}
+
+              {/* Zone visible de la courbe (−0.7 à +1.8) */}
+              {/* Rectangle qui montre le "zoom" */}
+              <rect x={PL2} y={y2(1.8)} width={cW2} height={y2(-0.7)-y2(1.8)} fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth={0.5}/>
+
+              {/* X ticks */}
+              {[1500,1600,1700,1800,1850,1900,1950,2000,2024].map(yr=>(
+                <g key={yr}>
+                  <line x1={x2(yr)} y1={PT2+cH2} x2={x2(yr)} y2={PT2+cH2+4} stroke="rgba(255,255,255,0.2)"/>
+                  <text x={x2(yr)} y={PT2+cH2+14} textAnchor="middle"
+                    fill="rgba(255,255,255,0.45)" fontSize={6} fontFamily="'DM Mono',monospace">
+                    {yr}
+                  </text>
+                </g>
+              ))}
+
+              {/* Séparateur 1850 */}
+              <line x1={x2(1850)} y1={PT2} x2={x2(1850)} y2={PT2+cH2}
+                stroke="rgba(255,255,255,0.2)" strokeWidth={0.7} strokeDasharray="3 5"/>
+              <text x={x2(1850)+3} y={PT2+11} fill="rgba(255,255,255,0.3)" fontSize={6} fontFamily="'DM Mono',monospace">Révol. ind. →</text>
+
+              {/* Seuil Paris */}
+              <line x1={PL2} y1={y2(1.5)} x2={PL2+cW2} y2={y2(1.5)}
+                stroke="#dc2626" strokeWidth={0.7} strokeDasharray="4 5" strokeOpacity={0.5}/>
+              <text x={PL2+cW2-2} y={y2(1.5)-4} textAnchor="end" fill="#dc2626" fontSize={6} fontFamily="'DM Mono',monospace" fillOpacity={0.7}>Accord de Paris +1,5°C</text>
+
+              {/* Courbe */}
+              <g filter="url(#g1)">
+                {segs2.map((s,i)=><line key={i} x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2} stroke={s.c} strokeWidth={2} strokeLinecap="round"/>)}
               </g>
-            ))}
 
-            {/* Courbe */}
-            <g filter="url(#g1)">
-              {segs.map((s,i)=><line key={i} x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2} stroke={s.c} strokeWidth={2.2} strokeLinecap="round"/>)}
-            </g>
+              {/* Dot */}
+              {p2>0.01&&(
+                <g filter="url(#g2)">
+                  <circle cx={hx2} cy={hy2} r={4} fill={col(gTR(Math.min(currentYr,2024)))}/>
+                  <circle cx={hx2} cy={hy2} r={1.8} fill="#fff" opacity={0.9}/>
+                </g>
+              )}
+            </svg>
+          </div>
+        </div>
 
-            {/* Dot */}
-            {p>0.005&&(
-              <g filter="url(#g2)">
-                <circle cx={hx} cy={hy} r={4} fill={col(t)}/>
-                <circle cx={hx} cy={hy} r={1.8} fill="#fff" opacity={0.9}/>
-              </g>
-            )}
-          </svg>
+        {/* Message clé entre les deux */}
+        <div style={{background:"rgba(4,6,13,0.6)",backdropFilter:"blur(4px)",border:"1px solid rgba(255,255,255,0.1)",padding:"12px 16px",display:"flex",alignItems:"center",gap:16}}>
+          <div style={{fontFamily:"'DM Mono',monospace",fontSize:8,color:"rgba(255,255,255,0.3)",letterSpacing:2,flexShrink:0,textTransform:"uppercase"}}>À retenir</div>
+          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(12px,1.5vw,16px)",fontWeight:300,color:"#fff",margin:0,lineHeight:1.6}}>
+            Les deux graphiques ont le <strong style={{fontWeight:700}}>même axe vertical</strong>. La Terre a connu des variations de ±10°C — sur des millions d'années. Notre +1,6°C est arrivé en <strong style={{fontWeight:700,color:"#ef4444"}}>150 ans</strong>.
+          </p>
         </div>
 
         {/* Contrôles */}
         <div style={{display:"flex",alignItems:"center",gap:10}}>
           <button onClick={onPlay} style={{background:"none",border:"1px solid rgba(255,255,255,0.35)",color:"#fff",fontFamily:"'DM Mono',monospace",fontSize:8,letterSpacing:3,padding:"7px 14px",cursor:"pointer",textTransform:"uppercase",flexShrink:0}}>
-            {play?"⏸ Pause":p>=1?"↺ Rejouer":"▶ Play"}
+            {play?"⏸ Pause":(p>=1&&p2>=1)?"↺ Rejouer":"▶ Play"}
           </button>
-          <input type="range" min={0} max={1} step={0.0005} value={p} onChange={onSlide} style={{flex:1,accentColor:"#c9a84c",cursor:"pointer"}}/>
-          <span style={{fontSize:7,color:"rgba(255,255,255,0.4)",flexShrink:0}}>aujourd'hui</span>
+          <div style={{flex:1,display:"flex",alignItems:"center",gap:6}}>
+            <span style={{fontSize:7,color:"rgba(255,255,255,0.3)",flexShrink:0}}>500 Ma</span>
+            <div style={{flex:1,height:3,background:"rgba(255,255,255,0.1)",borderRadius:2,position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",left:0,top:0,height:"100%",width:`${p*100}%`,background:"#c9a84c",transition:"width 0.1s"}}/>
+            </div>
+            <span style={{fontSize:7,color:"rgba(255,255,255,0.3)",flexShrink:0}}>1500</span>
+            <div style={{flex:1,height:3,background:"rgba(255,255,255,0.1)",borderRadius:2,position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",left:0,top:0,height:"100%",width:`${p2*100}%`,background:"#dc2626",transition:"width 0.1s"}}/>
+            </div>
+            <span style={{fontSize:7,color:"rgba(255,255,255,0.3)",flexShrink:0}}>2024</span>
+          </div>
         </div>
 
-        {/* Titre panneaux */}
-        <div style={{borderTop:"1px solid rgba(255,255,255,0.1)",paddingTop:12}}>
-          <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(14px,2vw,22px)",fontWeight:300,color:"#fff",margin:"0 0 2px",lineHeight:1.2}}>
-            Ces 5 réchauffements, <em style={{fontWeight:600}}>à la même échelle.</em>
-          </h2>
-          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.2vw,13px)",color:"rgba(255,255,255,0.35)",margin:0}}>
-            150 ans chacun · axe identique −0,5°C → +2°C
-          </p>
-        </div>
-
-        {/* PANNEAUX */}
-        <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:3}}>
-          {SLOPES.map((s,i)=>{
-            const eT=Math.min(T1-0.05,(s.v/s.d)*150)
-            const isA=i===sl
-            return(
-              <div key={i} style={{
-                background:s.now?"rgba(28,4,4,0.85)":"rgba(6,10,20,0.85)",
-                border:`1px solid ${isA?"rgba(255,255,255,0.4)":s.now?"rgba(220,38,38,0.2)":"rgba(255,255,255,0.08)"}`,
-                transition:"border-color 0.4s",
-                boxShadow:isA?`0 0 14px ${s.c}44`:"none",
-              }}>
-                <svg viewBox={`0 0 ${PW} ${PH}`} width="100%" style={{display:"block"}}>
-                  <line x1={PPL} y1={py(0)} x2={PPL+pW} y2={py(0)} stroke="rgba(255,255,255,0.2)" strokeWidth={0.8}/>
-                  <line x1={PPL} y1={py(1.5)} x2={PPL+pW} y2={py(1.5)} stroke="#dc2626" strokeWidth={0.5} strokeDasharray="2 4" strokeOpacity={0.3}/>
-                  {/* Y labels blancs */}
-                  {[-0.5,0,1.0,2.0].map(v=>(
-                    <text key={v} x={PPL-2} y={py(v)+3} textAnchor="end"
-                      fill={v===0?"rgba(255,255,255,0.8)":"rgba(255,255,255,0.35)"}
-                      fontSize={5} fontFamily="'DM Mono',monospace">
-                      {v>0?`+${v}°`:v===0?"0°":`${v}°`}
-                    </text>
-                  ))}
-                  {s.now?(
-                    <>
-                      <line x1={PPL+pW*0.5} y1={py(0)} x2={PPL+pW*0.5} y2={py(eT)}
-                        stroke={s.c} strokeWidth={3} strokeLinecap="round"
-                        strokeDasharray="200" style={{animation:"dv 0.5s ease-out forwards",strokeDashoffset:200}}/>
-                      <line x1={PPL+pW*0.5} y1={py(0)} x2={PPL+pW*0.5} y2={py(eT)}
-                        stroke={s.c} strokeWidth={8} strokeOpacity={0.12}/>
-                    </>
-                  ):(
-                    <line x1={PPL} y1={py(0)} x2={PPL+pW} y2={py(eT)}
-                      stroke={s.c} strokeWidth={1.5} strokeOpacity={isA?1:0.55}
-                      strokeDasharray="300" style={{animation:`dh ${0.7+i*0.18}s ease-out ${i*0.1}s forwards`,strokeDashoffset:300}}/>
-                  )}
-                  <text x={PPL+pW*0.5} y={PH-PPB+11} textAnchor="middle"
-                    fill={s.now?s.c:"rgba(255,255,255,0.6)"}
-                    fontSize={s.now?8:6.5} fontFamily="'Cormorant Garamond',serif" fontWeight={s.now?700:300}>
-                    {s.now?"+1,62°C":`+${eT.toFixed(eT<0.01?5:3)}°C`}
-                  </text>
-                </svg>
-                <div style={{padding:"5px 4px 7px",borderTop:"1px solid rgba(255,255,255,0.06)",textAlign:"center"}}>
-                  <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:s.now?700:300,fontSize:"clamp(9px,1.1vw,12px)",color:isA?s.c:s.now?"#ef4444":"rgba(255,255,255,0.75)",lineHeight:1.2,transition:"color 0.4s"}}>{s.l}</div>
-                  <div style={{fontFamily:"'DM Mono',monospace",fontSize:6,color:"rgba(255,255,255,0.3)",marginTop:1}}>{s.n}</div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Phrase clé */}
-        <div style={{borderLeft:"3px solid #dc2626",paddingLeft:16,marginTop:4}}>
-          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(13px,1.6vw,18px)",fontWeight:300,color:"#fff",margin:"0 0 4px",lineHeight:1.7}}>
-            <strong style={{fontWeight:700,color:"#ef4444"}}>18× plus rapide</strong> que le PETM, l'événement naturel le plus brutal de l'histoire de la vie complexe sur Terre.
-          </p>
-          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.3vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.3)",margin:0,lineHeight:1.7}}>
-            Ce n'est pas l'amplitude. C'est la vitesse.
-          </p>
-        </div>
-
-        {/* Sources */}
-        <div style={{fontSize:7.5,color:"rgba(255,255,255,0.18)",lineHeight:1.8,paddingTop:4,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
-          Scotese et al. (2021) · PAGES 2k (2019) · HadCRUT5 · NASA GISS · EPICA
+        <div style={{fontSize:7,color:"rgba(255,255,255,0.15)",lineHeight:1.8,paddingTop:2,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
+          Scotese et al. (2021) · PAGES 2k (2019) · HadCRUT5 · NASA GISS · EPICA — Anomalie vs. pré-industriel (1850–1900)
         </div>
       </div>
     </div>
