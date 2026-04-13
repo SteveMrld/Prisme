@@ -158,6 +158,10 @@ export default function ClimateClient() {
         @keyframes kb4{from{transform:scale(1.1) translate(1%,-1%)}  to{transform:scale(1.0) translate(-2%,1%)}}
         @keyframes kb5{from{transform:scale(1.0) translate(3%,0%)}   to{transform:scale(1.18) translate(-3%,-1%)}}
         @keyframes kb6{from{transform:scale(1.05) translate(-1%,1%)} to{transform:scale(1.18) translate(2%,-2%)}}
+        @keyframes draw-line{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+        @keyframes draw-vert{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+        .line-anim{stroke-dasharray:300;stroke-dashoffset:300;animation:draw-line 1.8s ease-out forwards}
+        .line-vert{stroke-dasharray:200;stroke-dashoffset:200;animation:draw-vert 0.6s ease-out forwards}
       `}</style>
 
       {/* ── HERO SECTION avec fond Ken Burns ─────────────────────────────── */}
@@ -278,11 +282,11 @@ export default function ClimateClient() {
                   ))}
                   {isNow?(
                     <>
-                      <line x1={PPL+pcW*0.5} y1={pys(0)} x2={PPL+pcW*0.5} y2={pys(endT)} stroke={s.col} strokeWidth={3.5} strokeLinecap="round"/>
+                      <line x1={PPL+pcW*0.5} y1={pys(0)} x2={PPL+pcW*0.5} y2={pys(endT)} stroke={s.col} strokeWidth={3.5} strokeLinecap="round" strokeDasharray="200" style={{animation:"draw-vert 0.5s ease-out 1s forwards", strokeDashoffset:200}}/>
                       <line x1={PPL+pcW*0.5} y1={pys(0)} x2={PPL+pcW*0.5} y2={pys(endT)} stroke={s.col} strokeWidth={10} strokeOpacity={0.15}/>
                     </>
                   ):(
-                    <line x1={PPL} y1={pys(0)} x2={PPL+pcW} y2={pys(endT)} stroke={s.col} strokeWidth={1.5} strokeOpacity={0.8}/>
+                    <line x1={PPL} y1={pys(0)} x2={PPL+pcW} y2={pys(endT)} stroke={s.col} strokeWidth={1.5} strokeOpacity={0.8} strokeDasharray="300" style={{animation:`draw-line ${0.8+idx*0.3}s ease-out ${idx*0.2}s forwards`, strokeDashoffset:300}}/>
                   )}
                   <text x={PPL+pcW*0.5} y={PH-PPB+14} textAnchor="middle" fill={isNow?s.col:"rgba(255,255,255,0.35)"} fontSize={isNow?9:8} fontFamily="'Cormorant Garamond',serif" fontWeight={isNow?700:300}>
                     {isNow?`+${s.delta}°C`:`+${endT.toFixed(endT<0.01?5:3)}°C`}
