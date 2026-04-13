@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import styles from './BookmarkButton.module.css'
 
-export default function BookmarkButton({ slug, title, iconOnly }: { slug: string; title: string; iconOnly?: boolean }) {
+export default function BookmarkButton({ slug, title, iconOnly, image, description, readTime, categoryLabel }: { slug: string; title: string; iconOnly?: boolean; image?: string; description?: string; readTime?: string; categoryLabel?: string }) {
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function BookmarkButton({ slug, title, iconOnly }: { slug: string
       if (saved) {
         updated = bookmarks.filter((b: any) => b.slug !== slug)
       } else {
-        updated = [...bookmarks, { slug, title, savedAt: Date.now(), image: (document.querySelector('meta[property="og:image"]') as HTMLMetaElement)?.content || '', description: (document.querySelector('meta[name="description"]') as HTMLMetaElement)?.content || '', categoryLabel: (document.querySelector('[data-category-label]') as HTMLElement)?.dataset.categoryLabel || '', readTime: (document.querySelector('[data-read-time]') as HTMLElement)?.dataset.readTime || '' }]
+        updated = [...bookmarks, { slug, title, savedAt: Date.now(), image: image || '', description: description || '', categoryLabel: categoryLabel || '', readTime: readTime || '' }]
       }
       localStorage.setItem('soara_bookmarks', JSON.stringify(updated))
       setSaved(!saved)

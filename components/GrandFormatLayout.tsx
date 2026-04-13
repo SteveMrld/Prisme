@@ -162,7 +162,7 @@ export default function GrandFormatLayout({
         {/* ── BOOKMARK ── */}
         {slug && (
           <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px 32px', display: 'flex', justifyContent: 'center' }}>
-            <BookmarkButton slug={slug} title={title} />
+            <BookmarkButton slug={slug} title={title} image={image} description={description} readTime={readTime} categoryLabel={categoryLabel} />
           </div>
         )}
 

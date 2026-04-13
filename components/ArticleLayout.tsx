@@ -274,7 +274,7 @@ export default function ArticleLayout({
             <line x1="12" y1="2" x2="12" y2="15"/>
           </svg>
         </button>
-        {slug && <BookmarkButton slug={slug} title={title} iconOnly />}
+        {slug && <BookmarkButton slug={slug} title={title} image={image} description={description} readTime={readTime} categoryLabel={categoryLabel} iconOnly />}
       </div>
 
       {/* ── BOOKMARK ── */}
@@ -283,7 +283,7 @@ export default function ArticleLayout({
           maxWidth: 760, margin: '0 auto', padding: '0 24px 32px',
           display: 'flex', justifyContent: 'center'
         }}>
-          <BookmarkButton slug={slug} title={title} />
+          <BookmarkButton slug={slug} title={title} image={image} description={description} readTime={readTime} categoryLabel={categoryLabel} />
         </div>
       )}
 
