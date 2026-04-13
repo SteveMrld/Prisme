@@ -68,7 +68,7 @@ function tc(v) {
 export default function ClimateClient() {
   const [prog, setProg]         = useState(0)
   const [playing, setPlaying]   = useState(false)
-  const [reveal, setReveal]     = useState(false)
+  // reveal supprimé — section toujours visible
   const [activeBg, setActiveBg] = useState(0)
   const [mounted, setMounted]   = useState(false)
   const rafRef  = useRef(null)
@@ -94,7 +94,7 @@ export default function ClimateClient() {
     }
     setProg(progRef.current)
     if (progRef.current<1) rafRef.current = requestAnimationFrame(tick)
-    else { setPlaying(false); setTimeout(()=>setReveal(true),800) }
+    else { setPlaying(false); }
   }, [])
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export default function ClimateClient() {
       if(ma<=BACKGROUNDS[i].maRange[0]&&ma>=BACKGROUNDS[i].maRange[1]){setActiveBg(i);break}
     }
     setProg(progRef.current); setPlaying(false)
-    if(progRef.current>=1) setReveal(true)
+    
   }
 
   const currentMa = 500*(1-prog)
@@ -252,7 +252,7 @@ export default function ClimateClient() {
       </div>
 
       {/* ── COMPARAISON DES VITESSES ─────────────────────────────────────── */}
-      <div style={{ padding:"48px 48px 80px", background:"#04060d", opacity:reveal?1:0, transform:reveal?"translateY(0)":"translateY(28px)", transition:"opacity 1.2s, transform 1.2s" }}>
+      <div style={{ padding:"48px 48px 80px", background:"#04060d", opacity:1 }}>
         <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(22px,3.5vw,44px)", fontWeight:300, color:"#f0ede8", margin:"0 0 8px", lineHeight:1.15 }}>
           Ces cinq réchauffements, vus à la <em style={{ fontWeight:600 }}>même échelle de temps.</em>
         </h2>
