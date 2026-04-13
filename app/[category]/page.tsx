@@ -169,7 +169,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
             <Link href={featured.grandFormatUrl || `/articles/${featured.slug}`} className={styles.featured}>
               {featured.image && (
                 <div className={styles.featuredImgWrap}>
-                  <img src={featured.image} alt={featured.title} className={styles.featuredImg} />
+                  <img src={featured.image} alt={featured.title} className={params.category === "portraits" ? styles.featuredImgPortrait : styles.featuredImg} />
                 </div>
               )}
               <div className={styles.featuredBody}>
@@ -198,8 +198,8 @@ export default function CategoryPage({ params }: { params: { category: string } 
                 <AnimCard key={article.slug}>
                 <Link href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.card}>
                   {article.image && (
-                    <div className={styles.cardImgWrap}>
-                      <img src={article.image} alt={article.title} className={styles.cardImg} />
+                    <div className={params.category === "portraits" ? styles.cardImgWrapPortrait : styles.cardImgWrap}>
+                      <img src={article.image} alt={article.title} className={params.category === "portraits" ? styles.cardImgPortrait : styles.cardImg} />
                     </div>
                   )}
                   <div className={styles.cardBody}>
