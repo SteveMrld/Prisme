@@ -168,7 +168,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
             <AnimFeatured>
             <Link href={featured.grandFormatUrl || `/articles/${featured.slug}`} className={styles.featured}>
               {featured.image && (
-                <div className={styles.featuredImgWrap}>
+                <div className={params.category === "portraits" ? styles.featuredImgWrapPortrait : styles.featuredImgWrap}>
                   <img src={featured.image} alt={featured.title} className={params.category === "portraits" ? styles.featuredImgPortrait : styles.featuredImg} />
                 </div>
               )}
