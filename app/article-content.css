@@ -435,10 +435,12 @@
 
 /* ── Prospectif ── */
 .prospectif {
-  background: var(--encre);
-  color: rgba(236,231,221,0.85);
-  padding: 20px 24px;
-  margin: 20px 0;
+  background: #f5f0e8;
+  color: #1a1a1a;
+  padding: 28px 32px;
+  margin: 40px 0;
+  border-left: 4px solid #C8A96E;
+  border-radius: 0 4px 4px 0;
 }
 
 .prospectif-label {
@@ -446,15 +448,15 @@
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--or);
+  color: #C8A96E;
   margin-bottom: 16px;
 }
 
 .prospectif h4 {
   font-family: 'Playfair Display', serif;
   font-size: 22px;
-  font-weight: 400;
-  color: #ECE7DD;
+  font-weight: 700;
+  color: #1a1a1a;
   margin-bottom: 20px;
   line-height: 1.3;
 }
@@ -465,15 +467,15 @@
 .soara-article .prospectif p {
   font-family: 'Cormorant Garamond', serif !important;
   font-size: 18px !important;
-  color: #ECE7DD !important;
+  color: #1a1a1a !important;
   line-height: 1.75 !important;
-  margin-bottom: 0 !important;
+  margin-bottom: 12px !important;
 }
 
 .prospectif p strong,
 .grand-format-body .article-body .prospectif p strong,
 .soara-article .prospectif p strong {
-  color: #ffffff !important;
+  color: #0a0908 !important;
   font-weight: 700 !important;
 }
 
