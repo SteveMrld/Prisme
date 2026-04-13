@@ -367,10 +367,12 @@ export default function CC() {
         </div>
 
         {/* Message clé entre les deux */}
-        <div style={{background:"rgba(4,6,13,0.6)",backdropFilter:"blur(4px)",border:"1px solid rgba(255,255,255,0.1)",padding:"12px 16px",display:"flex",alignItems:"center",gap:16}}>
-          <div style={{fontFamily:"'DM Mono',monospace",fontSize:8,color:"rgba(255,255,255,0.3)",letterSpacing:2,flexShrink:0,textTransform:"uppercase"}}>À retenir</div>
-          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(12px,1.5vw,16px)",fontWeight:300,color:"#fff",margin:0,lineHeight:1.6}}>
-            Ces deux courbes ont le <strong style={{fontWeight:700}}>même axe vertical</strong>. La Terre a toujours changé de température — sur des millions ou des milliers d'années. Ce qui est nouveau : notre +1,6°C est arrivé en <strong style={{fontWeight:700,color:"#ef4444"}}>150 ans</strong>. Les réchauffements naturels les plus rapides connus prenaient des dizaines de milliers d'années.
+        <div style={{borderLeft:"3px solid #dc2626",paddingLeft:16,background:"rgba(4,6,13,0.4)",padding:"12px 12px 12px 16px"}}>
+          <p style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(13px,1.6vw,17px)",fontWeight:300,color:"#fff",margin:"0 0 6px",lineHeight:1.7}}>
+            Ces deux courbes ont le <strong style={{fontWeight:700}}>même axe vertical</strong>. La Terre a toujours changé. La différence : la courbe de gauche s'est déroulée sur <strong style={{fontWeight:600}}>500 millions d'années</strong>. La courbe de droite, en <strong style={{fontWeight:700,color:"#ef4444"}}>150 ans</strong>.
+          </p>
+          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.45)",margin:0,lineHeight:1.6}}>
+            Les variations de température ont toujours existé. Ce qui est sans précédent, c'est la vitesse — et la cause : les émissions humaines de CO₂ depuis la révolution industrielle.
           </p>
         </div>
 
@@ -392,15 +394,6 @@ export default function CC() {
           </div>
         </div>
 
-        {/* Conclusion éditoriale */}
-        <div style={{borderLeft:"3px solid #dc2626",paddingLeft:16}}>
-          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(13px,1.6vw,17px)",fontWeight:300,color:"#fff",margin:"0 0 8px",lineHeight:1.75}}>
-            Les variations de température ont toujours existé sur Terre. Ce qui est nouveau, c'est la <strong style={{fontWeight:700,color:"#ef4444"}}>vitesse</strong> — et la cause. Le PETM, l'événement naturel le plus brutal connu, a mis entre 3 000 et 20 000 ans pour gagner +5°C. Nous avons gagné +1,6°C en 150 ans, sous l'effet des émissions humaines de CO₂ depuis la révolution industrielle.
-          </p>
-          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.4vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.4)",margin:0,lineHeight:1.75}}>
-            Les écosystèmes, les forêts, les récifs coralliens, les sols agricoles — tous calibrés sur le climat stable des 10 000 dernières années — n'ont pas le temps de s'adapter à ce rythme.
-          </p>
-        </div>
 
         <div style={{fontSize:7,color:"rgba(255,255,255,0.15)",lineHeight:1.8,paddingTop:2,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
           Scotese et al. (2021) · PAGES 2k (2019) · HadCRUT5 · NASA GISS · EPICA — Anomalie vs. pré-industriel (1850–1900)
