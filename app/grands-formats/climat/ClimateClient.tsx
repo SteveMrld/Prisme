@@ -392,6 +392,16 @@ export default function CC() {
           </div>
         </div>
 
+        {/* Conclusion éditoriale */}
+        <div style={{borderLeft:"3px solid #dc2626",paddingLeft:16}}>
+          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(13px,1.6vw,17px)",fontWeight:300,color:"#fff",margin:"0 0 8px",lineHeight:1.75}}>
+            Les variations de température ont toujours existé sur Terre. Ce qui est nouveau, c'est la <strong style={{fontWeight:700,color:"#ef4444"}}>vitesse</strong> — et la cause. Le PETM, l'événement naturel le plus brutal connu, a mis entre 3 000 et 20 000 ans pour gagner +5°C. Nous avons gagné +1,6°C en 150 ans, sous l'effet des émissions humaines de CO₂ depuis la révolution industrielle.
+          </p>
+          <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.4vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.4)",margin:0,lineHeight:1.75}}>
+            Les écosystèmes, les forêts, les récifs coralliens, les sols agricoles — tous calibrés sur le climat stable des 10 000 dernières années — n'ont pas le temps de s'adapter à ce rythme.
+          </p>
+        </div>
+
         <div style={{fontSize:7,color:"rgba(255,255,255,0.15)",lineHeight:1.8,paddingTop:2,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
           Scotese et al. (2021) · PAGES 2k (2019) · HadCRUT5 · NASA GISS · EPICA — Anomalie vs. pré-industriel (1850–1900)
         </div>
