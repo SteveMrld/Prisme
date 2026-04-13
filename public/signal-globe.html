@@ -641,23 +641,23 @@ function animate(){
     a.mat.opacity = 0.15 + 0.2*Math.sin(t*1.5+i*0.8);
   });
   renderer.render(scene,cam);
-  // Labels 2D
-  ZONES.forEach((z,i)=>{
+  // Labels 2D — getWorldPosition est l'API correcte
+  markers.forEach((m,i)=>{
     const el=document.getElementById('lbl-'+i);
-    if(!el) return;
-    const v=new THREE.Vector3();
-    v.copy(markers[i].position);
-    globeGroup.localToWorld(v);
-    const proj=v.clone().project(cam);
-    // Vérifier si visible (face avant)
-    const wv=v.clone().normalize();
-    const cv=cam.position.clone().normalize();
-    if(cv.dot(wv)<0.15){el.style.opacity='0';return;}
+    if(!el||!m.userData.zone) return;
+    const wPos=new THREE.Vector3();
+    m.getWorldPosition(wPos);
+    // Vérifier si face caméra
+    const toPoint=wPos.clone().normalize();
+    const toCam=cam.position.clone().normalize();
+    if(toCam.dot(toPoint)<0.12){el.style.opacity='0';return;}
+    const proj=wPos.clone().project(cam);
+    if(proj.z>1){el.style.opacity='0';return;}
     const x=(proj.x+1)/2*window.innerWidth;
     const y=(-proj.y+1)/2*window.innerHeight;
-    el.style.opacity='1';
     el.style.left=x+'px';
     el.style.top=y+'px';
+    el.style.opacity='0.95';
   });
 }
 animate();
