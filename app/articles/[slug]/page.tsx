@@ -16,6 +16,7 @@ const REDIRECT_TO_GRAND_FORMAT = [
   'palantir',
   'bases-militaires',
   'dette-souveraine',
+  'terres-rares',
 ]
 
 const BASE_URL = 'https://soara.fr'
