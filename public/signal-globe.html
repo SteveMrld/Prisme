@@ -122,7 +122,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
   <div class="intro-label">Soara · Signal géopolitique</div>
   <div class="intro-title">Le monde<br><em>en tensions.</em></div>
   <div class="intro-sub">Un tour du monde des crises actives — géopolitiques et climatiques. Appuyez sur chaque zone pour l'analyse.</div>
-  <button class="intro-btn" onclick="startTour()">▶ Commencer le tour</button>
+  <button class="intro-btn" id="start-btn" onclick="startTour()" disabled style="opacity:0.4;cursor:wait">⏳ Chargement...</button>
   <div class="intro-count" id="zone-count"></div>
 </div>
 
@@ -267,6 +267,15 @@ const globe = new THREE.Mesh(
   new THREE.SphereGeometry(1,64,64),
   new THREE.MeshPhongMaterial({map:globeTex,specular:0x112244,shininess:12})
 );
+globeTex.onUpdate = ()=>{
+  const btn=document.getElementById('start-btn');
+  if(btn){btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';btn.textContent='▶ Commencer le tour';}
+};
+// Fallback si texture déjà chargée ou erreur
+setTimeout(()=>{
+  const btn=document.getElementById('start-btn');
+  if(btn&&btn.disabled){btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';btn.textContent='▶ Commencer le tour';}
+},2500);
 globeGroup.add(globe);
 
 // Atmosphère
@@ -336,6 +345,7 @@ const raycaster = new THREE.Raycaster();
 let currentZone=-1, touring=false;
 
 function startTour(){
+  if(markers.length===0) return;
   document.getElementById('intro').classList.add('hidden');
   touring=true;
   goToZone(0);
