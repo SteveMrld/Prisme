@@ -80,9 +80,16 @@ export default function LecturesPage() {
             <div>
               {articles.map(a => (
                 <div key={a.slug} style={{ display: 'flex', gap: 16, padding: '20px 0', borderBottom: '1px solid #e8e4de', alignItems: 'flex-start' }}>
-                  {a.image && (
-                    <img src={a.image} alt={a.title} style={{ width: 80, height: 60, objectFit: 'cover', flexShrink: 0, borderRadius: 2 }} />
-                  )}
+                  <div style={{ width: 80, height: 60, flexShrink: 0, background: '#e8e4de', borderRadius: 2, overflow: 'hidden' }}>
+                    {a.image && (
+                      <img
+                        src={a.image}
+                        alt={a.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                      />
+                    )}
+                  </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 7, letterSpacing: 2, textTransform: 'uppercase', color: '#C8A96E', marginBottom: 4 }}>
                       {a.categoryLabel} · {a.readTime} min
