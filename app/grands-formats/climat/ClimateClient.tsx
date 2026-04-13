@@ -160,7 +160,7 @@ export default function CC() {
   const TMIN2=-7, TMAX2=11
   const currentYr=1500+p2*(2024-1500)
   const x2=(yr)=>PL2+(yr-1500)/(2024-1500)*cW2
-  const y2=(tv)=>PT2+cH2-(tv-TMIN2)/(TMAX2-TMIN2)*cH2
+  const y2=y1 // même fonction — alignement garanti
 
   const segs2=[]
   for(let i=1;i<RECENT.length;i++){
@@ -331,10 +331,6 @@ export default function CC() {
                   </text>
                 </g>
               ))}
-
-              {/* Zone visible de la courbe (−0.7 à +1.8) */}
-              {/* Rectangle qui montre le "zoom" */}
-              <rect x={PL2} y={y2(1.8)} width={cW2} height={y2(-0.7)-y2(1.8)} fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth={0.5}/>
 
               {/* X ticks */}
               {[1500,1600,1700,1800,1850,1900,1950,2000,2024].map(yr=>(
