@@ -311,7 +311,7 @@ export default function CC() {
           <div style={{border:"1px solid rgba(255,255,255,0.15)",background:"rgba(4,6,13,0.4)",backdropFilter:"blur(4px)"}}>
             <div style={{padding:"8px 10px 4px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
               <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:"clamp(11px,1.4vw,14px)",color:"#fff"}}>1500 → aujourd'hui · <span style={{color:"#ef4444"}}>Même échelle</span></div>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.2vw,12px)",fontWeight:300,color:"rgba(255,255,255,0.6)",marginTop:3,lineHeight:1.4}}>+1,6°C en 150 ans — là où la gauche prend des millions d'années pour bouger autant.</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.2vw,12px)",fontWeight:300,color:"rgba(255,255,255,0.6)",marginTop:3,lineHeight:1.4}}>+1,6°C en 150 ans — là où les réchauffements naturels du passé prenaient des dizaines de milliers d'années.</div>
             </div>
             <svg viewBox={`0 0 ${W2} ${H2}`} style={{width:"100%",display:"block"}}>
               {/* Grid Y identique */}
@@ -370,7 +370,7 @@ export default function CC() {
         <div style={{background:"rgba(4,6,13,0.6)",backdropFilter:"blur(4px)",border:"1px solid rgba(255,255,255,0.1)",padding:"12px 16px",display:"flex",alignItems:"center",gap:16}}>
           <div style={{fontFamily:"'DM Mono',monospace",fontSize:8,color:"rgba(255,255,255,0.3)",letterSpacing:2,flexShrink:0,textTransform:"uppercase"}}>À retenir</div>
           <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(12px,1.5vw,16px)",fontWeight:300,color:"#fff",margin:0,lineHeight:1.6}}>
-            Les deux graphiques ont le <strong style={{fontWeight:700}}>même axe vertical</strong>. La Terre a connu des variations de ±10°C — sur des millions d'années. Notre +1,6°C est arrivé en <strong style={{fontWeight:700,color:"#ef4444"}}>150 ans</strong>.
+            Ces deux courbes ont le <strong style={{fontWeight:700}}>même axe vertical</strong>. La Terre a toujours changé de température — sur des millions ou des milliers d'années. Ce qui est nouveau : notre +1,6°C est arrivé en <strong style={{fontWeight:700,color:"#ef4444"}}>150 ans</strong>. Les réchauffements naturels les plus rapides connus prenaient des dizaines de milliers d'années.
           </p>
         </div>
 
