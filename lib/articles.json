@@ -14,7 +14,7 @@
     "image": "/articles/terres-rares.png",
     "featured": true,
     "premium": false,
-    "grandFormat": false,
+    "grandFormat": true,
     "imageCredit": "© SOARA"
   },
   {
