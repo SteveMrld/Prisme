@@ -462,9 +462,14 @@
 .prospectif p {
   font-family: 'Cormorant Garamond', serif !important;
   font-size: 18px !important;
-  color: rgba(236,231,221,0.75) !important;
+  color: #ECE7DD !important;
   line-height: 1.75 !important;
   margin-bottom: 0 !important;
+}
+
+.prospectif p strong {
+  color: #ffffff !important;
+  font-weight: 700 !important;
 }
 
 /* ── Motion link (lien vers visualisation) ── */
