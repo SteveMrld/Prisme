@@ -23,16 +23,28 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
 
 /* ── CHAPTER CARD ── */
 #chapter{
-  position:fixed;bottom:calc(66px + env(safe-area-inset-bottom));left:0;right:0;
+  position:fixed;
+  bottom:0;
+  left:0;right:0;
   z-index:90;
-  padding:0 12px 12px;
+  padding:0 0 calc(64px + env(safe-area-inset-bottom)) 0;
   transition:opacity 0.4s, transform 0.4s;
+  pointer-events:none;
 }
-#ch-card{max-height:38vh;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}#ch-card::-webkit-scrollbar{display:none}
+#chapter.hidden{opacity:0;transform:translateY(20px)}
+.ch-card{
+  pointer-events:all;
+  max-height:44vh;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  margin:0 12px;
+}
+.ch-card::-webkit-scrollbar{display:none}
 #scroll-hint{display:none}
 #chapter.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
 
-.ch-card{background:rgba(4,6,13,0.92);border:1px solid rgba(200,169,110,0.18);border-left:3px solid var(--zone-col,#C8A96E);backdrop-filter:blur(12px);padding:10px 12px;}
+.ch-card{background:rgba(4,6,13,0.95);border:1px solid rgba(200,169,110,0.18);border-left:3px solid var(--zone-col,#C8A96E);backdrop-filter:blur(12px);padding:10px 12px;}
 
 .ch-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
 .ch-meta{display:flex;flex-direction:column;gap:3px}
