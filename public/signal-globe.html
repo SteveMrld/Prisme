@@ -28,7 +28,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
   padding:0 12px 12px;
   transition:opacity 0.4s, transform 0.4s;
 }
-#ch-card{overflow:visible;}
+#ch-card{max-height:38vh;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}#ch-card::-webkit-scrollbar{display:none}
 #scroll-hint{display:none}
 #chapter.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
 
@@ -98,7 +98,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
     <a href="/" class="back">← Accueil</a>
   </div>
   <div style="position:absolute;left:50%;transform:translateX(-50%)">
-    <span class="logo">Con<em>fins</em></span><span class="logo-signal">Signal</span>
+    <span class="logo">So<em>ara</em></span><span class="logo-signal">Signal</span>
   </div>
   <div id="hdr-right">
     <div class="live"><div class="live-dot"></div>EN DIRECT</div>
