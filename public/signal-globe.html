@@ -125,16 +125,18 @@ body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:
 <div class="hint" id="hint">Cliquez sur un point ou une zone</div>
 
 <script>
+// trend: "up"=monte, "down"=baisse, "stable"=stable
+// history: évolution du statut par mois [jan, fev, mar, avr 2026]
 const ZONES = [
-  {lat:32.4, lng:53.6, name:"Iran — États-Unis", region:"Moyen-Orient", status:"crisis", desc:"35e jour de frappes américano-israéliennes. Téhéran riposte sur les infrastructures du Golfe. L'ONU alarme sur le risque nucléaire."},
-  {lat:26.5, lng:56.3, name:"Détroit d'Ormuz", region:"Golfe Persique", status:"crisis", desc:"40% du pétrole mondial bloqué. L'Iran impose un péage à 2M$ par navire. Trump demande à ses alliés d'intervenir."},
-  {lat:23.6, lng:121.0, name:"Taïwan", region:"Asie-Pacifique", status:"tension", desc:"Exercices militaires chinois intensifiés au large. Washington réaffirme son soutien sans engagement direct."},
-  {lat:14.0, lng:-2.0, name:"Sahel", region:"Afrique de l'Ouest", status:"tension", desc:"Retrait français consommé. Wagner omniprésent au Mali et Burkina Faso. Vide sécuritaire exploité par les groupes jihadistes."},
-  {lat:49.0, lng:31.0, name:"Ukraine", region:"Europe de l'Est", status:"tension", desc:"Front stabilisé sur 1000 km. Négociations indirectes via la Turquie. L'Europe cherche sa posture sans les États-Unis."},
-  {lat:8.0, lng:-66.0, name:"Venezuela", region:"Amérique du Sud", status:"watch", desc:"Maduro consolide le pouvoir après l'élection contestée. Doctrine Monroe réactivée par Washington. Enjeux pétroliers centraux."},
-  {lat:40.0, lng:127.5, name:"Corée du Nord", region:"Asie du Nord-Est", status:"watch", desc:"Essais balistiques réguliers. Rapprochement accéléré avec Moscou depuis le conflit ukrainien. Variable d'ajustement géopolitique."},
-  {lat:78.0, lng:20.0, name:"Arctique", region:"Grand Nord", status:"watch", desc:"Course aux ressources sous-marines. OTAN renforce sa présence. Chine et Russie intensifient leur coopération polaire."},
-  {lat:20.0, lng:78.0, name:"Inde", region:"Asie du Sud", status:"calm", desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle."},
+  {lat:32.4, lng:53.6, name:"Iran — États-Unis", region:"Moyen-Orient", status:"crisis", trend:"up", history:["watch","tension","crisis","crisis"], desc:"35e jour de frappes américano-israéliennes. Téhéran riposte sur les infrastructures du Golfe. L'ONU alarme sur le risque nucléaire."},
+  {lat:26.5, lng:56.3, name:"Détroit d'Ormuz", region:"Golfe Persique", status:"crisis", trend:"up", history:["calm","watch","tension","crisis"], desc:"40% du pétrole mondial bloqué. L'Iran impose un péage à 2M$ par navire. Trump demande à ses alliés d'intervenir."},
+  {lat:23.6, lng:121.0, name:"Taïwan", region:"Asie-Pacifique", status:"tension", trend:"stable", history:["tension","tension","tension","tension"], desc:"Exercices militaires chinois intensifiés au large. Washington réaffirme son soutien sans engagement direct."},
+  {lat:14.0, lng:-2.0, name:"Sahel", region:"Afrique de l'Ouest", status:"tension", trend:"up", history:["watch","watch","tension","tension"], desc:"Retrait français consommé. Wagner omniprésent au Mali et Burkina Faso. Vide sécuritaire exploité par les groupes jihadistes."},
+  {lat:49.0, lng:31.0, name:"Ukraine", region:"Europe de l'Est", status:"tension", trend:"down", history:["crisis","tension","tension","tension"], desc:"Front stabilisé sur 1000 km. Négociations indirectes via la Turquie. L'Europe cherche sa posture sans les États-Unis."},
+  {lat:8.0, lng:-66.0, name:"Venezuela", region:"Amérique du Sud", status:"watch", trend:"stable", history:["watch","watch","watch","watch"], desc:"Maduro consolide le pouvoir après l'élection contestée. Doctrine Monroe réactivée par Washington. Enjeux pétroliers centraux."},
+  {lat:40.0, lng:127.5, name:"Corée du Nord", region:"Asie du Nord-Est", status:"watch", trend:"up", history:["calm","watch","watch","watch"], desc:"Essais balistiques réguliers. Rapprochement accéléré avec Moscou depuis le conflit ukrainien. Variable d'ajustement géopolitique."},
+  {lat:78.0, lng:20.0, name:"Arctique", region:"Grand Nord", status:"watch", trend:"up", history:["calm","calm","watch","watch"], desc:"Course aux ressources sous-marines. OTAN renforce sa présence. Chine et Russie intensifient leur coopération polaire."},
+  {lat:20.0, lng:78.0, name:"Inde", region:"Asie du Sud", status:"calm", trend:"stable", history:["calm","calm","calm","calm"], desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle."},
 ];
 
 const COLOR = {crisis:"#FC8181", tension:"#F6AD55", watch:"#F6E05E", calm:"#68D391"};
@@ -325,15 +327,19 @@ let autoRot=true;
 
 function openPanel(z){
   document.getElementById('panel-reg').textContent=z.region;
-  document.getElementById('panel-name').textContent=z.name;
+  const trendArrow = z.trend==='up'?' ↑':z.trend==='down'?' ↓':' →';
+  const trendCol = z.trend==='up'?'#FC8181':z.trend==='down'?'#68D391':'rgba(255,255,255,0.4)';
+  document.getElementById('panel-name').innerHTML=z.name+'<span style="font-size:14px;color:'+trendCol+'">'+trendArrow+'</span>';
   document.getElementById('panel-desc').textContent=z.desc;
   document.getElementById('panel-bar').style.background=BARCOLOR[z.status];
   document.getElementById('panel').classList.add('open');
+  document.getElementById('timeline').style.display='none';
   document.getElementById('hint').style.opacity='0';
 }
 
 function closePanel(){
   document.getElementById('panel').classList.remove('open');
+  document.getElementById('timeline').style.display='flex';
 }
 
 function flyTo(lat,lng){
@@ -714,16 +720,57 @@ if(window.innerWidth<=768){
 
 
 <!-- Labels 2D globe -->
+<div id="lbl-0" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Iran — États-Unis<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
+<div id="lbl-1" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Détroit d'Ormuz<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
+<div id="lbl-2" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Taïwan<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
+<div id="lbl-3" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Sahel<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
+<div id="lbl-4" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Ukraine<span style="color:#68D391;font-size:11px;font-weight:700">↓</span></span></div>
+<div id="lbl-5" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Venezuela<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
+<div id="lbl-6" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Corée du Nord<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
+<div id="lbl-7" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Arctique<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
+<div id="lbl-8" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#68D39188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#68D391;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Inde<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
 
-<!-- Labels 2D globe -->
-<div id="lbl-0" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Iran — États-Unis</span></div>
-<div id="lbl-1" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Détroit d'Ormuz</span></div>
-<div id="lbl-2" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Taïwan</span></div>
-<div id="lbl-3" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Sahel</span></div>
-<div id="lbl-4" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Ukraine</span></div>
-<div id="lbl-5" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Venezuela</span></div>
-<div id="lbl-6" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Corée du Nord</span></div>
-<div id="lbl-7" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Arctique</span></div>
-<div id="lbl-8" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#68D39188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#68D391;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Inde</span></div>
+<!-- Timeline -->
+<div id="timeline" style="position:fixed;bottom:calc(60px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:55;display:flex;align-items:center;gap:12px;background:rgba(7,9,15,0.85);border:1px solid rgba(200,169,110,0.2);padding:8px 16px;border-radius:2px;backdrop-filter:blur(8px)">
+  <span style="font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;color:rgba(200,169,110,0.5);text-transform:uppercase;white-space:nowrap">Évolution</span>
+  <div style="display:flex;gap:4px;align-items:center">
+    <button class="tl-btn active" data-m="0" onclick="setMonth(0)">Jan</button>
+    <button class="tl-btn" data-m="1" onclick="setMonth(1)">Fév</button>
+    <button class="tl-btn" data-m="2" onclick="setMonth(2)">Mar</button>
+    <button class="tl-btn active-now" data-m="3" onclick="setMonth(3)">Avr ●</button>
+  </div>
+</div>
+<style>
+.tl-btn{background:none;border:1px solid rgba(200,169,110,0.15);color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;padding:4px 8px;cursor:pointer;border-radius:1px;transition:all 0.2s}
+.tl-btn:hover{color:rgba(255,255,255,0.7);border-color:rgba(200,169,110,0.4)}
+.tl-btn.active{color:#C8A96E;border-color:rgba(200,169,110,0.5);background:rgba(200,169,110,0.08)}
+.tl-btn.active-now{color:#fff;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06)}
+</style>
+<script>
+const STATUS_ORDER = {calm:0,watch:1,tension:2,crisis:3};
+let currentMonth = 3;
+
+function setMonth(m){
+  currentMonth = m;
+  document.querySelectorAll('.tl-btn').forEach((b,i)=>{
+    b.classList.remove('active','active-now');
+    if(i===m) b.classList.add(m===3?'active-now':'active');
+  });
+  // Mettre à jour les markers selon l'historique
+  ZONES.forEach((z,i)=>{
+    const s = z.history[m];
+    const col = new THREE.Color(COLOR[s]);
+    if(markers[i]) markers[i].material.color.set(col);
+    // Mettre à jour le label
+    const lbl = document.getElementById('lbl-'+i);
+    if(lbl){
+      const span = lbl.querySelector('span');
+      if(span) span.style.color = COLOR[s];
+      const line = lbl.querySelector('div');
+      if(line) line.style.background = COLOR[s]+'88';
+    }
+  });
+}
+</script>
 </body>
 </html>
