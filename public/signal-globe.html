@@ -23,19 +23,19 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
 
 /* ── CHAPTER CARD ── */
 #chapter{
-  position:fixed;bottom:calc(64px + env(safe-area-inset-bottom));left:0;right:0;
+  position:fixed;bottom:calc(68px + env(safe-area-inset-bottom));left:0;right:0;
   z-index:90;
-  padding:0 16px 16px;
-  transition:opacity 0.5s, transform 0.5s;
+  padding:0 12px 12px;
+  transition:opacity 0.4s, transform 0.4s;
 }
 #chapter.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
 
 .ch-card{
-  background:rgba(7,9,15,0.88);
-  border:1px solid rgba(200,169,110,0.15);
+  background:rgba(4,6,13,0.92);
+  border:1px solid rgba(200,169,110,0.18);
   border-left:3px solid var(--zone-col,#C8A96E);
   backdrop-filter:blur(12px);
-  padding:16px 18px;
+  padding:12px 14px;
 }
 
 .ch-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
@@ -46,8 +46,8 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
 .ch-progress{display:flex;gap:4px;align-items:center}
 .ch-num{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.2)}
 
-.ch-desc{font-size:13px;color:rgba(236,231,221,0.75);line-height:1.6;margin-bottom:12px}
-.ch-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.ch-desc{font-size:12.5px;color:rgba(236,231,221,0.8);line-height:1.55;margin-bottom:8px}
+.ch-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
 .ch-tag{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border:1px solid;border-radius:1px}
 
 .ch-nav{display:flex;justify-content:space-between;align-items:center}
@@ -328,7 +328,7 @@ markers.forEach((m,i)=>{
   const el=document.createElement('div');
   el.id='lbl'+i;
   el.style.cssText=`position:absolute;opacity:0;transition:opacity 0.4s;display:flex;align-items:center;gap:4px;`;
-  el.innerHTML=`<div style="width:6px;height:1px;background:${col}88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:${col};background:rgba(7,9,15,0.75);padding:2px 6px;border-radius:2px;white-space:nowrap">${z.name}</span>`;
+  el.innerHTML=`<div style="width:8px;height:1px;background:${col}"></div><span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:#fff;background:rgba(4,6,13,0.9);padding:3px 8px;border-radius:2px;white-space:nowrap;border-left:2px solid ${col};letter-spacing:0.3px">${z.name}</span>`;
   labelDiv.appendChild(el);
 });
 
