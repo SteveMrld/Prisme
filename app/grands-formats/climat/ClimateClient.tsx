@@ -192,12 +192,12 @@ export default function CC() {
         <div key={i} style={{
           position:"fixed",inset:0,zIndex:0,
           backgroundImage:`url(${b.src})`,backgroundSize:"cover",backgroundPosition:"center",
-          opacity:i===bg?0.45:0,transition:"opacity 2.5s ease",
-          filter:"brightness(0.55) saturate(0.8)",
+          opacity:i===bg?0.72:0,transition:"opacity 2.5s ease",
+          filter:"brightness(0.65) saturate(0.9)",
           animation:`${b.kb} 22s ease-in-out infinite alternate`,
         }}/>
       ))}
-      <div style={{position:"fixed",inset:0,zIndex:1,background:"rgba(4,6,13,0.55)"}}/>
+      <div style={{position:"fixed",inset:0,zIndex:1,background:"rgba(4,6,13,0.42)"}}/>
 
       {/* Contenu */}
       <div style={{position:"relative",zIndex:2,padding:"20px 32px 28px",display:"flex",flexDirection:"column",gap:14}}>
