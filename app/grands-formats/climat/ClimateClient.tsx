@@ -239,7 +239,7 @@ export default function CC() {
           <div style={{border:"1px solid rgba(255,255,255,0.15)",background:"rgba(4,6,13,0.4)",backdropFilter:"blur(4px)"}}>
             <div style={{padding:"8px 10px 4px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
               <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:"clamp(11px,1.4vw,14px)",color:"#fff"}}>Il y a 500 millions d'années → aujourd'hui</div>
-              <div style={{fontFamily:"'DM Mono',monospace",fontSize:7,color:"rgba(255,255,255,0.35)",marginTop:2}}>Anomalie °C · Chaque point = millions d'années</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.2vw,12px)",fontWeight:300,color:"rgba(255,255,255,0.6)",marginTop:3,lineHeight:1.4}}>La Terre a toujours changé. Ces pics et creux représentent des millions d'années.</div>
             </div>
             <svg viewBox={`0 0 ${W1} ${H1}`} style={{width:"100%",display:"block"}}>
               <defs>
@@ -304,18 +304,14 @@ export default function CC() {
                 )
               })}
             </svg>
-            <div style={{padding:"10px 12px",borderTop:"1px solid rgba(255,255,255,0.08)"}}>
-              <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.75)",margin:0,lineHeight:1.7}}>
-                Sur 500 millions d'années, la Terre a connu des variations de <strong style={{fontWeight:600,color:"#fff"}}>±10°C</strong>. Des glaciations profondes, des périodes tropicales. C'est la réalité du climat terrestre — changeant, cyclique, brutal parfois.
-              </p>
-            </div>
+
           </div>
 
           {/* ── GRAPHIQUE 2 : 500 dernières années ── */}
           <div style={{border:"1px solid rgba(255,255,255,0.15)",background:"rgba(4,6,13,0.4)",backdropFilter:"blur(4px)"}}>
             <div style={{padding:"8px 10px 4px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:"clamp(11px,1.4vw,14px)",color:"#fff"}}>1500 → aujourd'hui · Zoom</div>
-              <div style={{fontFamily:"'DM Mono',monospace",fontSize:7,color:"rgba(255,255,255,0.35)",marginTop:2}}>Même axe Y · Chaque point = années</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:"clamp(11px,1.4vw,14px)",color:"#fff"}}>1500 → aujourd'hui · <span style={{color:"#ef4444"}}>Même échelle</span></div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.2vw,12px)",fontWeight:300,color:"rgba(255,255,255,0.6)",marginTop:3,lineHeight:1.4}}>+1,6°C en 150 ans — là où la gauche prend des millions d'années pour bouger autant.</div>
             </div>
             <svg viewBox={`0 0 ${W2} ${H2}`} style={{width:"100%",display:"block"}}>
               {/* Grid Y identique */}
@@ -366,11 +362,7 @@ export default function CC() {
                 </g>
               )}
             </svg>
-            <div style={{padding:"10px 12px",borderTop:"1px solid rgba(255,255,255,0.08)"}}>
-              <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.75)",margin:0,lineHeight:1.7}}>
-                Depuis 1850, la température monte. Ce n'est pas un phénomène naturel — c'est <strong style={{fontWeight:600,color:"#ef4444"}}>18 fois plus rapide</strong> que le PETM, le réchauffement naturel le plus brutal connu. Les écosystèmes n'ont pas le temps de s'adapter.
-              </p>
-            </div>
+
           </div>
         </div>
 
