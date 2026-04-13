@@ -78,6 +78,25 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* Card — Inégalités */}
+          <a href="/grands-formats/inegalites" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--eco)'}}>Économie · Dataviz interactive</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>En 1980, ils étaient tous pareils.</h3>
+              <p className={styles.featSub}>World Inequality Database · Chancel &amp; Piketty · 4 pays · 1980–2022</p>
+              <p className={styles.featDesc}>
+                États-Unis, France, Inde, Chine — en 1980, les quatre pays captaient la même part de richesse pour leur top 10%. Depuis, leurs trajectoires ont radicalement divergé. Une visualisation animée sur 40 ans d'inégalités mondiales.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la visualisation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Card — Climat */}
           <a href="/grands-formats/climat" className={styles.featCard} style={{marginTop:'1px'}}>
             <div className={styles.featBody}>              <div className={styles.featEyebrow}>
