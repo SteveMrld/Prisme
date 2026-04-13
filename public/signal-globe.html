@@ -2,309 +2,304 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Soara Signal</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;600&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:hidden;height:100vh}
-.header{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(7,9,15,.98) 0%,transparent 100%)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+
+/* ── HEADER ── */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:linear-gradient(to bottom,rgba(7,9,15,0.9),transparent)}
 .logo{font-family:'Playfair Display',serif;font-size:22px}
 .logo em{color:#C8A96E;font-style:italic}
 .logo-signal{font-family:'DM Sans',sans-serif;font-size:9px;font-weight:600;letter-spacing:3px;color:rgba(196,162,101,.45);margin-left:10px;vertical-align:middle;text-transform:uppercase}
-.header-r{display:flex;align-items:center;gap:20px}
+#hdr-right{display:flex;align-items:center;gap:14px}
 .live{display:flex;align-items:center;gap:6px;font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#FC8181}
 .live-dot{width:5px;height:5px;background:#FC8181;border-radius:50%;animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 .hdate{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(196,162,101,.4)}
-#c{position:fixed;inset:0;z-index:1}
-.sidebar{position:fixed;top:52px;right:0;bottom:0;width:300px;z-index:50;background:linear-gradient(to left,rgba(7,9,15,.98) 0%,rgba(7,9,15,.88) 100%);border-left:1px solid rgba(196,162,101,.08);overflow-y:auto;display:flex;flex-direction:column}
-.sidebar::-webkit-scrollbar{width:2px}
-.sidebar::-webkit-scrollbar-thumb{background:rgba(196,162,101,.15)}
-.sb-head{padding:18px 20px 14px;border-bottom:1px solid rgba(196,162,101,.08);display:flex;justify-content:space-between;align-items:baseline}
-.sb-title{font-family:'Playfair Display',serif;font-size:15px}
-.sb-count{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,.4)}
-.zone{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:12px;cursor:pointer;transition:background .12s;text-decoration:none;color:inherit;user-select:none}
-.zone:hover,.zone.active{background:rgba(196,162,101,.07)}
-.zdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.cr{background:#FC8181;box-shadow:0 0 6px #FC8181;animation:pg 1.5s infinite}
-.te{background:#F6AD55}
-.wa{background:#F6E05E}
-.ca{background:#68D391}
-@keyframes pg{0%,100%{box-shadow:0 0 4px #FC8181}50%{box-shadow:0 0 14px #FC8181}}
-.zbody{flex:1}
-.zname{font-family:'Playfair Display',serif;font-size:14px;margin-bottom:2px}
-.zreg{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(196,162,101,.4);margin-bottom:6px}
-.zdesc{font-size:11px;color:rgba(236,231,221,.5);line-height:1.5;margin-bottom:7px}
-.zfoot{display:flex;align-items:center;justify-content:space-between}
-.ztag{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;border:1px solid}
-.ztag.cr{border-color:rgba(252,129,129,.35);color:#FC8181}
-.ztag.te{border-color:rgba(246,173,85,.35);color:#F6AD55}
-.ztag.wa{border-color:rgba(246,224,94,.3);color:#F6E05E}
-.ztag.ca{border-color:rgba(104,211,145,.3);color:#68D391}
-.zcta{font-size:9px;color:rgba(196,162,101,.4)}
-.stats{position:fixed;bottom:24px;left:24px;z-index:50;display:flex;gap:1px}
-.stat{background:rgba(7,9,15,.9);border:1px solid rgba(196,162,101,.1);padding:10px 16px}
-.sn{font-family:'Playfair Display',serif;font-size:20px;line-height:1}
-.sl{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,.35);margin-top:3px}
-/* PANEL INFO */
-#panel{position:fixed;bottom:0;left:0;right:300px;z-index:60;transform:translateY(100%);transition:transform .3s ease;background:rgba(7,9,15,.97);border-top:2px solid #C8A96E;padding:20px 28px;display:flex;gap:24px;align-items:flex-start}
-#panel.open{transform:translateY(0)}
-.panel-bar{width:3px;flex-shrink:0;align-self:stretch;border-radius:1px}
-.panel-body{flex:1}
-.panel-reg{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,.5);margin-bottom:4px}
-.panel-name{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px}
-.panel-desc{font-size:13px;color:rgba(236,231,221,.65);line-height:1.6;margin-bottom:10px}
-.panel-cta{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#C8A96E}
-.panel-close{font-size:18px;color:rgba(196,162,101,.4);cursor:pointer;flex-shrink:0;padding:2px 6px}
-.panel-close:hover{color:#C8A96E}
-/* HINT */
-.hint{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:50;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(236,231,221,.25);pointer-events:none;transition:opacity 1s}
-@media(max-width:768px){.sidebar{display:none}.stats{display:none}#panel{right:0;bottom:calc(72px + env(safe-area-inset-bottom));padding:14px 18px 18px;min-height:190px;max-height:220px;overflow-y:auto}.panel-name{font-size:18px;margin-bottom:6px}.panel-desc{font-size:12px;line-height:1.55;margin-bottom:8px;display:block!important;opacity:1!important}.panel-reg{margin-bottom:3px}#hint{bottom:calc(80px + env(safe-area-inset-bottom))!important}}
+.back{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5);text-decoration:none;border:1px solid rgba(196,162,101,0.15);padding:6px 10px;transition:color 0.2s}
+
+/* ── CHAPTER CARD ── */
+#chapter{
+  position:fixed;bottom:calc(64px + env(safe-area-inset-bottom));left:0;right:0;
+  z-index:90;
+  padding:0 16px 16px;
+  transition:opacity 0.5s, transform 0.5s;
+}
+#chapter.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
+
+.ch-card{
+  background:rgba(7,9,15,0.88);
+  border:1px solid rgba(200,169,110,0.15);
+  border-left:3px solid var(--zone-col,#C8A96E);
+  backdrop-filter:blur(12px);
+  padding:16px 18px;
+}
+
+.ch-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.ch-meta{display:flex;flex-direction:column;gap:3px}
+.ch-region{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:rgba(200,169,110,0.5)}
+.ch-name{font-family:'Playfair Display',serif;font-size:20px;line-height:1.1;color:#ECE7DD;display:flex;align-items:center;gap:8px}
+.ch-trend{font-size:13px;font-weight:700}
+.ch-progress{display:flex;gap:4px;align-items:center}
+.ch-num{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.2)}
+
+.ch-desc{font-size:13px;color:rgba(236,231,221,0.75);line-height:1.6;margin-bottom:12px}
+.ch-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.ch-tag{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border:1px solid;border-radius:1px}
+
+.ch-nav{display:flex;justify-content:space-between;align-items:center}
+.ch-dots{display:flex;gap:5px}
+.ch-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.15);transition:all 0.3s;cursor:pointer}
+.ch-dot.active{background:#C8A96E;transform:scale(1.3)}
+.ch-dot.visited{background:rgba(200,169,110,0.3)}
+
+.nav-btns{display:flex;gap:8px}
+.nav-btn{background:none;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;transition:all 0.2s}
+.nav-btn:hover{color:#fff;border-color:rgba(255,255,255,0.3)}
+.nav-btn.primary{border-color:rgba(200,169,110,0.4);color:#C8A96E}
+.nav-btn.primary:hover{background:rgba(200,169,110,0.1)}
+
+/* ── INTRO ── */
+#intro{
+  position:fixed;inset:0;z-index:95;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:40px 24px;
+  background:rgba(7,9,15,0.7);backdrop-filter:blur(4px);
+  transition:opacity 0.8s;
+}
+#intro.hidden{opacity:0;pointer-events:none}
+.intro-label{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:rgba(200,169,110,0.5);margin-bottom:16px}
+.intro-title{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,48px);line-height:1.1;color:#ECE7DD;margin-bottom:12px}
+.intro-sub{font-size:13px;color:rgba(236,231,221,0.5);line-height:1.6;max-width:340px;margin-bottom:28px}
+.intro-btn{background:none;border:1px solid rgba(200,169,110,0.4);color:#C8A96E;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:12px 28px;cursor:pointer;transition:all 0.2s}
+.intro-btn:hover{background:rgba(200,169,110,0.08);border-color:#C8A96E}
+.intro-count{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.2);margin-top:12px}
+
+/* ── LÉGENDE ── */
+#legend{
+  position:fixed;top:60px;right:16px;z-index:80;
+  background:rgba(7,9,15,0.8);border:1px solid rgba(255,255,255,0.06);
+  padding:10px 12px;backdrop-filter:blur(6px);
+}
+.leg-title{font-size:6px;letter-spacing:3px;text-transform:uppercase;color:rgba(200,169,110,0.4);margin-bottom:6px}
+.leg-item{display:flex;align-items:center;gap:7px;margin-bottom:4px}
+.leg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.leg-label{font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.45)}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap');
 </style>
 </head>
 <body>
 
-<header class="header">
-  <div style="display:flex;align-items:center;gap:20px">
-    <a href="/" style="
-      display:flex;align-items:center;gap:7px;
-      font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
-      color:rgba(196,162,101,0.5);text-decoration:none;
-      border:1px solid rgba(196,162,101,0.15);padding:6px 12px;
-      transition:color 0.2s,border-color 0.2s;
-    " onmouseover="this.style.color='#C8A96E';this.style.borderColor='rgba(196,162,101,0.4)'"
-       onmouseout="this.style.color='rgba(196,162,101,0.5)';this.style.borderColor='rgba(196,162,101,0.15)'">
-      ← Accueil
-    </a>
-    <div class="logo">Con<em>fins</em><span class="logo-signal">Signal</span></div>
+<!-- HEADER -->
+<div id="hdr">
+  <div>
+    <a href="/" class="back">← Accueil</a>
   </div>
-  <div class="header-r">
-    <div class="live"><div class="live-dot"></div>En direct</div>
-    <div class="hdate">4 avril 2026</div>
+  <div style="position:absolute;left:50%;transform:translateX(-50%)">
+    <span class="logo">Con<em>fins</em></span><span class="logo-signal">Signal</span>
   </div>
-</header>
-
-<canvas id="c"></canvas>
-
-<div class="sidebar">
-  <div class="sb-head">
-    <div class="sb-title">Zones suivies</div>
-    <div class="sb-count">9 zones · Semaine 14</div>
+  <div id="hdr-right">
+    <div class="live"><div class="live-dot"></div>EN DIRECT</div>
+    <div class="hdate" id="hdate"></div>
   </div>
-  <div class="zone" data-i="0"><div class="zdot cr"></div><div class="zbody"><div class="zname">Iran — États-Unis <span style="color:#FC8181;font-size:11px">↑</span></div><div class="zreg">Moyen-Orient</div><div class="zdesc">35e jour de frappes. Téhéran riposte sur les infrastructures du Golfe. ONU alarme sur l'escalade nucléaire.</div><div class="zfoot"><span class="ztag cr">Crise active</span></div></div></div>
-  <div class="zone" data-i="1"><div class="zdot cr"></div><div class="zbody"><div class="zname">Détroit d'Ormuz <span style="color:#FC8181;font-size:11px">↑</span></div><div class="zreg">Golfe Persique</div><div class="zdesc">40% du pétrole mondial bloqué. Péage iranien à 2M$ par navire.</div><div class="zfoot"><span class="ztag cr">Crise active</span></div></div></div>
-  <div class="zone" data-i="2"><div class="zdot te"></div><div class="zbody"><div class="zname">Taïwan <span style="color:#F6AD55;font-size:11px">→</span></div><div class="zreg">Asie-Pacifique</div><div class="zdesc">Exercices militaires chinois intensifiés. Washington réaffirme son soutien mais reste prudent.</div><div class="zfoot"><span class="ztag te">Tension élevée</span></div></div></div>
-  <div class="zone" data-i="3"><div class="zdot te"></div><div class="zbody"><div class="zname">Sahel <span style="color:#F6AD55;font-size:11px">↑</span></div><div class="zreg">Afrique de l'Ouest</div><div class="zdesc">Retrait français consommé. Wagner présent au Mali et Burkina. Vide sécuritaire croissant.</div><div class="zfoot"><span class="ztag te">Tension élevée</span></div></div></div>
-  <div class="zone" data-i="4"><div class="zdot te"></div><div class="zbody"><div class="zname">Ukraine <span style="color:#F6AD55;font-size:11px">↓</span></div><div class="zreg">Europe de l'Est</div><div class="zdesc">Front stabilisé. Négociations indirectes via la Turquie. L'Europe sans les États-Unis.</div><div class="zfoot"><span class="ztag te">Tension élevée</span></div></div></div>
-  <div class="zone" data-i="5"><div class="zdot wa"></div><div class="zbody"><div class="zname">Venezuela <span style="color:#F6E05E;font-size:11px">→</span></div><div class="zreg">Amérique du Sud</div><div class="zdesc">Maduro consolide le pouvoir. Doctrine Monroe réactivée. Enjeux pétroliers majeurs.</div><div class="zfoot"><span class="ztag wa">Veille</span></div></div></div>
-  <div class="zone" data-i="6"><div class="zdot wa"></div><div class="zbody"><div class="zname">Corée du Nord <span style="color:#F6E05E;font-size:11px">↑</span></div><div class="zreg">Asie du Nord-Est</div><div class="zdesc">Essais balistiques réguliers. Rapprochement accéléré avec Moscou depuis 2022.</div><div class="zfoot"><span class="ztag wa">Veille</span></div></div></div>
-  <div class="zone" data-i="7"><div class="zdot wa"></div><div class="zbody"><div class="zname">Arctique <span style="color:#F6E05E;font-size:11px">→</span></div><div class="zreg">Grand Nord</div><div class="zdesc">Course aux ressources sous-marines. OTAN renforcé. Coopération Chine-Russie polaire.</div><div class="zfoot"><span class="ztag wa">Veille</span></div></div></div>
-  <div class="zone" data-i="8"><div class="zdot ca"></div><div class="zbody"><div class="zname">Inde <span style="color:#68D391;font-size:11px">↓</span></div><div class="zreg">Asie du Sud</div><div class="zdesc">7% de croissance. Non-alignement stratégique assumé. Pivot du siècle qui vient.</div><div class="zfoot"><span class="ztag ca">Stable</span></div></div></div>
 </div>
 
-<div class="stats">
-  <div class="stat"><div class="sn" style="color:#FC8181">2</div><div class="sl">Crises</div></div>
-  <div class="stat"><div class="sn" style="color:#F6AD55">3</div><div class="sl">Tensions</div></div>
-  <div class="stat"><div class="sn" style="color:#F6E05E">3</div><div class="sl">Veille</div></div>
-  <div class="stat"><div class="sn" style="color:#68D391">1</div><div class="sl">Stable</div></div>
+<!-- LÉGENDE -->
+<div id="legend">
+  <div class="leg-title">Statut</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#FC8181"></div><span class="leg-label">Crise active</span></div>
+  <div class="leg-item"><div class="leg-dot" style="background:#F6AD55"></div><span class="leg-label">Tension</span></div>
+  <div class="leg-item"><div class="leg-dot" style="background:#F6E05E"></div><span class="leg-label">Surveillance</span></div>
+  <div class="leg-item"><div class="leg-dot" style="background:#4dd9ac"></div><span class="leg-label">Crise climatique</span></div>
 </div>
 
-<div id="panel">
-  <div class="panel-bar" id="panel-bar"></div>
-  <div class="panel-body">
-    <div class="panel-reg" id="panel-reg"></div>
-    <div class="panel-name" id="panel-name"></div>
-    <div class="panel-desc" id="panel-desc"></div>
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-label">Soara · Signal géopolitique</div>
+  <div class="intro-title">Le monde<br><em>en tensions.</em></div>
+  <div class="intro-sub">Un tour du monde des crises actives — géopolitiques et climatiques. Appuyez sur chaque zone pour l'analyse.</div>
+  <button class="intro-btn" onclick="startTour()">▶ Commencer le tour</button>
+  <div class="intro-count" id="zone-count"></div>
+</div>
+
+<!-- CHAPTER CARD -->
+<div id="chapter" class="hidden">
+  <div class="ch-card" id="ch-card">
+    <div class="ch-top">
+      <div class="ch-meta">
+        <div class="ch-region" id="ch-region"></div>
+        <div class="ch-name">
+          <span id="ch-name"></span>
+          <span class="ch-trend" id="ch-trend"></span>
+        </div>
+      </div>
+      <div class="ch-progress">
+        <span class="ch-num" id="ch-num"></span>
+      </div>
+    </div>
+    <div class="ch-desc" id="ch-desc"></div>
+    <div class="ch-tags" id="ch-tags"></div>
+    <div class="ch-nav">
+      <div class="ch-dots" id="ch-dots"></div>
+      <div class="nav-btns">
+        <button class="nav-btn" onclick="prevZone()">← Préc.</button>
+        <button class="nav-btn primary" id="next-btn" onclick="nextZone()">Suiv. →</button>
+      </div>
+    </div>
   </div>
-  <div class="panel-close" onclick="closePanel()">✕</div>
 </div>
 
-<div class="hint" id="hint">Cliquez sur un point ou une zone</div>
-
-<!-- Légende permanente -->
-<div id="legend" style="position:fixed;top:56px;left:16px;z-index:50;display:flex;flex-direction:column;gap:5px;padding:10px 12px;background:rgba(7,9,15,0.82);border:1px solid rgba(255,255,255,0.07);backdrop-filter:blur(6px)">
-  <div style="font-family:'DM Mono',monospace;font-size:6px;letter-spacing:3px;text-transform:uppercase;color:rgba(200,169,110,0.5);margin-bottom:2px">Légende</div>
-  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#FC8181;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Crise active</span></div>
-  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#F6AD55;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Tension élevée</span></div>
-  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#F6E05E;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Surveillance</span></div>
-  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#68D391;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Stable</span></div>
-  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#4dd9ac;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Crise climatique</span></div>
-  <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.06);font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.25);letter-spacing:0.5px">↑↓→ tendance · Appuyez sur un point</div>
-</div>
-
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// trend: "up"=monte, "down"=baisse, "stable"=stable
-// history: évolution du statut par mois [jan, fev, mar, avr 2026]
-const ZONES = [
-  {lat:32.4, lng:53.6, name:"Iran — États-Unis", region:"Moyen-Orient", status:"crisis", trend:"up", history:["watch","tension","crisis","crisis"], desc:"35e jour de frappes américano-israéliennes. Téhéran riposte sur les infrastructures du Golfe. L'ONU alarme sur le risque nucléaire."},
-  {lat:26.5, lng:56.3, name:"Détroit d'Ormuz", region:"Golfe Persique", status:"crisis", trend:"up", history:["calm","watch","tension","crisis"], desc:"40% du pétrole mondial bloqué. L'Iran impose un péage à 2M$ par navire. Trump demande à ses alliés d'intervenir."},
-  {lat:23.6, lng:121.0, name:"Taïwan", region:"Asie-Pacifique", status:"tension", trend:"stable", history:["tension","tension","tension","tension"], desc:"Exercices militaires chinois intensifiés au large. Washington réaffirme son soutien sans engagement direct."},
-  {lat:14.0, lng:-2.0, name:"Sahel", region:"Afrique de l'Ouest", status:"tension", trend:"up", history:["watch","watch","tension","tension"], desc:"Retrait français consommé. Wagner omniprésent au Mali et Burkina Faso. Vide sécuritaire exploité par les groupes jihadistes."},
-  {lat:49.0, lng:31.0, name:"Ukraine", region:"Europe de l'Est", status:"tension", trend:"down", history:["crisis","tension","tension","tension"], desc:"Front stabilisé sur 1000 km. Négociations indirectes via la Turquie. L'Europe cherche sa posture sans les États-Unis."},
-  {lat:8.0, lng:-66.0, name:"Venezuela", region:"Amérique du Sud", status:"watch", trend:"stable", history:["watch","watch","watch","watch"], desc:"Maduro consolide le pouvoir après l'élection contestée. Doctrine Monroe réactivée par Washington. Enjeux pétroliers centraux."},
-  {lat:40.0, lng:127.5, name:"Corée du Nord", region:"Asie du Nord-Est", status:"watch", trend:"up", history:["calm","watch","watch","watch"], desc:"Essais balistiques réguliers. Rapprochement accéléré avec Moscou depuis le conflit ukrainien. Variable d'ajustement géopolitique."},
-  {lat:78.0, lng:20.0, name:"Arctique", region:"Grand Nord", status:"watch", trend:"up", history:["calm","calm","watch","watch"], desc:"Course aux ressources sous-marines. OTAN renforce sa présence. Chine et Russie intensifient leur coopération polaire."},
-  {lat:20.0, lng:78.0, name:"Inde", region:"Asie du Sud", status:"calm", trend:"stable", history:["calm","calm","calm","calm"], desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle."},];
 
-// Zones climatiques
-const CLIMATE_ZONES = [
-  {lat:8.0,  lng:42.0,  name:"Corne de l'Afrique", region:"Afrique de l'Est",   status:"climate", desc:"Sécheresse chronique. 40M de personnes en insécurité alimentaire. Principal couloir de migration vers l'Europe via la Libye.", france:true, franceNote:"Route migratoire vers l'Europe. Présence française à Djibouti."},
-  {lat:23.7, lng:90.4,  name:"Bangladesh",          region:"Asie du Sud",        status:"climate", desc:"30 millions de déplacés climatiques estimés d'ici 2050. Montée des eaux du Gange et du Brahmapoutre. Mégadelta menacé.", france:false, franceNote:""},
-  {lat:-5.0, lng:-60.0, name:"Amazonie",             region:"Amérique du Sud",    status:"climate", desc:"Déforestation accélérée. Point de bascule à 20-25% de déforestation. Impact sur les précipitations mondiales et le carbone.", france:true, franceNote:"Forêt guyanaise frontalière. Intérêts French Guiana Space Centre (Ariane)."},
-  {lat:45.0, lng:60.0,  name:"Mer d'Aral",           region:"Asie centrale",      status:"climate", desc:"Assèchement quasi-total. Conflits sur l'eau entre Kazakhstan, Ouzbékistan, Tadjikistan. Précédent pour les guerres de l'eau.", france:false, franceNote:""},
-  {lat:-8.0, lng:178.0, name:"Pacifique insulaire",  region:"Océanie",            status:"climate", desc:"Tuvalu et Kiribati menacés de submersion. Premiers États en voie de disparition physique. Crise du droit international.", france:true, franceNote:"Polynésie française et Nouvelle-Calédonie dans la même zone de risque climatique."},
-  {lat:15.0, lng:17.0,  name:"Lac Tchad",             region:"Afrique centrale",   status:"climate", desc:"90% de réduction depuis 1960. Ressource partagée par 4 États. Boko Haram exploite le vide sécuritaire créé par la crise hydrique.", france:true, franceNote:"Zone Sahel — ancienne présence Barkhane. Intérêts sécuritaires directs."},
+// ── DATE ──────────────────────────────────────────────────────
+const now = new Date();
+document.getElementById('hdate').textContent =
+  now.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}).toUpperCase();
+
+// ── ZONES ─────────────────────────────────────────────────────
+const ZONES = [
+  {
+    lat:32.4, lng:53.6, name:"Iran — États-Unis", region:"Moyen-Orient",
+    status:"crisis", trend:"up",
+    desc:"35e jour de frappes. Téhéran riposte sur les infrastructures du Golfe. L'ONU alerte sur le risque d'escalade nucléaire.",
+    tags:["Conflit armé","Risque nucléaire","Pétrole"],
+    tagColors:["#FC8181","#FC8181","#F6AD55"],
+  },
+  {
+    lat:26.5, lng:56.3, name:"Détroit d'Ormuz", region:"Golfe Persique",
+    status:"crisis", trend:"up",
+    desc:"40% du pétrole mondial bloqué. L'Iran impose un péage de 2M$ par navire. Le commerce mondial sous pression.",
+    tags:["Commerce mondial","Énergie","Marine"],
+    tagColors:["#F6AD55","#F6AD55","#F6E05E"],
+  },
+  {
+    lat:49.0, lng:31.0, name:"Ukraine", region:"Europe de l'Est",
+    status:"tension", trend:"down",
+    desc:"Front stabilisé sur 1000 km. Négociations indirectes via la Turquie. L'Europe sans les États-Unis cherche sa posture.",
+    tags:["Guerre","Diplomatie","OTAN"],
+    tagColors:["#FC8181","#F6AD55","#F6E05E"],
+  },
+  {
+    lat:14.0, lng:-2.0, name:"Sahel", region:"Afrique de l'Ouest",
+    status:"tension", trend:"up",
+    desc:"Retrait français consommé. Wagner omniprésent. Vide sécuritaire exploité par les groupes jihadistes.",
+    tags:["Jihadisme","Post-colonialisme","Wagner"],
+    tagColors:["#FC8181","#F6AD55","#F6E05E"],
+  },
+  {
+    lat:23.6, lng:121.0, name:"Taïwan", region:"Asie-Pacifique",
+    status:"tension", trend:"stable",
+    desc:"Exercices militaires chinois intensifiés au large. Washington réaffirme son soutien sans engagement direct.",
+    tags:["Chine","Souveraineté","Technologie"],
+    tagColors:["#F6AD55","#F6AD55","#F6E05E"],
+  },
+  {
+    lat:8.0, lng:42.0, name:"Corne de l'Afrique", region:"Afrique de l'Est",
+    status:"climate", trend:"up",
+    desc:"Sécheresse chronique. 40 millions de personnes en insécurité alimentaire. Principal couloir de migration vers l'Europe.",
+    tags:["Sécheresse","Migrations","Famine"],
+    tagColors:["#4dd9ac","#4dd9ac","#F6E05E"],
+  },
+  {
+    lat:40.0, lng:127.5, name:"Corée du Nord", region:"Asie du Nord-Est",
+    status:"watch", trend:"up",
+    desc:"Essais balistiques réguliers. Rapprochement accéléré avec Moscou. Variable d'ajustement géopolitique de premier rang.",
+    tags:["Nucléaire","Russie","Missiles"],
+    tagColors:["#F6E05E","#F6E05E","#FC8181"],
+  },
+  {
+    lat:15.0, lng:17.0, name:"Lac Tchad", region:"Afrique centrale",
+    status:"climate", trend:"up",
+    desc:"90% de réduction depuis 1960. Ressource partagée par 4 États. Boko Haram exploite le vide créé par la crise hydrique.",
+    tags:["Eau","Boko Haram","Sécurité"],
+    tagColors:["#4dd9ac","#FC8181","#F6AD55"],
+  },
+  {
+    lat:20.0, lng:78.0, name:"Inde", region:"Asie du Sud",
+    status:"watch", trend:"stable",
+    desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle.",
+    tags:["Non-alignement","Croissance","Indo-Pacifique"],
+    tagColors:["#F6E05E","#68D391","#F6AD55"],
+  },
 ];
 
-// Propriété france sur les zones géopolitiques
-const FRANCE_ZONES = [1,2,3,4]; // Ormuz, Taïwan(non), Sahel, Ukraine
-ZONES[0].france=true;  ZONES[0].franceNote="15% des importations énergétiques via le Golfe Persique.";
-ZONES[1].france=true;  ZONES[1].franceNote="15% des importations énergétiques françaises bloquées.";
-ZONES[2].france=false;
-ZONES[3].france=true;  ZONES[3].franceNote="Bases militaires françaises, uranium du Niger, 4000 soldats déployés.";
-ZONES[4].france=true;  ZONES[4].franceNote="Sécurité européenne, engagement OTAN, aide militaire de 3Md€.";
-ZONES[5].france=false;
-ZONES[6].france=false;
-ZONES[7].france=true;  ZONES[7].franceNote="Routes commerciales Saint-Pierre-et-Miquelon, ressources sous-marines.";
-ZONES[8].france=true;  ZONES[8].franceNote="Partenariat stratégique Indo-Pacifique. 1,5M de Français en Asie.";
+const COLOR = {crisis:"#FC8181",tension:"#F6AD55",watch:"#F6E05E",climate:"#4dd9ac",calm:"#68D391"};
+const BARCOLOR = COLOR;
+const TRENDCOL = {up:"#FC8181", down:"#68D391", stable:"rgba(255,255,255,0.35)"};
+const TRENDSYM = {up:"↑", down:"↓", stable:"→"};
 
-const COLOR = {crisis:"#FC8181", tension:"#F6AD55", watch:"#F6E05E", calm:"#68D391", climate:"#4dd9ac"};
-const FRANCE_COL = "#3b82f6"; // Bleu France
-const BARCOLOR = {crisis:"#FC8181", tension:"#F6AD55", watch:"#F6E05E", calm:"#68D391"};
+document.getElementById('zone-count').textContent = ZONES.length + ' zones analysées';
 
-// THREE SCENE
-const canvas = document.getElementById('c');
-const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setSize(window.innerWidth, window.innerHeight);
-
+// ── THREE.JS SETUP ─────────────────────────────────────────────
 const scene = new THREE.Scene();
-const cam = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
-cam.position.z = 2.6;
+const cam = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
+cam.position.set(0, 0, 2.8);
 
-scene.add(new THREE.AmbientLight(0x223355, 1.4));
-const sun = new THREE.DirectionalLight(0x7799cc, 2.2);
-sun.position.set(5,3,5); scene.add(sun);
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-// Stars
-const sg = new THREE.BufferGeometry();
-const sp = [];
-for(let i=0;i<3000;i++){sp.push((Math.random()-.5)*400,(Math.random()-.5)*400,(Math.random()-.5)*400)}
-sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
-scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0xffffff,size:.25,transparent:true,opacity:.55})));
+// Lumières
+const amb = new THREE.AmbientLight(0xffffff, 0.3);
+scene.add(amb);
+const sun = new THREE.DirectionalLight(0xfff5e0, 1.2);
+sun.position.set(5,3,5);
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0x1a2a4a, 0.4);
+fill.position.set(-5,-2,-3);
+scene.add(fill);
 
-// GLOBE GROUP — everything rotates together
 const globeGroup = new THREE.Group();
 scene.add(globeGroup);
 
-// Draw globe texture on canvas
-const tc = document.createElement('canvas');
-tc.width=2048; tc.height=1024;
-const ctx=tc.getContext('2d');
-
-// Ocean gradient
-const og=ctx.createLinearGradient(0,0,0,1024);
-og.addColorStop(0,'#06090e');
-og.addColorStop(.5,'#070c12');
-og.addColorStop(1,'#040810');
-ctx.fillStyle=og; ctx.fillRect(0,0,2048,1024);
-
-// Graticule
-ctx.strokeStyle='rgba(20,40,75,.18)'; ctx.lineWidth=.4;
-for(let x=-180;x<=180;x+=30){const px=(x+180)/360*2048;ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px,1024);ctx.stroke()}
-for(let y=-90;y<=90;y+=30){const py=(90-y)/180*1024;ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(2048,py);ctx.stroke()}
-
-const globeTex = new THREE.CanvasTexture(tc);
+// Globe
+const loader = new THREE.TextureLoader();
+const globeTex = loader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg');
 
 const globe = new THREE.Mesh(
   new THREE.SphereGeometry(1,64,64),
-  new THREE.MeshPhongMaterial({map:globeTex, specular:0x112244, shininess:12})
+  new THREE.MeshPhongMaterial({map:globeTex,specular:0x112244,shininess:12})
 );
 globeGroup.add(globe);
 
-// Atmosphere
+// Atmosphère
 globeGroup.add(new THREE.Mesh(
   new THREE.SphereGeometry(1.07,32,32),
   new THREE.MeshPhongMaterial({color:0x152540,transparent:true,opacity:.08,side:THREE.BackSide})
 ));
 
-// Load countries
-fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-  .then(r=>r.json())
-  .then(world=>{
-    const countries = topojson.feature(world,world.objects.countries);
-    // Use d3 path to canvas
-    const d3canvas = document.createElement('canvas');
-    d3canvas.width=2048; d3canvas.height=1024;
-    const d3ctx = d3canvas.getContext('2d');
-
-    // Copy ocean
-    d3ctx.drawImage(tc,0,0);
-
-    const proj = (()=>{
-      // Manual equirectangular
-      return ([lng,lat])=>[(lng+180)/360*2048,(90-lat)/180*1024];
-    })();
-
-    function drawFeature(feature,fillColor,strokeColor){
-      const coords = feature.geometry.type==='Polygon'
-        ? [feature.geometry.coordinates]
-        : feature.geometry.coordinates;
-      coords.forEach(poly=>{
-        poly.forEach(ring=>{
-          d3ctx.beginPath();
-          ring.forEach(([lng,lat],i)=>{
-            const [x,y]=proj([lng,lat]);
-            i===0?d3ctx.moveTo(x,y):d3ctx.lineTo(x,y);
-          });
-          d3ctx.closePath();
-          d3ctx.fillStyle=fillColor;
-          d3ctx.fill();
-          d3ctx.strokeStyle=strokeColor;
-          d3ctx.lineWidth=.6;
-          d3ctx.stroke();
-        });
-      });
-    }
-
-    countries.features.forEach(f=>drawFeature(f,'rgba(18,32,55,.80)','rgba(28,50,90,.35)'));
-    globeTex.image=d3canvas;
-    globeTex.needsUpdate=true;
-  })
-  .catch(()=>{});
-
-// Helper: lat/lng → 3D point on sphere
-function ll2v(lat,lng,r=1.025){
+// Frontières
+function ll2v(lat,lng,r=1){
   const phi=(90-lat)*Math.PI/180;
-  const theta=(lng+180)*Math.PI/180;
-  return new THREE.Vector3(
-    -r*Math.sin(phi)*Math.cos(theta),
-    r*Math.cos(phi),
-    r*Math.sin(phi)*Math.sin(theta)
-  );
+  const tht=(lng+180)*Math.PI/180;
+  return new THREE.Vector3(-Math.sin(phi)*Math.cos(tht)*r,Math.cos(phi)*r,Math.sin(phi)*Math.sin(tht)*r);
 }
 
-// Markers — inside globeGroup so they rotate with globe
+// Markers
 const markers=[];
 ZONES.forEach((z,i)=>{
   const pos=ll2v(z.lat,z.lng,1.025);
   const col=new THREE.Color(COLOR[z.status]);
-  const r=z.status==='crisis'?.022:.015;
+  const r=z.status==='crisis'?.022:z.status==='climate'?.018:.015;
 
   // Glow
   const gm=new THREE.Mesh(
-    new THREE.SphereGeometry(r*2.8,8,8),
-    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.10})
+    new THREE.SphereGeometry(r*3,8,8),
+    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.1})
   );
   gm.position.copy(pos);
   globeGroup.add(gm);
 
-  // Core
+  // Dot
   const dot=new THREE.Mesh(
-    new THREE.SphereGeometry(r,8,8),
+    new THREE.SphereGeometry(r,10,10),
     new THREE.MeshBasicMaterial({color:col})
   );
   dot.position.copy(pos);
@@ -313,171 +308,137 @@ ZONES.forEach((z,i)=>{
   markers.push(dot);
 });
 
+// Labels HTML
+const labelDiv = document.createElement('div');
+labelDiv.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden;';
+document.body.appendChild(labelDiv);
 
-// Markers climatiques
-const climateMarkers = [];
-CLIMATE_ZONES.forEach((z,i)=>{
-  const pos=ll2v(z.lat,z.lng,1.025);
-  const col=new THREE.Color(COLOR.climate);
-  const r=0.013;
-  const gm=new THREE.Mesh(
-    new THREE.SphereGeometry(r*2.5,8,8),
-    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.12})
-  );
-  gm.position.copy(pos);
-  globeGroup.add(gm);
-  const dot=new THREE.Mesh(
-    new THREE.SphereGeometry(r,8,8),
-    new THREE.MeshBasicMaterial({color:col})
-  );
-  dot.position.copy(pos);
-  dot.userData={zone:z,index:i+100,glow:gm,isClimate:true};
-  dot.visible=false; // caché par défaut
-  gm.visible=false;
-  globeGroup.add(dot);
-  climateMarkers.push(dot);
+markers.forEach((m,i)=>{
+  const z=m.userData.zone;
+  const col=COLOR[z.status];
+  const el=document.createElement('div');
+  el.id='lbl'+i;
+  el.style.cssText=`position:absolute;opacity:0;transition:opacity 0.4s;display:flex;align-items:center;gap:4px;`;
+  el.innerHTML=`<div style="width:6px;height:1px;background:${col}88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;color:${col};background:rgba(7,9,15,0.75);padding:2px 6px;border-radius:2px;white-space:nowrap">${z.name}</span>`;
+  labelDiv.appendChild(el);
 });
 
-// ARCS — connexions entre zones liées
-const ARCS = [
-  {from:0, to:1, color:'#FC8181'},   // Iran ↔ Ormuz
-  {from:0, to:4, color:'#F6AD55'},   // Iran ↔ Ukraine (énergie)
-  {from:2, to:6, color:'#F6AD55'},   // Taïwan ↔ Corée du Nord
-  {from:3, to:7, color:'#F6E05E'},   // Sahel ↔ Arctique (ressources)
-];
-
-function arcBetween(p1, p2, color, height=0.4) {
-  const mid = new THREE.Vector3().addVectors(p1,p2).multiplyScalar(0.5).normalize().multiplyScalar(1.0+height);
-  const points = [];
-  for(let i=0;i<=40;i++){
-    const t=i/40;
-    // Quadratic bezier
-    const a=p1.clone().multiplyScalar((1-t)*(1-t));
-    const b=mid.clone().multiplyScalar(2*(1-t)*t);
-    const c=p2.clone().multiplyScalar(t*t);
-    points.push(a.add(b).add(c));
-  }
-  const curve = new THREE.CatmullRomCurve3(points);
-  const geo = new THREE.TubeGeometry(curve, 40, 0.003, 4, false);
-  const mat = new THREE.MeshBasicMaterial({color: new THREE.Color(color), transparent:true, opacity:0.35});
-  const mesh = new THREE.Mesh(geo, mat);
-  globeGroup.add(mesh);
-  return mesh;
-}
-
-const arcMeshes = [];
-ARCS.forEach(a => {
-  const p1 = ll2v(ZONES[a.from].lat, ZONES[a.from].lng, 1.02);
-  const p2 = ll2v(ZONES[a.to].lat, ZONES[a.to].lng, 1.02);
-  arcMeshes.push({mesh: arcBetween(p1,p2,a.color), mat: null});
-});
-// Store materials for pulsing
-arcMeshes.forEach(a => { a.mat = a.mesh.material; });
-
-
-// INTERACTION
-const raycaster=new THREE.Raycaster();
-const mouse=new THREE.Vector2();
-let isDrag=false, prevX=0, prevY=0;
+// ── ROTATION AUTO ──────────────────────────────────────────────
+let autoRot=true, isDrag=false, prevX=0, prevY=0;
 let targetRotY=0.5, targetRotX=0.1;
-let autoRot=true;
+let curRotY=0.5, curRotX=0.1;
+let t=0;
 
-function openPanel(z){
-  document.getElementById('panel-reg').textContent=z.region;
-  const trendArrow = z.trend==='up'?' ↑':z.trend==='down'?' ↓':' →';
-  const trendCol = z.trend==='up'?'#FC8181':z.trend==='down'?'#68D391':'rgba(255,255,255,0.4)';
-  document.getElementById('panel-name').innerHTML=z.name+'<span style="font-size:14px;color:'+trendCol+'">'+trendArrow+'</span>';
-  let descText = z.desc;
-  if(currentFilter==='france' && z.franceNote) descText += ' 🇫🇷 ' + z.franceNote;
-  document.getElementById('panel-desc').textContent=descText;
-  document.getElementById('panel-bar').style.background=BARCOLOR[z.status];
-  document.getElementById('panel').classList.add('open');
-  document.getElementById('timeline').style.display='none';
-  document.getElementById('hint').style.opacity='0';
+const mouse = new THREE.Vector2();
+const raycaster = new THREE.Raycaster();
+
+// ── TOUR ──────────────────────────────────────────────────────
+let currentZone=-1, touring=false;
+
+function startTour(){
+  document.getElementById('intro').classList.add('hidden');
+  touring=true;
+  goToZone(0);
 }
 
-function closePanel(){
-  document.getElementById('panel').classList.remove('open');
-  document.getElementById('timeline').style.display='flex';
-}
+function goToZone(i){
+  if(i<0||i>=ZONES.length) return;
+  currentZone=i;
+  const z=ZONES[i];
 
-function flyTo(lat,lng){
-  targetRotY=-lng*Math.PI/180;
-  targetRotX=lat*Math.PI/180*.4;
+  // Voler vers la zone
   autoRot=false;
+  targetRotY=-z.lng*Math.PI/180;
+  targetRotX=z.lat*Math.PI/180*0.4;
+
+  // Mettre à jour la card
+  const col=COLOR[z.status];
+  document.getElementById('ch-card').style.setProperty('--zone-col',col);
+  document.getElementById('ch-region').textContent=z.region;
+  document.getElementById('ch-name').textContent=z.name;
+  document.getElementById('ch-trend').textContent=TRENDSYM[z.trend];
+  document.getElementById('ch-trend').style.color=TRENDCOL[z.trend];
+  document.getElementById('ch-desc').textContent=z.desc;
+  document.getElementById('ch-num').textContent=(i+1)+' / '+ZONES.length;
+
+  // Tags
+  const tagsEl=document.getElementById('ch-tags');
+  tagsEl.innerHTML='';
+  z.tags.forEach((tag,ti)=>{
+    const span=document.createElement('span');
+    span.className='ch-tag';
+    span.textContent=tag;
+    span.style.color=z.tagColors[ti];
+    span.style.borderColor=z.tagColors[ti]+'44';
+    tagsEl.appendChild(span);
+  });
+
+  // Dots
+  const dotsEl=document.getElementById('ch-dots');
+  dotsEl.innerHTML='';
+  ZONES.forEach((_,di)=>{
+    const d=document.createElement('div');
+    d.className='ch-dot'+(di===i?' active':di<i?' visited':'');
+    d.onclick=()=>goToZone(di);
+    dotsEl.appendChild(d);
+  });
+
+  // Bouton suivant
+  const nb=document.getElementById('next-btn');
+  if(i===ZONES.length-1){nb.textContent='Recommencer';nb.onclick=()=>goToZone(0);}
+  else{nb.textContent='Suiv. →';nb.onclick=nextZone;}
+
+  // Afficher la card
+  const ch=document.getElementById('chapter');
+  ch.classList.add('hidden');
+  setTimeout(()=>ch.classList.remove('hidden'),300);
 }
 
-// Sidebar clicks
-document.querySelectorAll('.zone').forEach(el=>{
-  el.addEventListener('click',()=>{
-    const i=parseInt(el.dataset.i);
-    document.querySelectorAll('.zone').forEach(z=>z.classList.remove('active'));
-    el.classList.add('active');
-    flyTo(ZONES[i].lat,ZONES[i].lng);
-    setTimeout(()=>openPanel(ZONES[i]),400);
-  });
-});
+function nextZone(){goToZone(currentZone+1);}
+function prevZone(){goToZone(currentZone-1);}
 
-// Mouse/touch
-canvas.addEventListener('mousedown',e=>{isDrag=true;autoRot=false;prevX=e.clientX;prevY=e.clientY});
+// ── TOUCH / CLICK ──────────────────────────────────────────────
+renderer.domElement.addEventListener('mousedown',e=>{isDrag=true;autoRot=false;prevX=e.clientX;prevY=e.clientY});
 window.addEventListener('mouseup',e=>{
-  if(!isDrag) return;
-  isDrag=false;
-  // Check click on marker
-  const dx=e.clientX-prevX, dy=e.clientY-prevY;
+  if(!isDrag)return; isDrag=false;
+  const dx=e.clientX-prevX,dy=e.clientY-prevY;
   if(Math.abs(dx)<4&&Math.abs(dy)<4){
     mouse.x=(e.clientX/window.innerWidth)*2-1;
     mouse.y=-(e.clientY/window.innerHeight)*2+1;
     raycaster.setFromCamera(mouse,cam);
     const hits=raycaster.intersectObjects(markers);
     if(hits.length>0){
-      const z=hits[0].object.userData.zone;
-      const i=hits[0].object.userData.index;
-      document.querySelectorAll('.zone').forEach(el=>el.classList.remove('active'));
-      document.querySelector(`.zone[data-i="${i}"]`).classList.add('active');
-      openPanel(z);
+      const idx=hits[0].object.userData.index;
+      goToZone(idx);
+      document.getElementById('intro').classList.add('hidden');
     }
   }
 });
 window.addEventListener('mousemove',e=>{
-  if(isDrag){
-    targetRotY+=(e.clientX-prevX)*0.005;
-    targetRotX+=(e.clientY-prevY)*0.003;
-    targetRotX=Math.max(-1.2,Math.min(1.2,targetRotX));
-    prevX=e.clientX;prevY=e.clientY;
-  }
+  if(!isDrag)return;
+  targetRotY+=(e.clientX-prevX)*0.005;
+  targetRotX+=(e.clientY-prevY)*0.003;
+  targetRotX=Math.max(-1.2,Math.min(1.2,targetRotX));
+  prevX=e.clientX;prevY=e.clientY;
 });
 
-canvas.addEventListener('touchstart',e=>{isDrag=true;autoRot=false;prevX=e.touches[0].clientX;prevY=e.touches[0].clientY},{passive:true});
-// Click climate markers
-window.addEventListener('mouseup',e=>{
-  if(isDrag) return;
-  const dx=e.clientX-prevX, dy=e.clientY-prevY;
-  if(Math.abs(dx)<4&&Math.abs(dy)<4){
-    mouse.x=(e.clientX/window.innerWidth)*2-1;
-    mouse.y=-(e.clientY/window.innerHeight)*2+1;
-    raycaster.setFromCamera(mouse,cam);
-    const hits=raycaster.intersectObjects(climateMarkers);
-    if(hits.length>0) openPanel(hits[0].object.userData.zone);
-  }
-},{passive:true});
-
-canvas.addEventListener('touchend',e=>{
-  if(!isDrag)return;
-  isDrag=false;
-  const t=e.changedTouches[0];
-  const dx=t.clientX-prevX,dy=t.clientY-prevY;
+renderer.domElement.addEventListener('touchstart',e=>{isDrag=true;autoRot=false;prevX=e.touches[0].clientX;prevY=e.touches[0].clientY},{passive:true});
+renderer.domElement.addEventListener('touchend',e=>{
+  if(!isDrag)return; isDrag=false;
+  const tx=e.changedTouches[0];
+  const dx=tx.clientX-prevX,dy=tx.clientY-prevY;
   if(Math.abs(dx)<8&&Math.abs(dy)<8){
-    mouse.x=(t.clientX/window.innerWidth)*2-1;
-    mouse.y=-(t.clientY/window.innerHeight)*2+1;
+    mouse.x=(tx.clientX/window.innerWidth)*2-1;
+    mouse.y=-(tx.clientY/window.innerHeight)*2+1;
     raycaster.setFromCamera(mouse,cam);
     const hits=raycaster.intersectObjects(markers);
     if(hits.length>0){
-      openPanel(hits[0].object.userData.zone);
+      goToZone(hits[0].object.userData.index);
+      document.getElementById('intro').classList.add('hidden');
     }
   }
 });
-canvas.addEventListener('touchmove',e=>{
+renderer.domElement.addEventListener('touchmove',e=>{
   if(!isDrag)return;
   targetRotY+=(e.touches[0].clientX-prevX)*0.005;
   targetRotX+=(e.touches[0].clientY-prevY)*0.003;
@@ -490,419 +451,60 @@ window.addEventListener('resize',()=>{
   renderer.setSize(window.innerWidth,window.innerHeight);
 });
 
-// ═══════════════════════════════════════════
-// 1. CYCLE JOUR/NUIT EN TEMPS RÉEL
-// ═══════════════════════════════════════════
-
-function getSunPosition() {
-  const now = new Date();
-  const dayOfYear = Math.floor((now - new Date(now.getFullYear(),0,0)) / 86400000);
-  const declination = -23.45 * Math.cos((360/365) * (dayOfYear + 10) * Math.PI/180);
-  const utcHours = now.getUTCHours() + now.getUTCMinutes()/60;
-  const lng = (utcHours - 12) * -15;
-  return { lat: declination, lng: lng };
-}
-
-// Night side overlay — darkens hemisphere facing away from sun
-const nightGeo = new THREE.SphereGeometry(1.005, 64, 64);
-const nightMat = new THREE.ShaderMaterial({
-  uniforms: {
-    sunDir: { value: new THREE.Vector3(1,0,0) },
-    nightColor: { value: new THREE.Color(0x000308) },
-    opacity: { value: 0.72 }
-  },
-  vertexShader: `
-    varying vec3 vNormal;
-    varying vec3 vPosition;
-    void main() {
-      vNormal = normalize(normalMatrix * normal);
-      vPosition = (modelViewMatrix * vec4(position, 1.0)).xyz;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 sunDir;
-    uniform vec3 nightColor;
-    uniform float opacity;
-    varying vec3 vNormal;
-    void main() {
-      // World normal (approximate — good enough for globe)
-      float sun = dot(normalize(vNormal), normalize(sunDir));
-      // Sharp but slightly blurred terminator
-      float night = 1.0 - smoothstep(-0.08, 0.08, sun);
-      if(night < 0.01) discard;
-      gl_FragColor = vec4(nightColor, night * opacity);
-    }
-  `,
-  transparent: true,
-  side: THREE.FrontSide,
-  depthWrite: false
-});
-
-const nightMesh = new THREE.Mesh(nightGeo, nightMat);
-globeGroup.add(nightMesh);
-
-// Terminator glow ring
-const terminatorMat = new THREE.ShaderMaterial({
-  uniforms: {
-    sunDir: { value: new THREE.Vector3(1,0,0) },
-  },
-  vertexShader: `
-    varying vec3 vNormal;
-    void main() {
-      vNormal = normalize(normalMatrix * normal);
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 sunDir;
-    varying vec3 vNormal;
-    void main() {
-      float sun = dot(normalize(vNormal), normalize(sunDir));
-      float term = 1.0 - abs(sun) / 0.15;
-      term = max(0.0, term) * smoothstep(0.15, 0.0, abs(sun));
-      if(term < 0.01) discard;
-      vec3 dawnColor = mix(vec3(0.8,0.4,0.1), vec3(0.9,0.6,0.2), max(0.0,sun));
-      gl_FragColor = vec4(dawnColor, term * 0.5);
-    }
-  `,
-  transparent: true,
-  side: THREE.FrontSide,
-  depthWrite: false
-});
-
-const termRing = new THREE.Mesh(new THREE.SphereGeometry(1.006, 64, 64), terminatorMat);
-globeGroup.add(termRing);
-
-function updateSun() {
-  const sun = getSunPosition();
-  const phi = (90 - sun.lat) * Math.PI/180;
-  const theta = (sun.lng + 180) * Math.PI/180;
-  const sunVec = new THREE.Vector3(
-    -Math.sin(phi)*Math.cos(theta),
-    Math.cos(phi),
-    Math.sin(phi)*Math.sin(theta)
-  ).normalize();
-  
-  // Rotate to world space (inverse of globe rotation)
-  const invRot = new THREE.Quaternion();
-  invRot.setFromEuler(new THREE.Euler(-globeGroup.rotation.x, -globeGroup.rotation.y, 0, 'XYZ'));
-  const localSun = sunVec.clone().applyQuaternion(invRot);
-  
-  nightMat.uniforms.sunDir.value.copy(localSun);
-  terminatorMat.uniforms.sunDir.value.copy(localSun);
-  sun_obj.position.copy(sunVec.multiplyScalar(5));
-}
-
-const sun_obj = new THREE.DirectionalLight(0xfff5dd, 1.0);
-scene.add(sun_obj);
-
-
-// ═══════════════════════════════════════════
-// 2. ROUTES MARITIMES ANIMÉES
-// ═══════════════════════════════════════════
-
-const ROUTES = [
-  // Ormuz → Suez (bloqué = rouge)
-  { points: [[56,26],[45,15],[43,12],[36,13],[32,29]], color:'#FC8181', blocked:true, speed:0.003 },
-  // Ormuz → Malacca
-  { points: [[56,26],[65,22],[75,15],[85,10],[100,4],[104,1]], color:'#FC8181', blocked:true, speed:0.003 },
-  // Cap de Bonne Espérance (route alternative)
-  { points: [[56,26],[50,15],[40,5],[30,-10],[18,-34],[15,-30],[0,-10]], color:'#68D391', blocked:false, speed:0.005 },
-  // Atlantique Nord
-  { points: [[-80,25],[-60,35],[-40,45],[-20,50],[0,50],[10,55]], color:'#8BB8CC', blocked:false, speed:0.004 },
-  // Route Pacifique
-  { points: [[121,24],[140,30],[160,40],[180,45],[-160,48],[-140,52],[-125,48]], color:'#8BB8CC', blocked:false, speed:0.004 },
-];
-
-// Build 3D curves for routes
-const routeCurves = ROUTES.map(r => {
-  const pts = r.points.map(([lng,lat]) => ll2v(lat, lng, 1.018));
-  return new THREE.CatmullRomCurve3(pts);
-});
-
-// Particles along routes
-const NPARTICLES = 6;
-var routeParticles = ROUTES.map((r, ri) => {
-  const particles = [];
-  for(let i=0;i<NPARTICLES;i++){
-    const geo = new THREE.SphereGeometry(0.006, 4, 4);
-    const mat = new THREE.MeshBasicMaterial({
-      color: new THREE.Color(r.color),
-      transparent:true, opacity: r.blocked ? 0.7 : 0.45
-    });
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.userData = { t: i/NPARTICLES, route: ri };
-    globeGroup.add(mesh);
-    particles.push(mesh);
-  }
-  return particles;
-});
-
-// Draw static route lines (faint)
-ROUTES.forEach((r,ri) => {
-  const pts = routeCurves[ri].getPoints(60);
-  const geo = new THREE.BufferGeometry().setFromPoints(pts);
-  const mat = new THREE.LineBasicMaterial({
-    color: new THREE.Color(r.color),
-    transparent:true, opacity: r.blocked ? 0.18 : 0.08
-  });
-  globeGroup.add(new THREE.Line(geo, mat));
-});
-
-// ═══════════════════════════════════════════
-// 3. HALOS DE TENSION
-// ═══════════════════════════════════════════
-
-ZONES.forEach((z,i) => {
-  if(z.status === 'crisis' || z.status === 'tension'){
-    const pos = ll2v(z.lat, z.lng, 1.01);
-    const col = z.status === 'crisis' ? 0xFC8181 : 0xF6AD55;
-    const r = z.status === 'crisis' ? 0.12 : 0.08;
-    const halo = new THREE.Mesh(
-      new THREE.SphereGeometry(r, 16, 16),
-      new THREE.MeshBasicMaterial({color:col, transparent:true, opacity:0.06, depthWrite:false})
-    );
-    halo.position.copy(pos);
-    halo.userData.isHalo = true;
-    halo.userData.baseOpacity = z.status === 'crisis' ? 0.08 : 0.04;
-    globeGroup.add(halo);
-  }
-});
-
-
-
-// ANIMATE
-let t=0;
-let curRotY=0.5, curRotX=0.1;
+// ── ANIMATE ───────────────────────────────────────────────────
 function animate(){
   requestAnimationFrame(animate);
-  t+=0.01;
-  if(autoRot) targetRotY+=0.003;
-  curRotY+=(targetRotY-curRotY)*0.05;
-  curRotX+=(targetRotX-curRotX)*0.05;
+  t+=0.008;
+  if(autoRot) targetRotY+=0.002;
+
+  curRotY+=(targetRotY-curRotY)*0.04;
+  curRotX+=(targetRotX-curRotX)*0.04;
   globeGroup.rotation.y=curRotY;
   globeGroup.rotation.x=curRotX;
-  // Pulse crisis markers
+
+  // Pulse markers
   markers.forEach((m,i)=>{
     if(m.userData.zone.status==='crisis'){
-      const s=1+.25*Math.sin(t*2+i);
+      const s=1+.3*Math.sin(t*2+i);
       m.scale.setScalar(s);
-      m.userData.glow.scale.setScalar(1+.35*Math.sin(t*1.8+i));
+      m.userData.glow.scale.setScalar(1+.4*Math.sin(t*1.8+i));
     }
-  });
-  // Update sun position every 60 frames
-  if(Math.floor(t*100)%60===0) updateSun();
-
-  // Animate maritime particles
-  routeParticles.forEach((particles, ri) => {
-    particles.forEach(p => {
-      p.userData.t = (p.userData.t + ROUTES[ri].speed) % 1;
-      const pos = routeCurves[ri].getPoint(p.userData.t);
-      p.position.copy(pos);
-      // Fade at start/end
-      const fade = Math.min(p.userData.t*8, (1-p.userData.t)*8, 1);
-      p.material.opacity = fade * (ROUTES[ri].blocked ? 0.75 : 0.45);
-    });
-  });
-
-  // Pulse halos
-  globeGroup.children.forEach(child => {
-    if(child.userData.isHalo){
-      child.material.opacity = child.userData.baseOpacity * (0.6 + 0.4*Math.sin(t*1.2));
+    // Surbrillance zone active
+    if(i===currentZone){
+      m.userData.glow.material.opacity=0.25+0.1*Math.sin(t*3);
+    } else {
+      m.userData.glow.material.opacity=0.08;
     }
   });
 
-  // Pulse arcs
-  arcMeshes.forEach((a,i)=>{
-    a.mat.opacity = 0.15 + 0.2*Math.sin(t*1.5+i*0.8);
-  });
   renderer.render(scene,cam);
-  // Labels 2D — getWorldPosition est l'API correcte
-  // Labels climate
-  climateMarkers.forEach((m,i)=>{
-    const el=document.getElementById('clbl-'+i);
-    if(!el||!m.visible) return;
-    const wPos=new THREE.Vector3();
-    m.getWorldPosition(wPos);
-    const toPoint=wPos.clone().normalize();
-    const toCam=cam.position.clone().normalize();
-    if(toCam.dot(toPoint)<0.12){el.style.opacity='0';return;}
-    const proj=wPos.clone().project(cam);
-    if(proj.z>1){el.style.opacity='0';return;}
-    el.style.left=((proj.x+1)/2*window.innerWidth)+'px';
-    el.style.top=((-proj.y+1)/2*window.innerHeight)+'px';
-    el.style.opacity='0.95';
-  });
 
+  // Labels
   markers.forEach((m,i)=>{
-    const el=document.getElementById('lbl-'+i);
-    if(!el||!m.userData.zone) return;
+    const el=document.getElementById('lbl'+i);
+    if(!el) return;
     const wPos=new THREE.Vector3();
     m.getWorldPosition(wPos);
-    // Vérifier si face caméra
     const toPoint=wPos.clone().normalize();
     const toCam=cam.position.clone().normalize();
-    if(toCam.dot(toPoint)<0.12){el.style.opacity='0';return;}
+    if(toCam.dot(toPoint)<0.15){el.style.opacity='0';return;}
     const proj=wPos.clone().project(cam);
     if(proj.z>1){el.style.opacity='0';return;}
     const x=(proj.x+1)/2*window.innerWidth;
     const y=(-proj.y+1)/2*window.innerHeight;
     el.style.left=x+'px';
     el.style.top=y+'px';
-    el.style.opacity='0.95';
+    el.style.opacity=i===currentZone?'1':'0.5';
+    // Agrandir le label actif
+    const span=el.querySelector('span');
+    if(span) span.style.opacity=i===currentZone?'1':'0.6';
   });
 }
 animate();
 
+// Exposer pour la page Next.js
+window.goToZone=goToZone;
 
-
-// Hide hint after 4s
-setTimeout(()=>document.getElementById('hint').style.opacity='0',4000);
-// Auto-hide intro on mobile after 3s
-if(window.innerWidth<=768){
-  setTimeout(()=>{ const el=document.getElementById('intro'); if(el) el.style.display='none'; },3000);
-}
 </script>
-
-<!-- INTRO OVERLAY -->
-<style>
-@media(max-width:768px){
-  #intro{
-    top:auto!important;right:0!important;
-    bottom:52vh!important;
-    left:0!important;
-    border-bottom:none!important;
-    border-top:2px solid rgba(196,162,101,0.3)!important;
-    padding:12px 16px!important;
-    flex-direction:row!important;
-    align-items:center!important;
-    gap:12px!important;
-  }
-  #intro > div:first-child { flex:1; }
-  #intro > div:first-child > div:last-child { display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
-}
-</style>
-<div id="intro" style="
-  position:fixed;top:52px;left:0;right:300px;z-index:200;
-  background:rgba(7,9,15,0.97);border-bottom:1px solid rgba(196,162,101,0.15);
-  padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;
-">
-  <div>
-    <div style="font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C8A96E;margin-bottom:10px">Soara Signal · Mode d'emploi</div>
-    <div style="font-family:'Playfair Display',serif;font-size:13px;color:rgba(236,231,221,0.8);line-height:1.7;max-width:680px">
-      Cette carte suit en temps réel les zones de tension géopolitique identifiées par la rédaction de Soara. 
-      Le cycle <span style="color:#C8A96E">jour/nuit</span> est calculé sur l'heure actuelle. 
-      Les <span style="color:#FC8181">routes maritimes en rouge</span> indiquent les flux bloqués par le conflit en cours — notamment le détroit d'Ormuz. 
-      Cliquez sur un point pour voir l'analyse.
-    </div>
-  </div>
-  <div onclick="document.getElementById('intro').style.display='none'" style="
-    font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,162,101,0.5);
-    cursor:pointer;white-space:nowrap;padding:8px 12px;border:1px solid rgba(196,162,101,0.2);
-    flex-shrink:0;transition:color 0.2s;
-  " onmouseover="this.style.color='#C8A96E'" onmouseout="this.style.color='rgba(196,162,101,0.5)'">
-    Fermer ✕
-  </div>
-</div>
-
-
-<!-- Labels 2D globe -->
-<div id="lbl-0" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Iran — États-Unis<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
-<div id="lbl-1" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Détroit d'Ormuz<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
-<div id="lbl-2" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Taïwan<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
-<div id="lbl-3" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Sahel<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
-<div id="lbl-4" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Ukraine<span style="color:#68D391;font-size:11px;font-weight:700">↓</span></span></div>
-<div id="lbl-5" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Venezuela<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
-<div id="lbl-6" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Corée du Nord<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
-<div id="lbl-7" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Arctique<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
-<div id="lbl-8" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#68D39188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#68D391;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Inde<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
-
-<script>
-const STATUS_ORDER = {calm:0,watch:1,tension:2,crisis:3};
-let currentMonth = 3;
-let currentFilter = 'geo';
-
-window.setFilter = function setFilter(f){
-  currentFilter = f;
-  
-  if(f==='geo'){
-    // Montrer geo, cacher climate, normal
-    markers.forEach(m=>{m.visible=true;if(m.userData.glow)m.userData.glow.visible=true;});
-    climateMarkers.forEach(m=>{m.visible=false;if(m.userData.glow)m.userData.glow.visible=false;});
-    // Reset opacité
-    markers.forEach((m,i)=>{
-      const s=ZONES[i].history[currentMonth];
-      m.material.color.set(new THREE.Color(COLOR[s]));
-      m.material.opacity=1;
-    });
-  } else if(f==='climate'){
-    // Cacher geo, montrer climate
-    markers.forEach(m=>{m.visible=false;if(m.userData.glow)m.userData.glow.visible=false;});
-    climateMarkers.forEach(m=>{m.visible=true;if(m.userData.glow)m.userData.glow.visible=true;});
-  } else if(f==='france'){
-    // Montrer tous, estomper les non-France
-    climateMarkers.forEach(m=>{m.visible=true;if(m.userData.glow)m.userData.glow.visible=true;});
-    markers.forEach((m,i)=>{
-      m.visible=true;
-      const isFrance=ZONES[i].france;
-      m.material.opacity=isFrance?1:0.15;
-      if(m.userData.glow) m.userData.glow.material.opacity=isFrance?0.1:0.02;
-    });
-    climateMarkers.forEach((m,i)=>{
-      const isFrance=CLIMATE_ZONES[i].france;
-      m.material.opacity=isFrance?1:0.15;
-    });
-  }
-  
-  // Mettre à jour les labels
-  updateLabels();
-}
-
-function updateLabels(){
-  markers.forEach((m,i)=>{
-    const el=document.getElementById('lbl-'+i);
-    if(!el) return;
-    if(currentFilter==='climate'){el.style.display='none';return;}
-    el.style.display='flex';
-    if(currentFilter==='france'){
-      el.style.opacity=ZONES[i].france?'0.95':'0.15';
-    }
-  });
-  // Labels climate
-  climateMarkers.forEach((m,i)=>{
-    const el=document.getElementById('clbl-'+i);
-    if(!el) return;
-    el.style.display=(currentFilter==='climate'||currentFilter==='france')?'flex':'none';
-    if(currentFilter==='france') el.style.opacity=CLIMATE_ZONES[i].france?'0.95':'0.15';
-  });
-}
-
-window.setMonth = function setMonth(m){
-  currentMonth = m;
-
-  // Mettre à jour les markers selon l'historique
-  ZONES.forEach((z,i)=>{
-    const s = z.history[m];
-    const col = new THREE.Color(COLOR[s]);
-    if(markers[i]) markers[i].material.color.set(col);
-    // Mettre à jour le label
-    const lbl = document.getElementById('lbl-'+i);
-    if(lbl){
-      const span = lbl.querySelector('span');
-      if(span) span.style.color = COLOR[s];
-      const line = lbl.querySelector('div');
-      if(line) line.style.background = COLOR[s]+'88';
-    }
-  });
-}
-</script>
-<!-- Labels climate -->
-<div id="clbl-0" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Corne de l'Afrique 🌿</span></div>
-<div id="clbl-1" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Bangladesh 🌿</span></div>
-<div id="clbl-2" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Amazonie 🌿</span></div>
-<div id="clbl-3" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Mer d'Aral 🌿</span></div>
-<div id="clbl-4" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Pacifique insulaire 🌿</span></div>
-<div id="clbl-5" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Lac Tchad 🌿</span></div>
 </body>
 </html>
