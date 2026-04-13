@@ -70,6 +70,7 @@ export default function ClimateClient() {
   const [playing, setPlaying]   = useState(false)
   // reveal supprimé — section toujours visible
   const [activeBg, setActiveBg] = useState(0)
+  const [showFull, setShowFull] = useState(false)
   const [mounted, setMounted]   = useState(false)
   const rafRef  = useRef(null)
   const lastRef = useRef(null)
@@ -117,7 +118,7 @@ export default function ClimateClient() {
     
   }
 
-  const currentMa = 500*(1-prog)
+  const currentMa = showFull ? 0.00000001 : 500*(1-prog)
   const currentT  = getTemp(currentMa)
   const currentBg = BACKGROUNDS[activeBg]
 
@@ -249,6 +250,9 @@ export default function ClimateClient() {
         <div style={{ display:"flex", alignItems:"center", gap:14, marginTop:14, marginBottom:0 }}>
           <button onClick={handlePlay} style={{ background:"none", border:"1px solid rgba(255,255,255,0.15)", color:"#e8e4de", fontFamily:"'DM Mono',monospace", fontSize:9, letterSpacing:3, padding:"10px 22px", cursor:"pointer", textTransform:"uppercase", flexShrink:0 }}>
             {playing?"⏸ Pause":prog>=1?"↺ Rejouer":"▶ Play"}
+          </button>
+          <button onClick={()=>{setShowFull(f=>!f);setPlaying(false)}} style={{ background:showFull?"rgba(255,255,255,0.1)":"none", border:"1px solid rgba(255,255,255,0.15)", color:showFull?"#f0ede8":"rgba(255,255,255,0.4)", fontFamily:"'DM Mono',monospace", fontSize:9, letterSpacing:2, padding:"10px 18px", cursor:"pointer", textTransform:"uppercase", flexShrink:0 }}>
+            {showFull?"Vue animée":"Courbe complète"}
           </button>
           <input type="range" min={0} max={1} step={0.0005} value={prog} onChange={handleSlide} style={{ flex:1, accentColor:"#c9a84c", cursor:"pointer" }}/>
           <span style={{ fontSize:9, color:"rgba(255,255,255,0.2)", flexShrink:0 }}>maintenant</span>
