@@ -27,12 +27,28 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
   z-index:90;
   padding:0 12px 12px;
   transition:opacity 0.4s, transform 0.4s;
-  max-height:55vh;
 }
 #ch-card{
-  max-height:calc(55vh - 12px);
+  max-height:42vh;
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+#ch-card::-webkit-scrollbar{display:none}
+/* Indicateur scroll */
+#ch-card::after{
+  content:"";
+  display:block;
+  height:1px;
+}
+#scroll-hint{
+  text-align:center;
+  font-family:"DM Mono",monospace;
+  font-size:7px;
+  letter-spacing:2px;
+  color:rgba(200,169,110,0.4);
+  padding:4px 0 0;
+  text-transform:uppercase;
 }
 #chapter.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
 
@@ -153,7 +169,8 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
     <div class="ch-desc" id="ch-desc"></div>
     <div id="ch-figures" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"></div>
     <div class="ch-tags" id="ch-tags"></div>
-    <div class="ch-nav">
+    <div id="scroll-hint">↓ Faire défiler</div>
+  <div class="ch-nav">
       <div class="ch-dots" id="ch-dots"></div>
       <div class="nav-btns">
         <button class="nav-btn" onclick="prevZone()">← Préc.</button>
@@ -596,6 +613,10 @@ animate();
 
 // Exposer pour la page Next.js
 window.goToZone=goToZone;
+document.getElementById('ch-card').addEventListener('scroll',function(){
+  const hint=document.getElementById('scroll-hint');
+  if(hint) hint.style.opacity=this.scrollTop>10?'0':'1';
+});
 
 </script>
 </body>
