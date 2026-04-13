@@ -1,5 +1,23 @@
 [
   {
+    "slug": "societe-du-consentement",
+    "title": "La société du consentement",
+    "description": "Ce que la pandémie a révélé de nous. Six ans après, la question n'est pas de savoir si les mesures prises étaient justes ou injustes. La question est de savoir si nous avons eu le courage d'examiner honnêtement ce qui s'est passé.",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "category": "soc",
+    "categoryLabel": "Société",
+    "secondaryCategory": "geo",
+    "secondaryCategoryLabel": "Géopolitique",
+    "date": "2026-04-14",
+    "readTime": "7",
+    "image": "/articles/societe-du-consentement.png",
+    "featured": false,
+    "premium": false,
+    "grandFormat": false,
+    "imageCredit": "© SOARA"
+  },
+  {
     "slug": "ceux-qui-nont-pas-cede",
     "title": "Ceux qui n'ont pas cédé",
     "description": "De Claudette Colvin à Aimé Césaire, une méditation sur la singularité comme acte politique. Ce que ces existences ont en commun n'est pas l'héroïsme au sens spectaculaire du terme.",
