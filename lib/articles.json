@@ -1,5 +1,23 @@
 [
   {
+    "slug": "ceux-qui-nont-pas-cede",
+    "title": "Ceux qui n'ont pas cédé",
+    "description": "De Claudette Colvin à Aimé Césaire, une méditation sur la singularité comme acte politique. Ce que ces existences ont en commun n'est pas l'héroïsme au sens spectaculaire du terme.",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "category": "soc",
+    "categoryLabel": "Société",
+    "secondaryCategory": "",
+    "secondaryCategoryLabel": "",
+    "date": "2026-04-13",
+    "readTime": "6",
+    "image": "/articles/ceux-qui-nont-pas-cede.png",
+    "featured": false,
+    "premium": false,
+    "grandFormat": false,
+    "imageCredit": "© SOARA"
+  },
+  {
     "slug": "empire-du-droit",
     "title": "L'empire du droit",
     "description": "Comment les États-Unis ont transformé leur système juridique en instrument de domination mondiale. Du dollar de Bretton Woods au Cloud Act, une architecture construite couche par couche sur huit décennies.",
