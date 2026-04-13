@@ -157,7 +157,7 @@ export default function CC() {
   // ── GRAPHIQUE 2 : 500 dernières années (axe linéaire) ──
   const W2=400,H2=200,PL2=44,PR2=8,PT2=16,PB2=32
   const cW2=W2-PL2-PR2,cH2=H2-PT2-PB2
-  const TMIN2=-0.7, TMAX2=1.8
+  const TMIN2=-7, TMAX2=11
   const currentYr=1500+p2*(2024-1500)
   const x2=(yr)=>PL2+(yr-1500)/(2024-1500)*cW2
   const y2=(tv)=>PT2+cH2-(tv-TMIN2)/(TMAX2-TMIN2)*cH2
