@@ -192,12 +192,12 @@ export default function CC() {
         <div key={i} style={{
           position:"fixed",inset:0,zIndex:0,
           backgroundImage:`url(${b.src})`,backgroundSize:"cover",backgroundPosition:"center",
-          opacity:i===bg?0.72:0,transition:"opacity 2.5s ease",
-          filter:"brightness(0.65) saturate(0.9)",
+          opacity:i===bg?0.88:0,transition:"opacity 2.5s ease",
+          filter:"brightness(0.75) saturate(0.95)",
           animation:`${b.kb} 22s ease-in-out infinite alternate`,
         }}/>
       ))}
-      <div style={{position:"fixed",inset:0,zIndex:1,background:"rgba(4,6,13,0.42)"}}/>
+      <div style={{position:"fixed",inset:0,zIndex:1,background:"rgba(4,6,13,0.30)"}}/>
 
       {/* Contenu */}
       <div style={{position:"relative",zIndex:2,padding:"20px 32px 28px",display:"flex",flexDirection:"column",gap:14}}>
@@ -304,6 +304,11 @@ export default function CC() {
                 )
               })}
             </svg>
+            <div style={{padding:"10px 12px",borderTop:"1px solid rgba(255,255,255,0.08)"}}>
+              <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.75)",margin:0,lineHeight:1.7}}>
+                Sur 500 millions d'années, la Terre a connu des variations de <strong style={{fontWeight:600,color:"#fff"}}>±10°C</strong>. Des glaciations profondes, des périodes tropicales. C'est la réalité du climat terrestre — changeant, cyclique, brutal parfois.
+              </p>
+            </div>
           </div>
 
           {/* ── GRAPHIQUE 2 : 500 dernières années ── */}
@@ -365,6 +370,11 @@ export default function CC() {
                 </g>
               )}
             </svg>
+            <div style={{padding:"10px 12px",borderTop:"1px solid rgba(255,255,255,0.08)"}}>
+              <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.75)",margin:0,lineHeight:1.7}}>
+                Depuis 1850, la température monte. Ce n'est pas un phénomène naturel — c'est <strong style={{fontWeight:600,color:"#ef4444"}}>18 fois plus rapide</strong> que le PETM, le réchauffement naturel le plus brutal connu. Les écosystèmes n'ont pas le temps de s'adapter.
+              </p>
+            </div>
           </div>
         </div>
 
