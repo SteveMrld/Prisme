@@ -117,12 +117,12 @@ export default function InegalitesClient() {
         <div key={i} style={{
           position:"fixed",inset:0,zIndex:0,
           backgroundImage:`url(${b.src})`,backgroundSize:"cover",backgroundPosition:"center",
-          opacity:i===bg?0.72:0,transition:"opacity 2.5s ease",
-          filter:"brightness(0.55) saturate(0.85)",
+          opacity:i===bg?0.82:0,transition:"opacity 2.5s ease",
+          filter:"brightness(0.65) saturate(0.9)",
           animation:`${b.kb} 22s ease-in-out infinite alternate`,
         }}/>
       ))}
-      <div style={{position:"fixed",inset:0,zIndex:1,background:"rgba(4,6,13,0.42)"}}/>
+      <div style={{position:"fixed",inset:0,zIndex:1,background:"rgba(4,6,13,0.32)"}}/>
 
       {/* CONTENU */}
       <div style={{position:"relative",zIndex:2,padding:"20px 32px 28px",display:"flex",flexDirection:"column",gap:12}}>
