@@ -21,7 +21,7 @@ export default function BookmarkButton({ slug, title, iconOnly }: { slug: string
       if (saved) {
         updated = bookmarks.filter((b: any) => b.slug !== slug)
       } else {
-        updated = [...bookmarks, { slug, title, savedAt: new Date().toISOString() }]
+        updated = [...bookmarks, { slug, title, savedAt: Date.now(), image: (document.querySelector('meta[property="og:image"]') as HTMLMetaElement)?.content || '', description: (document.querySelector('meta[name="description"]') as HTMLMetaElement)?.content || '', categoryLabel: (document.querySelector('[data-category-label]') as HTMLElement)?.dataset.categoryLabel || '', readTime: (document.querySelector('[data-read-time]') as HTMLElement)?.dataset.readTime || '' }]
       }
       localStorage.setItem('soara_bookmarks', JSON.stringify(updated))
       setSaved(!saved)

@@ -211,7 +211,13 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link href="/" className={styles.logo}>So<em>ara</em></Link>
           </div>
           <div className={styles.actions}>
-<button className={styles.moreBtn} onClick={() => setMobilePanelOpen(o => !o)} aria-label="Plus">···</button>
+<button className={styles.moreBtn} onClick={() => setMobilePanelOpen(o => !o)} aria-label="Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <line x1="21" y1="6" x2="9" y2="6"/><circle cx="5" cy="6" r="1.5" fill="currentColor" stroke="none"/>
+            <line x1="21" y1="12" x2="9" y2="12"/><circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+            <line x1="21" y1="18" x2="9" y2="18"/><circle cx="5" cy="18" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </button>
             <button className={styles.searchBtn} onClick={() => { setSearchOpen(o => !o); setTimeout(() => inputRef.current?.focus(), 50) }} aria-label="Rechercher">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
