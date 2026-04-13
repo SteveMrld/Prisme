@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      { source: '/grands-formats', destination: '/formats', permanent: false },
+    ]
+  },
   async headers() {
     return [
       {
