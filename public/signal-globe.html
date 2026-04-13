@@ -275,7 +275,7 @@ globeTex.onUpdate = ()=>{
 setTimeout(()=>{
   const btn=document.getElementById('start-btn');
   if(btn&&btn.disabled){btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';btn.textContent='▶ Commencer le tour';}
-},2500);
+},1200);
 globeGroup.add(globe);
 
 // Atmosphère
@@ -400,8 +400,7 @@ function goToZone(i){
 
   // Afficher la card
   const ch=document.getElementById('chapter');
-  ch.classList.add('hidden');
-  setTimeout(()=>ch.classList.remove('hidden'),300);
+  ch.classList.remove('hidden');
 }
 
 function nextZone(){goToZone(currentZone+1);}
@@ -467,8 +466,8 @@ function animate(){
   t+=0.008;
   if(autoRot) targetRotY+=0.002;
 
-  curRotY+=(targetRotY-curRotY)*0.04;
-  curRotX+=(targetRotX-curRotX)*0.04;
+  curRotY+=(targetRotY-curRotY)*0.10;
+  curRotX+=(targetRotX-curRotX)*0.10;
   globeGroup.rotation.y=curRotY;
   globeGroup.rotation.x=curRotX;
 
