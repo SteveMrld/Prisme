@@ -1,5 +1,23 @@
 [
   {
+    "slug": "empire-du-droit",
+    "title": "L'empire du droit",
+    "description": "Comment les États-Unis ont transformé leur système juridique en instrument de domination mondiale. Du dollar de Bretton Woods au Cloud Act, une architecture construite couche par couche sur huit décennies.",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "category": "geo",
+    "categoryLabel": "Géopolitique",
+    "secondaryCategory": "eco",
+    "secondaryCategoryLabel": "Économie",
+    "date": "2026-04-13",
+    "readTime": "7",
+    "image": "/articles/empire-du-droit.png",
+    "featured": false,
+    "premium": false,
+    "grandFormat": false,
+    "imageCredit": "© SOARA"
+  },
+  {
     "slug": "terres-rares",
     "title": "Terres rares : la guerre invisible qui alimente la transition verte",
     "description": "Du cobalt du Katanga au verrou chinois du raffinage, la transition énergétique a créé une nouvelle géographie de la dépendance. Enquête sur la ressource qui redessine les rapports de force mondiaux.",
