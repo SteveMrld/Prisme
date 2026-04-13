@@ -15,7 +15,7 @@ const items = [
     )
   },
   {
-    label: 'Carte',
+    label: 'Signal',
     href: '/signal-map',
     icon: (active: boolean) => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2 : 1.5} strokeLinecap="round" strokeLinejoin="round">
