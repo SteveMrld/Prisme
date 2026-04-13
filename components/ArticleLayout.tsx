@@ -277,6 +277,16 @@ export default function ArticleLayout({
         {slug && <BookmarkButton slug={slug} title={title} iconOnly />}
       </div>
 
+      {/* ── BOOKMARK ── */}
+      {slug && (
+        <div style={{
+          maxWidth: 760, margin: '0 auto', padding: '0 24px 32px',
+          display: 'flex', justifyContent: 'center'
+        }}>
+          <BookmarkButton slug={slug} title={title} />
+        </div>
+      )}
+
       {/* ── NEWSLETTER ── */}
       <div className={styles.newsletter}>
         <div className={styles.newsletterInner}>
