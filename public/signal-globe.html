@@ -258,7 +258,7 @@ const markers=[];
 ZONES.forEach((z,i)=>{
   const pos=ll2v(z.lat,z.lng,1.025);
   const col=new THREE.Color(COLOR[z.status]);
-  const r=z.status==='crisis'?.016:.011;
+  const r=z.status==='crisis'?.022:.015;
 
   // Glow
   const gm=new THREE.Mesh(
@@ -641,6 +641,24 @@ function animate(){
     a.mat.opacity = 0.15 + 0.2*Math.sin(t*1.5+i*0.8);
   });
   renderer.render(scene,cam);
+  // Labels 2D
+  ZONES.forEach((z,i)=>{
+    const el=document.getElementById('lbl-'+i);
+    if(!el) return;
+    const v=new THREE.Vector3();
+    v.copy(markers[i].position);
+    globeGroup.localToWorld(v);
+    const proj=v.clone().project(cam);
+    // Vérifier si visible (face avant)
+    const wv=v.clone().normalize();
+    const cv=cam.position.clone().normalize();
+    if(cv.dot(wv)<0.15){el.style.opacity='0';return;}
+    const x=(proj.x+1)/2*window.innerWidth;
+    const y=(-proj.y+1)/2*window.innerHeight;
+    el.style.opacity='1';
+    el.style.left=x+'px';
+    el.style.top=y+'px';
+  });
 }
 animate();
 
@@ -695,5 +713,18 @@ if(window.innerWidth<=768){
   </div>
 </div>
 
+
+<!-- Labels 2D globe -->
+
+<!-- Labels 2D globe -->
+<div id="lbl-0" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Iran — États-Unis</span></div>
+<div id="lbl-1" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#FC818188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#FC8181;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Détroit d'Ormuz</span></div>
+<div id="lbl-2" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Taïwan</span></div>
+<div id="lbl-3" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Sahel</span></div>
+<div id="lbl-4" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6AD5588"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6AD55;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Ukraine</span></div>
+<div id="lbl-5" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Venezuela</span></div>
+<div id="lbl-6" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Corée du Nord</span></div>
+<div id="lbl-7" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Arctique</span></div>
+<div id="lbl-8" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#68D39188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#68D391;background:rgba(7,9,15,0.75);padding:2px 7px;border-radius:2px;white-space:nowrap">Inde</span></div>
 </body>
 </html>
