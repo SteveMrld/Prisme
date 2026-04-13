@@ -61,6 +61,8 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
 .nav-btn:hover{color:#fff;border-color:rgba(255,255,255,0.3)}
 .nav-btn.primary{border-color:rgba(200,169,110,0.4);color:#C8A96E}
 .nav-btn.primary:hover{background:rgba(200,169,110,0.1)}
+.ch-fig{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.5px;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);padding:3px 8px;border-radius:1px}
+.ch-meta-item{color:rgba(255,255,255,0.5);font-size:9px}
 
 /* ── INTRO ── */
 #intro{
@@ -141,7 +143,9 @@ canvas{position:absolute;inset:0;width:100%;height:100%}
         <span class="ch-num" id="ch-num"></span>
       </div>
     </div>
+    <div class="ch-meta2" id="ch-meta2" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:0.5px"></div>
     <div class="ch-desc" id="ch-desc"></div>
+    <div id="ch-figures" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"></div>
     <div class="ch-tags" id="ch-tags"></div>
     <div class="ch-nav">
       <div class="ch-dots" id="ch-dots"></div>
@@ -166,66 +170,111 @@ document.getElementById('hdate').textContent =
 const ZONES = [
   {
     lat:32.4, lng:53.6, name:"Iran — États-Unis", region:"Moyen-Orient",
-    status:"crisis", trend:"up",
-    desc:"35e jour de frappes. Téhéran riposte sur les infrastructures du Golfe. L'ONU alerte sur le risque d'escalade nucléaire.",
+    status:"crisis", trend:"up", updated:"13 avril 2026", france:9,
+    affected:"85 millions", figures:["35e jour de frappes","20% hausse du pétrole","3 résolutions ONU bloquées"],
+    desc:"35e jour de frappes américano-israéliennes. Téhéran riposte sur les infrastructures du Golfe. L'ONU alerte sur le risque d'escalade nucléaire.",
     tags:["Conflit armé","Risque nucléaire","Pétrole"],
     tagColors:["#FC8181","#FC8181","#F6AD55"],
+    linkedTo:[1],
   },
   {
     lat:26.5, lng:56.3, name:"Détroit d'Ormuz", region:"Golfe Persique",
-    status:"crisis", trend:"up",
-    desc:"40% du pétrole mondial bloqué. L'Iran impose un péage de 2M$ par navire. Le commerce mondial sous pression.",
+    status:"crisis", trend:"up", updated:"13 avril 2026", france:8,
+    affected:"4 milliards (commerce mondial)", figures:["40% du pétrole mondial","−70% trafic maritime","2M$ / navire"],
+    desc:"40% du pétrole mondial bloqué. L'Iran impose un péage de 2M$ par navire. Le commerce mondial sous pression maximale.",
     tags:["Commerce mondial","Énergie","Marine"],
     tagColors:["#F6AD55","#F6AD55","#F6E05E"],
+    linkedTo:[0],
   },
   {
     lat:49.0, lng:31.0, name:"Ukraine", region:"Europe de l'Est",
-    status:"tension", trend:"down",
-    desc:"Front stabilisé sur 1000 km. Négociations indirectes via la Turquie. L'Europe sans les États-Unis cherche sa posture.",
+    status:"tension", trend:"down", updated:"12 avril 2026", france:7,
+    affected:"44 millions", figures:["1000 km de front","6,5M de déplacés","3Md€ aide française"],
+    desc:"Front stabilisé sur 1000 km. Négociations indirectes via la Turquie. L'Europe sans les États-Unis cherche sa posture stratégique.",
     tags:["Guerre","Diplomatie","OTAN"],
     tagColors:["#FC8181","#F6AD55","#F6E05E"],
+    linkedTo:[6],
   },
   {
     lat:14.0, lng:-2.0, name:"Sahel", region:"Afrique de l'Ouest",
-    status:"tension", trend:"up",
-    desc:"Retrait français consommé. Wagner omniprésent. Vide sécuritaire exploité par les groupes jihadistes.",
+    status:"tension", trend:"up", updated:"11 avril 2026", france:9,
+    affected:"80 millions", figures:["5 000 soldats français retirés","+340% attaques jihadistes","3 coups d'État en 3 ans"],
+    desc:"Retrait français consommé. Wagner omniprésent au Mali et Burkina Faso. Vide sécuritaire exploité par les groupes jihadistes.",
     tags:["Jihadisme","Post-colonialisme","Wagner"],
     tagColors:["#FC8181","#F6AD55","#F6E05E"],
+    linkedTo:[7],
   },
   {
     lat:23.6, lng:121.0, name:"Taïwan", region:"Asie-Pacifique",
-    status:"tension", trend:"stable",
-    desc:"Exercices militaires chinois intensifiés au large. Washington réaffirme son soutien sans engagement direct.",
-    tags:["Chine","Souveraineté","Technologie"],
+    status:"tension", trend:"stable", updated:"10 avril 2026", france:5,
+    affected:"23 millions", figures:["90% des puces avancées mondiales","180 avions chinois/mois","400Md$ commerce USA-Chine"],
+    desc:"Exercices militaires chinois intensifiés au large. Washington réaffirme son soutien. Enjeu technologique mondial — 90% des semi-conducteurs avancés.",
+    tags:["Chine","Semi-conducteurs","Souveraineté"],
     tagColors:["#F6AD55","#F6AD55","#F6E05E"],
+    linkedTo:[6],
   },
   {
     lat:8.0, lng:42.0, name:"Corne de l'Afrique", region:"Afrique de l'Est",
-    status:"climate", trend:"up",
-    desc:"Sécheresse chronique. 40 millions de personnes en insécurité alimentaire. Principal couloir de migration vers l'Europe.",
+    status:"climate", trend:"up", updated:"9 avril 2026", france:6,
+    affected:"40 millions", figures:["5e année de sécheresse consécutive","600 000 déplacés/mois","−60% précipitations"],
+    desc:"Sécheresse chronique. 40 millions en insécurité alimentaire. Principal couloir de migration vers l'Europe via la Libye.",
     tags:["Sécheresse","Migrations","Famine"],
     tagColors:["#4dd9ac","#4dd9ac","#F6E05E"],
+    linkedTo:[],
   },
   {
     lat:40.0, lng:127.5, name:"Corée du Nord", region:"Asie du Nord-Est",
-    status:"watch", trend:"up",
-    desc:"Essais balistiques réguliers. Rapprochement accéléré avec Moscou. Variable d'ajustement géopolitique de premier rang.",
+    status:"watch", trend:"up", updated:"8 avril 2026", france:3,
+    affected:"26 millions", figures:["50 missiles testés en 2025","20 000 soldats en Ukraine","Arsenal estimé : 50 têtes"],
+    desc:"Essais balistiques réguliers. 20 000 soldats nord-coréens déployés en Ukraine. Rapprochement accéléré avec Moscou.",
     tags:["Nucléaire","Russie","Missiles"],
     tagColors:["#F6E05E","#F6E05E","#FC8181"],
+    linkedTo:[2],
   },
   {
     lat:15.0, lng:17.0, name:"Lac Tchad", region:"Afrique centrale",
-    status:"climate", trend:"up",
+    status:"climate", trend:"up", updated:"7 avril 2026", france:7,
+    affected:"30 millions", figures:["−90% superficie depuis 1960","4 États en tension","Boko Haram : 40 000 membres"],
     desc:"90% de réduction depuis 1960. Ressource partagée par 4 États. Boko Haram exploite le vide créé par la crise hydrique.",
-    tags:["Eau","Boko Haram","Sécurité"],
+    tags:["Guerre de l'eau","Boko Haram","Sécurité"],
     tagColors:["#4dd9ac","#FC8181","#F6AD55"],
+    linkedTo:[3],
   },
   {
-    lat:20.0, lng:78.0, name:"Inde", region:"Asie du Sud",
-    status:"watch", trend:"stable",
-    desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle.",
+    lat:33.5, lng:76.0, name:"Cachemire", region:"Asie du Sud",
+    status:"tension", trend:"up", updated:"12 avril 2026", france:3,
+    affected:"15 millions", figures:["3 guerres depuis 1947","800 000 soldats déployés","2 puissances nucléaires"],
+    desc:"Regain de tensions entre l'Inde et le Pakistan. Deux puissances nucléaires face à face. La question de l'eau du fleuve Indus aggrave la dispute territoriale.",
+    tags:["Guerre de l'eau","Nucléaire","Inde-Pakistan"],
+    tagColors:["#4dd9ac","#FC8181","#F6AD55"],
+    linkedTo:[],
+  },
+  {
+    lat:32.5, lng:35.5, name:"Jourdain — Eau", region:"Moyen-Orient",
+    status:"climate", trend:"up", updated:"11 avril 2026", france:5,
+    affected:"20 millions", figures:["−75% débit du Jourdain","Accès à l'eau : 3x moins pour Gaza","1M de déplacés liés à l'eau"],
+    desc:"Le Jourdain a perdu 75% de son débit. Israël, Jordanie, Palestine et Syrie se disputent une ressource en voie d'épuisement. L'eau est désormais une arme de guerre.",
+    tags:["Guerre de l'eau","Conflit","Sécheresse"],
+    tagColors:["#4dd9ac","#FC8181","#4dd9ac"],
+    linkedTo:[],
+  },
+  {
+    lat:11.0, lng:37.0, name:"Nil — Barrage GERD", region:"Afrique de l'Est",
+    status:"tension", trend:"up", updated:"10 avril 2026", france:4,
+    affected:"110 millions", figures:["110M dépendent du Nil","74Md m³ capacité GERD","Égypte menace d'action militaire"],
+    desc:"Le Grand Barrage éthiopien (GERD) menace l'approvisionnement en eau de l'Égypte et du Soudan. 110 millions de personnes dépendent du Nil. Risque de guerre de l'eau en Afrique.",
+    tags:["Guerre de l'eau","Éthiopie","Égypte"],
+    tagColors:["#4dd9ac","#F6AD55","#FC8181"],
+    linkedTo:[],
+  },
+  {
+    lat:20.0, lng:78.0, name:"Inde — Puissance", region:"Asie du Sud",
+    status:"watch", trend:"stable", updated:"9 avril 2026", france:6,
+    affected:"1,4 milliard", figures:["7% de croissance","3e économie mondiale en 2027","Non-alignement assumé"],
+    desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle — refuse de choisir son camp.",
     tags:["Non-alignement","Croissance","Indo-Pacifique"],
     tagColors:["#F6E05E","#68D391","#F6AD55"],
+    linkedTo:[8],
   },
 ];
 
@@ -234,7 +283,7 @@ const BARCOLOR = COLOR;
 const TRENDCOL = {up:"#FC8181", down:"#68D391", stable:"rgba(255,255,255,0.35)"};
 const TRENDSYM = {up:"↑", down:"↓", stable:"→"};
 
-document.getElementById('zone-count').textContent = ZONES.length + ' zones analysées';
+document.getElementById('zone-count').textContent = ZONES.length + ' zones analysées — géopolitiques, climatiques, guerres de l\'eau';
 
 // ── THREE.JS SETUP ─────────────────────────────────────────────
 const scene = new THREE.Scene();
@@ -460,6 +509,33 @@ window.addEventListener('resize',()=>{
   renderer.setSize(window.innerWidth,window.innerHeight);
 });
 
+// Arcs de connexion entre zones liées
+const ARC_MESHES=[];
+function buildArcs(){
+  ARC_MESHES.forEach(a=>globeGroup.remove(a));
+  ARC_MESHES.length=0;
+  ZONES.forEach((z,i)=>{
+    if(!z.linkedTo) return;
+    z.linkedTo.forEach(j=>{
+      if(j<=i) return; // éviter doublons
+      const p1=ll2v(z.lat,z.lng,1.02);
+      const p2=ll2v(ZONES[j].lat,ZONES[j].lng,1.02);
+      const mid=new THREE.Vector3().addVectors(p1,p2).multiplyScalar(0.5);
+      mid.normalize().multiplyScalar(1.35);
+      const curve=new THREE.QuadraticBezierCurve3(p1,mid,p2);
+      const pts=curve.getPoints(40);
+      const geo=new THREE.BufferGeometry().setFromPoints(pts);
+      const col=new THREE.Color(COLOR[z.status]);
+      const mat=new THREE.LineBasicMaterial({color:col,transparent:true,opacity:0.2});
+      const line=new THREE.Line(geo,mat);
+      line.userData.mat=mat;
+      globeGroup.add(line);
+      ARC_MESHES.push(line);
+    });
+  });
+}
+buildArcs();
+
 // ── ANIMATE ───────────────────────────────────────────────────
 function animate(){
   requestAnimationFrame(animate);
@@ -486,6 +562,7 @@ function animate(){
     }
   });
 
+  ARC_MESHES.forEach((a,i)=>{a.userData.mat.opacity=0.12+0.08*Math.sin(t*1.2+i*0.5);});
   renderer.render(scene,cam);
 
   // Labels
