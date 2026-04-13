@@ -10,13 +10,13 @@ function todayFr() {
 }
 
 const tickerItems = [
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Iran–États-Unis — La délégation iranienne arrive au Pakistan pour les négociations de paix, première rencontre directe depuis le début du conflit" },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Moyen-Orient — Trêve au Liban, déblocage partiel du détroit d'Ormuz : les points de négociation entre Téhéran et Washington" },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Liban — La présidence annonce des discussions avec Israël mardi à Washington, Netanyahou sous pression sur le cessez-le-feu" },
-  { cat: 'Géopolitique', color: 'var(--geo)', text: "Iran — Enrichissement d'uranium au cœur des négociations au Pakistan, Trump maintient sa pression sur Téhéran" },
-  { cat: 'Espace', color: 'var(--tech)', text: "Artemis II — L'équipage devient les humains les plus éloignés de la Terre de toute l'histoire, à plus de 406 000 km" },
-  { cat: 'Économie', color: 'var(--eco)', text: "Carburants — 12% des stations-essence françaises en rupture partielle, les prix continuent de peser sur le pouvoir d'achat" },
-  { cat: 'Tech', color: 'var(--tech)', text: "Terafab — La méga-usine de semi-conducteurs annoncée par Musk s'inscrit dans un écosystème Tesla-SpaceX-xAI visant la souveraineté spatiale américaine" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Iran–États-Unis — Blocus naval américain des ports iraniens en vigueur depuis ce matin, Trump menace d'éliminer tout navire iranien" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Détroit d'Ormuz — Pétrole dépasse les $100 le baril, 20% du pétrole mondial bloqué par la crise Iran-USA" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Iran — Négociations d'Islamabad échouées après 21 heures de pourparlers, Vance quitte le Pakistan sans accord" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Ukraine — Russie viole le cessez-le-feu de Pâques 2 299 fois, 4 civils tués et 35 blessés malgré la trêve" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Hongrie — Orban battu après 16 ans au pouvoir, Peter Magyar remporte une victoire historique avec un taux de participation record" },
+  { cat: 'Économie', color: 'var(--eco)', text: "Carburants — 12% des stations-essence françaises en rupture partielle, la crise d'Ormuz aggrave la situation" },
+  { cat: 'Géopolitique', color: 'var(--geo)', text: "Liban — 2 055 morts depuis le début du conflit, le Royaume-Uni appelle à inclure Beyrouth dans le cessez-le-feu Iran-USA" },
   { cat: 'Géopolitique', color: 'var(--geo)', text: "Soudan — L'ONU documente plus de 1000 civils tués dans le camp de Zamzam, la pire crise humanitaire mondiale se poursuit" },
 ]
 
