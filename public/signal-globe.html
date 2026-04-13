@@ -807,40 +807,12 @@ if(window.innerWidth<=768){
 <div id="lbl-7" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Arctique<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
 <div id="lbl-8" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#68D39188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#68D391;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Inde<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
 
-<!-- Barre de contrôles -->
-<div id="timeline" style="position:fixed;bottom:calc(72px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:200;display:flex;align-items:center;gap:8px;background:rgba(7,9,15,0.92);border:1px solid rgba(200,169,110,0.25);padding:8px 14px;border-radius:2px;backdrop-filter:blur(8px);flex-wrap:wrap;justify-content:center">
-  
-  <!-- Filtres de vue -->
-  <div style="display:flex;gap:3px;align-items:center;border-right:1px solid rgba(255,255,255,0.08);padding-right:10px;margin-right:2px">
-    <button class="fl-btn active" onclick="setFilter('geo')">🌍 Géopolitique</button>
-    <button class="fl-btn" onclick="setFilter('climate')">🌿 Climat</button>
-    <button class="fl-btn" onclick="setFilter('france')">🇫🇷 Impact France</button>
-  </div>
-
-  <!-- Timeline -->
-  <div style="display:flex;gap:3px;align-items:center">
-    <span style="font-family:'DM Mono',monospace;font-size:6px;letter-spacing:2px;color:rgba(200,169,110,0.4);text-transform:uppercase">2026</span>
-    <button class="tl-btn" data-m="0" onclick="setMonth(0)">Jan</button>
-    <button class="tl-btn" data-m="1" onclick="setMonth(1)">Fév</button>
-    <button class="tl-btn" data-m="2" onclick="setMonth(2)">Mar</button>
-    <button class="tl-btn active-now" data-m="3" onclick="setMonth(3)">Avr ●</button>
-  </div>
-</div>
-<style>
-.tl-btn{background:none;border:1px solid rgba(200,169,110,0.15);color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;text-transform:uppercase;padding:4px 8px;cursor:pointer;border-radius:1px;transition:all 0.2s}
-.tl-btn:hover{color:rgba(255,255,255,0.7);border-color:rgba(200,169,110,0.4)}
-.tl-btn.active{color:#C8A96E;border-color:rgba(200,169,110,0.5);background:rgba(200,169,110,0.08)}
-.tl-btn.active-now{color:#fff;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06)}
-.fl-btn{background:none;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;cursor:pointer;border-radius:1px;transition:all 0.2s;white-space:nowrap}
-.fl-btn:hover{color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.3)}
-.fl-btn.active{color:#fff;border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.08)}
-</style>
 <script>
 const STATUS_ORDER = {calm:0,watch:1,tension:2,crisis:3};
 let currentMonth = 3;
 let currentFilter = 'geo';
 
-function setFilter(f){
+window.setFilter = function setFilter(f){
   currentFilter = f;
   document.querySelectorAll('.fl-btn').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.fl-btn[onclick="setFilter('${f}')"]`).classList.add('active');
@@ -897,7 +869,7 @@ function updateLabels(){
   });
 }
 
-function setMonth(m){
+window.setMonth = function setMonth(m){
   currentMonth = m;
   document.querySelectorAll('.tl-btn').forEach((b,i)=>{
     b.classList.remove('active','active-now');
