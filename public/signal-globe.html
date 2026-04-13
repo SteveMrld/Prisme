@@ -136,10 +136,32 @@ const ZONES = [
   {lat:8.0, lng:-66.0, name:"Venezuela", region:"Amérique du Sud", status:"watch", trend:"stable", history:["watch","watch","watch","watch"], desc:"Maduro consolide le pouvoir après l'élection contestée. Doctrine Monroe réactivée par Washington. Enjeux pétroliers centraux."},
   {lat:40.0, lng:127.5, name:"Corée du Nord", region:"Asie du Nord-Est", status:"watch", trend:"up", history:["calm","watch","watch","watch"], desc:"Essais balistiques réguliers. Rapprochement accéléré avec Moscou depuis le conflit ukrainien. Variable d'ajustement géopolitique."},
   {lat:78.0, lng:20.0, name:"Arctique", region:"Grand Nord", status:"watch", trend:"up", history:["calm","calm","watch","watch"], desc:"Course aux ressources sous-marines. OTAN renforce sa présence. Chine et Russie intensifient leur coopération polaire."},
-  {lat:20.0, lng:78.0, name:"Inde", region:"Asie du Sud", status:"calm", trend:"stable", history:["calm","calm","calm","calm"], desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle."},
+  {lat:20.0, lng:78.0, name:"Inde", region:"Asie du Sud", status:"calm", trend:"stable", history:["calm","calm","calm","calm"], desc:"7% de croissance. Non-alignement stratégique assumé entre Washington et Moscou. Pivot géopolitique du siècle."},];
+
+// Zones climatiques
+const CLIMATE_ZONES = [
+  {lat:8.0,  lng:42.0,  name:"Corne de l'Afrique", region:"Afrique de l'Est",   status:"climate", desc:"Sécheresse chronique. 40M de personnes en insécurité alimentaire. Principal couloir de migration vers l'Europe via la Libye.", france:true, franceNote:"Route migratoire vers l'Europe. Présence française à Djibouti."},
+  {lat:23.7, lng:90.4,  name:"Bangladesh",          region:"Asie du Sud",        status:"climate", desc:"30 millions de déplacés climatiques estimés d'ici 2050. Montée des eaux du Gange et du Brahmapoutre. Mégadelta menacé.", france:false, franceNote:""},
+  {lat:-5.0, lng:-60.0, name:"Amazonie",             region:"Amérique du Sud",    status:"climate", desc:"Déforestation accélérée. Point de bascule à 20-25% de déforestation. Impact sur les précipitations mondiales et le carbone.", france:true, franceNote:"Forêt guyanaise frontalière. Intérêts French Guiana Space Centre (Ariane)."},
+  {lat:45.0, lng:60.0,  name:"Mer d'Aral",           region:"Asie centrale",      status:"climate", desc:"Assèchement quasi-total. Conflits sur l'eau entre Kazakhstan, Ouzbékistan, Tadjikistan. Précédent pour les guerres de l'eau.", france:false, franceNote:""},
+  {lat:-8.0, lng:178.0, name:"Pacifique insulaire",  region:"Océanie",            status:"climate", desc:"Tuvalu et Kiribati menacés de submersion. Premiers États en voie de disparition physique. Crise du droit international.", france:true, franceNote:"Polynésie française et Nouvelle-Calédonie dans la même zone de risque climatique."},
+  {lat:15.0, lng:17.0,  name:"Lac Tchad",             region:"Afrique centrale",   status:"climate", desc:"90% de réduction depuis 1960. Ressource partagée par 4 États. Boko Haram exploite le vide sécuritaire créé par la crise hydrique.", france:true, franceNote:"Zone Sahel — ancienne présence Barkhane. Intérêts sécuritaires directs."},
 ];
 
-const COLOR = {crisis:"#FC8181", tension:"#F6AD55", watch:"#F6E05E", calm:"#68D391"};
+// Propriété france sur les zones géopolitiques
+const FRANCE_ZONES = [1,2,3,4]; // Ormuz, Taïwan(non), Sahel, Ukraine
+ZONES[0].france=true;  ZONES[0].franceNote="15% des importations énergétiques via le Golfe Persique.";
+ZONES[1].france=true;  ZONES[1].franceNote="15% des importations énergétiques françaises bloquées.";
+ZONES[2].france=false;
+ZONES[3].france=true;  ZONES[3].franceNote="Bases militaires françaises, uranium du Niger, 4000 soldats déployés.";
+ZONES[4].france=true;  ZONES[4].franceNote="Sécurité européenne, engagement OTAN, aide militaire de 3Md€.";
+ZONES[5].france=false;
+ZONES[6].france=false;
+ZONES[7].france=true;  ZONES[7].franceNote="Routes commerciales Saint-Pierre-et-Miquelon, ressources sous-marines.";
+ZONES[8].france=true;  ZONES[8].franceNote="Partenariat stratégique Indo-Pacifique. 1,5M de Français en Asie.";
+
+const COLOR = {crisis:"#FC8181", tension:"#F6AD55", watch:"#F6E05E", calm:"#68D391", climate:"#4dd9ac"};
+const FRANCE_COL = "#3b82f6"; // Bleu France
 const BARCOLOR = {crisis:"#FC8181", tension:"#F6AD55", watch:"#F6E05E", calm:"#68D391"};
 
 // THREE SCENE
@@ -281,6 +303,30 @@ ZONES.forEach((z,i)=>{
 });
 
 
+// Markers climatiques
+const climateMarkers = [];
+CLIMATE_ZONES.forEach((z,i)=>{
+  const pos=ll2v(z.lat,z.lng,1.025);
+  const col=new THREE.Color(COLOR.climate);
+  const r=0.013;
+  const gm=new THREE.Mesh(
+    new THREE.SphereGeometry(r*2.5,8,8),
+    new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.12})
+  );
+  gm.position.copy(pos);
+  globeGroup.add(gm);
+  const dot=new THREE.Mesh(
+    new THREE.SphereGeometry(r,8,8),
+    new THREE.MeshBasicMaterial({color:col})
+  );
+  dot.position.copy(pos);
+  dot.userData={zone:z,index:i+100,glow:gm,isClimate:true};
+  dot.visible=false; // caché par défaut
+  gm.visible=false;
+  globeGroup.add(dot);
+  climateMarkers.push(dot);
+});
+
 // ARCS — connexions entre zones liées
 const ARCS = [
   {from:0, to:1, color:'#FC8181'},   // Iran ↔ Ormuz
@@ -330,7 +376,9 @@ function openPanel(z){
   const trendArrow = z.trend==='up'?' ↑':z.trend==='down'?' ↓':' →';
   const trendCol = z.trend==='up'?'#FC8181':z.trend==='down'?'#68D391':'rgba(255,255,255,0.4)';
   document.getElementById('panel-name').innerHTML=z.name+'<span style="font-size:14px;color:'+trendCol+'">'+trendArrow+'</span>';
-  document.getElementById('panel-desc').textContent=z.desc;
+  let descText = z.desc;
+  if(currentFilter==='france' && z.franceNote) descText += ' 🇫🇷 ' + z.franceNote;
+  document.getElementById('panel-desc').textContent=descText;
   document.getElementById('panel-bar').style.background=BARCOLOR[z.status];
   document.getElementById('panel').classList.add('open');
   document.getElementById('timeline').style.display='none';
@@ -390,6 +438,19 @@ window.addEventListener('mousemove',e=>{
 });
 
 canvas.addEventListener('touchstart',e=>{isDrag=true;autoRot=false;prevX=e.touches[0].clientX;prevY=e.touches[0].clientY},{passive:true});
+// Click climate markers
+window.addEventListener('mouseup',e=>{
+  if(isDrag) return;
+  const dx=e.clientX-prevX, dy=e.clientY-prevY;
+  if(Math.abs(dx)<4&&Math.abs(dy)<4){
+    mouse.x=(e.clientX/window.innerWidth)*2-1;
+    mouse.y=-(e.clientY/window.innerHeight)*2+1;
+    raycaster.setFromCamera(mouse,cam);
+    const hits=raycaster.intersectObjects(climateMarkers);
+    if(hits.length>0) openPanel(hits[0].object.userData.zone);
+  }
+},{passive:true});
+
 canvas.addEventListener('touchend',e=>{
   if(!isDrag)return;
   isDrag=false;
@@ -647,6 +708,22 @@ function animate(){
   });
   renderer.render(scene,cam);
   // Labels 2D — getWorldPosition est l'API correcte
+  // Labels climate
+  climateMarkers.forEach((m,i)=>{
+    const el=document.getElementById('clbl-'+i);
+    if(!el||!m.visible) return;
+    const wPos=new THREE.Vector3();
+    m.getWorldPosition(wPos);
+    const toPoint=wPos.clone().normalize();
+    const toCam=cam.position.clone().normalize();
+    if(toCam.dot(toPoint)<0.12){el.style.opacity='0';return;}
+    const proj=wPos.clone().project(cam);
+    if(proj.z>1){el.style.opacity='0';return;}
+    el.style.left=((proj.x+1)/2*window.innerWidth)+'px';
+    el.style.top=((-proj.y+1)/2*window.innerHeight)+'px';
+    el.style.opacity='0.95';
+  });
+
   markers.forEach((m,i)=>{
     const el=document.getElementById('lbl-'+i);
     if(!el||!m.userData.zone) return;
@@ -730,11 +807,20 @@ if(window.innerWidth<=768){
 <div id="lbl-7" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#F6E05E88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#F6E05E;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Arctique<span style="color:#FC8181;font-size:11px;font-weight:700">↑</span></span></div>
 <div id="lbl-8" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#68D39188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#68D391;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Inde<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
 
-<!-- Timeline -->
-<div id="timeline" style="position:fixed;bottom:calc(60px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:55;display:flex;align-items:center;gap:12px;background:rgba(7,9,15,0.85);border:1px solid rgba(200,169,110,0.2);padding:8px 16px;border-radius:2px;backdrop-filter:blur(8px)">
-  <span style="font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2px;color:rgba(200,169,110,0.5);text-transform:uppercase;white-space:nowrap">Évolution</span>
-  <div style="display:flex;gap:4px;align-items:center">
-    <button class="tl-btn active" data-m="0" onclick="setMonth(0)">Jan</button>
+<!-- Barre de contrôles -->
+<div id="timeline" style="position:fixed;bottom:calc(60px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:55;display:flex;align-items:center;gap:8px;background:rgba(7,9,15,0.88);border:1px solid rgba(200,169,110,0.2);padding:8px 14px;border-radius:2px;backdrop-filter:blur(8px);flex-wrap:wrap;justify-content:center">
+  
+  <!-- Filtres de vue -->
+  <div style="display:flex;gap:3px;align-items:center;border-right:1px solid rgba(255,255,255,0.08);padding-right:10px;margin-right:2px">
+    <button class="fl-btn active" onclick="setFilter('geo')">🌍 Géopolitique</button>
+    <button class="fl-btn" onclick="setFilter('climate')">🌿 Climat</button>
+    <button class="fl-btn" onclick="setFilter('france')">🇫🇷 Impact France</button>
+  </div>
+
+  <!-- Timeline -->
+  <div style="display:flex;gap:3px;align-items:center">
+    <span style="font-family:'DM Mono',monospace;font-size:6px;letter-spacing:2px;color:rgba(200,169,110,0.4);text-transform:uppercase">2026</span>
+    <button class="tl-btn" data-m="0" onclick="setMonth(0)">Jan</button>
     <button class="tl-btn" data-m="1" onclick="setMonth(1)">Fév</button>
     <button class="tl-btn" data-m="2" onclick="setMonth(2)">Mar</button>
     <button class="tl-btn active-now" data-m="3" onclick="setMonth(3)">Avr ●</button>
@@ -745,10 +831,71 @@ if(window.innerWidth<=768){
 .tl-btn:hover{color:rgba(255,255,255,0.7);border-color:rgba(200,169,110,0.4)}
 .tl-btn.active{color:#C8A96E;border-color:rgba(200,169,110,0.5);background:rgba(200,169,110,0.08)}
 .tl-btn.active-now{color:#fff;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.06)}
+.fl-btn{background:none;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;cursor:pointer;border-radius:1px;transition:all 0.2s;white-space:nowrap}
+.fl-btn:hover{color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.3)}
+.fl-btn.active{color:#fff;border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.08)}
 </style>
 <script>
 const STATUS_ORDER = {calm:0,watch:1,tension:2,crisis:3};
 let currentMonth = 3;
+let currentFilter = 'geo';
+
+function setFilter(f){
+  currentFilter = f;
+  document.querySelectorAll('.fl-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.fl-btn[onclick="setFilter('${f}')"]`).classList.add('active');
+  
+  if(f==='geo'){
+    // Montrer geo, cacher climate, normal
+    markers.forEach(m=>{m.visible=true;if(m.userData.glow)m.userData.glow.visible=true;});
+    climateMarkers.forEach(m=>{m.visible=false;if(m.userData.glow)m.userData.glow.visible=false;});
+    // Reset opacité
+    markers.forEach((m,i)=>{
+      const s=ZONES[i].history[currentMonth];
+      m.material.color.set(new THREE.Color(COLOR[s]));
+      m.material.opacity=1;
+    });
+  } else if(f==='climate'){
+    // Cacher geo, montrer climate
+    markers.forEach(m=>{m.visible=false;if(m.userData.glow)m.userData.glow.visible=false;});
+    climateMarkers.forEach(m=>{m.visible=true;if(m.userData.glow)m.userData.glow.visible=true;});
+  } else if(f==='france'){
+    // Montrer tous, estomper les non-France
+    climateMarkers.forEach(m=>{m.visible=true;if(m.userData.glow)m.userData.glow.visible=true;});
+    markers.forEach((m,i)=>{
+      m.visible=true;
+      const isFrance=ZONES[i].france;
+      m.material.opacity=isFrance?1:0.15;
+      if(m.userData.glow) m.userData.glow.material.opacity=isFrance?0.1:0.02;
+    });
+    climateMarkers.forEach((m,i)=>{
+      const isFrance=CLIMATE_ZONES[i].france;
+      m.material.opacity=isFrance?1:0.15;
+    });
+  }
+  
+  // Mettre à jour les labels
+  updateLabels();
+}
+
+function updateLabels(){
+  markers.forEach((m,i)=>{
+    const el=document.getElementById('lbl-'+i);
+    if(!el) return;
+    if(currentFilter==='climate'){el.style.display='none';return;}
+    el.style.display='flex';
+    if(currentFilter==='france'){
+      el.style.opacity=ZONES[i].france?'0.95':'0.15';
+    }
+  });
+  // Labels climate
+  climateMarkers.forEach((m,i)=>{
+    const el=document.getElementById('clbl-'+i);
+    if(!el) return;
+    el.style.display=(currentFilter==='climate'||currentFilter==='france')?'flex':'none';
+    if(currentFilter==='france') el.style.opacity=CLIMATE_ZONES[i].france?'0.95':'0.15';
+  });
+}
 
 function setMonth(m){
   currentMonth = m;
@@ -772,5 +919,12 @@ function setMonth(m){
   });
 }
 </script>
+<!-- Labels climate -->
+<div id="clbl-0" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Corne de l'Afrique 🌿</span></div>
+<div id="clbl-1" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Bangladesh 🌿</span></div>
+<div id="clbl-2" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Amazonie 🌿</span></div>
+<div id="clbl-3" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Mer d'Aral 🌿</span></div>
+<div id="clbl-4" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Pacifique insulaire 🌿</span></div>
+<div id="clbl-5" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:none;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#4dd9ac88"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#4dd9ac;background:rgba(7,9,15,0.78);padding:2px 7px;border-radius:2px;white-space:nowrap">Lac Tchad 🌿</span></div>
 </body>
 </html>
