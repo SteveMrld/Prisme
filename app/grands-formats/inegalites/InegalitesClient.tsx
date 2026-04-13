@@ -19,11 +19,16 @@ const TOP10 = {
 }
 
 // Bottom 50% — part du revenu national · WID
+// Bottom 50% — valeurs vérifiées WID / WIR 2018 / WIR 2022
+// USA: effondrement confirmé (Piketty & Saez 2003, série mise à jour)
+// France: stable ~22% (WIR 2018 : "22% in 2016 in Western Europe")
+// Inde: déclin marqué depuis libéralisation 1991 (Chancel & Piketty 2019)
+// Chine: déclin malgré croissance (WID China series, Piketty Yang Zucman 2019)
 const BOT50 = {
-  USA:    [[1980,20],[1985,19],[1990,17],[1995,15],[2000,13],[2005,13],[2008,12],[2010,12],[2015,12],[2019,13],[2022,13]],
-  France: [[1980,23],[1985,23],[1990,23],[1995,22],[2000,22],[2005,22],[2008,21],[2010,21],[2015,21],[2019,22],[2022,22]],
-  Inde:   [[1980,24],[1985,23],[1990,22],[1995,21],[2000,19],[2005,16],[2008,14],[2010,13],[2015,13],[2019,13],[2022,13]],
-  Chine:  [[1980,27],[1985,25],[1990,23],[1995,19],[2000,17],[2005,15],[2008,14],[2010,14],[2015,15],[2019,14],[2022,14]],
+  USA:    [[1980,20],[1985,18],[1990,16],[1995,14],[2000,13],[2005,13],[2008,12],[2010,12],[2015,12],[2019,13],[2022,13]],
+  France: [[1980,23],[1985,23],[1990,23],[1995,22],[2000,22],[2005,22],[2008,22],[2010,22],[2015,22],[2019,22],[2022,22]],
+  Inde:   [[1980,22],[1985,21],[1990,20],[1995,19],[2000,18],[2005,16],[2008,14],[2010,13],[2015,13],[2019,13],[2022,13]],
+  Chine:  [[1980,27],[1985,24],[1990,21],[1995,18],[2000,16],[2005,15],[2008,14],[2010,14],[2015,15],[2019,14],[2022,15]],
 }
 
 const PAYS = [
@@ -318,7 +323,7 @@ export default function InegalitesClient() {
               Pourquoi 1980 ?
             </div>
             <p style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"#fff",margin:0,lineHeight:1.7}}>
-              Reagan et Thatcher instaurent la déréglementation financière, baissent les impôts sur le capital, affaiblissent les syndicats. Le compromis keynésien de l'après-guerre — croissance partagée, État-providence — est abandonné simultanément dans la plupart des pays développés.
+              Reagan et Thatcher instaurent la déréglementation financière, baissent les impôts sur le capital, affaiblissent les syndicats. Le compromis keynésien — croissance partagée, État-providence fort — est abandonné. En Inde et en Chine, la libéralisation économique des années 90 amplifie le phénomène : la croissance profite massivement aux élites urbaines et aux détenteurs de capital.
             </p>
           </div>
           <div style={{background:"rgba(4,6,13,0.55)",backdropFilter:"blur(4px)",border:"1px solid rgba(255,255,255,0.1)",padding:"12px 14px"}}>
@@ -326,14 +331,14 @@ export default function InegalitesClient() {
               Ce que dit la divergence
             </div>
             <p style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"#fff",margin:0,lineHeight:1.7}}>
-              La France reste à <strong style={{color:"#60a5fa"}}>35%</strong>. L'Inde atteint <strong style={{color:"#f97316"}}>58%</strong>. L'écart n'est pas économique — les deux pays ont connu une forte croissance. Il est <strong>politique</strong> : fiscalité, redistribution, rapport de force capital/travail.
+              La France reste à <strong style={{color:"#60a5fa"}}>35%</strong>. L'Inde atteint <strong style={{color:"#f97316"}}>58%</strong>, niveau record, plus inégalitaire que sous le Raj britannique. Les deux pays ont connu une forte croissance. L'écart n'est pas économique — il est <strong>politique</strong> : fiscalité progressive, redistribution, rapport de force capital/travail, protection sociale. Là où ces mécanismes ont tenu, les inégalités ont résisté.
             </p>
           </div>
         </div>
 
         {/* Sources */}
         <div style={{fontSize:7,color:"rgba(255,255,255,0.18)",lineHeight:1.8,borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:6}}>
-          World Inequality Database (WID.world) · Chancel &amp; Piketty (2021) · World Inequality Report 2022 · Part du revenu national avant impôts
+          <strong style={{color:"rgba(255,255,255,0.3)"}}>Sources :</strong> World Inequality Database — wid.world · Chancel &amp; Piketty, "Global Income Inequality 1820–2020", JEEA 2021 · Alvaredo, Chancel, Piketty, Saez, Zucman — World Inequality Report 2018 &amp; 2022 · Chancel &amp; Piketty, "Indian Income Inequality 1922–2015", Review of Income and Wealth 2019 · Piketty, Yang, Zucman, "Capital Accumulation in China 1978–2015", QJE 2019 · Part du revenu national avant impôts et transferts
         </div>
       </div>
     </div>
