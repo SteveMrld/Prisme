@@ -459,7 +459,10 @@
   line-height: 1.3;
 }
 
-.prospectif p {
+.prospectif p,
+.grand-format-body .article-body .prospectif p,
+.grand-format-body .soara-article .prospectif p,
+.soara-article .prospectif p {
   font-family: 'Cormorant Garamond', serif !important;
   font-size: 18px !important;
   color: #ECE7DD !important;
@@ -467,7 +470,9 @@
   margin-bottom: 0 !important;
 }
 
-.prospectif p strong {
+.prospectif p strong,
+.grand-format-body .article-body .prospectif p strong,
+.soara-article .prospectif p strong {
   color: #ffffff !important;
   font-weight: 700 !important;
 }
