@@ -1,4 +1,5 @@
 import ClimateClient from "./ClimateClient"
+import BookmarkButton from "../../../components/BookmarkButton"
 
 export const metadata = {
   title: "Cinq siècles de fièvre — Soara",
@@ -6,5 +7,12 @@ export const metadata = {
 }
 
 export default function ClimatPage() {
-  return <ClimateClient />
+  return (
+    <div>
+      <ClimateClient />
+      <div style={{ display: 'flex', justifyContent: 'center', padding: '32px 24px', background: '#04060d' }}>
+        <BookmarkButton slug="climat" title="La Terre a toujours changé de température" />
+      </div>
+    </div>
+  )
 }
