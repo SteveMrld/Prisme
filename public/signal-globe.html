@@ -62,7 +62,7 @@ body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:
 .panel-close:hover{color:#C8A96E}
 /* HINT */
 .hint{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:50;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(236,231,221,.25);pointer-events:none;transition:opacity 1s}
-@media(max-width:768px){.sidebar{display:none}.stats{display:none}#panel{right:0;bottom:calc(60px + env(safe-area-inset-bottom));padding:16px 20px 20px;min-height:210px;max-height:240px;overflow-y:auto}.panel-name{font-size:18px;margin-bottom:6px}.panel-desc{font-size:12px;line-height:1.55;margin-bottom:8px;display:block!important;opacity:1!important}.panel-reg{margin-bottom:3px}#hint{bottom:calc(80px + env(safe-area-inset-bottom))!important}}
+@media(max-width:768px){.sidebar{display:none}.stats{display:none}#panel{right:0;bottom:calc(72px + env(safe-area-inset-bottom));padding:14px 18px 18px;min-height:190px;max-height:220px;overflow-y:auto}.panel-name{font-size:18px;margin-bottom:6px}.panel-desc{font-size:12px;line-height:1.55;margin-bottom:8px;display:block!important;opacity:1!important}.panel-reg{margin-bottom:3px}#hint{bottom:calc(80px + env(safe-area-inset-bottom))!important}}
 </style>
 </head>
 <body>
@@ -808,7 +808,7 @@ if(window.innerWidth<=768){
 <div id="lbl-8" style="position:fixed;pointer-events:none;z-index:6;transform:translateY(-50%);transition:opacity 0.3s;opacity:0;display:flex;align-items:center;gap:4px"><div style="width:8px;height:1px;background:#68D39188"></div><span style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.5px;color:#68D391;background:rgba(7,9,15,0.78);padding:2px 7px 2px 6px;border-radius:2px;white-space:nowrap;display:flex;align-items:center;gap:4px">Inde<span style="color:rgba(255,255,255,0.4);font-size:11px;font-weight:700">→</span></span></div>
 
 <!-- Barre de contrôles -->
-<div id="timeline" style="position:fixed;bottom:calc(60px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:55;display:flex;align-items:center;gap:8px;background:rgba(7,9,15,0.88);border:1px solid rgba(200,169,110,0.2);padding:8px 14px;border-radius:2px;backdrop-filter:blur(8px);flex-wrap:wrap;justify-content:center">
+<div id="timeline" style="position:fixed;bottom:calc(72px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:200;display:flex;align-items:center;gap:8px;background:rgba(7,9,15,0.92);border:1px solid rgba(200,169,110,0.25);padding:8px 14px;border-radius:2px;backdrop-filter:blur(8px);flex-wrap:wrap;justify-content:center">
   
   <!-- Filtres de vue -->
   <div style="display:flex;gap:3px;align-items:center;border-right:1px solid rgba(255,255,255,0.08);padding-right:10px;margin-right:2px">
