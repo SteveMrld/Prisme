@@ -78,6 +78,25 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* Card — Climat */}
+          <a href="/grands-formats/climat" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--env)'}}>Environnement · Dataviz interactive</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>La Terre a toujours changé de température.</h3>
+              <p className={styles.featSub}>Scotese 2021 · HadCRUT5 · NASA GISS · 500 millions d'années de données</p>
+              <p className={styles.featDesc}>
+                Deux courbes, même axe. La Terre a connu des variations de ±10°C sur des millions d'années.
+                Notre +1,6°C est arrivé en 150 ans. Ce qui est sans précédent, c'est la vitesse.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la visualisation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Card — terres rares */}
           <a href="/visuels/terres-rares.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
             <div className={styles.featBody}>
