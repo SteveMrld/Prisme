@@ -40,6 +40,7 @@ const navItems = [
   { label: 'Culture', href: '/culture', className: 'culture' },
   { label: 'Portraits', href: '/portraits', className: 'portrait' },
   { label: 'Indicateurs', href: '/indicateurs', className: 'eco' },
+  { label: 'Grands formats', href: '/grands-formats', className: 'concept' },
   { label: 'Atlas', href: '/visuels', className: 'concept' },
   { label: 'Rétrospective', href: '/retrospective', className: 'concept' },
   { label: 'Solutions', href: '/solutions', className: 'env' },
