@@ -400,7 +400,7 @@ markers.forEach((m,i)=>{
   const el=document.createElement('div');
   el.id='lbl'+i;
   el.style.cssText=`position:absolute;opacity:0;transition:opacity 0.4s;display:flex;align-items:center;gap:4px;`;
-  el.innerHTML=`<div style="width:8px;height:1px;background:${col}"></div><span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:#fff;background:rgba(4,6,13,0.9);padding:3px 8px;border-radius:2px;white-space:nowrap;border-left:2px solid ${col};letter-spacing:0.3px">${z.name}</span>`;
+  el.innerHTML=`<span style="font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;color:${col};background:rgba(2,3,8,0.96);padding:3px 9px;border-radius:2px;white-space:nowrap;border-left:3px solid ${col};letter-spacing:0.3px;box-shadow:0 2px 8px rgba(0,0,0,0.8)">${z.name}</span>`;
   labelDiv.appendChild(el);
 });
 
