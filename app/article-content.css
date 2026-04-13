@@ -1823,18 +1823,20 @@ sup {
 .grand-format-body .pull-quote,
 .grand-format-body blockquote {
   border-left: 3px solid #B91C1C !important;
-  padding: 4px 0 4px 28px !important;
+  padding: 20px 0 20px 28px !important;
   margin: 40px 0 !important;
-  background: none !important;
+  background: #f5f2ee !important;
+  border-radius: 0 2px 2px 0 !important;
 }
 
 .grand-format-body .pull-quote p,
-.grand-format-body blockquote p {
+.grand-format-body blockquote p,
+.grand-format-body blockquote {
   font-family: 'Playfair Display', Georgia, serif !important;
-  font-size: clamp(18px, 2vw, 23px) !important;
+  font-size: clamp(16px, 1.8vw, 20px) !important;
   font-style: italic !important;
-  line-height: 1.5 !important;
-  color: #111 !important;
+  line-height: 1.65 !important;
+  color: #1a1a1a !important;
 }
 
 .grand-format-body .sbloc-num {
