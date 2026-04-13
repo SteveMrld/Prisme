@@ -96,7 +96,7 @@ export default function ClimateClient() {
   const rafRef  = useRef(null)
   const lastRef = useRef(null)
   const progRef = useRef(0)
-  const DURATION = 24000
+  const DURATION = 32000
 
   useEffect(() => {
     setMounted(true)
@@ -107,7 +107,9 @@ export default function ClimateClient() {
     if (!lastRef.current) lastRef.current = ts
     const dt = ts - lastRef.current
     lastRef.current = ts
-    progRef.current = Math.min(progRef.current + dt/DURATION, 1)
+    // Ralentir les 15 derniers % (époque moderne sur axe log)
+    const speed = progRef.current > 0.85 ? 0.3 : 1.0
+    progRef.current = Math.min(progRef.current + (dt/DURATION)*speed, 1)
     const ma = 500*(1-progRef.current)
     for (let i=0;i<BACKGROUNDS.length;i++) {
       if (ma<=BACKGROUNDS[i].maRange[0]&&ma>=BACKGROUNDS[i].maRange[1]) { setActiveBg(i); break }
@@ -205,10 +207,10 @@ export default function ClimateClient() {
             animation:`${bg.kb} 22s ease-in-out infinite alternate`,
           }}/>
         ))}
-        <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(4,6,13,0.15) 0%, rgba(4,6,13,0.4) 55%, rgba(4,6,13,0.92) 100%)", zIndex:1 }}/>
+        <div style={{ position:"absolute", inset:0, background:"linear-gradient(to bottom, rgba(4,6,13,0.3) 0%, rgba(4,6,13,0.5) 100%)", zIndex:1 }}/>
 
         {/* Contenu */}
-        <div style={{ position:"relative", zIndex:2, flex:1, display:"flex", flexDirection:"column", padding:"32px 40px 20px" }}>
+        <div style={{ position:"relative", zIndex:2, flex:1, display:"flex", flexDirection:"column", padding:"24px 36px 16px", justifyContent:"space-between" }}>
 
           {/* Titre */}
           <div style={{ flex:1 }}>
@@ -217,7 +219,7 @@ export default function ClimateClient() {
             </div>
             <div style={{ display:"flex", alignItems:"flex-end", gap:24, flexWrap:"wrap" }}>
               <div>
-                <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(28px,4.5vw,58px)", fontWeight:300, color:"#f0ede8", margin:"0 0 6px", lineHeight:1.05 }}>
+                <h1 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(22px,3.5vw,44px)", fontWeight:300, color:"#f0ede8", margin:"0 0 6px", lineHeight:1.05 }}>
                   La Terre a toujours changé<br/><em style={{ fontWeight:600 }}>de température.</em>
                 </h1>
                 <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:"clamp(14px,1.8vw,20px)", fontWeight:300, color:"#dc2626", margin:0 }}>
@@ -237,7 +239,7 @@ export default function ClimateClient() {
           </div>
 
           {/* Courbe principale */}
-          <div style={{ border:"1px solid rgba(255,255,255,0.06)", background:"rgba(4,6,13,0.6)", backdropFilter:"blur(4px)", marginBottom:12 }}>
+          <div style={{ border:"1px solid rgba(255,255,255,0.06)", background:"rgba(4,6,13,0.25)", backdropFilter:"blur(2px)", marginBottom:12 }}>
             <svg viewBox={`0 0 ${W} ${H}`} style={{ width:"100%", display:"block" }}>
               <defs>
                 <filter id="gl"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
