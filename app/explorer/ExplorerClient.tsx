@@ -36,9 +36,10 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
       title: "L'Inde, <em>la puissance silencieuse</em>",
       description: "Un milliard et demi d'habitants, la plus grande démocratie du monde, une ambition géopolitique qui ne dit pas encore son nom.",
       category: 'tv',
-      image: 'https://res.cloudinary.com/dnbyi8fw6/image/upload/f_auto,q_auto/soara_inde_final-1_hitfsr.jpg',
+      image: '/articles/inde-video.jpg',
       customRoute: '/prismetv',
       readTime: 'Vidéo · 3 min',
+      ctaLabel: 'Regarder la vidéo',
     },
     {
       slug: 'grand-entretien',
@@ -118,7 +119,7 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
             <p className={styles.desc}>{article.description}</p>
           )}
           <Link href={slug} className={styles.cta}>
-            Lire l'article →
+            {article.ctaLabel || "Lire l'article"} →
           </Link>
         </div>
 
