@@ -814,8 +814,6 @@ let currentFilter = 'geo';
 
 window.setFilter = function setFilter(f){
   currentFilter = f;
-  document.querySelectorAll('.fl-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.fl-btn[onclick="setFilter('${f}')"]`).classList.add('active');
   
   if(f==='geo'){
     // Montrer geo, cacher climate, normal
@@ -871,10 +869,7 @@ function updateLabels(){
 
 window.setMonth = function setMonth(m){
   currentMonth = m;
-  document.querySelectorAll('.tl-btn').forEach((b,i)=>{
-    b.classList.remove('active','active-now');
-    if(i===m) b.classList.add(m===3?'active-now':'active');
-  });
+
   // Mettre à jour les markers selon l'historique
   ZONES.forEach((z,i)=>{
     const s = z.history[m];
