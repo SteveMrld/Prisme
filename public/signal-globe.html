@@ -124,6 +124,17 @@ body{background:#07090F;color:#ECE7DD;font-family:'DM Sans',sans-serif;overflow:
 
 <div class="hint" id="hint">Cliquez sur un point ou une zone</div>
 
+<!-- Légende permanente -->
+<div id="legend" style="position:fixed;top:56px;left:16px;z-index:50;display:flex;flex-direction:column;gap:5px;padding:10px 12px;background:rgba(7,9,15,0.82);border:1px solid rgba(255,255,255,0.07);backdrop-filter:blur(6px)">
+  <div style="font-family:'DM Mono',monospace;font-size:6px;letter-spacing:3px;text-transform:uppercase;color:rgba(200,169,110,0.5);margin-bottom:2px">Légende</div>
+  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#FC8181;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Crise active</span></div>
+  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#F6AD55;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Tension élevée</span></div>
+  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#F6E05E;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Surveillance</span></div>
+  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#68D391;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Stable</span></div>
+  <div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:#4dd9ac;flex-shrink:0"></div><span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.6)">Crise climatique</span></div>
+  <div style="margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,255,255,0.06);font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.25);letter-spacing:0.5px">↑↓→ tendance · Appuyez sur un point</div>
+</div>
+
 <script>
 // trend: "up"=monte, "down"=baisse, "stable"=stable
 // history: évolution du statut par mois [jan, fev, mar, avr 2026]

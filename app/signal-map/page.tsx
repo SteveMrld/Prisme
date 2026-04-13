@@ -61,6 +61,10 @@ export default function SignalMapPage() {
         justifyContent: 'center',
         fontFamily: "'DM Mono', monospace",
       }}>
+        {/* Titre filtres */}
+        <div style={{ width: '100%', textAlign: 'center', fontFamily: "'DM Mono', monospace", fontSize: '6px', letterSpacing: '3px', textTransform: 'uppercase', color: 'rgba(200,169,110,0.4)', marginBottom: '2px' }}>
+          Choisir une vue
+        </div>
         {/* Filtres */}
         <div style={{ display: 'flex', gap: '3px', borderRight: '1px solid rgba(255,255,255,0.08)', paddingRight: '10px', marginRight: '2px' }}>
           {filters.map(f => (
