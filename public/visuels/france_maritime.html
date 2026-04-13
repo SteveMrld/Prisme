@@ -174,18 +174,19 @@ var slides=document.querySelectorAll('.sd'),total=slides.length,cur=-1,autoPlay=
 var DE=document.getElementById('nav-dots');
 for(var i=0;i<total;i++){var d=document.createElement('div');d.className='ndot';(function(n){d.onclick=function(){go(n)}})(i);DE.appendChild(d)}
 function go(n){
+  try{
   if(n<0||n>=total)return;
   cur=n;var s=slides[n];
   document.getElementById('intro').classList.add('out');
-  document.getElementById('PCH').textContent=s.dataset.ch;
-  document.getElementById('PHK').textContent=s.dataset.hk;
-  document.getElementById('PTI').innerHTML=s.dataset.ti;
-  document.getElementById('PBO').innerHTML=s.dataset.bo;
-  document.getElementById('PSN').textContent=s.dataset.sn;
-  document.getElementById('PSL').textContent=s.dataset.sl;
+  document.getElementById('PCH').textContent=s.dataset.ch||'';
+  document.getElementById('PHK').textContent=s.dataset.hk||'';
+  document.getElementById('PTI').innerHTML=s.dataset.ti||'';
+  document.getElementById('PBO').innerHTML=s.dataset.bo||'';
+  document.getElementById('PSN').textContent=s.dataset.sn||'';
+  document.getElementById('PSL').textContent=s.dataset.sl||'';
   var w=document.getElementById('zoom-wrap');
-  w.style.transformOrigin=s.dataset.ox+' '+s.dataset.oy;
-  w.style.transform='scale('+s.dataset.scale+')';
+  w.style.transformOrigin=(s.dataset.ox||'50%')+' '+(s.dataset.oy||'50%');
+  w.style.transform='scale('+( s.dataset.scale||'1')+')';
   var show=s.dataset.show.split(' ');
   document.querySelectorAll('.dot-group').forEach(function(g){
     g.style.opacity=show.indexOf(g.getAttribute('data-key'))>=0?'1':'0';
@@ -194,6 +195,7 @@ function go(n){
   document.querySelectorAll('.ndot').forEach(function(d,i){d.classList.toggle('on',i===n)});
   document.getElementById('pgf').style.width=((n+1)/total*100)+'%';
   document.getElementById('cnt').textContent=(n+1)+' / '+total;
+  }catch(e){console.error('go error',e)}
 }
 document.getElementById('pp').onclick=function(){go(cur-1)};
 document.getElementById('pn').onclick=function(){go(cur+1)};

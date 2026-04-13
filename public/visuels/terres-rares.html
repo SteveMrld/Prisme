@@ -449,7 +449,9 @@ const zoom=d3.zoom().scaleExtent([1,8]).on('zoom',e=>{
   buildProjection(e.transform);
   drawMap();initAllParticles();updateLabels();
 });
-d3.select('#map-canvas').call(zoom);
+d3.select('#map-canvas').call(
+  zoom.filter(e => !e.type.startsWith('touch') && e.type !== 'dblclick' && e.type !== 'mousedown')
+);
 
 // ── DOTS + NAV ─────────────────────────────────────────────────────────────────
 const dotsWrap=document.getElementById('ch-dots');
