@@ -43,7 +43,7 @@ export default function SkunkWorksPage() {
 
         <div className="pull-quote">
           <p>"Be quick, be quiet, be on time."
-            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.7 }}>Devise de Kelly Johnson, fondateur du Skunk Works</span>
+            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>Devise de Kelly Johnson, fondateur du Skunk Works</span>
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export default function SkunkWorksPage() {
 
         <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1C1814", color: "#EDE6DA", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
           "C&apos;est comme entendre une voix dans un stade, sauf que le stade fait mille miles carrés de désert. Si votre cœur bat, nous vous trouverons."
-          <br /><span style={{ opacity: 0.7, fontSize: "14px" }}>Source anonyme, New York Post, 8 avril 2026.</span>
+          <br /><span style={{ opacity: 0.9, fontSize: "13px", color: "#8a7f72" }}>Source anonyme, New York Post, 8 avril 2026.</span>
         </blockquote>
 
         <p>Sauf que <em>Scientific American</em> a immédiatement sollicité des physiciens spécialistes. John Wikswo, professeur de biophysique à Vanderbilt : "À dix centimètres de la poitrine, le champ magnétique cardiaque est à peine détectable. À un mètre, il est un millième de ce qu&apos;il était." Chad Orzel, physicien à Union College : "Même avec de l&apos;intelligence artificielle, vous ne pouvez pas trouver un signal assez grand pour identifier une personne à des kilomètres dans un désert." Quarante miles, c&apos;est soixante-cinq kilomètres. La physique connue n&apos;explique pas ça.</p>

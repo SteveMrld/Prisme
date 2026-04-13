@@ -58,9 +58,9 @@ export default function PalantirPage() {
 
         <p>Palantir affirme que chaque client opère dans un environnement isolé et sécurisé, et que les données ne sont pas partagées entre clients. C&apos;est vrai dans les conditions normales d&apos;opération. La question est ce qui se passe lorsque Washington émet un mandat. Le mécanisme de contestation existe, mais il est lent et suppose une volonté politique d&apos;y recourir. Sous l&apos;administration Trump, avec Thiel dans l&apos;orbite directe du pouvoir, c&apos;est une hypothèse fragile.</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1C1814", color: "#EDE6DA", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
+        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1a1612", color: "#f0ece4", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
           "À partir du moment où l&apos;on voit qu&apos;ils ont pu vouloir débrancher les systèmes de renseignement géospatial en Ukraine, ça veut dire qu&apos;un jour, ils peuvent nous le faire aussi."
-          <br /><span style={{ opacity: 0.7, fontSize: "14px" }}>Pierre Gastineau, Les espions du président (Albin Michel, 2025).</span>
+          <br /><span style={{ opacity: 0.9, fontSize: "13px", color: "#C8A96E" }}>Pierre Gastineau, Les espions du président (Albin Michel, 2025).</span>
         </blockquote>
 
         <h2>VI. Ce qu&apos;on ne peut pas désinstaller</h2>

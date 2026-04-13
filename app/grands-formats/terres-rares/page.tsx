@@ -55,7 +55,7 @@ export default function TerresRaresPage() {
         <div className="pull-quote">
           <p>
             "La Chine représente 85% du raffinage mondial des terres rares. Ce n'est pas une domination naturelle — c'est le résultat de trente ans de stratégie industrielle délibérée."
-            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.7 }}>Soara · World Inequality in Minerals Report, IEA 2024</span>
+            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>Soara · World Inequality in Minerals Report, IEA 2024</span>
           </p>
         </div>
 

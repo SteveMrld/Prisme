@@ -63,7 +63,7 @@ export default function ChambreRatificationPage() {
 
         <div className="pull-quote">
           <p>«&nbsp;Sounds good to me.&nbsp;»
-            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.7 }}>— Donald Trump, répondant à Netanyahu. Situation Room, 11 février 2026. Source&nbsp;: <em>New York Times</em></span>
+            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>— Donald Trump, répondant à Netanyahu. Situation Room, 11 février 2026. Source&nbsp;: <em>New York Times</em></span>
           </p>
         </div>
 
@@ -129,7 +129,7 @@ export default function ChambreRatificationPage() {
 
         <div className="pull-quote">
           <p>«&nbsp;Ces généraux ont un grand avantage&nbsp;: si nous les écoutons et faisons ce qu&apos;ils veulent, aucun de nous ne sera en vie plus tard pour leur dire qu&apos;ils avaient tort.&nbsp;»
-            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.7 }}>— John F. Kennedy, à son aide Dave Powers. Octobre 1962.</span>
+            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>— John F. Kennedy, à son aide Dave Powers. Octobre 1962.</span>
           </p>
         </div>
 
