@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import articlesData from '../../lib/articles.json'
 import Header from '../../components/Header'
 import BottomNav from '../../components/BottomNav'
 
@@ -21,7 +22,17 @@ export default function LecturesPage() {
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem('soara_bookmarks') || '[]')
-    setArticles(saved.sort((a: SavedArticle, b: SavedArticle) => b.savedAt - a.savedAt))
+    const enriched = saved.map((item: any) => {
+      const found = (articlesData as any[]).find(a => a.slug === item.slug)
+      return {
+        ...item,
+        image: item.image || found?.image || '',
+        description: item.description || found?.description || '',
+        readTime: item.readTime || found?.readTime || '',
+        categoryLabel: item.categoryLabel || found?.categoryLabel || '',
+      }
+    })
+    setArticles(enriched.sort((a: SavedArticle, b: SavedArticle) => b.savedAt - a.savedAt))
     setLoaded(true)
   }, [])
 
