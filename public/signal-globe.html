@@ -261,16 +261,6 @@ ZONES.forEach((z,i)=>{
   const r=z.status==='crisis'?.016:.011;
 
   // Glow
-  // Hitbox invisible grande pour le touch mobile
-  const hb=new THREE.Mesh(
-    new THREE.SphereGeometry(r*6,8,8),
-    new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false})
-  );
-  hb.position.copy(pos);
-  hb.userData={zone:z,index:i};
-  globeGroup.add(hb);
-  markers.push(hb);
-
   const gm=new THREE.Mesh(
     new THREE.SphereGeometry(r*2.8,8,8),
     new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.10})
@@ -286,7 +276,7 @@ ZONES.forEach((z,i)=>{
   dot.position.copy(pos);
   dot.userData={zone:z,index:i,glow:gm};
   globeGroup.add(dot);
-  // markers.push(dot); -- hitbox invisible utilisée à la place
+  markers.push(dot);
 });
 
 
@@ -608,57 +598,6 @@ ZONES.forEach((z,i) => {
 // ANIMATE
 let t=0;
 let curRotY=0.5, curRotX=0.1;
-function getScreenPos(pos3d){
-  const v=pos3d.clone().project(cam);
-  return {
-    x:(v.x+1)/2*window.innerWidth,
-    y:(-v.y+1)/2*window.innerHeight,
-    z:v.z
-  };
-}
-
-// Canvas 2D overlay pour labels
-const labelCanvas=document.createElement('canvas');
-labelCanvas.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:5;';
-document.body.appendChild(labelCanvas);
-const lctx=labelCanvas.getContext('2d');
-function resizeLabel(){labelCanvas.width=window.innerWidth;labelCanvas.height=window.innerHeight;}
-resizeLabel();
-window.addEventListener('resize',resizeLabel);
-
-function drawLabels(){
-  lctx.clearRect(0,0,labelCanvas.width,labelCanvas.height);
-  markers.forEach(m=>{
-    const z=m.userData.zone;
-    if(!z) return;
-    const pos=m.position.clone();
-    // Vérifier si le point est face caméra
-    const camDir=cam.position.clone().normalize();
-    const ptDir=pos.clone().normalize();
-    if(camDir.dot(ptDir)<0.1) return; // derrière le globe
-    const sp=getScreenPos(globeGroup.localToWorld(pos.clone()));
-    if(sp.z>1) return;
-    const col=z.status==='crisis'?'#FC8181':z.status==='tension'?'#F6AD55':'#F6E05E';
-    // Fond du label
-    lctx.font='bold 11px DM Sans, sans-serif';
-    const tw=lctx.measureText(z.name).width;
-    lctx.fillStyle='rgba(7,9,15,0.75)';
-    lctx.beginPath();
-    lctx.roundRect(sp.x+12, sp.y-10, tw+12, 20, 3);
-    lctx.fill();
-    // Texte
-    lctx.fillStyle=col;
-    lctx.fillText(z.name, sp.x+18, sp.y+4);
-    // Ligne de connexion dot→label
-    lctx.strokeStyle=col+'66';
-    lctx.lineWidth=1;
-    lctx.beginPath();
-    lctx.moveTo(sp.x,sp.y);
-    lctx.lineTo(sp.x+12,sp.y);
-    lctx.stroke();
-  });
-}
-
 function animate(){
   requestAnimationFrame(animate);
   t+=0.01;
@@ -702,7 +641,6 @@ function animate(){
     a.mat.opacity = 0.15 + 0.2*Math.sin(t*1.5+i*0.8);
   });
   renderer.render(scene,cam);
-  drawLabels();
 }
 animate();
 
