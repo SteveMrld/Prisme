@@ -20,7 +20,7 @@ export default function PalantirPage() {
 
         <p>Cette histoire ne commence pas en 2003. Elle commence dans un hôpital de Johannesburg, lors d&apos;un coup d&apos;État de salle de réunion.</p>
 
-        <h2>I. La Mafia</h2>
+        <h2>La Mafia</h2>
 
         <p>La "PayPal Mafia" est l&apos;expression inventée par la presse américaine pour désigner la vingtaine d&apos;anciens de PayPal qui, après la vente de l&apos;entreprise à eBay en 2002 pour 1,5 milliard de dollars, sont repartis avec leurs chèques et leurs carnets d&apos;adresses pour fonder un empire parallèle. LinkedIn, YouTube, SpaceX, Palantir, Anduril : autant d&apos;entreprises nées du même réseau, du même capital de départ, des mêmes dîners à Palo Alto.</p>
 
@@ -28,7 +28,7 @@ export default function PalantirPage() {
 
         <p>Musk voulait l&apos;infrastructure physique du monde. Rockets, voitures, cerveau connecté. Thiel voulait quelque chose de différent : définir ce qui constitue une menace.</p>
 
-        <h2>II. Ce que Gotham fait vraiment</h2>
+        <h2>Ce que Gotham fait vraiment</h2>
 
         <p>Palantir vend deux produits principaux. Gotham est destiné aux agences gouvernementales et militaires : il connecte des bases de données hétérogènes, croise des trajectoires, des transactions, des communications, des déplacements, pour faire apparaître des patterns invisibles à l&apos;analyse humaine. Foundry transpose la même logique au secteur privé. AIP ajoute une couche d&apos;intelligence artificielle qui automatise les recommandations opérationnelles.</p>
 
@@ -36,7 +36,7 @@ export default function PalantirPage() {
 
         <p>Karp lui-même n&apos;a jamais caché la nature de ce que Palantir construit. "Palantir est là pour effrayer les ennemis et, dans certains cas, les éliminer", a-t-il dit en 2025, avec un sourire. Ce n&apos;est pas une formule de commercial. C&apos;est une description de doctrine.</p>
 
-        <h2>III. René Girard à Denver</h2>
+        <h2>René Girard à Denver</h2>
 
         <p>Peter Thiel est philosophe avant d&apos;être entrepreneur. Au milieu des années 1980, étudiant à Stanford, il suit les cours de René Girard. L&apos;anthropologue français est l&apos;auteur de la théorie du désir mimétique : les êtres humains ne désirent pas spontanément, ils imitent le désir d&apos;autrui. Cette dynamique produit inévitablement de la rivalité, de la violence. Pour y mettre fin, les sociétés désignent un bouc émissaire, une victime collective sur laquelle se cristallise la violence de tous. L&apos;ordre social se fonde sur ce mécanisme de désignation.</p>
 
@@ -44,7 +44,7 @@ export default function PalantirPage() {
 
         <p>Gotham automatise ce mécanisme. Il parcourt des millions de points de données pour désigner statistiquement ce qui ressemble à une menace. Ce processus de désignation appartient, dans une démocratie, à des juges, des procureurs, des agents assermentés soumis à un contrôle démocratique. Il a été partiellement délégué à un algorithme dont les paramètres sont propriété d&apos;une entreprise privée américaine. Les États qui ont signé des contrats avec Palantir n&apos;ont généralement aucune visibilité sur ces paramètres.</p>
 
-        <h2>IV. La toile</h2>
+        <h2>La toile</h2>
 
         <p>La France utilise Palantir à la DGSI depuis 2016, peu après les attentats du 13 novembre, dans l&apos;urgence d&apos;un État qui avait besoin de traiter des volumes de données que ses propres outils ne pouvaient pas absorber. Le contrat a été renouvelé en 2019, en 2022, et à nouveau en décembre 2025, jusqu&apos;en 2028. À chaque renouvellement, la même formule officielle : "dans l&apos;attente du déploiement d&apos;un outil souverain français." Cette attente dure depuis dix ans.</p>
 
@@ -52,7 +52,7 @@ export default function PalantirPage() {
 
         <p>La Suisse a suspendu. En 2024, un audit militaire avait confirmé les capacités techniques du système, mais souligné qu&apos;opérant sous juridiction américaine, Palantir ne pouvait garantir que les données militaires suisses seraient inaccessibles à Washington. L&apos;armée suisse a arrêté la coopération. C&apos;est le seul État européen à l&apos;avoir fait.</p>
 
-        <h2>V. Le CLOUD Act et la clé</h2>
+        <h2>Le CLOUD Act et la clé</h2>
 
         <p>Le CLOUD Act, adopté aux États-Unis en 2018, oblige toute entreprise américaine à fournir aux autorités américaines les données qu&apos;elle contrôle, quelle que soit leur localisation géographique. Ce n&apos;est pas le lieu de stockage des serveurs qui importe. C&apos;est la nationalité juridique de l&apos;entreprise. Palantir est américaine. Ses accès aux données de ses clients européens sont potentiellement saisissables par un mandat américain, même si les serveurs sont en Europe.</p>
 
@@ -63,7 +63,7 @@ export default function PalantirPage() {
           <br /><span style={{ opacity: 0.9, fontSize: "13px", color: "#C8A96E" }}>Pierre Gastineau, Les espions du président (Albin Michel, 2025).</span>
         </blockquote>
 
-        <h2>VI. Ce qu&apos;on ne peut pas désinstaller</h2>
+        <h2>Ce qu&apos;on ne peut pas désinstaller</h2>
 
         <p>La dépendance à Palantir n&apos;est pas d&apos;abord technique. Les systèmes peuvent théoriquement être remplacés. Lentement, douloureusement, mais c&apos;est possible. La dépendance réelle est cognitive.</p>
 

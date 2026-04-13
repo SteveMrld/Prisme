@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState, ReactNode } from 'react'
 import Header from './Header'
+import BookmarkButton from './BookmarkButton'
 import { ReadingProgress, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 import styles from './GrandFormatLayout.module.css'
 import articlesData from '../lib/articles.json'
@@ -157,6 +158,13 @@ export default function GrandFormatLayout({
         )}
         {/* Contenu React (dette-souveraine, etc.) */}
         {children}
+
+        {/* ── BOOKMARK ── */}
+        {slug && (
+          <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px 32px', display: 'flex', justifyContent: 'center' }}>
+            <BookmarkButton slug={slug} title={title} />
+          </div>
+        )}
 
         {/* Signature bas */}
         <div className={styles.signature}>
