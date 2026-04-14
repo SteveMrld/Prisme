@@ -1910,7 +1910,6 @@
   display: grid;
   grid-template-columns: 1fr 520px 1fr;
   gap: 0;
-  border-bottom: 1px solid var(--bord);
   max-width: 100%;
   padding: 0 64px;
 }
@@ -2079,7 +2078,7 @@
   }
   .atlanticLeft { display: none; }
   .atlanticRight { border-left: none; padding-left: 0; }
-  .atlanticCenter { padding: 28px 0; }
+  .atlanticCenter { padding: 20px 0 12px; }
   .atlanticLogo { font-size: 42px; margin-bottom: 16px; }
   .blocC { margin-top: 0 !important; margin-bottom: 8px !important; }
   .blocTag { margin-top: 4px !important; }
