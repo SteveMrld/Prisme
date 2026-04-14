@@ -109,6 +109,7 @@ export default function HomePage() {
                           {categoryLabels[article.category] || article.category}
                         </span>
                         <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                        {article.premium && <span style={{display:'inline-flex',alignItems:'center',gap:'4px',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 7px',borderRadius:'2px',marginTop:'6px'}}>★ PREMIUM</span>}
                         {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
                         <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
                       </div>
@@ -133,6 +134,7 @@ export default function HomePage() {
               {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}
               <span className={styles.atlanticSideCat} style={{ color: categoryColors[item.category] }}>{item.categoryLabel}</span>
               <div className={styles.atlanticSideTitle}><span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:"14px",height:"14px",background:"#0a0a0a",color:"#C8A96E",fontFamily:"'DM Sans',sans-serif",fontSize:"8px",fontWeight:700,lineHeight:1,marginRight:"6px",flexShrink:0,verticalAlign:"middle",position:"relative",top:"-1px"}}>S</span><span dangerouslySetInnerHTML={{ __html: item.title }} /></div>
+              {(item as any).premium && <span style={{display:'inline-flex',alignItems:'center',gap:'4px',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 7px',borderRadius:'2px',marginTop:'4px'}}>★ PREMIUM</span>}
               <div className={styles.atlanticSideExcerpt}>{(item as any).excerpt || item.description}</div>
             </Link>
           ))}
@@ -167,6 +169,7 @@ export default function HomePage() {
               <div style={{flex:1,display:'flex',flexDirection:'column',gap:'4px'}}>
                 <span style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:categoryColors[item.category]}}>{item.categoryLabel}</span>
                 <div style={{fontFamily:"'Playfair Display',serif",fontSize:'15px',fontWeight:700,color:'#1a1a1a',lineHeight:1.3}} dangerouslySetInnerHTML={{ __html: item.title }} />
+                {(item as any).premium && <span style={{display:'inline-flex',alignItems:'center',gap:'4px',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 7px',borderRadius:'2px'}}>★ PREMIUM</span>}
                 <div style={{fontSize:'12px',color:'#888',lineHeight:1.5,display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden'}}>{item.description}</div>
               </div>
               {item.image && <img src={item.image} alt={item.title} style={{width:'140px',height:'100px',objectFit:'cover',flexShrink:0}} />}

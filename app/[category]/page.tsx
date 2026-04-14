@@ -182,6 +182,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
                 <h2 className={styles.featuredTitle}>
                   <span dangerouslySetInnerHTML={{ __html: featured.title.replace(/\n/g, ' ') }} />
                 </h2>
+                {(featured as any).premium && <span style={{display:'inline-flex',alignItems:'center',gap:'4px',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 7px',borderRadius:'2px',marginBottom:'8px'}}>★ PREMIUM</span>}
                 <p className={styles.featuredDeck}>{featured.description}</p>
                 <span className={styles.featuredCta} style={{ color: config.color }}>
                   Lire l'analyse →
@@ -209,6 +210,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
                     <h3 className={styles.cardTitle}>
                       <span dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }} />
                     </h3>
+                    {(article as any).premium && <span style={{display:'inline-flex',alignItems:'center',gap:'4px',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 7px',borderRadius:'2px',marginBottom:'4px'}}>★ PREMIUM</span>}
                     <p className={styles.cardDeck}>{article.description}</p>
                     {(article as any).author && (
                       <div className={styles.cardAuthor}>Par {(article as any).author}</div>
