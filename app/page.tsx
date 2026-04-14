@@ -204,6 +204,7 @@ export default function HomePage() {
                 ))} <span className={styles.gfFormat}>Grand format</span> <span className={styles.gfReading}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span>
               </div>
               <div className={styles.gfTitle}><span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:"14px",height:"14px",background:"#0a0a0a",color:"#C8A96E",fontFamily:"'DM Sans',sans-serif",fontSize:"8px",fontWeight:700,lineHeight:1,marginRight:"6px",flexShrink:0,verticalAlign:"middle",position:"relative",top:"-1px"}}>S</span><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
+              {(article as any).premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content',marginBottom:'6px'}}>★ PREMIUM</span>}
               <p className={styles.gfDeck}>{article.description}</p>
               <div className={styles.gfFooter}> <span className={styles.gfSections}>{article.sections}</span> <span className={styles.gfCta} style={{ color: categoryColors[article.categories[0].color] }}>
                   Lire l'analyse →
