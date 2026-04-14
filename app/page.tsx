@@ -92,34 +92,7 @@ export default function HomePage() {
         {(() => {
           const featured = (articlesData as any[]).filter((a: any) => a.featured)
           const sliderArticles = featured.slice(0, 4)
-          const rest = featured.slice(4)
-          return (
-            <>
-              <HeroSlider articles={sliderArticles} />
-              {rest.length > 0 && (
-                <div className={styles.uneGrid}>
-                  {rest.map((article: any) => (
-                    <Link key={article.slug} href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.uneCard}>
-                      {article.image && (
-                        <div className={styles.uneCardImg}>
-                          <img src={article.image} alt={article.title} />
-                        </div>
-                      )}
-                      <div className={styles.uneCardBody}>
-                        <span className={styles.uneCardTag} style={{ color: categoryColors[article.category] }}>
-                          {categoryLabels[article.category] || article.category}
-                        </span>
-                        <div className={styles.uneCardTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
-                        {article.premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content'}}>★ PREMIUM</span>}
-                        {article.description && <p className={styles.uneCardDesc}>{article.description}</p>}
-                        <span className={styles.uneCardMeta}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`} · {article.author || 'Steve Moradel'}</span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </>
-          )
+          return <HeroSlider articles={sliderArticles} />
         })()}
       </section>
       </FadeSection>
