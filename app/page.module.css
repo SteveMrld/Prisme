@@ -2075,7 +2075,7 @@
     grid-template-columns: 1fr;
     padding: 0 20px;
   }
-  .atlanticLeft { border-right: none; padding-right: 0; border-bottom: 1px solid var(--bord); }
+  .atlanticLeft { display: none; }
   .atlanticRight { border-left: none; padding-left: 0; }
   .atlanticCenter { padding: 28px 0; }
   .atlanticLogo { font-size: 42px; margin-bottom: 16px; }
