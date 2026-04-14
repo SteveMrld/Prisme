@@ -1,0 +1,136 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #0A0A0A;
+}
+
+/* Couches d'images */
+.imgLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.imgSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.imgSlide.active {
+  opacity: 1;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* Dégradé bas pour lisibilité texte */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 20%,
+    rgba(0,0,0,.15) 50%,
+    rgba(0,0,0,.75) 100%
+  );
+}
+
+/* Contenu texte */
+.content {
+  position: absolute;
+  bottom: 44px;
+  left: 0;
+  right: 0;
+  padding: 0 24px;
+  text-decoration: none;
+  color: #FAF9F6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cat {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 4vw, 32px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #FAF9F6;
+  text-shadow: 0 1px 8px rgba(0,0,0,.4);
+}
+
+.title em { font-style: italic; color: #C8A96E; }
+
+.desc {
+  font-size: clamp(12px, 1.6vw, 14px);
+  color: rgba(250,249,246,.75);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 520px;
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+
+.premium {
+  display: inline-block;
+  background: #C8A96E;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  align-self: flex-start;
+}
+
+/* Points */
+.dots {
+  position: absolute;
+  bottom: 14px;
+  left: 24px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,.35);
+  cursor: pointer;
+  padding: 0;
+  transition: all .3s ease;
+}
+
+.dotActive {
+  width: 24px;
+  border-radius: 3px;
+  background: #C8A96E;
+}
+
+/* Desktop — hauteur fixe */
+@media (min-width: 900px) {
+  .wrap { aspect-ratio: unset; height: 480px; }
+  .content { bottom: 52px; padding: 0 40px; }
+  .dots { bottom: 20px; left: 40px; }
+}

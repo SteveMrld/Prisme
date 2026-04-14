@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
+import HeroRotator from '../components/HeroRotator'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -25,8 +26,8 @@ function art(slug: string) {
 }
 
 // ── Data ─────────────────────────────────────────────────────────────────────
-const HERO_MAIN   = art('afrique')
-const HERO_SIDE   = ['empire-du-droit','societe-du-consentement','ceux-qui-nont-pas-cede','rushkoff'].map(art)
+const HERO_ROTATION = ['afrique','terres-rares','empire-du-droit','chine','chambre-ratification'].map(art)
+const HERO_SIDE   = ['societe-du-consentement','ceux-qui-nont-pas-cede','rushkoff','moreno'].map(art)
 const GF_SLUGS    = ['terres-rares','medias','chambre-ratification','skunkworks','dette-souveraine','france_maritime','eau','techgeo','taiwan','semico']
 const grandsFormats = GF_SLUGS.map(slug => {
   const a = art(slug)
@@ -83,20 +84,10 @@ export default function HomePage() {
       <FadeSection>
       <section className={styles.heroZone}>
 
-        {/* Article principal */}
-        <Link href={HERO_MAIN.grandFormatUrl || `/articles/${HERO_MAIN.slug}`} className={styles.heroMain}>
-          {HERO_MAIN.image && (
-            <div className={styles.heroMainImg}>
-              <img src={HERO_MAIN.image} alt={HERO_MAIN.title} />
-            </div>
-          )}
-          <div className={styles.heroMainBody}>
-            <span className={styles.heroCat} style={{color: HERO_MAIN.catColor}}>{HERO_MAIN.catLabel}</span>
-            <h2 className={styles.heroMainTitle} dangerouslySetInnerHTML={{__html: HERO_MAIN.title}} />
-            {HERO_MAIN.description && <p className={styles.heroMainDesc}>{HERO_MAIN.description}</p>}
-            {HERO_MAIN.premium && <PremiumBadge />}
-          </div>
-        </Link>
+        {/* Article principal — rotation automatique */}
+        <div className={styles.heroMain}>
+          <HeroRotator articles={HERO_ROTATION} />
+        </div>
 
         {/* Sidebar — 4 articles */}
         <div className={styles.heroSidebar}>
