@@ -56,7 +56,7 @@ export default function GrandFormatLayout({
   const readTime    = rtProp       || article?.readTime    || '12'
   const date        = dateProp     || article?.date        || ''
   const author      = authorProp   || article?.author      || 'Steve Moradel'
-  const authorRole  = roleProp     || article?.authorRole  || 'Fondateur · Soara'
+  const authorRole  = roleProp     || article?.authorRole  || ''
 
   const color = categoryColors[category] || '#B91C1C'
   const minutes = parseInt(readTime) || 12

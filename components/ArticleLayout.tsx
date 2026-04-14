@@ -56,7 +56,7 @@ export default function ArticleLayout({
   title, description, image, category, categoryLabel,
   readTime, date, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, content, slug = '',
   author = 'Steve Moradel',
-  authorRole = 'Fondateur · Directeur de la rédaction',
+  authorRole = '',
   related = [],
   imageCredit = ''
 }: ArticleLayoutProps) {
