@@ -44,6 +44,7 @@
 
 /* ── PREMIUM BADGE ──────────────────────────────────────── */
 .premiumBadge {
+  align-self: flex-start;
   display: inline-block;
   background: #C8A96E;
   color: #fff;
@@ -645,3 +646,96 @@
   .gfCard { border-right: none !important; }
   .heroSideItem { display: none; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   TICKER — styles requis par TickerClient.tsx
+══════════════════════════════════════════════════════════ */
+.ticker {
+  background: var(--encre, #0A0A0A);
+  border-bottom: 2px solid rgba(196,162,101,0.5);
+  display: flex;
+  align-items: center;
+  height: 44px;
+  overflow: hidden;
+}
+.tickerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+.livePill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #E53E3E;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 3px 8px;
+}
+.liveDot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+.tickerDate {
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.tickerWrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.tickerFadeL, .tickerFadeR {
+  position: absolute; top:0; bottom:0; width:48px; z-index:2; pointer-events:none;
+}
+.tickerFadeL { left:0; background:linear-gradient(90deg,var(--encre,#0A0A0A) 0%,transparent 100%); }
+.tickerFadeR { right:0; background:linear-gradient(270deg,var(--encre,#0A0A0A) 0%,transparent 100%); }
+.tickerTrack {
+  display: flex;
+  animation: tickerScroll 60s linear infinite;
+  white-space: nowrap;
+}
+.tickerTrack:hover { animation-play-state: paused; }
+@keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  padding: 0 28px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.tickerPill {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.tickerSignal {
+  padding: 0 20px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  white-space: nowrap;
+}
+.tickerSignal:hover { color: rgba(255,255,255,0.7); }
