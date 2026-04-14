@@ -158,15 +158,13 @@ export default function HomePage() {
       </FadeSection>
 
       {/* ── PORTRAITS ── */}
-      <FadeSection>
-      <div style={{background:'#0a0a0a',padding:'20px 24px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+      <div style={{background:'#1A2A3A',padding:'20px 24px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
         <div>
           <div style={{fontSize:'8px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'rgba(200,169,110,.6)',fontFamily:"'DM Mono',monospace",marginBottom:'4px'}}>Soara · Portraits</div>
           <div style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(16px,2.5vw,22px)',fontWeight:700,color:'#F5E6D0',lineHeight:1.2}}>Figures qui ont <em style={{color:'#C8A96E',fontStyle:'italic'}}>marqué leur époque</em></div>
         </div>
         <a href="/portraits" style={{fontSize:'8px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#C8A96E',textDecoration:'none',flexShrink:0}}>Tous →</a>
       </div>
-      </FadeSection>
       <FadeSection>
       <section className={styles.portraitsSection}>
         <div className={styles.portraitsHead}>
@@ -263,14 +261,12 @@ export default function HomePage() {
 
 
       {/* ── DERNIÈRES PUBLICATIONS + POPULAIRES — layout Atlantic ── */}
-      <FadeSection>
       <div style={{background:'#1A2A3A',padding:'20px 24px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
         <div>
           <div style={{fontSize:'8px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'rgba(200,169,110,.6)',fontFamily:"'DM Mono',monospace",marginBottom:'4px'}}>Soara · Analyse</div>
           <div style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(16px,2.5vw,22px)',fontWeight:700,color:'#F5E6D0',lineHeight:1.2}}>L'actualité <em style={{color:'#C8A96E',fontStyle:'italic'}}>décryptée</em></div>
         </div>
       </div>
-      </FadeSection>
       <FadeSection>
       <section className={styles.atlanticSection}>
         <div className={styles.atlanticInner}>
