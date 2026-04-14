@@ -256,11 +256,15 @@ export default function HomePage() {
       {/* ── DERNIÈRES PUBLICATIONS + POPULAIRES — layout Atlantic ── */}
       <FadeSection>
       <section className={styles.atlanticSection}>
+        <div style={{gridColumn:'1/-1',paddingBottom:'24px',borderBottom:'1px solid var(--bord)',marginBottom:'32px'}}>
+          <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'var(--gris-l)',fontFamily:"'DM Mono',monospace",marginBottom:'6px'}}>Soara · Analyse</div>
+          <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(18px,3vw,26px)',fontWeight:700,color:'var(--encre)',lineHeight:1.2}}>L'actualité <em style={{fontStyle:'italic',color:'#C8A96E'}}>décryptée</em></h2>
+        </div>
         <div className={styles.atlanticInner}>
 
           {/* COLONNE GAUCHE — Dernières */}
           <div className={styles.atlanticLeft}>
-            <div className={styles.atlanticHead}> <span className={styles.atlanticLabel}>Dernières publications</span>
+            <div className={styles.atlanticHead}> <span className={styles.atlanticLabel} style={{borderBottom:'2px solid var(--encre)',paddingBottom:'4px'}}>Dernières publications</span>
               <Link href="/geo" className={styles.atlanticSeeAll}>Tout voir →</Link>
             </div>
             {(articlesData as any[])
@@ -301,6 +305,7 @@ export default function HomePage() {
             ))}
           </div>
 
+        </div>
         </div>
       </section>
       </FadeSection>
