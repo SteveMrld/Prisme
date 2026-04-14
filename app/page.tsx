@@ -159,6 +159,15 @@ export default function HomePage() {
 
       {/* ── PORTRAITS ── */}
       <FadeSection>
+      <div style={{background:'#0a0a0a',padding:'20px 24px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+        <div>
+          <div style={{fontSize:'8px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'rgba(200,169,110,.6)',fontFamily:"'DM Mono',monospace",marginBottom:'4px'}}>Soara · Portraits</div>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(16px,2.5vw,22px)',fontWeight:700,color:'#F5E6D0',lineHeight:1.2}}>Figures qui ont <em style={{color:'#C8A96E',fontStyle:'italic'}}>marqué leur époque</em></div>
+        </div>
+        <a href="/portraits" style={{fontSize:'8px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#C8A96E',textDecoration:'none',flexShrink:0}}>Tous →</a>
+      </div>
+      </FadeSection>
+      <FadeSection>
       <section className={styles.portraitsSection}>
         <div className={styles.portraitsHead}>
           <div className={styles.portraitsLabel}>Portraits</div>
@@ -255,11 +264,15 @@ export default function HomePage() {
 
       {/* ── DERNIÈRES PUBLICATIONS + POPULAIRES — layout Atlantic ── */}
       <FadeSection>
-      <section className={styles.atlanticSection}>
-        <div style={{gridColumn:'1/-1',paddingBottom:'24px',borderBottom:'1px solid var(--bord)',marginBottom:'32px'}}>
-          <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'var(--gris-l)',fontFamily:"'DM Mono',monospace",marginBottom:'6px'}}>Soara · Analyse</div>
-          <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(18px,3vw,26px)',fontWeight:700,color:'var(--encre)',lineHeight:1.2}}>L'actualité <em style={{fontStyle:'italic',color:'#C8A96E'}}>décryptée</em></h2>
+      <div style={{background:'#1A2A3A',padding:'20px 24px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+        <div>
+          <div style={{fontSize:'8px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'rgba(200,169,110,.6)',fontFamily:"'DM Mono',monospace",marginBottom:'4px'}}>Soara · Analyse</div>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(16px,2.5vw,22px)',fontWeight:700,color:'#F5E6D0',lineHeight:1.2}}>L'actualité <em style={{color:'#C8A96E',fontStyle:'italic'}}>décryptée</em></div>
         </div>
+      </div>
+      </FadeSection>
+      <FadeSection>
+      <section className={styles.atlanticSection}>
         <div className={styles.atlanticInner}>
 
           {/* COLONNE GAUCHE — Dernières */}
