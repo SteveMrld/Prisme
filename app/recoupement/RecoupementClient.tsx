@@ -119,9 +119,9 @@ const EXAMPLES = [
     context: "La thèse d'une fuite de laboratoire à Wuhan, longtemps écartée, revient au cœur du débat. Les agences de renseignement américaines sont divisées. La Chine bloque les enquêtes indépendantes. Qu'est-ce que les sources scientifiques et les documents déclassifiés disent vraiment ?"
   },
   {
-    query: "Biden et le déclin cognitif : ce que la presse savait",
-    date: "Juillet 2024",
-    context: "Après le débat désastreux face à Trump, la presse américaine admet avoir minimisé les signes de déclin cognitif du président pendant des mois. Quelles sources avaient alerté ? Lesquelles avaient tu ? Le recoupement révèle l'écart entre ce qui était su et ce qui était publié."
+    query: "Droits de douane Trump 2025 : récession ou relance ?",
+    date: "Avril 2025",
+    context: "L'administration Trump impose des droits de douane massifs sur les importations chinoises et européennes. Les économistes sont divisés : choc inflationniste pour les uns, protection industrielle légitime pour les autres. Que disent réellement les données et les modèles économiques indépendants ?"
   },
 ]
 
