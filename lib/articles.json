@@ -67,7 +67,7 @@
     "readTime": "8",
     "image": "/articles/terres-rares.jpg",
     "featured": true,
-    "premium": false,
+    "premium": true,
     "grandFormat": true,
     "imageCredit": "© SOARA"
   },
@@ -83,7 +83,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "featured": false,
-    "premium": false,
+    "premium": true,
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/architecture-desordre",
     "imageCredit": "© SOARA",
@@ -119,7 +119,7 @@
     "author": "Steve Moradel",
     "authorRole": "Soara",
     "featured": false,
-    "premium": false,
+    "premium": true,
     "grandFormat": false,
     "imageCredit": "© SOARA",
     "customRoute": "/grands-formats/skunkworks"
@@ -136,7 +136,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "featured": false,
-    "premium": false,
+    "premium": true,
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/palantir",
     "imageCredit": "© SOARA",
@@ -168,7 +168,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "featured": false,
-    "premium": false,
+    "premium": true,
     "customRoute": "/grands-formats/dette-souveraine",
     "imageCredit": "© SOARA"
   },
@@ -183,7 +183,7 @@
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-05-12",
     "featured": false,
-    "premium": false,
+    "premium": true,
     "imageCredit": "© SOARA"
   },
   {
@@ -196,7 +196,7 @@
     "author": "Steve Moradel",
     "authorRole": "Environnement & Ressources",
     "date": "2026-05-20",
-    "premium": false,
+    "premium": true,
     "imageCredit": "© SOARA"
   },
   {
@@ -263,7 +263,7 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2025-12-19",
-    "premium": false,
+    "premium": true,
     "imageCredit": "© SOARA"
   },
   {
@@ -315,7 +315,7 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-02-06",
-    "premium": true,
+    "premium": false,
     "imageCredit": "© SOARA"
   },
   {
@@ -368,7 +368,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "date": "2026-04-02",
-    "premium": false,
+    "premium": true,
     "imageCredit": "© SOARA",
     "grandFormatUrl": "/grands-formats/medias",
     "customRoute": "/grands-formats/medias",
@@ -398,7 +398,7 @@
     "author": "Steve Moradel",
     "authorRole": "Portrait",
     "date": "2026-04-11",
-    "premium": false,
+    "premium": true,
     "imageCredit": "© Luc Legay / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
   },
   {
@@ -489,7 +489,7 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-04-14",
-    "premium": false,
+    "premium": true,
     "imageCredit": "© SOARA"
   },
   {
@@ -567,7 +567,7 @@
     "author": "Steve Moradel",
     "authorRole": "Technologie & Numérique",
     "date": "2026-04-30",
-    "premium": false,
+    "premium": true,
     "imageCredit": "© SOARA"
   },
   {
@@ -580,7 +580,7 @@
     "author": "Steve Moradel",
     "authorRole": "Géopolitique & Stratégie",
     "date": "2026-03-10",
-    "premium": false,
+    "premium": true,
     "imageCredit": "© SOARA"
   },
   {
@@ -594,7 +594,8 @@
     "readTime": "12",
     "image": "/img-orbite.png",
     "featured": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "premium": true
   },
   {
     "slug": "obama",
@@ -607,7 +608,7 @@
     "readTime": "15",
     "image": "/portraits/obama.png",
     "featured": false,
-    "premium": false,
+    "premium": true,
     "imageCredit": "The White House, Domaine public, modifiée par SOARA"
   }
 ]
