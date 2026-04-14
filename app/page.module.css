@@ -217,30 +217,39 @@
 .entretienCta:hover { color: #F5E6D0; border-color: rgba(245,230,208,.5); }
 
 /* ══════════════════════════════════════════════════════════
-   3. GRANDS FORMATS
+   3. GRANDS FORMATS — style The Atlantic
 ══════════════════════════════════════════════════════════ */
 .gfSection {
+  padding: 0 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--bord, #E8E2DA);
+}
+.gfGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 1px;
-  background: var(--bord, #E8E2DA);
-  border-bottom: 1px solid var(--bord, #E8E2DA);
 }
 .gfCard {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: #fff;
-  padding: 20px 20px 24px;
+  padding: 20px 14px 24px;
   border-bottom: 1px solid var(--bord, #E8E2DA);
-  transition: background .15s;
 }
-.gfCard:hover { background: #FAFAF8; }
+.gfCard:nth-child(odd) {
+  border-right: 1px solid var(--bord, #E8E2DA);
+  padding-left: 0;
+  padding-right: 20px;
+}
+.gfCard:nth-child(even) {
+  padding-right: 0;
+  padding-left: 20px;
+}
+.gfCard:nth-last-child(-n+2) { border-bottom: none; }
 .gfImgWrap {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .gfImg {
   width: 100%;
@@ -253,31 +262,24 @@
 .gfBody {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 .gfCat {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  color: #999;
 }
 .gfTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(14px, 1.6vw, 17px);
+  font-size: clamp(16px, 2.2vw, 20px);
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.25;
   color: var(--encre, #0A0A0A);
 }
-.gfDesc {
-  font-size: 12px;
-  color: #888;
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+.gfDesc { display: none; }
 
 /* ══════════════════════════════════════════════════════════
    4. SOARA TV STRIP
@@ -619,8 +621,10 @@
   .entretienContent { padding: 16px; gap: 10px; border-left: 1px solid rgba(200,169,110,.15); }
 
   /* GF */
-  .gfSection { grid-template-columns: 1fr 1fr; }
-  .gfCard { padding: 14px 14px 18px; }
+  .gfGrid { grid-template-columns: 1fr 1fr; }
+  .gfCard { padding: 14px 0 18px; }
+  .gfCard:nth-child(odd) { padding-right: 14px; }
+  .gfCard:nth-child(even) { padding-left: 14px; }
 
   /* TV */
   .tvCard { width: 160px; }

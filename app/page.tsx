@@ -130,17 +130,18 @@ export default function HomePage() {
       <Band label="Soara · Analyse" title="Grands <em>formats</em>" href="/grands-formats" linkLabel="Tous les formats →" />
       <FadeSection>
       <section className={styles.gfSection}>
+        <div className={styles.gfGrid}>
         {grandsFormats.map(a => (
           <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfCard}>
             {a.image && <div className={styles.gfImgWrap}><img src={a.image} alt={a.title} className={styles.gfImg} /></div>}
             <div className={styles.gfBody}>
-              <span className={styles.gfCat} style={{color: a.catColor}}>{a.catLabel}</span>
+              <span className={styles.gfCat}>{a.catLabel}</span>
               <div className={styles.gfTitle} dangerouslySetInnerHTML={{__html: a.title}} />
-              {a.description && <p className={styles.gfDesc}>{a.description}</p>}
               {a.premium && <PremiumBadge />}
             </div>
           </Link>
         ))}
+        </div>
       </section>
       </FadeSection>
 
