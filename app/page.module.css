@@ -3,44 +3,52 @@
    Architecture propre, mobile-first, zéro conflit
    ═══════════════════════════════════════════════════════ */
 
-/* ── BAND (séparateurs de section) ─────────────────────── */
-.band {
-  background: #1A2A3A;
-  padding: 16px 24px;
+/* ── SECTION LABEL (NYT style — discret) ──────────────── */
+.sectionLabel {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 16px;
+  padding: 28px 16px 12px;
+  border-top: 2px solid var(--encre, #0A0A0A);
+  margin: 0;
 }
-.bandLabel {
-  font-family: 'DM Mono', monospace;
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(200,169,110,.6);
-  margin-bottom: 3px;
+.sectionLabelInner {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-.bandTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(16px, 2.5vw, 22px);
-  font-weight: 700;
-  color: #F5E6D0;
-  line-height: 1.2;
-}
-.bandTitle em { color: #C8A96E; font-style: italic; }
-.bandLink {
+.sectionLabelEyebrow {
   font-family: 'DM Mono', monospace;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #C8A96E;
+  color: #999;
+}
+.sectionLabelTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+  color: var(--encre, #0A0A0A);
+  line-height: 1;
+}
+.sectionLabelTitle em { color: #C8A96E; font-style: italic; }
+.sectionLabelLink {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--encre, #0A0A0A);
   text-decoration: none;
   flex-shrink: 0;
   white-space: nowrap;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  padding-bottom: 1px;
 }
-.bandLink:hover { color: #F5E6D0; }
+.sectionLabelLink:hover { border-color: var(--encre); }
 
 /* ── PREMIUM BADGE ──────────────────────────────────────── */
 .premiumBadge {
@@ -151,53 +159,54 @@
 ══════════════════════════════════════════════════════════ */
 .entretienSection {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  background: #0D1520;
-  color: #F5E6D0;
-  min-height: 280px;
+  grid-template-columns: 200px 1fr;
+  background: #FAF9F6;
+  color: var(--encre, #0A0A0A);
+  border-bottom: 1px solid var(--bord, #E8E2DA);
+  min-height: 220px;
 }
 .entretienPortrait {
   overflow: hidden;
   position: relative;
-  background: #161F2E;
+  background: #F0EDE8;
 }
 .entretienImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 10%;
+  object-position: center 15%;
   display: block;
-  filter: grayscale(20%);
+  filter: grayscale(15%);
 }
 .entretienContent {
-  padding: 32px 36px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
-  border-left: 1px solid rgba(200,169,110,.15);
+  gap: 12px;
+  border-left: 1px solid var(--bord, #E8E2DA);
 }
 .entretienLabel {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #C8A96E;
+  color: #999;
 }
 .entretienName {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 3.5vw, 40px);
+  font-size: clamp(20px, 3vw, 34px);
   font-weight: 700;
   line-height: 1.1;
-  color: #F5E6D0;
+  color: var(--encre, #0A0A0A);
 }
 .entretienName em { color: #C8A96E; font-style: italic; }
 .entretienDeck {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(14px, 1.8vw, 17px);
+  font-size: clamp(13px, 1.6vw, 16px);
   font-style: italic;
-  color: rgba(245,230,208,.65);
+  color: #555;
   line-height: 1.6;
 }
 .entretienCta {
@@ -205,16 +214,15 @@
   font-family: 'DM Mono', monospace;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #C8A96E;
+  color: var(--encre, #0A0A0A);
   text-decoration: none;
-  border-bottom: 1px solid rgba(200,169,110,.35);
-  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(0,0,0,.25);
+  padding-bottom: 1px;
   width: fit-content;
-  transition: color .2s, border-color .2s;
 }
-.entretienCta:hover { color: #F5E6D0; border-color: rgba(245,230,208,.5); }
+.entretienCta:hover { border-color: var(--encre); }
 
 /* ══════════════════════════════════════════════════════════
    3. GRANDS FORMATS — style The Atlantic
@@ -615,10 +623,10 @@
   .heroMain { border-right: none; border-bottom: 1px solid var(--bord, #E8E2DA); }
   .heroSidebar { display: none; }
 
-  /* Grand Entretien — reste côte à côte sur mobile, portrait réduit */
-  .entretienSection { grid-template-columns: 130px 1fr; min-height: 0; }
-  .entretienPortrait { height: 200px; }
-  .entretienContent { padding: 16px; gap: 10px; border-left: 1px solid rgba(200,169,110,.15); }
+  /* Grand Entretien — côte à côte sur mobile */
+  .entretienSection { grid-template-columns: 120px 1fr; min-height: 0; }
+  .entretienPortrait { height: 180px; }
+  .entretienContent { padding: 14px 16px; gap: 8px; }
 
   /* GF */
   .gfGrid { grid-template-columns: 1fr 1fr; }

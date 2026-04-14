@@ -53,15 +53,15 @@ const SIGNAL_ITEMS = [
   { cat:'Énergie',      color:'var(--eco)', text:"Brent remonte à 96,77 $ après la trêve, trafic dans le détroit d'Ormuz très limité", date:'10 avr.' },
 ]
 
-// ── Band component ────────────────────────────────────────────────────────────
-function Band({ label, title, href, linkLabel }: { label:string; title:string; href?:string; linkLabel?:string }) {
+// ── Section label (NYT style — discret, pas un bandeau) ────────────────────────
+function SectionLabel({ label, title, href, linkLabel }: { label:string; title:string; href?:string; linkLabel?:string }) {
   return (
-    <div className={styles.band}>
-      <div>
-        <div className={styles.bandLabel}>{label}</div>
-        <div className={styles.bandTitle} dangerouslySetInnerHTML={{__html: title}} />
+    <div className={styles.sectionLabel}>
+      <div className={styles.sectionLabelInner}>
+        <span className={styles.sectionLabelEyebrow}>{label}</span>
+        <span className={styles.sectionLabelTitle} dangerouslySetInnerHTML={{__html: title}} />
       </div>
-      {href && <Link href={href} className={styles.bandLink}>{linkLabel || 'Tout voir →'}</Link>}
+      {href && <Link href={href} className={styles.sectionLabelLink}>{linkLabel || 'Tout voir →'}</Link>}
     </div>
   )
 }
@@ -109,7 +109,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           2. GRAND ENTRETIEN
       ══════════════════════════════════════ */}
-      <Band label="Soara · Grand Entretien N°1" title="L'entretien <em>inaugural</em>" />
+      <SectionLabel label="Soara · Grand Entretien N°1" title="L'entretien <em>inaugural</em>" />
       <FadeSection>
       <section className={styles.entretienSection}>
         <div className={styles.entretienPortrait}>
@@ -127,7 +127,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           3. GRANDS FORMATS
       ══════════════════════════════════════ */}
-      <Band label="Soara · Analyse" title="Grands <em>formats</em>" href="/grands-formats" linkLabel="Tous les formats →" />
+      <SectionLabel label="Soara · Analyse" title="Grands <em>formats</em>" href="/grands-formats" linkLabel="Tous les formats →" />
       <FadeSection>
       <section className={styles.gfSection}>
         <div className={styles.gfGrid}>
@@ -148,7 +148,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           4. SOARA TV — bandeau compact
       ══════════════════════════════════════ */}
-      <Band label="Soara · Vidéo" title="Soara <em>TV</em>" href="/tv" linkLabel="Tous les épisodes →" />
+      <SectionLabel label="Soara · Vidéo" title="Soara <em>TV</em>" href="/tv" linkLabel="Tous les épisodes →" />
       <FadeSection>
       <div className={styles.tvStrip}>
         {TV_EPISODES.map(ep => (
@@ -170,7 +170,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           5. PORTRAITS
       ══════════════════════════════════════ */}
-      <Band label="Soara · Portraits" title="Figures qui ont <em>marqué leur époque</em>" href="/portraits" linkLabel="Tous les portraits →" />
+      <SectionLabel label="Soara · Portraits" title="Figures qui ont <em>marqué leur époque</em>" href="/portraits" linkLabel="Tous les portraits →" />
       <FadeSection>
       <section className={styles.portraitsSection}>
         <PortraitsSlider articles={PORTRAITS} />
@@ -180,7 +180,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           6. ARTICLES — Dernières + Populaires
       ══════════════════════════════════════ */}
-      <Band label="Soara · Analyse" title="L'actualité <em>décryptée</em>" />
+      <SectionLabel label="Soara · Analyse" title="L'actualité <em>décryptée</em>" />
       <FadeSection>
       <section className={styles.articlesSection}>
 
