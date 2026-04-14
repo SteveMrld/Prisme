@@ -48,10 +48,30 @@ const SOURCES = [
   { id: 'amanpour2', name: 'Christiane Amanpour', type: 'Journaliste', bias: 'CNN', abbr: 'CA' },
   { id: 'sprinterpress', name: 'Sprinter Press', type: 'Agrégateur', bias: 'Veille Moyen-Orient', abbr: 'SP' },
   { id: 'theeconomist2', name: 'The Economist', type: 'Média', bias: 'Libéral pro-marché', abbr: 'TE' },
+  // Ajouts — Afrique
+  { id: 'theafricareport', name: 'The Africa Report', type: 'Média', bias: 'Panafricain francophone', abbr: 'AR' },
+  { id: 'dailymaverick', name: 'Daily Maverick', type: 'Média indép.', bias: 'Afrique du Sud / investigation', abbr: 'DM' },
+  { id: 'afriquexxi', name: 'Afrique XXI', type: 'Média indép.', bias: 'Investigation France-Afrique', abbr: 'A21' },
+  { id: 'thecontinent', name: 'The Continent', type: 'Média', bias: 'Panafricain indépendant', abbr: 'TC2' },
+  // Ajouts — Asie
+  { id: 'thewire', name: 'The Wire', type: 'Média indép.', bias: 'Inde / investigation', abbr: 'TW' },
+  { id: 'nikkeasia', name: 'Nikkei Asia', type: 'Média', bias: 'Japon / économie Asie', abbr: 'NK' },
+  { id: 'caixin', name: 'Caixin', type: 'Média', bias: 'Chine / économie indépendant', abbr: 'CX' },
+  // Ajouts — France & Europe
+  { id: 'mediapart', name: 'Mediapart', type: 'Média indép.', bias: 'Investigation française', abbr: 'MP' },
+  { id: 'lesechos', name: 'Les Échos', type: 'Média', bias: 'Économie française', abbr: 'LE' },
+  { id: 'scienceetvie', name: 'Science et Vie', type: 'Média', bias: 'Scientifique français', abbr: 'SV' },
+  { id: 'legrandcontinent', name: 'Le Grand Continent', type: 'Revue', bias: 'Géopolitique européenne', abbr: 'GC' },
+  // Ajouts — États-Unis analytique
+  { id: 'theatlantic', name: 'The Atlantic', type: 'Média', bias: 'Analytique américain', abbr: 'TA' },
+  { id: 'responsiblestatecraft', name: 'Responsible Statecraft', type: 'Think tank', bias: 'Anti-interventionniste US', abbr: 'RS' },
 ]
 
 const ZONES: Record<string, { label: string; sources: string[]; color: string }> = {
-  occident:      { label: 'Occident',              color: '#2D6B9A', sources: ['ft','nytimes','washingtonpost','reuters','ap','theeconomist','afpfr'] },
+  occident:      { label: 'Occident',              color: '#2D6B9A', sources: ['ft','nytimes','washingtonpost','reuters','ap','theeconomist','afpfr','theatlantic','lesechos','responsiblestatecraft'] },
+  europe:        { label: 'Europe & France',        color: '#4A2080', sources: ['mediapart','lesechos','scienceetvie','legrandcontinent','afpfr'] },
+  afrique:       { label: 'Afrique',                color: '#8B4513', sources: ['theafricareport','dailymaverick','afriquexxi','thecontinent'] },
+  asie:          { label: 'Asie',                   color: '#2D6B4A', sources: ['thewire','nikkeasia','caixin'] },
   monde_arabe:   { label: 'Monde arabe & Golfe',   color: '#C4793A', sources: ['ajenews','middleeasteye','kuwaittimesnews','ramabdu'] },
   resistance:    { label: 'Axe résistance',         color: '#7A3A3A', sources: ['thecradlemedia','hamidrezaaz','furkangozukara','iaeaorg'] },
   independants:  { label: 'Analystes indépendants', color: '#3A7A5A', sources: ['rnaudbertrand','karimbitar','tparsi','sinatoossi','ilangoldenberg','glenn_diesen','realscottritter','citrinowicz'] },
