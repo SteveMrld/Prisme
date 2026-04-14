@@ -164,9 +164,19 @@ if (typeof document !== 'undefined') {
 export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; image: string; title: string; description?: string }> }) {
   const [current, setCurrent] = React.useState(0)
   const total = articles.length
+  const touchStartX = React.useRef<number>(0)
 
   const prev = () => setCurrent((c) => (c - 1 + total) % total)
   const next = () => setCurrent((c) => (c + 1) % total)
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (diff > 40) next()
+    else if (diff < -40) prev()
+  }
 
   // Show 3 cards at once, centered on current
   const visible = [-1, 0, 1].map(offset => {
@@ -175,7 +185,7 @@ export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; 
   })
 
   return (
-    <div style={{ position: 'relative', overflow: 'hidden', padding: '0 0 16px' }}>
+    <div style={{ position: 'relative', overflow: 'hidden', padding: '0 0 16px' }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <div style={{ display: 'flex', gap: '16px', transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)' }}>
         {visible.map(({ article, offset }) => (
           <a
