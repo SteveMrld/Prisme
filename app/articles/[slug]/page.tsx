@@ -126,7 +126,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   // Grand format → layout dédié
   if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
     return (
-      <GrandFormatLayout slug={params.slug} content={content} />
+      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} />
     )
   }
 

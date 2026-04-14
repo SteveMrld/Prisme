@@ -24,6 +24,7 @@ interface GrandFormatLayoutProps {
   // Pour les articles HTML classiques
   slug?: string
   content?: string
+  showPaywall?: boolean
   // Pour les pages React custom (dette-souveraine)
   children?: ReactNode
   // Métadonnées (override si pas de slug)
@@ -44,6 +45,7 @@ export default function GrandFormatLayout({
   category: catProp, categoryLabel: catLabelProp,
   readTime: rtProp, date: dateProp,
   author: authorProp, authorRole: roleProp,
+  showPaywall,
 }: GrandFormatLayoutProps) {
 
   // Résoudre les métadonnées depuis articles.json ou les props
@@ -154,7 +156,7 @@ export default function GrandFormatLayout({
       <div className={`${styles.body} grand-format-body`}>
         {/* Contenu HTML classique */}
         {content && (
-          article?.premium ? (
+          (showPaywall ?? article?.premium) ? (
             <div style={{position:'relative'}}>
               <div style={{maxHeight:'620px',overflow:'hidden',position:'relative'}}>
                 <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
@@ -175,7 +177,7 @@ export default function GrandFormatLayout({
         )}
         {/* Contenu React (dette-souveraine, etc.) */}
         {children && (
-          article?.premium ? (
+          (showPaywall ?? article?.premium) ? (
             <div style={{position:'relative'}}>
               <div style={{maxHeight:'620px',overflow:'hidden',position:'relative'}}>
                 {children}
