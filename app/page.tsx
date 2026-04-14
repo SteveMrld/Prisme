@@ -51,6 +51,7 @@ const heroAside = heroAsideSlugs.map(slug => {
 })
 
 const grandsFormatsSlugs = [
+  { slug: 'chine',              extraCategories: [{ label: 'Géopolitique', color: 'geo' }],  sections: '5 sections · 15 sources' },
   { slug: 'medias',              extraCategories: [{ label: 'Société', color: 'soc' }],         sections: '5 sections · données Reuters 2025' },
   { slug: 'chambre-ratification', extraCategories: [{ label: 'Géopolitique', color: 'geo' }], sections: '5 sections · 4 illustrations' },
   { slug: 'skunkworks',           extraCategories: [{ label: 'Technologie', color: 'tech' }], sections: '5 sections · 5 illustrations' },
@@ -165,17 +166,17 @@ export default function HomePage() {
         {/* Colonne droite — style NYT */}
         <div style={{borderLeft:'1px solid #DDD9D2',display:'flex',flexDirection:'column',padding:'32px 0 32px 32px'}}>
           {rightCol.map((item) => (
-            <Link key={item.slug} href={`/articles/${item.slug}`} style={{display:'flex',flexDirection:'row',alignItems:'flex-start',gap:'16px',textDecoration:'none',padding:'20px 0',borderBottom:'1px solid #EEE8E0'}}>
-              <div style={{flex:1,display:'flex',flexDirection:'column',gap:'5px'}}>
+            <Link key={item.slug} href={(item as any).grandFormatUrl || `/articles/${item.slug}`} style={{display:'flex',flexDirection:'row',alignItems:'flex-start',gap:'16px',textDecoration:'none',padding:'22px 0',borderBottom:'1px solid #E8E2DA'}}>
+              <div style={{flex:1,display:'flex',flexDirection:'column',gap:'8px',minWidth:0}}>
                 <span style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:categoryColors[item.category]}}>{item.categoryLabel}</span>
-                <div style={{fontFamily:"'Playfair Display',serif",fontSize:'17px',fontWeight:700,color:'#1a1a1a',lineHeight:1.25}} dangerouslySetInnerHTML={{ __html: item.title }} />
+                <div style={{fontFamily:"'Playfair Display',serif",fontSize:'19px',fontWeight:700,color:'#111',lineHeight:1.2}} dangerouslySetInnerHTML={{ __html: item.title }} />
                 {(item as any).premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content'}}>★ PREMIUM</span>}
-                <div style={{display:'flex',alignItems:'center',gap:'7px',marginTop:'4px'}}>
-                  <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif"}}>{isNaN(parseInt((item as any).readTime)) ? (item as any).readTime : `${(item as any).readTime} min`}</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                <div style={{display:'flex',alignItems:'center',gap:'6px',marginTop:'2px'}}>
+                  <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif",letterSpacing:'0.5px'}}>{isNaN(parseInt((item as any).readTime)) ? (item as any).readTime : `${(item as any).readTime} MIN`}</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
                 </div>
               </div>
-              {item.image && <img src={item.image} alt={item.title} style={{width:'120px',height:'88px',objectFit:'cover',flexShrink:0}} />}
+              {item.image && <img src={item.image} alt={item.title} style={{width:'130px',height:'97px',objectFit:'cover',flexShrink:0}} />}
             </Link>
           ))}
         </div>
@@ -263,17 +264,17 @@ export default function HomePage() {
               .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
               .slice(0, 6)
               .map((article: any) => (
-              <Link key={article.slug} href={article.grandFormatUrl || `/articles/${article.slug}`} style={{display:'flex',flexDirection:'row',alignItems:'flex-start',gap:'14px',textDecoration:'none',padding:'16px 0',borderBottom:'1px solid #EEE8E0'}}>
-                <div style={{flex:1,display:'flex',flexDirection:'column',gap:'5px'}}>
+              <Link key={article.slug} href={article.grandFormatUrl || `/articles/${article.slug}`} style={{display:'flex',flexDirection:'row',alignItems:'flex-start',gap:'14px',textDecoration:'none',padding:'18px 0',borderBottom:'1px solid #E8E2DA'}}>
+                <div style={{flex:1,display:'flex',flexDirection:'column',gap:'7px',minWidth:0}}>
                   <span style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:categoryColors[article.category]}}>{categoryLabels[article.category] || article.category}</span>
-                  <div style={{fontFamily:"'Playfair Display',serif",fontSize:'16px',fontWeight:700,color:'#1a1a1a',lineHeight:1.25}} dangerouslySetInnerHTML={{ __html: article.title }} />
+                  <div style={{fontFamily:"'Playfair Display',serif",fontSize:'17px',fontWeight:700,color:'#111',lineHeight:1.2}} dangerouslySetInnerHTML={{ __html: article.title }} />
                   {article.premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content'}}>★ PREMIUM</span>}
-                  <div style={{display:'flex',alignItems:'center',gap:'7px',marginTop:'2px'}}>
-                    <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif"}}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                  <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                    <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif",letterSpacing:'0.5px'}}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} MIN`}</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
                   </div>
                 </div>
-                {article.image && <img src={article.image} alt={article.title} style={{width:'100px',height:'76px',objectFit:'cover',flexShrink:0}} />}
+                {article.image && <img src={article.image} alt={article.title} style={{width:'95px',height:'72px',objectFit:'cover',flexShrink:0}} />}
               </Link>
             ))}
           </div>
