@@ -131,6 +131,19 @@ export default function HomePage() {
           <div className={styles.portraitsLabel}>Portraits</div>
           <Link href="/portraits" className={styles.portraitsSeeAll}>Tous les portraits →</Link>
         </div>
+        <p style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 'clamp(15px, 2.2vw, 18px)',
+          fontStyle: 'italic',
+          color: '#555',
+          lineHeight: 1.7,
+          maxWidth: '600px',
+          margin: '0 0 36px 0',
+          borderLeft: '2px solid #C8A96E',
+          paddingLeft: '20px',
+        }}>
+          Ils ont façonné leur époque, souvent contre elle. Des hommes et des femmes dont les trajectoires éclairent les grandes fractures du monde contemporain.
+        </p>
         <div className={styles.portraitsGrid}>
           {[
             getArticle('morin'),
