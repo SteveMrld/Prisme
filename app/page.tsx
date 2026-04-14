@@ -175,6 +175,7 @@ export default function HomePage() {
                   <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif",letterSpacing:'0.5px'}}>{isNaN(parseInt((item as any).readTime)) ? (item as any).readTime : `${(item as any).readTime} MIN`}</span>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
                 </div>
+                {(item as any).description && <p style={{fontSize:'13px',color:'#666',lineHeight:1.5,margin:'4px 0 0',display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden',fontFamily:"'Cormorant Garamond',serif"}}>{(item as any).description}</p>}
               </div>
               {item.image && <img src={item.image} alt={item.title} style={{width:'130px',height:'97px',objectFit:'cover',flexShrink:0}} />}
             </Link>
@@ -273,6 +274,7 @@ export default function HomePage() {
                     <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif",letterSpacing:'0.5px'}}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} MIN`}</span>
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
                   </div>
+                  {article.description && <p style={{fontSize:'13px',color:'#666',lineHeight:1.5,margin:'4px 0 0',display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden',fontFamily:"'Cormorant Garamond',serif"}}>{article.description}</p>}
                 </div>
                 {article.image && <img src={article.image} alt={article.title} style={{width:'95px',height:'72px',objectFit:'cover',flexShrink:0}} />}
               </Link>
