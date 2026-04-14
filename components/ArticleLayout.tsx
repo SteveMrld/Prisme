@@ -134,10 +134,7 @@ export default function ArticleLayout({
           <div className={styles.titleRow}>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
             {isPremiumContent && (
-              <span style={{display:'inline-flex',alignItems:'center',gap:'5px',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'4px 10px',borderRadius:'2px',marginTop:'10px'}}>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                PREMIUM
-              </span>
+              <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'4px 10px',borderRadius:'3px',marginTop:'10px',width:'fit-content'}}>★ PREMIUM</span>
             )}
           </div>
           {description && (
