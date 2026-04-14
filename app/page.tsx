@@ -173,7 +173,6 @@ export default function HomePage() {
                 {(item as any).premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content'}}>★ PREMIUM</span>}
                 <div style={{display:'flex',alignItems:'center',gap:'6px',marginTop:'2px'}}>
                   <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif",letterSpacing:'0.5px'}}>{isNaN(parseInt((item as any).readTime)) ? (item as any).readTime : `${(item as any).readTime} MIN`}</span>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
                 </div>
                 {(item as any).description && <p style={{fontSize:'13px',color:'#666',lineHeight:1.5,margin:'4px 0 0',display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden',fontFamily:"'Cormorant Garamond',serif"}}>{(item as any).description}</p>}
               </div>
@@ -206,7 +205,7 @@ export default function HomePage() {
                   <span key={cat.label} className={styles.gfTag} style={{ background: categoryColors[cat.color] }}>
                     {cat.label}
                   </span>
-                ))} <span className={styles.gfFormat}>Grand format</span> <span className={styles.gfReading}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span>
+                ))} <span className={styles.gfFormat}>Grand format</span> <span className={styles.gfReading}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} min`}</span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
               </div>
               <div className={styles.gfTitle}><span style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:"14px",height:"14px",background:"#0a0a0a",color:"#C8A96E",fontFamily:"'DM Sans',sans-serif",fontSize:"8px",fontWeight:700,lineHeight:1,marginRight:"6px",flexShrink:0,verticalAlign:"middle",position:"relative",top:"-1px"}}>S</span><span dangerouslySetInnerHTML={{ __html: article.title }} /></div>
               {(article as any).premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content',marginBottom:'6px'}}>★ PREMIUM</span>}
@@ -272,7 +271,6 @@ export default function HomePage() {
                   {article.premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content'}}>★ PREMIUM</span>}
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
                     <span style={{fontSize:'11px',color:'#999',fontFamily:"'DM Sans',sans-serif",letterSpacing:'0.5px'}}>{isNaN(parseInt(article.readTime)) ? article.readTime : `${article.readTime} MIN`}</span>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
                   </div>
                   {article.description && <p style={{fontSize:'13px',color:'#666',lineHeight:1.5,margin:'4px 0 0',display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden',fontFamily:"'Cormorant Garamond',serif"}}>{article.description}</p>}
                 </div>
