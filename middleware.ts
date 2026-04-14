@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
 
   if (process.env.MAINTENANCE_MODE === 'true' && isProd && !previewCookie) {
     const { pathname } = request.nextUrl
-    const isAllowed = pathname === '/bientot' || pathname === '/preview-unlock' || pathname.startsWith('/_next') || pathname.startsWith('/favicon')
+    const isAllowed = pathname === '/bientot' || pathname === '/preview-unlock' || pathname === '/connexion' || pathname === '/compte' || pathname.startsWith('/_next') || pathname.startsWith('/favicon')
     if (!isAllowed) {
       return NextResponse.redirect(new URL('/bientot', request.url))
     }
