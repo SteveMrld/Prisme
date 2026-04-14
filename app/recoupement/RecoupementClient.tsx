@@ -86,6 +86,16 @@ const SOURCES = [
   { id: 'ioannidis', name: 'John Ioannidis', type: 'Chercheur', bias: 'Épidémiologie Stanford', abbr: 'JI' },
   { id: 'vinay_prasad', name: 'Vinay Prasad', type: 'Chercheur', bias: 'Épidémiologie UCSF', abbr: 'VP' },
   { id: 'bhattacharya', name: 'Jay Bhattacharya', type: 'Chercheur', bias: 'Santé publique Stanford', abbr: 'JB' },
+  // Économie
+  { id: 'imf', name: 'FMI', type: 'Institution', bias: 'Macro international', abbr: 'FM' },
+  { id: 'worldbank', name: 'Banque Mondiale', type: 'Institution', bias: 'Développement international', abbr: 'BM' },
+  { id: 'bis', name: 'BIS', type: 'Institution', bias: 'Banques centrales / stabilité', abbr: 'BI' },
+  { id: 'ocde', name: 'OCDE', type: 'Institution', bias: 'Statistiques internationales', abbr: 'OC' },
+  { id: 'ofce', name: 'OFCE', type: 'Think tank', bias: 'Conjoncture FR indépendant', abbr: 'OF' },
+  { id: 'bloombergeco', name: 'Bloomberg Economics', type: 'Média', bias: 'Économie / marchés', abbr: 'BE' },
+  { id: 'stiglitz', name: 'Joseph Stiglitz', type: 'Économiste', bias: 'Nobel / critique consensus Washington', abbr: 'JS' },
+  { id: 'acemoglu', name: 'Daron Acemoglu', type: 'Économiste', bias: 'MIT / institutions & inégalités', abbr: 'DA' },
+  { id: 'positivemoney', name: 'Positive Money', type: 'Think tank', bias: 'Finance alternative UK', abbr: 'PM' },
 ]
 
 const ZONES: Record<string, { label: string; sources: string[]; color: string }> = {
@@ -101,6 +111,7 @@ const ZONES: Record<string, { label: string; sources: string[]; color: string }>
   securite:      { label: 'Sécurité & Géopolitique', color: '#1A3E6B', sources: ['chathamhouse','sipri','responsiblestatecraft'] },
   tech_critique: { label: 'Tech & Numérique',        color: '#5A2080', sources: ['algorithmwatch','accessnow'] },
   sante:         { label: 'Santé & Sciences',        color: '#2D7A5A', sources: ['cochrane','bmj','statnews','ourworldindata','retractionwatch','ioannidis','vinay_prasad','bhattacharya'] },
+  economie:      { label: 'Économie & Finance',       color: '#B86A1A', sources: ['imf','worldbank','bis','ocde','ofce','bloombergeco','stiglitz','acemoglu','positivemoney','lesechos','ft'] },
 }
 
 
