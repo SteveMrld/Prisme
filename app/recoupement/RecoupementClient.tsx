@@ -65,17 +65,42 @@ const SOURCES = [
   // Ajouts — États-Unis analytique
   { id: 'theatlantic', name: 'The Atlantic', type: 'Média', bias: 'Analytique américain', abbr: 'TA' },
   { id: 'responsiblestatecraft', name: 'Responsible Statecraft', type: 'Think tank', bias: 'Anti-interventionniste US', abbr: 'RS' },
+  // Écologie & ressources
+  { id: 'carbonbrief', name: 'Carbon Brief', type: 'Think tank', bias: 'Climat / data UK', abbr: 'CB' },
+  { id: 'theshiftproject', name: 'The Shift Project', type: 'Think tank', bias: 'Décarbonation FR', abbr: 'SP' },
+  { id: 'globalwitness', name: 'Global Witness', type: 'ONG', bias: 'Ressources / corruption', abbr: 'GW' },
+  { id: 'ieefa', name: 'IEEFA', type: 'Think tank', bias: 'Énergie / finance', abbr: 'IE' },
+  { id: 'taxjustice', name: 'Tax Justice Network', type: 'Think tank', bias: 'Évasion fiscale', abbr: 'TJ' },
+  // Géopolitique & sécurité
+  { id: 'chathamhouse', name: 'Chatham House', type: 'Think tank', bias: 'Géopolitique UK', abbr: 'CH' },
+  { id: 'sipri', name: 'SIPRI', type: 'Institut', bias: 'Armement / conflits Stockholm', abbr: 'SI' },
+  // Technologie critique
+  { id: 'algorithmwatch', name: 'Algorithm Watch', type: 'ONG', bias: 'IA / surveillance', abbr: 'AW' },
+  { id: 'accessnow', name: 'Access Now', type: 'ONG', bias: 'Droits numériques', abbr: 'AN' },
+  // Santé & données médicales
+  { id: 'cochrane', name: 'Cochrane Collaboration', type: 'Institut', bias: 'Méta-analyses médicales', abbr: 'CO' },
+  { id: 'bmj', name: 'British Medical Journal', type: 'Revue', bias: 'Médical UK rigoureux', abbr: 'BM' },
+  { id: 'statnews', name: 'STAT News', type: 'Média', bias: 'Journalisme médical US', abbr: 'SN' },
+  { id: 'ourworldindata', name: 'Our World in Data', type: 'Institut', bias: 'Données mondiales Oxford', abbr: 'OW' },
+  { id: 'retractionwatch', name: 'Retraction Watch', type: 'Média', bias: 'Intégrité scientifique', abbr: 'RW' },
+  { id: 'ioannidis', name: 'John Ioannidis', type: 'Chercheur', bias: 'Épidémiologie Stanford', abbr: 'JI' },
+  { id: 'vinay_prasad', name: 'Vinay Prasad', type: 'Chercheur', bias: 'Épidémiologie UCSF', abbr: 'VP' },
+  { id: 'bhattacharya', name: 'Jay Bhattacharya', type: 'Chercheur', bias: 'Santé publique Stanford', abbr: 'JB' },
 ]
 
 const ZONES: Record<string, { label: string; sources: string[]; color: string }> = {
-  occident:      { label: 'Occident',              color: '#2D6B9A', sources: ['ft','nytimes','washingtonpost','reuters','ap','theeconomist','afpfr','theatlantic','lesechos','responsiblestatecraft'] },
-  europe:        { label: 'Europe & France',        color: '#4A2080', sources: ['mediapart','lesechos','scienceetvie','legrandcontinent','afpfr'] },
-  afrique:       { label: 'Afrique',                color: '#8B4513', sources: ['theafricareport','dailymaverick','afriquexxi','thecontinent'] },
-  asie:          { label: 'Asie',                   color: '#2D6B4A', sources: ['thewire','nikkeasia','caixin'] },
-  monde_arabe:   { label: 'Monde arabe & Golfe',   color: '#C4793A', sources: ['ajenews','middleeasteye','kuwaittimesnews','ramabdu'] },
-  resistance:    { label: 'Axe résistance',         color: '#7A3A3A', sources: ['thecradlemedia','hamidrezaaz','furkangozukara','iaeaorg'] },
-  independants:  { label: 'Analystes indépendants', color: '#3A7A5A', sources: ['rnaudbertrand','karimbitar','tparsi','sinatoossi','ilangoldenberg','glenn_diesen','realscottritter','citrinowicz'] },
-  osint:         { label: 'OSINT & Terrain',        color: '#8A6A2A', sources: ['sentdefender','clashreport','marionawfal','shanaka86','allenanalysis','ryangrim','viviannereim','amanpour'] },
+  occident:      { label: 'Occident',               color: '#2D6B9A', sources: ['ft','nytimes','washingtonpost','reuters','ap','theeconomist','afpfr','theatlantic','lesechos','responsiblestatecraft'] },
+  europe:        { label: 'Europe & France',         color: '#4A2080', sources: ['mediapart','lesechos','scienceetvie','legrandcontinent','afpfr'] },
+  afrique:       { label: 'Afrique',                 color: '#8B4513', sources: ['theafricareport','dailymaverick','afriquexxi','thecontinent'] },
+  asie:          { label: 'Asie',                    color: '#2D6B4A', sources: ['thewire','nikkeasia','caixin'] },
+  monde_arabe:   { label: 'Monde arabe & Golfe',    color: '#C4793A', sources: ['ajenews','middleeasteye','kuwaittimesnews','ramabdu'] },
+  resistance:    { label: 'Axe résistance',          color: '#7A3A3A', sources: ['thecradlemedia','hamidrezaaz','furkangozukara','iaeaorg'] },
+  independants:  { label: 'Analystes indépendants',  color: '#3A7A5A', sources: ['rnaudbertrand','karimbitar','tparsi','sinatoossi','ilangoldenberg','glenn_diesen','realscottritter','citrinowicz'] },
+  osint:         { label: 'OSINT & Terrain',         color: '#8A6A2A', sources: ['sentdefender','clashreport','marionawfal','shanaka86','allenanalysis','ryangrim','viviannereim','amanpour'] },
+  ecologie:      { label: 'Écologie & Ressources',   color: '#2D6B3A', sources: ['carbonbrief','theshiftproject','globalwitness','ieefa','taxjustice'] },
+  securite:      { label: 'Sécurité & Géopolitique', color: '#1A3E6B', sources: ['chathamhouse','sipri','responsiblestatecraft'] },
+  tech_critique: { label: 'Tech & Numérique',        color: '#5A2080', sources: ['algorithmwatch','accessnow'] },
+  sante:         { label: 'Santé & Sciences',        color: '#2D7A5A', sources: ['cochrane','bmj','statnews','ourworldindata','retractionwatch','ioannidis','vinay_prasad','bhattacharya'] },
 }
 
 
