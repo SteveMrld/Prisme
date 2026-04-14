@@ -50,6 +50,31 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
 .card-link{font-family:'DM Mono',monospace;font-size:8px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#999;opacity:0;transition:opacity .2s}
 .card:hover .card-link{opacity:1}
 
+
+/* Card image */
+.card-img {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.88) saturate(1.1);
+  transition: transform 0.5s cubic-bezier(.22,1,.36,1), filter 0.3s ease;
+}
+.card:hover .card-img img {
+  transform: scale(1.03);
+  filter: brightness(0.95) saturate(1.15);
+}
+.card.featured .card-img {
+  height: 220px;
+}
+
 /* Featured card */
 .card.featured .card-body{padding:28px 24px 20px}
 .card.featured .card-name{font-size:clamp(22px,4vw,30px)}
@@ -124,6 +149,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 1. Rainforest Connection -->
   <a class="card featured" href="https://rfcx.org" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#2A6B3A,#6ABF50)"></div>
+    <div class="card-img"><img src="/images/solutions/rainforest-connection.jpg" alt="Rainforest Connection" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇺🇸 États-Unis</div>
       <div class="card-name">Rainforest Connection</div>
@@ -138,6 +164,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 2. The Great Bubble Barrier -->
   <a class="card" href="https://thegreatbubblebarrier.com" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#1A4A7A,#6AAAD0)"></div>
+    <div class="card-img"><img src="/images/solutions/great-bubble-barrier.jpg" alt="The Great Bubble Barrier" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇳🇱 Pays-Bas</div>
       <div class="card-name">The Great Bubble Barrier</div>
@@ -152,6 +179,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 3. Justdiggit -->
   <a class="card" href="https://justdiggit.org" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#6B4A1A,#C09040)"></div>
+    <div class="card-img"><img src="/images/solutions/justdiggit.jpg" alt="Justdiggit" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇳🇱 Pays-Bas · Afrique orientale</div>
       <div class="card-name">Justdiggit</div>
@@ -166,6 +194,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 4. Mukuru Clean Stoves -->
   <a class="card" href="https://mukurustoves.org/" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#B86A1A,#E0901A)"></div>
+    <div class="card-img"><img src="/images/solutions/mukuru-clean-stoves.jpg" alt="Mukuru Clean Stoves" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇰🇪 Kenya</div>
       <div class="card-name">Mukuru Clean Stoves</div>
@@ -180,6 +209,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 5. Kelp Blue -->
   <a class="card" href="https://www.kelp.blue/global" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#0D3A6B,#3A8AD0)"></div>
+    <div class="card-img"><img src="/images/solutions/kelp-blue.jpg" alt="Kelp Blue" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇳🇱 Pays-Bas · Namibie</div>
       <div class="card-name">Kelp Blue</div>
@@ -194,6 +224,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 6. Planet Wild -->
   <a class="card" href="https://planetwild.com/" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#2A5A2A,#6ABF50)"></div>
+    <div class="card-img"><img src="/images/solutions/planet-wild.jpg" alt="Planet Wild" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇩🇪 Allemagne</div>
       <div class="card-name">Planet Wild</div>
@@ -208,6 +239,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 7. Notpla -->
   <a class="card" href="https://www.notpla.com" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#5A3A2A,#C08060)"></div>
+    <div class="card-img"><img src="/images/solutions/notpla.jpg" alt="Notpla" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇬🇧 Royaume-Uni</div>
       <div class="card-name">Notpla</div>
@@ -222,6 +254,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 8. Arbimon -->
   <a class="card" href="https://arbimon.rfcx.org" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#4A2080,#9060D0)"></div>
+    <div class="card-img"><img src="/images/solutions/arbimon.jpg" alt="Arbimon" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇺🇸 États-Unis</div>
       <div class="card-name">Arbimon</div>
@@ -236,6 +269,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 9. Wandusoa -->
   <a class="card" href="https://wandusoa.org/" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#6B4A1A,#C09040)"></div>
+    <div class="card-img"><img src="/images/solutions/wandusoa.jpg" alt="Wandusoa" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇨🇲 Cameroun</div>
       <div class="card-name">Wandusoa</div>
@@ -250,6 +284,7 @@ html,body{width:100%;background:#FAF9F6;font-family:'DM Sans',sans-serif;color:#
   <!-- 10. Hydraloop -->
   <a class="card" href="https://www.hydraloop.com" target="_blank" rel="noopener">
     <div class="card-accent" style="background:linear-gradient(90deg,#1A4A7A,#6AAAD0)"></div>
+    <div class="card-img"><img src="/images/solutions/hydraloop.jpg" alt="Hydraloop" loading="lazy"></div>
     <div class="card-body">
       <div class="card-flag-country">🇳🇱 Pays-Bas</div>
       <div class="card-name">Hydraloop</div>
