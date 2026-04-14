@@ -313,7 +313,7 @@
     "category": "concept",
     "readTime": "Carte",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique",
+    "authorRole": "",
     "date": "2026-02-06",
     "premium": false,
     "imageCredit": "© SOARA"
@@ -326,7 +326,7 @@
     "category": "culture",
     "readTime": "8",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique",
+    "authorRole": "",
     "date": "2026-02-20",
     "premium": false,
     "imageCredit": "© SOARA"
@@ -352,10 +352,10 @@
     "category": "culture",
     "readTime": "9",
     "author": "Jade Desroses",
-    "authorRole": "Culture & Société",
+    "authorRole": "",
     "date": "2026-01-30",
     "premium": false,
-    "featured": true,
+    "featured": false,
     "imageCredit": "© SOARA"
   },
   {
@@ -461,7 +461,7 @@
     "category": "soc",
     "readTime": "9",
     "author": "Steve Moradel",
-    "authorRole": "Société & Politique",
+    "authorRole": "",
     "date": "2026-01-08",
     "premium": false,
     "imageCredit": "© SOARA"
@@ -487,7 +487,7 @@
     "category": "soc",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique",
+    "authorRole": "",
     "date": "2026-04-14",
     "premium": true,
     "imageCredit": "© SOARA"
@@ -500,7 +500,7 @@
     "category": "tech",
     "readTime": "7",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique",
+    "authorRole": "",
     "date": "2026-04-24",
     "premium": false,
     "imageCredit": "© SOARA"
@@ -513,7 +513,7 @@
     "category": "tech",
     "readTime": "11",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique",
+    "authorRole": "",
     "date": "2026-05-08",
     "premium": true,
     "imageCredit": "© SOARA"
@@ -526,7 +526,7 @@
     "category": "soc",
     "readTime": "5",
     "author": "Steve Moradel",
-    "authorRole": "Société & Politique",
+    "authorRole": "",
     "date": "2025-12-12",
     "premium": false,
     "imageCredit": "© SOARA"
@@ -552,7 +552,7 @@
     "category": "geo",
     "readTime": "13",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique",
+    "authorRole": "",
     "date": "2026-03-14",
     "premium": true,
     "imageCredit": "© SOARA"
@@ -565,7 +565,7 @@
     "category": "tech",
     "readTime": "15",
     "author": "Steve Moradel",
-    "authorRole": "Technologie & Numérique",
+    "authorRole": "",
     "date": "2026-04-30",
     "premium": true,
     "imageCredit": "© SOARA"
