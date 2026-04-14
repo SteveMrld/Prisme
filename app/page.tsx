@@ -139,8 +139,8 @@ export default function HomePage() {
         {/* Colonne droite — style NYT */}
         <div style={{borderLeft:'1px solid #DDD9D2',display:'flex',flexDirection:'column',padding:'32px 0 32px 32px'}}>
           {/* Bandeau mobile uniquement */}
-          <div style={{display:'none'}} className="mobile-bandeau-articles">
-            <div style={{background:'#1A2A3A',padding:'16px 0',marginBottom:'24px'}}>
+          <div className={styles.mobileBandeauArticles}>
+            <div style={{background:'#1A2A3A',padding:'16px 20px',marginBottom:'24px'}}>
               <div style={{fontSize:'8px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'rgba(200,169,110,.6)',fontFamily:"'DM Mono',monospace",marginBottom:'3px'}}>Soara · Analyse</div>
               <div style={{fontFamily:"'Playfair Display',serif",fontSize:'20px',fontWeight:700,color:'#F5E6D0',lineHeight:1.2}}>L'actualité <em style={{color:'#C8A96E',fontStyle:'italic'}}>décryptée</em></div>
             </div>

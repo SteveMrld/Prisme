@@ -2071,6 +2071,8 @@
 }
 
 /* Mobile — stack vertical */
+.mobileBandeauArticles { display: none; }
+
 @media (max-width: 900px) {
   .atlanticHero {
     grid-template-columns: 1fr;
@@ -2088,6 +2090,7 @@
     margin: 0 -20px;
     width: calc(100% + 40px);
   }
+  .mobileBandeauArticles { display: block; margin: 0 -32px; }
 }
 
 .atlanticLogoWrap {
