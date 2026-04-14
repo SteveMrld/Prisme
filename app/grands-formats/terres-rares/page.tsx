@@ -79,6 +79,16 @@ export default async function TerresRaresPage() {
 
         <p>Les États-Unis ont emprunté une autre voie avec l'Inflation Reduction Act : des subventions massives pour reconstruire une filière nationale, conditionnées à l'origine des matériaux. L'objectif est de contourner la dépendance chinoise par la force budgétaire. Résultat : une guerre de subventions transatlantique qui fragilise davantage une alliance censée faire front commun.</p>
 
+        <div className="video-source">
+          <div className="video-wrapper">
+            <iframe src="https://www.youtube-nocookie.com/embed/lNwrBlYuufI?start=233&rel=0&modestbranding=1" title="Audition au Select Committee on China — Minéraux critiques, Congrès américain, 2025" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          </div>
+          <div className="video-label">
+            <span className="video-label-tag">Source primaire</span>
+            <span className="video-label-text">Audition au Select Committee on China — Reconstruction des chaînes d&apos;approvisionnement en minéraux critiques, Congrès américain, 2025.</span>
+          </div>
+        </div>
+
         <hr style={{ margin: "56px 0", border: "none", borderTop: "1px solid #DDD9D2" }} />
 
         <h2>IV. Ce que ça annonce</h2>
