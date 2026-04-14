@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout"
 import MediasVizClient from "./MediasVizClient"
 
@@ -8,7 +9,7 @@ export const metadata = {
   description: "Confiance en chute libre, évitement croissant, pouvoir médiatique concentré entre quelques mains. Le divorce entre le public occidental et ses médias est structurel. Anatomie d'une rupture.",
 }
 
-export default function MediasGrandFormat() {
+export default async function MediasGrandFormat() {
   const contentPath = path.join(process.cwd(), 'lib', 'content', 'medias.html')
   let content = ''
   try {
@@ -17,9 +18,20 @@ export default function MediasGrandFormat() {
     content = '<p>Contenu à venir.</p>'
   }
 
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const isAdmin = user?.email === 'steve.moradel@gmail.com'
+  let isSubscribed = false
+  if (user && !isAdmin) {
+    const { data: profile } = await supabase.from('profiles').select('subscription_status').eq('id', user.id).single()
+    isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
+  }
+  const showPaywall = !isAdmin && !isSubscribed
+
   return (
     <GrandFormatLayout
       slug="medias"
+      showPaywall={showPaywall}
       author="Steve Moradel"
       authorRole=""
     >

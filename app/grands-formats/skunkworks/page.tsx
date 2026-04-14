@@ -1,3 +1,4 @@
+import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
@@ -5,10 +6,21 @@ export const metadata = {
   description: "Quatre-vingt ans de Skunk Works : du cirque de Burbank à la détection d'un battement de cœur dans le désert iranien.",
 };
 
-export default function SkunkWorksPage() {
+export default async function SkunkWorksPage() {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const isAdmin = user?.email === 'steve.moradel@gmail.com'
+  let isSubscribed = false
+  if (user && !isAdmin) {
+    const { data: profile } = await supabase.from('profiles').select('subscription_status').eq('id', user.id).single()
+    isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
+  }
+  const showPaywall = !isAdmin && !isSubscribed
+
   return (
     <GrandFormatLayout
       slug="skunkworks"
+      showPaywall={showPaywall}
       author="La rédaction"
       authorRole=""
     >

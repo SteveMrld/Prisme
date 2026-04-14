@@ -1,3 +1,4 @@
+import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout"
 
 export const metadata = {
@@ -5,10 +6,21 @@ export const metadata = {
   description: "Du cobalt du Katanga au raffinage de Guangdong, une analyse des flux qui alimentent la transition verte — et la nouvelle géographie de la dépendance mondiale.",
 }
 
-export default function TerresRaresPage() {
+export default async function TerresRaresPage() {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const isAdmin = user?.email === 'steve.moradel@gmail.com'
+  let isSubscribed = false
+  if (user && !isAdmin) {
+    const { data: profile } = await supabase.from('profiles').select('subscription_status').eq('id', user.id).single()
+    isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
+  }
+  const showPaywall = !isAdmin && !isSubscribed
+
   return (
     <GrandFormatLayout
       slug="terres-rares"
+      showPaywall={showPaywall}
       author="Steve Moradel"
       authorRole=""
     >

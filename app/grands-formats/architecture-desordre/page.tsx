@@ -1,3 +1,4 @@
+import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
@@ -5,10 +6,21 @@ export const metadata = {
   description: "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne.",
 };
 
-export default function ArchitectureDesordre() {
+export default async function ArchitectureDesordre() {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const isAdmin = user?.email === 'steve.moradel@gmail.com'
+  let isSubscribed = false
+  if (user && !isAdmin) {
+    const { data: profile } = await supabase.from('profiles').select('subscription_status').eq('id', user.id).single()
+    isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
+  }
+  const showPaywall = !isAdmin && !isSubscribed
+
   return (
     <GrandFormatLayout
       slug="architecture-desordre"
+      showPaywall={showPaywall}
       author="Steve Moradel"
       authorRole=""
     >

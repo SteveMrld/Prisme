@@ -1,3 +1,4 @@
+import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 import DetteClient from "./DetteClient";
 
@@ -6,7 +7,17 @@ export const metadata = {
   description: "La dette publique mondiale a franchi 100 000 milliards de dollars. Ce n'est pas la dette qui inquiète. C'est ce qu'elle révèle.",
 };
 
-export default function DettePage() {
+export default async function DettePage() {
+  const supabase = createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const isAdmin = user?.email === 'steve.moradel@gmail.com'
+  let isSubscribed = false
+  if (user && !isAdmin) {
+    const { data: profile } = await supabase.from('profiles').select('subscription_status').eq('id', user.id).single()
+    isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
+  }
+  const showPaywall = !isAdmin && !isSubscribed
+
   return (
     <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole="">
       <div style={{ margin:"0 -40px 48px", borderTop:"1.5px solid #DDD9D2", borderBottom:"1.5px solid #DDD9D2" }}>
