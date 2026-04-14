@@ -102,7 +102,7 @@ export default function HomePage() {
       <section className={styles.atlanticHero}>
 
         {/* Colonne gauche */}
-        <div className={styles.atlanticLeft}>
+        <div className={styles.atlanticHeroSide}>
           {heroAside.slice(0, 2).map((item) => (
             <Link key={item.slug} href={`/articles/${item.slug}`} className={styles.atlanticSideItem}>
               {item.image && <img src={item.image} alt={item.title} className={styles.atlanticSideImg} />}

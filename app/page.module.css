@@ -1924,6 +1924,7 @@
 }
 
 .atlanticLeft { border-right: 1px solid var(--bord); padding-right: 32px; }
+.atlanticHeroSide { border-right: 1px solid var(--bord); padding-right: 32px; display: flex; flex-direction: column; gap: 0; padding: 32px 0; }
 .atlanticRight { border-left: 1px solid var(--bord); padding-left: 32px; }
 
 .atlanticSideItem {
@@ -2078,9 +2079,8 @@
     grid-template-columns: 1fr;
     padding: 0 20px;
   }
-  .atlanticLeft { display: none; }
+  .atlanticHeroSide { display: none; }
   .atlanticRight { display: none !important; }
-  .atlanticSection .atlanticLeft { display: flex !important; flex-direction: column; }
   .atlanticCenter { padding: 20px 0 12px; }
   .atlanticLogo { font-size: 42px; margin-bottom: 16px; }
   .blocC { margin-top: 0 !important; margin-bottom: 8px !important; }
