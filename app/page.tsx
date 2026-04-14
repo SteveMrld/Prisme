@@ -43,7 +43,7 @@ const heroArticle = {
 }
 
 const heroAsideSlugs = ['afrique', 'rushkoff', 'ia_ecriture']
-const rightColSlugs = ['chine', 'taiwan', 'semico', 'orbite']
+const rightColSlugs = ['empire-du-droit', 'societe-du-consentement', 'ceux-qui-nont-pas-cede', 'moreno']
 const rightCol = rightColSlugs.map(slug => getArticle(slug))
 const heroAside = heroAsideSlugs.map(slug => {
   const a = getArticle(slug)

@@ -9,7 +9,7 @@ export default function TerresRaresPage() {
   return (
     <GrandFormatLayout
       slug="terres-rares"
-      author="La rédaction"
+      author="Steve Moradel"
       authorRole=""
     >
       <div className="soara-article">
