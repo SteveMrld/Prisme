@@ -89,12 +89,23 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
   const isPremium = (article as any).premium === true
 
-  // Bypass paywall pour l'admin
+  // Bypass paywall pour l'admin ou les abonnés actifs
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   const ADMIN_EMAIL = 'steve.moradel@gmail.com'
   const isAdmin = user?.email === ADMIN_EMAIL
-  const showPaywall = isPremium && !isAdmin
+
+  let isSubscribed = false
+  if (user && !isAdmin) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('subscription_status')
+      .eq('id', user.id)
+      .single()
+    isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
+  }
+
+  const showPaywall = isPremium && !isAdmin && !isSubscribed
 
   const hasInternalHeader =
     content.includes('class="atop"') ||
