@@ -137,7 +137,7 @@ export default function HomePage() {
         </div>
 
         {/* Colonne droite — style NYT — masquée sur mobile */}
-        <div className={styles.atlanticRight} style={{borderLeft:'1px solid #DDD9D2',display:'flex',flexDirection:'column',padding:'32px 0 32px 32px'}}>
+        <div className={styles.atlanticHeroRight} style={{borderLeft:'1px solid #DDD9D2',display:'flex',flexDirection:'column',padding:'32px 0 32px 32px'}}>
           {rightCol.map((item) => (
             <Link key={item.slug} href={(item as any).grandFormatUrl || `/articles/${item.slug}`} style={{display:'flex',flexDirection:'row',alignItems:'flex-start',gap:'16px',textDecoration:'none',padding:'22px 0',borderBottom:'1px solid #E8E2DA'}}>
               <div style={{flex:1,display:'flex',flexDirection:'column',gap:'8px',minWidth:0}}>
