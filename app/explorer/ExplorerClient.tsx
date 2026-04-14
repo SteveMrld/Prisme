@@ -42,15 +42,6 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
       ctaLabel: 'Regarder la vidéo',
     },
     {
-      slug: 'grand-entretien',
-      title: 'Grand Entretien — <em>Cheick Modibo Diarra</em>',
-      description: 'Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali.',
-      category: 'portrait',
-      image: '/portraits/diarra.png',
-      customRoute: '/entretien/diarra',
-      readTime: 'À paraître',
-    },
-    {
       slug: 'solutions',
       title: 'Changer <em>le monde</em>',
       description: '157 solutions concrètes sélectionnées par ChangeNow 2026. Un globe, des données, des idées.',
