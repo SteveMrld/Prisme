@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 
 // ── Courbe d'accélération éditorial — douce, élégante
 const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
@@ -159,4 +159,58 @@ if (typeof document !== 'undefined') {
     }
   `
   document.head.appendChild(style)
+}
+
+export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; image: string; title: string; description?: string }> }) {
+  const [current, setCurrent] = React.useState(0)
+  const total = articles.length
+
+  const prev = () => setCurrent((c) => (c - 1 + total) % total)
+  const next = () => setCurrent((c) => (c + 1) % total)
+
+  // Show 3 cards at once, centered on current
+  const visible = [-1, 0, 1].map(offset => {
+    const idx = (current + offset + total) % total
+    return { article: articles[idx], offset }
+  })
+
+  return (
+    <div style={{ position: 'relative', overflow: 'hidden', padding: '0 0 16px' }}>
+      <div style={{ display: 'flex', gap: '16px', transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)' }}>
+        {visible.map(({ article, offset }) => (
+          <a
+            key={article.slug + offset}
+            href={`/articles/${article.slug}`}
+            style={{
+              flex: '0 0 calc(33.333% - 11px)',
+              textDecoration: 'none',
+              color: 'inherit',
+              opacity: offset === 0 ? 1 : 0.5,
+              transform: offset === 0 ? 'scale(1)' : 'scale(0.92)',
+              transition: 'opacity 0.4s ease, transform 0.4s ease',
+            }}
+          >
+            <div style={{ background: '#f5f4f1', overflow: 'hidden', aspectRatio: '3/4' }}>
+              <img src={article.image} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }} />
+            </div>
+            <div style={{ padding: '12px 4px 0' }}>
+              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#C8A96E', fontFamily: "'DM Sans', sans-serif" }}>Portrait</span>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '13px', fontWeight: 700, color: '#111', lineHeight: 1.3, marginTop: '4px' }} dangerouslySetInnerHTML={{ __html: article.title }} />
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* Navigation */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '20px' }}>
+        <button onClick={prev} style={{ background: 'none', border: '1px solid #DDD9D2', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '16px' }}>←</button>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          {articles.map((_, i) => (
+            <button key={i} onClick={() => setCurrent(i)} style={{ width: i === current ? '20px' : '6px', height: '6px', borderRadius: '3px', background: i === current ? '#C8A96E' : '#DDD9D2', border: 'none', cursor: 'pointer', transition: 'all 0.3s ease', padding: 0 }} />
+          ))}
+        </div>
+        <button onClick={next} style={{ background: 'none', border: '1px solid #DDD9D2', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '16px' }}>→</button>
+      </div>
+    </div>
+  )
 }
