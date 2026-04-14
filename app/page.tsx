@@ -124,6 +124,36 @@ export default function HomePage() {
       </section>
       </FadeSection>
 
+      {/* ── PORTRAITS ── */}
+      <FadeSection>
+      <section className={styles.portraitsSection}>
+        <div className={styles.portraitsHead}>
+          <div className={styles.portraitsLabel}>Portraits</div>
+          <Link href="/portraits" className={styles.portraitsSeeAll}>Tous les portraits →</Link>
+        </div>
+        <div className={styles.portraitsGrid}>
+          {[
+            getArticle('morin'),
+            getArticle('obama'),
+            getArticle('morrison'),
+            getArticle('musk'),
+            getArticle('tutu'),
+            getArticle('nooyi'),
+          ].map((article) => (
+            <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitCard}>
+              <div className={styles.portraitImgWrap}>
+                <img src={article.image} alt={article.title} className={styles.portraitImg} />
+              </div>
+              <div className={styles.portraitBody}> <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
+                <div className={styles.portraitTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
+                <p className={styles.portraitDesc}>{article.description}</p> <span className={styles.portraitCta}>Lire →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      </FadeSection>
+
       {/* ATLANTIC HERO */}
       <FadeSection>
       <section className={styles.atlanticHero}>
@@ -297,36 +327,6 @@ export default function HomePage() {
             ))}
           </div>
 
-        </div>
-      </section>
-      </FadeSection>
-
-      {/* ── PORTRAITS ── */}
-      <FadeSection>
-      <section className={styles.portraitsSection}>
-        <div className={styles.portraitsHead}>
-          <div className={styles.portraitsLabel}>Portraits</div>
-          <Link href="/portraits" className={styles.portraitsSeeAll}>Tous les portraits →</Link>
-        </div>
-        <div className={styles.portraitsGrid}>
-          {[
-            getArticle('morin'),
-            getArticle('obama'),
-            getArticle('morrison'),
-            getArticle('musk'),
-            getArticle('tutu'),
-            getArticle('nooyi'),
-          ].map((article) => (
-            <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitCard}>
-              <div className={styles.portraitImgWrap}>
-                <img src={article.image} alt={article.title} className={styles.portraitImg} />
-              </div>
-              <div className={styles.portraitBody}> <span className={styles.portraitTag} style={{ color: 'var(--portrait)' }}>Portrait</span>
-                <div className={styles.portraitTitle} dangerouslySetInnerHTML={{ __html: article.title }} />
-                <p className={styles.portraitDesc}>{article.description}</p> <span className={styles.portraitCta}>Lire →</span>
-              </div>
-            </Link>
-          ))}
         </div>
       </section>
       </FadeSection>
