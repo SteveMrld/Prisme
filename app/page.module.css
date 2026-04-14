@@ -2085,12 +2085,6 @@
   .blocC { margin-top: 0 !important; margin-bottom: 8px !important; }
   .blocTag { margin-top: 4px !important; }
   .atlanticLogoWrap { margin-top: 0 !important; margin-bottom: 8px !important; }
-  :global(.mobile-bandeau-articles) {
-    display: block !important;
-    margin: 0 -20px;
-    width: calc(100% + 40px);
-  }
-  .mobileBandeauArticles { display: block; margin: 0 -32px; }
 }
 
 .atlanticLogoWrap {

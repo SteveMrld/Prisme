@@ -269,12 +269,6 @@ export default function HomePage() {
       </div>
 
       {/* ── DERNIÈRES PUBLICATIONS + POPULAIRES — layout Atlantic ── */}
-      <div style={{background:'#1A2A3A',padding:'20px 24px',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-        <div>
-          <div style={{fontSize:'8px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'rgba(200,169,110,.6)',fontFamily:"'DM Mono',monospace",marginBottom:'4px'}}>Soara · Analyse</div>
-          <div style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(16px,2.5vw,22px)',fontWeight:700,color:'#F5E6D0',lineHeight:1.2}}>L'actualité <em style={{color:'#C8A96E',fontStyle:'italic'}}>décryptée</em></div>
-        </div>
-      </div>
       <FadeSection>
       <section className={styles.atlanticSection}>
         <div className={styles.atlanticInner}>
