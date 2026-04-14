@@ -2079,7 +2079,7 @@
     padding: 0 20px;
   }
   .atlanticLeft { display: none; }
-  .atlanticRight { border-left: none; padding-left: 0; }
+  .atlanticRight { display: none; }
   .atlanticCenter { padding: 20px 0 12px; }
   .atlanticLogo { font-size: 42px; margin-bottom: 16px; }
   .blocC { margin-top: 0 !important; margin-bottom: 8px !important; }
