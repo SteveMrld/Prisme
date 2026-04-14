@@ -389,6 +389,17 @@ window.nextZone=nextZone;
 window.prevZone=prevZone;
 window.goToZone=goToZone;
 
+// Écouter les messages du parent (navigation SUIV/PRÉC)
+window.addEventListener('message', function(e) {
+  if (e.data?.type === 'CALL') {
+    const fn = e.data.fn;
+    const arg = e.data.arg;
+    if (fn === 'nextZone') nextZone();
+    else if (fn === 'prevZone') prevZone();
+    else if (fn === 'goToZone' && typeof arg === 'number') goToZone(arg);
+  }
+});
+
 // ── TOUCH / CLICK ──────────────────────────────────────────────
 renderer.domElement.addEventListener('mousedown',e=>{isDrag=true;autoRot=false;prevX=e.clientX;prevY=e.clientY});
 window.addEventListener('mouseup',e=>{
