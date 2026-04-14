@@ -84,7 +84,7 @@
     "authorRole": "",
     "featured": false,
     "premium": false,
-    "grandFormat": false,
+    "grandFormat": true,
     "grandFormatUrl": "/grands-formats/architecture-desordre",
     "imageCredit": "© SOARA",
     "customRoute": "/grands-formats/architecture-desordre"
@@ -94,7 +94,7 @@
     "title": "La chambre de ratification",
     "description": "Comment Benjamin Netanyahu a décidé une guerre américaine. Une enquête en miroir : le Situation Room en 2026, le Situation Room en 1962, et soixante-dix ans d'une boucle qui ne se referme pas.",
     "category": "geo",
-    "categoryLabel": "Grand Format",
+    "categoryLabel": "Géopolitique",
     "date": "2026-04-10",
     "readTime": "18",
     "image": "/grands-formats/chambre-hero.jpg",
@@ -129,7 +129,7 @@
     "title": "Palantir. L'ontologie de l'ennemi",
     "description": "Comment une entreprise née d'un coup d'État de salle de réunion est devenue l'infrastructure cognitive des États qui ne la contrôlent pas.",
     "category": "tech",
-    "categoryLabel": "Grand Format",
+    "categoryLabel": "Technologie",
     "date": "2026-05-02",
     "readTime": "12",
     "image": "/grands-formats/palantir/palantir-reseau.png",
@@ -137,7 +137,7 @@
     "authorRole": "",
     "featured": false,
     "premium": false,
-    "grandFormat": false,
+    "grandFormat": true,
     "grandFormatUrl": "/grands-formats/palantir",
     "imageCredit": "© SOARA",
     "customRoute": "/grands-formats/palantir"
@@ -366,12 +366,14 @@
     "category": "soc",
     "readTime": "10",
     "author": "Steve Moradel",
-    "authorRole": "Société & Politique",
+    "authorRole": "",
     "date": "2026-04-02",
     "premium": false,
     "imageCredit": "© SOARA",
     "grandFormatUrl": "/grands-formats/medias",
-    "customRoute": "/grands-formats/medias"
+    "customRoute": "/grands-formats/medias",
+    "categoryLabel": "Médias",
+    "grandFormat": true
   },
   {
     "slug": "morrison",
