@@ -610,5 +610,19 @@
     "featured": false,
     "premium": true,
     "imageCredit": "The White House, Domaine public, modifiée par SOARA"
+  },
+  {
+    "slug": "wanghuning",
+    "title": "Wang Huning, ou l'architecte du monde <em>après la liberté</em>",
+    "description": "Il a visité l'Amérique en 1988 et en est revenu convaincu qu'elle se mourait. Depuis, Wang Huning a construit la doctrine qui gouverne la Chine et exporté un modèle de contrôle social que les démocraties regardent avec un mélange de répulsion et d'envie secrète.",
+    "image": "https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/twCGQsPB/img-afrique.jpg",
+    "category": "geo",
+    "readTime": "12",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "date": "2026-04-15",
+    "premium": true,
+    "featured": false,
+    "imageCredit": "© SOARA"
   }
 ]
