@@ -1584,6 +1584,49 @@ sup {
   border-color: var(--encre);
 }
 
+/* ── ART-CHART (graphiques SVG inline) ── */
+.art-chart-wrap {
+  margin: 32px 0;
+  background: #EDEADF;
+}
+.art-chart-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C8A96E;
+  margin-bottom: 8px;
+  padding: 20px 20px 0;
+}
+.art-chart-label {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 700;
+  color: #0A0A0A;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  padding: 0 20px;
+  margin-bottom: 4px;
+}
+.art-chart-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 0.3px;
+  padding: 0 20px 0;
+}
+.art-chart-note {
+  font-family: 'Georgia', serif;
+  font-size: 12px;
+  font-style: italic;
+  color: #666;
+  line-height: 1.55;
+  padding: 12px 20px 20px;
+  border-top: 1px solid rgba(0,0,0,.08);
+  margin-top: 8px;
+}
+
 /* ═══════════════════════════════════════════════
    MOBILE FIXES — grilles multi-colonnes
 ═══════════════════════════════════════════════ */
