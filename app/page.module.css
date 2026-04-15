@@ -296,6 +296,9 @@
 }
 .gfCard:hover { background: #FAFAF8; }
 .gfCard:nth-child(even) { border-right: none; }
+/* Supprime le double filet bas sur la dernière rangée */
+.gfCard:last-child,
+.gfCard:nth-last-child(2) { border-bottom: none; }
 .gfImgWrap {
   width: 100%;
   aspect-ratio: 3/2;
@@ -519,12 +522,9 @@
 }
 
 /* ════════════════════════════════════
-   MOBILE — BottomNav clearance + section 8
+   MOBILE — section 8 stack
 ════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* Espace pour la BottomNav fixe */
-  .nl { padding-bottom: calc(48px + 72px + env(safe-area-inset-bottom, 0px)); }
-
   /* Section 8 : Dernières + Populaires empilées verticalement */
   .row2LastSection {
     display: flex;
