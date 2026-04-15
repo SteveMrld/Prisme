@@ -212,13 +212,13 @@
 .entretienBanner {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 180px;
   overflow: hidden;
 }
 .entretienBannerImg {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center 60%;
+  object-position: center 40%;
   display: block;
   filter: grayscale(15%);
 }
