@@ -69,15 +69,16 @@
 ══════════════════════════════════════════════════════════ */
 .heroZone {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr 400px;
   border-bottom: 1px solid var(--bord, #E8E2DA);
+  background: #fff;
 }
 .heroMain {
   display: block;
   text-decoration: none;
   color: inherit;
   border-right: 1px solid var(--bord, #E8E2DA);
-  transition: opacity .2s;
+  overflow: hidden;
 }
 .heroMain:hover { opacity: .9; }
 .heroMainImg {
@@ -196,12 +197,13 @@
 }
 .entretienName {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(20px, 3vw, 34px);
+  font-size: clamp(22px, 3.5vw, 38px);
   font-weight: 700;
   line-height: 1.1;
   color: var(--encre, #0A0A0A);
+  letter-spacing: -0.5px;
 }
-.entretienName em { color: #C8A96E; font-style: italic; }
+.entretienName em { color: #8B1A1A; font-style: italic; }
 .entretienDeck {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(13px, 1.6vw, 16px);
@@ -282,9 +284,10 @@
 }
 .gfTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(16px, 2.2vw, 20px);
+  font-size: clamp(16px, 2.2vw, 21px);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
   color: var(--encre, #0A0A0A);
 }
 .gfDesc { display: none; }
@@ -750,3 +753,22 @@
   white-space: nowrap;
 }
 .tickerSignal:hover { color: rgba(255,255,255,0.7); }
+
+/* ── GF text-only cards (sans image) ── */
+.gfCardTextOnly {
+  background: #FAFAF8;
+}
+.gfCardTextOnly .gfTitle {
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.15;
+}
+.gfDescShort {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.5;
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

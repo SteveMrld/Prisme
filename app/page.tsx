@@ -131,16 +131,20 @@ export default function HomePage() {
       <FadeSection>
       <section className={styles.gfSection}>
         <div className={styles.gfGrid}>
-        {grandsFormats.map(a => (
-          <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfCard}>
-            {a.image && <div className={styles.gfImgWrap}><img src={a.image} alt={a.title} className={styles.gfImg} /></div>}
+        {grandsFormats.map((a, i) => {
+          const showImg = i % 4 !== 2 && i % 4 !== 3
+          return (
+          <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={`${styles.gfCard} ${!showImg ? styles.gfCardTextOnly : ''}`}>
+            {showImg && a.image && <div className={styles.gfImgWrap}><img src={a.image} alt={a.title} className={styles.gfImg} /></div>}
             <div className={styles.gfBody}>
               <span className={styles.gfCat}>{a.catLabel}</span>
               <div className={styles.gfTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+              {a.description && showImg && <p className={styles.gfDescShort}>{a.description}</p>}
               {a.premium && <PremiumBadge />}
             </div>
           </Link>
-        ))}
+          )
+        })}
         </div>
       </section>
       </FadeSection>
