@@ -202,7 +202,7 @@
 ════════════════════════════════════ */
 .entretien {
   display: grid;
-  grid-template-columns: 95px 1fr;
+  grid-template-columns: 110px 1fr;
   background: #FAF7F4;
   border-bottom: 1px solid #E8E2DA;
   border-top: 3px solid #8B1A1A;
@@ -218,7 +218,7 @@
   filter: grayscale(10%);
 }
 .entretienBody {
-  padding: 16px 18px;
+  padding: 20px 24px 20px 28px;
   display: flex;
   flex-direction: column;
   gap: 8px;
