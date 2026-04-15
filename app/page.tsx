@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
 import HeroRotator from '../components/HeroRotator'
+import SoaraUnivers from '../components/SoaraUnivers'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -272,7 +273,12 @@ export default function HomePage() {
       </div>
 
       {/* ══════════════════════════════════════
-          9. NEWSLETTER
+          9. L'UNIVERS SOARA
+      ══════════════════════════════════════ */}
+      <SoaraUnivers />
+
+      {/* ══════════════════════════════════════
+          10. NEWSLETTER
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.nl}>
