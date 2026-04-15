@@ -299,10 +299,42 @@ function clearMarkers(){
 }
 
 /* ══ FLEUVES MAPLIBRE ══ */
+/* ══ ANIMATION ÉCOULEMENT ══
+   Séquence dasharray qui fait glisser des reflets lumineux
+   le long des fleuves — évoque le mouvement de l'eau */
+var FLOW_SEQ = [
+  [0,4,2,0],[0.5,4,1.5,0],[1,4,1,0],[1.5,4,0.5,0],
+  [2,4,0,0],[0,0.5,2,3.5],[0,1,2,3],[0,1.5,2,2.5],
+  [0,2,2,2],[0,2.5,2,1.5],[0,3,2,1],[0,3.5,2,0.5],
+  [0,4,2,0]
+];
+var flowStep=0, flowRaf=null, flowIds=[];
+
+function startFlow(){
+  if(flowRaf) cancelAnimationFrame(flowRaf);
+  (function tick(ts){
+    var s=Math.floor(ts/90)%FLOW_SEQ.length;
+    if(s!==flowStep){
+      flowStep=s;
+      flowIds.forEach(function(id){
+        if(map.getLayer(id)) map.setPaintProperty(id,'line-dasharray',FLOW_SEQ[flowStep]);
+      });
+    }
+    flowRaf=requestAnimationFrame(tick);
+  })(0);
+}
+function stopFlow(){
+  if(flowRaf){cancelAnimationFrame(flowRaf);flowRaf=null;}
+  flowIds=[];
+}
+
 var riverSources=[];
 function clearRivers(){
+  stopFlow();
   riverSources.forEach(function(id){
-    if(map.getLayer(id)) map.removeLayer(id);
+    if(map.getLayer(id+'-glow')) map.removeLayer(id+'-glow');
+    if(map.getLayer(id+'-body')) map.removeLayer(id+'-body');
+    if(map.getLayer(id+'-flow')) map.removeLayer(id+'-flow');
     if(map.getSource(id)) map.removeSource(id);
   });
   riverSources=[];
@@ -311,25 +343,52 @@ function clearRivers(){
 }
 
 function addRivers(s){
+  flowIds=[];
   s.rivers.forEach(function(r,i){
     var id='river-'+i;
-    var col=s.riverCol.replace('OPACITY', r.op);
+    var col=s.riverCol.replace('OPACITY',r.op);
+    var colGlow=s.riverCol.replace('OPACITY', Math.min(r.op*.25,.15));
+
     map.addSource(id,{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:r.coords}}});
-    map.addLayer({id:id,type:'line',source:id,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':col,'line-width':r.w,'line-blur':0.3}});
+
+    /* 1. Halo large — profondeur et présence */
+    map.addLayer({id:id+'-glow',type:'line',source:id,
+      layout:{'line-cap':'round','line-join':'round'},
+      paint:{'line-color':colGlow,'line-width':r.w*5,'line-blur':r.w*2}
+    });
+    /* 2. Corps du fleuve — solide, lisible */
+    map.addLayer({id:id+'-body',type:'line',source:id,
+      layout:{'line-cap':'round','line-join':'round'},
+      paint:{'line-color':col,'line-width':r.w,'line-blur':0.2}
+    });
+    /* 3. Reflets animés — lumière qui glisse sur l'eau */
+    var flowCol='rgba(200,225,255,0.55)';
+    map.addLayer({id:id+'-flow',type:'line',source:id,
+      layout:{'line-cap':'round','line-join':'round'},
+      paint:{'line-color':flowCol,'line-width':r.w*.45,
+             'line-dasharray':FLOW_SEQ[0]}
+    });
+    flowIds.push(id+'-flow');
     riverSources.push(id);
+
     /* Label fleuve */
     if(r.label && r.lpos){
       var el=document.createElement('div'); el.className='map-riv'; el.textContent=r.label;
-      /* lpos est [lat,lon] → swap pour MapLibre */
       var m=new maplibregl.Marker({element:el,anchor:'left'}).setLngLat([r.lpos[1],r.lpos[0]]).addTo(map);
       markers.push(m);
     }
   });
+
   /* Frontière pointillée */
   if(s.border){
     map.addSource('border-src',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:s.border.map(function(c){return[c[1],c[0]]})}}});
-    map.addLayer({id:'border-layer',type:'line',source:'border-src',paint:{'line-color':'rgba(28,24,20,.4)','line-width':1,'line-dasharray':[4,4]}});
+    map.addLayer({id:'border-layer',type:'line',source:'border-src',
+      paint:{'line-color':'rgba(28,24,20,.4)','line-width':1,'line-dasharray':[4,4]}
+    });
   }
+
+  /* Démarrer l'animation après un court délai */
+  setTimeout(startFlow, 200);
 }
 
 /* ══ PLAYER ══ */
