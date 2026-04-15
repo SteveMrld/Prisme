@@ -1,349 +1,383 @@
+/* ══════════════════════════════════════════
+   PAGE ABONNEMENT — fond blanc, propre
+══════════════════════════════════════════ */
+
+/* ── BANNER ── */
+.banner {
+  background: rgba(184,106,26,.08);
+  border-left: 3px solid var(--eco);
+  color: var(--eco);
+  font-size: 13px;
+  padding: 14px 24px;
+  line-height: 1.5;
+}
+
+/* ── HERO ── */
 .hero {
-  background: var(--encre);
-  border-bottom: 3px solid var(--or);
-  padding: 72px 64px;
+  background: #F8F5F0;
+  border-bottom: 2px solid #1a1a1a;
+  padding: 64px 24px 56px;
 }
 
 .heroInner {
-  max-width: 680px;
+  max-width: 1060px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  gap: 56px;
+  align-items: flex-start;
 }
 
+.heroLeft { flex: 1; min-width: 0; }
+
 .eyebrow {
+  font-family: 'DM Mono', monospace;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--or);
-  border: 1px solid var(--or);
-  padding: 4px 14px;
+  color: #C8A96E;
+  border: 1px solid rgba(200,169,110,.4);
+  padding: 4px 12px;
   width: fit-content;
+  margin-bottom: 20px;
 }
 
 .title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 5.5vw, 72px);
+  font-size: clamp(38px, 5vw, 60px);
   font-weight: 300;
-  letter-spacing: -2.5px;
-  line-height: 1;
-  color: rgba(255,255,255,0.92);
+  letter-spacing: -2px;
+  line-height: 1.05;
+  color: #1a1a1a;
+  margin-bottom: 20px;
 }
-
-.title em { font-style: italic; color: var(--or); }
+.title em { font-style: italic; color: #C8A96E; }
 
 .subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
+  font-family: 'Georgia', serif;
+  font-size: 15px;
   font-style: italic;
-  color: rgba(255,255,255,0.5);
+  color: #666;
   line-height: 1.65;
-  max-width: 560px;
+  max-width: 500px;
+  margin-bottom: 36px;
 }
 
-.content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 2px solid var(--encre);
-}
-
-.features {
-  padding: 56px 64px;
-  border-right: 1px solid var(--bord);
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.featuresLabel {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gris-l);
-}
-
-.featuresList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.featuresItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  color: var(--gris);
-  line-height: 1.4;
-}
-
-.featuresCheck {
-  color: var(--or);
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
+/* ── PLANS ── */
 .plans {
-  padding: 56px 64px;
   display: flex;
-  flex-direction: column;
   gap: 16px;
-  justify-content: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
-.plan {
-  border: 1px solid var(--bord);
-  padding: 32px 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.planCard {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid #DDD9D2;
+  padding: 24px 22px;
   position: relative;
+  background: #fff;
 }
 
-.planYear {
-  border-color: var(--encre);
-  background: var(--papier);
+.planCardFeatured {
+  border-color: #1a1a1a;
+  background: #F8F5F0;
 }
 
 .planBadge {
   position: absolute;
-  top: -1px;
-  right: 24px;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: #F5E6D0;
+  font-family: 'DM Mono', monospace;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #fff;
-  background: var(--or);
-  padding: 3px 12px;
+  padding: 4px 12px;
+  white-space: nowrap;
 }
 
 .planLabel {
-  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gris-l);
+  color: #999;
+  margin-bottom: 12px;
 }
 
 .planPrice {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 4px;
+  margin-bottom: 4px;
 }
 
 .planAmount {
   font-family: 'Playfair Display', serif;
-  font-size: 52px;
+  font-size: 42px;
   font-weight: 300;
-  letter-spacing: -2px;
-  color: var(--encre);
+  letter-spacing: -1.5px;
+  color: #1a1a1a;
   line-height: 1;
 }
 
 .planCurrency {
   font-size: 13px;
-  color: var(--gris-m);
-  letter-spacing: 0.5px;
+  color: #888;
+  letter-spacing: 0.3px;
 }
 
-.planDesc {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
+.planSub {
+  font-size: 11px;
+  color: #aaa;
   font-style: italic;
-  color: var(--gris-m);
-  line-height: 1.4;
+  margin-bottom: 18px;
 }
 
 .planBtn {
+  width: 100%;
   background: transparent;
-  border: 1px solid var(--bord);
-  padding: 12px;
+  border: 1px solid #DDD9D2;
+  padding: 12px 16px;
+  font-family: 'DM Mono', monospace;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--gris-m);
+  color: #555;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.planBtn:hover { border-color: #1a1a1a; color: #1a1a1a; }
+.planBtn:disabled { opacity: .45; cursor: default; }
+
+.planBtnPrimary {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #F5E6D0;
+}
+.planBtnPrimary:hover { background: #333; border-color: #333; color: #F5E6D0; }
+
+.heroNote {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: #aaa;
+  letter-spacing: .5px;
   margin-top: 4px;
 }
 
-.planBtn:hover { border-color: var(--encre); color: var(--encre); }
-
-.planBtnPrimary {
-  background: var(--encre);
-  border-color: var(--encre);
-  color: #fff;
-}
-
-.planBtnPrimary:hover { background: var(--geo); border-color: var(--geo); color: #fff; }
-
-.reassurance {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--bord);
-  border-bottom: 1px solid var(--bord);
-}
-
-.reassuranceItem {
-  background: var(--bg);
-  padding: 40px 44px;
+/* ── PREVIEW CARROUSEL ── */
+.heroRight {
+  flex: 0 0 300px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+.previewLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #bbb;
+}
+
+.previewCard {
+  border: 1px solid #DDD9D2;
+  overflow: hidden;
+  background: #fff;
+}
+
+.previewImg {
+  height: 160px;
+  background-size: cover;
+  background-position: center top;
+  background-color: #e8e4de;
+}
+
+.previewBody {
+  padding: 14px 16px 16px;
+  border-top: 1px solid #EEE;
+}
+
+.previewCat {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C8A96E;
+}
+
+.previewTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 5px 0 4px;
+  line-height: 1.25;
+}
+
+.previewDesc {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.previewDots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: none;
+  background: #DDD9D2;
+  cursor: pointer;
+  padding: 0;
+  transition: background .2s;
+}
+.dotActive { background: #1a1a1a; }
+
+/* ── FEATURES ── */
+.featuresSection {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 48px;
+  border-bottom: 1px solid #EEE;
+}
+
+.featuresLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 24px;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 32px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.featureCheck {
+  color: #C8A96E;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── RÉASSURANCE ── */
+.reassurance {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid #EEE;
+}
+
+.reassuranceItem {
+  padding: 36px 28px;
+  border-right: 1px solid #EEE;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reassuranceItem:last-child { border-right: none; }
+
 .reassuranceTitle {
-  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--encre);
+  color: #1a1a1a;
 }
 
 .reassuranceItem p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
+  font-size: 13px;
   font-style: italic;
-  color: var(--gris-m);
+  color: #777;
   line-height: 1.65;
+  font-family: 'Georgia', serif;
+  margin: 0;
 }
 
+/* ── FOOTER ── */
 .footer {
-  background: var(--encre);
-  padding: 48px 64px;
+  background: #1a1a1a;
+  padding: 40px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .footerLogo {
   font-family: 'Playfair Display', serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: -1px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,.7);
 }
-
 .footerLogo em { font-style: italic; font-weight: 300; }
-.footerLinks { display: flex; gap: 32px; }
+
+.footerLinks {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 .footerLinks a {
-  font-size: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,.3);
   text-decoration: none;
-  transition: color 0.15s;
+  transition: color .15s;
+}
+.footerLinks a:hover { color: rgba(255,255,255,.7); }
+
+.footerCopy {
+  font-size: 10px;
+  color: rgba(255,255,255,.2);
+  letter-spacing: 1px;
+  font-family: 'DM Mono', monospace;
 }
 
-.footerLinks a:hover { color: rgba(255,255,255,0.7); }
-.footerCopy { font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
-
-@media (max-width: 900px) {
-  .hero { padding: 52px 24px; }
-  .content { grid-template-columns: 1fr; }
-  .features { padding: 40px 24px; border-right: none; border-bottom: 1px solid var(--bord); }
-  .plans { padding: 40px 24px; }
-  .reassurance { grid-template-columns: 1fr; }
-  .reassuranceItem { padding: 32px 24px; }
-  .footer { padding: 40px 24px; }
-}
-
-.banner {
-  background: rgba(184,106,26,0.08);
-  border-left: 3px solid var(--eco);
-  color: var(--eco);
-  font-size: 13px;
-  padding: 14px 64px;
-  line-height: 1.5;
-}
-
-.planBtn:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-/* ── NOUVEAU HERO ABONNEMENT ── */
-.heroInner {
-  display: flex;
-  gap: 48px;
-  align-items: flex-start;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 64px 24px 48px;
-}
-.heroLeft { flex: 1; }
-.heroRight { flex: 0 0 320px; }
-.heroCta { display: flex; align-items: center; gap: 16px; margin: 28px 0 12px; flex-wrap: wrap; }
-.heroBtn {
-  background: #1a1a1a; color: #F5E6D0;
-  border: none; padding: 14px 28px;
-  font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-  cursor: pointer; transition: background 0.2s;
-}
-.heroBtn:hover { background: #333; }
-.heroOr { font-size: 12px; color: var(--gris-l); }
-.heroMonthly {
-  background: none; border: 1px solid var(--bord);
-  padding: 12px 20px; font-size: 13px; color: var(--encre); cursor: pointer;
-  transition: border-color 0.2s;
-}
-.heroMonthly:hover { border-color: var(--encre); }
-.heroNote { font-size: 11px; color: var(--gris-l); letter-spacing: 0.5px; }
-
-/* Carrousel */
-.previewCard {
-  display: none;
-  border: 1px solid var(--bord);
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-.previewActive { display: block; }
-.previewImg {
-  height: 180px; background-size: cover; background-position: center;
-  background-color: #0a0a0a;
-}
-.previewBody { padding: 16px 20px; }
-.previewCat { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--or); }
-.previewTitle { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--encre); margin: 6px 0 4px; }
-.previewDesc { font-size: 13px; color: var(--gris-l); line-height: 1.5; margin: 0; }
-.previewDots { display: flex; gap: 8px; margin-top: 12px; justify-content: center; }
-.dot { width: 6px; height: 6px; border-radius: 50%; border: none; background: var(--bord); cursor: pointer; padding: 0; }
-.dotActive { background: var(--encre); }
-
-/* Features */
-.featuresSection { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
-.featuresLabel { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gris-l); margin-bottom: 24px; }
-.featuresGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.featureItem { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--encre); line-height: 1.4; }
-.featureCheck { color: var(--or); font-weight: 700; flex-shrink: 0; }
-
-/* Plans */
-.plansSection { max-width: 700px; margin: 0 auto; padding: 0 24px 64px; }
-.plansGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.planCard { border: 1px solid var(--bord); padding: 28px 24px; position: relative; }
-.planCardFeatured { border-color: var(--encre); background: var(--papier); }
-.planBadge {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: var(--encre); color: #F5E6D0;
-  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-  padding: 4px 12px;
-}
-
+/* ── MOBILE ── */
 @media (max-width: 768px) {
-  .heroInner { flex-direction: column; }
-  .heroRight { width: 100%; }
+  .hero { padding: 44px 16px 40px; }
+  .heroInner { flex-direction: column; gap: 36px; }
+  .heroRight { flex: none; width: 100%; }
+  .plans { flex-direction: column; }
+  .planCard { min-width: unset; }
   .featuresGrid { grid-template-columns: 1fr; }
-  .plansGrid { grid-template-columns: 1fr; }
+  .reassurance { grid-template-columns: 1fr; }
+  .reassuranceItem { border-right: none; border-bottom: 1px solid #EEE; padding: 28px 20px; }
+  .reassuranceItem:last-child { border-bottom: none; }
+  .footer { padding: 32px 16px; }
 }
