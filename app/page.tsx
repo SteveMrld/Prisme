@@ -78,6 +78,17 @@ function ReadTime({ t }: { t: string }) {
   return <span className={styles.readTime}>{isNaN(n) ? t : `${n} min`}</span>
 }
 
+const SBadge = () => (
+  <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:'14px',height:'14px',background:'#0A0A0A',color:'#C8A96E',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,lineHeight:1,marginRight:'5px',flexShrink:0,verticalAlign:'middle',position:'relative',top:'-1px'}}>S</span>
+)
+
+const AudioIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft:'5px',flexShrink:0,verticalAlign:'middle'}}>
+    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+  </svg>
+)
+
 function SectionHead({ label, href }: { label: string; href?: string }) {
   return (
     <div className={styles.sectionHead}>
@@ -112,7 +123,7 @@ export default function HomePage() {
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <ReadTime t={a.readTime || '7'} />
               </div>
               {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
@@ -125,7 +136,7 @@ export default function HomePage() {
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <ReadTime t={a.readTime || '7'} />
               </div>
               {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
@@ -143,7 +154,7 @@ export default function HomePage() {
         {TRIO.map(a => (
           <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.trioCard}>
             <span className={styles.cat}>{a.catLabel}</span>
-            <h3 className={styles.trioTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+            <h3 className={styles.trioTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
             <ReadTime t={a.readTime || '7'} />
           </Link>
         ))}
@@ -238,7 +249,7 @@ export default function HomePage() {
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <ReadTime t={a.readTime || '7'} />
               </div>
               {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
@@ -251,7 +262,7 @@ export default function HomePage() {
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <ReadTime t={a.readTime || '7'} />
               </div>
               {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
