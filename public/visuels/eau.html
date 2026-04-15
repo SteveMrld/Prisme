@@ -268,32 +268,27 @@ var SLIDES = [
 
 /* ══ MARQUEURS ══ */
 function addMarkers(s){
-  /* Dams */
+  function mk(el, lnglat, anchor){
+    var m=new maplibregl.Marker({element:el,anchor:anchor||'center'}).setLngLat(lnglat).addTo(map);
+    markers.push(m); return m;
+  }
+  /* Dams — [lat,lon] → swap */
   if(s.dams) s.dams.forEach(function(d){
-    new maplibregl.Marker({
-      element: (function(){
-        var el=document.createElement('div');
-        el.innerHTML='<svg width="18" height="12" viewBox="0 0 18 12" overflow="visible"><line x1="0" y1="6" x2="18" y2="6" stroke="#8B1A1A" stroke-width="2.4" stroke-linecap="square"/><line x1="3" y1="6" x2="2.2" y2="11" stroke="#8B1A1A" stroke-width="1"/><line x1="9" y1="6" x2="8.2" y2="11" stroke="#8B1A1A" stroke-width="1"/><line x1="15" y1="6" x2="14.2" y2="11" stroke="#8B1A1A" stroke-width="1"/></svg>';
-        return el;
-      })(), anchor:'center'
-    }).setLngLat([d[1],d[0]]).addTo(map);
+    var el=document.createElement('div');
+    el.innerHTML='<svg width="18" height="12" viewBox="0 0 18 12" overflow="visible"><line x1="0" y1="6" x2="18" y2="6" stroke="#8B1A1A" stroke-width="2.4" stroke-linecap="square"/><line x1="3" y1="6" x2="2.2" y2="11" stroke="#8B1A1A" stroke-width="1"/><line x1="9" y1="6" x2="8.2" y2="11" stroke="#8B1A1A" stroke-width="1"/><line x1="15" y1="6" x2="14.2" y2="11" stroke="#8B1A1A" stroke-width="1"/></svg>';
+    mk(el,[d[1],d[0]],'center');
   });
-  /* Tensions */
+  /* Tensions — [lat,lon] → swap */
   if(s.tensions) s.tensions.forEach(function(t){
-    new maplibregl.Marker({
-      element: (function(){
-        var el=document.createElement('div');
-        el.innerHTML='<svg width="12" height="16" viewBox="0 0 12 16" overflow="visible"><circle cx="6" cy="5.5" r="4.5" fill="'+s.col+'" opacity=".82" stroke="rgba(248,244,238,.75)" stroke-width=".8"/><line x1="6" y1="10" x2="6" y2="15.5" stroke="'+s.col+'" stroke-width="1.2" stroke-linecap="round"/></svg>';
-        return el;
-      })(), anchor:'bottom'
-    }).setLngLat([t[1],t[0]]).addTo(map);
+    var el=document.createElement('div');
+    el.innerHTML='<svg width="12" height="16" viewBox="0 0 12 16" overflow="visible"><circle cx="6" cy="5.5" r="4.5" fill="'+s.col+'" opacity=".82" stroke="rgba(248,244,238,.75)" stroke-width=".8"/><line x1="6" y1="10" x2="6" y2="15.5" stroke="'+s.col+'" stroke-width="1.2" stroke-linecap="round"/></svg>';
+    mk(el,[t[1],t[0]],'bottom');
   });
-  /* Labels pays */
+  /* Labels pays — [lat,lon] → swap */
   if(s.labels) s.labels.forEach(function(lb){
     var el=document.createElement('div');
-    el.className='map-lbl';
-    el.textContent=lb[2];
-    new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([lb[1],lb[0]]).addTo(map);
+    el.className='map-lbl'; el.textContent=lb[2];
+    mk(el,[lb[1],lb[0]],'center');
   });
 }
 
@@ -319,12 +314,13 @@ function addRivers(s){
   s.rivers.forEach(function(r,i){
     var id='river-'+i;
     var col=s.riverCol.replace('OPACITY', r.op);
-    map.addSource(id,{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:r.coords.map(function(c){return[c[1],c[0]]})}}});
+    map.addSource(id,{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:r.coords}}});
     map.addLayer({id:id,type:'line',source:id,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':col,'line-width':r.w,'line-blur':0.3}});
     riverSources.push(id);
     /* Label fleuve */
     if(r.label && r.lpos){
       var el=document.createElement('div'); el.className='map-riv'; el.textContent=r.label;
+      /* lpos est [lat,lon] → swap pour MapLibre */
       var m=new maplibregl.Marker({element:el,anchor:'left'}).setLngLat([r.lpos[1],r.lpos[0]]).addTo(map);
       markers.push(m);
     }
