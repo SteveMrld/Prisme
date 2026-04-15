@@ -51,45 +51,16 @@ function MiniIndicateurs() {
 }
 
 // ── Tensions mini (points qui pulsent) ───────────────────
-const TENSIONS = [
-  { name:'Iran–USA',    x:58, y:42, level:'crisis',  color:'#FC8181' },
-  { name:'Ukraine',     x:52, y:28, level:'crisis',  color:'#FC8181' },
-  { name:'Mer de Chine',x:78, y:42, level:'tension', color:'#F6AD55' },
-  { name:'Sahel',       x:48, y:52, level:'tension', color:'#F6AD55' },
-  { name:'Taïwan',      x:80, y:40, level:'watch',   color:'#F6E05E' },
-  { name:'Arctique',    x:50, y:10, level:'watch',   color:'#F6E05E' },
-]
-
 function MiniGlobe() {
   return (
     <div className={styles.globeWrap}>
-      <svg viewBox="0 0 100 60" className={styles.globeSvg}>
-        {/* Fond monde simplifié */}
-        <ellipse cx="50" cy="30" rx="48" ry="28" fill="#0D1F3C" opacity=".6"/>
-        {/* Continents stylisés */}
-        <path d="M18 20 Q22 15 28 18 Q32 22 30 28 Q24 32 18 28 Z" fill="#1A2A3A"/>
-        <path d="M42 18 Q52 14 62 17 Q68 22 65 32 Q58 36 48 33 Q40 28 42 18 Z" fill="#1A2A3A"/>
-        <path d="M70 20 Q80 18 84 24 Q82 32 76 34 Q70 30 70 20 Z" fill="#1A2A3A"/>
-        <path d="M44 34 Q52 32 56 38 Q52 46 44 44 Z" fill="#1A2A3A"/>
-        {/* Points de tension */}
-        {TENSIONS.map((t, i) => (
-          <g key={i}>
-            <circle cx={t.x} cy={t.y} r="3" fill={t.color} opacity=".2">
-              <animate attributeName="r" values="3;5;3" dur={`${1.5 + i*0.3}s`} repeatCount="indefinite"/>
-              <animate attributeName="opacity" values=".2;.05;.2" dur={`${1.5 + i*0.3}s`} repeatCount="indefinite"/>
-            </circle>
-            <circle cx={t.x} cy={t.y} r="2" fill={t.color}/>
-          </g>
-        ))}
-      </svg>
-      <div className={styles.globeLegend}>
-        {TENSIONS.slice(0,3).map(t => (
-          <span key={t.name} className={styles.globeLegendItem}>
-            <span className={styles.globeDot} style={{background: t.color}}/>
-            {t.name}
-          </span>
-        ))}
-      </div>
+      <iframe
+        src="/signal-map"
+        className={styles.globeIframe}
+        scrolling="no"
+        title="Signal Map"
+      />
+      <div className={styles.globeOverlay} />
     </div>
   )
 }

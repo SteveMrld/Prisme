@@ -120,28 +120,27 @@
 }
 .card:hover .cardCta { opacity: 1; }
 
-/* ── Mini Globe ── */
-.globeWrap { width: 100%; }
-.globeSvg { width: 100%; height: auto; display: block; }
-.globeLegend {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-  flex-wrap: wrap;
+/* ── Mini Globe (iframe) ── */
+.globeWrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
 }
-.globeLegendItem {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-family: 'DM Mono', monospace;
-  font-size: 8px;
-  color: rgba(245,230,208,.5);
-  letter-spacing: .5px;
+.globeIframe {
+  width: 200%;
+  height: 200%;
+  border: none;
+  transform: scale(0.5) translate(-50%, -50%);
+  transform-origin: top left;
+  pointer-events: none;
 }
-.globeDot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  flex-shrink: 0;
+.globeOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, #0D1520 100%);
+  pointer-events: none;
 }
 
 /* ── Mini Indicateurs ── */
