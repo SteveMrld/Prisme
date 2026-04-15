@@ -257,7 +257,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           8. DERNIÈRES + POPULAIRES
       ══════════════════════════════════════ */}
-      <div className={styles.row2}>
+      <div className={`${styles.row2} ${styles.row2LastSection}`}>
         <div className={styles.rowCol}>
           <SectionHead label="Dernières publications" />
           {LATEST.map(a => (

@@ -175,18 +175,28 @@
 ════════════════════════════════════ */
 .trio {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 600px) {
+  .trio { grid-template-columns: repeat(3, 1fr); }
 }
 .trioCard {
   display: block;
   text-decoration: none;
   color: inherit;
   padding: 14px 14px 18px;
-  border-right: 1px solid #E8E2DA;
+  border-bottom: 1px solid #E8E2DA;
   transition: background .15s;
 }
 .trioCard:hover { background: #FAFAF8; }
-.trioCard:last-child { border-right: none; }
+.trioCard:last-child { border-bottom: none; }
+@media (min-width: 600px) {
+  .trioCard {
+    border-bottom: none;
+    border-right: 1px solid #E8E2DA;
+  }
+  .trioCard:last-child { border-right: none; }
+}
 .trioTitle {
   font-family: 'Playfair Display', serif;
   font-size: clamp(14px, 1.8vw, 17px);
@@ -212,7 +222,7 @@
 .entretienBanner {
   position: relative;
   width: 100%;
-  height: 180px;
+  height: 220px;
   overflow: hidden;
 }
 .entretienBannerImg {
@@ -506,4 +516,23 @@
   border-left: 2px solid rgba(139,26,26,.25);
   padding-left: 10px;
   margin-top: 2px;
+}
+
+/* ════════════════════════════════════
+   MOBILE — BottomNav clearance + section 8
+════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Espace pour la BottomNav fixe */
+  .nl { padding-bottom: calc(48px + 72px + env(safe-area-inset-bottom, 0px)); }
+
+  /* Section 8 : Dernières + Populaires empilées verticalement */
+  .row2LastSection {
+    display: flex;
+    flex-direction: column;
+  }
+  .row2LastSection .rowCol {
+    border-right: none;
+    border-bottom: 1px solid #E8E2DA;
+  }
+  .row2LastSection .rowCol:last-child { border-bottom: none; }
 }
