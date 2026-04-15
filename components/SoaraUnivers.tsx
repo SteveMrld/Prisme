@@ -3,43 +3,41 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './SoaraUnivers.module.css'
 
-// ── Indicateurs mini (données live) ──────────────────────
+// ── Indicateurs live ──────────────────────────────────────
 const BASE_IND = [
-  { id:'brent',  label:'Brent',    value:121.88, unit:'$', delta:+0.42, color:'#C4793A' },
-  { id:'gold',   label:'Or',       value:3248,   unit:'$', delta:+27,   color:'#C8A96E' },
-  { id:'eurusd', label:'EUR/USD',  value:1.0821, unit:'',  delta:-0.003,color:'#4dd9ac' },
-  { id:'usdcny', label:'USD/CNY',  value:7.2841, unit:'',  delta:+0.008,color:'#1A7ABF' },
+  { id:'brent',  label:'Pétrole Brent', value:121.88, unit:'$',  delta:+0.42, color:'#E8A056' },
+  { id:'gold',   label:'Or',            value:3248,   unit:'$',  delta:+27,   color:'#C8A96E' },
+  { id:'eurusd', label:'EUR / USD',     value:1.0821, unit:'',   delta:-0.003,color:'#4dd9ac' },
+  { id:'usdcny', label:'USD / CNY',     value:7.2841, unit:'',   delta:+0.008,color:'#6AB0E8' },
 ]
 
-function MiniIndicateurs() {
+function LiveIndicateurs() {
   const [inds, setInds] = useState(BASE_IND)
-  const [tick, setTick] = useState(false)
+  const [flash, setFlash] = useState<string|null>(null)
 
   useEffect(() => {
     const t = setInterval(() => {
-      setInds(prev => prev.map(ind => ({
+      const idx = Math.floor(Math.random() * BASE_IND.length)
+      setInds(prev => prev.map((ind, i) => i !== idx ? ind : {
         ...ind,
-        value: ind.value * (1 + (Math.random() - 0.5) * 0.0003),
-        delta: ind.delta * (0.95 + Math.random() * 0.1),
-      })))
-      setTick(t => !t)
-    }, 3000)
+        value: ind.value * (1 + (Math.random() - 0.5) * 0.0004),
+        delta: ind.delta * (0.92 + Math.random() * 0.16),
+      }))
+      setFlash(BASE_IND[idx].id)
+      setTimeout(() => setFlash(null), 400)
+    }, 2500)
     return () => clearInterval(t)
   }, [])
 
-  const fmt = (v: number, unit: string) => {
-    if (unit === '$' && v > 100) return `${unit}${v.toFixed(2)}`
-    if (unit === '$') return `${unit}${v.toFixed(3)}`
-    return v.toFixed(4)
-  }
+  const fmt = (v: number) => v > 100 ? v.toFixed(2) : v.toFixed(4)
 
   return (
     <div className={styles.indGrid}>
       {inds.map(ind => (
-        <div key={ind.id} className={styles.indCard}>
+        <div key={ind.id} className={`${styles.indCell} ${flash === ind.id ? styles.indFlash : ''}`}>
           <div className={styles.indLabel}>{ind.label}</div>
-          <div className={`${styles.indValue} ${tick ? styles.indPulse : ''}`} style={{color: ind.color}}>
-            {fmt(ind.value, ind.unit)}
+          <div className={styles.indVal} style={{color: ind.color}}>
+            {ind.unit}{fmt(ind.value)}
           </div>
           <div className={`${styles.indDelta} ${ind.delta >= 0 ? styles.up : styles.down}`}>
             {ind.delta >= 0 ? '▲' : '▼'} {Math.abs(ind.delta).toFixed(ind.value > 100 ? 2 : 4)}
@@ -50,79 +48,77 @@ function MiniIndicateurs() {
   )
 }
 
-// ── Tensions mini (points qui pulsent) ───────────────────
-function MiniGlobe() {
-  return (
-    <div className={styles.globeWrap}>
-      <iframe
-        src="/signal-map"
-        className={styles.globeIframe}
-        scrolling="no"
-        title="Signal Map"
-      />
-      <div className={styles.globeOverlay} />
-    </div>
-  )
-}
+// ── Tensions éditoriales (pas de globe simulé) ────────────
+const ZONES = [
+  { name:'Iran — États-Unis',   status:'Crise active',    color:'#FC8181', dot:'#FC8181' },
+  { name:'Ukraine — Russie',    status:'Conflit ouvert',  color:'#FC8181', dot:'#FC8181' },
+  { name:'Mer de Chine',        status:'Tension élevée',  color:'#F6AD55', dot:'#F6AD55' },
+  { name:'Sahel',               status:'Déstabilisation', color:'#F6AD55', dot:'#F6AD55' },
+  { name:'Détroit d\'Ormuz',    status:'Surveillance',    color:'#F6E05E', dot:'#F6E05E' },
+]
 
-// ── Main component ────────────────────────────────────────
+// ── Component ─────────────────────────────────────────────
 export default function SoaraUnivers() {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
         <div className={styles.eyebrow}>Soara · Outils</div>
         <h2 className={styles.title}>L'univers <em>Soara</em></h2>
-        <p className={styles.subtitle}>Données, cartes, analyses — des instruments pour comprendre le monde en temps réel.</p>
+        <p className={styles.subtitle}>Des instruments vivants pour lire le monde autrement.</p>
       </div>
 
       <div className={styles.grid}>
 
-        {/* SIGNAL MAP */}
-        <Link href="/signal-map" className={styles.card}>
-          <div className={styles.cardVisual}>
-            <MiniGlobe />
+        {/* ── SIGNAL MAP ── carte rouge, liste éditoriale */}
+        <Link href="/signal-map" className={`${styles.card} ${styles.cardSignal}`}>
+          <div className={styles.cardTop}>
+            <span className={styles.cardEyebrow} style={{color:'#FC8181'}}>Signal Map</span>
+            <span className={styles.liveTag}><span className={styles.liveDot}/>LIVE</span>
           </div>
-          <div className={styles.cardBody}>
-            <span className={styles.cardLabel}>Signal Map</span>
-            <h3 className={styles.cardTitle}>Les zones de tension en temps réel</h3>
-            <p className={styles.cardDesc}>Globe interactif · 12 zones · Mises à jour continues</p>
-            <span className={styles.cardCta}>Ouvrir la carte →</span>
-          </div>
-        </Link>
-
-        {/* INDICATEURS */}
-        <Link href="/indicateurs" className={styles.card}>
-          <div className={styles.cardVisual}>
-            <MiniIndicateurs />
-          </div>
-          <div className={styles.cardBody}>
-            <span className={styles.cardLabel}>Indicateurs</span>
-            <h3 className={styles.cardTitle}>Les marchés qui font la géopolitique</h3>
-            <p className={styles.cardDesc}>Pétrole, Or, Devises — données live</p>
-            <span className={styles.cardCta}>Voir tous les indicateurs →</span>
-          </div>
-        </Link>
-
-        {/* ATLAS */}
-        <Link href="/visuels" className={`${styles.card} ${styles.cardWide}`}>
-          <div className={styles.cardVisual}>
-            <div className={styles.atlasPreview}>
-              <div className={styles.atlasLine}><span className={styles.atlasNum}>I</span><span className={styles.atlasTitle}>La naissance d'un empire</span><span className={styles.atlasTag}>Dollar</span></div>
-              <div className={styles.atlasLine}><span className={styles.atlasNum}>II</span><span className={styles.atlasTitle}>Les routes de la soie</span><span className={styles.atlasTag}>Chine</span></div>
-              <div className={styles.atlasLine}><span className={styles.atlasNum}>III</span><span className={styles.atlasTitle}>L'arc de crise</span><span className={styles.atlasTag}>Géopolitique</span></div>
-              <div className={styles.atlasDeco}>
-                <div className={styles.atlasBar} style={{width:'80%', background:'#C8A96E'}}/>
-                <div className={styles.atlasBar} style={{width:'60%', background:'#1A7ABF'}}/>
-                <div className={styles.atlasBar} style={{width:'45%', background:'#FC8181'}}/>
+          <h3 className={styles.cardTitle}>Zones de tension</h3>
+          <div className={styles.zoneList}>
+            {ZONES.map(z => (
+              <div key={z.name} className={styles.zoneItem}>
+                <span className={styles.zoneDot} style={{background: z.dot}}/>
+                <span className={styles.zoneName}>{z.name}</span>
+                <span className={styles.zoneStatus} style={{color: z.color}}>{z.status}</span>
               </div>
-            </div>
+            ))}
           </div>
-          <div className={styles.cardBody}>
-            <span className={styles.cardLabel}>Atlas</span>
-            <h3 className={styles.cardTitle}>Cartes et visualisations animées</h3>
-            <p className={styles.cardDesc}>Géopolitique, économie — présentées autrement</p>
-            <span className={styles.cardCta}>Explorer l'Atlas →</span>
+          <span className={styles.cardCta}>Ouvrir le globe →</span>
+        </Link>
+
+        {/* ── INDICATEURS ── carte dorée, chiffres pulsants */}
+        <Link href="/indicateurs" className={`${styles.card} ${styles.cardInd}`}>
+          <div className={styles.cardTop}>
+            <span className={styles.cardEyebrow} style={{color:'#C8A96E'}}>Indicateurs</span>
+            <span className={styles.updateTag}>↻ temps réel</span>
           </div>
+          <h3 className={styles.cardTitle}>Marchés & géopolitique</h3>
+          <LiveIndicateurs />
+          <span className={styles.cardCta}>Tous les indicateurs →</span>
+        </Link>
+
+        {/* ── ATLAS ── carte bleue, liste chapitres */}
+        <Link href="/visuels" className={`${styles.card} ${styles.cardAtlas}`}>
+          <div className={styles.cardTop}>
+            <span className={styles.cardEyebrow} style={{color:'#6AB0E8'}}>Atlas</span>
+          </div>
+          <h3 className={styles.cardTitle}>Visualisations animées</h3>
+          <div className={styles.atlasList}>
+            {[
+              {n:'I',   t:'La naissance d\'un empire',   tag:'Dollar'},
+              {n:'II',  t:'Les routes de la soie',        tag:'Chine'},
+              {n:'III', t:'L\'arc de crise',              tag:'Géopolitique'},
+            ].map(c => (
+              <div key={c.n} className={styles.atlasItem}>
+                <span className={styles.atlasN} style={{color:'#6AB0E8'}}>{c.n}</span>
+                <span className={styles.atlasT}>{c.t}</span>
+                <span className={styles.atlasTag}>{c.tag}</span>
+              </div>
+            ))}
+          </div>
+          <span className={styles.cardCta}>Explorer l'Atlas →</span>
         </Link>
 
       </div>
