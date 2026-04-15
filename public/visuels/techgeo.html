@@ -128,11 +128,14 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
 }
 .chain-step.visible{opacity:1;transform:translateX(0)}
 .chain-icon{
-  width:40px;height:40px;border-radius:50%;
+  width:44px;height:44px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(196,121,58,.25);
+  color:var(--cuivre);
+  flex-shrink:0;
 }
+.chain-icon svg{display:block}
 .chain-name{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--t2)}
 .chain-sub{font-size:9px;color:var(--t3);font-style:italic}
 .chain-arrow{
@@ -311,43 +314,76 @@ body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webki
     <p class="sec-body">Entre le sol d'une mine en Mongolie et le chip dans votre téléphone, <strong>sept étapes critiques</strong>, chacune contrôlée par un nombre réduit d'acteurs.</p>
     <div class="chain" id="chain">
       <div class="chain-step" style="transition-delay:.0s">
-        <div class="chain-icon">⛏</div>
+        <div class="chain-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M14.5 9.5 3 21"/>
+  <path d="m5 3 4 4-1.5 1.5L4 5z"/>
+  <path d="m15 3 4 4-8 8-4-4z"/>
+  <path d="M19 7l2 2-2-2z"/>
+</svg></div>
         <div class="chain-name">Extraction</div>
         <div class="chain-sub">Mongolie, Chili, RDC</div>
       </div>
       <div class="chain-arrow">→</div>
       <div class="chain-step" style="transition-delay:.1s">
-        <div class="chain-icon">🏭</div>
+        <div class="chain-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M2 20h20"/>
+  <path d="M2 8v12"/>
+  <path d="M10 8v12"/>
+  <path d="M10 8 2 12V8l8-4v4z"/>
+  <path d="M18 8v12"/>
+  <path d="M18 8l-8 4V8l8-4v4z"/>
+</svg></div>
         <div class="chain-name">Raffinage</div>
         <div class="chain-sub">Chine 85–98%</div>
       </div>
       <div class="chain-arrow">→</div>
       <div class="chain-step" style="transition-delay:.2s">
-        <div class="chain-icon">🔬</div>
+        <div class="chain-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M6 18h8"/>
+  <path d="M3 22h18"/>
+  <path d="M14 22a7 7 0 1 0 0-14h-1"/>
+  <path d="M9 14h2"/>
+  <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2z"/>
+  <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+</svg></div>
         <div class="chain-name">Matériaux</div>
         <div class="chain-sub">Japon, Corée</div>
       </div>
       <div class="chain-arrow">→</div>
       <div class="chain-step" style="transition-delay:.3s">
-        <div class="chain-icon">⚙️</div>
+        <div class="chain-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="3"/>
+  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+</svg></div>
         <div class="chain-name">Équipements</div>
         <div class="chain-sub">ASML (NL), AMAT (US)</div>
       </div>
       <div class="chain-arrow">→</div>
       <div class="chain-step" style="transition-delay:.4s">
-        <div class="chain-icon">💾</div>
+        <div class="chain-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="4" y="2" width="16" height="20" rx="1"/>
+  <path d="M9 2v6h6V2"/>
+  <circle cx="12" cy="14" r="2.5"/>
+</svg></div>
         <div class="chain-name">Fonderie</div>
         <div class="chain-sub">TSMC (Taïwan)</div>
       </div>
       <div class="chain-arrow">→</div>
       <div class="chain-step" style="transition-delay:.5s">
-        <div class="chain-icon">📱</div>
+        <div class="chain-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="7" y="2" width="10" height="20" rx="2"/>
+  <path d="M11 18h2"/>
+</svg></div>
         <div class="chain-name">Assemblage</div>
         <div class="chain-sub">Chine, Inde, Vietnam</div>
       </div>
       <div class="chain-arrow">→</div>
       <div class="chain-step" style="transition-delay:.6s">
-        <div class="chain-icon">🌍</div>
+        <div class="chain-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="10"/>
+  <path d="M2 12h20"/>
+  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+</svg></div>
         <div class="chain-name">Distribution</div>
         <div class="chain-sub">Monde entier</div>
       </div>
