@@ -313,6 +313,7 @@ markers.forEach((m,i)=>{
 let autoRot=true, isDrag=false, prevX=0, prevY=0;
 let targetRotY=0.5, targetRotX=0.1;
 let curRotY=0.5, curRotX=0.1;
+let targetCamZ=2.8, curCamZ=2.8; // zoom camera
 let t=0;
 
 const mouse = new THREE.Vector2();
@@ -327,16 +328,18 @@ function startTour(){
   touring=true;
   goToZone(0);
 }
+function resetZoom(){ targetCamZ=2.8; }
 
 function goToZone(i){
   if(i<0||i>=ZONES.length) return;
   currentZone=i;
   const z=ZONES[i];
 
-  // Voler vers la zone
+  // Voler vers la zone — centrage précis sur lat/lng
   autoRot=false;
   targetRotY=-z.lng*Math.PI/180;
-  targetRotX=z.lat*Math.PI/180*0.4;
+  targetRotX=z.lat*Math.PI/180; // facteur 1.0 pour centrage exact
+  targetCamZ=2.05; // zoom in
 
   // Envoyer les données au parent Next.js
   window.parent.postMessage({type:'ZONE_CHANGE', zone:z, index:i, total:ZONES.length}, '*');
@@ -487,10 +490,13 @@ function animate(){
   t+=0.008;
   if(autoRot) targetRotY+=0.002;
 
-  curRotY+=(targetRotY-curRotY)*0.10;
-  curRotX+=(targetRotX-curRotX)*0.10;
+  curRotY+=(targetRotY-curRotY)*0.08;
+  curRotX+=(targetRotX-curRotX)*0.08;
   globeGroup.rotation.y=curRotY;
   globeGroup.rotation.x=curRotX;
+  // Zoom caméra fluide
+  curCamZ+=(targetCamZ-curCamZ)*0.06;
+  cam.position.z=curCamZ;
 
   // Pulse markers
   markers.forEach((m,i)=>{
