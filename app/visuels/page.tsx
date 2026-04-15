@@ -235,6 +235,25 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          <a href="/visuels/techgeo.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--tech)'}}>Tech · Géopolitique · Visualisation</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>La bataille pour le sous-sol numérique</h3>
+              <p className={styles.featSub}>Terres rares · Semi-conducteurs · Câbles sous-marins</p>
+              <p className={styles.featDesc}>
+                Des mines de Mongolie aux fabs de Taïwan — une guerre souterraine pour les matériaux
+                qui font tourner l&apos;économie numérique mondiale.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la visualisation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
 
         </section>
 
