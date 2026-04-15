@@ -176,7 +176,7 @@
     "slug": "afrique",
     "title": "La France en Afrique : la fin d'un monde",
     "description": "Coups d'État au Sahel, retrait militaire, perte d'influence face à la Russie et à la Chine. La France n'a pas perdu l'Afrique par accident. Elle l'a perdue par aveuglement.",
-    "image": "https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/twCGQsPB/img-afrique.jpg",
+    "image": "/afrique-hero.png",
     "category": "geo",
     "readTime": "8",
     "author": "Steve Moradel",
