@@ -382,11 +382,11 @@
 /* ════════════════════════════════════
    9. NEWSLETTER
 ════════════════════════════════════ */
-.nl { background:#0A0A0A; padding:48px 16px; }
+.nl { background:#FAF9F6; padding:48px 16px; border-top:2px solid #0A0A0A; }
 .nlInner { max-width:480px; margin:0 auto; }
 .nlEyebrow { font-family:'DM Mono',monospace; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#C8A96E; margin-bottom:10px; }
-.nlTitle { font-family:'Playfair Display',serif; font-size:clamp(22px,4vw,32px); font-weight:700; color:#F5E6D0; line-height:1.15; letter-spacing:-0.5px; margin-bottom:10px; }
-.nlDesc { font-size:13px; color:rgba(245,230,208,.5); line-height:1.6; margin-bottom:24px; font-family:'Georgia',serif; font-style:italic; }
+.nlTitle { font-family:'Playfair Display',serif; font-size:clamp(22px,4vw,32px); font-weight:700; color:#0A0A0A; line-height:1.15; letter-spacing:-0.5px; margin-bottom:10px; }
+.nlDesc { font-size:13px; color:#777; line-height:1.6; margin-bottom:24px; font-family:'Georgia',serif; font-style:italic; }
 
 /* ════════════════════════════════════
    DESKTOP ≥ 900px
