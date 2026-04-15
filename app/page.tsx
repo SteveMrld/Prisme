@@ -33,8 +33,8 @@ const TV_EPISODES = [
 // Sections de la une — ordre éditorial
 const LEAD = art('afrique')           // article principal
 const SECONDARY = [
-  art('empire-du-droit'),             // ligne 2 gauche
-  art('terres-rares'),                // ligne 2 droite (avec image)
+  art('terres-rares'),                // ligne 2 gauche (avec image)
+  art('empire-du-droit'),             // ligne 2 droite (texte seul)
 ]
 const TRIO = [                         // ligne 3 — 3 articles texte seul
   art('societe-du-consentement'),
@@ -109,22 +109,22 @@ export default function HomePage() {
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.row2}>
-        {/* Gauche — texte seul */}
-        <Link href={SECONDARY[0].grandFormatUrl || `/articles/${SECONDARY[0].slug}`} className={`${styles.rowCard} ${styles.rowCardText}`}>
-          <span className={styles.cat}>{SECONDARY[0].catLabel}</span>
-          <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: SECONDARY[0].title}} />
-          {SECONDARY[0].description && <p className={styles.rowDesc}>{SECONDARY[0].description}</p>}
-          <ReadTime t={SECONDARY[0].readTime || '8'} />
-        </Link>
-        {/* Droite — avec image */}
-        <Link href={SECONDARY[1].grandFormatUrl || `/articles/${SECONDARY[1].slug}`} className={`${styles.rowCard} ${styles.rowCardImg}`}>
-          {SECONDARY[1].image && (
+        {/* Gauche — avec image */}
+        <Link href={SECONDARY[0].grandFormatUrl || `/articles/${SECONDARY[0].slug}`} className={`${styles.rowCard} ${styles.rowCardImg}`}>
+          {SECONDARY[0].image && (
             <div className={styles.rowImgWrap}>
-              <img src={SECONDARY[1].image} alt={SECONDARY[1].title} />
+              <img src={SECONDARY[0].image} alt={SECONDARY[0].title} />
             </div>
           )}
+          <span className={styles.cat}>{SECONDARY[0].catLabel}</span>
+          <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: SECONDARY[0].title}} />
+          <ReadTime t={SECONDARY[0].readTime || '8'} />
+        </Link>
+        {/* Droite — texte seul */}
+        <Link href={SECONDARY[1].grandFormatUrl || `/articles/${SECONDARY[1].slug}`} className={`${styles.rowCard} ${styles.rowCardText}`}>
           <span className={styles.cat}>{SECONDARY[1].catLabel}</span>
           <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: SECONDARY[1].title}} />
+          {SECONDARY[1].description && <p className={styles.rowDesc}>{SECONDARY[1].description}</p>}
           <ReadTime t={SECONDARY[1].readTime || '8'} />
         </Link>
       </section>
