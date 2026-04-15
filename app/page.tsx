@@ -33,18 +33,15 @@ const TV_EPISODES = [
 ]
 
 // Sections de la une — ordre éditorial
-// Hero — 5 articles mixtes qui tournent
-const HERO_ROTATION = [
-  art('afrique'), art('empire-du-droit'), art('terres-rares'),
-  art('chambre-ratification'), art('ceux-qui-nont-pas-cede'),
+// Ligne 2 — 6 articles, disposition titre+vignette
+const ROW2 = [
+  art('empire-du-droit'),
+  art('societe-du-consentement'),
+  art('ceux-qui-nont-pas-cede'),
+  art('terres-rares'),
+  art('chambre-ratification'),
+  art('skunkworks'),
 ]
-// Colonne droite — tous les grands formats
-const GF_ROTATION = [
-  art('terres-rares'), art('medias'), art('chambre-ratification'),
-  art('skunkworks'), art('dette-souveraine'), art('france_maritime'),
-  art('eau'), art('techgeo'), art('taiwan'), art('semico'),
-]
-const SECONDARY_LEFT = art('empire-du-droit')
 const TRIO = [                         // ligne 3 — 3 articles texte seul
   art('societe-du-consentement'),
   art('ceux-qui-nont-pas-cede'),
@@ -100,20 +97,35 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          2. LIGNE 2 — texte gauche + rotateur droite
+          2. LIGNE 2 — 2 colonnes × 3 articles (titre + vignette)
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.row2}>
-        {/* Gauche — texte seul */}
-        <Link href={SECONDARY_LEFT.grandFormatUrl || `/articles/${SECONDARY_LEFT.slug}`} className={`${styles.rowCard} ${styles.rowCardText}`}>
-          <span className={styles.cat}>{SECONDARY_LEFT.catLabel}</span>
-          <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: SECONDARY_LEFT.title}} />
-          {SECONDARY_LEFT.description && <p className={styles.rowDesc}>{SECONDARY_LEFT.description}</p>}
-          <ReadTime t={SECONDARY_LEFT.readTime || '8'} />
-        </Link>
-        {/* Droite — grands formats en rotation */}
-        <div className={`${styles.rowCard} ${styles.rowCardImg}`}>
-          <CardRotator articles={GF_ROTATION} />
+        {/* Col gauche */}
+        <div className={styles.rowCol}>
+          {ROW2.slice(0,3).map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
+              <div className={styles.rowItemBody}>
+                <span className={styles.cat}>{a.catLabel}</span>
+                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <ReadTime t={a.readTime || '7'} />
+              </div>
+              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
+            </Link>
+          ))}
+        </div>
+        {/* Col droite */}
+        <div className={styles.rowCol}>
+          {ROW2.slice(3,6).map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
+              <div className={styles.rowItemBody}>
+                <span className={styles.cat}>{a.catLabel}</span>
+                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <ReadTime t={a.readTime || '7'} />
+              </div>
+              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
+            </Link>
+          ))}
         </div>
       </section>
       </FadeSection>
