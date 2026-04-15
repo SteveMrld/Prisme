@@ -2,6 +2,8 @@ export const dynamic = 'force-dynamic'
 
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
+import HeroRotator from '../components/HeroRotator'
+import CardRotator from '../components/CardRotator'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -31,11 +33,18 @@ const TV_EPISODES = [
 ]
 
 // Sections de la une — ordre éditorial
-const LEAD = art('afrique')           // article principal
-const SECONDARY = [
-  art('terres-rares'),                // ligne 2 gauche (avec image)
-  art('empire-du-droit'),             // ligne 2 droite (texte seul)
+// Hero — 5 articles mixtes qui tournent
+const HERO_ROTATION = [
+  art('afrique'), art('empire-du-droit'), art('terres-rares'),
+  art('chambre-ratification'), art('ceux-qui-nont-pas-cede'),
 ]
+// Colonne droite — tous les grands formats
+const GF_ROTATION = [
+  art('terres-rares'), art('medias'), art('chambre-ratification'),
+  art('skunkworks'), art('dette-souveraine'), art('france_maritime'),
+  art('eau'), art('techgeo'), art('taiwan'), art('semico'),
+]
+const SECONDARY_LEFT = art('empire-du-droit')
 const TRIO = [                         // ligne 3 — 3 articles texte seul
   art('societe-du-consentement'),
   art('ceux-qui-nont-pas-cede'),
@@ -84,49 +93,28 @@ export default function HomePage() {
       <Ticker />
 
       {/* ══════════════════════════════════════
-          1. LEAD — article principal pleine largeur
+          1. HERO — slider automatique
       ══════════════════════════════════════ */}
-      <FadeSection>
       <section className={styles.lead}>
-        <Link href={LEAD.grandFormatUrl || `/articles/${LEAD.slug}`} className={styles.leadLink}>
-          {LEAD.image && (
-            <div className={styles.leadImg}>
-              <img src={LEAD.image} alt={LEAD.title} />
-            </div>
-          )}
-          <div className={styles.leadBody}>
-            <span className={styles.cat}>{LEAD.catLabel}</span>
-            <h2 className={styles.leadTitle} dangerouslySetInnerHTML={{__html: LEAD.title}} />
-            {LEAD.description && <p className={styles.leadDesc}>{LEAD.description}</p>}
-            <ReadTime t={LEAD.readTime || '10'} />
-          </div>
-        </Link>
+        <HeroRotator articles={HERO_ROTATION} intervalMs={4000} />
       </section>
-      </FadeSection>
 
       {/* ══════════════════════════════════════
-          2. LIGNE 2 — texte gauche + image droite
+          2. LIGNE 2 — texte gauche + rotateur droite
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.row2}>
-        {/* Gauche — avec image */}
-        <Link href={SECONDARY[0].grandFormatUrl || `/articles/${SECONDARY[0].slug}`} className={`${styles.rowCard} ${styles.rowCardImg}`}>
-          {SECONDARY[0].image && (
-            <div className={styles.rowImgWrap}>
-              <img src={SECONDARY[0].image} alt={SECONDARY[0].title} />
-            </div>
-          )}
-          <span className={styles.cat}>{SECONDARY[0].catLabel}</span>
-          <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: SECONDARY[0].title}} />
-          <ReadTime t={SECONDARY[0].readTime || '8'} />
+        {/* Gauche — texte seul */}
+        <Link href={SECONDARY_LEFT.grandFormatUrl || `/articles/${SECONDARY_LEFT.slug}`} className={`${styles.rowCard} ${styles.rowCardText}`}>
+          <span className={styles.cat}>{SECONDARY_LEFT.catLabel}</span>
+          <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: SECONDARY_LEFT.title}} />
+          {SECONDARY_LEFT.description && <p className={styles.rowDesc}>{SECONDARY_LEFT.description}</p>}
+          <ReadTime t={SECONDARY_LEFT.readTime || '8'} />
         </Link>
-        {/* Droite — texte seul */}
-        <Link href={SECONDARY[1].grandFormatUrl || `/articles/${SECONDARY[1].slug}`} className={`${styles.rowCard} ${styles.rowCardText}`}>
-          <span className={styles.cat}>{SECONDARY[1].catLabel}</span>
-          <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: SECONDARY[1].title}} />
-          {SECONDARY[1].description && <p className={styles.rowDesc}>{SECONDARY[1].description}</p>}
-          <ReadTime t={SECONDARY[1].readTime || '8'} />
-        </Link>
+        {/* Droite — grands formats en rotation */}
+        <div className={`${styles.rowCard} ${styles.rowCardImg}`}>
+          <CardRotator articles={GF_ROTATION} />
+        </div>
       </section>
       </FadeSection>
 
