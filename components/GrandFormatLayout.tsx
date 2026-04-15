@@ -83,7 +83,7 @@ export default function GrandFormatLayout({
   // Articles liés
   const related = (articlesData as any[])
     .filter(a => a.category === category && a.slug !== slug)
-    .slice(0, 3)
+    .slice(0, 4)
 
   useEffect(() => {
     if (!content) return
