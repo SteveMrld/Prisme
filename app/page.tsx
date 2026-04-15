@@ -67,8 +67,10 @@ const GF = [
 const LATEST = (articlesData as any[])
   .filter((a:any) => !a.featured)
   .sort((a:any,b:any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(0,8)
+  .slice(0,5)
   .map((a:any) => ({...a, catLabel: CAT[a.category]||a.category}))
+
+const POPULAR = ['arctique','chine','empire-du-droit','moreno','lecture'].map(art)
 
 // ── Composants atomiques ──────────────────────────────────
 function ReadTime({ t }: { t: string }) {
@@ -227,27 +229,36 @@ export default function HomePage() {
       </FadeSection>
 
       {/* ══════════════════════════════════════
-          8. DERNIÈRES PUBLICATIONS
+          8. DERNIÈRES + POPULAIRES
       ══════════════════════════════════════ */}
-      <SectionHead label="Dernières publications" href="/articles" />
-      <FadeSection>
-      <section className={styles.latestSection}>
-        {LATEST.map((a, i) => (
-          <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.latestItem}>
-            <div className={styles.latestBody}>
-              <span className={styles.cat}>{a.catLabel}</span>
-              <h3 className={styles.latestTitle} dangerouslySetInnerHTML={{__html: a.title}} />
-              <ReadTime t={a.readTime || '7'} />
-            </div>
-            {i % 3 === 0 && a.image && (
-              <div className={styles.latestImgWrap}>
-                <img src={a.image} alt={a.title} />
+      <div className={styles.row2}>
+        <div className={styles.rowCol}>
+          <SectionHead label="Dernières publications" href="/articles" />
+          {LATEST.map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
+              <div className={styles.rowItemBody}>
+                <span className={styles.cat}>{a.catLabel}</span>
+                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <ReadTime t={a.readTime || '7'} />
               </div>
-            )}
-          </Link>
-        ))}
-      </section>
-      </FadeSection>
+              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
+            </Link>
+          ))}
+        </div>
+        <div className={styles.rowCol}>
+          <SectionHead label="Les plus lus" />
+          {POPULAR.map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
+              <div className={styles.rowItemBody}>
+                <span className={styles.cat}>{a.catLabel}</span>
+                <h3 className={styles.rowTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                <ReadTime t={a.readTime || '7'} />
+              </div>
+              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
+            </Link>
+          ))}
+        </div>
+      </div>
 
       {/* ══════════════════════════════════════
           9. NEWSLETTER
