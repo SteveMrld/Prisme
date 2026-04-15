@@ -335,10 +335,10 @@ function goToZone(i){
   currentZone=i;
   const z=ZONES[i];
 
-  // Voler vers la zone — centrage précis sur lat/lng
+  // Voler vers la zone — formule correcte pour ll2v qui utilise (lng+180)
   autoRot=false;
-  targetRotY=-z.lng*Math.PI/180;
-  targetRotX=z.lat*Math.PI/180; // facteur 1.0 pour centrage exact
+  targetRotY=-(Math.PI/2 + z.lng*Math.PI/180);
+  targetRotX=z.lat*Math.PI/180;
   targetCamZ=2.05; // zoom in
 
   // Envoyer les données au parent Next.js
