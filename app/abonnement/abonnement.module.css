@@ -198,7 +198,7 @@
 .previewImg {
   height: 160px;
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   background-color: #e8e4de;
 }
 
