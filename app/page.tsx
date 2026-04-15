@@ -190,7 +190,7 @@ export default function HomePage() {
       <FadeSection>
       <section className={styles.gfSection}>
         {GF.map((a, i) => {
-          const hasImg = i % 4 < 2  // rangées paires = avec image, impaires = sans
+          const hasImg = i % 4 < 2
           return (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfCard}>
               {hasImg && a.image && (
@@ -200,9 +200,17 @@ export default function HomePage() {
               )}
               <div className={styles.gfBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={`${styles.gfTitle} ${!hasImg ? styles.gfTitleLarge : ''}`}
-                    dangerouslySetInnerHTML={{__html: a.title}} />
-                <ReadTime t={a.readTime || '12'} />
+                <h3 className={`${styles.gfTitle} ${!hasImg ? styles.gfTitleLarge : ''}`}>
+                  <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
+                </h3>
+                <div className={styles.gfMeta}>
+                  <ReadTime t={a.readTime || '12'} />
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,opacity:.7}}>
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+                    <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                  </svg>
+                </div>
               </div>
             </Link>
           )
@@ -258,12 +266,22 @@ export default function HomePage() {
           8. DERNIÈRES + POPULAIRES
       ══════════════════════════════════════ */}
       <div className={`${styles.row2} ${styles.row2LastSection}`}>
+        {/* Dernières publications */}
         <div className={styles.rowCol}>
           <SectionHead label="Dernières publications" />
-          {LATEST.map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
+          {LATEST.map((a, i) => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.latestItem2}>
+              <div className={styles.latestItem2Bar} style={{background: a.catColor || '#C8A96E', width: i === 0 ? '4px' : '3px'}} />
               <div className={styles.rowItemBody}>
-                <span className={styles.cat}>{a.catLabel}</span>
+                <div className={styles.latestItem2Top}>
+                  <span className={styles.cat}>{a.catLabel}</span>
+                  <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
+                    {i === 0 && <span className={styles.recentTag}>Récent</span>}
+                    <span className={styles.latestItem2Date}>
+                      {new Date(a.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})}
+                    </span>
+                  </div>
+                </div>
                 <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <ReadTime t={a.readTime || '7'} />
               </div>
@@ -271,16 +289,19 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+
+        {/* Les plus lus */}
         <div className={styles.rowCol}>
           <SectionHead label="Les plus lus" />
-          {POPULAR.map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
+          {POPULAR.map((a, i) => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.popularItem}>
+              <span className={styles.popularRank}>0{i + 1}</span>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
                 <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <ReadTime t={a.readTime || '7'} />
               </div>
-              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
+              <span className={styles.popularArrow}>→</span>
             </Link>
           ))}
         </div>
