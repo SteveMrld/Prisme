@@ -166,20 +166,21 @@ export default function HomePage() {
           4. GRAND ENTRETIEN
       ══════════════════════════════════════ */}
       <FadeSection>
-      <section className={styles.entretien}>
-        <div className={styles.entretienImg}>
-          <img src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} />
+      <Link href={ENTRETIEN_ART.href} className={styles.entretien}>
+        {/* Photo en bannière pleine largeur */}
+        <div className={styles.entretienBanner}>
+          <img src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} className={styles.entretienBannerImg} />
+          <div className={styles.entretienBannerGrad} />
+          <span className={styles.entretienBannerLabel}>Grand Entretien · N°1</span>
         </div>
+        {/* Texte en dessous, aéré */}
         <div className={styles.entretienBody}>
-          <span className={styles.entretienLabel}>Grand Entretien · N°1</span>
-          <h2 className={styles.entretienName}>
-            Cheick Modibo <em>Diarra</em>
-          </h2>
+          <h2 className={styles.entretienName}>Cheick Modibo <em>Diarra</em></h2>
           <p className={styles.entretienDeck}>{ENTRETIEN_ART.deck}</p>
-          <p className={styles.entretienExcerpt}>Ingénieur de navigation sur cinq missions NASA dont Mars Pathfinder, ancien président de Microsoft Afrique pendant dix ans, ancien Premier ministre du Mali en pleine crise institutionnelle. Cette trajectoire singulière — la science, le capital technologique mondial, le pouvoir politique africain — en fait l'interlocuteur inaugural de Soara…</p>
-          <Link href={ENTRETIEN_ART.href} className={styles.entretienCta}>Lire dès la parution</Link>
+          <p className={styles.entretienExcerpt}>Ingénieur de navigation sur cinq missions NASA dont Mars Pathfinder, ancien président de Microsoft Afrique pendant dix ans, ancien Premier ministre du Mali en pleine crise institutionnelle. Cette trajectoire — la science, le capital technologique mondial, le pouvoir politique africain — en fait l'interlocuteur inaugural de Soara…</p>
+          <span className={styles.entretienCta}>Lire dès la parution →</span>
         </div>
-      </section>
+      </Link>
       </FadeSection>
 
       {/* ══════════════════════════════════════
