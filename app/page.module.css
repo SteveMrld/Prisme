@@ -202,7 +202,7 @@
 ════════════════════════════════════ */
 .entretien {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 95px 1fr;
   background: #FAF7F4;
   border-bottom: 1px solid #E8E2DA;
   border-top: 3px solid #8B1A1A;
@@ -399,7 +399,7 @@
   .rowCard { padding: 24px 32px; }
   .trio { padding: 0 0; }
   .trioCard { padding: 24px 24px 28px; }
-  .entretien { grid-template-columns: 260px 1fr; }
+  .entretien { grid-template-columns: 200px 1fr; }
   .entretienBody { padding: 32px 48px; gap: 12px; }
   .gfSection { grid-template-columns: repeat(4, 1fr); }
   .gfCard:nth-child(even) { border-right: 1px solid #E8E2DA; }
