@@ -86,7 +86,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#F0EAE2;color:#1C181
   <div id="ctrl">
     <div id="dots"></div>
     <button class="cbtn" onclick="prev()"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
-    <button class="cbtn" id="bplay" onclick="togglePlay()"><svg class="ip" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ipa" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
+    <button class="cbtn on" id="bplay" onclick="togglePlay()"><svg class="ip" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ipa" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></button>
     <button class="cbtn" onclick="next()"><svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
     <span id="cnt">1 / 5</span>
   </div>
@@ -160,23 +160,33 @@ function animGroup(g){
   });
 }
 
-/* Repère barrage — simple tiret perpendiculaire, style topo */
+/* ══ BARRAGE — pictogramme architectural élégant ══ */
 function drawDam(g,lon,lat,col){
-  var pt=proj([lon,lat]); if(!pt)return; col=col||'#8B1A1A';
-  var sz=isMobile?6:9;
+  var pt=proj([lon,lat]); if(!pt)return;
+  col=col||'#8B1A1A';
+  var w=isMobile?8:12, h=isMobile?3:4;
   var dg=g.append('g').attr('transform','translate('+pt[0]+','+pt[1]+')');
-  dg.append('line').attr('x1',-sz).attr('y1',0).attr('x2',sz).attr('y2',0).attr('stroke',col).attr('stroke-width',2.5).attr('stroke-linecap','square');
-  [-sz*.6,-sz*.2,sz*.2,sz*.6].forEach(function(x){
-    dg.append('line').attr('x1',x).attr('y1',0).attr('x2',x-1.5).attr('y2',sz*.5).attr('stroke',col).attr('stroke-width',1);
-  });
+  /* Corps du barrage — rectangle plein */
+  dg.append('rect').attr('x',-w/2).attr('y',-h/2).attr('width',w).attr('height',h)
+    .attr('fill',col).attr('rx',0);
+  /* Ligne eau amont — trait très fin au-dessus */
+  dg.append('line').attr('x1',-w/2).attr('y1',-h/2-2).attr('x2',w/2).attr('y2',-h/2-2)
+    .attr('stroke','rgba(60,100,180,.5)').attr('stroke-width',.8);
 }
 
-/* Point de tension — cercle + croix */
+/* ══ TENSION — diamant cartographique fin ══ */
 function drawTension(g,lon,lat,col){
-  var pt=proj([lon,lat]); if(!pt)return; col=col||'#8B1A1A';
-  var r=isMobile?4:5;
+  var pt=proj([lon,lat]); if(!pt)return;
+  col=col||'#8B1A1A';
+  var r=isMobile?5:6.5;
   var tg=g.append('g').attr('transform','translate('+pt[0]+','+pt[1]+')');
-  tg.append('circle').attr('r',r).attr('fill','none').attr('stroke',col).attr('stroke-width',1.5);
+  /* Anneau extérieur très fin */
+  tg.append('circle').attr('r',r).attr('fill','none')
+    .attr('stroke',col).attr('stroke-width',.8).attr('opacity',.7);
+  /* Anneau intérieur */
+  tg.append('circle').attr('r',r*.45).attr('fill','none')
+    .attr('stroke',col).attr('stroke-width',.8);
+  /* Centre plein */
   tg.append('circle').attr('r',1.5).attr('fill',col);
 }
 
@@ -367,7 +377,7 @@ function startProg(){
 function seek(e){var r=e.currentTarget.getBoundingClientRect();goTo(Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left)/r.width*(N-1)))))}
 function next(){if(tmr)clearTimeout(tmr);cur=cur<N-1?cur+1:0;showSlide(cur);if(!paused)sched()}
 function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!paused)sched()}
-function sched(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,10000)}
+function sched(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,7000)}
 function goTo(i){if(tmr)clearTimeout(tmr);cur=i;showSlide(i);if(!paused)sched()}
 function togglePlay(){
   paused=!paused;var b=document.getElementById('bplay');
