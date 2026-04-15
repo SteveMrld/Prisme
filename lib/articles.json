@@ -637,6 +637,7 @@
     "date": "2026-04-14",
     "premium": false,
     "featured": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "imagePosition": "center 15%"
   }
 ]

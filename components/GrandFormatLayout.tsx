@@ -58,6 +58,7 @@ export default function GrandFormatLayout({
   const readTime    = rtProp       || article?.readTime    || '12'
   const date        = dateProp     || article?.date        || ''
   const author      = authorProp   || article?.author      || 'Steve Moradel'
+  const imagePosition = article?.imagePosition || 'center 30%'
   const authorRole  = roleProp     || article?.authorRole  || ''
 
   const color = categoryColors[category] || '#B91C1C'
@@ -122,7 +123,7 @@ export default function GrandFormatLayout({
       {/* ── COVER IMAGE (si pas dans le HTML) ── */}
       {image && !hasHeroInContent && (
         <div className={styles.heroWrap}>
-          <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg} />
+          <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg} style={{objectPosition: imagePosition}} />
         </div>
       )}
 
