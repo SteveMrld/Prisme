@@ -176,6 +176,7 @@ export default function HomePage() {
             Cheick Modibo <em>Diarra</em>
           </h2>
           <p className={styles.entretienDeck}>{ENTRETIEN_ART.deck}</p>
+          <p className={styles.entretienExcerpt}>Ingénieur de navigation sur cinq missions NASA dont Mars Pathfinder, ancien président de Microsoft Afrique pendant dix ans, ancien Premier ministre du Mali en pleine crise institutionnelle. Cette trajectoire singulière — la science, le capital technologique mondial, le pouvoir politique africain — en fait l'interlocuteur inaugural de Soara…</p>
           <Link href={ENTRETIEN_ART.href} className={styles.entretienCta}>Lire dès la parution</Link>
         </div>
       </section>
