@@ -8,9 +8,8 @@ import styles from './abonnement.module.css'
 
 const PREVIEWS = [
   { cat: 'Grand format', title: 'La chambre de ratification', desc: 'Comment Netanyahu a décidé une guerre américaine.', img: '/grands-formats/chambre-hero.jpg' },
-  { cat: 'Grand format', title: "La fabrique de l'impossible", desc: "Skunk Works, le laboratoire secret qui a changé l'aviation.", img: '/grands-formats/skunkworks/hangar-1943.png' },
-  { cat: 'Grand format', title: 'Terres rares', desc: "Du cobalt du Katanga aux usines de Shenzhen — la nouvelle géographie de la dépendance.", img: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_800/https://i.ibb.co/NnzV5Ky/img-terres-rares.jpg' },
-  { cat: 'Atlas', title: 'Les mers du pouvoir', desc: "80% du commerce mondial circule sur l'eau. Carte animée en 5 chapitres.", img: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_800/https://i.ibb.co/vCpv1sLb/img-techgeo.jpg' },
+  { cat: 'Grand format', title: "L'eau : la prochaine grande fracture", desc: "Des glaciers himalayens aux barrages africains. La géopolitique de l'eau.", img: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_800/https://i.ibb.co/mVBDmC2j/img-eau.png' },
+  { cat: 'Atlas', title: 'La bataille pour le sous-sol numérique', desc: "Des mines de terres rares aux fabs de Taïwan — la guerre souterraine.", img: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_800/https://i.ibb.co/vCpv1sLb/img-techgeo.jpg' },
 ]
 
 const FEATURES = [
