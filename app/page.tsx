@@ -33,6 +33,12 @@ const TV_EPISODES = [
 ]
 
 // Sections de la une — ordre éditorial
+// Hero — 5 articles mixtes qui tournent
+const HERO_ROTATION = [
+  art('afrique'), art('empire-du-droit'), art('terres-rares'),
+  art('chambre-ratification'), art('ceux-qui-nont-pas-cede'),
+]
+
 // Ligne 2 — 6 articles, disposition titre+vignette
 const ROW2 = [
   art('empire-du-droit'),
