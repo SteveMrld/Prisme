@@ -359,7 +359,10 @@
   .featured { grid-template-columns: 1fr; }
   .featuredImgWrap { height: 240px; }
   .featuredBody { padding: 32px 24px; border-left: none; border-top: 1px solid var(--bord); }
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .cardImgWrapPortrait { aspect-ratio: 1 / 1; }
+  .cardBody { padding: 8px 10px 12px; }
+  .cardTitle { font-size: 11px; }
   .footer { padding: 40px 24px; }
 }
 
