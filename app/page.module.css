@@ -222,19 +222,19 @@
 .entretienBanner {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 260px;
   overflow: hidden;
 }
 .entretienBannerImg {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 10%;
   display: block;
   filter: grayscale(15%);
 }
 .entretienBannerGrad {
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 30%, rgba(250,247,244,.95) 100%);
+  background: linear-gradient(to bottom, transparent 72%, rgba(250,247,244,.95) 100%);
 }
 .entretienBannerLabel {
   position: absolute;
