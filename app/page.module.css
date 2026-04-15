@@ -49,7 +49,6 @@
   justify-content: space-between;
   padding: 20px 16px 10px;
   border-top: 2px solid #0A0A0A;
-  margin-top: 8px;
 }
 .sectionHeadLabel {
   font-family: 'Playfair Display', serif;
@@ -119,7 +118,6 @@
 .row2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid #E8E2DA;
 }
 .rowCol {
   display: flex;
@@ -139,6 +137,7 @@
 }
 .rowItem:hover { background: #FAFAF8; }
 .rowItem:last-child { border-bottom: none; }
+.rowCol:last-child .rowItem:last-child { border-bottom: none; }
 .rowItemBody { flex: 1; min-width: 0; }
 .rowThumb {
   width: 72px;
@@ -177,7 +176,6 @@
 .trio {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid #E8E2DA;
 }
 .trioCard {
   display: block;
@@ -205,9 +203,9 @@
 .entretien {
   display: grid;
   grid-template-columns: 130px 1fr;
-  border-bottom: 1px solid #E8E2DA;
-  border-top: 2px solid #8B1A1A;
   background: #FAF7F4;
+  border-bottom: 1px solid #E8E2DA;
+  border-top: 3px solid #8B1A1A;
 }
 .entretienImg {
   overflow: hidden;
@@ -354,9 +352,7 @@
 /* ════════════════════════════════════
    8. DERNIÈRES PUBLICATIONS
 ════════════════════════════════════ */
-.latestSection {
-  border-bottom: 1px solid #E8E2DA;
-}
+.latestSection {}
 .latestItem {
   display: flex;
   align-items: flex-start;
