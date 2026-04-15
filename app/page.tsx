@@ -70,7 +70,7 @@ const LATEST = (articlesData as any[])
   .slice(0,5)
   .map((a:any) => ({...a, catLabel: CAT[a.category]||a.category}))
 
-const POPULAR = ['arctique','chine','empire-du-droit','moreno','lecture'].map(art)
+const POPULAR = ['empire-du-droit','moreno','lecture','palantir','skunkworks'].map(art)
 
 // ── Composants atomiques ──────────────────────────────────
 function ReadTime({ t }: { t: string }) {
@@ -233,7 +233,7 @@ export default function HomePage() {
       ══════════════════════════════════════ */}
       <div className={styles.row2}>
         <div className={styles.rowCol}>
-          <SectionHead label="Dernières publications" href="/articles" />
+          <SectionHead label="Dernières publications" />
           {LATEST.map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
               <div className={styles.rowItemBody}>
