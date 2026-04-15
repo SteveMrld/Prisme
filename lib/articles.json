@@ -638,8 +638,8 @@
     "premium": false,
     "featured": false,
     "imageCredit": "© SOARA",
-    "imagePosition": "center 18%",
-    "imageHeight": "900",
+    "imagePosition": "center center",
+    "imageHeight": "600",
     "imageFit": "contain"
   }
 ]
