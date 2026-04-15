@@ -38,19 +38,17 @@ const HERO_ROTATION = [
   art('chambre-ratification'), art('ceux-qui-nont-pas-cede'),
 ]
 
-// Ligne 2 — 6 articles, disposition titre+vignette
+// Ligne 2 — 4 articles uniques (2 par colonne), titre + vignette
 const ROW2 = [
   art('empire-du-droit'),
   art('societe-du-consentement'),
-  art('ceux-qui-nont-pas-cede'),
   art('terres-rares'),
-  art('chambre-ratification'),
   art('skunkworks'),
 ]
-const TRIO = [                         // ligne 3 — 3 articles texte seul
-  art('societe-du-consentement'),
-  art('ceux-qui-nont-pas-cede'),
+const TRIO = [                         // ligne 3 — 3 articles différents, texte seul
   art('chambre-ratification'),
+  art('dette-souveraine'),
+  art('moreno'),
 ]
 const ENTRETIEN_ART = {
   name: 'Cheick Modibo Diarra',
@@ -108,7 +106,7 @@ export default function HomePage() {
       <section className={styles.row2}>
         {/* Col gauche */}
         <div className={styles.rowCol}>
-          {ROW2.slice(0,3).map(a => (
+          {ROW2.slice(0,2).map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
@@ -121,7 +119,7 @@ export default function HomePage() {
         </div>
         {/* Col droite */}
         <div className={styles.rowCol}>
-          {ROW2.slice(3,6).map(a => (
+          {ROW2.slice(2,4).map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
