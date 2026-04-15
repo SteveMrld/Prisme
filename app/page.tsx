@@ -211,23 +211,32 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           6. SOARA TV
       ══════════════════════════════════════ */}
-      <SectionHead label="Soara TV" href="/tv" />
       <FadeSection>
-      <div className={styles.tvStrip}>
-        {TV_EPISODES.map(ep => (
-          <Link key={ep.id} href={ep.href} className={styles.tvCard}>
-            <div className={styles.tvThumbWrap}>
-              <img src={ep.thumb} alt={ep.title} className={styles.tvThumb} />
-              <div className={styles.tvPlay}>▶</div>
-            </div>
-            <div className={styles.tvInfo}>
-              <span className={styles.tvNum}>Ép. {ep.id}</span>
-              <span className={styles.tvTitle}>{ep.title}</span>
-              <span className={styles.tvDur}>{ep.duration}</span>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <section className={styles.tvSection}>
+        <div className={styles.tvHeader}>
+          <div>
+            <div className={styles.tvEyebrow}>Soara · Vidéo</div>
+            <h2 className={styles.tvTitle}>Soara <em>TV</em></h2>
+            <p className={styles.tvIntro}>Les grandes questions du monde en 60 à 90 secondes. Géopolitique, économie, société — vus autrement.</p>
+          </div>
+          <Link href="/prismetv" className={styles.tvSeeAll}>Tous les épisodes →</Link>
+        </div>
+        <div className={styles.tvStrip}>
+          {TV_EPISODES.map(ep => (
+            <Link key={ep.id} href={ep.href} className={styles.tvCard}>
+              <div className={styles.tvThumbWrap}>
+                <img src={ep.thumb} alt={ep.title} className={styles.tvThumb} />
+                <div className={styles.tvPlay}>▶</div>
+              </div>
+              <div className={styles.tvInfo}>
+                <span className={styles.tvNum}>Ép. {ep.id}</span>
+                <span className={styles.tvTitle2}>{ep.title}</span>
+                <span className={styles.tvDur}>{ep.duration}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
       </FadeSection>
 
       {/* ══════════════════════════════════════
@@ -236,6 +245,9 @@ export default function HomePage() {
       <SectionHead label="Portraits" href="/portraits" />
       <FadeSection>
       <section className={styles.portraits}>
+        <p className={styles.portraitsIntro}>
+          Ils ont façonné leur époque, souvent contre elle. Des hommes et des femmes dont les trajectoires éclairent les grandes fractures du monde contemporain.
+        </p>
         <PortraitsSlider articles={PORTRAITS} />
       </section>
       </FadeSection>
