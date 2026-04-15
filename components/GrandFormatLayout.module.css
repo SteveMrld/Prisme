@@ -17,6 +17,19 @@
   max-height: 520px;
   overflow: hidden;
   line-height: 0;
+  position: relative;
+}
+
+/* Grain photographique — pseudo-élément overlay */
+.heroWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
 }
 
 .heroImg {
@@ -25,6 +38,9 @@
   object-fit: cover;
   object-position: center 30%;
   display: block;
+  /* Traitement photographique : désaturation légère + contraste réduit + grain pellicule */
+  filter: saturate(0.78) contrast(0.92) brightness(0.97) sepia(0.06);
+  transition: filter 0.3s ease;
 }
 
 /* ── HEADER ARTICLE ── */
