@@ -5,38 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>L'eau : la prochaine grande fracture · Soara</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;overflow:hidden;background:#EDE8DF;font-family:"DM Mono",monospace;-webkit-font-smoothing:antialiased}
-
 #stage{position:fixed;top:0;left:0;width:100%;height:calc(100% - 50px);display:flex;flex-direction:column}
 #map{flex:1;position:relative;z-index:1}
-.leaflet-container{background:#C8D8E4}
+.maplibregl-ctrl-bottom-right{display:none}
+.maplibregl-ctrl-bottom-left{display:none}
+.maplibregl-ctrl-attrib{font-size:6px;opacity:.4;position:fixed;bottom:52px;right:4px;background:transparent;pointer-events:none}
 
 /* ══ BANDE TEXTE ══ */
-#textband{
-  flex-shrink:0;height:clamp(130px,20vh,168px);
-  background:#F8F4EE;border-top:2px solid #1C1814;
-  display:flex;z-index:10;position:relative;
-}
-#txt-inner{flex:1;padding:13px 22px 11px;display:flex;flex-direction:column;gap:4px;overflow:hidden;border-right:1px solid rgba(28,24,20,.1)}
-.ptag{font-size:7px;font-weight:500;letter-spacing:4px;text-transform:uppercase;transition:color .6s}
-.phook{font-family:"Playfair Display",serif;font-size:clamp(10px,1.2vw,13px);font-style:italic;font-weight:300;color:rgba(28,24,20,.35);line-height:1.55;margin-top:2px}
-.ptitle{font-family:"Playfair Display",serif;font-size:clamp(15px,1.9vw,21px);font-weight:400;line-height:1.18;letter-spacing:-.25px;color:#1C1814;margin-top:2px}
+#textband{flex-shrink:0;height:clamp(128px,20vh,165px);background:#F8F4EE;border-top:2px solid #1C1814;display:flex;z-index:10;position:relative}
+#txt-inner{flex:1;padding:13px 20px 10px;display:flex;flex-direction:column;gap:4px;overflow:hidden;border-right:1px solid rgba(28,24,20,.1)}
+.ptag{font-size:6.5px;font-weight:500;letter-spacing:4px;text-transform:uppercase;transition:color .6s}
+.phook{font-family:"Playfair Display",serif;font-size:clamp(10px,1.15vw,12.5px);font-style:italic;font-weight:300;color:rgba(28,24,20,.35);line-height:1.55;margin-top:2px}
+.ptitle{font-family:"Playfair Display",serif;font-size:clamp(14.5px,1.85vw,20px);font-weight:400;line-height:1.2;letter-spacing:-.22px;color:#1C1814;margin-top:2px}
 .ptitle em{font-style:italic;transition:color .6s}
-.fade-out{opacity:0;transition:opacity .2s ease}
-.fade-in{opacity:1;transition:opacity .32s ease .06s}
-#stat{flex-shrink:0;width:clamp(105px,10.5vw,138px);display:flex;flex-direction:column;justify-content:center;padding:12px 15px 12px 12px}
-#pN{font-family:"Playfair Display",serif;font-size:clamp(25px,2.7vw,38px);font-weight:300;line-height:1;transition:color .6s;border-bottom:1px solid rgba(28,24,20,.1);padding-bottom:8px}
-#pL{font-size:7px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(28,24,20,.3);line-height:2;margin-top:8px}
+.fout{opacity:0;transition:opacity .18s ease}
+.fin{opacity:1;transition:opacity .3s ease .05s}
+#stat{flex-shrink:0;width:clamp(100px,10vw,132px);display:flex;flex-direction:column;justify-content:center;padding:10px 14px 10px 11px}
+#pN{font-family:"Playfair Display",serif;font-size:clamp(24px,2.6vw,36px);font-weight:300;line-height:1;transition:color .6s;border-bottom:1px solid rgba(28,24,20,.1);padding-bottom:7px}
+#pL{font-size:6.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(28,24,20,.3);line-height:2;margin-top:7px}
 
 /* ══ PLAYER ══ */
 #player{position:fixed;bottom:0;left:0;right:0;height:50px;z-index:200;display:flex;flex-direction:column;background:#1C1814}
 #progbar{width:100%;height:1.5px;background:rgba(255,255,255,.07);cursor:pointer;flex-shrink:0}
 #progfill{height:100%;width:0%;transition:width .1s linear}
-#ctrl{flex:1;display:flex;align-items:center;justify-content:center;padding:0 14px;position:relative}
-#dots{position:absolute;left:14px;display:flex;gap:6px;align-items:center}
+#ctrl{flex:1;display:flex;align-items:center;justify-content:center;padding:0 13px;position:relative}
+#dots{position:absolute;left:13px;display:flex;gap:6px;align-items:center}
 .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:all .25s}
 .dot.on{background:#C8A96E;width:14px;border-radius:2px}
 .cbtn{width:34px;height:34px;border:none;background:none;color:rgba(255,255,255,.3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 2px}
@@ -45,65 +43,31 @@ html,body{width:100%;height:100%;overflow:hidden;background:#EDE8DF;font-family:
 #bplay .ip{display:block}#bplay .ipa{display:none}
 #bplay.on .ip{display:none}#bplay.on .ipa{display:block}
 #bplay{width:40px;height:40px;background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:0}
-#cnt{position:absolute;right:14px;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.18)}
+#cnt{position:absolute;right:13px;font-size:7.5px;letter-spacing:2px;color:rgba(255,255,255,.18)}
 
 /* ══ LÉGENDE ══ */
-#legend{
-  position:absolute;right:12px;top:12px;z-index:500;
-  display:flex;flex-direction:column;gap:7px;
-  background:rgba(248,244,238,.95);padding:10px 13px;
-  border:1px solid rgba(28,24,20,.12);backdrop-filter:blur(6px);
-  pointer-events:none;
-}
-.li{display:flex;align-items:center;gap:8px}
-.li-txt{font-size:7px;color:rgba(28,24,20,.5);letter-spacing:.8px;text-transform:uppercase}
+#legend{position:absolute;right:11px;top:11px;z-index:500;display:flex;flex-direction:column;gap:7px;background:rgba(248,244,238,.94);padding:9px 12px;border:1px solid rgba(28,24,20,.12);pointer-events:none}
+.li{display:flex;align-items:center;gap:7px}
+.li-txt{font-size:6.5px;color:rgba(28,24,20,.5);letter-spacing:.8px;text-transform:uppercase}
 
-/* ══ MARQUEURS LEAFLET ══ */
-.dam-marker{
-  width:18px;height:12px;
-  display:flex;align-items:center;justify-content:center;
-}
-.tension-marker{
-  width:14px;height:14px;
-  display:flex;align-items:center;justify-content:center;
-}
-.map-label{
-  background:rgba(248,244,238,.85);
-  padding:2px 5px;
-  font-family:"DM Mono",monospace;
-  font-size:8.5px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:rgba(28,24,20,.55);
-  white-space:nowrap;
-  border:none;
-  box-shadow:none;
-}
-.map-label-river{
-  background:rgba(248,244,238,.8);
-  padding:1px 4px;
-  font-family:"Playfair Display",serif;
-  font-size:9px;
-  font-style:italic;
-  color:rgba(60,100,180,.75);
-  white-space:nowrap;
-  border:none;
-}
+/* ══ MARQUEURS SVG ══ */
+.mgl-dam{display:block;overflow:visible}
+.mgl-pin{display:block;overflow:visible}
+.map-lbl{background:rgba(248,244,238,.88);padding:2px 5px;font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(28,24,20,.55);white-space:nowrap;line-height:1.4}
+.map-riv{background:rgba(248,244,238,.82);padding:1.5px 4px;font-family:"Playfair Display",serif;font-size:8.5px;font-style:italic;color:rgba(50,90,180,.75);white-space:nowrap}
 
-.back{position:fixed;top:12px;left:12px;font-size:7px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(28,24,20,.3);text-decoration:none;z-index:600;transition:color .2s;pointer-events:all}
+.back{position:fixed;top:11px;left:11px;font-size:6.5px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(28,24,20,.28);text-decoration:none;z-index:600}
 .back:hover{color:#1C1814}
 
-.leaflet-control-attribution{font-size:7px;opacity:.5}
-
 @media(max-width:640px){
-  #textband{height:auto;min-height:118px}
+  #textband{height:auto;min-height:116px}
   #txt-inner{padding:10px 13px 9px}
   .phook{display:none}
-  .ptitle{font-size:14px}
-  #stat{width:94px;padding:10px 11px}
-  #pN{font-size:22px}
+  .ptitle{font-size:13.5px}
+  #stat{width:90px;padding:9px 10px}
+  #pN{font-size:21px}
   #legend{right:7px;top:7px;padding:7px 9px}
-  .li-txt{font-size:6.5px}
+  .li-txt{font-size:6px}
 }
 </style>
 </head>
@@ -115,9 +79,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#EDE8DF;font-family:
   </div>
   <div id="textband">
     <div id="txt-inner">
-      <div id="pTag" class="ptag fade-in"></div>
-      <div id="pHook" class="phook fade-in"></div>
-      <h2 id="pTitle" class="ptitle fade-in"></h2>
+      <div id="pTag" class="ptag fin"></div>
+      <div id="pHook" class="phook fin"></div>
+      <h2 id="pTitle" class="ptitle fin"></h2>
     </div>
     <div id="stat"><span id="pN"></span><span id="pL"></span></div>
   </div>
@@ -133,63 +97,125 @@ html,body{width:100%;height:100%;overflow:hidden;background:#EDE8DF;font-family:
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-/* ══ CARTE LEAFLET — tuiles NatGeo ESRI (terrain, montagnes, fleuves) ══ */
 var isMobile = window.innerWidth < 640;
 
-var map = L.map('map', {
-  zoomControl: false,
+/* ══ MAPLIBRE GL — WebGL, terrain, hillshading ══ */
+var map = new maplibregl.Map({
+  container: 'map',
+  style: {
+    version: 8,
+    glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+    sources: {
+      /* ESRI Physical Map — vert/brun/blanc selon altitude, fleuves naturels intégrés */
+      physical: {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        attribution: '© Esri',
+        maxzoom: 8,
+      },
+      /* ESRI Hillshade — relief 3D, montagnes visibles */
+      hillshade: {
+        type: 'raster',
+        tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}'],
+        tileSize: 256,
+        maxzoom: 13,
+      },
+    },
+    layers: [
+      { id: 'physical-layer', type: 'raster', source: 'physical' },
+      { id: 'hillshade-layer', type: 'raster', source: 'hillshade',
+        paint: { 'raster-opacity': 0.38, 'raster-contrast': 0.1 } },
+    ],
+  },
+  center: [20, 10],
+  zoom: isMobile ? 1.5 : 2,
+  interactive: false,
   attributionControl: true,
-  zoomSnap: 0.25,
-  zoomDelta: 0.5,
-  dragging: false,
-  scrollWheelZoom: false,
-  doubleClickZoom: false,
-  boxZoom: false,
-  keyboard: false,
-  touchZoom: false,
 });
 
-/* Tuiles NatGeo ESRI — qualité éditoriale : terrain, relief, fleuves, montagnes */
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
-  attribution: '&copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ',
-  maxZoom: 12,
-}).addTo(map);
+/* ══ FLEUVES — GeoJSON par slide ══ */
+var RIVERS = {
+  /* Slide I — monde */
+  world: [
+    { id:'nile',     coords:[[33,-1],[33.5,1],[34,3],[34.8,6],[35.2,10],[36,12],[36.5,13.5],[37,14.5],[36.8,16.5],[35.3,19],[33.3,22],[32.2,25],[31.5,29],[30.4,31.2]], w:1.4, op:.5 },
+    { id:'amazon',   coords:[[-74,-3.5],[-68,-3],[-60,-2.5],[-52,-1.5],[-48,-1.8]], w:1.6, op:.5 },
+    { id:'congo',    coords:[[18,-3],[22,-1.5],[26,-0.5],[30,1.5]], w:1.3, op:.45 },
+    { id:'mekong',   coords:[[99,23],[102,16.5],[103.8,12],[106,10],[106.5,9.5]], w:1.2, op:.45 },
+    { id:'miss',     coords:[[-93,47],[-91,43],[-91,39],[-90,35],[-89.5,29]], w:1.3, op:.45 },
+    { id:'yangtze',  coords:[[91,32],[100,31],[109,30],[120.5,31]], w:1.3, op:.45 },
+    { id:'danube',   coords:[[13.5,47.5],[20,47.5],[26,45],[30,45.7]], w:1, op:.4 },
+    { id:'niger',    coords:[[-11,10],[-3,13],[3,14.5],[5.5,5]], w:1, op:.4 },
+    { id:'indus',    coords:[[75,36],[72,30.5],[68,25.5],[67.2,23.2]], w:1, op:.4 },
+    { id:'gange',    coords:[[79,32],[84,27],[88.5,24.5],[90,23.2]], w:1, op:.4 },
+    { id:'zambezi',  coords:[[24,-11],[28.5,-17],[33,-17],[36,-15.5]], w:1, op:.38 },
+    { id:'tigre',    coords:[[39,38.5],[44,34.8],[47.5,32],[48.2,30.5]], w:1, op:.38 },
+    { id:'volga',    coords:[[47,56],[47.5,51.5],[46.5,47]], w:.9, op:.35 },
+    { id:'ob',       coords:[[80,55],[70,62],[68,68]], w:.9, op:.35 },
+    { id:'lena',     coords:[[112,53],[122,62],[127,70],[126,72]], w:.9, op:.35 },
+    { id:'amur',     coords:[[110,48],[120,50],[134,48],[141,46]], w:.9, op:.35 },
+    { id:'parana',   coords:[[-55,-20],[-58,-27],[-58,-34]], w:1, op:.38 },
+    { id:'murray',   coords:[[148,-36],[142,-35],[136,-35]], w:.8, op:.32 },
+    { id:'rhine',    coords:[[7,47],[8,48.5],[7.5,50],[5,52],[4,52]], w:.8, op:.32 },
+    { id:'orinoco',  coords:[[-64,4],[-62,7],[-66,8]], w:.8, op:.32 },
+    { id:'yellow',   coords:[[96,35],[106,35],[113,34],[120.5,37]], w:1, op:.38 },
+  ],
+  /* Slide II — Himalaya */
+  himalaya: [
+    { id:'mekong',   coords:[[95,33],[98,27],[99,23],[102,16.5],[103.8,12],[106,10],[106.5,9.5]], w:2.4, op:.9, label:'Mékong',  lpos:[9.5,107.5] },
+    { id:'indus',    coords:[[75,36],[73.5,31.5],[70,28.5],[68,25.5],[67.2,23.2]], w:2, op:.8, label:'Indus', lpos:[22,63.5] },
+    { id:'gange',    coords:[[79,32],[82.5,27.5],[85.5,26.5],[88.5,24.5],[90,23.2]], w:2, op:.82, label:'Gange', lpos:[26.5,84.5] },
+    { id:'brahma',   coords:[[92,30],[91,27.5],[90,26.5],[91,24.5],[91.5,23.8]], w:1.6, op:.72 },
+    { id:'yangtze',  coords:[[91,32],[100,31],[109,30],[118,30.8],[121.8,31.5]], w:1.7, op:.65 },
+    { id:'yellow',   coords:[[96,35],[106,35],[113,34],[120.5,37]], w:1.4, op:.55 },
+    { id:'irraw',    coords:[[96,26],[97,23],[97,21],[96,19],[95,17],[96.5,16]], w:1.4, op:.55 },
+    { id:'salween',  coords:[[95,28],[97,26],[99,22],[99,20],[98,17],[98,16]], w:1.2, op:.5 },
+  ],
+  /* Slide III — Indus */
+  indus: [
+    { id:'indus',    coords:[[75,36],[73.5,31.5],[71,29.5],[68,25.5],[67.2,23.2]], w:2.8, op:.95, label:'Indus', lpos:[34,71.5] },
+    { id:'gange',    coords:[[79,32],[84,27],[88.5,24.5],[90,23.2]], w:1.5, op:.5 },
+    { id:'brahma',   coords:[[92,30],[91,27.5],[90,26.5],[91,24.5],[91.5,23.8]], w:1.2, op:.42 },
+  ],
+  /* Slide IV — Nil */
+  nile: [
+    { id:'nile',     coords:[[33,-1],[34,3],[34.8,6],[35.2,10],[36,12],[36.5,13.5],[37,14.5],[36.8,16.5],[35.3,19],[33.3,22],[32.2,25],[31.5,29],[30.4,31.2]], w:2.8, op:.95, label:'Nil', lpos:[29,31.5] },
+    { id:'nilb',     coords:[[35,7.5],[37,8.5],[38,9],[38.2,10],[38,11.5],[37.8,12.5],[37,14.5]], w:2, op:.8, label:'Nil Bleu', lpos:[8.5,36] },
+    { id:'congo',    coords:[[18,-3],[22,-1.5],[26,-0.5],[30,1.5]], w:1, op:.3 },
+  ],
+  /* Slide V — MENA */
+  mena: [
+    { id:'tigre',    coords:[[38.5,39],[36.5,41.5],[35.5,43.5],[34.8,44.5],[33,46.5],[31,48],[30.5,48.2]], w:2.2, op:.9, label:'Tigre', lpos:[34.5,47] },
+    { id:'euphrate', coords:[[37.5,38],[35.8,40.5],[34.2,43.5],[33.5,45],[31.8,47.5],[30.5,48.2]], w:2, op:.85, label:'Euphrate', lpos:[35.5,40.5] },
+    { id:'jordan',   coords:[[33,35.6],[32.5,35.4],[32,35.1],[31.5,35.1],[31,35.4]], w:1.4, op:.7, label:'Jourdain', lpos:[31,35.9] },
+  ],
+};
 
-map.setView([20, 20], isMobile ? 1.5 : 2);
-
-/* ══ SLIDES ══ */
-var ROMAN = ['I','II','III','IV','V'];
-var SL = [
+var SLIDES = [
   { tag:'I · Vue mondiale · 2026',
     hook:'L\'eau n\'est pas rare en moyenne. Elle est mal distribuée. Cette distribution est une question politique.',
     title:'La grande <em>fracture hydrique</em>',
     n:'310', l:'bassins fluviaux\ntransfrontaliers',
     col:'#8B4A1A',
-    view:{ center:[10,20], zoom:isMobile?1.5:2, opts:{duration:1.2} },
-    rivers:[],
-    legs:[
-      {s:'<div style="width:20px;height:1.5px;background:rgba(60,100,180,.65);border-radius:1px;margin-top:1px"></div>', l:'Fleuves transfrontaliers'},
-    ]
+    view:{ center:[10,20], zoom:isMobile?1.5:2 },
+    rivers: RIVERS.world,
+    riverCol: 'rgba(40,95,210,OPACITY)',
+    legs:[{s:'<div style="width:19px;height:1.5px;background:rgba(40,95,210,.6);border-radius:1px;margin-top:1px"></div>',l:'Grand fleuve'}]
   },
   { tag:'II · Himalaya · Empire hydraulique',
     hook:'La Chine contrôle les sources de l\'Indus, du Gange, du Mékong. Soit l\'eau de 2 milliards de personnes.',
     title:'L\'empire <em>hydraulique chinois</em>',
     n:'2 Mds', l:'personnes dépendent\ndes fleuves himalayens',
     col:'#1A4A8A',
-    view:{ center:[isMobile?22:24,isMobile?97:100], zoom:isMobile?3.75:4.25, opts:{duration:1.4} },
-    rivers:[
-      { coords:[[33,95],[31,96.5],[29,97.5],[27,98],[25,98.5],[23,99],[21,99.5],[19.5,100.5],[18,101],[16.5,102],[15,102.5],[13.5,103],[12,103.8],[11,104.5],[10.5,105.2],[10,106],[9.5,106.5]], col:'rgba(40,100,200,.9)', w:isMobile?2:2.5, label:'Mékong', lpos:[9,107] },
-      { coords:[[36,75],[34.5,75.5],[33,75],[31.5,73.5],[30.5,72],[29.5,71],[28.5,70],[27,69],[25.5,68],[24.5,67.5],[23.2,67.2]], col:'rgba(40,90,190,.8)', w:isMobile?1.6:2, label:'Indus', lpos:[22,64] },
-      { coords:[[32,79],[30,80],[28.5,81],[27.5,82.5],[27,84],[26.5,85.5],[25.5,87],[24.5,88.5],[23.8,89.5],[23.2,90]], col:'rgba(40,95,195,.8)', w:isMobile?1.6:2, label:'Gange', lpos:[26,84] },
-      { coords:[[30,92],[29,91.5],[27.5,91],[27,90.5],[26.5,90],[25.5,90.5],[24.5,91],[23.8,91.5]], col:'rgba(40,85,185,.75)', w:isMobile?1.3:1.7 },
-    ],
+    view:{ center:[isMobile?24:26,isMobile?96:98], zoom:isMobile?4.5:5.5 },
+    rivers: RIVERS.himalaya,
+    riverCol: 'rgba(30,100,210,OPACITY)',
     dams:[[24,99],[21,100.5],[19,101],[17,102],[15,103]],
-    labels:[[30,82,'CHINE (amont)','rgba(28,24,20,.45)']],
+    labels:[[28,82,'Chine (amont)']],
     legs:[
-      {s:'<div style="width:20px;height:1.5px;background:rgba(40,100,200,.85);border-radius:1px;margin-top:1px"></div>', l:'Fleuves himalayens'},
-      {s:'<svg width="16" height="10" viewBox="0 0 16 10" style="display:block"><line x1="1" y1="5" x2="15" y2="5" stroke="#8B1A1A" stroke-width="2.2" stroke-linecap="square"/><line x1="4" y1="5" x2="3.2" y2="9" stroke="#8B1A1A" stroke-width="1"/><line x1="8" y1="5" x2="7.2" y2="9" stroke="#8B1A1A" stroke-width="1"/><line x1="12" y1="5" x2="11.2" y2="9" stroke="#8B1A1A" stroke-width="1"/></svg>', l:'Barrages (×11)'},
+      {s:'<div style="width:19px;height:1.5px;background:rgba(30,100,210,.85);border-radius:1px;margin-top:1px"></div>',l:'Fleuves himalayens'},
+      {s:'<svg width="15" height="9" viewBox="0 0 15 9" style="display:block"><line x1="1" y1="4.5" x2="14" y2="4.5" stroke="#8B1A1A" stroke-width="2" stroke-linecap="square"/><line x1="3.5" y1="4.5" x2="2.8" y2="8.5" stroke="#8B1A1A" stroke-width=".9"/><line x1="7.5" y1="4.5" x2="6.8" y2="8.5" stroke="#8B1A1A" stroke-width=".9"/><line x1="11.5" y1="4.5" x2="10.8" y2="8.5" stroke="#8B1A1A" stroke-width=".9"/></svg>',l:'Barrages (×11)'},
     ]
   },
   { tag:'III · Inde-Pakistan · Nucléaire',
@@ -197,18 +223,15 @@ var SL = [
     title:'L\'eau entre <em>deux bombes</em>',
     n:'1960', l:'Traité de l\'Indus\nfragilisé par le climat',
     col:'#7A5010',
-    view:{ center:[isMobile?29:30,isMobile?72:73], zoom:isMobile?4.25:5, opts:{duration:1.3} },
-    rivers:[
-      { coords:[[36,75],[34.5,75.5],[33,75],[31.5,73.5],[30.5,72],[29.5,71],[28.5,70],[27,69],[25.5,68],[24.5,67.5],[23.2,67.2]], col:'rgba(30,100,220,.95)', w:isMobile?2:2.8, label:'Indus', lpos:[33,71] },
-      { coords:[[32,79],[30,80],[28.5,81],[27.5,82.5],[27,84],[26.5,85.5],[25.5,87],[24.5,88.5],[23.8,89.5],[23.2,90]], col:'rgba(30,90,200,.55)', w:isMobile?1.2:1.6 },
-    ],
+    view:{ center:[isMobile?29:30,isMobile?71:72], zoom:isMobile?4.75:5.75 },
+    rivers: RIVERS.indus,
+    riverCol: 'rgba(30,105,225,OPACITY)',
     border:[[37,73],[34,74],[32,74],[30,72],[28,70],[25,68],[23,67.2]],
     tensions:[[30,71]],
-    labels:[[30,80,'INDE','rgba(28,24,20,.45)'],[30,64,'PAKISTAN','rgba(28,24,20,.45)']],
+    labels:[[30,79,'INDE'],[30,64,'PAKISTAN']],
     legs:[
-      {s:'<div style="width:20px;height:1.5px;background:rgba(30,100,220,.9);border-radius:1px;margin-top:1px"></div>', l:'Indus'},
-      {s:'<div style="width:20px;height:0;border-top:1.5px dashed rgba(28,24,20,.4);margin-top:1px"></div>', l:'Frontière disputée'},
-      {s:'<svg width="12" height="12" viewBox="0 0 12 12" style="display:block"><circle cx="6" cy="6" r="4.5" fill="none" stroke="#7A5010" stroke-width="1"/><circle cx="6" cy="6" r="1.5" fill="#7A5010"/></svg>', l:'Zone de tension'},
+      {s:'<div style="width:19px;height:1.5px;background:rgba(30,105,225,.9);border-radius:1px;margin-top:1px"></div>',l:'Indus'},
+      {s:'<div style="width:19px;height:0;border-top:1.5px dashed rgba(28,24,20,.4);margin-top:1px"></div>',l:'Frontière disputée'},
     ]
   },
   { tag:'IV · Nil · Éthiopie vs Égypte',
@@ -216,16 +239,14 @@ var SL = [
     title:'Le barrage <em>de la Renaissance</em>',
     n:'85%', l:'de l\'eau égyptienne\ncontrôlée par l\'Éthiopie',
     col:'#1A6040',
-    view:{ center:[isMobile?16:18,isMobile?36:37], zoom:isMobile?4:4.75, opts:{duration:1.4} },
-    rivers:[
-      { coords:[[-1,33],[1,33.5],[3,34],[6,34.8],[8,35],[10,35.2],[12,36],[13.5,36.5],[14.5,37],[16.5,36.8],[17.5,36],[19,35.3],[20.5,34.3],[22,33.3],[23.5,32.8],[25,32.2],[27,31.8],[29,31.5],[30.5,31.2],[31.2,30.4]], col:'rgba(20,160,90,.95)', w:isMobile?2:2.8, label:'Nil', lpos:[28,31.5] },
-      { coords:[[7.5,35],[8,37],[9,38],[9,38.2],[10,38],[11.5,37.8],[12.5,37.4],[13.5,37],[14.5,37]], col:'rgba(20,145,80,.8)', w:isMobile?1.5:2, label:'Nil Bleu', lpos:[8,36] },
-    ],
+    view:{ center:[isMobile?15:17,isMobile?35:36], zoom:isMobile?4.5:5.25 },
+    rivers: RIVERS.nile,
+    riverCol: 'rgba(20,155,85,OPACITY)',
     dams:[[11,35.1]],
-    labels:[[26,30,'ÉGYPTE','rgba(28,24,20,.45)'],[9,40,'ÉTHIOPIE','rgba(28,24,20,.45)']],
+    labels:[[26,30,'ÉGYPTE'],[9,40,'ÉTHIOPIE']],
     legs:[
-      {s:'<div style="width:20px;height:1.5px;background:rgba(20,160,90,.9);border-radius:1px;margin-top:1px"></div>', l:'Nil'},
-      {s:'<svg width="16" height="10" viewBox="0 0 16 10" style="display:block"><line x1="1" y1="5" x2="15" y2="5" stroke="#8B1A1A" stroke-width="2.2" stroke-linecap="square"/><line x1="4" y1="5" x2="3.2" y2="9" stroke="#8B1A1A" stroke-width="1"/><line x1="8" y1="5" x2="7.2" y2="9" stroke="#8B1A1A" stroke-width="1"/><line x1="12" y1="5" x2="11.2" y2="9" stroke="#8B1A1A" stroke-width="1"/></svg>', l:'Barrage de la Renaissance'},
+      {s:'<div style="width:19px;height:1.5px;background:rgba(20,155,85,.9);border-radius:1px;margin-top:1px"></div>',l:'Nil'},
+      {s:'<svg width="15" height="9" viewBox="0 0 15 9" style="display:block"><line x1="1" y1="4.5" x2="14" y2="4.5" stroke="#8B1A1A" stroke-width="2" stroke-linecap="square"/><line x1="3.5" y1="4.5" x2="2.8" y2="8.5" stroke="#8B1A1A" stroke-width=".9"/><line x1="7.5" y1="4.5" x2="6.8" y2="8.5" stroke="#8B1A1A" stroke-width=".9"/><line x1="11.5" y1="4.5" x2="10.8" y2="8.5" stroke="#8B1A1A" stroke-width=".9"/></svg>',l:'Barrage de la Renaissance'},
     ]
   },
   { tag:'V · Moyen-Orient · Rupture',
@@ -233,215 +254,147 @@ var SL = [
     title:'Là où l\'eau <em>vaut plus que le pétrole</em>',
     n:'6×', l:'plus d\'eau utilisée\nque reçue en précipitation',
     col:'#8B1A1A',
-    view:{ center:[isMobile?33:34,isMobile?42:43], zoom:isMobile?4.5:5.25, opts:{duration:1.4} },
-    rivers:[
-      { coords:[[38.5,39],[37,40.5],[36.5,41.5],[36,42.5],[35.5,43.5],[34.8,44.5],[34,45.5],[33,46.5],[32,47.5],[31,48],[30.5,48.2]], col:'rgba(40,100,210,.9)', w:isMobile?1.6:2.2, label:'Tigre', lpos:[34,47] },
-      { coords:[[37.5,38],[36.5,39],[35.8,40.5],[34.8,42],[34.2,43.5],[33.5,45],[32.8,46.5],[31.8,47.5],[30.5,48.2]], col:'rgba(40,90,200,.85)', w:isMobile?1.5:2, label:'Euphrate', lpos:[35.5,40] },
-      { coords:[[33,35.6],[32.5,35.4],[32,35.1],[31.5,35.1],[31,35.4]], col:'rgba(40,80,190,.7)', w:isMobile?1.1:1.5, label:'Jourdain', lpos:[31,35.8] },
-    ],
+    view:{ center:[isMobile?33:34,isMobile?41:42], zoom:isMobile?5:5.75 },
+    rivers: RIVERS.mena,
+    riverCol: 'rgba(35,100,215,OPACITY)',
     tensions:[[37.5,38.5],[31.5,35.5]],
-    labels:[[40,36,'TURQUIE','rgba(28,24,20,.45)'],[34,43,'IRAK','rgba(28,24,20,.4)']],
+    labels:[[39,35,'TURQUIE'],[34.5,43.5,'IRAK']],
     legs:[
-      {s:'<div style="width:20px;height:1.5px;background:rgba(40,100,210,.85);border-radius:1px;margin-top:1px"></div>', l:'Tigre / Euphrate / Jourdain'},
-      {s:'<svg width="12" height="12" viewBox="0 0 12 12" style="display:block"><circle cx="6" cy="6" r="4.5" fill="none" stroke="#8B1A1A" stroke-width="1"/><circle cx="6" cy="6" r="1.5" fill="#8B1A1A"/></svg>', l:'Zone de tension'},
+      {s:'<div style="width:19px;height:1.5px;background:rgba(35,100,215,.85);border-radius:1px;margin-top:1px"></div>',l:'Tigre / Euphrate / Jourdain'},
+      {s:'<svg width="12" height="16" viewBox="0 0 12 16" style="display:block"><circle cx="6" cy="5.5" r="4.5" fill="#8B1A1A" opacity=".82" stroke="rgba(248,244,238,.7)" stroke-width=".8"/><line x1="6" y1="10" x2="6" y2="15.5" stroke="#8B1A1A" stroke-width="1.2" stroke-linecap="round"/></svg>',l:'Zone de tension'},
     ]
   },
 ];
 
-/* ══ COUCHES ACTIVES ══ */
-var activeLayers = [];
-function clearLayers(){
-  activeLayers.forEach(function(l){ map.removeLayer(l); });
-  activeLayers = [];
-}
-
-/* SVG barrage — symbole topo IGN */
-function damIcon(){
-  return L.divIcon({
-    className:'dam-marker',
-    html:'<svg width="18" height="12" viewBox="0 0 18 12"><line x1="1" y1="6" x2="17" y2="6" stroke="#8B1A1A" stroke-width="2.5" stroke-linecap="square"/><line x1="4" y1="6" x2="3.1" y2="11" stroke="#8B1A1A" stroke-width="1.1"/><line x1="9" y1="6" x2="8.1" y2="11" stroke="#8B1A1A" stroke-width="1.1"/><line x1="14" y1="6" x2="13.1" y2="11" stroke="#8B1A1A" stroke-width="1.1"/></svg>',
-    iconSize:[18,12], iconAnchor:[9,6]
+/* ══ MARQUEURS ══ */
+function addMarkers(s){
+  /* Dams */
+  if(s.dams) s.dams.forEach(function(d){
+    new maplibregl.Marker({
+      element: (function(){
+        var el=document.createElement('div');
+        el.innerHTML='<svg width="18" height="12" viewBox="0 0 18 12" overflow="visible"><line x1="0" y1="6" x2="18" y2="6" stroke="#8B1A1A" stroke-width="2.4" stroke-linecap="square"/><line x1="3" y1="6" x2="2.2" y2="11" stroke="#8B1A1A" stroke-width="1"/><line x1="9" y1="6" x2="8.2" y2="11" stroke="#8B1A1A" stroke-width="1"/><line x1="15" y1="6" x2="14.2" y2="11" stroke="#8B1A1A" stroke-width="1"/></svg>';
+        return el;
+      })(), anchor:'center'
+    }).setLngLat([d[1],d[0]]).addTo(map);
+  });
+  /* Tensions */
+  if(s.tensions) s.tensions.forEach(function(t){
+    new maplibregl.Marker({
+      element: (function(){
+        var el=document.createElement('div');
+        el.innerHTML='<svg width="12" height="16" viewBox="0 0 12 16" overflow="visible"><circle cx="6" cy="5.5" r="4.5" fill="'+s.col+'" opacity=".82" stroke="rgba(248,244,238,.75)" stroke-width=".8"/><line x1="6" y1="10" x2="6" y2="15.5" stroke="'+s.col+'" stroke-width="1.2" stroke-linecap="round"/></svg>';
+        return el;
+      })(), anchor:'bottom'
+    }).setLngLat([t[1],t[0]]).addTo(map);
+  });
+  /* Labels pays */
+  if(s.labels) s.labels.forEach(function(lb){
+    var el=document.createElement('div');
+    el.className='map-lbl';
+    el.textContent=lb[2];
+    new maplibregl.Marker({element:el,anchor:'center'}).setLngLat([lb[1],lb[0]]).addTo(map);
   });
 }
-/* Pin de tension */
-function tensionIcon(col){
-  col = col||'#8B1A1A';
-  return L.divIcon({
-    className:'tension-marker',
-    html:'<svg width="14" height="18" viewBox="0 0 14 18"><circle cx="7" cy="6" r="5" fill="'+col+'" opacity=".85" stroke="rgba(248,244,238,.8)" stroke-width="1"/><line x1="7" y1="11" x2="7" y2="17" stroke="'+col+'" stroke-width="1.2" stroke-linecap="round"/></svg>',
-    iconSize:[14,18], iconAnchor:[7,17]
+
+var markers=[];
+function clearMarkers(){
+  markers.forEach(function(m){m.remove()});
+  markers=[];
+}
+
+/* ══ FLEUVES MAPLIBRE ══ */
+var riverSources=[];
+function clearRivers(){
+  riverSources.forEach(function(id){
+    if(map.getLayer(id)) map.removeLayer(id);
+    if(map.getSource(id)) map.removeSource(id);
   });
+  riverSources=[];
+  if(map.getLayer('border-layer')) map.removeLayer('border-layer');
+  if(map.getSource('border-src')) map.removeSource('border-src');
 }
-/* Label texte */
-function labelIcon(txt, cls){
-  return L.divIcon({
-    className: cls||'map-label',
-    html:txt,
-    iconSize:[0,0], iconAnchor:[0,0]
+
+function addRivers(s){
+  s.rivers.forEach(function(r,i){
+    var id='river-'+i;
+    var col=s.riverCol.replace('OPACITY', r.op);
+    map.addSource(id,{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:r.coords.map(function(c){return[c[1],c[0]]})}}});
+    map.addLayer({id:id,type:'line',source:id,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':col,'line-width':r.w,'line-blur':0.3}});
+    riverSources.push(id);
+    /* Label fleuve */
+    if(r.label && r.lpos){
+      var el=document.createElement('div'); el.className='map-riv'; el.textContent=r.label;
+      var m=new maplibregl.Marker({element:el,anchor:'left'}).setLngLat([r.lpos[1],r.lpos[0]]).addTo(map);
+      markers.push(m);
+    }
   });
-}
-
-/* Dessiner un fleuve avec animation CSS */
-function addRiver(coords, color, weight){
-  var pl = L.polyline(coords, {
-    color: color,
-    weight: weight,
-    opacity: 1,
-    lineCap: 'round',
-    lineJoin: 'round',
-    smoothFactor: 1.5,
-    interactive: false,
-  }).addTo(map);
-  /* Animation stroke-dashoffset */
-  var path = pl.getElement ? pl.getElement() : null;
-  if(path){
-    var len = path.getTotalLength ? path.getTotalLength() : 2000;
-    path.style.strokeDasharray = len+' '+len;
-    path.style.strokeDashoffset = len;
-    setTimeout(function(){
-      path.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)';
-      path.style.strokeDashoffset = '0';
-    },50);
-  }
-  activeLayers.push(pl);
-  return pl;
-}
-
-function applySlide(idx, animated){
-  var s = SL[idx];
-  clearLayers();
-
-  /* Zoom sur la région */
-  if(animated){
-    map.flyTo(s.view.center, s.view.zoom, Object.assign({animate:true,easeLinearity:.4},s.view.opts));
-  } else {
-    map.setView(s.view.center, s.view.zoom, {animate:false});
-  }
-
-  /* Fleuves */
-  if(s.rivers){
-    s.rivers.forEach(function(r){
-      addRiver(r.coords, r.col, r.w);
-      if(r.label && r.lpos){
-        var m = L.marker(r.lpos, {icon:labelIcon(r.label,'map-label-river'), interactive:false}).addTo(map);
-        activeLayers.push(m);
-      }
-    });
-  }
-
   /* Frontière pointillée */
   if(s.border){
-    var bl = L.polyline(s.border, {color:'rgba(28,24,20,.45)',weight:1.2,dashArray:'5 5',interactive:false}).addTo(map);
-    activeLayers.push(bl);
+    map.addSource('border-src',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:s.border.map(function(c){return[c[1],c[0]]})}}});
+    map.addLayer({id:'border-layer',type:'line',source:'border-src',paint:{'line-color':'rgba(28,24,20,.4)','line-width':1,'line-dasharray':[4,4]}});
   }
-
-  /* Barrages */
-  if(s.dams){
-    s.dams.forEach(function(d){
-      var m = L.marker(d, {icon:damIcon(), interactive:false}).addTo(map);
-      activeLayers.push(m);
-    });
-  }
-
-  /* Tensions */
-  if(s.tensions){
-    s.tensions.forEach(function(t){
-      var m = L.marker(t, {icon:tensionIcon(s.col), interactive:false}).addTo(map);
-      activeLayers.push(m);
-    });
-  }
-
-  /* Labels */
-  if(s.labels){
-    s.labels.forEach(function(lb){
-      var icon = L.divIcon({
-        className:'',
-        html:'<div style="background:rgba(248,244,238,.82);padding:2px 5px;font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1.8px;text-transform:uppercase;color:'+lb[3]+';white-space:nowrap;pointer-events:none">'+lb[2]+'</div>',
-        iconSize:[0,0], iconAnchor:[0,0]
-      });
-      var m = L.marker([lb[0],lb[1]], {icon:icon, interactive:false}).addTo(map);
-      activeLayers.push(m);
-    });
-  }
-
-  /* Légende */
-  document.getElementById('legend').innerHTML = s.legs.map(function(x){
-    return '<div class="li">'+x.s+'<span class="li-txt">'+x.l+'</span></div>';
-  }).join('');
 }
 
-/* ══ PANEL TEXTE ══ */
-function setPanel(s, instant){
+/* ══ PLAYER ══ */
+var N=5,cur=0,tmr=null,paused=false,raf=null,pStart=0;
+for(var i=0;i<N;i++){(function(ii){
+  var d=document.createElement('div');d.className='dot';
+  d.onclick=function(e){e.stopPropagation();goTo(ii)};
+  document.getElementById('dots').appendChild(d);
+})(i)}
+
+function setPanel(s,instant){
   if(!instant){
-    ['pTag','pHook','pTitle'].forEach(function(id){
-      var e=document.getElementById(id);
-      e.className=e.className.replace('fade-in','fade-out');
-    });
-    setTimeout(function(){writePanel(s)},210);
-  } else writePanel(s);
+    ['pTag','pHook','pTitle'].forEach(function(id){var e=document.getElementById(id);e.className=e.className.replace('fin','fout')});
+    setTimeout(function(){write(s)},200);
+  } else write(s);
 }
-function writePanel(s){
+function write(s){
   document.getElementById('pTag').textContent=s.tag;
   document.getElementById('pTag').style.color=s.col;
-  var t=document.getElementById('pTitle'); t.innerHTML=s.title;
-  var em=t.querySelector('em'); if(em) em.style.color=s.col;
+  var t=document.getElementById('pTitle');t.innerHTML=s.title;
+  var em=t.querySelector('em');if(em)em.style.color=s.col;
   document.getElementById('pHook').textContent=s.hook;
   document.getElementById('pN').textContent=s.n;
   document.getElementById('pN').style.color=s.col;
   document.getElementById('pL').innerHTML=s.l.replace(/\n/g,'<br>');
   document.getElementById('progfill').style.background=s.col;
-  ['pTag','pHook','pTitle'].forEach(function(id){
-    var e=document.getElementById(id);
-    e.className=e.className.replace('fade-out','fade-in');
-  });
+  ['pTag','pHook','pTitle'].forEach(function(id){var e=document.getElementById(id);e.className=e.className.replace('fout','fin')});
 }
 
-/* ══ PLAYER ══ */
-var N=5,cur=0,tmr=null,paused=false,raf=null,progStart=0;
-for(var i=0;i<N;i++){(function(ii){
-  var d=document.createElement('div'); d.className='dot';
-  d.onclick=function(e){e.stopPropagation();goTo(ii)};
-  document.getElementById('dots').appendChild(d);
-})(i)}
-
-function showSlide(idx, instant){
-  setPanel(SL[idx], instant);
-  document.querySelectorAll('.dot').forEach(function(d,i){
-    d.classList.toggle('on',i===idx);
-    d.style.background=i===idx?'#C8A96E':'rgba(255,255,255,.18)';
-  });
+function showSlide(idx,instant){
+  var s=SLIDES[idx];
+  setPanel(s,instant);
+  document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('on',i===idx);d.style.background=i===idx?'#C8A96E':'rgba(255,255,255,.18)'});
   document.getElementById('cnt').textContent=(idx+1)+' / '+N;
-  applySlide(idx, !instant);
+  document.getElementById('legend').innerHTML=s.legs.map(function(x){return'<div class="li">'+x.s+'<span class="li-txt">'+x.l+'</span></div>'}).join('');
+  clearMarkers();
+  if(map.loaded()){
+    clearRivers();
+    map.flyTo({center:[s.view.center[1],s.view.center[0]],zoom:s.view.zoom,speed:.7,curve:1.2,essential:true});
+    setTimeout(function(){addRivers(s);addMarkers(s)},instant?0:600);
+  }
   startProg();
 }
 function startProg(){
-  if(raf)cancelAnimationFrame(raf); progStart=Date.now();
-  (function tick(){
-    var p=Math.min((Date.now()-progStart)/7000,1);
-    document.getElementById('progfill').style.width=(p*100)+'%';
-    if(p<1&&!paused)raf=requestAnimationFrame(tick);
-  })();
+  if(raf)cancelAnimationFrame(raf);pStart=Date.now();
+  (function tick(){var p=Math.min((Date.now()-pStart)/7000,1);document.getElementById('progfill').style.width=(p*100)+'%';if(p<1&&!paused)raf=requestAnimationFrame(tick)})();
 }
 function seek(e){var r=e.currentTarget.getBoundingClientRect();goTo(Math.max(0,Math.min(N-1,Math.round((e.clientX-r.left)/r.width*(N-1)))))}
 function next(){if(tmr)clearTimeout(tmr);cur=cur<N-1?cur+1:0;showSlide(cur);if(!paused)sched()}
 function prev(){if(tmr)clearTimeout(tmr);cur=cur>0?cur-1:N-1;showSlide(cur);if(!paused)sched()}
 function sched(){if(tmr)clearTimeout(tmr);if(!paused)tmr=setTimeout(next,7000)}
 function goTo(i){if(tmr)clearTimeout(tmr);cur=i;showSlide(i);if(!paused)sched()}
-function togglePlay(){
-  paused=!paused; var b=document.getElementById('bplay');
-  if(paused){b.classList.remove('on');if(tmr)clearTimeout(tmr);if(raf)cancelAnimationFrame(raf)}
-  else{b.classList.add('on');sched();startProg()}
-}
+function togglePlay(){paused=!paused;var b=document.getElementById('bplay');if(paused){b.classList.remove('on');if(tmr)clearTimeout(tmr);if(raf)cancelAnimationFrame(raf)}else{b.classList.add('on');sched();startProg()}}
 
-/* Clic carte = slide suivant */
-document.getElementById('map').addEventListener('click',function(e){
-  if(e.target.closest('.back,#legend'))return; next();
+document.getElementById('map').addEventListener('click',function(e){if(e.target.closest('.back,#legend'))return;next()});
+
+map.on('load',function(){
+  showSlide(0,true);
+  document.getElementById('bplay').classList.add('on');
+  sched();
 });
-
-/* Démarrage */
-showSlide(0, true);
-document.getElementById('bplay').classList.add('on');
-sched();
 </script>
 </body>
 </html>
