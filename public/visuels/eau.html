@@ -376,7 +376,13 @@ function togglePlay(){
 }
 
 /* ══ INIT ══ */
-d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  .catch(function(){ return d3.json('https://unpkg.com/world-atlas@2/countries-110m.json'); })
+  .then(function(world){
+  /* Recalcule les dimensions maintenant que le DOM est rendu */
+  var tbEl = document.getElementById('textband');
+  mapH = window.innerHeight - (tbEl ? tbEl.getBoundingClientRect().height : 145) - 50;
+  svg.attr('height', mapH);
   proj=d3.geoNaturalEarth1().scale(Math.min(mapW/5.2,mapH/2.8)).translate([mapW*.5,mapH*.52]);
   gp=d3.geoPath().projection(proj);
 
@@ -430,7 +436,10 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
   document.getElementById('map-wrap').addEventListener('click',function(e){
     if(e.target.closest('#dots,#player,.back,#legend'))return; next();
   });
-}).catch(function(e){console.error(e)});
+}).catch(function(e){
+  console.error('Erreur chargement carte:',e);
+  document.getElementById('map-wrap').innerHTML += '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-family:DM Mono,monospace;font-size:10px;letter-spacing:2px;color:rgba(28,24,20,.4)">CHARGEMENT DE LA CARTE…</div>';
+});
 </script>
 </body>
 </html>
