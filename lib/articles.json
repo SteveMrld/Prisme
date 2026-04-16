@@ -640,6 +640,12 @@
     "imageCredit": "© SOARA",
     "imagePosition": "center top",
     "imageHeight": "0",
-    "imageFit": "cover"
+    "imageFit": "cover",
+    "relatedSlugs": [
+      "societe-du-consentement",
+      "ceux-qui-nont-pas-cede",
+      "moreno",
+      "medias"
+    ]
   }
 ]
