@@ -94,12 +94,8 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
   } catch {
     content = '<p>Contenu à venir.</p>'
   }
-  if (hasEnglish) {
-    const base = REDIRECT_TO_GRAND_FORMAT.includes(params.slug) ? `/grands-formats/${params.slug}` : `/articles/${params.slug}`
-    const tUrl = lang === 'en' ? base : `${base}?lang=en`
-    const tLabel = lang === 'en' ? 'Lire en français' : 'Read in English'
-    content = `<a href="${tUrl}" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:2px;margin-bottom:28px;padding:6px 0">${tLabel}</a>` + content
-  }
+  const toggleBase2 = REDIRECT_TO_GRAND_FORMAT.includes(params.slug) ? `/grands-formats/${params.slug}` : `/articles/${params.slug}`
+  const toggleUrl = hasEnglish ? (lang === 'en' ? toggleBase2 : `${toggleBase2}?lang=en`) : null
 
 
   const isPremium = (article as any).premium === true
@@ -149,7 +145,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
   // Grand format → layout dédié
   if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
     return (
-      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} lang={lang} hasEnglish={hasEnglish} />
+      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} lang={lang} hasEnglish={hasEnglish} toggleUrl={toggleUrl || undefined} />
     )
   }
 
@@ -173,6 +169,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       related={related}
       lang={lang}
       hasEnglish={hasEnglish}
+      toggleUrl={toggleUrl || undefined}
     />
   )
 }
