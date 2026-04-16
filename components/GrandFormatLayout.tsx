@@ -245,7 +245,7 @@ export default function GrandFormatLayout({
             {related.map((a: any) => (
               <a key={a.slug} href={a.customRoute || `/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} className={styles.relatedThumb} />}
-                <div className={styles.relatedCat}>{(a.categoryLabel || a.category || '').toUpperCase()}</div>
+                <div className={styles.relatedCat}>{(a.categoryLabel || ({'geo':'Géopolitique','eco':'Économie','tech':'Technologie','env':'Environnement','soc':'Société','culture':'Culture','portrait':'Portrait','concept':'Concept','sciences':'Sciences'} as any)[a.category] || a.category || '').toUpperCase()}</div>
                 <div className={styles.relatedTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
                 <span className={styles.relatedCta}>Lire l'analyse →</span>
               </a>
