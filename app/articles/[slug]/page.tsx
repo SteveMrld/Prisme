@@ -98,7 +98,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     const base = REDIRECT_TO_GRAND_FORMAT.includes(params.slug) ? `/grands-formats/${params.slug}` : `/articles/${params.slug}`
     const tUrl = lang === 'en' ? base : `${base}?lang=en`
     const tLabel = lang === 'en' ? 'Lire en français' : 'Read in English'
-    content = `<a href="${tUrl}" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:1px;margin-bottom:28px">${tLabel}</a>` + content
+    content = `<a href="${tUrl}" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:2px;margin-bottom:28px;padding:6px 0">${tLabel}</a>` + content
   }
 
 
