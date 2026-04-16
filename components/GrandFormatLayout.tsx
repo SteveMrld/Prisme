@@ -92,6 +92,8 @@ export default function GrandFormatLayout({
   const portrait = portraitMap[author]
 
   // Détection header interne (articles HTML existants)
+  const gfBase = (article as any)?.grandFormatUrl || (slug ? `/grands-formats/${slug}` : '')
+  const gfToggleHref = lang === 'en' ? gfBase : (gfBase ? `${gfBase}?lang=en` : '')
   const hasInternalHeader = !!(content?.includes('class="atop"') || content?.includes('class="article-header"'))
   const hasHeroInContent  = !!(content?.includes('art-hero-wrap') || content?.includes('art-hero-img') || content?.includes('portrait-hero') || article?.category === 'portrait')
 
@@ -154,7 +156,7 @@ export default function GrandFormatLayout({
               {minutes} min de lecture
             </span>
             {hasEnglish && slug && (
-              <a href={`${(article as any)?.grandFormatUrl || `/grands-formats/${slug}`}${lang === 'en' ? '' : '?lang=en'}`}
+              <a href={gfToggleHref}
                 style={{fontFamily:"'DM Sans',sans-serif",fontSize:'10px',fontWeight:600,letterSpacing:'2px',textTransform:'uppercase' as const,color:'#C8A96E',textDecoration:'none',borderBottom:'1.5px solid #C8A96E',paddingBottom:'1px',marginLeft:'8px'}}>
                 {lang === 'en' ? 'Lire en français' : 'Read in English'}
               </a>
