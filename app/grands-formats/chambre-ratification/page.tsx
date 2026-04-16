@@ -1,3 +1,5 @@
+import fs from 'fs'
+import nodePath from 'path'
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const dynamic = 'force-dynamic'
@@ -7,7 +9,11 @@ export const metadata = {
   description: "Comment Benjamin Netanyahu a décidé une guerre américaine. Une enquête en miroir : le Situation Room en 2026, le Situation Room en 1962, et soixante-dix ans d'une boucle qui ne se referme pas.",
 };
 
-export default function ChambreRatificationPage() {
+export default async function ChambreRatificationPage({ searchParams }: { searchParams?: { lang?: string } }) {
+  const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'chambre-ratification-en.html')
+  const enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
+
   return (
     <GrandFormatLayout
       slug="chambre-ratification"
