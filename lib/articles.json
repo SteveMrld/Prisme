@@ -154,7 +154,9 @@
     "imageCredit": "© SOARA",
     "customRoute": "/grands-formats/palantir",
     "titleEn": "Palantir. The Ontology of the Enemy",
-    "descriptionEn": "How a company born from a boardroom coup became the cognitive infrastructure of states that do not control it."
+    "descriptionEn": "How a company born from a boardroom coup became the cognitive infrastructure of states that do not control it.",
+    "secondaryCategory": "tech",
+    "secondaryCategoryLabel": "Technologie"
   },
   {
     "slug": "moreno",
