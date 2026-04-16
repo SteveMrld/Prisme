@@ -77,7 +77,8 @@
 .featuredImgWrapPortrait {
   overflow: hidden;
   border-bottom: 1px solid var(--bord);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
+  background: #f5f5f5;
 }
 
 .featuredImg {
@@ -92,10 +93,11 @@
 .featuredImgPortrait {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 15%;
+  object-fit: contain;
+  object-position: center top;
   display: block;
   transition: transform 0.4s;
+  background: #f5f5f5;
 }
 
 .featured:hover .featuredImg { transform: scale(1.02); }
@@ -205,10 +207,11 @@
 .cardImgPortrait {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 15%;
+  object-fit: contain;
+  object-position: center top;
   display: block;
   transition: transform 0.4s;
+  background: #f5f5f5;
 }
 
 .card:hover .cardImg { transform: scale(1.03); }
