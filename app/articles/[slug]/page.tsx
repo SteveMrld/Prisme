@@ -6,7 +6,7 @@ import { createClient } from '../../../lib/supabase-server'
 import fs from 'fs'
 import path from 'path'
 
-const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico', 'medias', 'terres-rares', 'architecture-desordre', 'chambre-ratification', 'palantir', 'morrison', 'morin', 'tutu', 'musk', 'nooyi', 'obama']
+const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico', 'medias', 'terres-rares', 'architecture-desordre', 'chambre-ratification', 'palantir']
 
 // Ces slugs ont leur contenu dans /grands-formats/[slug]/page.tsx (JSX inline)
 const REDIRECT_TO_GRAND_FORMAT = [
@@ -136,8 +136,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
   const hasHeroInContent =
     content.includes('art-hero-wrap') ||
     content.includes('art-hero-img') ||
-    content.includes('portrait-hero') ||
-    (article as any).category === 'portrait'
+    content.includes('portrait-hero')
 
   // Articles liés — même catégorie, exclu l'article courant
   // Pour les portraits : tous les autres portraits
