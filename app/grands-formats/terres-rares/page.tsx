@@ -6,7 +6,7 @@ export const metadata = {
   description: "Du cobalt du Katanga au raffinage de Guangdong, une analyse des flux qui alimentent la transition verte — et la nouvelle géographie de la dépendance mondiale.",
 }
 
-export default async function TerresRaresPage() {
+export default async function TerresRaresPage({ searchParams }: { searchParams?: { lang?: string } }) {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   const isAdmin = user?.email === 'steve.moradel@gmail.com'
@@ -16,6 +16,7 @@ export default async function TerresRaresPage() {
     isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
   }
   const showPaywall = !isAdmin && !isSubscribed
+  const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
 
   return (
     <GrandFormatLayout
@@ -23,6 +24,8 @@ export default async function TerresRaresPage() {
       showPaywall={showPaywall}
       author="Steve Moradel"
       authorRole=""
+      lang={lang}
+      hasEnglish={true}
     >
       <div className="soara-article">
 

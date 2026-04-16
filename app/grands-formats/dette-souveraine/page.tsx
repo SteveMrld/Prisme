@@ -7,7 +7,7 @@ export const metadata = {
   description: "La dette publique mondiale a franchi 100 000 milliards de dollars. Ce n'est pas la dette qui inquiète. C'est ce qu'elle révèle.",
 };
 
-export default async function DettePage() {
+export default async function Page({ searchParams }: { searchParams?: { lang?: string } }) {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   const isAdmin = user?.email === 'steve.moradel@gmail.com'
@@ -17,9 +17,12 @@ export default async function DettePage() {
     isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
   }
   const showPaywall = !isAdmin && !isSubscribed
+  const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
 
   return (
-    <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole="">
+    <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole=""
+      lang={lang}
+      hasEnglish={true}>
       <div style={{ margin:"0 -40px 48px", borderTop:"1.5px solid #DDD9D2", borderBottom:"1.5px solid #DDD9D2" }}>
         <DetteClient />
       </div>

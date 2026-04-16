@@ -11,6 +11,8 @@ export default function ChambreRatificationPage() {
       slug="chambre-ratification"
       author="Steve Moradel"
       authorRole=""
+      lang={lang}
+      hasEnglish={true}
     >
       <div className="soara-article">
 

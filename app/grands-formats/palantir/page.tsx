@@ -6,7 +6,7 @@ export const metadata = {
   description: "Comment une entreprise née d'un coup d'État de salle de réunion est devenue l'infrastructure cognitive des États qui ne la contrôlent pas.",
 };
 
-export default async function PalantirPage() {
+export default async function Page({ searchParams }: { searchParams?: { lang?: string } }) {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
   const isAdmin = user?.email === 'steve.moradel@gmail.com'
@@ -16,6 +16,7 @@ export default async function PalantirPage() {
     isSubscribed = profile?.subscription_status === 'active' || profile?.subscription_status === 'trialing'
   }
   const showPaywall = !isAdmin && !isSubscribed
+  const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
 
   return (
     <GrandFormatLayout
@@ -23,6 +24,8 @@ export default async function PalantirPage() {
       showPaywall={showPaywall}
       author="Steve Moradel"
       authorRole=""
+      lang={lang}
+      hasEnglish={true}
     >
       <div className="soara-article">
 

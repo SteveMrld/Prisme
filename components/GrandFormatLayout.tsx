@@ -142,19 +142,6 @@ export default function GrandFormatLayout({
       <StickyReadingHeader title={title.replace(/<[^>]+>/g, '')} categoryLabel={categoryLabel} color={color} />
       <Header />
 
-      {/* ── COVER IMAGE (si pas dans le HTML) ── */}
-      {image && !hasHeroInContent && (
-        <div className={styles.heroWrap} style={{height: imageHeight + 'px', maxHeight: 'none'}}>
-          <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
-            style={{
-              objectPosition: imagePosition,
-              height: imageHeight + 'px',
-              objectFit: (article?.imageFit || 'cover') as 'cover' | 'contain',
-              background: article?.imageFit === 'contain' ? '#F8F4EE' : undefined
-            }} />
-        </div>
-      )}
-
       {/* ── HEADER (si pas dans le HTML) ── */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
@@ -191,16 +178,21 @@ export default function GrandFormatLayout({
         </div>
       )}
 
+      {/* ── COVER IMAGE (après le header) ── */}
+      {image && !hasHeroInContent && (
+        <div className={styles.heroWrap} style={{height: imageHeight + 'px', maxHeight: 'none'}}>
+          <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
+            style={{
+              objectPosition: imagePosition,
+              height: imageHeight + 'px',
+              objectFit: (article?.imageFit || 'cover') as 'cover' | 'contain',
+              background: article?.imageFit === 'contain' ? '#F8F4EE' : undefined
+            }} />
+        </div>
+      )}
+
       {/* ── BODY ── */}
       <div className={`${styles.body} grand-format-body`}>
-        {/* Contenu HTML classique */}
-        {hasEnglish && (
-          <div style={{display:'flex',justifyContent:'flex-end',padding:'0 0 16px 0'}}>
-            <Suspense fallback={null}>
-              <LangToggle lang={lang} hasEnglish={hasEnglish} />
-            </Suspense>
-          </div>
-        )}
         {content && (
           (showPaywall ?? article?.premium) ? (
             <div style={{position:'relative'}}>
