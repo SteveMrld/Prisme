@@ -134,14 +134,6 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     content.includes('portrait-hero') ||
     (article as any).category === 'portrait'
 
-  // URL toggle EN/FR — calculée côté serveur, passée comme prop string
-  const toggleBase = REDIRECT_TO_GRAND_FORMAT.includes(params.slug)
-    ? `/grands-formats/${params.slug}`
-    : `/articles/${params.slug}`
-  const toggleUrl = hasEnglish
-    ? (lang === 'en' ? toggleBase : `${toggleBase}?lang=en`)
-    : null
-
   // Articles liés — même catégorie, exclu l'article courant
   // Pour les portraits : tous les autres portraits
   const related = (articlesData as any[])
