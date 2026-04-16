@@ -24,6 +24,8 @@ interface ArticleLayoutProps {
   authorRole?: string
   related?: any[]
   imageCredit?: string
+  lang?: string
+  hasEnglish?: boolean
 }
 
 const categoryColors: Record<string, string> = {
@@ -60,7 +62,9 @@ export default function ArticleLayout({
   author = 'Steve Moradel',
   authorRole = '',
   related = [],
-  imageCredit = ''
+  imageCredit = '',
+  lang = 'fr',
+  hasEnglish = false
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -173,6 +177,15 @@ export default function ArticleLayout({
       {/* ── LAYOUT DESKTOP : article + sidebar ── */}
       <div className={styles.articlePageLayout}>
       <div className={styles.articleMainCol}>
+
+      {hasEnglish && (
+        <div style={{display:'flex',justifyContent:'flex-end',padding:'0 0 16px 0'}}>
+          <Suspense fallback={null}>
+            <LangToggle lang={lang} hasEnglish={hasEnglish} />
+          </Suspense>
+        </div>
+      )}
+
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         {isPremiumContent ? (
           <div className={styles.paywallWrap}>
