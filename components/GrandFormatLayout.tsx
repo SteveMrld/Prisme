@@ -213,8 +213,8 @@ export default function GrandFormatLayout({
             <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
           )
         )}
-        {/* Contenu React (dette-souveraine, etc.) */}
-        {children && (
+        {/* Contenu React (dette-souveraine, etc.) — masqué si content EN fourni */}
+        {children && !content && (
           (showPaywall ?? article?.premium) ? (
             <div style={{position:'relative'}}>
               <div style={{maxHeight:'620px',overflow:'hidden',position:'relative'}}>

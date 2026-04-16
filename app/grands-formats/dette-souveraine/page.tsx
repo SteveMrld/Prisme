@@ -1,3 +1,5 @@
+import fs from 'fs'
+import nodePath from 'path'
 import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 import DetteClient from "./DetteClient";
@@ -20,6 +22,8 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
   }
   const showPaywall = !isAdmin && !isSubscribed
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'dette-souveraine-en.html')
+  const enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
 
   return (
     <GrandFormatLayout slug="dette-souveraine" author="Steve Moradel" authorRole=""

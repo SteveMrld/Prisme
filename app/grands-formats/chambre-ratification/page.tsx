@@ -15,6 +15,7 @@ export default function ChambreRatificationPage() {
       authorRole=""
       lang={lang}
       hasEnglish={true}
+      content={enContent || undefined}
     >
       <div className="soara-article">
 
