@@ -101,7 +101,12 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     const base = REDIRECT_TO_GRAND_FORMAT.includes(params.slug) ? `/grands-formats/${params.slug}` : `/articles/${params.slug}`
     const tUrl = lang === 'en' ? base : `${base}?lang=en`
     const tLabel = lang === 'en' ? 'Lire en français' : 'Read in English'
-    content = `<a href="${tUrl}" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:2px;margin-bottom:20px">${tLabel}</a>` + content
+    const tLink = `<a href="${tUrl}" onclick="location.assign('${tUrl}');return false;" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:2px">${tLabel}</a>`
+    if (content.includes('<div class="aey">')) {
+      content = content.replace('<div class="aey">', `<div class="aey">${tLink} · `)
+    } else {
+      content = `<div style="margin-bottom:16px">${tLink}</div>` + content
+    }
   }
 
   const isPremium = (article as any).premium === true
