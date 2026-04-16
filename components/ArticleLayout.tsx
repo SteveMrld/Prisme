@@ -1,3 +1,5 @@
+import LangToggle from './LangToggle'
+import { Suspense } from 'react'
 'use client'
 import { useEffect } from 'react'
 import BookmarkButton from './BookmarkButton'

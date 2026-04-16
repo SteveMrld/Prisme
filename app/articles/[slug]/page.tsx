@@ -29,6 +29,7 @@ const categoryLabels: Record<string, string> = {
 
 export const dynamic = 'force-dynamic'
 
+
 export async function generateStaticParams() {
   return articlesData.map((article: any) => ({ slug: article.slug }))
 }
@@ -79,8 +80,15 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     redirect(`/grands-formats/${params.slug}`)
   }
 
-  const contentPath = path.join(process.cwd(), 'lib', 'content', `${params.slug}.html`)
+  const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const contentFile = lang === 'en' ? `${params.slug}-en.html` : `${params.slug}.html`
+  const contentPath = path.join(process.cwd(), 'lib', 'content', contentFile)
   let content = ''
+  let hasEnglish = false
+  try {
+    const enPath = path.join(process.cwd(), 'lib', 'content', `${params.slug}-en.html`)
+    hasEnglish = fs.existsSync(enPath)
+  } catch {}
   try {
     content = fs.readFileSync(contentPath, 'utf-8')
   } catch {
@@ -126,7 +134,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   // Grand format → layout dédié
   if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
     return (
-      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} />
+      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} lang={lang} hasEnglish={hasEnglish} />
     )
   }
 
@@ -148,6 +156,8 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       authorRole={(article as any).authorRole || ''}
       imageCredit={(article as any).imageCredit || ''}
       related={related}
+      lang={lang}
+      hasEnglish={hasEnglish}
     />
   )
 }

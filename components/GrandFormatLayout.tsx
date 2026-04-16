@@ -1,3 +1,5 @@
+import LangToggle from './LangToggle'
+import { Suspense } from 'react'
 'use client'
 import { useEffect, useState, ReactNode } from 'react'
 import Header from './Header'
@@ -31,6 +33,8 @@ interface GrandFormatLayoutProps {
   slug?: string
   content?: string
   showPaywall?: boolean
+  lang?: string
+  hasEnglish?: boolean
   // Pour les pages React custom (dette-souveraine)
   children?: ReactNode
   // Métadonnées (override si pas de slug)
@@ -52,6 +56,8 @@ export default function GrandFormatLayout({
   readTime: rtProp, date: dateProp,
   author: authorProp, authorRole: roleProp,
   showPaywall,
+  lang = 'fr',
+  hasEnglish = false,
 }: GrandFormatLayoutProps) {
 
   // Résoudre les métadonnées depuis articles.json ou les props
