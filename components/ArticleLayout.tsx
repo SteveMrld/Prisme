@@ -24,6 +24,7 @@ interface ArticleLayoutProps {
   imageCredit?: string
   lang?: string
   hasEnglish?: boolean
+  toggleUrl?: string
 }
 
 const categoryColors: Record<string, string> = {

@@ -21,6 +21,7 @@ export default async function TerresRaresPage({ searchParams }: { searchParams?:
   }
   const showPaywall = !isAdmin && !isSubscribed
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const toggleUrl = lang === 'en' ? `/grands-formats/terres-rares` : `/grands-formats/terres-rares?lang=en`
   const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'terres-rares-en.html')
   let enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
   // Toggle EN/FR — statique, pas de JS
@@ -36,6 +37,7 @@ export default async function TerresRaresPage({ searchParams }: { searchParams?:
       lang={lang}
       hasEnglish={true}
       content={enContent || undefined}
+      toggleUrl={toggleUrl}
     >
       <div className="soara-article">
 

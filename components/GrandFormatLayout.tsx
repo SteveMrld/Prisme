@@ -33,6 +33,7 @@ interface GrandFormatLayoutProps {
   showPaywall?: boolean
   lang?: string
   hasEnglish?: boolean
+  toggleUrl?: string
   // Pour les pages React custom (dette-souveraine)
   children?: ReactNode
   // Métadonnées (override si pas de slug)
@@ -56,6 +57,7 @@ export default function GrandFormatLayout({
   showPaywall,
   lang = 'fr',
   hasEnglish = false,
+  toggleUrl,
 }: GrandFormatLayoutProps) {
 
   // Résoudre les métadonnées depuis articles.json ou les props

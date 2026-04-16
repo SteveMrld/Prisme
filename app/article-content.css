@@ -2019,26 +2019,3 @@ sup {
 a.byline-li {
   display: none !important;
 }
-
-/* ── EN/FR toggle — injecté statiquement dans le HTML ── */
-.lang-toggle {
-  display: inline-block;
-  margin-bottom: 0;
-}
-.lang-toggle a {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 11px;
-  border: 1.5px solid #1a1a1a;
-  border-radius: 2px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #1a1a1a;
-  text-decoration: none;
-  line-height: 1;
-  cursor: pointer;
-}
-.lang-toggle a:hover { background: #1a1a1a; color: #fff; }

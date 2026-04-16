@@ -22,6 +22,7 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
   }
   const showPaywall = !isAdmin && !isSubscribed
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const toggleUrl = lang === 'en' ? `/grands-formats/dette-souveraine` : `/grands-formats/dette-souveraine?lang=en`
   const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'dette-souveraine-en.html')
   let enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
   // Toggle EN/FR — statique, pas de JS

@@ -95,16 +95,6 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     content = '<p>Contenu à venir.</p>'
   }
 
-  // Toggle EN/FR — lien statique injecté dans le HTML, pas de JS client
-  if (hasEnglish) {
-    const baseUrl = REDIRECT_TO_GRAND_FORMAT.includes(params.slug)
-      ? `/grands-formats/${params.slug}`
-      : `/articles/${params.slug}`
-    const toggleHtml = lang === 'en'
-      ? `<div class="lang-toggle"><a href="${baseUrl}">&#127760; Lire en français</a></div>`
-      : `<div class="lang-toggle"><a href="${baseUrl}?lang=en">&#127760; Read in English</a></div>`
-    content = toggleHtml + content
-  }
 
   const isPremium = (article as any).premium === true
 
@@ -136,6 +126,14 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     content.includes('portrait-hero') ||
     (article as any).category === 'portrait'
 
+  // URL toggle EN/FR — calculée côté serveur, passée comme prop string
+  const toggleBase = REDIRECT_TO_GRAND_FORMAT.includes(params.slug)
+    ? `/grands-formats/${params.slug}`
+    : `/articles/${params.slug}`
+  const toggleUrl = hasEnglish
+    ? (lang === 'en' ? toggleBase : `${toggleBase}?lang=en`)
+    : null
+
   // Articles liés — même catégorie, exclu l'article courant
   // Pour les portraits : tous les autres portraits
   const related = (articlesData as any[])
@@ -145,7 +143,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
   // Grand format → layout dédié
   if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
     return (
-      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} lang={lang} hasEnglish={hasEnglish} />
+      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} lang={lang} hasEnglish={hasEnglish} toggleUrl={toggleUrl || undefined} />
     )
   }
 
@@ -169,6 +167,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       related={related}
       lang={lang}
       hasEnglish={hasEnglish}
+      toggleUrl={toggleUrl || undefined}
     />
   )
 }

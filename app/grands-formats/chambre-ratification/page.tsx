@@ -11,6 +11,7 @@ export const metadata = {
 
 export default async function ChambreRatificationPage({ searchParams }: { searchParams?: { lang?: string } }) {
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const toggleUrl = lang === 'en' ? `/grands-formats/chambre-ratification` : `/grands-formats/chambre-ratification?lang=en`
   const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'chambre-ratification-en.html')
   let enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
   // Toggle EN/FR — statique, pas de JS
@@ -25,6 +26,7 @@ export default async function ChambreRatificationPage({ searchParams }: { search
       lang={lang}
       hasEnglish={true}
       content={enContent || undefined}
+      toggleUrl={toggleUrl}
     >
       <div className="soara-article">
 

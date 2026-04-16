@@ -21,6 +21,7 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
   }
   const showPaywall = !isAdmin && !isSubscribed
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const toggleUrl = lang === 'en' ? `/grands-formats/palantir` : `/grands-formats/palantir?lang=en`
   const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'palantir-en.html')
   let enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
   // Toggle EN/FR — statique, pas de JS
@@ -36,6 +37,7 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
       lang={lang}
       hasEnglish={true}
       content={enContent || undefined}
+      toggleUrl={toggleUrl}
     >
       <div className="soara-article">
 
