@@ -90,7 +90,7 @@ export default function GrandFormatLayout({
   const _allArticles = articlesData as any[]
   const _explicitSlugs: string[] = (article?.relatedSlugs as string[]) || []
   let related: any[]
-  if (_explicitSlugs.length >= 4) {
+  if (_explicitSlugs.length > 0) {
     related = _explicitSlugs
       .map(s => _allArticles.find(a => a.slug === s))
       .filter((a): a is any => Boolean(a))

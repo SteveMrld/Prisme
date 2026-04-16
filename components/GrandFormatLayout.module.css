@@ -367,6 +367,7 @@
   flex-direction: column;
   gap: 10px;
   overflow: hidden;
+  min-height: 200px;
 }
 
 .relatedThumb {
