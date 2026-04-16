@@ -135,7 +135,7 @@ export default function ArticleLayout({
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
             <span className={styles.readTime}>
               {isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}
-
+              {toggleUrl && (<>{' · '}<a href={toggleUrl} style={{fontFamily:"'DM Sans',sans-serif",fontSize:'10px',fontWeight:600,color:'#C8A96E',textDecoration:'none',letterSpacing:'2px',textTransform:'uppercase',borderBottom:'1px solid #C8A96E',paddingBottom:'1px',cursor:'pointer'}}>{toggleUrl.includes('lang=en') ? 'EN' : 'FR'}</a></>)}
             </span>
             <span className={styles.readDate}>{displayDate}</span>
           </div>
