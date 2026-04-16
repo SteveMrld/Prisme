@@ -114,9 +114,9 @@ export default function ArticleLayout({
 
       {/* IMAGE après le titre pour tous sauf portrait (skip si déjà dans le contenu) */}
       {image && !hasHeroInContent && (
-        <figure className={category === 'portrait' ? '' : styles.heroWrap} style={category === 'portrait' ? {width:'100%', margin:'24px 0'} : {}}>
+        <figure className={category === 'portrait' ? '' : styles.heroWrap} style={category === 'portrait' ? {width:'100%', margin:'24px 0', background:'transparent'} : {}}>
           <img src={image} alt={title} className={category === 'portrait' ? '' : styles.heroImg}
-            style={category === 'portrait' ? {width:'100%', height:'auto', display:'block', background:'#f8f8f8'} : {}} />
+            style={category === 'portrait' ? {width:'100%', height:'auto', display:'block'} : {}} />
           {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
         </figure>
       )}
