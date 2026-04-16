@@ -639,7 +639,7 @@
     "featured": false,
     "imageCredit": "© SOARA",
     "imagePosition": "center center",
-    "imageHeight": "700",
-    "imageFit": "cover"
+    "imageHeight": "590",
+    "imageFit": "contain"
   }
 ]
