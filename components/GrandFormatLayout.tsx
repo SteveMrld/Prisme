@@ -157,7 +157,10 @@ export default function GrandFormatLayout({
                 <>
                   {' · '}
                   <Suspense fallback={null}>
-                    <LangToggle lang={lang} hasEnglish={hasEnglish} />
+                    <LangToggle lang={lang} hasEnglish={hasEnglish} href={
+    (article as any)?.grandFormatUrl ||
+    (slug && ["terres-rares","chambre-ratification","skunkworks","palantir","dette-souveraine"].includes(slug) ? `/grands-formats/${slug}` : `/articles/${slug || ""}`)
+  } />
                   </Suspense>
                 </>
               )}

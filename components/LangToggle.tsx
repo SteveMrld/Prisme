@@ -1,14 +1,14 @@
 'use client'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 interface LangToggleProps {
   lang: string
   hasEnglish: boolean
+  href: string  // URL explicite de l'article courant
 }
 
-export default function LangToggle({ lang, hasEnglish }: LangToggleProps) {
+export default function LangToggle({ lang, hasEnglish, href }: LangToggleProps) {
   const router = useRouter()
-  const pathname = usePathname()
   const searchParams = useSearchParams()
 
   if (!hasEnglish) return null
@@ -20,7 +20,7 @@ export default function LangToggle({ lang, hasEnglish }: LangToggleProps) {
     } else {
       params.delete('lang')
     }
-    router.push(`${pathname}?${params.toString()}`)
+    router.push(`${href}?${params.toString()}`)
   }
 
   const active = lang === 'en' ? 'en' : 'fr'
@@ -30,13 +30,10 @@ export default function LangToggle({ lang, hasEnglish }: LangToggleProps) {
       <button
         onClick={() => switchTo('en')}
         style={{
-          background: 'none',
-          border: 'none',
-          padding: 0,
+          background: 'none', border: 'none', padding: 0,
           cursor: 'pointer',
           fontFamily: "'DM Sans', sans-serif",
-          fontSize: '13px',
-          fontWeight: 400,
+          fontSize: '13px', fontWeight: 400,
           color: '#1a1a1a',
           textDecoration: 'underline',
           textUnderlineOffset: '3px',
@@ -52,13 +49,10 @@ export default function LangToggle({ lang, hasEnglish }: LangToggleProps) {
     <button
       onClick={() => switchTo('fr')}
       style={{
-        background: 'none',
-        border: 'none',
-        padding: 0,
+        background: 'none', border: 'none', padding: 0,
         cursor: 'pointer',
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: '13px',
-        fontWeight: 400,
+        fontSize: '13px', fontWeight: 400,
         color: '#1a1a1a',
         textDecoration: 'underline',
         textUnderlineOffset: '3px',
