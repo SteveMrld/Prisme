@@ -60,9 +60,7 @@ export default function ArticleLayout({
   author = 'Steve Moradel',
   authorRole = '',
   related = [],
-  imageCredit = '',
-  lang = 'fr',
-  hasEnglish = false,
+  imageCredit = ''
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -132,9 +130,7 @@ export default function ArticleLayout({
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
           <div className={styles.eyebrow}>
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
-            <span className={styles.readTime}>
-              {isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}
-            </span>
+            <span className={styles.readTime}>{isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}</span>
             <span className={styles.readDate}>{displayDate}</span>
           </div>
           <div className={styles.titleRow}>
@@ -177,7 +173,6 @@ export default function ArticleLayout({
       {/* ── LAYOUT DESKTOP : article + sidebar ── */}
       <div className={styles.articlePageLayout}>
       <div className={styles.articleMainCol}>
-
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         {isPremiumContent ? (
           <div className={styles.paywallWrap}>
@@ -230,7 +225,7 @@ export default function ArticleLayout({
         <div className={styles.articleSidebar}>
           <div className={styles.sidebarTitle}>À lire aussi</div>
           {related.map((a: any) => (
-            <a key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.sidebarItem}>
+            <a key={a.slug} href={`/articles/${a.slug}`} className={styles.sidebarItem}>
               {a.image && <img src={a.image} alt={a.title} className={styles.sidebarThumb} />}
               <div>
                 <div className={styles.sidebarCat}>{a.categoryLabel || a.category?.toUpperCase()}</div>
@@ -251,7 +246,7 @@ export default function ArticleLayout({
           </div>
           <div className={styles.relatedGrid}>
             {related.map((a: any) => (
-              <a key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.relatedCard}>
+              <a key={a.slug} href={`/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && (
                   <div className={styles.relatedImgWrap}>
                     <img src={a.image} alt={a.title} className={styles.relatedImg} />
