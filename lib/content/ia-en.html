@@ -1,0 +1,475 @@
+<div class="art-hero-wrap"><img class="art-hero-img" src="https://i.ibb.co/vCcXB6p8/img-ia-jamais.jpg" alt="" loading="lazy"></div>
+<h1 class="atitle">How AI<em> processes<br>language</em></h1>
+  <p class="adeck">What it actually does, and how to use it well.</p>
+</div>
+<div>
+  <div class="art-byline-name">Steve Moradel</div>
+  <div class="art-byline-role">Technology &amp; Digital</div>
+</div>
+</div>
+
+<div class="tb"></div>
+
+<div class="mzone">
+  <div class="mmeta">
+    <span class="mlbl">Interactive explainer · 15 sequences</span>
+    <div class="ptrack"><div class="pfill" id="prog" style="width:6.67%"></div></div>
+    <span class="mctr" id="ctr">1 / 15</span>
+  </div>
+  <div class="sw" id="sw"><div class="si" id="sc"></div></div>
+  <div class="mnav">
+    <button class="mb pp" id="bPrev" onclick="go(-1)" disabled>← Previous</button>
+    <button class="mb pa" id="bPause" onclick="togglePause()">⏸ Pause</button>
+    <button class="mb nx" id="bNext" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<style>
+.mzone {
+  background: var(--encre);
+  padding: 0;
+  margin: 40px 0;
+  overflow: hidden;
+}
+.mmeta {
+  padding: 16px 24px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.mlbl {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(196,162,101,0.7);
+  white-space: nowrap;
+}
+.ptrack {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.pfill {
+  height: 100%;
+  background: #C8A96E;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.mctr {
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.sw {
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+}
+.si {
+  width: 100%;
+  max-width: 580px;
+  animation: siIn 0.35s ease;
+}
+@keyframes siIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mnav {
+  padding: 14px 24px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mb {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.mb:hover:not(:disabled) { border-color: #C8A96E; color: #C8A96E; }
+.mb:disabled { opacity: 0.2; cursor: default; }
+.mb.nx { border-color: rgba(196,162,101,0.4); color: #C8A96E; }
+.sl-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: rgba(196,162,101,0.12);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: -8px;
+}
+.sl-tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(196,162,101,0.7);
+  margin-bottom: 12px;
+}
+.sl-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 300;
+  color: rgba(236,231,221,0.92);
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.sl-title em { font-style: italic; color: #C8A96E; }
+.sl-body {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(14px, 2vw, 17px);
+  font-style: italic;
+  color: rgba(236,231,221,0.55);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+.sl-box {
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid rgba(196,162,101,0.35);
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: clamp(12px, 1.8vw, 14px);
+  color: rgba(236,231,221,0.4);
+  line-height: 1.65;
+}
+.sl-box strong { color: rgba(236,231,221,0.7); font-weight: 500; }
+.sl-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+}
+.tok {
+  padding: 5px 10px;
+  border: 1px solid;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+.tok-a { border-color: rgba(74,126,199,0.5); color: rgba(74,126,199,0.9); background: rgba(74,126,199,0.06); }
+.tok-b { border-color: rgba(196,162,101,0.5); color: rgba(196,162,101,0.9); background: rgba(196,162,101,0.06); }
+.tok-c { border-color: rgba(45,107,74,0.5); color: rgba(45,107,74,0.9); background: rgba(45,107,74,0.08); }
+.tok-d { border-color: rgba(199,90,90,0.5); color: rgba(199,90,90,0.9); background: rgba(199,90,90,0.06); }
+.sl-probs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+.prob-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 36px;
+  align-items: center;
+  gap: 10px;
+}
+.prob-word {
+  font-size: 12px;
+  color: rgba(236,231,221,0.6);
+  font-family: 'DM Sans', sans-serif;
+  text-align: right;
+}
+.prob-bar-bg {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.prob-bar-fill {
+  height: 100%;
+  background: #C8A96E;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+}
+.prob-pct {
+  font-size: 11px;
+  color: rgba(196,162,101,0.7);
+  font-family: 'DM Sans', sans-serif;
+}
+.sl-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 18px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  align-items: start;
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: rgba(196,162,101,0.5);
+  font-weight: 300;
+}
+.step-text {
+  font-size: 13px;
+  color: rgba(236,231,221,0.5);
+  line-height: 1.55;
+}
+.step-text strong { color: rgba(236,231,221,0.8); font-weight: 500; }
+.sl-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 16px;
+}
+.sl-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 300;
+  color: #C8A96E;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.sl-stat-label {
+  font-size: 15px;
+  color: rgba(236,231,221,0.45);
+  line-height: 1.4;
+  max-width: 280px;
+}
+</style>
+
+<script>
+(function() {
+  var slides = [
+    {
+      num: '01', tag: 'Starting point',
+      title: 'AI does not <em>understand</em> language',
+      body: 'A large language model like ChatGPT, Claude, or Gemini does not understand what you write. It predicts the most probable next token given all the preceding ones. That is all. That is sufficient to produce texts that seem intelligent.',
+      box: null
+    },
+    {
+      num: '02', tag: 'Tokenization',
+      title: 'Text is broken into <em>fragments</em>',
+      body: 'Before any processing, text is split into tokens, sub-lexical fragments. "Artificial intelligence" becomes several tokens.',
+      tokens: [
+        {t:'Art', c:'a'},{t:'ific', c:'a'},{t:'ial', c:'a'},
+        {t:'▁intel', c:'b'},{t:'lig', c:'b'},{t:'ence', c:'b'},
+        {t:'▁is', c:'c'},
+        {t:'▁a', c:'c'},
+        {t:'▁pred', c:'d'},{t:'iction', c:'d'},
+      ]
+    },
+    {
+      num: '03', tag: 'Embeddings',
+      title: 'Each token becomes a <em>vector</em>',
+      body: 'Each token is converted into a high-dimensional vector, a list of thousands of numbers. These numbers encode semantic relationships between words: "king" and "queen" are close in this space, "apple" and "banana" are too.',
+      box: '<strong>king − man + woman ≈ queen</strong><br>This vector arithmetic actually works in the embedding spaces of modern LLMs.'
+    },
+    {
+      num: '04', tag: 'Attention',
+      title: 'The <em>attention</em> mechanism',
+      body: 'The transformer revolution (2017): each token can "look at" all other tokens in the sequence simultaneously. To predict the word after "The Eiffel Tower is located in", the model can weigh the importance of each preceding word.',
+      box: 'Vaswani et al., <em>Attention Is All You Need</em>, Google Brain, 2017. The most cited AI paper of the last decade.'
+    },
+    {
+      num: '05', tag: 'Prediction',
+      title: 'Completing "The capital of France is…"',
+      body: 'For each position, the model produces a probability distribution over the entire vocabulary. Here are the candidates for what follows this sentence:',
+      probs: [
+        {word: 'Paris', pct: 94},
+        {word: 'Lyon', pct: 3},
+        {word: 'a', pct: 1},
+        {word: 'the', pct: 1},
+        {word: 'known', pct: 1},
+      ]
+    },
+    {
+      num: '06', tag: 'Training',
+      title: 'Billions of <em>wrong predictions</em>',
+      body: 'The model is trained by giving it billions of sentences and asking it to predict each next word. With each error, the network weights are adjusted so it makes fewer mistakes next time.',
+      box: 'GPT-4: trained on ~13 trillion tokens. If you read at 250 words per minute without ever sleeping, it would take you 100,000 years to read as much.'
+    },
+    {
+      num: '07', tag: 'RLHF',
+      title: 'Making the model <em>useful</em>',
+      body: 'A pre-trained model predicts statistically probable text, not necessarily useful, honest, or harmless text. RLHF (Reinforcement Learning from Human Feedback) adjusts the model to respond well to human questions.',
+      steps: [
+        {n:'1', t:'<strong>Collection</strong>, humans write exemplary responses'},
+        {n:'2', t:'<strong>Ranking</strong>, humans compare pairs of responses'},
+        {n:'3', t:'<strong>Reward model</strong>, a model learns to predict human preferences'},
+        {n:'4', t:'<strong>Fine-tuning</strong>, the LLM is adjusted to maximize this reward model'},
+      ]
+    },
+    {
+      num: '08', tag: 'Hallucinations',
+      title: 'Why AI <em>makes things up</em>',
+      body: "The model doesn't know what it doesn't know. It always generates the most probable token, even when the correct response would be \"I don't know.\" The result: fabricated facts presented with the same fluency as real ones.",
+      box: '<strong>Practical rule</strong>: an LLM is reliable for reasoning and synthesis. It is risky for precise facts, dates, quotes, statistics. Always verify specific factual claims.'
+    },
+    {
+      num: '09', tag: 'Context',
+      title: 'The <em>context</em> window',
+      body: 'The model can only process a limited amount of text simultaneously, its "context window." Everything before this limit is forgotten. There is no persistent memory between two conversations.',
+      stat: {num: '200K', label: 'context tokens for Claude 3, approximately 150,000 words, an entire novel.'}
+    },
+    {
+      num: '10', tag: 'Temperature',
+      title: 'Controlling <em>creativity</em>',
+      body: 'Temperature is a parameter that controls how much the model chooses improbable tokens. Low temperature → predictable and precise responses. High temperature → creative but less reliable responses.',
+      probs: [
+        {word: 'Paris (T=0.1)', pct: 99},
+        {word: 'Paris (T=0.7)', pct: 72},
+        {word: 'Montreal (T=0.7)', pct: 14},
+        {word: 'random (T=1.5)', pct: 35},
+      ]
+    },
+    {
+      num: '11', tag: 'Prompt',
+      title: 'Why the <em>prompt</em> changes everything',
+      body: 'The model has no objective of its own; it continues what you have begun. The way you formulate a request radically conditions the distribution of possible responses.',
+      steps: [
+        {n:'▸', t:'"Explain X to me" → general explanation, often approximate'},
+        {n:'▸', t:'"You are an expert in X. Explain to a professional…" → much more precise'},
+        {n:'▸', t:'"Reason step by step before answering" → fewer errors'},
+        {n:'▸', t:'"What information do you need to answer?" → reliable diagnostic'},
+      ]
+    },
+    {
+      num: '12', tag: 'What it does well',
+      title: 'The <em>real</em> strengths of LLMs',
+      body: "Just because an LLM doesn't \"understand\" doesn't mean it isn't useful. Some tasks correspond exactly to what it naturally does well.",
+      steps: [
+        {n:'', t:'<strong>Synthesis</strong>, summarizing, reformulating, condensing information'},
+        {n:'', t:'<strong>Variant generation</strong>, brainstorming, reformulations, translations'},
+        {n:'', t:'<strong>Structured reasoning</strong>, when context is explicitly provided'},
+        {n:'', t:'<strong>Coding</strong>, close to statistical prediction on massive corpus'},
+      ]
+    },
+    {
+      num: '13', tag: 'What it does poorly',
+      title: 'Structural <em>limitations</em>',
+      body: 'These limitations are not bugs; they are inherent to the architecture.',
+      steps: [
+        {n:'', t:'<strong>Precise facts without verification</strong>, undetected hallucinations'},
+        {n:'', t:'<strong>Complex math</strong>, calculates on tokens, not on numbers'},
+        {n:'', t:'<strong>Long-range coherence</strong>, forgets what exceeds the context'},
+        {n:'', t:'<strong>Real-time updates</strong>, does not know what happened after its cutoff'},
+      ]
+    },
+    {
+      num: '14', tag: 'Impact',
+      title: 'What this <em>actually changes</em>',
+      body: 'AI does not replace jobs that require human judgment. It devalues pure technical competence and amplifies judgment.',
+      stat: {num: '40%', label: 'of global jobs exposed to generative AI according to the IMF, 2024, but "exposed" does not mean "eliminated."'}
+    },
+    {
+      num: '15', tag: 'Conclusion',
+      title: 'Prediction ≠ <em>understanding</em><br>but prediction = <em>power</em>',
+      body: 'An LLM is a machine for predicting human language with vertiginous statistical precision. It is not a consciousness. It is not general intelligence. It is an amplification tool, of your thinking, your blind spots, your efficiency. Using it well means understanding what it is.',
+      box: null
+    },
+  ]
+
+  var cur = 0
+  var timer = null
+  var paused = false
+  var DELAY = 8000
+
+  function render(animate) {
+    var s = slides[cur]
+    var el = document.getElementById('sc')
+    el.parentNode.replaceChild(el.cloneNode(false), el)
+    el = document.getElementById('sc')
+
+    var html = '<div class="sl-num">' + s.num + '</div>'
+    html += '<div class="sl-tag">' + s.tag + '</div>'
+    html += '<div class="sl-title">' + s.title + '</div>'
+    if (s.body) html += '<div class="sl-body">' + s.body + '</div>'
+
+    if (s.tokens) {
+      html += '<div class="sl-tokens">'
+      s.tokens.forEach(function(t) {
+        html += '<span class="tok tok-' + t.c + '">' + t.t + '</span>'
+      })
+      html += '</div>'
+    }
+
+    if (s.probs) {
+      html += '<div class="sl-probs">'
+      s.probs.forEach(function(p) {
+        html += '<div class="prob-row">'
+        html += '<div class="prob-word">' + p.word + '</div>'
+        html += '<div class="prob-bar-bg"><div class="prob-bar-fill" style="width:' + p.pct + '%"></div></div>'
+        html += '<div class="prob-pct">' + p.pct + '%</div>'
+        html += '</div>'
+      })
+      html += '</div>'
+    }
+
+    if (s.steps) {
+      html += '<div class="sl-steps">'
+      s.steps.forEach(function(st) {
+        html += '<div class="step"><div class="step-num">' + st.n + '</div><div class="step-text">' + st.t + '</div></div>'
+      })
+      html += '</div>'
+    }
+
+    if (s.stat) {
+      html += '<div class="sl-stat"><div class="sl-stat-num">' + s.stat.num + '</div><div class="sl-stat-label">' + s.stat.label + '</div></div>'
+    }
+
+    if (s.box) {
+      html += '<div class="sl-box">' + s.box + '</div>'
+    }
+
+    el.innerHTML = html
+
+    var pct = ((cur + 1) / slides.length * 100).toFixed(2)
+    document.getElementById('prog').style.width = pct + '%'
+    document.getElementById('ctr').textContent = (cur + 1) + ' / ' + slides.length
+    document.getElementById('bPrev').disabled = cur === 0
+    document.getElementById('bNext').disabled = cur === slides.length - 1
+
+    if (!paused && cur < slides.length - 1) {
+      clearTimeout(timer)
+      timer = setTimeout(function() { go(1) }, DELAY)
+    }
+  }
+
+  window.go = function(d) {
+    var next = cur + d
+    if (next < 0 || next >= slides.length) return
+    cur = next
+    render(true)
+  }
+
+  window.togglePause = function() {
+    paused = !paused
+    var btn = document.getElementById('bPause')
+    if (paused) {
+      clearTimeout(timer)
+      btn.textContent = '▶ Resume'
+    } else {
+      btn.textContent = '⏸ Pause'
+      if (cur < slides.length - 1) timer = setTimeout(function() { go(1) }, DELAY)
+    }
+  }
+
+  render(false)
+})()
+</script>
+
+<div class="tbr">
