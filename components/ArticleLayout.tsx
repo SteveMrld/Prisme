@@ -63,7 +63,8 @@ export default function ArticleLayout({
   related = [],
   imageCredit = '',
   lang = 'fr',
-  hasEnglish = false
+  hasEnglish = false,
+  toggleUrl
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
