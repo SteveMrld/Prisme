@@ -139,9 +139,7 @@ export default function ArticleLayout({
               {hasEnglish && (
                 <>
                   {' · '}
-                  <Suspense fallback={null}>
-                    <LangToggle lang={lang} hasEnglish={hasEnglish} href={slug ? `/articles/${slug}` : ""} />
-                  </Suspense>
+                  <LangToggle lang={lang} hasEnglish={hasEnglish} href={slug ? `/articles/${slug}` : ""} />
                 </>
               )}
             </span>
