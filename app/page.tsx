@@ -79,6 +79,20 @@ function ReadTime({ t }: { t: string }) {
   return <span className={styles.readTime}>{isNaN(n) ? t : `${n} min`}</span>
 }
 
+// Slugs disponibles en anglais
+const EN_SLUGS = new Set(["societe-du-consentement","ceux-qui-nont-pas-cede","empire-du-droit","terres-rares","moreno","afrique","arctique","blackrock","chine","cygne","empires","fiscalite","fragilite","france_maritime","ia","ia_ecriture","kintsugi","lecture","medias","morrison","morin","tutu","musk","nooyi","pessimisme","predateurs","reseaux","rushkoff","semico","silence","taiwan","technosolutionnisme","venezuela","orbite","obama","wanghuning","monopoly","darkfactories"])
+
+const EnBadge = () => (
+  <span style={{display:'inline-flex',alignItems:'center',gap:'3px',fontSize:'9px',fontFamily:"'DM Sans',sans-serif",fontWeight:600,letterSpacing:'1.5px',color:'#C8A96E',textTransform:'uppercase',verticalAlign:'middle',marginLeft:'6px',flexShrink:0}}>
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+    EN
+  </span>
+)
+
 const SBadge = () => (
   <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:'14px',height:'14px',background:'#0A0A0A',color:'#C8A96E',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,lineHeight:1,marginRight:'5px',flexShrink:0,verticalAlign:'middle',position:'relative',top:'-1px'}}>S</span>
 )
@@ -125,7 +139,7 @@ export default function HomePage() {
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
                 <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
-                <ReadTime t={a.readTime || '7'} />
+                <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
               </div>
               {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
             </Link>
@@ -138,7 +152,7 @@ export default function HomePage() {
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
                 <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
-                <ReadTime t={a.readTime || '7'} />
+                <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
               </div>
               {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
             </Link>
@@ -156,7 +170,7 @@ export default function HomePage() {
           <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.trioCard}>
             <span className={styles.cat}>{a.catLabel}</span>
             <h3 className={styles.trioTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
-            <ReadTime t={a.readTime || '7'} />
+            <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
           </Link>
         ))}
       </section>
@@ -205,6 +219,7 @@ export default function HomePage() {
                 </h3>
                 <div className={styles.gfMeta}>
                   <ReadTime t={a.readTime || '12'} />
+                  {EN_SLUGS.has(a.slug) && <EnBadge />}
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,opacity:.7}}>
                     <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
                     <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
@@ -283,7 +298,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
-                <ReadTime t={a.readTime || '7'} />
+                <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
               </div>
               {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
             </Link>
