@@ -13,9 +13,9 @@ export default function LangToggle({ lang, hasEnglish }: LangToggleProps) {
 
   if (!hasEnglish) return null
 
-  const toggle = () => {
+  const switchTo = (target: 'fr' | 'en') => {
     const params = new URLSearchParams(searchParams.toString())
-    if (lang === 'fr') {
+    if (target === 'en') {
       params.set('lang', 'en')
     } else {
       params.delete('lang')
@@ -23,33 +23,40 @@ export default function LangToggle({ lang, hasEnglish }: LangToggleProps) {
     router.push(`${pathname}?${params.toString()}`)
   }
 
+  const active = lang === 'en' ? 'en' : 'fr'
+
   return (
-    <button
-      onClick={toggle}
+    <div
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '6px',
-        fontSize: '10px',
-        fontFamily: '"DM Mono", monospace',
+        border: '1px solid #D8D3C8',
+        borderRadius: '2px',
+        overflow: 'hidden',
+        fontFamily: '"DM Sans", sans-serif',
+        fontSize: '11px',
         fontWeight: 600,
         letterSpacing: '1.5px',
         textTransform: 'uppercase',
-        color: lang === 'en' ? '#1a1a1a' : '#999',
-        background: 'none',
-        border: '1px solid',
-        borderColor: lang === 'en' ? '#1a1a1a' : '#ddd',
-        padding: '5px 10px',
-        cursor: 'pointer',
-        transition: 'all .2s',
       }}
     >
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="2" y1="12" x2="22" y2="12"/>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-      </svg>
-      {lang === 'en' ? 'Lire en français' : 'Read in English'}
-    </button>
+      {(['fr', 'en'] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => switchTo(l)}
+          style={{
+            padding: '5px 11px',
+            border: 'none',
+            cursor: active === l ? 'default' : 'pointer',
+            background: active === l ? '#0E0E0E' : 'transparent',
+            color: active === l ? '#fff' : '#999',
+            transition: 'background .15s, color .15s',
+            lineHeight: 1,
+          }}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
+    </div>
   )
 }
