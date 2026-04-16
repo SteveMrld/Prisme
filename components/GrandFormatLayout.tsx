@@ -123,7 +123,7 @@ export default function GrandFormatLayout({
 
       {/* ── COVER IMAGE (si pas dans le HTML) ── */}
       {image && !hasHeroInContent && (
-        <div className={styles.heroWrap}>
+        <div className={styles.heroWrap} style={{height: imageHeight + 'px', maxHeight: 'none'}}>
           <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
             style={{
               objectPosition: imagePosition,
