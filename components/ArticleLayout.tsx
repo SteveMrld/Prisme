@@ -77,36 +77,11 @@ export default function ArticleLayout({
   useEffect(() => {
     const article = document.querySelector('.soara-article')
     if (!article) return
-
-    // Execute scripts injected via dangerouslySetInnerHTML
-    article.querySelectorAll('script').forEach((oldScript: Element) => {
-      const newScript = document.createElement('script')
-      newScript.textContent = (oldScript as HTMLScriptElement).textContent || ''
-      oldScript.parentNode?.replaceChild(newScript, oldScript)
+    article.querySelectorAll('script').forEach((el: Element) => {
+      const s = document.createElement('script')
+      s.textContent = (el as HTMLScriptElement).textContent || ''
+      el.parentNode?.replaceChild(s, el)
     })
-    // Re-trigger iframes
-    article.querySelectorAll('.content-embed iframe').forEach((iframe: Element) => {
-      const el = iframe as HTMLIFrameElement
-      const src = el.getAttribute('src') || ''
-      if (src) { el.src = ''; setTimeout(() => { el.src = src }, 80) }
-    })
-
-    // Scroll reveal — stagger par élément
-    const targets = article.querySelectorAll('.pull-quote, .content-embed, .notes-section')
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement
-          el.style.transitionDelay = `${i * 0.04}s`
-          el.style.opacity = '1'
-          el.style.transform = 'translateY(0)'
-          obs.unobserve(el)
-        }
-      })
-    }, { threshold: 0.05, rootMargin: '0px 0px 60px 0px' })
-
-    targets.forEach(el => obs.observe(el))
-    return () => obs.disconnect()
   }, [])
 
   return (
