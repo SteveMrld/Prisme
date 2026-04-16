@@ -1,4 +1,5 @@
 'use client'
+// v2026
 import { useEffect } from 'react'
 import BookmarkButton from './BookmarkButton'
 import Header from './Header'
