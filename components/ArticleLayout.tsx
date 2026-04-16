@@ -212,12 +212,29 @@ export default function ArticleLayout({
             <div className={styles.relatedLabel}>Lire aussi</div>
             <div className={styles.relatedLine} />
           </div>
+          {category === 'portrait' ? (
+            <div style={{display:'flex',flexDirection:'column',gap:'0'}}>
+              {related.map((a: any) => (
+                <a key={a.slug} href={`/articles/${a.slug}`} style={{display:'flex',alignItems:'center',gap:'16px',padding:'14px 0',borderBottom:'1px solid #eee',textDecoration:'none',color:'inherit'}}>
+                  {a.image && (
+                    <div style={{width:'72px',height:'72px',flexShrink:0,borderRadius:'4px',overflow:'hidden',background:'#f5f5f5'}}>
+                      <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} style={{width:'100%',height:'100%',objectFit:'contain',objectPosition:'center top',display:'block'}} />
+                    </div>
+                  )}
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#7B5380',marginBottom:'4px',fontFamily:"'DM Sans',sans-serif"}}>Portrait · {a.readTime} min</div>
+                    <div style={{fontFamily:"'Playfair Display',serif",fontSize:'15px',lineHeight:1.3,color:'#111',fontWeight:400}}>{a.title.replace(/<[^>]+>/g,'')}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
           <div className={styles.relatedGrid}>
             {related.map((a: any) => (
               <a key={a.slug} href={`/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && (
-                  <div className={styles.relatedImgWrap} style={a.category === "portrait" ? {height:"auto",overflow:"visible"} : {}}>
-                    <img src={a.image} alt={a.title} className={styles.relatedImg} style={a.category === "portrait" ? {objectFit:"contain",objectPosition:"center center",background:"#f5f5f5"} : {}} />
+                  <div className={styles.relatedImgWrap}>
+                    <img src={a.image} alt={a.title} className={styles.relatedImg} />
                     <div className={styles.relatedImgOverlay} />
                   </div>
                 )}
@@ -233,6 +250,7 @@ export default function ArticleLayout({
               </a>
             ))}
           </div>
+          )}
         </div>
       )}
 
