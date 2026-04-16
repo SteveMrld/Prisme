@@ -24,7 +24,6 @@ interface ArticleLayoutProps {
   imageCredit?: string
   lang?: string
   hasEnglish?: boolean
-  toggleUrl?: string
 }
 
 const categoryColors: Record<string, string> = {
@@ -64,7 +63,6 @@ export default function ArticleLayout({
   imageCredit = '',
   lang = 'fr',
   hasEnglish = false,
-  toggleUrl
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -138,7 +136,6 @@ export default function ArticleLayout({
               {isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}
             </span>
             <span className={styles.readDate}>{displayDate}</span>
-            {toggleUrl && <a href={toggleUrl} onClick={e=>{e.preventDefault();window.location.href=toggleUrl}} style={{fontFamily:"'DM Sans',sans-serif",fontSize:'9px',fontWeight:700,letterSpacing:'2.5px',textTransform:'uppercase',color:'#C8A96E',textDecoration:'none',borderBottom:'1.5px solid #C8A96E',paddingBottom:'1px',marginLeft:'6px',cursor:'pointer'}}>{toggleUrl.includes('lang=en')?'EN':'FR'}</a>}
           </div>
           <div className={styles.titleRow}>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />

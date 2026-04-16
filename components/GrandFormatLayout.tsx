@@ -33,7 +33,6 @@ interface GrandFormatLayoutProps {
   showPaywall?: boolean
   lang?: string
   hasEnglish?: boolean
-  toggleUrl?: string
   // Pour les pages React custom (dette-souveraine)
   children?: ReactNode
   // Métadonnées (override si pas de slug)
@@ -155,7 +154,6 @@ export default function GrandFormatLayout({
               {minutes} min de lecture
             </span>
             <span className={styles.readDate}>{displayDate}</span>
-            {toggleUrl && <a href={toggleUrl} onClick={e=>{e.preventDefault();window.location.href=toggleUrl}} style={{fontFamily:"'DM Sans',sans-serif",fontSize:'9px',fontWeight:700,letterSpacing:'2.5px',textTransform:'uppercase',color:'#C8A96E',textDecoration:'none',borderBottom:'1.5px solid #C8A96E',paddingBottom:'1px',marginLeft:'6px',cursor:'pointer'}}>{toggleUrl.includes('lang=en')?'EN':'FR'}</a>}
           </div>
           <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
           {description && <p className={styles.chapeau}>{description}</p>}

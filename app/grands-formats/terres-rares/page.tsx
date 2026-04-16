@@ -24,6 +24,10 @@ export default async function TerresRaresPage({ searchParams }: { searchParams?:
   const toggleUrl = lang === 'en' ? `/grands-formats/terres-rares` : `/grands-formats/terres-rares?lang=en`
   const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'terres-rares-en.html')
   let enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
+  if (enContent) {
+    const tLabel = 'Lire en français'
+    enContent = `<a href="/grands-formats/terres-rares" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:1px;margin-bottom:28px">${tLabel}</a>` + enContent
+  }
   // Toggle EN/FR — statique, pas de JS
 
   return (
