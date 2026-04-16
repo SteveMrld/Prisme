@@ -234,7 +234,7 @@ export default function GrandFormatLayout({
       </div>
 
       {/* ── ARTICLES LIÉS ── */}
-      {related.length > 0 && (
+      {related.length > 0 && !article?.hideAutoRelated && (
         <div className={styles.related}>
           <div className={styles.relatedHead}>
             <span className={styles.relatedLabel}>Lire aussi</span>
