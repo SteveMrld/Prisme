@@ -101,21 +101,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     const base = REDIRECT_TO_GRAND_FORMAT.includes(params.slug) ? `/grands-formats/${params.slug}` : `/articles/${params.slug}`
     const tUrl = lang === 'en' ? base : `${base}?lang=en`
     const tLabel = lang === 'en' ? 'Lire en français' : 'Read in English'
-    const toggleLink = `<a href="${tUrl}" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:2px">${tLabel}</a>`
-    // Pour les articles avec header interne (portraits), on injecte dans la section aey
-    if (content.includes('class="aey"')) {
-      content = content.replace('</div>
-  <h1 class="atitle"', toggleLink + '
-</div>
-  <h1 class="atitle"')
-    } else if (content.includes('class="atop"')) {
-      content = content.replace('</div>
-</div>', toggleLink + '
-</div>
-</div>', )
-    } else {
-      content = `<div style="margin-bottom:20px">${toggleLink}</div>` + content
-    }
+    content = `<a href="${tUrl}" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:2px;margin-bottom:20px">${tLabel}</a>` + content
   }
 
   const isPremium = (article as any).premium === true
