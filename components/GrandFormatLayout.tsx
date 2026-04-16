@@ -153,6 +153,12 @@ export default function GrandFormatLayout({
             <span className={styles.readTime}>
               {minutes} min de lecture
             </span>
+            {hasEnglish && slug && (
+              <a href={`${(article as any)?.grandFormatUrl || `/grands-formats/${slug}`}${lang === 'en' ? '' : '?lang=en'}`}
+                style={{fontFamily:"'DM Sans',sans-serif",fontSize:'10px',fontWeight:600,letterSpacing:'2px',textTransform:'uppercase' as const,color:'#C8A96E',textDecoration:'none',borderBottom:'1.5px solid #C8A96E',paddingBottom:'1px',marginLeft:'8px'}}>
+                {lang === 'en' ? 'Lire en français' : 'Read in English'}
+              </a>
+            )}
             <span className={styles.readDate}>{displayDate}</span>
           </div>
           <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />

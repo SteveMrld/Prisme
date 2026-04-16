@@ -25,8 +25,7 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
   const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'palantir-en.html')
   let enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
   if (enContent) {
-    const tLabel = 'Lire en français'
-    enContent = `<a href="/grands-formats/palantir" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:1px;margin-bottom:28px">${tLabel}</a>` + enContent
+    enContent = `<a href="/grands-formats/palantir" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:1px;margin-bottom:28px">Lire en français</a>` + enContent
   }
   // Toggle EN/FR — statique, pas de JS
 
