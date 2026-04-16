@@ -114,8 +114,9 @@ export default function ArticleLayout({
 
       {/* IMAGE après le titre pour tous sauf portrait (skip si déjà dans le contenu) */}
       {image && !hasHeroInContent && (
-        <figure className={styles.heroWrap}>
-          <img src={image} alt={title} className={styles.heroImg} />
+        <figure className={styles.heroWrap} style={category === 'portrait' ? {background:'#f8f8f8'} : {}}>
+          <img src={image} alt={title} className={styles.heroImg}
+            style={category === 'portrait' ? {objectFit:'contain', objectPosition:'center center', background:'#f8f8f8'} : {}} />
           {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
         </figure>
       )}
