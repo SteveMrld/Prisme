@@ -1,5 +1,4 @@
 'use client'
-import { Suspense } from 'react'
 import { useEffect } from 'react'
 import BookmarkButton from './BookmarkButton'
 import Header from './Header'
@@ -135,12 +134,7 @@ export default function ArticleLayout({
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
             <span className={styles.readTime}>
               {isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}
-              {hasEnglish && (
-                <>
-                  {' · '}
-                  <LangToggle lang={lang} hasEnglish={hasEnglish} href={slug ? `/articles/${slug}` : ""} />
-                </>
-              )}
+
             </span>
             <span className={styles.readDate}>{displayDate}</span>
           </div>

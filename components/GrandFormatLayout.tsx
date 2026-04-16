@@ -1,5 +1,4 @@
 'use client'
-import { Suspense } from 'react'
 import { useEffect, useState, ReactNode } from 'react'
 import Header from './Header'
 import BookmarkButton from './BookmarkButton'
@@ -152,15 +151,7 @@ export default function GrandFormatLayout({
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
             <span className={styles.readTime}>
               {minutes} min de lecture
-              {hasEnglish && (
-                <>
-                  {' · '}
-                  <LangToggle lang={lang} hasEnglish={hasEnglish} href={
-    (article as any)?.grandFormatUrl ||
-    (slug && ["terres-rares","chambre-ratification","skunkworks","palantir","dette-souveraine"].includes(slug) ? `/grands-formats/${slug}` : `/articles/${slug || ""}`)
-  } />
-                </>
-              )}
+
             </span>
             <span className={styles.readDate}>{displayDate}</span>
           </div>
