@@ -15,7 +15,7 @@ const CAT_LABELS: Record<string,string> = {
 const categoryColors: Record<string, string> = {
   geo: '#1A3E6B', eco: '#B86A1A', tech: '#4A2080',
   env: '#2D6B4A', soc: '#7A2D2D', culture: '#6B1A3A',
-  portrait: '#C8A96E', concept: '#1A1A3E', sciences: '#1A5C4A'
+  portrait: '#7B5380', concept: '#1A1A3E', sciences: '#1A5C4A'
 }
 
 const portraitMap: Record<string, string> = {
