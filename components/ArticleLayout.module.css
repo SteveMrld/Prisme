@@ -57,13 +57,18 @@
 
 .title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(30px, 5.5vw, 56px);
+  font-size: clamp(34px, 6vw, 64px);
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -1.5px;
   color: var(--encre);
   margin-bottom: 20px;
   text-align: center;
+}
+
+.title em {
+  color: #7B5380;
+  font-style: italic;
 }
 
 .chapeau {

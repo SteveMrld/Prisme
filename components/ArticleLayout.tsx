@@ -116,7 +116,7 @@ export default function ArticleLayout({
       {image && !hasHeroInContent && (
         <figure className={category === 'portrait' ? '' : styles.heroWrap} style={category === 'portrait' ? {width:'100%', margin:'24px 0', background:'transparent'} : {}}>
           <img src={image} alt={title} className={category === 'portrait' ? '' : styles.heroImg}
-            style={category === 'portrait' ? {width:'100%', height:'auto', display:'block'} : {}} />
+            style={category === 'portrait' ? {width:'100%', maxHeight:'480px', height:'auto', display:'block', objectFit:'contain'} : {}} />
           {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
         </figure>
       )}
