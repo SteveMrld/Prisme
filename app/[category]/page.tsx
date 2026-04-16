@@ -163,13 +163,32 @@ export default function CategoryPage({ params }: { params: { category: string } 
       ) : (
         <div className={styles.content}>
 
+          {/* PORTRAITS : liste vignettes horizontales */}
+          {params.category === "portraits" ? (
+            <div style={{padding:'0 20px'}}>
+              {articles.map((article: any) => (
+                <Link key={article.slug} href={`/articles/${article.slug}`} style={{display:'flex',alignItems:'center',gap:'16px',padding:'16px 0',borderBottom:'1px solid #eee',textDecoration:'none',color:'inherit'}}>
+                  {article.image && (
+                    <div style={{width:'88px',height:'88px',flexShrink:0,borderRadius:'4px',overflow:'hidden',background:'#f5f5f5'}}>
+                      <img src={article.image} alt={article.title.replace(/<[^>]+>/g,'')} style={{width:'100%',height:'100%',objectFit:'contain',objectPosition:'center top',display:'block'}} />
+                    </div>
+                  )}
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#7B5380',marginBottom:'5px',fontFamily:"'DM Sans',sans-serif"}}>Portrait · {article.readTime} min{(article as any).premium ? ' · ★' : ''}</div>
+                    <div style={{fontFamily:"'Playfair Display',serif",fontSize:'16px',lineHeight:1.25,color:'#111',fontWeight:400,marginBottom:'4px'}} dangerouslySetInnerHTML={{__html: article.title.replace(/\n/g,' ')}} />
+                    <div style={{fontSize:'12px',color:'#888',fontStyle:'italic',fontFamily:"'Playfair Display',serif",lineHeight:1.4,display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden'}}>{article.description}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+          <AnimFeatured>
           {/* ARTICLE FEATURED */}
           {featured && (
-            <AnimFeatured>
             <Link href={featured.grandFormatUrl || `/articles/${featured.slug}`} className={styles.featured}>
               {featured.image && (
-                <div className={params.category === "portraits" ? styles.featuredImgWrapPortrait : styles.featuredImgWrap}>
-                  <img src={featured.image} alt={featured.title} className={params.category === "portraits" ? styles.featuredImgPortrait : styles.featuredImg} />
+                <div className={styles.featuredImgWrap}>
+                  <img src={featured.image} alt={featured.title} className={styles.featuredImg} />
                 </div>
               )}
               <div className={styles.featuredBody}>
@@ -189,11 +208,12 @@ export default function CategoryPage({ params }: { params: { category: string } 
                 </span>
               </div>
             </Link>
-            </AnimFeatured>
+          )}
+          </AnimFeatured>
           )}
 
           {/* GRILLE DES AUTRES ARTICLES */}
-          {rest.length > 0 && (
+          {rest.length > 0 && params.category !== "portraits" && (
             <AnimGrid className={styles.grid}>
               {rest.map(article => (
                 <AnimCard key={article.slug}>
