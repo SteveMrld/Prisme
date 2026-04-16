@@ -97,7 +97,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
 
 
 
-  if (hasEnglish) {
+  if (hasEnglish && !GRAND_FORMAT_SLUGS.includes(params.slug)) {
     const base = REDIRECT_TO_GRAND_FORMAT.includes(params.slug) ? `/grands-formats/${params.slug}` : `/articles/${params.slug}`
     const tUrl = lang === 'en' ? base : `${base}?lang=en`
     const tLabel = lang === 'en' ? 'Lire en français' : 'Read in English'

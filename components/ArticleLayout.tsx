@@ -92,14 +92,6 @@ export default function ArticleLayout({
       <StickyReadingHeader title={title} categoryLabel={categoryLabel} color={color} />
       <Header activeNav={category} />
 
-      {/* PORTRAIT : image d'abord */}
-      {category === 'portrait' && image && !hasHeroInContent && (
-        <div className={styles.heroWrap}>
-          <img src={image} alt={title} className={styles.heroImg}
-            style={{ height: '420px', objectFit: 'contain', objectPosition: 'center center', background: '#fff' }} />
-        </div>
-      )}
-
       {/* TOUS SAUF PORTRAIT : titre + chapeau d'abord */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
@@ -121,7 +113,7 @@ export default function ArticleLayout({
       )}
 
       {/* IMAGE après le titre pour tous sauf portrait (skip si déjà dans le contenu) */}
-      {category !== 'portrait' && image && !hasHeroInContent && (
+      {image && !hasHeroInContent && (
         <figure className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg} />
           {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
