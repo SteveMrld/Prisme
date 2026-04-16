@@ -25,38 +25,47 @@ export default function LangToggle({ lang, hasEnglish }: LangToggleProps) {
 
   const active = lang === 'en' ? 'en' : 'fr'
 
+  if (active === 'fr') {
+    return (
+      <button
+        onClick={() => switchTo('en')}
+        style={{
+          background: 'none',
+          border: 'none',
+          padding: 0,
+          cursor: 'pointer',
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: '13px',
+          fontWeight: 400,
+          color: '#1a1a1a',
+          textDecoration: 'underline',
+          textUnderlineOffset: '3px',
+          lineHeight: 'inherit',
+        }}
+      >
+        Read in English
+      </button>
+    )
+  }
+
   return (
-    <div
+    <button
+      onClick={() => switchTo('fr')}
       style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        border: '1px solid #D8D3C8',
-        borderRadius: '2px',
-        overflow: 'hidden',
-        fontFamily: '"DM Sans", sans-serif',
-        fontSize: '11px',
-        fontWeight: 600,
-        letterSpacing: '1.5px',
-        textTransform: 'uppercase',
+        background: 'none',
+        border: 'none',
+        padding: 0,
+        cursor: 'pointer',
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: '13px',
+        fontWeight: 400,
+        color: '#1a1a1a',
+        textDecoration: 'underline',
+        textUnderlineOffset: '3px',
+        lineHeight: 'inherit',
       }}
     >
-      {(['fr', 'en'] as const).map((l) => (
-        <button
-          key={l}
-          onClick={() => switchTo(l)}
-          style={{
-            padding: '5px 11px',
-            border: 'none',
-            cursor: active === l ? 'default' : 'pointer',
-            background: active === l ? '#0E0E0E' : 'transparent',
-            color: active === l ? '#fff' : '#999',
-            transition: 'background .15s, color .15s',
-            lineHeight: 1,
-          }}
-        >
-          {l.toUpperCase()}
-        </button>
-      ))}
-    </div>
+      Lire en français
+    </button>
   )
 }

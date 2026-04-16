@@ -158,17 +158,20 @@ export default function GrandFormatLayout({
       {/* ── HEADER (si pas dans le HTML) ── */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
-          <div className={styles.eyebrow} style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'8px'}}>
-            <div style={{display:'flex',alignItems:'center',gap:'10px',flexWrap:'wrap'}}>
-              <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
-              <span className={styles.readTime}>{minutes} min de lecture</span>
-              <span className={styles.readDate}>{displayDate}</span>
-            </div>
-            {hasEnglish && (
-              <Suspense fallback={null}>
-                <LangToggle lang={lang} hasEnglish={hasEnglish} />
-              </Suspense>
-            )}
+          <div className={styles.eyebrow}>
+            <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
+            <span className={styles.readTime}>
+              {minutes} min de lecture
+              {hasEnglish && (
+                <>
+                  {' · '}
+                  <Suspense fallback={null}>
+                    <LangToggle lang={lang} hasEnglish={hasEnglish} />
+                  </Suspense>
+                </>
+              )}
+            </span>
+            <span className={styles.readDate}>{displayDate}</span>
           </div>
           <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
           {description && <p className={styles.chapeau}>{description}</p>}
