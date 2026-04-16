@@ -95,6 +95,17 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     content = '<p>Contenu à venir.</p>'
   }
 
+  // Toggle EN/FR — lien statique injecté dans le HTML, pas de JS client
+  if (hasEnglish) {
+    const baseUrl = REDIRECT_TO_GRAND_FORMAT.includes(params.slug)
+      ? `/grands-formats/${params.slug}`
+      : `/articles/${params.slug}`
+    const toggleHtml = lang === 'en'
+      ? `<div class="lang-toggle"><a href="${baseUrl}">&#127760; Lire en français</a></div>`
+      : `<div class="lang-toggle"><a href="${baseUrl}?lang=en">&#127760; Read in English</a></div>`
+    content = toggleHtml + content
+  }
+
   const isPremium = (article as any).premium === true
 
   // Bypass paywall pour l'admin ou les abonnés actifs

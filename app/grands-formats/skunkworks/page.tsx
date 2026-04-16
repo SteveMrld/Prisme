@@ -22,7 +22,10 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
   const showPaywall = !isAdmin && !isSubscribed
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
   const enPath = nodePath.join(process.cwd(), 'lib', 'content', 'skunkworks-en.html')
-  const enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
+  let enContent = lang === 'en' && fs.existsSync(enPath) ? fs.readFileSync(enPath, 'utf-8') : null
+  // Toggle EN/FR — statique, pas de JS
+  const toggleHtml = `<div class="lang-toggle"><a href="/grands-formats/skunkworks${lang === 'en' ? '' : '?lang=en'}">${lang === 'en' ? '&#127760; Lire en français' : '&#127760; Read in English'}</a></div>`
+  if (enContent) enContent = toggleHtml + enContent
 
   return (
     <GrandFormatLayout
