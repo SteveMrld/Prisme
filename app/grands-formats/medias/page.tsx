@@ -9,7 +9,8 @@ export const metadata = {
   description: "Confiance en chute libre, évitement croissant, pouvoir médiatique concentré entre quelques mains. Le divorce entre le public occidental et ses médias est structurel. Anatomie d'une rupture.",
 }
 
-export default async function MediasGrandFormat() {
+export const dynamic = 'force-dynamic'
+export default async function MediasGrandFormat({ searchParams }: { searchParams?: { lang?: string } }) {
   const contentPath = path.join(process.cwd(), 'lib', 'content', 'medias.html')
   let content = ''
   try {
@@ -28,10 +29,17 @@ export default async function MediasGrandFormat() {
   }
   const showPaywall = !isAdmin && !isSubscribed
 
+  const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const contentPath2 = lang === 'en' ? path.join(process.cwd(), 'lib', 'content', 'medias-en.html') : contentPath
+  let contentFinal = content
+  if (lang === 'en') { try { contentFinal = fs.readFileSync(contentPath2, 'utf-8') } catch {} }
+
   return (
     <GrandFormatLayout
       slug="medias"
       showPaywall={showPaywall}
+      lang={lang}
+      hasEnglish={true}
       author="Steve Moradel"
       authorRole=""
     >
@@ -41,7 +49,7 @@ export default async function MediasGrandFormat() {
       </div>
 
       {/* Texte de l'article */}
-      <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="soara-article" dangerouslySetInnerHTML={{ __html: contentFinal }} />
     </GrandFormatLayout>
   )
 }
