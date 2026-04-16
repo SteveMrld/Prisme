@@ -6,6 +6,12 @@ import { ReadingProgress, ScrollDepth, StickyReadingHeader } from './ArticleAnim
 import styles from './GrandFormatLayout.module.css'
 import articlesData from '../lib/articles.json'
 
+const CAT_LABELS: Record<string,string> = {
+  geo:'Géopolitique', eco:'Économie', tech:'Technologie',
+  env:'Environnement', soc:'Société', culture:'Culture',
+  portrait:'Portrait', concept:'Concept', sciences:'Sciences'
+}
+
 const categoryColors: Record<string, string> = {
   geo: '#1A3E6B', eco: '#B86A1A', tech: '#4A2080',
   env: '#2D6B4A', soc: '#7A2D2D', culture: '#6B1A3A',
@@ -245,7 +251,7 @@ export default function GrandFormatLayout({
             {related.map((a: any) => (
               <a key={a.slug} href={a.customRoute || `/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} className={styles.relatedThumb} />}
-                <div className={styles.relatedCat}>{(a.categoryLabel || ({'geo':'Géopolitique','eco':'Économie','tech':'Technologie','env':'Environnement','soc':'Société','culture':'Culture','portrait':'Portrait','concept':'Concept','sciences':'Sciences'} as any)[a.category] || a.category || '').toUpperCase()}</div>
+                <div className={styles.relatedCat}>{(a.categoryLabel || CAT_LABELS[a.category as string] || a.category || '').toUpperCase()}</div>
                 <div className={styles.relatedTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
                 <span className={styles.relatedCta}>Lire l'analyse →</span>
               </a>
