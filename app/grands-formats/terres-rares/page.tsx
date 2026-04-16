@@ -1,6 +1,8 @@
 import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: "Terres rares : la guerre invisible — Soara",
   description: "Du cobalt du Katanga au raffinage de Guangdong, une analyse des flux qui alimentent la transition verte — et la nouvelle géographie de la dépendance mondiale.",

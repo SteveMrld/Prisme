@@ -2,6 +2,8 @@ import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 import DetteClient from "./DetteClient";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: "L'État insolvable, Soara",
   description: "La dette publique mondiale a franchi 100 000 milliards de dollars. Ce n'est pas la dette qui inquiète. C'est ce qu'elle révèle.",

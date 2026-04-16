@@ -1,6 +1,8 @@
 import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: "La fabrique de l'impossible, Soara",
   description: "Quatre-vingt ans de Skunk Works : du cirque de Burbank à la détection d'un battement de cœur dans le désert iranien.",

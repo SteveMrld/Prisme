@@ -1,5 +1,7 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: "La chambre de ratification, Soara",
   description: "Comment Benjamin Netanyahu a décidé une guerre américaine. Une enquête en miroir : le Situation Room en 2026, le Situation Room en 1962, et soixante-dix ans d'une boucle qui ne se referme pas.",
