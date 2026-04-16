@@ -1,0 +1,86 @@
+<h3>Nvidia, <em>the Aramco of the digital era</em></h3>
+
+<p>Jensen Huang founded Nvidia in 1993 to design graphics processors, chips specialized in image rendering for video games. The transformation occurred gradually in the 2000s, when researchers realized that the parallel architecture of GPUs was ideal for training neural networks. Nvidia had the intelligence to accompany this shift by publishing CUDA in 2006, a programming environment that allowed researchers to use its chips for purposes other than gaming. An ecosystem was built around this tool, binding AI developers to the Nvidia architecture in a way that goes beyond simple hardware dependency.<sup>4</sup></p>
+
+<p>When ChatGPT exploded in 2022, demand for training GPUs followed a vertical curve. Nvidia was the only supplier capable of meeting it at scale. Its market capitalization went from $300 billion at the start of 2023 to $3.3 trillion by the end of 2024. The company briefly became the most valued in the world, ahead of Apple and Microsoft.</p>
+
+<p>But behind this valuation lay an implicit certainty: that artificial intelligence would always need more compute. That the trajectory was linear. That whoever wanted to train a frontier model would have to purchase clusters of H100 chips at $30,000 each. DeepSeek demonstrated that this was not a physical law; it was a working assumption.</p>
+
+<div class="pull-quote">
+  <p>Semiconductors have become what oil was in the twentieth century. The difference is that a single country manufactures the wells.</p>
+</div>
+
+<h3>The sanctions war <em>and its limits</em></h3>
+
+<p>In October 2022, the Biden administration took a decision without precedent in the history of technology trade: banning the export to China of advanced chips and the equipment needed to manufacture them. The objective was to prevent Beijing from developing military AI capabilities and to maintain the American lead.<sup>5</sup></p>
+
+<p>The Trump administration tightened these restrictions in 2025, expanding the list of controlled equipment and imposing geographic limitations on all advanced chip exports, including to allies, to the great frustration of TSMC and Samsung. Nvidia had to design degraded versions of its chips for the Chinese market, the H800 and then the H20, whose performance remained below regulatory thresholds.</p>
+
+<p>The problem is that DeepSeek used precisely these degraded chips. Its engineers developed optimization techniques, <span class="tip" data-tip="Training technique that reduces the precision of calculations (from 32 bits to 8 or 4 bits) without significant performance loss. Drastically reduces memory and computing power requirements.">mixed precision training</span>, <span class="tip" data-tip="Architecture where only part of the model's parameters is activated at each inference, allowing a large total model without the computational cost of an equivalent dense model.">mixture of experts</span>, to extract maximum performance from insufficient hardware. The technological workaround partially neutralized the regulatory workaround.</p>
+
+<p>This does not mean the sanctions are useless — they slow the development of China's most advanced capabilities, particularly military ones. But it reveals their fundamental limit: in the semiconductor war, the hardware advantage is not impregnable. Algorithmic ingenuity can compensate, at least partially, for the deprivation of compute.</p>
+
+<h3>The CHIPS Act and <em>the race for sovereignty</em></h3>
+
+<p>The American response to this vulnerability took the form of the CHIPS and Science Act, signed by Biden in August 2022: $52 billion in subsidies to relocate semiconductor manufacturing to the United States. TSMC is building two plants in Arizona. Intel received $8 billion for its own facilities. Samsung is building in Texas.<sup>6</sup></p>
+
+<div class="video-source">
+  <a href="https://www.youtube.com/watch?v=MOJWg2i2lZk&t=1515" target="_blank" rel="noopener" style="display:block;text-decoration:none;">
+    <div style="position:relative;width:100%;padding-bottom:56.25%;background:#000;overflow:hidden;">
+      <img src="https://img.youtube.com/vi/MOJWg2i2lZk/maxresdefault.jpg" alt="CHIPS and Science Act signing ceremony" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.85;" />
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;background:#ff0000;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </a>
+  <div class="video-label">
+    <span class="video-label-tag">Primary source</span>
+    <span class="video-label-text">CHIPS and Science Act signing ceremony — President Biden, South Lawn, White House, August 9, 2022. <a href="https://www.youtube.com/watch?v=MOJWg2i2lZk&t=1515" target="_blank" rel="noopener" style="color:inherit;">Watch on YouTube →</a></span>
+  </div>
+</div>
+
+<p>The European Union responded with the European Chips Act, €43 billion to raise Europe's share of global production to 20% by 2030. TSMC is building a plant in Dresden, inaugurated in 2024. Intel announced a mega-factory in Germany before suspending the project in the face of the group's financial difficulties.</p>
+
+<p>These massive investments run up against a simple reality: it takes 10 to 15 years to build a competitive manufacturing ecosystem. TSMC has a 50-year head start. The engineers, subcontractors, materials suppliers, the entire ecosystem has been concentrated in Northeast Asia for decades. Moving it is possible. But it is a generational project, not a presidential term.</p>
+
+<h3>The European question, <em>absence or strategy?</em></h3>
+
+<p>Europe occupies a paradoxical position in this war. It is absent from advanced manufacturing — no European company manufactures chips below 10 nanometers. But it is indispensable to the global production chain: ASML is the world's sole manufacturer of EUV lithography machines, without which no one, neither TSMC nor Samsung nor Intel, can produce the most advanced chips. This is an absolute monopoly on a critical link.<sup>7</sup></p>
+
+<p>This ASML position gave Europe, and the Netherlands in particular, an unexpected diplomatic lever. Under American pressure, The Hague progressively restricted ASML equipment exports to China. Beijing has attempted to develop its own alternatives through SMEE, with an estimated lag of 10 years behind frontier technology.</p>
+
+<p>But Europe has no semiconductor strategy in the proper sense. It has industrial investments, an export control policy, and a partial relocation plan. What it lacks is a clear doctrine on the role it wants to play in the global AI economy, and therefore in chips. This absence of doctrine is itself a political choice, whose consequences will play out over twenty years.</p>
+
+<h3>DeepSeek and <em>what it actually changes</em></h3>
+
+<p>The stock market panic of January 20, 2025 rested on a simplistic reading of DeepSeek: if AI can be done with less compute, Nvidia is worth less. This reading is incomplete. DeepSeek demonstrated that a very good model could be trained at lower cost, not that GPUs would never be needed again. The most powerful models will continue to require massive clusters. And inference demand, running models rather than training them, continues to grow exponentially.<sup>8</sup></p>
+
+<p>What DeepSeek actually changes is the concentration dynamic. If frontier models can be trained for a few million dollars instead of a few hundred million, then the number of actors capable of entering the race increases considerably. Entry barriers are lowered. China, India, mid-sized states with solid algorithmic engineering can compete with American giants, even with second-tier chips.</p>
+
+<p>This is precisely what the sanctions were meant to prevent. And this is precisely what happened.</p>
+
+<h3>The oil of the twenty-first century, <em>with a difference</em></h3>
+
+<p>The comparison with oil is illuminating, but it has its limits. Oil is depleted. Semiconductors, by contrast, become more capable over time, and potentially less dependent on raw compute. Algorithmic efficiency can partially substitute for hardware power. What DeepSeek did with Chinese restrictions, others will do with other constraints.</p>
+
+<p>But the comparison holds on the essential point: control of a critical resource that conditions the economic, military, and technological power of a state has become a first-order geopolitical issue. The oil wars of the twentieth century redrawn borders, toppled governments, and structured alliances for fifty years. The semiconductor war has begun. It will last at least as long.</p>
+
+<p>The difference is that in the oil war, multiple producing countries existed. In the semiconductor war, a single country manufactures the wells, and that country is called Taiwan.</p>
+
+<div class="content-embed" style="margin:48px 0;overflow:hidden;border:1px solid var(--bord)">
+  <iframe src="/visuels/semico.html" style="width:100%;height:680px;border:none;display:block" title="Visualization, Semiconductors"></iframe>
+</div>
+
+<div class="notes-section">
+  <div class="notes-header"><div class="notes-title">Notes and sources</div></div>
+  <ul class="notes-list">
+    <li><span>1</span><span>Reuters, "Nvidia shares lose $593 billion in market value after DeepSeek AI model launch," January 27, 2025. Bloomberg Markets data.</span></li>
+    <li><span>2</span><span>ASML, Annual Report 2023. Chris Miller, <em>Chip War: The Fight for the World's Most Critical Technology</em>, Scribner, 2022, the reference work on semiconductor history and industry concentration.</span></li>
+    <li><span>3</span><span>European Chips Act Impact Assessment, European Commission, 2022. SEMI, World Fab Watch, 2024, global manufacturing market share data.</span></li>
+    <li><span>4</span><span>NVIDIA Corporation, History of CUDA. Jensen Huang, various public statements, GTC 2024.</span></li>
+    <li><span>5</span><span>US Bureau of Industry and Security, Export Control Rule on Advanced Computing and Semiconductor Manufacturing Items, October 2022. Update: AI Diffusion Rule, January 2025.</span></li>
+    <li><span>6</span><span>CHIPS and Science Act, Public Law 117-167, August 2022. TSMC Arizona, official press releases 2024. European Chips Act, EU Regulation 2023/1781.</span></li>
+    <li><span>7</span><span>ASML, EUV lithography technical report, 2023. Reuters, "Dutch government restricts ASML China exports further," 2024.</span></li>
+    <li><span>8</span><span>DeepSeek, DeepSeek R1 Technical Report, January 2025. Anthropic, OpenAI, published benchmark comparisons. Computational efficiency analysis: Epoch AI, Scaling Laws Database, 2025.</span></li>
+  </ul>
+</div>
