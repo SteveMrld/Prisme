@@ -156,7 +156,16 @@ export default function ArticleLayout({
         </div>
       )}
 
-      {/* IMAGE après le titre pour tous sauf portrait (skip si déjà dans le contenu) */}
+      {/* Toggle EN/FR pour articles avec header interne (portraits) */}
+      {hasInternalHeader && toggleUrl && (
+        <div style={{padding:'0 24px 8px',marginTop:'-8px'}}>
+          <a href={toggleUrl} style={{fontFamily:"'DM Sans',sans-serif",fontSize:'10px',fontWeight:600,letterSpacing:'2px',textTransform:'uppercase' as const,color:'#C8A96E',textDecoration:'none',borderBottom:'1.5px solid #C8A96E',paddingBottom:'1px'}}>
+            {toggleUrl.includes('lang=en') ? 'Read in English' : 'Lire en français'}
+          </a>
+        </div>
+      )}
+
+      {/* IMAGE après le titre pour tous sauf portrait (skip si déjà dans le contenu) */}}
       {category !== 'portrait' && image && !hasHeroInContent && (
         <figure className={styles.heroWrap}>
           <img src={image} alt={title} className={styles.heroImg} />
