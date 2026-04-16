@@ -136,9 +136,9 @@ export default function ArticleLayout({
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
             <span className={styles.readTime}>
               {isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}
-              {toggleUrl ? <>{'·'} <a href={toggleUrl} style={{color:'#C8A96E',fontSize:'10px',fontFamily:"'DM Sans',sans-serif",fontWeight:600,letterSpacing:'2px',textTransform:'uppercase',textDecoration:'none',borderBottom:'1px solid #C8A96E'}}>{toggleUrl.includes('lang=en') ? 'EN' : 'FR'}</a></> : null}
             </span>
             <span className={styles.readDate}>{displayDate}</span>
+            {toggleUrl && <a href={toggleUrl} onClick={e=>{e.preventDefault();window.location.href=toggleUrl}} style={{fontFamily:"'DM Sans',sans-serif",fontSize:'9px',fontWeight:700,letterSpacing:'2.5px',textTransform:'uppercase',color:'#C8A96E',textDecoration:'none',borderBottom:'1.5px solid #C8A96E',paddingBottom:'1px',marginLeft:'6px',cursor:'pointer'}}>{toggleUrl.includes('lang=en')?'EN':'FR'}</a>}
           </div>
           <div className={styles.titleRow}>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
