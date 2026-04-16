@@ -216,7 +216,7 @@ export default function ArticleLayout({
             {related.map((a: any) => (
               <a key={a.slug} href={`/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && (
-                  <div className={styles.relatedImgWrap}>
+                  <div className={styles.relatedImgWrap} style={a.category === "portrait" ? {height:"auto",overflow:"visible"} : {}}>
                     <img src={a.image} alt={a.title} className={styles.relatedImg} style={a.category === "portrait" ? {objectFit:"contain",objectPosition:"center center",background:"#f5f5f5"} : {}} />
                     <div className={styles.relatedImgOverlay} />
                   </div>
