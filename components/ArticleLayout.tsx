@@ -238,7 +238,7 @@ export default function ArticleLayout({
         <div className={styles.articleSidebar}>
           <div className={styles.sidebarTitle}>À lire aussi</div>
           {related.map((a: any) => (
-            <a key={a.slug} href={`/articles/${a.slug}`} className={styles.sidebarItem}>
+            <a key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.sidebarItem}>
               {a.image && <img src={a.image} alt={a.title} className={styles.sidebarThumb} />}
               <div>
                 <div className={styles.sidebarCat}>{a.categoryLabel || a.category?.toUpperCase()}</div>
@@ -259,7 +259,7 @@ export default function ArticleLayout({
           </div>
           <div className={styles.relatedGrid}>
             {related.map((a: any) => (
-              <a key={a.slug} href={`/articles/${a.slug}`} className={styles.relatedCard}>
+              <a key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && (
                   <div className={styles.relatedImgWrap}>
                     <img src={a.image} alt={a.title} className={styles.relatedImg} />
