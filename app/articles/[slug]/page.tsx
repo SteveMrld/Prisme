@@ -140,8 +140,8 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
 
   return (
     <ArticleLayout
-      title={article.title}
-      description={article.description}
+      title={lang === 'en' && (article as any).titleEn ? (article as any).titleEn : article.title}
+      description={lang === 'en' && (article as any).descriptionEn ? (article as any).descriptionEn : article.description}
       image={article.image}
       category={article.category}
       categoryLabel={categoryLabels[article.category] || 'Article'}

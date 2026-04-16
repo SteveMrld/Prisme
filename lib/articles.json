@@ -15,7 +15,9 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Consent Society",
+    "descriptionEn": "How democratic legitimacy is dissolving into permanent marketing. A diagnosis."
   },
   {
     "slug": "ceux-qui-nont-pas-cede",
@@ -33,7 +35,9 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Those Who Did Not Yield",
+    "descriptionEn": "They refused to comply. Their trajectories reveal something essential about integrity as a political act."
   },
   {
     "slug": "empire-du-droit",
@@ -51,7 +55,9 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Empire of Law",
+    "descriptionEn": "How the United States transformed its legal system into an instrument of global domination."
   },
   {
     "slug": "terres-rares",
@@ -69,7 +75,9 @@
     "featured": true,
     "premium": true,
     "grandFormat": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Rare Earths: The Invisible War Fueling the Green Transition",
+    "descriptionEn": "From Katanga's cobalt to China's refining chokehold, the energy transition has created a new geography of dependence."
   },
   {
     "slug": "architecture-desordre",
@@ -105,7 +113,9 @@
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/chambre-ratification",
     "imageCredit": "© SOARA",
-    "customRoute": "/grands-formats/chambre-ratification"
+    "customRoute": "/grands-formats/chambre-ratification",
+    "titleEn": "Washington as a Ratification Chamber",
+    "descriptionEn": "How Benjamin Netanyahu decided an American war. An investigation in mirror: the Situation Room in 2026, the Situation Room in 1962."
   },
   {
     "slug": "skunkworks",
@@ -122,7 +132,9 @@
     "premium": true,
     "grandFormat": false,
     "imageCredit": "© SOARA",
-    "customRoute": "/grands-formats/skunkworks"
+    "customRoute": "/grands-formats/skunkworks",
+    "titleEn": "The Factory of the Impossible",
+    "descriptionEn": "Eighty years of Skunk Works: from the Burbank circus tent to detecting a heartbeat in the Iranian desert."
   },
   {
     "slug": "palantir",
@@ -140,7 +152,9 @@
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/palantir",
     "imageCredit": "© SOARA",
-    "customRoute": "/grands-formats/palantir"
+    "customRoute": "/grands-formats/palantir",
+    "titleEn": "Palantir. The Ontology of the Enemy",
+    "descriptionEn": "How a company born from a boardroom coup became the cognitive infrastructure of states that do not control it."
   },
   {
     "slug": "moreno",
@@ -154,7 +168,9 @@
     "authorRole": "",
     "featured": true,
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Élisabeth Moreno",
+    "descriptionEn": "Former Minister. The trajectory of a woman who chose not to smooth anything over."
   },
   {
     "slug": "dette-souveraine",
@@ -170,7 +186,9 @@
     "featured": false,
     "premium": true,
     "customRoute": "/grands-formats/dette-souveraine",
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Insolvent State",
+    "descriptionEn": "Global public debt has crossed 100 trillion dollars. It is not the debt that is worrying. It is what it reveals."
   },
   {
     "slug": "afrique",
@@ -184,7 +202,9 @@
     "date": "2026-05-12",
     "featured": false,
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Africa: What They Didn't Teach You",
+    "descriptionEn": "A different reading of the continent — its history, its resources, its political logics."
   },
   {
     "slug": "arctique",
@@ -197,7 +217,9 @@
     "authorRole": "",
     "date": "2026-05-20",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Arctic, New Frontier",
+    "descriptionEn": "Climate change is opening new routes and new rivalries. The north is becoming a theater of power."
   },
   {
     "slug": "blackrock",
@@ -211,7 +233,9 @@
     "featured": false,
     "date": "2026-04-17",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "BlackRock, the Silent Power",
+    "descriptionEn": "The largest asset manager in the world manages more than any state. Who controls it?"
   },
   {
     "slug": "chine",
@@ -224,7 +248,9 @@
     "authorRole": "",
     "date": "2026-05-15",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "China's Offensive",
+    "descriptionEn": "From the Silk Road to the 15th Five-Year Plan. How Beijing is building the world of the day after."
   },
   {
     "slug": "cygne",
@@ -237,7 +263,9 @@
     "authorRole": "",
     "date": "2026-04-04",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Black Swan and Geopolitics",
+    "descriptionEn": "Taleb's concept applied to international relations. How to think the unthinkable."
   },
   {
     "slug": "eau",
@@ -251,7 +279,9 @@
     "featured": false,
     "date": "2026-04-07",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Water: The Next Great Geopolitical Fracture",
+    "descriptionEn": "From Himalayan glaciers to African dams. How mastery of water is silently redrawing power relationships."
   },
   {
     "slug": "empires",
@@ -264,7 +294,9 @@
     "authorRole": "",
     "date": "2025-12-19",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Empires Do Not Die",
+    "descriptionEn": "They transform. A long-form reading of imperial cycles applied to the present."
   },
   {
     "slug": "fiscalite",
@@ -277,7 +309,9 @@
     "authorRole": "",
     "date": "2026-04-10",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Tax, the Hidden War",
+    "descriptionEn": "Tax optimization, fiscal competition between states: the architecture of a legal plunder."
   },
   {
     "slug": "fragilite",
@@ -290,7 +324,9 @@
     "authorRole": "",
     "date": "2025-12-05",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Fragility",
+    "descriptionEn": "Why our systems break — and what that reveals about how they were built."
   },
   {
     "slug": "france_maritime",
@@ -303,7 +339,9 @@
     "authorRole": "",
     "date": "2026-02-13",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Maritime France, an Ignored Empire",
+    "descriptionEn": "The world's second-largest exclusive economic zone. A geostrategic advantage without equal in the West, structurally under-exploited."
   },
   {
     "slug": "ia",
@@ -316,7 +354,9 @@
     "authorRole": "",
     "date": "2026-02-06",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "How AI Processes Language",
+    "descriptionEn": "What it actually does, and how to use it well."
   },
   {
     "slug": "ia_ecriture",
@@ -329,7 +369,9 @@
     "authorRole": "",
     "date": "2026-02-20",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "AI and Writing",
+    "descriptionEn": "What artificial intelligence changes in the act of writing, and what it does not change."
   },
   {
     "slug": "kintsugi",
@@ -342,7 +384,9 @@
     "authorRole": "",
     "date": "2025-12-26",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Kintsugi",
+    "descriptionEn": "The Japanese art of repairing with gold. A philosophy of resilience applied to the political world."
   },
   {
     "slug": "lecture",
@@ -356,7 +400,9 @@
     "date": "2026-01-30",
     "premium": false,
     "featured": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "What Books Do to Those Who Open Them",
+    "descriptionEn": "Reading is not a leisure activity like any other. It is a technology of the human."
   },
   {
     "slug": "medias",
@@ -373,7 +419,9 @@
     "grandFormatUrl": "/grands-formats/medias",
     "customRoute": "/grands-formats/medias",
     "categoryLabel": "Médias",
-    "grandFormat": true
+    "grandFormat": true,
+    "titleEn": "Media and Power",
+    "descriptionEn": "The architecture of influence. How information has become a geopolitical instrument."
   },
   {
     "slug": "morrison",
@@ -386,7 +434,9 @@
     "authorRole": "",
     "date": "2026-03-06",
     "premium": false,
-    "imageCredit": "© John Mathew Smith / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
+    "imageCredit": "© John Mathew Smith / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA",
+    "titleEn": "Toni Morrison",
+    "descriptionEn": "Portrait of the Nobel laureate. Literature as an act of resistance."
   },
   {
     "slug": "morin",
@@ -399,7 +449,9 @@
     "authorRole": "",
     "date": "2026-04-11",
     "premium": true,
-    "imageCredit": "© Luc Legay / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
+    "imageCredit": "© Luc Legay / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA",
+    "titleEn": "Edgar Morin",
+    "descriptionEn": "At 100 years old, the sociologist of complexity. A thinker for the era of uncertainty."
   },
   {
     "slug": "tutu",
@@ -412,7 +464,9 @@
     "authorRole": "",
     "date": "2026-04-11",
     "premium": false,
-    "imageCredit": "© John Mathew Smith / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
+    "imageCredit": "© John Mathew Smith / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA",
+    "titleEn": "Desmond Tutu",
+    "descriptionEn": "The archbishop who chose forgiveness over hatred. A political and spiritual legacy."
   },
   {
     "slug": "musk",
@@ -425,7 +479,9 @@
     "authorRole": "",
     "date": "2026-03-26",
     "premium": true,
-    "imageCredit": "Justin Pacheco / U.S. Air Force, Domaine public, modifiée par SOARA"
+    "imageCredit": "Justin Pacheco / U.S. Air Force, Domaine public, modifiée par SOARA",
+    "titleEn": "Elon Musk",
+    "descriptionEn": "The man who wants to redesign the world. A portrait between genius and destabilization."
   },
   {
     "slug": "nooyi",
@@ -438,7 +494,9 @@
     "authorRole": "",
     "date": "2026-03-19",
     "premium": false,
-    "imageCredit": "© Andy Mettler / World Economic Forum / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA"
+    "imageCredit": "© Andy Mettler / World Economic Forum / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA",
+    "titleEn": "Indra Nooyi",
+    "descriptionEn": "Former CEO of PepsiCo. A trajectory at the intersection of business, power, and identity."
   },
   {
     "slug": "overton",
@@ -464,7 +522,9 @@
     "authorRole": "",
     "date": "2026-01-08",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "In Defense of Pessimism",
+    "descriptionEn": "Why lucid pessimism is more useful than forced optimism for understanding the world."
   },
   {
     "slug": "predateurs",
@@ -477,7 +537,9 @@
     "authorRole": "",
     "date": "2026-02-27",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Predators",
+    "descriptionEn": "How certain economic actors plunder states and populations while remaining in legal compliance."
   },
   {
     "slug": "reseaux",
@@ -490,7 +552,9 @@
     "authorRole": "",
     "date": "2026-04-14",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Networks",
+    "descriptionEn": "The invisible architecture of influence. How connections structure power more than hierarchies do."
   },
   {
     "slug": "rushkoff",
@@ -503,7 +567,9 @@
     "authorRole": "",
     "date": "2026-04-24",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Douglas Rushkoff",
+    "descriptionEn": "The media theorist who said no to the Silicon Valley elite. An interview on the end of the digital dream."
   },
   {
     "slug": "semico",
@@ -516,7 +582,9 @@
     "authorRole": "",
     "date": "2026-05-08",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Nvidia, the Aramco of the Digital Era",
+    "descriptionEn": "Semiconductors have become what oil was in the twentieth century. A single country manufactures the wells."
   },
   {
     "slug": "silence",
@@ -529,7 +597,9 @@
     "authorRole": "",
     "date": "2025-12-12",
     "premium": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Productive Power of Silence",
+    "descriptionEn": "In a world saturated with noise, silence is becoming a political act and a cognitive tool."
   },
   {
     "slug": "taiwan",
@@ -542,7 +612,9 @@
     "authorRole": "",
     "date": "2026-01-16",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Taiwan, Strategic Maritime Highway",
+    "descriptionEn": "The coveted jewel of the electronics industry, pivot of the Asia-Pacific. The small island that makes great powers tremble."
   },
   {
     "slug": "techgeo",
@@ -555,7 +627,9 @@
     "authorRole": "",
     "date": "2026-03-14",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Battle for the Digital World's Subsoil",
+    "descriptionEn": "Rare earths, semiconductors, undersea cables. The new geography of technological power."
   },
   {
     "slug": "technosolutionnisme",
@@ -568,7 +642,9 @@
     "authorRole": "",
     "date": "2026-04-30",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "The Limits of Techno-Solutionism",
+    "descriptionEn": "Is technology the remedy for the problems it helps create? A critical reading of an ideology."
   },
   {
     "slug": "venezuela",
@@ -581,7 +657,9 @@
     "authorRole": "",
     "date": "2026-03-10",
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Venezuela, the Destroyed State",
+    "descriptionEn": "Oil, chavismo, exodus. The anatomy of a collapse that other countries could learn from."
   },
   {
     "slug": "orbite",
@@ -595,7 +673,9 @@
     "image": "/img-orbite.png",
     "featured": false,
     "imageCredit": "© SOARA",
-    "premium": true
+    "premium": true,
+    "titleEn": "The Satellite Race",
+    "descriptionEn": "Space has become a strategic terrain. Who controls the orbits controls the information."
   },
   {
     "slug": "obama",
@@ -609,7 +689,9 @@
     "image": "/portraits/obama.png",
     "featured": false,
     "premium": true,
-    "imageCredit": "The White House, Domaine public, modifiée par SOARA"
+    "imageCredit": "The White House, Domaine public, modifiée par SOARA",
+    "titleEn": "Barack Obama",
+    "descriptionEn": "The president who changed the face of power without changing the structures of power."
   },
   {
     "slug": "wanghuning",
@@ -623,7 +705,9 @@
     "date": "2026-04-14",
     "premium": true,
     "featured": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Wang Huning, Architect of the World After Freedom",
+    "descriptionEn": "He visited America in 1988 and returned convinced it was dying. The doctrine governing China today."
   },
   {
     "slug": "monopoly",
@@ -646,7 +730,9 @@
       "ceux-qui-nont-pas-cede",
       "moreno",
       "pessimisme"
-    ]
+    ],
+    "titleEn": "Monopoly",
+    "descriptionEn": "The board game that taught capitalism — and the real economy it reflects."
   },
   {
     "slug": "darkfactories",
@@ -660,6 +746,8 @@
     "date": "2026-04-16",
     "premium": true,
     "featured": false,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "titleEn": "Dark Factories",
+    "descriptionEn": "Automated factories without humans. The future of production, or the end of work?"
   }
 ]

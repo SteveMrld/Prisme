@@ -62,8 +62,12 @@ export default function GrandFormatLayout({
 
   // Résoudre les métadonnées depuis articles.json ou les props
   const article = slug ? (articlesData as any[]).find(a => a.slug === slug) : null
-  const title       = titleProp    || article?.title       || ''
-  const description = descProp     || article?.description || ''
+  const title       = (lang === 'en' && (article as any)?.titleEn)
+    ? (article as any).titleEn
+    : (titleProp || article?.title || '')
+  const description = (lang === 'en' && (article as any)?.descriptionEn)
+    ? (article as any).descriptionEn
+    : (descProp || article?.description || '')
   const image       = imageProp    || article?.image       || ''
   const category    = catProp      || article?.category    || 'geo'
   const categoryLabel = catLabelProp || article?.categoryLabel || 'Grand format'
