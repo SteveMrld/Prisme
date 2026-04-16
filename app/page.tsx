@@ -185,7 +185,7 @@ export default function HomePage() {
         <div className={styles.entretienBanner}>
           <img src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} className={styles.entretienBannerImg} />
           <div className={styles.entretienBannerGrad} />
-          <span className={styles.entretienBannerLabel}>Grand Entretien · N°1</span>
+          <span className={styles.entretienBannerLabel}>Grand Entretien</span>
         </div>
         {/* Texte en dessous, aéré */}
         <div className={styles.entretienBody}>
