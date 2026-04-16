@@ -81,8 +81,8 @@ export default function GrandFormatLayout({
   const hasHeroInContent  = !!(content?.includes('art-hero-wrap') || content?.includes('art-hero-img') || content?.includes('portrait-hero') || article?.category === 'portrait')
 
   // Articles liés
-  const sameCat = (articlesData as any[]).filter(a => a.category === category && a.slug !== slug)
-  const otherCat = (articlesData as any[]).filter(a => a.category !== category && a.slug !== slug)
+  const sameCat = (articlesData as any[]).filter(a => a.category === category && a.slug !== slug && a.image)
+  const otherCat = (articlesData as any[]).filter(a => a.category !== category && a.slug !== slug && a.image)
   const related = [...sameCat, ...otherCat].slice(0, 4)
 
   useEffect(() => {
