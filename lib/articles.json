@@ -652,7 +652,7 @@
     "slug": "darkfactories",
     "title": "Les usines sans hommes, ou la fin d'une <em>certaine idée du travail</em>",
     "description": "Dans les périphéries de Pékin et de Shenzhen, des usines produisent vingt-quatre heures sur vingt-quatre sans qu'une seule main humaine ne touche à rien. L'équation économique qu'elles posent n'a pas encore trouvé de réponse satisfaisante.",
-    "image": "https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/twCGQsPB/img-afrique.jpg",
+    "image": "/darkfactories-hero.png",
     "category": "tech",
     "readTime": "11",
     "author": "Steve Moradel",
