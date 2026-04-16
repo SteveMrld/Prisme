@@ -1,6 +1,8 @@
 'use client'
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 
+const EN_PORTRAIT_SLUGS = new Set(["morin","obama","morrison","musk","tutu","nooyi","moreno","wanghuning"])
+
 // ── Courbe d'accélération éditorial — douce, élégante
 const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
 const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)'
@@ -206,6 +208,12 @@ export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; 
             <div style={{ padding: '12px 4px 0' }}>
               <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#C8A96E', fontFamily: "'DM Sans', sans-serif" }}>Portrait</span>
               <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '13px', fontWeight: 700, color: '#111', lineHeight: 1.3, marginTop: '4px' }} dangerouslySetInnerHTML={{ __html: article.title }} />
+              {EN_PORTRAIT_SLUGS.has(article.slug) && (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '9px', fontFamily: "'DM Sans', sans-serif", fontWeight: 600, letterSpacing: '1.5px', color: '#C8A96E', textTransform: 'uppercase', marginTop: '5px' }}>
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  EN
+                </span>
+              )}
             </div>
           </a>
         ))}
