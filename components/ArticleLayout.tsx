@@ -132,10 +132,17 @@ export default function ArticleLayout({
       {/* TOUS SAUF PORTRAIT : titre + chapeau d'abord */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
-          <div className={styles.eyebrow}>
-            <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
-            <span className={styles.readTime}>{isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}</span>
-            <span className={styles.readDate}>{displayDate}</span>
+          <div className={styles.eyebrow} style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'8px'}}>
+            <div style={{display:'flex',alignItems:'center',gap:'10px',flexWrap:'wrap'}}>
+              <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
+              <span className={styles.readTime}>{isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}</span>
+              <span className={styles.readDate}>{displayDate}</span>
+            </div>
+            {hasEnglish && (
+              <Suspense fallback={null}>
+                <LangToggle lang={lang} hasEnglish={hasEnglish} />
+              </Suspense>
+            )}
           </div>
           <div className={styles.titleRow}>
             <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: title }} />
@@ -177,14 +184,6 @@ export default function ArticleLayout({
       {/* ── LAYOUT DESKTOP : article + sidebar ── */}
       <div className={styles.articlePageLayout}>
       <div className={styles.articleMainCol}>
-
-      {hasEnglish && (
-        <div style={{display:'flex',justifyContent:'flex-end',padding:'0 0 16px 0'}}>
-          <Suspense fallback={null}>
-            <LangToggle lang={lang} hasEnglish={hasEnglish} />
-          </Suspense>
-        </div>
-      )}
 
       <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
         {isPremiumContent ? (
