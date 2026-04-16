@@ -80,17 +80,18 @@ export default function GrandFormatLayout({
   const hasInternalHeader = !!(content?.includes('class="atop"') || content?.includes('class="article-header"'))
   const hasHeroInContent  = !!(content?.includes('art-hero-wrap') || content?.includes('art-hero-img') || content?.includes('portrait-hero') || article?.category === 'portrait')
 
-  // Articles liés — slugs explicites si définis, sinon auto par catégorie
-  let related: any[] = []
-  if (article?.relatedSlugs && Array.isArray(article.relatedSlugs)) {
-    for (const s of article.relatedSlugs as string[]) {
-      const found = (articlesData as any[]).find(a => a.slug === s)
-      if (found) related.push(found)
-    }
+  // Articles liés — toujours 4 articles
+  const _allArticles = articlesData as any[]
+  const _explicitSlugs: string[] = (article?.relatedSlugs as string[]) || []
+  let related: any[]
+  if (_explicitSlugs.length >= 4) {
+    related = _explicitSlugs
+      .map(s => _allArticles.find(a => a.slug === s))
+      .filter((a): a is any => Boolean(a))
   } else {
-    const sameCat = (articlesData as any[]).filter((a:any) => a.category === category && a.slug !== slug && a.image)
-    const otherCat = (articlesData as any[]).filter((a:any) => a.category !== category && a.slug !== slug && a.image)
-    related = [...sameCat, ...otherCat].slice(0, 4)
+    const _sameCat = _allArticles.filter(a => a.category === category && a.slug !== slug && a.image)
+    const _otherCat = _allArticles.filter(a => a.category !== category && a.slug !== slug && a.image)
+    related = [..._sameCat, ..._otherCat].slice(0, 4)
   }
 
   useEffect(() => {
