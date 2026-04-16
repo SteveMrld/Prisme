@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+export default async function ArticlePage({ params, searchParams }: { params: { slug: string }, searchParams?: { lang?: string } }) {
   const article = articlesData.find((a: any) => a.slug === params.slug)
   if (!article) notFound()
 
