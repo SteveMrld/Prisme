@@ -268,7 +268,7 @@ export default function GrandFormatLayout({
           <div className={styles.relatedGrid}>
             {related.map((a: any) => (
               <a key={a.slug} href={a.customRoute || `/articles/${a.slug}`} className={styles.relatedCard}>
-                {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} className={styles.relatedThumb} />}
+                {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} className={styles.relatedThumb} style={a.imagePosition ? {objectPosition: a.imagePosition} : undefined} />}
                 <div className={styles.relatedCat}>{(a.categoryLabel || CAT_LABELS[a.category as string] || a.category || '').toUpperCase()}</div>
                 <div className={styles.relatedTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
                 <span className={styles.relatedCta}>Lire l'analyse →</span>
