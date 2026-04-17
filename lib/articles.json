@@ -438,7 +438,7 @@
     "imageCredit": "© SOARA",
     "titleEn": "What Books Do to Those Who Open Them",
     "descriptionEn": "Reading is not a leisure activity like any other. It is a technology of the human.",
-    "imagePosition": "center top"
+    "imageFit": "contain"
   },
   {
     "slug": "medias",
