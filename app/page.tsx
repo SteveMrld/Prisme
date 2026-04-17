@@ -35,7 +35,7 @@ const TV_EPISODES = [
 // Sections de la une — ordre éditorial
 // Hero — 5 articles mixtes qui tournent
 const HERO_ROTATION = [
-  art('wanghuning'), art('afrique'), art('empire-du-droit'), art('terres-rares'),
+  art('wanghuning'), art('afrique'), art('pollinisation'), art('empire-du-droit'), art('terres-rares'),
   art('chambre-ratification'),
 ]
 
