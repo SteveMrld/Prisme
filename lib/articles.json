@@ -17,6 +17,19 @@
     "grandFormatUrl": "/grands-formats/pollinisation"
   },
   {
+    "slug": "ce-que-nous-laissons-entrer",
+    "title": "Ce que nous laissons entrer chez nous",
+    "description": "Sur l'édition, et sur ce que cela dit d'une civilisation que ses livres deviennent des prises. Par Jade Desroses.",
+    "category": "culture",
+    "date": "2026-05-02",
+    "readTime": "11",
+    "image": "/articles/fragilite-cover.png",
+    "author": "Jade Desroses",
+    "authorRole": "",
+    "featured": false,
+    "premium": false
+  },
+  {
     "slug": "societe-du-consentement",
     "title": "La société du consentement",
     "description": "Ce que la pandémie a révélé de nous. Six ans après, la question n'est pas de savoir si les mesures prises étaient justes ou injustes. La question est de savoir si nous avons eu le courage d'examiner honnêtement ce qui s'est passé.",
