@@ -5,11 +5,10 @@ import Header from '../../../components/Header'
 
 /* ════════════════════════════════════════════════════════════════
    LA CASCADE — Enrichissement de l'uranium
-   Atlas Soara. Pas d'images. Pas de vidéo. Pas de charts. Pas d'IA.
-   Une grammaire visuelle construite à partir d'un seul objet :
-   la centrifugeuse, répétée à l'échelle des capacités réelles.
-   Sources : WNA, World Nuclear Fuel Report, septembre 2025,
-             Centrus Energy 10-K, février 2026.
+   Atlas Soara. Grammaire visuelle : la centrifugeuse animée,
+   répétée à l'échelle des capacités réelles, traversée par un flux
+   de particules qui s'enrichissent.
+   Sources : WNA Sept 2025, Centrus 10-K Fév 2026, Bruegel, CEA, AIEA
    ════════════════════════════════════════════════════════════════ */
 
 const C = {
@@ -20,100 +19,45 @@ const C = {
   muted: '#5a544c',
   line: '#2a2620',
   lineSoft: '#1a1814',
-  accent: '#b8922a',       // jaune uranium, désaturé
+  accent: '#b8922a',
+  accentBright: '#d9ad3a',
   accentSoft: '#6a5318',
   accentDim: '#3a2f10',
-  red: '#8e3a2b',           // pour les seuils militaires
+  red: '#8e3a2b',
+  redBright: '#b84a36',
 }
 
-/* Capacités d'enrichissement mondiales, en millions d'UTS par an
-   Source : WNA World Nuclear Fuel Report, septembre 2025,
-   reprise par Centrus Energy dans sa présentation investisseurs
-   de février 2026. */
 const PROVIDERS = [
-  {
-    name: 'Rosatom',
-    entity: 'TENEX',
-    country: 'Russie',
-    swu: 27,
-    share: 43,
-    plants: ['Novouralsk', 'Zelenogorsk', 'Angarsk', 'Seversk'],
-    color: C.accent,
-  },
-  {
-    name: 'Urenco',
-    entity: 'consortium',
-    country: 'Royaume-Uni · Pays-Bas · Allemagne · États-Unis',
-    swu: 17,
-    share: 27,
-    plants: ['Capenhurst', 'Almelo', 'Gronau', 'Eunice'],
-    color: C.text,
-  },
-  {
-    name: 'CNNC',
-    entity: 'China National Nuclear',
-    country: 'Chine',
-    swu: 11,
-    share: 17,
-    plants: ['Lanzhou', 'Hanzhong'],
-    color: C.text,
-  },
-  {
-    name: 'Orano',
-    entity: 'Georges Besse II',
-    country: 'France',
-    swu: 7.5,
-    share: 12,
-    plants: ['Tricastin'],
-    color: C.text,
-  },
-  {
-    name: 'Centrus',
-    entity: 'American Centrifuge',
-    country: 'États-Unis',
-    swu: 0.1,
-    share: 0.1,
-    plants: ['Piketon'],
-    color: C.dim,
-  },
+  { name: 'Rosatom', country: 'Russie', swu: 27, share: 43,
+    plants: ['Novouralsk', 'Zelenogorsk', 'Angarsk', 'Seversk'] },
+  { name: 'Urenco', country: 'RU · PB · DE · USA', swu: 17, share: 27,
+    plants: ['Capenhurst', 'Almelo', 'Gronau', 'Eunice'] },
+  { name: 'CNNC', country: 'Chine', swu: 11, share: 17,
+    plants: ['Lanzhou', 'Hanzhong'] },
+  { name: 'Orano', country: 'France', swu: 7.5, share: 12,
+    plants: ['Tricastin'] },
+  { name: 'Centrus', country: 'États-Unis', swu: 0.1, share: 0.1,
+    plants: ['Piketon'] },
 ]
 
-/* Les seuils d'enrichissement */
 const PALIERS = [
-  {
-    value: '0,7',
-    label: 'Uranium naturel',
+  { value: '0,7', num: 0.7, label: 'Uranium naturel',
     desc: "La proportion d'uranium 235 présente dans tout gisement exploité. Tout le reste, 99,3 %, est de l'uranium 238 non fissile. L'enrichissement commence là.",
-    military: false,
-  },
-  {
-    value: '3 à 5',
-    label: 'LEU, combustible civil',
+    military: false },
+  { value: '3 à 5', num: 5, label: 'LEU · combustible civil',
     desc: "Le seuil de fonctionnement des quelque 440 réacteurs à eau pressurisée qui produisent aujourd'hui l'essentiel de l'électricité nucléaire mondiale.",
-    military: false,
-  },
-  {
-    value: '≤ 20',
-    label: 'HALEU, petits réacteurs',
-    desc: "Le palier visé par les réacteurs modulaires de nouvelle génération et par la plupart des réacteurs de recherche. Rosatom y règne sans rival commercial occidental, ce que Washington a érigé en vulnérabilité stratégique.",
-    military: false,
-  },
-  {
-    value: '60',
-    label: 'Le palier iranien',
+    military: false },
+  { value: '≤ 20', num: 20, label: 'HALEU · petits réacteurs',
+    desc: "Le palier visé par les réacteurs modulaires de nouvelle génération et par la plupart des réacteurs de recherche. Rosatom y règne sans rival commercial occidental.",
+    military: false },
+  { value: '60', num: 60, label: 'Le palier iranien', flagged: true,
     desc: "Le niveau déclaré depuis 2021 à Natanz et Fordo, bien au-delà du plafond de 3,67 % fixé par l'accord de Vienne de 2015. Un seuil qui ne sert aucun usage civil standard.",
-    military: false,
-    flagged: true,
-  },
-  {
-    value: '≥ 90',
-    label: 'HEU, qualité militaire',
+    military: false },
+  { value: '≥ 90', num: 90, label: 'HEU · qualité militaire',
     desc: "L'uranium hautement enrichi. À partir de ce seuil, quelques dizaines de kilogrammes suffisent à constituer le cœur d'une arme nucléaire.",
-    military: true,
-  },
+    military: true },
 ]
 
-/* Installations nommées, pour la litanie typographique */
 const INSTALLATIONS = [
   ['Novouralsk', 'Russie', 'civil'],
   ['Zelenogorsk', 'Russie', 'civil'],
@@ -132,40 +76,373 @@ const INSTALLATIONS = [
   ['Yongbyon', 'Corée du Nord', 'militaire'],
 ]
 
-/* Une centrifugeuse stylisée. Un seul motif, répété. */
-function Centrifuge({ w = 10, h = 42, color = C.text, opacity = 1 }) {
+const UNIT = 0.3
+const iconCount = (swu) => Math.max(1, Math.round(swu / UNIT))
+
+/* ════════════════════════════════════════════════════════════════
+   CENTRIFUGEUSE ANIMÉE
+   ════════════════════════════════════════════════════════════════ */
+function SpinningCentrifuge({ size = 'md', color = C.text, speed = 1, delay = 0, active = true }) {
+  const dims = {
+    xs: { w: 8, h: 34 },
+    sm: { w: 10, h: 44 },
+    md: { w: 14, h: 60 },
+    lg: { w: 22, h: 96 },
+    xl: { w: 42, h: 180 },
+  }[size] || { w: 14, h: 60 }
+
+  const id = useMemo(() => `cf-${Math.random().toString(36).slice(2, 9)}`, [])
+  const rotorDur = `${(1.2 / speed).toFixed(2)}s`
+  const gasDur = `${(2.4 / speed).toFixed(2)}s`
+
   return (
     <svg
-      width={w}
-      height={h}
-      viewBox="0 0 10 42"
-      style={{ display: 'block', opacity, flexShrink: 0 }}
+      width={dims.w}
+      height={dims.h}
+      viewBox="0 0 14 60"
+      style={{ display: 'block', flexShrink: 0, filter: active ? 'none' : 'saturate(0.3)' }}
     >
-      {/* corps principal */}
-      <rect x="3" y="4" width="4" height="34" fill={color} />
-      {/* tête arrondie */}
-      <rect x="3" y="2" width="4" height="2" fill={color} />
-      <rect x="4" y="1" width="2" height="1" fill={color} />
-      {/* base */}
-      <rect x="2" y="38" width="6" height="2" fill={color} />
-      {/* axe central visible */}
-      <rect x="4.5" y="4" width="1" height="34" fill={C.bg} opacity="0.5" />
+      <defs>
+        <clipPath id={`${id}-clip`}>
+          <rect x="3.5" y="5" width="7" height="50" rx="0.5" />
+        </clipPath>
+        <linearGradient id={`${id}-tube`} x1="0" x2="1">
+          <stop offset="0" stopColor={color} stopOpacity="0.4" />
+          <stop offset="0.2" stopColor={color} stopOpacity="1" />
+          <stop offset="0.5" stopColor={color} stopOpacity="0.85" />
+          <stop offset="0.8" stopColor={color} stopOpacity="1" />
+          <stop offset="1" stopColor={color} stopOpacity="0.4" />
+        </linearGradient>
+      </defs>
+
+      <rect x="4" y="1" width="6" height="2" fill={color} opacity="0.9" />
+      <rect x="5" y="0" width="4" height="1" fill={color} opacity="0.7" />
+
+      <rect x="3.5" y="3" width="7" height="54" fill={`url(#${id}-tube)`} />
+      <rect x="3.5" y="3" width="7" height="54" fill="none" stroke={color} strokeWidth="0.4" opacity="0.5" />
+
+      <g clipPath={`url(#${id}-clip)`}>
+        <g>
+          <line x1="0" y1="0" x2="14" y2="18" stroke={C.bg} strokeWidth="0.8" opacity="0.45" />
+          <line x1="0" y1="12" x2="14" y2="30" stroke={C.bg} strokeWidth="0.8" opacity="0.45" />
+          <line x1="0" y1="24" x2="14" y2="42" stroke={C.bg} strokeWidth="0.8" opacity="0.45" />
+          <line x1="0" y1="36" x2="14" y2="54" stroke={C.bg} strokeWidth="0.8" opacity="0.45" />
+          <line x1="0" y1="48" x2="14" y2="66" stroke={C.bg} strokeWidth="0.8" opacity="0.45" />
+          <line x1="0" y1="60" x2="14" y2="78" stroke={C.bg} strokeWidth="0.8" opacity="0.45" />
+          {active && (
+            <animateTransform
+              attributeName="transform"
+              type="translate"
+              from="0 -12"
+              to="0 0"
+              dur={rotorDur}
+              begin={`${delay}s`}
+              repeatCount="indefinite"
+            />
+          )}
+        </g>
+      </g>
+
+      {active && (
+        <circle cx="7" cy="30" r="0.8" fill={C.accentBright} opacity="0.9">
+          <animate attributeName="cy" from="50" to="4" dur={gasDur} begin={`${delay}s`} repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0;1;1;0" dur={gasDur} begin={`${delay}s`} repeatCount="indefinite" />
+        </circle>
+      )}
+
+      <rect x="2.5" y="56" width="9" height="2.5" fill={color} opacity="0.9" />
+      <rect x="1.5" y="58" width="11" height="1" fill={color} opacity="0.6" />
     </svg>
   )
 }
 
-/* Pour transformer une capacité en nombre d'icônes.
-   Une centrifugeuse affichée = 250 000 UTS/an. */
-const UNIT = 0.25
-const iconCount = (swu) => Math.max(1, Math.round(swu / UNIT))
+/* ════════════════════════════════════════════════════════════════
+   COUNT UP
+   ════════════════════════════════════════════════════════════════ */
+function CountUp({ target, duration = 1600, decimals = 0, suffix = '', trigger = true }) {
+  const [val, setVal] = useState(0)
+  const startRef = useRef(null)
+  useEffect(() => {
+    if (!trigger) return
+    let raf
+    const step = (ts) => {
+      if (!startRef.current) startRef.current = ts
+      const p = Math.min((ts - startRef.current) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setVal(target * eased)
+      if (p < 1) raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [target, duration, trigger])
+  return <>{val.toFixed(decimals).replace('.', ',')}{suffix}</>
+}
 
+/* ════════════════════════════════════════════════════════════════
+   PARTICULES DE FOND (hero)
+   ════════════════════════════════════════════════════════════════ */
+function ParticleField() {
+  const particles = useMemo(() =>
+    Array.from({ length: 40 }, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: 1 + Math.random() * 2,
+      dur: 8 + Math.random() * 10,
+      delay: Math.random() * 8,
+      isAccent: Math.random() < 0.1,
+    })), []
+  )
+
+  return (
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      pointerEvents: 'none',
+      overflow: 'hidden',
+      opacity: 0.5,
+    }}>
+      {particles.map((p, i) => (
+        <div key={i} style={{
+          position: 'absolute',
+          left: `${p.x}%`,
+          top: `${p.y}%`,
+          width: p.size,
+          height: p.size,
+          borderRadius: '50%',
+          background: p.isAccent ? C.accentBright : C.dim,
+          boxShadow: p.isAccent ? `0 0 6px ${C.accent}` : 'none',
+          animation: `particleFloat ${p.dur}s ease-in-out ${p.delay}s infinite`,
+        }} />
+      ))}
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LIGNE CASCADE
+   ════════════════════════════════════════════════════════════════ */
+function CascadeRow({ provider, revealed, rowIndex, isRosatom }) {
+  const count = iconCount(provider.swu)
+  const displayCount = provider.swu < 0.5 ? 1 : count
+
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 14,
+      paddingBottom: 28,
+      borderBottom: `1px solid ${C.lineSoft}`,
+      marginBottom: 28,
+      opacity: revealed ? 1 : 0,
+      transform: revealed ? 'translateY(0)' : 'translateY(16px)',
+      transition: `opacity 700ms ease ${rowIndex * 140}ms, transform 700ms ease ${rowIndex * 140}ms`,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 20, flexWrap: 'wrap' }}>
+        <div style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: isRosatom ? 32 : 26,
+          fontWeight: 500,
+          color: isRosatom ? C.accent : C.text,
+          letterSpacing: '-0.01em',
+        }}>
+          {provider.name}
+        </div>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: 10,
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: C.dim,
+        }}>
+          {provider.country}
+        </div>
+        <div style={{ flex: 1, height: 1, background: C.lineSoft, minWidth: 40 }} />
+        <div style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 22,
+          color: isRosatom ? C.accent : C.text,
+          fontWeight: 400,
+        }}>
+          {provider.swu < 0.5 ? '< 1' : provider.swu}
+          <span style={{ fontSize: 12, marginLeft: 6, color: C.dim, fontFamily: "'DM Sans', sans-serif", letterSpacing: '0.1em' }}>
+            M UTS/AN
+          </span>
+        </div>
+        <div style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: 11,
+          color: isRosatom ? C.accent : C.dim,
+          minWidth: 54,
+          textAlign: 'right',
+        }}>
+          {provider.share < 1 ? '< 1' : provider.share} %
+        </div>
+      </div>
+
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 4,
+        alignItems: 'flex-end',
+        minHeight: 66,
+      }}>
+        {Array.from({ length: displayCount }).map((_, idx) => (
+          <div
+            key={idx}
+            style={{
+              opacity: revealed ? 1 : 0,
+              transform: revealed ? 'scale(1)' : 'scale(0.4)',
+              transition: `opacity 400ms ease ${rowIndex * 100 + idx * 8}ms, transform 400ms cubic-bezier(.2,.8,.3,1.2) ${rowIndex * 100 + idx * 8}ms`,
+            }}
+          >
+            <SpinningCentrifuge
+              size="md"
+              color={isRosatom ? C.accent : C.text}
+              speed={0.6 + (idx % 4) * 0.2}
+              delay={(rowIndex * 0.2 + idx * 0.015) % 1.2}
+              active={revealed}
+            />
+          </div>
+        ))}
+        {provider.name === 'Centrus' && revealed && (
+          <div style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: 'italic',
+            fontSize: 13,
+            color: C.muted,
+            marginLeft: 10,
+            alignSelf: 'center',
+          }}>
+            capacité commerciale négligeable
+          </div>
+        )}
+      </div>
+
+      <div style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: 14,
+        fontStyle: 'italic',
+        color: C.dim,
+        marginTop: 2,
+      }}>
+        {provider.plants.join(' · ')}
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PIPELINE DE SÉPARATION
+   ════════════════════════════════════════════════════════════════ */
+function SeparationPipeline() {
+  const stages = 7
+  return (
+    <div style={{ position: 'relative', padding: '40px 0', overflow: 'hidden' }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        padding: '0 20px',
+        minHeight: 200,
+        position: 'relative',
+      }}>
+        <div style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: '50%',
+          height: 2,
+          background: `linear-gradient(to right, ${C.muted} 0%, ${C.dim} 30%, ${C.accent} 70%, ${C.accentBright} 100%)`,
+          opacity: 0.3,
+          transform: 'translateY(-50%)',
+        }} />
+
+        {Array.from({ length: 10 }).map((_, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            top: '50%',
+            width: 4,
+            height: 4,
+            borderRadius: '50%',
+            background: C.accentBright,
+            boxShadow: `0 0 8px ${C.accent}`,
+            animation: `flowRight 4s linear ${i * 0.4}s infinite`,
+            transform: 'translateY(-50%)',
+          }} />
+        ))}
+
+        {Array.from({ length: stages }).map((_, i) => {
+          const enrichment = (i + 1) / stages
+          return (
+            <div key={i} style={{
+              position: 'relative',
+              zIndex: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 6,
+              flex: 1,
+            }}>
+              <div style={{ display: 'flex', gap: 2 }}>
+                {Array.from({ length: 4 }).map((_, j) => (
+                  <SpinningCentrifuge
+                    key={j}
+                    size="sm"
+                    color={i === stages - 1 ? C.accentBright : enrichment > 0.5 ? C.accent : C.text}
+                    speed={0.8 + i * 0.15}
+                    delay={i * 0.08 + j * 0.03}
+                  />
+                ))}
+              </div>
+              <div style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 9,
+                color: enrichment > 0.6 ? C.accent : C.muted,
+                letterSpacing: '0.08em',
+                marginTop: 4,
+              }}>
+                ÉTAGE {i + 1}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        padding: '16px 20px 0',
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: 10,
+        letterSpacing: '0.15em',
+        textTransform: 'uppercase',
+      }}>
+        <div style={{ color: C.dim }}>
+          <div>Entrée</div>
+          <div style={{ fontSize: 14, fontFamily: "'Playfair Display', serif", letterSpacing: 0, textTransform: 'none', color: C.text }}>
+            UF₆ à 0,7 %
+          </div>
+        </div>
+        <div style={{ color: C.accent, textAlign: 'right' }}>
+          <div>Sortie</div>
+          <div style={{ fontSize: 14, fontFamily: "'Playfair Display', serif", letterSpacing: 0, textTransform: 'none', color: C.accent }}>
+            UF₆ à 5 %
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PAGE PRINCIPALE
+   ════════════════════════════════════════════════════════════════ */
 export default function UraniumClient() {
   const [reveal, setReveal] = useState(new Set())
   const [activePalier, setActivePalier] = useState(0)
   const sectionRefs = useRef([])
   const palierRefs = useRef([])
 
-  // Observer pour révéler progressivement les sections
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
@@ -175,13 +452,12 @@ export default function UraniumClient() {
           }
         })
       },
-      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     )
     sectionRefs.current.forEach((el) => el && obs.observe(el))
     return () => obs.disconnect()
   }, [])
 
-  // Observer pour le palier actif dans le scroll
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
@@ -205,6 +481,28 @@ export default function UraniumClient() {
 
       <style jsx global>{`
         body { background: ${C.bg}; }
+        @keyframes particleFloat {
+          0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+          50% { transform: translate(20px, -20px); opacity: 0.8; }
+        }
+        @keyframes flowRight {
+          0% { left: -4px; opacity: 0; }
+          5% { opacity: 1; }
+          95% { opacity: 1; }
+          100% { left: calc(100% + 4px); opacity: 0; }
+        }
+        @keyframes pulseGlow {
+          0%, 100% { box-shadow: 0 0 0 0 ${C.red}; }
+          50% { box-shadow: 0 0 0 10px rgba(142, 58, 43, 0); }
+        }
+        @keyframes slideInLeft {
+          0% { opacity: 0; transform: translateX(-24px); }
+          100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes dotPulse {
+          0%, 100% { opacity: 0.4; transform: scale(0.85); }
+          50% { opacity: 1; transform: scale(1.25); }
+        }
       `}</style>
 
       <div style={{
@@ -215,119 +513,137 @@ export default function UraniumClient() {
         overflowX: 'hidden',
       }}>
 
-      {/* ═══ I — OUVERTURE ═══ */}
+      {/* I — OUVERTURE */}
       <section
         ref={(el) => (sectionRefs.current[0] = el)}
         data-id="hero"
         style={{
-          minHeight: '92vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '120px 24px 80px',
-          maxWidth: 1200,
-          margin: '0 auto',
           position: 'relative',
+          minHeight: '92vh',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1.4fr',
+          alignItems: 'center',
+          padding: '100px 32px 60px',
+          maxWidth: 1400,
+          margin: '0 auto',
+          gap: 40,
         }}
+        className="uranium-hero-grid"
       >
-        <div style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: 11,
-          letterSpacing: '0.22em',
-          textTransform: 'uppercase',
-          color: C.accent,
-          marginBottom: 40,
-          opacity: isRevealed('hero') ? 1 : 0,
-          transition: 'opacity 900ms ease',
-        }}>
-          Atlas · Mouvement I · Géopolitique nucléaire
-        </div>
+        <ParticleField />
 
-        <h1 style={{
-          fontFamily: "'Playfair Display', serif",
-          fontWeight: 400,
-          fontSize: 'clamp(44px, 7.5vw, 104px)',
-          lineHeight: 1.02,
-          letterSpacing: '-0.02em',
-          margin: 0,
-          marginBottom: 48,
-          maxWidth: 1100,
+        <div style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          gap: 18,
+          position: 'relative',
+          zIndex: 2,
           opacity: isRevealed('hero') ? 1 : 0,
           transform: isRevealed('hero') ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'opacity 1200ms ease 200ms, transform 1200ms ease 200ms',
+          transition: 'opacity 1200ms ease, transform 1200ms ease',
         }}>
-          La cascade<br/>
-          <em style={{ color: C.accent, fontStyle: 'italic' }}>du monde.</em>
-        </h1>
+          <SpinningCentrifuge size="md" color={C.dim} speed={0.5} delay={0.2} />
+          <SpinningCentrifuge size="lg" color={C.accent} speed={0.7} delay={0} />
+          <SpinningCentrifuge size="xl" color={C.accent} speed={0.9} delay={0.05} />
+          <SpinningCentrifuge size="lg" color={C.accent} speed={0.7} delay={0.15} />
+          <SpinningCentrifuge size="md" color={C.dim} speed={0.5} delay={0.3} />
+        </div>
 
-        <p style={{
-          fontSize: 'clamp(18px, 2.1vw, 24px)',
-          lineHeight: 1.55,
-          color: C.text,
-          maxWidth: 720,
-          fontWeight: 300,
-          margin: 0,
-          marginBottom: 72,
-          opacity: isRevealed('hero') ? 1 : 0,
-          transition: 'opacity 1400ms ease 600ms',
-        }}>
-          L'uranium enrichi tient aujourd'hui une place comparable à celle du pétrole
-          dans les équilibres du XXᵉ siècle. Quatre entités en contrôlent l'essentiel.
-          Quatre dont une en Occident. Quatre dont une seule fabrique, aujourd'hui,
-          ce dont les réacteurs de demain auront besoin.
-        </p>
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 11,
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            color: C.accent,
+            marginBottom: 32,
+            opacity: isRevealed('hero') ? 1 : 0,
+            transition: 'opacity 900ms ease',
+          }}>
+            Atlas · Mouvement I · Géopolitique nucléaire
+          </div>
 
-        <div style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: 12,
-          letterSpacing: '0.08em',
-          color: C.dim,
-          display: 'flex',
-          gap: 40,
-          flexWrap: 'wrap',
-          opacity: isRevealed('hero') ? 1 : 0,
-          transition: 'opacity 1600ms ease 1000ms',
-        }}>
-          <div>
-            <div style={{ color: C.muted, marginBottom: 6, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Longueur</div>
-            <div>Lecture 8 minutes</div>
-          </div>
-          <div>
-            <div style={{ color: C.muted, marginBottom: 6, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Sources</div>
-            <div>WNA, AIEA, CEA, Centrus 10-K</div>
-          </div>
-          <div>
-            <div style={{ color: C.muted, marginBottom: 6, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Format</div>
-            <div>Visualisation pure</div>
+          <h1 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontWeight: 400,
+            fontSize: 'clamp(44px, 7vw, 100px)',
+            lineHeight: 1.02,
+            letterSpacing: '-0.02em',
+            margin: 0,
+            marginBottom: 40,
+            opacity: isRevealed('hero') ? 1 : 0,
+            transform: isRevealed('hero') ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 1200ms ease 200ms, transform 1200ms ease 200ms',
+          }}>
+            La cascade<br/>
+            <em style={{ color: C.accent, fontStyle: 'italic' }}>du monde.</em>
+          </h1>
+
+          <p style={{
+            fontSize: 'clamp(17px, 1.8vw, 21px)',
+            lineHeight: 1.55,
+            color: C.text,
+            maxWidth: 620,
+            fontWeight: 300,
+            margin: 0,
+            marginBottom: 40,
+            opacity: isRevealed('hero') ? 1 : 0,
+            transition: 'opacity 1400ms ease 600ms',
+          }}>
+            L'uranium enrichi tient aujourd'hui une place comparable à celle du pétrole
+            dans les équilibres du XXᵉ siècle. Quatre entités en contrôlent l'essentiel,
+            dont une seule en Occident.
+          </p>
+
+          <div style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 11,
+            letterSpacing: '0.08em',
+            color: C.dim,
+            display: 'flex',
+            gap: 36,
+            flexWrap: 'wrap',
+            opacity: isRevealed('hero') ? 1 : 0,
+            transition: 'opacity 1600ms ease 1000ms',
+          }}>
+            <div>
+              <div style={{ color: C.muted, marginBottom: 4, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Lecture</div>
+              <div>8 minutes</div>
+            </div>
+            <div>
+              <div style={{ color: C.muted, marginBottom: 4, fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase' }}>Sources</div>
+              <div>WNA · AIEA · CEA · Centrus 10-K</div>
+            </div>
           </div>
         </div>
 
-        {/* indication de scroll */}
         <div style={{
           position: 'absolute',
-          bottom: 40,
+          bottom: 30,
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 12,
+          gap: 10,
           opacity: isRevealed('hero') ? 0.6 : 0,
           transition: 'opacity 1800ms ease 1400ms',
+          zIndex: 2,
         }}>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.dim }}>
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: C.dim }}>
             Descendre
           </div>
-          <div style={{ width: 1, height: 40, background: `linear-gradient(to bottom, ${C.dim}, transparent)` }} />
+          <div style={{ width: 1, height: 36, background: `linear-gradient(to bottom, ${C.dim}, transparent)` }} />
         </div>
       </section>
 
-      {/* ═══ II — LE SEUIL ORIGINEL : 0,7 % ═══ */}
+      {/* II — LE SEUIL ORIGINEL */}
       <section
         ref={(el) => (sectionRefs.current[1] = el)}
         data-id="origine"
         style={{
-          padding: '160px 24px',
+          padding: '140px 24px',
           maxWidth: 1200,
           margin: '0 auto',
           borderTop: `1px solid ${C.line}`,
@@ -351,7 +667,6 @@ export default function UraniumClient() {
           alignItems: 'start',
         }} className="uranium-grid-2">
 
-          {/* Chiffre géant */}
           <div>
             <div style={{
               fontFamily: "'Playfair Display', serif",
@@ -360,10 +675,8 @@ export default function UraniumClient() {
               fontWeight: 300,
               color: C.accent,
               letterSpacing: '-0.04em',
-              opacity: isRevealed('origine') ? 1 : 0.1,
-              transition: 'opacity 1500ms ease',
             }}>
-              0,7
+              <CountUp target={0.7} duration={2200} decimals={1} trigger={isRevealed('origine')} />
               <span style={{ fontSize: '0.35em', color: C.text, marginLeft: 8 }}>%</span>
             </div>
             <div style={{
@@ -378,10 +691,9 @@ export default function UraniumClient() {
             </div>
           </div>
 
-          {/* Explication */}
           <div style={{ paddingTop: 40 }}>
             <p style={{
-              fontSize: 'clamp(19px, 2vw, 23px)',
+              fontSize: 'clamp(18px, 1.9vw, 22px)',
               lineHeight: 1.6,
               color: C.text,
               fontWeight: 300,
@@ -390,29 +702,27 @@ export default function UraniumClient() {
             }}>
               Tout part de là. L'uranium extrait des mines du Niger, du Canada,
               du Kazakhstan, de Namibie ou d'Ouzbékistan contient environ sept parties
-              pour mille d'uranium 235, le seul isotope fissile. Le reste, 99,3 %, est
-              de l'uranium 238, inerte dans un réacteur à eau légère.
+              pour mille d'uranium 235, le seul isotope fissile. Le reste, 99,3 %,
+              est de l'uranium 238, inerte dans un réacteur à eau légère.
             </p>
             <p style={{
-              fontSize: 'clamp(17px, 1.7vw, 20px)',
+              fontSize: 'clamp(16px, 1.6vw, 19px)',
               lineHeight: 1.65,
               color: C.dim,
               fontWeight: 300,
               margin: 0,
             }}>
               Enrichir, c'est séparer. Depuis les années 1940, l'humanité a développé
-              trois familles de procédés pour accomplir cette séparation à l'échelle
-              industrielle : la diffusion gazeuse, abandonnée pour son coût énergétique,
-              la centrifugation, devenue dominante, et la technologie laser, encore
-              expérimentale. Toutes accomplissent la même opération, plus ou moins bien,
-              plus ou moins vite, plus ou moins discrètement.
+              trois familles de procédés : la diffusion gazeuse, abandonnée pour son
+              coût énergétique, la centrifugation, devenue dominante, et la technologie
+              laser, encore expérimentale. Toutes accomplissent la même opération,
+              plus ou moins bien, plus ou moins vite, plus ou moins discrètement.
             </p>
           </div>
         </div>
 
-        {/* Grille 1000 points */}
         <div style={{
-          marginTop: 100,
+          marginTop: 90,
           paddingTop: 48,
           borderTop: `1px solid ${C.lineSoft}`,
         }}>
@@ -424,9 +734,9 @@ export default function UraniumClient() {
             color: C.dim,
             marginBottom: 24,
           }}>
-            1 000 atomes d'uranium naturel, représentés
+            1 000 atomes d'uranium naturel
           </div>
-          <DotGrid total={1000} highlight={7} />
+          <DotGrid total={1000} revealed={isRevealed('origine')} />
           <div style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: 12,
@@ -436,18 +746,49 @@ export default function UraniumClient() {
             gap: 28,
             flexWrap: 'wrap',
           }}>
-            <span><span style={{ color: C.accent }}>■</span> 7 atomes d'U-235</span>
-            <span><span style={{ color: C.muted }}>■</span> 993 atomes d'U-238</span>
+            <span><span style={{ color: C.accent }}>●</span> 7 atomes d'U-235 (fissile)</span>
+            <span><span style={{ color: C.muted }}>●</span> 993 atomes d'U-238 (inerte)</span>
           </div>
+        </div>
+
+        <div style={{
+          marginTop: 100,
+          paddingTop: 48,
+          borderTop: `1px solid ${C.lineSoft}`,
+        }}>
+          <div style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: 11,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: C.dim,
+            marginBottom: 8,
+          }}>
+            Le principe
+          </div>
+          <div style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(22px, 2.4vw, 30px)',
+            lineHeight: 1.35,
+            color: C.text,
+            fontWeight: 400,
+            maxWidth: 760,
+            marginBottom: 12,
+            fontStyle: 'italic',
+          }}>
+            Le gaz d'hexafluorure d'uranium traverse une chaîne de centrifugeuses.
+            À chaque étage, il s'enrichit un peu plus.
+          </div>
+          <SeparationPipeline />
         </div>
       </section>
 
-      {/* ═══ III — LA CASCADE ═══ */}
+      {/* III — LA CASCADE */}
       <section
         ref={(el) => (sectionRefs.current[2] = el)}
         data-id="cascade"
         style={{
-          padding: '160px 24px 100px',
+          padding: '140px 24px 100px',
           maxWidth: 1400,
           margin: '0 auto',
           borderTop: `1px solid ${C.line}`,
@@ -466,151 +807,43 @@ export default function UraniumClient() {
         <h2 style={{
           fontFamily: "'Playfair Display', serif",
           fontWeight: 400,
-          fontSize: 'clamp(36px, 5.5vw, 72px)',
+          fontSize: 'clamp(34px, 5vw, 68px)',
           lineHeight: 1.05,
           letterSpacing: '-0.02em',
           margin: 0,
-          marginBottom: 28,
-          maxWidth: 900,
+          marginBottom: 24,
+          maxWidth: 980,
         }}>
-          Chaque trait vertical est une capacité de <em style={{ color: C.accent }}>250 000 unités de travail de séparation</em> par an.
+          Chaque trait qui tourne est une capacité de <em style={{ color: C.accent }}>300 000 UTS par an</em>.
         </h2>
         <p style={{
-          fontSize: 'clamp(16px, 1.6vw, 19px)',
+          fontSize: 'clamp(15px, 1.5vw, 18px)',
           lineHeight: 1.65,
           color: C.dim,
           fontWeight: 300,
           margin: 0,
-          marginBottom: 80,
+          marginBottom: 64,
           maxWidth: 720,
         }}>
-          Cinq acteurs se partagent la quasi-totalité du marché commercial. La
-          dissymétrie que révèle cette composition, à elle seule, résume plusieurs
-          décennies de stratégie industrielle.
+          Cinq acteurs se partagent la quasi-totalité du marché commercial. La dissymétrie
+          que révèle cette composition, à elle seule, résume plusieurs décennies de
+          stratégie industrielle.
         </p>
 
-        {/* La cascade elle-même */}
-        <div style={{
-          overflowX: 'auto',
-          marginLeft: -24,
-          marginRight: -24,
-          paddingLeft: 24,
-          paddingRight: 24,
-        }}>
-          <div style={{
-            display: 'flex',
-            gap: 48,
-            alignItems: 'flex-end',
-            minWidth: 'min-content',
-            paddingBottom: 24,
-          }}>
-            {PROVIDERS.map((p, i) => {
-              const count = iconCount(p.swu)
-              const displayCount = p.swu < 0.5 ? 1 : count
-              return (
-                <div
-                  key={p.name}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    minWidth: p.name === 'Rosatom' ? 360 : 220,
-                    flexShrink: 0,
-                    opacity: isRevealed('cascade') ? 1 : 0,
-                    transform: isRevealed('cascade') ? 'translateY(0)' : 'translateY(30px)',
-                    transition: `opacity 900ms ease ${i * 140}ms, transform 900ms ease ${i * 140}ms`,
-                  }}
-                >
-                  {/* Les centrifugeuses, en colonne dense */}
-                  <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: 3,
-                    marginBottom: 24,
-                    maxWidth: p.name === 'Rosatom' ? 360 : 220,
-                  }}>
-                    {Array.from({ length: displayCount }).map((_, idx) => (
-                      <Centrifuge
-                        key={idx}
-                        color={p.color}
-                        opacity={p.name === 'Centrus' ? 0.5 : 1}
-                      />
-                    ))}
-                    {p.name === 'Centrus' && (
-                      <div style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: 10,
-                        color: C.muted,
-                        fontStyle: 'italic',
-                        marginLeft: 8,
-                        alignSelf: 'center',
-                      }}>
-                        capacité commerciale négligeable
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Bloc légende */}
-                  <div style={{
-                    borderTop: `1px solid ${p.name === 'Rosatom' ? C.accent : C.line}`,
-                    paddingTop: 16,
-                    width: '100%',
-                  }}>
-                    <div style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontSize: 28,
-                      fontWeight: 500,
-                      color: p.name === 'Rosatom' ? C.accent : C.text,
-                      letterSpacing: '-0.01em',
-                      marginBottom: 4,
-                    }}>
-                      {p.name}
-                    </div>
-                    <div style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: 11,
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      color: C.dim,
-                      marginBottom: 14,
-                    }}>
-                      {p.country}
-                    </div>
-                    <div style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontSize: 22,
-                      color: C.text,
-                      marginBottom: 2,
-                    }}>
-                      {p.swu < 0.5 ? '< 1' : p.swu} M UTS
-                    </div>
-                    <div style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: 12,
-                      color: p.name === 'Rosatom' ? C.accent : C.dim,
-                    }}>
-                      {p.share < 1 ? '< 1' : p.share} % du marché mondial
-                    </div>
-                    <div style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: 14,
-                      fontStyle: 'italic',
-                      color: C.muted,
-                      marginTop: 14,
-                      lineHeight: 1.5,
-                    }}>
-                      {p.plants.join(', ')}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+        <div>
+          {PROVIDERS.map((p, i) => (
+            <CascadeRow
+              key={p.name}
+              provider={p}
+              revealed={isRevealed('cascade')}
+              rowIndex={i}
+              isRosatom={p.name === 'Rosatom'}
+            />
+          ))}
         </div>
 
-        {/* Phrase de conclusion sobre */}
         <div style={{
-          marginTop: 100,
+          marginTop: 60,
           paddingTop: 48,
           borderTop: `1px solid ${C.lineSoft}`,
           maxWidth: 820,
@@ -631,12 +864,12 @@ export default function UraniumClient() {
         </div>
       </section>
 
-      {/* ═══ IV — LES PALIERS ═══ */}
+      {/* IV — LES PALIERS */}
       <section
         ref={(el) => (sectionRefs.current[3] = el)}
         data-id="paliers"
         style={{
-          padding: '160px 0 100px',
+          padding: '140px 0 80px',
           borderTop: `1px solid ${C.line}`,
         }}
       >
@@ -654,28 +887,27 @@ export default function UraniumClient() {
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
             fontWeight: 400,
-            fontSize: 'clamp(36px, 5.5vw, 72px)',
+            fontSize: 'clamp(34px, 5vw, 68px)',
             lineHeight: 1.05,
             letterSpacing: '-0.02em',
             margin: 0,
-            marginBottom: 28,
-            maxWidth: 900,
+            marginBottom: 24,
+            maxWidth: 980,
           }}>
             Le même atome, enrichi à des degrés différents, fait tourner une ville ou rase une capitale.
           </h2>
           <p style={{
-            fontSize: 'clamp(16px, 1.6vw, 19px)',
+            fontSize: 'clamp(15px, 1.5vw, 18px)',
             lineHeight: 1.65,
             color: C.dim,
             fontWeight: 300,
             margin: 0,
             maxWidth: 720,
           }}>
-            Cinq paliers suffisent à décrire toute la géopolitique de l'atome civil et militaire.
+            Cinq paliers suffisent à décrire toute la géopolitique de l'atome.
           </p>
         </div>
 
-        {/* Les paliers, empilés avec scrollytelling */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
@@ -683,7 +915,6 @@ export default function UraniumClient() {
           position: 'relative',
         }} className="uranium-paliers-grid">
 
-          {/* Colonne gauche : jauge collante */}
           <div style={{
             position: 'sticky',
             top: 0,
@@ -694,10 +925,9 @@ export default function UraniumClient() {
             padding: '0 24px',
             borderRight: `1px solid ${C.lineSoft}`,
           }} className="uranium-gauge">
-            <Gauge activeIndex={activePalier} paliers={PALIERS} />
+            <LiquidGauge activeIndex={activePalier} paliers={PALIERS} />
           </div>
 
-          {/* Colonne droite : paliers déroulants */}
           <div>
             {PALIERS.map((p, i) => (
               <div
@@ -711,8 +941,21 @@ export default function UraniumClient() {
                   justifyContent: 'center',
                   padding: '80px 48px',
                   borderBottom: i < PALIERS.length - 1 ? `1px solid ${C.lineSoft}` : 'none',
+                  position: 'relative',
                 }}
               >
+                {p.military && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 40,
+                    right: 48,
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    background: C.red,
+                    animation: 'pulseGlow 1.8s ease-out infinite',
+                  }} />
+                )}
                 <div style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: 10,
@@ -762,12 +1005,12 @@ export default function UraniumClient() {
         </div>
       </section>
 
-      {/* ═══ V — LA LITANIE DES INSTALLATIONS ═══ */}
+      {/* V — INSTALLATIONS */}
       <section
         ref={(el) => (sectionRefs.current[4] = el)}
         data-id="installations"
         style={{
-          padding: '160px 24px 140px',
+          padding: '140px 24px 120px',
           maxWidth: 1200,
           margin: '0 auto',
           borderTop: `1px solid ${C.line}`,
@@ -786,11 +1029,11 @@ export default function UraniumClient() {
         <h2 style={{
           fontFamily: "'Playfair Display', serif",
           fontWeight: 400,
-          fontSize: 'clamp(36px, 5.5vw, 72px)',
+          fontSize: 'clamp(34px, 5vw, 68px)',
           lineHeight: 1.05,
           letterSpacing: '-0.02em',
           margin: 0,
-          marginBottom: 80,
+          marginBottom: 60,
           maxWidth: 900,
         }}>
           Les lieux où se fait l'enrichissement.
@@ -813,12 +1056,11 @@ export default function UraniumClient() {
                   display: 'grid',
                   gridTemplateColumns: '60px 1fr auto auto',
                   alignItems: 'baseline',
-                  padding: '28px 0',
+                  padding: '24px 0',
                   borderBottom: `1px solid ${C.line}`,
                   gap: 24,
+                  animation: isRevealed('installations') ? `slideInLeft 500ms ease ${i * 40}ms backwards` : 'none',
                   opacity: isRevealed('installations') ? 1 : 0,
-                  transform: isRevealed('installations') ? 'translateX(0)' : 'translateX(-10px)',
-                  transition: `opacity 600ms ease ${i * 40}ms, transform 600ms ease ${i * 40}ms`,
                 }}
               >
                 <div style={{
@@ -831,7 +1073,7 @@ export default function UraniumClient() {
                 </div>
                 <div style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: 'clamp(28px, 3.6vw, 44px)',
+                  fontSize: 'clamp(26px, 3.4vw, 42px)',
                   fontWeight: 400,
                   color,
                   letterSpacing: '-0.01em',
@@ -865,12 +1107,12 @@ export default function UraniumClient() {
         </ol>
       </section>
 
-      {/* ═══ VI — LA DÉPENDANCE ═══ */}
+      {/* VI — DÉPENDANCE */}
       <section
         ref={(el) => (sectionRefs.current[5] = el)}
         data-id="dependance"
         style={{
-          padding: '160px 24px 120px',
+          padding: '140px 24px 120px',
           maxWidth: 1200,
           margin: '0 auto',
           borderTop: `1px solid ${C.line}`,
@@ -889,11 +1131,11 @@ export default function UraniumClient() {
         <h2 style={{
           fontFamily: "'Playfair Display', serif",
           fontWeight: 400,
-          fontSize: 'clamp(36px, 5.5vw, 72px)',
+          fontSize: 'clamp(34px, 5vw, 68px)',
           lineHeight: 1.05,
           letterSpacing: '-0.02em',
           margin: 0,
-          marginBottom: 64,
+          marginBottom: 60,
           maxWidth: 900,
         }}>
           Ce que Rosatom produit, l'Occident l'achète.
@@ -901,25 +1143,31 @@ export default function UraniumClient() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: 40,
           marginBottom: 80,
         }}>
           <FactBlock
-            value="≈ 25 %"
+            target={25}
+            suffix=" %"
             label="des services d'enrichissement destinés aux réacteurs américains provenaient encore de Russie en 2024"
-            source="National Interest, décembre 2025"
+            source="National Interest, déc. 2025"
+            trigger={isRevealed('dependance')}
           />
           <FactBlock
-            value="700 M€"
-            label="dépensés par les utilities européennes en combustible russe en 2024, selon les estimations de Bruegel"
+            target={700}
+            suffix=" M€"
+            label="dépensés par les utilities européennes en combustible russe en 2024"
             source="Bruegel, 2025"
+            trigger={isRevealed('dependance')}
             accent
           />
           <FactBlock
-            value="10 ans"
-            label="délai estimé pour qu'une nouvelle installation d'enrichissement atteigne sa pleine capacité, de la conception à l'exploitation"
+            target={10}
+            suffix=" ans"
+            label="délai estimé pour qu'une nouvelle installation d'enrichissement atteigne sa pleine capacité"
             source="Centrus, 10-K 2026"
+            trigger={isRevealed('dependance')}
           />
         </div>
 
@@ -944,13 +1192,13 @@ export default function UraniumClient() {
           </p>
         </div>
 
-        <div style={{ marginTop: 60 }}>
+        <div style={{ marginTop: 48 }}>
           <p style={{
             fontSize: 'clamp(17px, 1.7vw, 20px)',
             lineHeight: 1.65,
             color: C.text,
             fontWeight: 300,
-            marginBottom: 24,
+            marginBottom: 20,
             maxWidth: 760,
           }}>
             L'Europe et les États-Unis ont lancé leur rattrapage. Urenco étend ses
@@ -973,7 +1221,7 @@ export default function UraniumClient() {
         </div>
       </section>
 
-      {/* ═══ SOURCES ═══ */}
+      {/* SOURCES */}
       <section style={{
         padding: '100px 24px 140px',
         maxWidth: 1200,
@@ -993,36 +1241,24 @@ export default function UraniumClient() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 32,
+          gap: 28,
           fontFamily: "'Cormorant Garamond', serif",
-          fontSize: 16,
+          fontSize: 15,
           lineHeight: 1.6,
           color: C.dim,
           fontStyle: 'italic',
         }}>
-          <div>
-            World Nuclear Association, <em style={{ fontStyle: 'normal' }}>World Nuclear Fuel Report</em>, septembre 2025.
-          </div>
-          <div>
-            Centrus Energy, <em style={{ fontStyle: 'normal' }}>Investor Presentation</em>, février 2026, et formulaire 10-K 2025.
-          </div>
-          <div>
-            Bruegel, <em style={{ fontStyle: 'normal' }}>EU Reliance on Russian Nuclear Fuel</em>, 2025.
-          </div>
-          <div>
-            Agence internationale de l'énergie atomique, <em style={{ fontStyle: 'normal' }}>IAEA Safeguards Reports</em>, 2024 et 2025.
-          </div>
-          <div>
-            CEA, Dossier pédagogique <em style={{ fontStyle: 'normal' }}>L'enrichissement de l'uranium</em>.
-          </div>
-          <div>
-            Thunder Said Energy, <em style={{ fontStyle: 'normal' }}>Uranium enrichment by country and company</em>, 2024.
-          </div>
+          <div>World Nuclear Association, <em style={{ fontStyle: 'normal' }}>World Nuclear Fuel Report</em>, septembre 2025.</div>
+          <div>Centrus Energy, <em style={{ fontStyle: 'normal' }}>Investor Presentation</em>, février 2026, et formulaire 10-K 2025.</div>
+          <div>Bruegel, <em style={{ fontStyle: 'normal' }}>EU Reliance on Russian Nuclear Fuel</em>, 2025.</div>
+          <div>AIEA, <em style={{ fontStyle: 'normal' }}>Safeguards Reports</em>, 2024 et 2025.</div>
+          <div>CEA, Dossier pédagogique <em style={{ fontStyle: 'normal' }}>L'enrichissement de l'uranium</em>.</div>
+          <div>Thunder Said Energy, <em style={{ fontStyle: 'normal' }}>Uranium enrichment by country and company</em>, 2024.</div>
         </div>
 
         <div style={{
-          marginTop: 80,
-          paddingTop: 32,
+          marginTop: 64,
+          paddingTop: 28,
           borderTop: `1px solid ${C.line}`,
           fontFamily: "'DM Sans', sans-serif",
           fontSize: 11,
@@ -1044,6 +1280,9 @@ export default function UraniumClient() {
 
       <style jsx>{`
         @media (max-width: 800px) {
+          :global(.uranium-hero-grid) {
+            grid-template-columns: 1fr !important;
+          }
           :global(.uranium-grid-2) {
             grid-template-columns: 1fr !important;
             gap: 32px !important;
@@ -1060,17 +1299,9 @@ export default function UraniumClient() {
   )
 }
 
-/* ─────────────────────────────────────────────────────
-   Grille de 1 000 points, 7 en jaune uranium
-   ───────────────────────────────────────────────────── */
-function DotGrid({ total = 1000, highlight = 7 }) {
-  const dots = useMemo(() => {
-    const arr = Array.from({ length: total }, (_, i) => i)
-    // répartir 7 indices "au hasard" mais stables
-    const accentIdx = new Set([97, 203, 341, 518, 662, 789, 901])
-    return arr.map((i) => accentIdx.has(i))
-  }, [total, highlight])
-
+/* DOT GRID avec points pulsants */
+function DotGrid({ total = 1000, revealed }) {
+  const accentIdx = useMemo(() => new Set([97, 203, 341, 518, 662, 789, 901]), [])
   return (
     <div style={{
       display: 'grid',
@@ -1078,63 +1309,93 @@ function DotGrid({ total = 1000, highlight = 7 }) {
       gap: 4,
       maxWidth: 760,
     }}>
-      {dots.map((isAccent, i) => (
-        <div
-          key={i}
-          style={{
-            width: '100%',
-            aspectRatio: '1 / 1',
-            background: isAccent ? C.accent : C.muted,
-            opacity: isAccent ? 1 : 0.35,
-            borderRadius: '50%',
-          }}
-        />
-      ))}
+      {Array.from({ length: total }).map((_, i) => {
+        const isAccent = accentIdx.has(i)
+        return (
+          <div
+            key={i}
+            style={{
+              width: '100%',
+              aspectRatio: '1 / 1',
+              background: isAccent ? C.accent : C.muted,
+              opacity: revealed ? (isAccent ? 1 : 0.35) : 0,
+              borderRadius: '50%',
+              transition: `opacity 600ms ease ${Math.min(i * 0.4, 400)}ms`,
+              animation: isAccent && revealed ? `dotPulse 2.4s ease-in-out ${(i % 7) * 0.3}s infinite` : 'none',
+              boxShadow: isAccent && revealed ? `0 0 6px ${C.accent}` : 'none',
+            }}
+          />
+        )
+      })}
     </div>
   )
 }
 
-/* ─────────────────────────────────────────────────────
-   Jauge verticale des paliers (colonne gauche sticky)
-   ───────────────────────────────────────────────────── */
-function Gauge({ activeIndex, paliers }) {
+/* LIQUID GAUGE animée */
+function LiquidGauge({ activeIndex, paliers }) {
+  const total = paliers.length
+  const fillHeight = ((activeIndex + 1) / total) * 100
+  const isMilitary = paliers[activeIndex]?.military
+  const fillColor = isMilitary ? C.red : C.accent
+
   return (
     <div style={{
       width: '100%',
-      maxWidth: 400,
-      height: '70vh',
+      maxWidth: 440,
+      height: '78vh',
       position: 'relative',
       display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
+      alignItems: 'center',
     }}>
-      {/* Axe vertical */}
       <div style={{
         position: 'absolute',
         left: '50%',
-        top: 0,
-        bottom: 0,
-        width: 1,
-        background: C.line,
-      }} />
-
-      {/* Axe actif en accent, du bas à la position active */}
-      <div style={{
-        position: 'absolute',
-        left: '50%',
-        bottom: 0,
-        width: 2,
-        height: `${((activeIndex + 1) / paliers.length) * 100}%`,
-        background: paliers[activeIndex]?.military ? C.red : C.accent,
-        transition: 'height 600ms ease, background 400ms ease',
+        top: '2%',
+        bottom: '2%',
+        width: 36,
+        background: C.surface,
+        border: `1px solid ${C.line}`,
+        borderRadius: 4,
+        overflow: 'hidden',
         transform: 'translateX(-50%)',
-      }} />
+      }}>
+        <div style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: `${fillHeight}%`,
+          background: `linear-gradient(to top, ${fillColor} 0%, ${isMilitary ? C.redBright : C.accentBright} 100%)`,
+          transition: 'height 900ms cubic-bezier(.3,.1,.2,1), background 500ms ease',
+          boxShadow: `0 -8px 16px -4px ${isMilitary ? C.red : C.accent}`,
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: -2,
+            left: 0,
+            right: 0,
+            height: 4,
+            background: `radial-gradient(ellipse at center, ${isMilitary ? C.redBright : C.accentBright} 0%, transparent 70%)`,
+            filter: 'blur(2px)',
+          }} />
+        </div>
 
-      {/* Marqueurs */}
+        {paliers.map((_, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            left: -4,
+            right: -4,
+            top: `${((total - 1 - i) / (total - 1)) * 96 + 2}%`,
+            height: 1,
+            background: C.line,
+            opacity: 0.8,
+          }} />
+        ))}
+      </div>
+
       {paliers.map((p, i) => {
         const isActive = i === activeIndex
         const isPast = i < activeIndex
-        // inversé : plus haut = plus enrichi
         const pos = ((paliers.length - 1 - i) / (paliers.length - 1)) * 100
         return (
           <div
@@ -1144,7 +1405,8 @@ function Gauge({ activeIndex, paliers }) {
               left: 0,
               right: 0,
               top: `${pos}%`,
-              display: 'flex',
+              display: 'grid',
+              gridTemplateColumns: '1fr auto 1fr',
               alignItems: 'center',
               gap: 16,
               transform: 'translateY(-50%)',
@@ -1152,36 +1414,46 @@ function Gauge({ activeIndex, paliers }) {
             }}
           >
             <div style={{
-              flex: 1,
               textAlign: 'right',
               fontFamily: "'Playfair Display', serif",
-              fontSize: isActive ? 36 : 18,
+              fontSize: isActive ? 42 : 20,
               fontWeight: isActive ? 500 : 300,
               color: isActive
                 ? (p.military ? C.red : C.accent)
                 : isPast ? C.text : C.muted,
-              opacity: isActive ? 1 : 0.5,
-              transition: 'all 400ms ease',
-              letterSpacing: '-0.01em',
-              paddingRight: 8,
+              opacity: isActive ? 1 : (isPast ? 0.8 : 0.4),
+              transition: 'all 500ms cubic-bezier(.3,.1,.2,1)',
+              letterSpacing: '-0.02em',
+              paddingRight: 12,
+              lineHeight: 1,
             }}>
               {p.value}
-              <span style={{ fontSize: '0.5em', opacity: 0.6, marginLeft: 4 }}>%</span>
+              <span style={{ fontSize: '0.45em', opacity: 0.6, marginLeft: 2 }}>%</span>
             </div>
+
             <div style={{
-              width: isActive ? 24 : 10,
-              height: isActive ? 24 : 10,
-              borderRadius: '50%',
-              background: isActive
-                ? (p.military ? C.red : C.accent)
-                : isPast ? C.text : C.muted,
-              border: isActive ? `3px solid ${C.bg}` : 'none',
-              boxShadow: isActive ? `0 0 0 1px ${p.military ? C.red : C.accent}` : 'none',
-              transition: 'all 400ms ease',
-              zIndex: 2,
-            }} />
+              width: 36,
+              display: 'flex',
+              justifyContent: 'center',
+            }}>
+              <div style={{
+                width: isActive ? 44 : 16,
+                height: isActive ? 44 : 16,
+                borderRadius: '50%',
+                background: isActive
+                  ? (p.military ? C.red : C.accent)
+                  : isPast ? C.accent : C.surface,
+                border: `2px solid ${isActive ? (p.military ? C.redBright : C.accentBright) : isPast ? C.accentSoft : C.line}`,
+                transition: 'all 500ms cubic-bezier(.3,.1,.2,1)',
+                zIndex: 3,
+                boxShadow: isActive
+                  ? `0 0 0 4px ${C.bg}, 0 0 20px ${p.military ? C.red : C.accent}`
+                  : 'none',
+                animation: isActive && p.military ? 'pulseGlow 1.8s infinite' : 'none',
+              }} />
+            </div>
+
             <div style={{
-              flex: 1,
               textAlign: 'left',
               fontFamily: "'DM Sans', sans-serif",
               fontSize: isActive ? 12 : 10,
@@ -1190,9 +1462,10 @@ function Gauge({ activeIndex, paliers }) {
               color: isActive
                 ? C.text
                 : isPast ? C.dim : C.muted,
-              opacity: isActive ? 1 : 0.5,
+              opacity: isActive ? 1 : (isPast ? 0.7 : 0.4),
               transition: 'all 400ms ease',
-              paddingLeft: 8,
+              paddingLeft: 12,
+              lineHeight: 1.3,
             }}>
               {p.label}
             </div>
@@ -1203,10 +1476,9 @@ function Gauge({ activeIndex, paliers }) {
   )
 }
 
-/* ─────────────────────────────────────────────────────
-   Bloc de fait chiffré
-   ───────────────────────────────────────────────────── */
-function FactBlock({ value, label, source, accent = false }) {
+/* FACT BLOCK animé */
+function FactBlock({ target, suffix = '', label, source, accent = false, trigger }) {
+  const decimals = String(target).includes('.') ? 1 : 0
   return (
     <div style={{
       borderTop: `2px solid ${accent ? C.accent : C.line}`,
@@ -1221,15 +1493,15 @@ function FactBlock({ value, label, source, accent = false }) {
         letterSpacing: '-0.02em',
         marginBottom: 20,
       }}>
-        {value}
+        <CountUp target={target} duration={1800} decimals={decimals} suffix={suffix} trigger={trigger} />
       </div>
       <div style={{
         fontFamily: "'Cormorant Garamond', serif",
-        fontSize: 18,
+        fontSize: 17,
         lineHeight: 1.5,
         color: C.text,
         fontWeight: 300,
-        marginBottom: 16,
+        marginBottom: 14,
       }}>
         {label}
       </div>
