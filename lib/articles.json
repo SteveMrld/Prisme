@@ -298,7 +298,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "Water: The Next Great Geopolitical Fracture",
-    "descriptionEn": "From Himalayan glaciers to African dams. How mastery of water is silently redrawing power relationships."
+    "descriptionEn": "From Himalayan glaciers to African dams. How mastery of water is silently redrawing power relationships.",
+    "secondaryCategory": "geo"
   },
   {
     "slug": "empires",
