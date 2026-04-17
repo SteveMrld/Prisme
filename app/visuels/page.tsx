@@ -42,6 +42,26 @@ export default function VisuelsPage() {
             <p className={styles.sectionDesc}>Des animations plein écran pensées pour les sujets qui demandent de l'espace — géopolitique, géographie, data.</p>
           </div>
 
+          {/* Card — Uranium : la cascade du monde */}
+          <a href="/visuels/uranium" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'#b8922a'}}>Géopolitique · Nucléaire · Visualisation</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>Uranium : la cascade du monde</h3>
+              <p className={styles.featSub}>Rosatom · Urenco · CNNC · Orano · Centrus · Cinq paliers de 0,7 % à 90 %</p>
+              <p className={styles.featDesc}>
+                De 0,7 % à 90 %, du combustible civil à la qualité militaire.
+                Une cartographie graphique des capacités mondiales d'enrichissement, des seuils qui font basculer dans le militaire, et de la dépendance structurelle de l'Occident à Rosatom.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la cascade</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Card — Médias : chiffres, pouvoir et nouveaux acteurs */}
           <a href="/visuels/medias-pouvoir" className={styles.featCard} style={{marginTop:'1px'}}>
             <div className={styles.featBody}>
