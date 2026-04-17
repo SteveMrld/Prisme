@@ -21,13 +21,15 @@
     "title": "Les livres qui ne viendront pas",
     "description": "Sur l'édition, et sur ce que cela dit d'une civilisation que ses livres deviennent des prises. Par Jade Desroses.",
     "category": "culture",
-    "date": "2026-05-02",
+    "date": "2026-05-03",
     "readTime": "11",
     "image": "/articles/ce-que-nous-laissons-entrer-cover.png",
     "author": "Jade Desroses",
     "authorRole": "",
     "featured": false,
-    "premium": false
+    "premium": false,
+    "titleEn": "The books that will never come",
+    "descriptionEn": "On publishing, and on what it says of a civilisation that its books become assets. By Jade Desroses."
   },
   {
     "slug": "societe-du-consentement",
