@@ -1,5 +1,20 @@
 [
   {
+    "slug": "pollinisation",
+    "title": "La ruche vide, <em>ou la pollinisation comme marché</em>",
+    "description": "L'abeille existe depuis 100 millions d'années. Elle est en train de céder face à cinquante ans d'agriculture industrielle. Derrière sa disparition : des brevets, des drones, et une nouvelle fracture mondiale.",
+    "category": "env",
+    "secondaryCategory": "geo",
+    "date": "2026-04-17",
+    "readTime": "12",
+    "image": "https://i.ibb.co/YWqzKgP/pollinisation.jpg",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "featured": false,
+    "premium": false,
+    "grandFormatUrl": "/grands-formats/pollinisation"
+  },
+  {
     "slug": "societe-du-consentement",
     "title": "La société du consentement",
     "description": "Ce que la pandémie a révélé de nous. Six ans après, la question n'est pas de savoir si les mesures prises étaient justes ou injustes. La question est de savoir si nous avons eu le courage d'examiner honnêtement ce qui s'est passé.",

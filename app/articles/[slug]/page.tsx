@@ -6,7 +6,7 @@ import { createClient } from '../../../lib/supabase-server'
 import fs from 'fs'
 import path from 'path'
 
-const GRAND_FORMAT_SLUGS = ['france_maritime', 'eau', 'techgeo', 'taiwan', 'semico', 'medias', 'terres-rares', 'architecture-desordre', 'chambre-ratification', 'palantir']
+const GRAND_FORMAT_SLUGS = ['pollinisation', 'france_maritime', 'eau', 'techgeo', 'taiwan', 'semico', 'medias', 'terres-rares', 'architecture-desordre', 'chambre-ratification', 'palantir']
 
 // Ces slugs ont leur contenu dans /grands-formats/[slug]/page.tsx (JSX inline)
 const REDIRECT_TO_GRAND_FORMAT = [
