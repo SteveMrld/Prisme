@@ -12,7 +12,9 @@ export const metadata = {
 }
 
 export default async function PollinisationGrandFormat({ searchParams }: { searchParams?: { lang?: string } }) {
-  const contentPath = path.join(process.cwd(), 'lib', 'content', 'pollinisation.html')
+  const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
+  const filename = lang === 'en' ? 'pollinisation-en.html' : 'pollinisation.html'
+  const contentPath = path.join(process.cwd(), 'lib', 'content', filename)
   let raw = ''
   try { raw = fs.readFileSync(contentPath, 'utf-8') } catch {}
 
@@ -32,6 +34,8 @@ export default async function PollinisationGrandFormat({ searchParams }: { searc
     <GrandFormatLayout
       slug="pollinisation"
       showPaywall={showPaywall}
+      lang={lang}
+      hasEnglish={true}
       author="Steve Moradel"
       authorRole=""
     >
