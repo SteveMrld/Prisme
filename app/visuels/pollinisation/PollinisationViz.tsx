@@ -3,10 +3,10 @@
 import { useState, useEffect, useRef } from 'react'
 
 const C = {
-  bg: '#07080a', surface: '#0d0f13', border: '#1a1d24',
-  gold: '#c9a84c', goldLight: '#e8c97a', amber: '#d97706',
+  bg: '#ffffff', surface: '#f8f7f4', border: '#e5e0d8',
+  gold: '#b8922a', goldLight: '#c9a84c', amber: '#d97706',
   red: '#991b1b', redLight: '#ef4444',
-  text: '#e2e0db', dim: '#6b7280', muted: '#374151',
+  text: '#111111', dim: '#6b7280', muted: '#d1cdc5',
 }
 
 const TIMELINE = [
@@ -257,7 +257,7 @@ function Assiette() {
           ))}
         </div>
         <div style={{marginTop:'40px', padding:'22px', background:C.surface, borderLeft:`3px solid ${C.gold}`}}>
-          <div style={{fontFamily:"'Playfair Display',serif", fontStyle:'italic', fontSize:'15px', color:C.text, lineHeight:1.6}}>
+          <div style={{fontFamily:"'Playfair Display',serif", fontStyle:'italic', fontSize:'15px', color:'#333', lineHeight:1.6}}>
             La valeur économique annuelle des services de pollinisation est estimée à <strong style={{color:C.gold, fontStyle:'normal'}}>577 milliards de dollars</strong>. Aucun modèle technologique actuel ne peut en assurer le remplacement à cette échelle.
           </div>
           <div style={{fontSize:'9px', color:C.dim, marginTop:'10px', fontFamily:"'DM Sans',sans-serif", letterSpacing:'1px'}}>SOURCE : IPBES 2016 · FAO 2023</div>
