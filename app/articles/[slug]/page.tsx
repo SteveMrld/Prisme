@@ -10,6 +10,7 @@ const GRAND_FORMAT_SLUGS = ['pollinisation', 'france_maritime', 'eau', 'techgeo'
 
 // Ces slugs ont leur contenu dans /grands-formats/[slug]/page.tsx (JSX inline)
 const REDIRECT_TO_GRAND_FORMAT = [
+  'pollinisation',
   'chambre-ratification',
   'architecture-desordre',
   'skunkworks',
