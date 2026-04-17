@@ -22,6 +22,8 @@ interface ArticleLayoutProps {
   authorRole?: string
   related?: any[]
   imageCredit?: string
+  imagePosition?: string
+  imageFit?: string
   lang?: string
   hasEnglish?: boolean
 }
@@ -60,7 +62,9 @@ export default function ArticleLayout({
   author = 'Steve Moradel',
   authorRole = '',
   related = [],
-  imageCredit = ''
+  imageCredit = '',
+  imagePosition,
+  imageFit
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -116,7 +120,13 @@ export default function ArticleLayout({
       {image && !hasHeroInContent && (
         <figure className={category === 'portrait' ? '' : styles.heroWrap} style={category === 'portrait' ? {width:'100%', margin:'24px 0', background:'transparent'} : {}}>
           <img src={image} alt={title} className={category === 'portrait' ? '' : styles.heroImg}
-            style={category === 'portrait' ? {width:'100%', maxHeight:'480px', height:'auto', display:'block', objectFit:'contain'} : {}} />
+            style={category === 'portrait'
+              ? {width:'100%', maxHeight:'480px', height:'auto', display:'block', objectFit:'contain'}
+              : {
+                  ...(imagePosition ? {objectPosition: imagePosition} : {}),
+                  ...(imageFit ? {objectFit: imageFit as any} : {}),
+                  ...(imageFit === 'contain' ? {background:'#F8F4EE'} : {})
+                }} />
           {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
         </figure>
       )}

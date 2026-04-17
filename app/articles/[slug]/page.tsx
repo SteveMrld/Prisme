@@ -169,6 +169,8 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       author={(article as any).author || 'Steve Moradel'}
       authorRole={(article as any).authorRole || ''}
       imageCredit={(article as any).imageCredit || ''}
+      imagePosition={(article as any).imagePosition}
+      imageFit={(article as any).imageFit}
       related={related}
       lang={lang}
       hasEnglish={hasEnglish}
