@@ -76,9 +76,25 @@ export default function ArticleLayout({
     '05': 'Mai', '06': 'Juin', '07': 'Juillet', '08': 'Août',
     '09': 'Septembre', '10': 'Octobre', '11': 'Novembre', '12': 'Décembre'
   }
+  const MONTHS_EN: Record<string, string> = {
+    '01': 'January', '02': 'February', '03': 'March', '04': 'April',
+    '05': 'May', '06': 'June', '07': 'July', '08': 'August',
+    '09': 'September', '10': 'October', '11': 'November', '12': 'December'
+  }
   const displayDate = date
     ? (() => { const [y, m] = date.split('-'); return `${MONTHS_FR[m] || m} ${y}` })()
     : 'Mars 2026'
+  // Date complète pour byline : "18 avril 2026" en FR, "April 18, 2026" en EN
+  const fullDate = date
+    ? (() => {
+        const [y, m, d] = date.split('-')
+        const dayNum = parseInt(d, 10)
+        if (lang === 'en') {
+          return `${MONTHS_EN[m] || m} ${dayNum}, ${y}`
+        }
+        return `${dayNum} ${(MONTHS_FR[m] || m).toLowerCase()} ${y}`
+      })()
+    : ''
 
   useEffect(() => {
     const article = document.querySelector('.soara-article')
@@ -142,9 +158,17 @@ export default function ArticleLayout({
               ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
               : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
             }
-            <div style={{flex:1}}>
-              <div className={styles.bylineTopName}>{author}</div>
-              <div className={styles.bylineTopRole}>{authorRole}</div>
+            <div style={{flex:1, minWidth:0}}>
+              <div className={styles.bylineTopName}>
+                <span className={styles.bylinePrefix}>{lang === 'en' ? 'By ' : 'Par '}</span>{author}
+                {authorRole && <span className={styles.bylineSep}> — </span>}
+                {authorRole && <span className={styles.bylineTopRole}>{authorRole}</span>}
+              </div>
+              {fullDate && (
+                <div className={styles.bylineDate}>
+                  {lang === 'en' ? `Published ${fullDate}` : `Publié le ${fullDate}`}
+                </div>
+              )}
             </div>
             {hasEnglish && (
               <a
