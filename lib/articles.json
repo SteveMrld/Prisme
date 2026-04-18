@@ -1,5 +1,22 @@
 [
   {
+    "slug": "5g-6g-antennes",
+    "title": "Antennes, ondes, <em>incertitudes</em>",
+    "titleEn": "Antennas, waves, <em>uncertainties</em>",
+    "description": "Entre récit promotionnel et inquiétudes parfois mal documentées, un état des lieux vérifié de la 5G, de la 6G, et de ce que la science dit aujourd'hui sur leurs effets sanitaires.",
+    "descriptionEn": "Between industry narrative and often poorly documented concerns, a factual account of 5G, 6G, and what science currently says about their health effects.",
+    "category": "tech",
+    "secondaryCategory": "soc",
+    "date": "2026-04-18",
+    "readTime": "13",
+    "image": "https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/ZBqsMYG/img-antennes.jpg",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "featured": false,
+    "premium": true,
+    "imageCredit": "© SOARA"
+  },
+  {
     "slug": "pollinisation",
     "title": "La ruche vide, <em>ou la pollinisation comme marché</em>",
     "titleEn": "The empty hive, <em>or pollination as a market</em>",
