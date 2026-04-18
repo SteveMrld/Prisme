@@ -692,18 +692,21 @@ sup {
    ═══════════════════════════════════════════════════ */
 
 /* Premier paragraphe après l'en-tête ou l'essentiel */
+.soara-article > p:first-of-type::first-letter,
 .article-body > p:first-of-type::first-letter,
 .article-content > p:first-of-type::first-letter,
 .articleBody > p:first-child::first-letter {
   font-family: 'Playfair Display', serif;
-  font-size: 5.2em;
-  font-weight: 300;
-  line-height: 0.78;
+  font-size: 5.6em;
+  font-weight: 700;
+  line-height: 0.82;
   float: left;
-  margin-right: 8px;
-  margin-top: 6px;
+  margin-right: 10px;
+  margin-top: 4px;
+  margin-bottom: -4px;
   color: var(--encre);
-  letter-spacing: -2px;
+  letter-spacing: -3px;
+  font-feature-settings: "lnum";
 }
 
 /* ═══════════════════════════════════════════════════
@@ -725,6 +728,8 @@ sup {
 }
 
 /* Paragraphe qui suit directement un h2 ou h3 — pas de drop cap */
+.soara-article h2 + p::first-letter,
+.soara-article h3 + p::first-letter,
 .article-body h2 + p::first-letter,
 .article-body h3 + p::first-letter,
 .article-content h2 + p::first-letter,
@@ -772,10 +777,13 @@ sup {
   }
 
   /* Drop cap plus petit sur mobile */
+  .soara-article > p:first-of-type::first-letter,
   .article-body > p:first-of-type::first-letter,
   .article-content > p:first-of-type::first-letter {
-    font-size: 4em;
-    margin-right: 6px;
+    font-size: 4.4em;
+    margin-right: 8px;
+    margin-top: 2px;
+    letter-spacing: -2px;
   }
 }
 
