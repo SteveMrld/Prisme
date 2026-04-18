@@ -427,7 +427,7 @@
     "slug": "lecture",
     "title": "Ce que les livres font à ceux qui les ouvrent",
     "description": "La lecture n'est pas un loisir parmi d'autres. C'est une technologie de l'humain, l'une des plus puissantes jamais inventées. Par Jade Desroses.",
-    "image": "https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_1200/https://i.ibb.co/b5HpKbFm/e5a38d4b-63ff-4677-b15b-7f56f0326c56.png",
+    "image": "/articles/lecture-cover.png",
     "category": "culture",
     "readTime": "9",
     "author": "Jade Desroses",
@@ -437,8 +437,7 @@
     "featured": false,
     "imageCredit": "© SOARA",
     "titleEn": "What Books Do to Those Who Open Them",
-    "descriptionEn": "Reading is not a leisure activity like any other. It is a technology of the human.",
-    "imageFit": "contain"
+    "descriptionEn": "Reading is not a leisure activity like any other. It is a technology of the human."
   },
   {
     "slug": "medias",
