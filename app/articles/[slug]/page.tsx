@@ -105,9 +105,8 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     const tLink = `<a href="${tUrl}" onclick="event.stopPropagation();event.preventDefault();window.location.href='${tUrl}';return false;" style="display:inline-block;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8A96E;text-decoration:none;border-bottom:1.5px solid #C8A96E;padding-bottom:2px">${tLabel}</a>`
     if (content.includes('art-byline-injected')) {
       content = content.replace('</div>\n<div class="art-byline-injected">', `</div>\n<div style="margin:8px 24px 16px">${tLink}</div>\n<div class="art-byline-injected">`)
-    } else {
-      content = `<div style="margin-bottom:16px">${tLink}</div>` + content
     }
+    // NE PAS injecter en tête de contenu — le composant ArticleLayout s'en charge via la prop hasEnglish
   }
 
   const isPremium = (article as any).premium === true

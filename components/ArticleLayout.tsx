@@ -64,7 +64,9 @@ export default function ArticleLayout({
   related = [],
   imageCredit = '',
   imagePosition,
-  imageFit
+  imageFit,
+  lang = 'fr',
+  hasEnglish = false
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -140,10 +142,30 @@ export default function ArticleLayout({
               ? <img src={portraitUrl(author)!} alt={author} className={styles.bylineTopAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
               : <div className={styles.bylineTopAvatar}>{initials(author)}</div>
             }
-            <div>
+            <div style={{flex:1}}>
               <div className={styles.bylineTopName}>{author}</div>
               <div className={styles.bylineTopRole}>{authorRole}</div>
             </div>
+            {hasEnglish && (
+              <a
+                href={lang === 'en' ? `/articles/${slug}` : `/articles/${slug}?lang=en`}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '10px',
+                  fontWeight: 600,
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                  color: '#C8A96E',
+                  textDecoration: 'none',
+                  borderBottom: '1.5px solid #C8A96E',
+                  paddingBottom: '2px',
+                  flexShrink: 0,
+                  alignSelf: 'center'
+                }}
+              >
+                {lang === 'en' ? 'Lire en français' : 'Read in English'}
+              </a>
+            )}
           </div>
         </div>
       )}
