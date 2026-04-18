@@ -149,19 +149,7 @@ export default function ArticleLayout({
             {hasEnglish && (
               <a
                 href={lang === 'en' ? `/articles/${slug}` : `/articles/${slug}?lang=en`}
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '10px',
-                  fontWeight: 600,
-                  letterSpacing: '2px',
-                  textTransform: 'uppercase',
-                  color: '#C8A96E',
-                  textDecoration: 'none',
-                  borderBottom: '1.5px solid #C8A96E',
-                  paddingBottom: '2px',
-                  flexShrink: 0,
-                  alignSelf: 'center'
-                }}
+                className={styles.langToggle}
               >
                 {lang === 'en' ? 'Lire en français' : 'Read in English'}
               </a>
