@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOARA — Du phare au projecteur dirigé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #0a0e18;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'Playfair Display', Georgia, serif;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .stage {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.2rem 1rem 2.8rem;
+    gap: 0.5rem;
+  }
+
+  .pretitle {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 300;
+  }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.92);
+    text-align: center;
+    max-width: 34ch;
+    margin-bottom: 0.3rem;
+  }
+
+  .title em {
+    font-style: italic;
+    color: rgba(245, 217, 154, 0.88);
+  }
+
+  .phase-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(245, 217, 154, 0.75);
+    font-weight: 400;
+    min-height: 1em;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  .phase-label.show { opacity: 1; }
+
+  .scene-wrap {
+    width: 100%;
+    max-width: 620px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+  }
+
+  svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+  .antenna-base {
+    stroke: rgba(245, 217, 154, 0.85);
+    stroke-width: 1.4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .antenna-glow {
+    fill: rgba(245, 217, 154, 0.5);
+    filter: blur(4px);
+  }
+
+  .ring {
+    fill: none;
+    stroke: rgba(245, 217, 154, 0.55);
+    stroke-width: 1;
+  }
+
+  .beam { fill: url(#beamGradient); }
+
+  .device-stroke {
+    stroke: rgba(245, 217, 154, 0.92);
+    stroke-width: 1.3;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    fill: none;
+  }
+  .device-body-fill {
+    fill: rgba(245, 217, 154, 0.06);
+    stroke: rgba(245, 217, 154, 0.92);
+    stroke-width: 1.3;
+    stroke-linejoin: round;
+  }
+  .device-accent {
+    fill: rgba(245, 217, 154, 0.85);
+    stroke: none;
+  }
+  .device-fine {
+    stroke: rgba(245, 217, 154, 0.7);
+    stroke-width: 0.7;
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .device-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 8.5px;
+    letter-spacing: 0.14em;
+    fill: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+    text-anchor: middle;
+  }
+
+  .caption {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.9vw, 1.08rem);
+    color: rgba(255, 255, 255, 0.64);
+    text-align: center;
+    min-height: 3.2em;
+    max-width: 38ch;
+    opacity: 0;
+    transition: opacity 700ms ease;
+    margin-top: 0.4rem;
+    padding: 0 0.5rem;
+  }
+  .caption.show { opacity: 1; }
+
+  .small-antenna-dot { fill: #f5d99a; }
+  .small-antenna-ring {
+    fill: none;
+    stroke: rgba(245, 217, 154, 0.35);
+    stroke-width: 0.6;
+  }
+  .small-beam {
+    stroke: rgba(245, 217, 154, 0.55);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    fill: none;
+  }
+  .constellation-link {
+    stroke: rgba(245, 217, 154, 0.08);
+    stroke-width: 0.4;
+    fill: none;
+  }
+
+  @media (max-width: 480px) {
+    .stage { padding: 1.6rem 0.4rem 2rem; }
+    .scene-wrap { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="pretitle">Soara · Infographie</div>
+  <h1 class="title">Du phare au <em>projecteur dirigé</em></h1>
+  <div class="phase-label" id="phaseLabel"></div>
+
+  <div class="scene-wrap" id="sceneWrap">
+    <svg id="scene" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="beamGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f5d99a" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#f5d99a" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="omniGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f5d99a" stop-opacity="0"/>
+          <stop offset="65%" stop-color="#f5d99a" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#f5d99a" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <circle id="zoneCircle" cx="300" cy="300" r="260" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" stroke-dasharray="2 4"/>
+
+      <g id="world">
+        <g id="layer-rings"></g>
+        <g id="layer-beams"></g>
+        <g id="layer-devices"></g>
+
+        <g id="antenna">
+          <circle class="antenna-glow" cx="300" cy="300" r="14"/>
+          <line class="antenna-base" x1="300" y1="288" x2="300" y2="312"/>
+          <line class="antenna-base" x1="291" y1="294" x2="309" y2="294"/>
+          <line class="antenna-base" x1="289" y1="300" x2="311" y2="300"/>
+          <line class="antenna-base" x1="291" y1="306" x2="309" y2="306"/>
+          <line class="antenna-base" x1="294" y1="312" x2="306" y2="312"/>
+        </g>
+      </g>
+
+      <g id="layer-network" opacity="0">
+        <g id="network-links"></g>
+        <g id="network-antennas"></g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+</div>
+
+<script>
+const svgNS = 'http://www.w3.org/2000/svg';
+const layerRings = document.getElementById('layer-rings');
+const layerBeams = document.getElementById('layer-beams');
+const layerDevices = document.getElementById('layer-devices');
+const layerNetwork = document.getElementById('layer-network');
+const networkAntennas = document.getElementById('network-antennas');
+const networkLinks = document.getElementById('network-links');
+const captionEl = document.getElementById('caption');
+const phaseLabel = document.getElementById('phaseLabel');
+const world = document.getElementById('world');
+const zoneCircle = document.getElementById('zoneCircle');
+
+const CENTER = { x: 300, y: 300 };
+const MAX_R = 260;
+
+function setCaption(text) {
+  captionEl.classList.remove('show');
+  setTimeout(() => {
+    captionEl.textContent = text;
+    captionEl.classList.add('show');
+  }, 380);
+}
+
+function setPhaseLabel(text) {
+  phaseLabel.classList.remove('show');
+  setTimeout(() => {
+    phaseLabel.textContent = text;
+    phaseLabel.classList.add('show');
+  }, 300);
+}
+
+function frac(x) { return x - Math.floor(x); }
+
+// ========================================================================
+// PICTOGRAMMES DE QUALITÉ ÉDITORIALE
+// Tous dessinés en coordonnées centrées (0,0 = centre de l'objet)
+// Taille de référence : environ 28-30 pixels de large
+// Palette : contour doré #f5d99a, accents fills doux
+// ========================================================================
+
+function createSmartphone(label) {
+  const g = document.createElementNS(svgNS, 'g');
+
+  // Corps principal du téléphone : rectangle vertical arrondi
+  // Dimensions 14 × 26
+  const body = document.createElementNS(svgNS, 'rect');
+  body.setAttribute('x', -7); body.setAttribute('y', -13);
+  body.setAttribute('width', 14); body.setAttribute('height', 26);
+  body.setAttribute('rx', 2.2); body.setAttribute('ry', 2.2);
+  body.setAttribute('class', 'device-body-fill');
+  g.appendChild(body);
+
+  // Écran intérieur (rectangle plus fin)
+  const screen = document.createElementNS(svgNS, 'rect');
+  screen.setAttribute('x', -5.5); screen.setAttribute('y', -9.5);
+  screen.setAttribute('width', 11); screen.setAttribute('height', 18);
+  screen.setAttribute('rx', 0.8); screen.setAttribute('ry', 0.8);
+  screen.setAttribute('class', 'device-stroke');
+  screen.setAttribute('stroke-width', '0.6');
+  screen.setAttribute('stroke-opacity', '0.4');
+  g.appendChild(screen);
+
+  // Caméra front (petit cercle en haut)
+  const cam = document.createElementNS(svgNS, 'circle');
+  cam.setAttribute('cx', 0); cam.setAttribute('cy', -11);
+  cam.setAttribute('r', 0.6);
+  cam.setAttribute('class', 'device-accent');
+  g.appendChild(cam);
+
+  // Haut-parleur (petit trait fin)
+  const speaker = document.createElementNS(svgNS, 'line');
+  speaker.setAttribute('x1', -2); speaker.setAttribute('y1', -11);
+  speaker.setAttribute('x2', -1); speaker.setAttribute('y2', -11);
+  speaker.setAttribute('class', 'device-fine');
+  g.appendChild(speaker);
+
+  // Bouton home (cercle en bas)
+  const btn = document.createElementNS(svgNS, 'circle');
+  btn.setAttribute('cx', 0); btn.setAttribute('cy', 10.5);
+  btn.setAttribute('r', 1.3);
+  btn.setAttribute('class', 'device-stroke');
+  btn.setAttribute('stroke-width', '0.7');
+  g.appendChild(btn);
+
+  if (label) {
+    const t = document.createElementNS(svgNS, 'text');
+    t.setAttribute('class', 'device-label');
+    t.setAttribute('x', 0); t.setAttribute('y', 26);
+    t.textContent = label;
+    g.appendChild(t);
+  }
+
+  return g;
+}
+
+function createTablet(label) {
+  const g = document.createElementNS(svgNS, 'g');
+
+  // Corps de tablette : rectangle horizontal arrondi
+  // Dimensions 28 × 20
+  const body = document.createElementNS(svgNS, 'rect');
+  body.setAttribute('x', -14); body.setAttribute('y', -10);
+  body.setAttribute('width', 28); body.setAttribute('height', 20);
+  body.setAttribute('rx', 2); body.setAttribute('ry', 2);
+  body.setAttribute('class', 'device-body-fill');
+  g.appendChild(body);
+
+  // Écran
+  const screen = document.createElementNS(svgNS, 'rect');
+  screen.setAttribute('x', -11.5); screen.setAttribute('y', -7.5);
+  screen.setAttribute('width', 20); screen.setAttribute('height', 15);
+  screen.setAttribute('rx', 0.5); screen.setAttribute('ry', 0.5);
+  screen.setAttribute('class', 'device-stroke');
+  screen.setAttribute('stroke-width', '0.6');
+  screen.setAttribute('stroke-opacity', '0.4');
+  g.appendChild(screen);
+
+  // Bouton home (à droite, cercle)
+  const btn = document.createElementNS(svgNS, 'circle');
+  btn.setAttribute('cx', 11); btn.setAttribute('cy', 0);
+  btn.setAttribute('r', 1.3);
+  btn.setAttribute('class', 'device-stroke');
+  btn.setAttribute('stroke-width', '0.7');
+  g.appendChild(btn);
+
+  if (label) {
+    const t = document.createElementNS(svgNS, 'text');
+    t.setAttribute('class', 'device-label');
+    t.setAttribute('x', 0); t.setAttribute('y', 22);
+    t.textContent = label;
+    g.appendChild(t);
+  }
+
+  return g;
+}
+
+function createCar(label) {
+  const g = document.createElementNS(svgNS, 'g');
+
+  // Vue du dessus, avant en haut
+  // Carrosserie : forme de berline vue du dessus
+  // Largeur 20, longueur 32
+  const body = document.createElementNS(svgNS, 'path');
+  // Carrosserie avec capot avant pointu et arrière plat
+  body.setAttribute('d',
+    'M -10,-13 ' +                          // coin avant gauche
+    'Q -10,-16 -7,-16 ' +                    // coin arrondi avant gauche
+    'L 7,-16 ' +                             // bord avant
+    'Q 10,-16 10,-13 ' +                     // coin arrondi avant droit
+    'L 10,13 ' +                             // côté droit
+    'Q 10,16 7,16 ' +                        // coin arrondi arrière droit
+    'L -7,16 ' +                             // bord arrière
+    'Q -10,16 -10,13 ' +                     // coin arrondi arrière gauche
+    'Z'
+  );
+  body.setAttribute('class', 'device-body-fill');
+  g.appendChild(body);
+
+  // Pare-brise avant (trapèze)
+  const frontWindow = document.createElementNS(svgNS, 'path');
+  frontWindow.setAttribute('d', 'M -7,-10 L -5,-3 L 5,-3 L 7,-10 Z');
+  frontWindow.setAttribute('class', 'device-stroke');
+  frontWindow.setAttribute('stroke-width', '0.7');
+  frontWindow.setAttribute('fill', 'rgba(245, 217, 154, 0.08)');
+  g.appendChild(frontWindow);
+
+  // Pare-brise arrière
+  const rearWindow = document.createElementNS(svgNS, 'path');
+  rearWindow.setAttribute('d', 'M -6,10 L -4,3 L 4,3 L 6,10 Z');
+  rearWindow.setAttribute('class', 'device-stroke');
+  rearWindow.setAttribute('stroke-width', '0.7');
+  rearWindow.setAttribute('fill', 'rgba(245, 217, 154, 0.08)');
+  g.appendChild(rearWindow);
+
+  // Toit entre les deux pare-brises (rectangle délimité)
+  const roof = document.createElementNS(svgNS, 'rect');
+  roof.setAttribute('x', -5); roof.setAttribute('y', -3);
+  roof.setAttribute('width', 10); roof.setAttribute('height', 6);
+  roof.setAttribute('class', 'device-stroke');
+  roof.setAttribute('stroke-width', '0.6');
+  roof.setAttribute('fill', 'none');
+  roof.setAttribute('stroke-opacity', '0.4');
+  g.appendChild(roof);
+
+  // Roues (4 rectangles très fins sur les côtés)
+  const wheelPositions = [
+    [-11, -9, 2.5, 4],   // avant gauche
+    [8.5, -9, 2.5, 4],   // avant droit
+    [-11, 5, 2.5, 4],    // arrière gauche
+    [8.5, 5, 2.5, 4]     // arrière droit
+  ];
+  wheelPositions.forEach(([x, y, w, h]) => {
+    const wheel = document.createElementNS(svgNS, 'rect');
+    wheel.setAttribute('x', x); wheel.setAttribute('y', y);
+    wheel.setAttribute('width', w); wheel.setAttribute('height', h);
+    wheel.setAttribute('rx', 0.5);
+    wheel.setAttribute('class', 'device-accent');
+    g.appendChild(wheel);
+  });
+
+  // Phares avant (deux petits cercles)
+  const headlights = [[-5.5, -15], [5.5, -15]];
+  headlights.forEach(([x, y]) => {
+    const h = document.createElementNS(svgNS, 'circle');
+    h.setAttribute('cx', x); h.setAttribute('cy', y);
+    h.setAttribute('r', 0.8);
+    h.setAttribute('class', 'device-accent');
+    g.appendChild(h);
+  });
+
+  if (label) {
+    const t = document.createElementNS(svgNS, 'text');
+    t.setAttribute('class', 'device-label');
+    t.setAttribute('x', 0); t.setAttribute('y', 24);
+    t.textContent = label;
+    g.appendChild(t);
+  }
+
+  return g;
+}
+
+function createSensor(label) {
+  const g = document.createElementNS(svgNS, 'g');
+
+  // Boîtier IoT : carré avec antenne wifi stylisée
+  // Taille 20 × 20
+  const body = document.createElementNS(svgNS, 'rect');
+  body.setAttribute('x', -10); body.setAttribute('y', -8);
+  body.setAttribute('width', 20); body.setAttribute('height', 16);
+  body.setAttribute('rx', 1.5); body.setAttribute('ry', 1.5);
+  body.setAttribute('class', 'device-body-fill');
+  g.appendChild(body);
+
+  // Écran LCD
+  const screen = document.createElementNS(svgNS, 'rect');
+  screen.setAttribute('x', -7); screen.setAttribute('y', -5.5);
+  screen.setAttribute('width', 14); screen.setAttribute('height', 6);
+  screen.setAttribute('rx', 0.4); screen.setAttribute('ry', 0.4);
+  screen.setAttribute('class', 'device-stroke');
+  screen.setAttribute('stroke-width', '0.6');
+  screen.setAttribute('stroke-opacity', '0.5');
+  g.appendChild(screen);
+
+  // Segments d'affichage sur l'écran (petites lignes)
+  for (let i = 0; i < 3; i++) {
+    const seg = document.createElementNS(svgNS, 'rect');
+    seg.setAttribute('x', -5.5 + i * 4); seg.setAttribute('y', -3.5);
+    seg.setAttribute('width', 2.5); seg.setAttribute('height', 2);
+    seg.setAttribute('class', 'device-accent');
+    seg.setAttribute('opacity', '0.7');
+    g.appendChild(seg);
+  }
+
+  // LED d'état (petit point)
+  const led = document.createElementNS(svgNS, 'circle');
+  led.setAttribute('cx', 7); led.setAttribute('cy', 5);
+  led.setAttribute('r', 0.9);
+  led.setAttribute('class', 'device-accent');
+  g.appendChild(led);
+
+  // Deux lignes de texte simulé en bas
+  const bar1 = document.createElementNS(svgNS, 'rect');
+  bar1.setAttribute('x', -7); bar1.setAttribute('y', 3.5);
+  bar1.setAttribute('width', 8); bar1.setAttribute('height', 0.8);
+  bar1.setAttribute('class', 'device-accent');
+  bar1.setAttribute('opacity', '0.5');
+  g.appendChild(bar1);
+  const bar2 = document.createElementNS(svgNS, 'rect');
+  bar2.setAttribute('x', -7); bar2.setAttribute('y', 5.5);
+  bar2.setAttribute('width', 5); bar2.setAttribute('height', 0.8);
+  bar2.setAttribute('class', 'device-accent');
+  bar2.setAttribute('opacity', '0.5');
+  g.appendChild(bar2);
+
+  // Antenne wifi stylisée au-dessus
+  const waves = [
+    { cy: -11.5, r: 2.5 },
+    { cy: -12, r: 4 },
+    { cy: -12.5, r: 5.5 }
+  ];
+  waves.forEach(w => {
+    const arc = document.createElementNS(svgNS, 'path');
+    // Arc de cercle ouvert vers le haut
+    const x1 = -w.r;
+    const x2 = w.r;
+    const y = w.cy;
+    arc.setAttribute('d', `M ${x1},${y} A ${w.r} ${w.r} 0 0 1 ${x2} ${y}`);
+    arc.setAttribute('class', 'device-stroke');
+    arc.setAttribute('stroke-width', '0.8');
+    arc.setAttribute('stroke-opacity', '0.6');
+    g.appendChild(arc);
+  });
+
+  if (label) {
+    const t = document.createElementNS(svgNS, 'text');
+    t.setAttribute('class', 'device-label');
+    t.setAttribute('x', 0); t.setAttribute('y', 22);
+    t.textContent = label;
+    g.appendChild(t);
+  }
+
+  return g;
+}
+
+function createDevice(type, label) {
+  if (type === 'smartphone') return createSmartphone(label);
+  if (type === 'tablet') return createTablet(label);
+  if (type === 'car') return createCar(label);
+  if (type === 'sensor') return createSensor(label);
+  return null;
+}
+
+// ========== Phase state ==========
+const phase1 = { running: false, interval: null };
+const phase2 = { running: false, animFrame: null };
+const phase3 = { running: false, animFrame: null };
+const phase4 = { running: false, animFrame: null };
+
+// ========== PHASE 1 ==========
+function phase1_start() {
+  phase1.running = true;
+  setPhaseLabel("Générations précédentes");
+  setCaption("Le signal rayonne dans toutes les directions en continu, comme un phare qui balaierait un secteur sans relâche.");
+
+  const halo = document.createElementNS(svgNS, 'circle');
+  halo.setAttribute('cx', CENTER.x);
+  halo.setAttribute('cy', CENTER.y);
+  halo.setAttribute('r', MAX_R);
+  halo.setAttribute('fill', 'url(#omniGradient)');
+  halo.setAttribute('opacity', '0');
+  layerRings.appendChild(halo);
+
+  const fadeStart = performance.now();
+  function fadeInHalo(now) {
+    if (!phase1.running) return;
+    const t = Math.min(1, (now - fadeStart) / 1200);
+    halo.setAttribute('opacity', t.toFixed(3));
+    if (t < 1) requestAnimationFrame(fadeInHalo);
+  }
+  requestAnimationFrame(fadeInHalo);
+
+  function spawnRing() {
+    if (!phase1.running) return;
+    const ring = document.createElementNS(svgNS, 'circle');
+    ring.setAttribute('class', 'ring');
+    ring.setAttribute('cx', CENTER.x);
+    ring.setAttribute('cy', CENTER.y);
+    ring.setAttribute('r', 14);
+    ring.setAttribute('opacity', '0.6');
+    layerRings.appendChild(ring);
+
+    const start = performance.now();
+    const duration = 2600;
+    function animate(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const r = 14 + t * (MAX_R - 14);
+      const op = 0.6 * (1 - t);
+      ring.setAttribute('r', r.toFixed(1));
+      ring.setAttribute('opacity', op.toFixed(3));
+      if (t < 1 && phase1.running) requestAnimationFrame(animate);
+      else if (ring.parentNode) ring.remove();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  spawnRing();
+  phase1.interval = setInterval(spawnRing, 600);
+}
+
+function phase1_stop() {
+  phase1.running = false;
+  if (phase1.interval) clearInterval(phase1.interval);
+  phase1.interval = null;
+  Array.from(layerRings.children).forEach(el => {
+    const start = performance.now();
+    const initialOp = parseFloat(el.getAttribute('opacity')) || 0.3;
+    function fadeOut(now) {
+      const t = Math.min(1, (now - start) / 500);
+      el.setAttribute('opacity', (initialOp * (1 - t)).toFixed(3));
+      if (t < 1) requestAnimationFrame(fadeOut);
+      else if (el.parentNode) el.remove();
+    }
+    requestAnimationFrame(fadeOut);
+  });
+}
+
+// ========== PHASE 2 ==========
+const phase2_waypoints = [
+  { x: 480, y: 240 }, { x: 510, y: 320 }, { x: 470, y: 420 },
+  { x: 380, y: 480 }, { x: 260, y: 490 }, { x: 160, y: 430 },
+  { x: 115, y: 340 }, { x: 140, y: 230 }, { x: 220, y: 155 },
+  { x: 340, y: 130 }, { x: 440, y: 170 }, { x: 480, y: 240 }
+];
+
+function phase2_start() {
+  phase2.running = true;
+  setPhaseLabel("Massive MIMO · 5G");
+  setCaption("L'énergie est focalisée vers l'appareil. Le faisceau le suit, s'annule ailleurs.");
+
+  layerBeams.innerHTML = '';
+  layerDevices.innerHTML = '';
+
+  const device = createDevice('smartphone', 'SMARTPHONE');
+  layerDevices.appendChild(device);
+
+  const beam = document.createElementNS(svgNS, 'path');
+  beam.setAttribute('class', 'beam');
+  beam.setAttribute('opacity', '0.85');
+  layerBeams.appendChild(beam);
+
+  const startTime = performance.now();
+  const duration = 11000;
+  const wps = phase2_waypoints;
+  const totalSegs = wps.length - 1;
+
+  function animate(now) {
+    if (!phase2.running) return;
+    const rawT = (now - startTime) / duration;
+    const t = frac(rawT);
+    const segFloat = t * totalSegs;
+    let segIdx = Math.floor(segFloat);
+    if (segIdx < 0) segIdx = 0;
+    if (segIdx >= totalSegs) segIdx = totalSegs - 1;
+    const segT = Math.max(0, Math.min(1, segFloat - segIdx));
+    const a = wps[segIdx];
+    const b = wps[segIdx + 1];
+    if (!a || !b) { phase2.animFrame = requestAnimationFrame(animate); return; }
+
+    const ease = segT * segT * (3 - 2 * segT);
+    const x = a.x + (b.x - a.x) * ease;
+    const y = a.y + (b.y - a.y) * ease;
+    device.setAttribute('transform', `translate(${x.toFixed(1)},${y.toFixed(1)})`);
+
+    const dx = x - CENTER.x;
+    const dy = y - CENTER.y;
+    const angle = Math.atan2(dy, dx);
+    const halfWidth = 22;
+    const perpX = -Math.sin(angle) * halfWidth;
+    const perpY = Math.cos(angle) * halfWidth;
+    const bx1 = CENTER.x + perpX, by1 = CENTER.y + perpY;
+    const bx2 = CENTER.x - perpX, by2 = CENTER.y - perpY;
+    const stopDist = Math.sqrt(dx * dx + dy * dy) - 16;
+    const tipX = CENTER.x + Math.cos(angle) * stopDist;
+    const tipY = CENTER.y + Math.sin(angle) * stopDist;
+    beam.setAttribute('d', `M${bx1.toFixed(1)},${by1.toFixed(1)} L${tipX.toFixed(1)},${tipY.toFixed(1)} L${bx2.toFixed(1)},${by2.toFixed(1)} Z`);
+
+    phase2.animFrame = requestAnimationFrame(animate);
+  }
+  phase2.animFrame = requestAnimationFrame(animate);
+}
+
+function phase2_stop() {
+  phase2.running = false;
+  if (phase2.animFrame) cancelAnimationFrame(phase2.animFrame);
+  phase2.animFrame = null;
+  Array.from(layerBeams.children).concat(Array.from(layerDevices.children)).forEach(el => {
+    const start = performance.now();
+    const initialOp = parseFloat(el.getAttribute('opacity')) || 1;
+    function fadeOut(now) {
+      const t = Math.min(1, (now - start) / 400);
+      el.setAttribute('opacity', (initialOp * (1 - t)).toFixed(3));
+      if (t < 1) requestAnimationFrame(fadeOut);
+      else if (el.parentNode) el.remove();
+    }
+    requestAnimationFrame(fadeOut);
+  });
+}
+
+// ========== PHASE 3 ==========
+const phase3_devices = [
+  { type: 'smartphone', label: 'SMARTPHONE',
+    wps: [{ x: 470, y: 195 }, { x: 495, y: 280 }, { x: 460, y: 370 }, { x: 380, y: 420 }, { x: 470, y: 195 }],
+    duration: 9500, offset: 0 },
+  { type: 'car', label: 'VÉHICULE',
+    wps: [{ x: 180, y: 420 }, { x: 130, y: 340 }, { x: 155, y: 245 }, { x: 230, y: 175 }, { x: 180, y: 420 }],
+    duration: 12000, offset: 0.3 },
+  { type: 'tablet', label: 'TABLETTE',
+    wps: [{ x: 300, y: 480 }, { x: 370, y: 495 }, { x: 380, y: 465 }, { x: 310, y: 450 }, { x: 300, y: 480 }],
+    duration: 8000, offset: 0.6 },
+  { type: 'sensor', label: 'OBJET CONNECTÉ',
+    wps: [{ x: 320, y: 140 }, { x: 400, y: 150 }, { x: 420, y: 190 }, { x: 360, y: 175 }, { x: 320, y: 140 }],
+    duration: 9000, offset: 0.15 }
+];
+
+function phase3_start() {
+  phase3.running = true;
+  setPhaseLabel("Allocations simultanées");
+  setCaption("Une même antenne oriente plusieurs faisceaux à la fois, chacun vers un appareil différent, chacun actif uniquement au moment où il sert.");
+
+  layerBeams.innerHTML = '';
+  layerDevices.innerHTML = '';
+
+  phase3_devices.forEach(d => {
+    d.el = createDevice(d.type, d.label);
+    layerDevices.appendChild(d.el);
+    d.beam = document.createElementNS(svgNS, 'path');
+    d.beam.setAttribute('class', 'beam');
+    d.beam.setAttribute('opacity', '0.7');
+    layerBeams.appendChild(d.beam);
+  });
+
+  const startTime = performance.now();
+
+  function animate(now) {
+    if (!phase3.running) return;
+    phase3_devices.forEach(d => {
+      const rawT = ((now - startTime) / d.duration) + d.offset;
+      const t = frac(rawT);
+      const totalSegs = d.wps.length - 1;
+      const segFloat = t * totalSegs;
+      let segIdx = Math.floor(segFloat);
+      if (segIdx < 0) segIdx = 0;
+      if (segIdx >= totalSegs) segIdx = totalSegs - 1;
+      const segT = Math.max(0, Math.min(1, segFloat - segIdx));
+      const a = d.wps[segIdx];
+      const b = d.wps[segIdx + 1];
+      if (!a || !b) return;
+
+      const ease = segT * segT * (3 - 2 * segT);
+      const x = a.x + (b.x - a.x) * ease;
+      const y = a.y + (b.y - a.y) * ease;
+      d.el.setAttribute('transform', `translate(${x.toFixed(1)},${y.toFixed(1)})`);
+
+      const dx = x - CENTER.x;
+      const dy = y - CENTER.y;
+      const angle = Math.atan2(dy, dx);
+      const halfWidth = 18;
+      const perpX = -Math.sin(angle) * halfWidth;
+      const perpY = Math.cos(angle) * halfWidth;
+      const bx1 = CENTER.x + perpX, by1 = CENTER.y + perpY;
+      const bx2 = CENTER.x - perpX, by2 = CENTER.y - perpY;
+      const stopDist = Math.sqrt(dx * dx + dy * dy) - 18;
+      const tipX = CENTER.x + Math.cos(angle) * stopDist;
+      const tipY = CENTER.y + Math.sin(angle) * stopDist;
+      d.beam.setAttribute('d', `M${bx1.toFixed(1)},${by1.toFixed(1)} L${tipX.toFixed(1)},${tipY.toFixed(1)} L${bx2.toFixed(1)},${by2.toFixed(1)} Z`);
+    });
+    phase3.animFrame = requestAnimationFrame(animate);
+  }
+  phase3.animFrame = requestAnimationFrame(animate);
+}
+
+function phase3_stop() {
+  phase3.running = false;
+  if (phase3.animFrame) cancelAnimationFrame(phase3.animFrame);
+  phase3.animFrame = null;
+}
+
+// ========================================================================
+// PHASE 4 : Constellation
+// ========================================================================
+
+function generateNetworkPositions() {
+  const positions = [];
+  const MIN_DIST = 58;
+  const MAX_TRIES = 40;
+  const COUNT = 46;
+
+  // Antenne centrale comme premier point
+  positions.push({ x: 300, y: 300, isCenter: true });
+
+  let attempts = 0;
+  while (positions.length < COUNT && attempts < COUNT * MAX_TRIES) {
+    attempts++;
+    const x = 45 + Math.random() * 510;
+    const y = 45 + Math.random() * 510;
+    let ok = true;
+    for (const p of positions) {
+      const dx = x - p.x, dy = y - p.y;
+      if (dx*dx + dy*dy < MIN_DIST * MIN_DIST) { ok = false; break; }
+    }
+    if (ok) positions.push({ x, y, isCenter: false });
+  }
+  return positions;
+}
+
+function phase4_start() {
+  phase4.running = true;
+  setPhaseLabel("Infrastructure invisible");
+  setCaption("Ce que fait une antenne, cinquante mille antennes le font simultanément, au-dessus de nos têtes, à chaque instant.");
+
+  // Fade out world + zone circle
+  const worldFadeStart = performance.now();
+  function fadeWorld(now) {
+    const t = Math.min(1, (now - worldFadeStart) / 900);
+    world.setAttribute('opacity', (1 - t).toFixed(3));
+    zoneCircle.setAttribute('opacity', (1 - t).toFixed(3));
+    if (t < 1) requestAnimationFrame(fadeWorld);
+  }
+  requestAnimationFrame(fadeWorld);
+
+  // ⚠️ PAS de setTimeout. On fait tout de suite, en parallèle du fade-out.
+  // On démarre le fade-in du layer network 400ms après.
+
+  const positions = generateNetworkPositions();
+
+  setTimeout(() => {
+    if (!phase4.running) return;
+
+    // Fade-in du layer network
+    const netStart = performance.now();
+    function fadeNet(now) {
+      if (!phase4.running) return;
+      const t = Math.min(1, (now - netStart) / 700);
+      layerNetwork.setAttribute('opacity', t.toFixed(3));
+      if (t < 1) requestAnimationFrame(fadeNet);
+    }
+    requestAnimationFrame(fadeNet);
+
+    // Créer les liens de constellation
+    for (let i = 0; i < positions.length; i++) {
+      for (let j = i + 1; j < positions.length; j++) {
+        const dx = positions[i].x - positions[j].x;
+        const dy = positions[i].y - positions[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 105) {
+          const link = document.createElementNS(svgNS, 'line');
+          link.setAttribute('class', 'constellation-link');
+          link.setAttribute('x1', positions[i].x);
+          link.setAttribute('y1', positions[i].y);
+          link.setAttribute('x2', positions[j].x);
+          link.setAttribute('y2', positions[j].y);
+          link.setAttribute('opacity', '0');
+          networkLinks.appendChild(link);
+
+          const linkDelay = 300 + Math.random() * 2200;
+          setTimeout(() => {
+            if (!phase4.running) return;
+            const s = performance.now();
+            function f(now) {
+              if (!phase4.running) return;
+              const t = Math.min(1, (now - s) / 900);
+              link.setAttribute('opacity', (t * 0.5).toFixed(3));
+              if (t < 1) requestAnimationFrame(f);
+            }
+            requestAnimationFrame(f);
+          }, linkDelay);
+        }
+      }
+    }
+
+    // Créer les antennes + beams oscillants
+    const antennas = [];
+
+    positions.forEach((pos, idx) => {
+      const appearDelay = pos.isCenter ? 0 : (80 + idx * 45);
+      setTimeout(() => {
+        if (!phase4.running) return;
+
+        const group = document.createElementNS(svgNS, 'g');
+        group.setAttribute('transform', `translate(${pos.x}, ${pos.y})`);
+        group.setAttribute('opacity', '0');
+
+        // Halo doré
+        const halo = document.createElementNS(svgNS, 'circle');
+        halo.setAttribute('class', 'small-antenna-dot');
+        halo.setAttribute('cx', 0);
+        halo.setAttribute('cy', 0);
+        halo.setAttribute('r', pos.isCenter ? 4.5 : 2.8);
+        halo.style.filter = pos.isCenter
+          ? 'drop-shadow(0 0 6px rgba(245, 217, 154, 1))'
+          : 'drop-shadow(0 0 4px rgba(245, 217, 154, 0.85))';
+        group.appendChild(halo);
+
+        // Anneau pulsant
+        const ring = document.createElementNS(svgNS, 'circle');
+        ring.setAttribute('class', 'small-antenna-ring');
+        ring.setAttribute('cx', 0);
+        ring.setAttribute('cy', 0);
+        ring.setAttribute('r', 8);
+        group.appendChild(ring);
+
+        networkAntennas.appendChild(group);
+
+        // Fade-in du groupe
+        const fs = performance.now();
+        function fadeInGroup(now) {
+          if (!phase4.running) return;
+          const t = Math.min(1, (now - fs) / 700);
+          const ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+          group.setAttribute('opacity', ease.toFixed(3));
+          if (t < 1) requestAnimationFrame(fadeInGroup);
+        }
+        requestAnimationFrame(fadeInGroup);
+
+        // Mini-faisceaux permanents
+        const numBeams = 1 + Math.floor(Math.random() * 3);
+        const beamData = [];
+        for (let i = 0; i < numBeams; i++) {
+          const line = document.createElementNS(svgNS, 'line');
+          line.setAttribute('class', 'small-beam');
+          line.setAttribute('x1', pos.x);
+          line.setAttribute('y1', pos.y);
+          line.setAttribute('x2', pos.x);
+          line.setAttribute('y2', pos.y);
+          line.setAttribute('opacity', '0');
+          networkAntennas.appendChild(line);
+
+          beamData.push({
+            el: line,
+            origin: pos,
+            baseAngle: Math.random() * Math.PI * 2,
+            length: 22 + Math.random() * 16,
+            speed: 0.25 + Math.random() * 0.35,
+            angleAmp: 0.6,
+            phase: Math.random() * Math.PI * 2,
+            appearTime: performance.now() + 500
+          });
+        }
+
+        const ringData = {
+          speed: 0.7 + Math.random() * 0.6,
+          phase: Math.random() * Math.PI * 2,
+          appearTime: performance.now()
+        };
+
+        antennas.push({ group, halo, ring, ringData, beams: beamData });
+      }, appearDelay);
+    });
+
+    // Boucle d'animation
+    function animateNet(now) {
+      if (!phase4.running) return;
+      antennas.forEach(ant => {
+        if (ant.ringData) {
+          const age = (now - ant.ringData.appearTime) / 1000;
+          const r = 7 + Math.sin(age * ant.ringData.speed + ant.ringData.phase) * 2;
+          const op = 0.3 + Math.sin(age * ant.ringData.speed + ant.ringData.phase) * 0.15;
+          ant.ring.setAttribute('r', r.toFixed(1));
+          ant.ring.setAttribute('opacity', Math.max(0.1, op).toFixed(2));
+        }
+        ant.beams.forEach(b => {
+          const age = (now - b.appearTime) / 1000;
+          if (age < 0) return;
+          const fadeIn = Math.min(1, age / 0.6);
+          const angle = b.baseAngle + Math.sin(age * b.speed + b.phase) * b.angleAmp;
+          const tipX = b.origin.x + Math.cos(angle) * b.length;
+          const tipY = b.origin.y + Math.sin(angle) * b.length;
+          b.el.setAttribute('x2', tipX.toFixed(1));
+          b.el.setAttribute('y2', tipY.toFixed(1));
+          b.el.setAttribute('opacity', (0.5 * fadeIn).toFixed(3));
+        });
+      });
+      phase4.animFrame = requestAnimationFrame(animateNet);
+    }
+    phase4.animFrame = requestAnimationFrame(animateNet);
+
+  }, 700);
+
+  // Deuxième légende
+  setTimeout(() => {
+    if (!phase4.running) return;
+    setCaption("L'infrastructure invisible sur laquelle nous marchons.");
+  }, 6500);
+}
+
+// ========== Orchestration ==========
+let hasPlayed = false;
+
+function runSequence() {
+  if (hasPlayed) return;
+  hasPlayed = true;
+
+  phase1_start();
+
+  setTimeout(() => {
+    phase1_stop();
+    setTimeout(() => phase2_start(), 350);
+  }, 6500);
+
+  setTimeout(() => {
+    phase2_stop();
+    setTimeout(() => phase3_start(), 350);
+  }, 18000);
+
+  setTimeout(() => {
+    phase3_stop();
+    setTimeout(() => phase4_start(), 300);
+  }, 29500);
+}
+
+const sceneWrap = document.getElementById('sceneWrap');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runSequence();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+  observer.observe(sceneWrap);
+} else {
+  runSequence();
+}
+</script>
+
+</body>
+</html>
