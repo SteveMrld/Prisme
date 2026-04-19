@@ -1,10 +1,17 @@
 import { Analytics } from '@vercel/analytics/react'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import './article-content.css'
 import BottomNav from '../components/BottomNav'
 
 const BASE_URL = 'https://soara.fr'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#1A1A1A',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
