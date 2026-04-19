@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import './article-content.css'
 import BottomNav from '../components/BottomNav'
+import PWARegister from '../components/PWARegister'
 
 const BASE_URL = 'https://soara.fr'
 
@@ -52,10 +53,15 @@ export const metadata: Metadata = {
       { url: '/favicon.ico' },
       { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
     shortcut: '/favicon.ico',
-    apple: '/favicon-32.png',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
+  manifest: '/manifest.json',
   robots: {
     index: false,
     follow: false,
@@ -79,6 +85,7 @@ export default function RootLayout({
       <body>
         {children}
         <BottomNav />
+        <PWARegister />
       </body>
     </html>
   )
