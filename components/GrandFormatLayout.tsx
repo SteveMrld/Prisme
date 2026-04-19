@@ -33,6 +33,7 @@ interface GrandFormatLayoutProps {
   showPaywall?: boolean
   lang?: string
   hasEnglish?: boolean
+  toggleUrl?: string
   // Pour les pages React custom (dette-souveraine)
   children?: ReactNode
   // Métadonnées (override si pas de slug)
