@@ -10,11 +10,11 @@ function todayFr() {
 }
 
 const ITEMS = [
-  { cat: 'Iran–USA',    color: '#C0392B', text: "Blocus naval américain — pétrole à 103$, 20% de l'approvisionnement mondial menacé" },
-  { cat: 'Hongrie',     color: '#1A3E6B', text: "Orban battu après 16 ans — Peter Magyar remporte une victoire historique" },
+  { cat: 'Iran–USA',    color: '#C0392B', text: "Blocus naval américain, pétrole à 103$, 20% de l'approvisionnement mondial menacé" },
+  { cat: 'Hongrie',     color: '#1A3E6B', text: "Orban battu après 16 ans, Peter Magyar remporte une victoire historique" },
   { cat: 'Ukraine',     color: '#1A3E6B', text: "Cessez-le-feu de Pâques violé 2 299 fois par la Russie" },
   { cat: 'Détroit d\'Ormuz', color: '#B86A1A', text: "Carburants en rupture dans 12% des stations françaises" },
-  { cat: 'Soudan',      color: '#1A3E6B', text: "ONU — pire crise humanitaire mondiale, 14 millions de déplacés" },
+  { cat: 'Soudan',      color: '#1A3E6B', text: "ONU, pire crise humanitaire mondiale, 14 millions de déplacés" },
 ]
 
 export default function Ticker() {
