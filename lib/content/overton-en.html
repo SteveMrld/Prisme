@@ -1,0 +1,556 @@
+<div class="art-hero-wrap">
+  <img class="art-hero-img" src="https://i.ibb.co/M5kS52Qm/img-overton.png" alt="A window in a dark wall opening onto a bright landscape, a metaphor for the Overton window">
+</div>
+
+<!-- EN-TÊTE ARTICLE -->
+<div class="article-header">
+  <div class="art-meta">
+    <span class="art-tag">Visuals</span>
+    <span class="art-format">Infographic</span>
+    <span class="art-date">January 2026</span>
+  </div>
+  <h1 class="art-title">The Overton<em> Window</em></h1>
+  <p class="art-deck">How the unthinkable becomes acceptable and eventually becomes law.</p>
+  <p class="art-intro">A concept forged by Joseph Overton in the 1990s to describe the space of politically acceptable ideas at a given moment, and the mechanisms that shift it over time.</p>
+</div>
+
+<!-- CONTENU PRINCIPAL -->
+<div class="article-content">
+
+  <!-- 
+    ════════════════════════════════════════
+    ZONE D'INTÉGRATION DU CONTENU
+    Remplacer par l'infographie, motion ou animation correspondante
+    ════════════════════════════════════════
+  -->
+  <div class="visuel-inline">
+<style>
+/* Scoped styles for overton */
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* removed: :root { */
+    --encre: #0A0A0A;
+    --or: #C8A96E;
+    --bg: #FAFAF8;
+    --papier: #F2EDE3;
+    --gris: #3D3D3D;
+    --gris-m: #6A6A6A;
+    --gris-l: #9A9590;
+    --bord: #D8D3C8;
+    --unacceptable: #7A2D2D;
+    --radical: #B86A1A;
+    --acceptable: #2D6B4A;
+    --politique: #1A3E6B;
+  }
+
+  /* removed: html, body { */
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    color: var(--encre);
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    padding: 20px 32px 16px;
+    border-bottom: 1px solid var(--bord);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-tag {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--or);
+    border: 1px solid var(--or);
+    padding: 4px 12px;
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--encre);
+  }
+
+  /* SPECTRUM */
+  .spectrum-wrap {
+    padding: 32px 32px 0;
+  }
+
+  .spectrum-label {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gris-l);
+    margin-bottom: 20px;
+  }
+
+  .spectrum {
+    position: relative;
+    height: 280px;
+  }
+
+  /* Zone gradient de fond */
+  .spectrum-gradient {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    display: flex;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .zone {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 6px;
+    transition: opacity 0.3s;
+  }
+
+  .zone-label {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .zone-1 { background: #5C1010; }
+  .zone-2 { background: #8B3A0A; }
+  .zone-3 { background: #B86A1A; }
+  .zone-4 { background: var(--acceptable); }
+  .zone-5 { background: #1A5038; }
+  .zone-6 { background: #102240; }
+
+  /* FENÊTRE glissante */
+  .window {
+    position: absolute;
+    top: -4px;
+    height: 88px;
+    width: 33.333%;
+    border: 3px solid var(--or);
+    border-radius: 2px;
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    box-shadow: 0 0 0 9999px rgba(10,10,10,0.35);
+  }
+
+  .window::before {
+    content: 'FENÊTRE D\'OVERTON';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--or);
+    white-space: nowrap;
+  }
+
+  /* IDEAS */
+  .ideas {
+    position: absolute;
+    top: 108px;
+    left: 0; right: 0;
+    display: flex;
+    gap: 6px;
+    padding: 0 2px;
+  }
+
+  .idea {
+    flex: 1;
+    padding: 10px 8px;
+    border: 1px solid var(--bord);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    min-height: 80px;
+  }
+
+  .idea:hover { background: var(--papier); transform: translateY(-2px); }
+
+  .idea.in-window {
+    background: rgba(196,162,101,0.08);
+    border-color: var(--or);
+  }
+
+  .idea-icon { font-size: 16px; }
+
+  .idea-text {
+    font-size: 10px;
+    color: var(--gris-m);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .idea.in-window .idea-text { color: var(--encre); font-weight: 500; }
+
+  /* EXEMPLES */
+  .examples {
+    position: absolute;
+    top: 216px;
+    left: 0; right: 0;
+  }
+
+  .example {
+    display: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gris-m);
+    text-align: center;
+    line-height: 1.5;
+    padding: 0 16px;
+  }
+
+  .example.active { display: block; }
+
+  /* CONTROLS */
+  .controls {
+    padding: 24px 32px;
+    border-top: 1px solid var(--bord);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .slider-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .slider-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .slider-title {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris-m);
+  }
+
+  .slider-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--or);
+    font-style: italic;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2px;
+    background: var(--bord);
+    outline: none;
+    border-radius: 2px;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--encre);
+    cursor: pointer;
+    border: 2px solid var(--or);
+    transition: transform 0.2s;
+  }
+
+  input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  .scenarios {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .scenario-btn {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border: 1px solid var(--bord);
+    background: transparent;
+    cursor: pointer;
+    color: var(--gris-m);
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .scenario-btn:hover, .scenario-btn.active {
+    background: var(--encre);
+    color: var(--or);
+    border-color: var(--encre);
+  }
+
+  /* LEGENDE */
+  .legend {
+    padding: 12px 32px 20px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--bord);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    color: var(--gris-l);
+    letter-spacing: 0.5px;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+</style>
+<div class="visuel-inner">
+<div class="header">
+  <span class="header-tag">Infographie interactive</span>
+  <span class="header-title">The Overton Window</span>
+</div>
+
+<div class="spectrum-wrap">
+  <div class="spectrum-label">The spectrum of politically possible ideas</div>
+  <div class="spectrum" id="spectrum">
+    <div class="spectrum-gradient">
+      <div class="zone zone-1"><span class="zone-label">Unthinkable</span></div>
+      <div class="zone zone-2"><span class="zone-label">Radical</span></div>
+      <div class="zone zone-3"><span class="zone-label">Acceptable</span></div>
+      <div class="zone zone-4"><span class="zone-label">Reasonable</span></div>
+      <div class="zone zone-5"><span class="zone-label">Popular</span></div>
+      <div class="zone zone-6"><span class="zone-label">Policy</span></div>
+    </div>
+
+    <div class="window" id="window"></div>
+
+    <div class="ideas" id="ideas"></div>
+
+    <div class="examples" id="examples"></div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="slider-wrap">
+    <div class="slider-label">
+      <span class="slider-title">Shift the window →</span>
+      <span class="slider-val" id="sliderVal">Centre</span>
+    </div>
+    <input type="range" id="slider" min="0" max="100" value="50">
+  </div>
+
+  <div>
+    <div class="slider-title" style="margin-bottom:10px">Historical scenarios</div>
+    <div class="scenarios">
+      <button class="scenario-btn" onclick="setScenario('mariage')">Same-sex marriage (2000→2013)</button>
+      <button class="scenario-btn" onclick="setScenario('retraites')">Retirement at 65 (1990→2023)</button>
+      <button class="scenario-btn" onclick="setScenario('cannabis')">Cannabis legalisation</button>
+      <button class="scenario-btn" onclick="setScenario('revenu')">Universal basic income</button>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#5C1010"></div>Unthinkable</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#8B3A0A"></div>Radical</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#B86A1A"></div>Acceptable</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#2D6B4A"></div>Reasonable</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1A5038"></div>Popular</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#102240"></div>Policy</div>
+  <div class="legend-item" style="margin-left:auto">
+    <div style="width:12px;height:12px;border:2px solid #C8A96E;flex-shrink:0"></div>
+    Overton Window
+  </div>
+</div>
+
+<script>
+const scenarios = {
+  mariage: {
+    pos: 60,
+    ideas: [
+      { icon: '', text: 'Man-woman marriage only', zone: 0 },
+      { icon: '', text: 'Civil union (1999)', zone: 1 },
+      { icon: '', text: 'Same-sex marriage', zone: 3 },
+      { icon: '‍‍', text: 'Same-sex adoption', zone: 3 },
+      { icon: '', text: 'Assisted reproduction for all', zone: 4 },
+      { icon: '', text: 'Regulated surrogacy', zone: 5 },
+    ],
+    example: '"In 2000, same-sex civil union was \"acceptable\". By 2013, marriage had become \"policy\". The window had shifted by two zones in thirteen years."',
+  },
+  retraites: {
+    pos: 35,
+    ideas: [
+      { icon: '⏪', text: 'Retirement at 55', zone: 0 },
+      { icon: '', text: 'Retirement at 60 (1982)', zone: 1 },
+      { icon: '', text: 'Retirement at 62 (2010)', zone: 3 },
+      { icon: '', text: 'Retirement at 64 (2023)', zone: 4 },
+      { icon: '', text: 'Retirement at 67', zone: 4 },
+      { icon: '️', text: 'Retirement at 70', zone: 5 },
+    ],
+    example: '"In 1990, proposing 65 was \"radical\". In 2023, 64 was voted into law. The window has shifted rightward under demographic and financial pressure."',
+  },
+  cannabis: {
+    pos: 45,
+    ideas: [
+      { icon: '', text: 'Full prohibition', zone: 0 },
+      { icon: '', text: 'Regulated medical use', zone: 2 },
+      { icon: '', text: 'Use decriminalised', zone: 3 },
+      { icon: '', text: 'Recreational legalisation', zone: 3 },
+      { icon: '', text: 'Free unregulated market', zone: 5 },
+      { icon: '', text: 'Free distribution', zone: 5 },
+    ],
+    example: '"Legal in Canada and in 24 US states. In France, still \"acceptable\" but not \"reasonable\" according to 2024 polls. The window is moving."',
+  },
+  revenu: {
+    pos: 25,
+    ideas: [
+      { icon: '', text: 'Targeted income support', zone: 1 },
+      { icon: '', text: 'Integration income', zone: 2 },
+      { icon: '', text: 'Partial universal income', zone: 3 },
+      { icon: '', text: 'Full universal income', zone: 3 },
+      { icon: '', text: 'High universal income', zone: 5 },
+      { icon: '∞', text: 'Unlimited income', zone: 5 },
+    ],
+    example: '"Piloted in Finland, Kenya, California. In 2024, the idea moved from \"radical\" to \"acceptable\" in European debate. The window is shifting."',
+  },
+}
+
+let currentPos = 50
+const positions = ['Far left', 'Left', 'Centre-left', 'Centre', 'Centre-right', 'Right', 'Far right']
+
+const slider = document.getElementById('slider')
+const win = document.getElementById('window')
+const ideasEl = document.getElementById('ideas')
+const examplesEl = document.getElementById('examples')
+const sliderVal = document.getElementById('sliderVal')
+
+function setWindow(val) {
+  const pct = val / 100
+  const leftPct = pct * 66.666
+  win.style.left = leftPct + '%'
+  sliderVal.textContent = positions[Math.round(pct * 6)]
+  updateIdeas(val)
+}
+
+function updateIdeas(val) {
+  const winStart = val / 100 * 6
+  const winEnd = winStart + 2
+
+  ideasEl.querySelectorAll('.idea').forEach((el, i) => {
+    const inWindow = i >= winStart && i < winEnd
+    el.classList.toggle('in-window', inWindow)
+  })
+}
+
+function renderIdeas(ideas) {
+  ideasEl.innerHTML = ideas.map((idea, i) => `
+    <div class="idea" style="order:${idea.zone}" data-zone="${idea.zone}">
+      <div class="idea-icon">${idea.icon}</div>
+      <div class="idea-text">${idea.text}</div>
+    </div>
+  `).join('')
+}
+
+function renderExample(text) {
+  examplesEl.innerHTML = `<div class="example active">${text}</div>`
+}
+
+function setScenario(key) {
+  document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'))
+  event.target.classList.add('active')
+
+  const s = scenarios[key]
+  renderIdeas(s.ideas)
+  renderExample(s.example)
+  slider.value = s.pos
+  setWindow(s.pos)
+}
+
+// Init
+slider.addEventListener('input', e => setWindow(parseInt(e.target.value)))
+
+// Default ideas
+const defaultIdeas = [
+  { icon: '️', text: 'Absolute taboo', zone: 0 },
+  { icon: '️', text: 'Radical idea', zone: 1 },
+  { icon: '', text: 'Debatable', zone: 2 },
+  { icon: '', text: 'Acceptable', zone: 3 },
+  { icon: '', text: 'Popular', zone: 4 },
+  { icon: '️', text: 'Law in force', zone: 5 },
+]
+renderIdeas(defaultIdeas)
+renderExample('"Slide the cursor to move the window, or choose a historical scenario."')
+setWindow(50)
+</script>
+</div>
+</div>
+</div>
+
+  <!-- Corps texte complémentaire (optionnel) -->
+  <div class="article-body">
+    <h3>Why this concept today?</h3>
+    
+<p>The Overton Window is one of the most useful tools for understanding how societies change, not through sudden revolution, but through the gradual shift of what is thinkable. In 2026, this mechanism is more visible than ever.</p>
+
+    <div class="stat-inline">
+      <div class="stat-num">30</div>
+      <div class="stat-desc">years separate "unthinkable" from "public policy" for mass digital surveillance. That was yesterday.</div>
+    </div>
+
+    <p>What was dystopia in the 1990s is today legal infrastructure in most democracies. Not because citizens have radically changed their minds. Simply because the window of what is thinkable has shifted in stages, each making the next one possible.</p>
+    <p>The mechanism is not conspiracy. It is structural. And understanding it is to equip oneself to recognise it when it operates, on any subject.</p>
+  </div>
+
+</div>
+
+<!-- +VERSO -->
+
+    
+
+    
+
+  
+
+
+<div class="content-embed" style="margin:48px 0;overflow:hidden;border:1px solid var(--bord)">
+<div class="art-byline-injected">
+  <div class="art-byline-avatar">SM</div>
+  <div>
+    <div class="art-byline-name">Steve Moradel</div>
+    <div class="art-byline-role">Essai & Concept</div>
+  </div>
+</div>
+
+  <iframe src="/visuels/overton.html" style="width:100%;height:680px;border:none;display:block" title="Interactive visualisation, The Overton Window"></iframe>
