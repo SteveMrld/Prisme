@@ -273,6 +273,109 @@
   flex-shrink: 0;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   "À RETENIR" — bloc de clôture éditoriale en fin d'article
+   Placé juste avant les notes, avant la photo-credit.
+   Design : fond ivoire, trait doré en tête, grands chiffres en Playfair
+   italique doré, textes en Playfair régulier.
+   ══════════════════════════════════════════════════════════════ */
+.a-retenir {
+  max-width: 680px;
+  margin: 56px auto 40px;
+  padding: 36px 40px 38px;
+  background: #FAF8F3;
+  border-top: 2px solid var(--or);
+  position: relative;
+}
+
+.ret-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  justify-content: center;
+}
+
+.ret-header .ret-line {
+  flex: 0 0 36px;
+  height: 1px;
+  background: rgba(200, 169, 110, 0.55);
+}
+
+.ret-label {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--or);
+  white-space: nowrap;
+}
+
+.ret-items {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.ret-item {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 20px;
+  align-items: baseline;
+}
+
+.ret-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--or);
+  letter-spacing: -1px;
+}
+
+.ret-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--encre);
+  margin: 0;
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .a-retenir {
+    padding: 26px 22px 28px;
+    margin: 40px 12px 28px;
+  }
+  .ret-header {
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .ret-header .ret-line {
+    flex: 0 0 24px;
+  }
+  .ret-label {
+    font-size: 9px;
+    letter-spacing: 2.8px;
+  }
+  .ret-items {
+    gap: 18px;
+  }
+  .ret-item {
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+  }
+  .ret-num {
+    font-size: 28px;
+  }
+  .ret-text {
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+}
+
 /* ── Stats row (3 colonnes) ── */
 .stats-row {
   display: grid;
