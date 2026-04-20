@@ -1,5 +1,22 @@
 [
   {
+    "slug": "derniere-generation",
+    "title": "La dernière génération",
+    "description": "Nous avons connu un monde où chercher prenait du temps, où penser demandait qu&apos;on traverse soi-même ses idées. Ce monde est en train de devenir optionnel. Et c&apos;est là que tout se joue.",
+    "category": "soc",
+    "date": "2026-06-01",
+    "readTime": "6",
+    "image": "/visuels/derniere-generation-cover.png",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur de Soara",
+    "featured": true,
+    "premium": false,
+    "avif": true,
+    "imageCredit": "© DALL-E / Soara",
+    "titleEn": "The Last Generation",
+    "descriptionEn": "We knew a world where thinking took time, where ideas had to be worked through alone. That world is becoming optional. And that is where everything is at stake."
+  },
+  {
     "slug": "5g-6g-antennes",
     "title": "Antennes, ondes, <em>incertitudes</em>",
     "titleEn": "Antennas, waves, <em>uncertainties</em>",
