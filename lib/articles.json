@@ -46,7 +46,8 @@
     "featured": false,
     "premium": false,
     "titleEn": "The books that will never come",
-    "descriptionEn": "On publishing, and on what it says of a civilisation that its books become assets. By Jade Desroses."
+    "descriptionEn": "On publishing, and on what it says of a civilisation that its books become assets. By Jade Desroses.",
+    "avif": true
   },
   {
     "slug": "societe-du-consentement",
@@ -221,7 +222,8 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "Élisabeth Moreno",
-    "descriptionEn": "Former Minister. The trajectory of a woman who chose not to smooth anything over."
+    "descriptionEn": "Former Minister. The trajectory of a woman who chose not to smooth anything over.",
+    "avif": true
   },
   {
     "slug": "dette-souveraine",
@@ -378,7 +380,8 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "Fragility",
-    "descriptionEn": "Why our systems break — and what that reveals about how they were built."
+    "descriptionEn": "Why our systems break — and what that reveals about how they were built.",
+    "avif": true
   },
   {
     "slug": "france_maritime",
@@ -423,7 +426,8 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "AI and Writing",
-    "descriptionEn": "What artificial intelligence changes in the act of writing, and what it does not change."
+    "descriptionEn": "What artificial intelligence changes in the act of writing, and what it does not change.",
+    "avif": true
   },
   {
     "slug": "kintsugi",
@@ -438,7 +442,8 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "Kintsugi",
-    "descriptionEn": "The Japanese art of repairing with gold. A philosophy of resilience applied to the political world."
+    "descriptionEn": "The Japanese art of repairing with gold. A philosophy of resilience applied to the political world.",
+    "avif": true
   },
   {
     "slug": "lecture",
@@ -454,7 +459,8 @@
     "featured": false,
     "imageCredit": "© SOARA",
     "titleEn": "What Books Do to Those Who Open Them",
-    "descriptionEn": "Reading is not a leisure activity like any other. It is a technology of the human."
+    "descriptionEn": "Reading is not a leisure activity like any other. It is a technology of the human.",
+    "avif": true
   },
   {
     "slug": "medias",
@@ -473,7 +479,8 @@
     "categoryLabel": "Médias",
     "grandFormat": true,
     "titleEn": "Media and Power",
-    "descriptionEn": "The architecture of influence. How information has become a geopolitical instrument."
+    "descriptionEn": "The architecture of influence. How information has become a geopolitical instrument.",
+    "avif": true
   },
   {
     "slug": "morrison",
@@ -578,7 +585,8 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "In Defense of Pessimism",
-    "descriptionEn": "Why lucid pessimism is more useful than forced optimism for understanding the world."
+    "descriptionEn": "Why lucid pessimism is more useful than forced optimism for understanding the world.",
+    "avif": true
   },
   {
     "slug": "predateurs",
@@ -608,7 +616,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "Networks",
-    "descriptionEn": "The invisible architecture of influence. How connections structure power more than hierarchies do."
+    "descriptionEn": "The invisible architecture of influence. How connections structure power more than hierarchies do.",
+    "avif": true
   },
   {
     "slug": "rushkoff",
@@ -653,7 +662,8 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "The Productive Power of Silence",
-    "descriptionEn": "In a world saturated with noise, silence is becoming a political act and a cognitive tool."
+    "descriptionEn": "In a world saturated with noise, silence is becoming a political act and a cognitive tool.",
+    "avif": true
   },
   {
     "slug": "taiwan",

@@ -156,6 +156,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       hasInternalHeader={hasInternalHeader}
       hasHeroInContent={hasHeroInContent}
       premium={showPaywall}
+      avif={(article as any).avif === true}
       date={(article as any).date}
       slug={article.slug}
       content={content}
