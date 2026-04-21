@@ -75,62 +75,69 @@ export async function POST(req: NextRequest) {
     { id: 'ap', name: 'AP', type: 'Agence', bias: 'Agence américaine / factuel' },
   ]
 
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-beta': 'web-search-2025-03-05',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 6000,
-      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-      system: `Tu es un assistant de recoupement journalistique pour Soara, un média géopolitique français indépendant.
-      
-Ton rôle : analyser un fait d'actualité en croisant les positions de ces sources précises :
-${SOURCES.map(s => `- ${s.name} (@${s.id}) : ${s.type}, biais: ${s.bias}`).join('\n')}
+  // AbortController pour couper proprement avant le timeout Vercel (60s)
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), 50_000)
 
-HIÉRARCHIE DES SOURCES — pondère ainsi :
-- VÉRIFIÉ (agences, grands médias) : information confirmée, haute fiabilité
-- ANALYSE (experts, think tanks) : interprétation rigoureuse, biais déclarés
-- VEILLE (OSINT, terrain) : signal à recouper, ne pas prendre pour argent comptant
+  let response: Response
+  try {
+    response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-beta': 'web-search-2025-03-05',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 6000,
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 10 }],
+        system: `Tu es un assistant de recoupement journalistique pour Soara, un média géopolitique français indépendant.
 
-RÈGLES STRICTES :
-1. Chaque source ne peut apparaître QU'UNE SEULE FOIS dans "results"
-2. Recherche activement chaque source par son nom sur le web
-3. Si tu ne trouves pas d'info pour une source, ne l'inclus pas dans results
-4. Vise minimum 6 sources différentes dans results
-5. N'invente jamais de position — confidence "faible" si tu n'as qu'une vague indication
+Sur un fait d'actualité donné, tu croises les positions de sources variées pour identifier consensus et divergences.
 
-Les sourceId EXACTS à utiliser (copie-les tel quel) :
-${SOURCES.map(s => `"${s.id}" = ${s.name}`).join(', ')}
+SOURCES DISPONIBLES — utilise l'id EXACT comme "sourceId" :
+${SOURCES.map(s => `[${s.id}] ${s.name} — ${s.type}, ${s.bias}`).join('\n')}
 
-Réponds UNIQUEMENT en JSON valide :
+MÉTHODE :
+1. Identifie 8 à 12 sources pertinentes pour le sujet (ne cherche PAS les 48 systématiquement).
+2. Fais 6 à 10 recherches web ciblées, pas plus.
+3. Pour chaque source trouvée, extrais sa position en français.
+4. Vise 6 sources minimum dans "results". Si une source n'a pas traité le sujet, ne l'inclus pas.
+5. N'invente jamais une position — si indication vague, confidence "faible".
+
+OUTPUT — uniquement du JSON valide, rien avant ni après :
 {
-  "topic": "string",
-  "consensus": ["point 1", "point 2"],
-  "contradictions": ["contradiction 1", "contradiction 2"],
-  "synthesis": "string (2-3 phrases neutres et factuelles)",
-  "coverage_index": number (0-100, estimation du nombre de sources majeures ayant couvert ce fait),
-  "missing_sources": ["nom de source importante qui n'a PAS couvert ce fait — max 3"],
-  "historical_context": "string (1-2 phrases sur comment ce sujet était traité il y a 3-6 mois, si pertinent)",
+  "topic": "résumé en 5-10 mots",
+  "consensus": ["2-3 points de consensus"],
+  "contradictions": ["2-3 divergences notables"],
+  "synthesis": "2-3 phrases neutres et factuelles",
+  "coverage_index": 0-100,
+  "missing_sources": ["max 3 sources qui n'ont visiblement pas couvert"],
+  "historical_context": "1-2 phrases sur la couverture il y a 3-6 mois",
   "results": [
-    {
-      "sourceId": "string (l'id exact de la source)",
-      "position": "string courte (max 20 mots)",
-      "confidence": "haute|moyenne|faible",
-      "details": "string (max 80 mots)"
-    }
+    {"sourceId": "id exact", "position": "position (<20 mots)", "confidence": "haute|moyenne|faible", "details": "détails (<80 mots)"}
   ]
 }`,
-      messages: [{
-        role: 'user',
-        content: `Recoupement de sources sur : "${query}". Cherche en français ET en anglais.`
-      }]
+        messages: [{
+          role: 'user',
+          content: `Recoupement sur : "${query}". Cherche en français et en anglais.`
+        }]
+      })
     })
-  })
+  } catch (err: any) {
+    clearTimeout(timeoutId)
+    const isAbort = err?.name === 'AbortError'
+    console.error('Anthropic fetch failed:', isAbort ? 'timeout 50s' : err?.message)
+    return NextResponse.json({
+      error: isAbort ? 'Timeout — analyse trop longue' : 'Erreur réseau',
+      quota: { used: peek.used, limit: peek.limit, remaining: peek.remaining },
+      not_charged: true,
+    }, { status: 504 })
+  }
+  clearTimeout(timeoutId)
 
   const data = await response.json()
   if (!response.ok) {

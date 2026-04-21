@@ -545,16 +545,16 @@ export default function RecoupementClient() {
           </button>
         </div>
 
-        {quota && !quota.isAdmin && (
+        {quota && (
           <div style={{
             marginTop: '14px',
             textAlign: 'center',
             fontSize: '12px',
             fontFamily: 'monospace',
             letterSpacing: '0.08em',
-            color: (quota.remaining + quota.extraCredits) === 0 ? '#C04040' : (quota.remaining + quota.extraCredits) <= 2 ? '#B8860B' : '#8a7f72',
+            color: quota.isAdmin ? '#8a7f72' : (quota.remaining + quota.extraCredits) === 0 ? '#C04040' : (quota.remaining + quota.extraCredits) <= 2 ? '#B8860B' : '#8a7f72',
           }}>
-            {(() => {
+            {quota.isAdmin ? `Accès illimité (admin)` : (() => {
               const total = quota.remaining + quota.extraCredits
               if (total === 0) return `Quota mensuel atteint · Réinitialisation le 1er du mois prochain`
               if (quota.extraCredits > 0 && quota.remaining === 0) {
