@@ -55,35 +55,46 @@ export async function requireActiveSubscriber(): Promise<AuthResult> {
 /**
  * Lit le quota sans l'incrémenter (pour afficher l'état à l'utilisateur).
  */
-export async function readQuota(userId: string, isAdmin: boolean): Promise<QuotaResult> {
+export async function readQuota(userId: string, isAdmin: boolean): Promise<QuotaResult & { extraCredits?: number }> {
   if (isAdmin) {
-    return { ok: true, used: 0, remaining: 9999, limit: 9999 }
+    return { ok: true, used: 0, remaining: 9999, limit: 9999, extraCredits: 0 }
   }
 
   const admin = supabaseAdmin()
-  const { data } = await admin
-    .from('recoupement_usage')
-    .select('count')
-    .eq('user_id', userId)
-    .eq('year_month', currentYearMonth())
-    .maybeSingle()
 
-  const used = data?.count ?? 0
+  const [usageRes, profileRes] = await Promise.all([
+    admin
+      .from('recoupement_usage')
+      .select('count')
+      .eq('user_id', userId)
+      .eq('year_month', currentYearMonth())
+      .maybeSingle(),
+    admin
+      .from('profiles')
+      .select('recoupement_extra_credits')
+      .eq('id', userId)
+      .maybeSingle(),
+  ])
+
+  const used = usageRes.data?.count ?? 0
+  const extraCredits = profileRes.data?.recoupement_extra_credits ?? 0
+
   return {
     ok: true,
     used,
     remaining: Math.max(0, MONTHLY_LIMIT - used),
     limit: MONTHLY_LIMIT,
+    extraCredits,
   }
 }
 
 /**
  * Incrémente le compteur de manière atomique via la RPC Supabase.
- * Retourne -1 (via status 429) si le quota est dépassé.
+ * Logique : d'abord le quota mensuel, puis les extra_credits, sinon 429.
  */
-export async function consumeQuota(userId: string, isAdmin: boolean): Promise<QuotaResult> {
+export async function consumeQuota(userId: string, isAdmin: boolean): Promise<QuotaResult & { consumedFromExtras?: boolean; extraCredits?: number }> {
   if (isAdmin) {
-    return { ok: true, used: 0, remaining: 9999, limit: 9999 }
+    return { ok: true, used: 0, remaining: 9999, limit: 9999, extraCredits: 0 }
   }
 
   const admin = supabaseAdmin()
@@ -98,6 +109,11 @@ export async function consumeQuota(userId: string, isAdmin: boolean): Promise<Qu
   }
 
   const count = data as number
+  const consumedFromExtras = count === MONTHLY_LIMIT + 1
+
+  // On relit l'état final pour le renvoyer à l'UI
+  const after = await readQuota(userId, false)
+  const extraCredits = (after as any).extraCredits ?? 0
 
   if (count === -1) {
     return {
@@ -106,14 +122,17 @@ export async function consumeQuota(userId: string, isAdmin: boolean): Promise<Qu
       error: 'Quota mensuel atteint',
       used: MONTHLY_LIMIT,
       limit: MONTHLY_LIMIT,
+      extraCredits: 0,
     }
   }
 
   return {
     ok: true,
-    used: count,
-    remaining: Math.max(0, MONTHLY_LIMIT - count),
+    used: consumedFromExtras ? MONTHLY_LIMIT : count,
+    remaining: consumedFromExtras ? 0 : Math.max(0, MONTHLY_LIMIT - count),
     limit: MONTHLY_LIMIT,
+    consumedFromExtras,
+    extraCredits,
   }
 }
 

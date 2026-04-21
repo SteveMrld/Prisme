@@ -219,7 +219,7 @@ export default function RecoupementClient() {
   const [narrativeMode, setNarrativeMode] = useState(false)
   const [briefing, setBriefing] = useState<any>(null)
   const [briefingLoading, setBriefingLoading] = useState(false)
-  const [quota, setQuota] = useState<{ used: number; remaining: number; limit: number; isAdmin: boolean } | null>(null)
+  const [quota, setQuota] = useState<{ used: number; remaining: number; limit: number; isAdmin: boolean; extraCredits: number } | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const LOADING_MSGS = [
@@ -250,6 +250,23 @@ export default function RecoupementClient() {
   useEffect(() => {
     if (isPremium) refreshQuota()
   }, [isPremium])
+
+  // Retour de Stripe après achat pack
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('pack_success') === '1') {
+      // Polling léger : Stripe met quelques secondes à appeler le webhook
+      let attempts = 0
+      const interval = setInterval(() => {
+        refreshQuota()
+        attempts++
+        if (attempts >= 5) clearInterval(interval)
+      }, 1500)
+      // Nettoyer l'URL
+      window.history.replaceState({}, '', '/recoupement')
+    }
+  }, [])
 
   const saveToHistory = (a: Analysis) => {
     try {
@@ -331,7 +348,7 @@ export default function RecoupementClient() {
 
       const data = await response.json()
       if (data.quota) {
-        setQuota(q => q ? { ...q, ...data.quota } : { ...data.quota, isAdmin: false })
+        setQuota(q => q ? { ...q, ...data.quota } : { extraCredits: 0, isAdmin: false, ...data.quota })
       }
 
       const text = data.content
@@ -526,7 +543,7 @@ export default function RecoupementClient() {
           <button
             className={styles.searchBtn}
             onClick={() => handleSearch()}
-            disabled={loading || !query.trim() || (quota !== null && !quota.isAdmin && quota.remaining <= 0)}
+            disabled={loading || !query.trim() || (quota !== null && !quota.isAdmin && (quota.remaining + quota.extraCredits) <= 0)}
           >
             {loading ? <span className={styles.btnSpinner} /> : 'Analyser →'}
           </button>
@@ -539,11 +556,51 @@ export default function RecoupementClient() {
             fontSize: '12px',
             fontFamily: 'monospace',
             letterSpacing: '0.08em',
-            color: quota.remaining === 0 ? '#C04040' : quota.remaining <= 2 ? '#B8860B' : '#8a7f72',
+            color: (quota.remaining + quota.extraCredits) === 0 ? '#C04040' : (quota.remaining + quota.extraCredits) <= 2 ? '#B8860B' : '#8a7f72',
           }}>
-            {quota.remaining === 0
-              ? `Quota mensuel atteint · Réinitialisation le 1er du mois prochain`
-              : `${quota.remaining} recoupement${quota.remaining > 1 ? 's' : ''} restant${quota.remaining > 1 ? 's' : ''} ce mois-ci · ${quota.used}/${quota.limit}`}
+            {(() => {
+              const total = quota.remaining + quota.extraCredits
+              if (total === 0) return `Quota mensuel atteint · Réinitialisation le 1er du mois prochain`
+              if (quota.extraCredits > 0 && quota.remaining === 0) {
+                return `${quota.extraCredits} recoupement${quota.extraCredits > 1 ? 's' : ''} (pack acheté) · Mensuel épuisé`
+              }
+              if (quota.extraCredits > 0) {
+                return `${quota.remaining} ce mois + ${quota.extraCredits} pack · ${quota.used}/${quota.limit} consommés`
+              }
+              return `${quota.remaining} recoupement${quota.remaining > 1 ? 's' : ''} restant${quota.remaining > 1 ? 's' : ''} ce mois-ci · ${quota.used}/${quota.limit}`
+            })()}
+          </div>
+        )}
+
+        {quota && !quota.isAdmin && quota.remaining === 0 && quota.extraCredits === 0 && (
+          <div style={{
+            marginTop: '18px',
+            padding: '20px 24px',
+            border: '1px solid #DDD9D2',
+            textAlign: 'center',
+          }}>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', color: '#1a1a1a', marginBottom: '6px' }}>
+              Besoin de plus ?
+            </div>
+            <p style={{ fontSize: '13px', color: '#6B6355', marginBottom: '16px', lineHeight: '1.5' }}>
+              Continuez ce mois-ci avec un pack de 10 recoupements supplémentaires.
+            </p>
+            <button
+              onClick={async () => {
+                try {
+                  const res = await fetch('/api/recoupement/buy-pack', { method: 'POST' })
+                  const data = await res.json()
+                  if (data.url) window.location.href = data.url
+                } catch {}
+              }}
+              style={{
+                display: 'inline-block', padding: '12px 28px',
+                background: '#1a1a1a', color: '#F5F0E8', border: 'none',
+                fontSize: '11px', fontWeight: 700, letterSpacing: '2px',
+                textTransform: 'uppercase', cursor: 'pointer',
+              }}>
+              10 recoupements — 3,99 €
+            </button>
           </div>
         )}
 
@@ -622,8 +679,19 @@ export default function RecoupementClient() {
             <div className={styles.retryTitle}>Quota mensuel atteint</div>
             <p className={styles.retryText}>
               Vous avez utilisé vos {quota?.limit ?? 10} recoupements de ce mois-ci.
-              Votre quota sera réinitialisé le 1<sup>er</sup> du mois prochain.
+              Réinitialisation le 1<sup>er</sup> du mois prochain.
             </p>
+            <button
+              className={styles.retryBtn}
+              onClick={async () => {
+                try {
+                  const res = await fetch('/api/recoupement/buy-pack', { method: 'POST' })
+                  const data = await res.json()
+                  if (data.url) window.location.href = data.url
+                } catch {}
+              }}>
+              Acheter 10 recoupements — 3,99 €
+            </button>
           </div>
         )}
 

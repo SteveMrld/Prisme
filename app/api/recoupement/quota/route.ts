@@ -19,5 +19,6 @@ export async function GET() {
     remaining: quota.remaining,
     limit: quota.limit,
     isAdmin: auth.isAdmin,
+    extraCredits: (quota as any).extraCredits ?? 0,
   })
 }

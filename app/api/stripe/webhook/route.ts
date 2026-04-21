@@ -30,6 +30,17 @@ export async function POST(request: Request) {
       const userId = session.metadata?.supabase_user_id
       if (!userId) break
 
+      // Pack recoupement (paiement unique) : on ajoute 10 crédits
+      if (session.mode === 'payment' && session.metadata?.type === 'recoupement_pack') {
+        const packSize = parseInt(session.metadata?.pack_size || '10', 10)
+        await supabase.rpc('grant_recoupement_pack', {
+          p_user_id: userId,
+          p_amount: packSize,
+        })
+        break
+      }
+
+      // Sinon : abonnement récurrent classique
       await supabase.from('profiles').update({
         subscription_status: 'active',
         stripe_subscription_id: session.subscription as string,
