@@ -62,6 +62,26 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* Card — Où se produit le savoir */}
+          <a href="/visuels/science-race.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'#a6291c'}}>Sciences · Géopolitique · Dataviz interactive</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>Où se produit le savoir</h3>
+              <p className={styles.featSub}>Chine · États-Unis · Europe · Inde · National Science Board 2025</p>
+              <p className={styles.featDesc}>
+                En 2002, les États-Unis et l'Europe publiaient deux tiers des articles scientifiques mondiaux.
+                En 2023, ils n'en publient plus qu'un tiers. Comment, année après année, le centre de gravité de la science a basculé.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la visualisation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Card — Médias : chiffres, pouvoir et nouveaux acteurs */}
           <a href="/visuels/medias-pouvoir" className={styles.featCard} style={{marginTop:'1px'}}>
             <div className={styles.featBody}>

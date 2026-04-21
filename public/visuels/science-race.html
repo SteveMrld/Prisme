@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Où se produit le savoir — SOARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f4efe4;
+    --paper-warm: #ece6d8;
+    --ink: #1a1a17;
+    --ink-soft: #4a463d;
+    --ink-light: #7a7468;
+    --accent: #a6291c;
+    --gold: #9a8550;
+    --rule: #c4bba8;
+
+    --cn: #9b2c2c;
+    --us: #1e3a5f;
+    --eu: #2d5f8a;
+    --in: #c97425;
+    --uk: #3d4b5c;
+    --jp: #6b1e2a;
+    --row: #8a7f68;
+  }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Instrument Sans', -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Texture papier */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(154, 133, 80, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(166, 41, 28, 0.03) 0%, transparent 50%);
+    opacity: 0.8;
+    z-index: 1;
+  }
+
+  .stage {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 32px 32px 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ============ HEADER ============ */
+  .masthead {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+  }
+
+  .masthead-left {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+  }
+
+  .masthead-left .dot {
+    color: var(--accent);
+    margin: 0 6px;
+  }
+
+  .masthead-center {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .masthead-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* ============ TITLE ============ */
+  .title-section {
+    padding: 48px 0 32px;
+    max-width: 900px;
+  }
+
+  .kicker {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .kicker::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 6.5vw, 78px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 144;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .deck {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 23px);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    margin-top: 24px;
+    max-width: 720px;
+    letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 24;
+  }
+
+  /* ============ CHART AREA ============ */
+  .chart-frame {
+    position: relative;
+    margin-top: 32px;
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 28px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .unit-label {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .year-display {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144;
+    font-weight: 900;
+    font-size: clamp(64px, 10vw, 128px);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .year-display .sep {
+    font-weight: 300;
+    font-size: 0.4em;
+    color: var(--ink-light);
+    letter-spacing: 0;
+  }
+
+  .year-stat {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    max-width: 260px;
+    text-align: right;
+  }
+
+  .year-stat strong {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 18px;
+    display: block;
+    font-variation-settings: "opsz" 48;
+  }
+
+  /* ============ CHART BARS ============ */
+  .chart {
+    position: relative;
+    height: 480px;
+    margin-top: 16px;
+  }
+
+  .gridlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .gridline {
+    position: absolute;
+    top: 0;
+    bottom: 40px;
+    width: 1px;
+    background: var(--rule);
+    opacity: 0.4;
+  }
+
+  .gridlabel {
+    position: absolute;
+    bottom: 14px;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+  }
+
+  .bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1),
+                opacity 0.9s ease;
+    will-change: transform;
+  }
+
+  .bar-label {
+    width: 170px;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 12px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 24";
+  }
+
+  .bar-flag {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+    border: 1.2px solid var(--ink);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+
+  .bar-flag svg { display: block; width: 100%; height: 100%; }
+
+  .bar-main {
+    flex: 1;
+    height: 42px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: var(--bar-color);
+    transition: width 1.4s cubic-bezier(0.76, 0, 0.24, 1);
+    position: relative;
+  }
+
+  .bar-fill::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(0,0,0,0.25);
+  }
+
+  .bar-value {
+    margin-left: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+
+  .bar-badge {
+    position: absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    background: var(--bar-color);
+  }
+
+  /* ============ ANNOTATIONS ============ */
+  .annotations {
+    position: relative;
+    margin-top: 28px;
+    min-height: 90px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .annotation {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.5;
+    max-width: 820px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    position: absolute;
+    inset: 20px 0 0 0;
+    letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 24";
+  }
+
+  .annotation.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .annotation-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 2px 8px;
+    background: rgba(166, 41, 28, 0.08);
+  }
+
+  /* ============ CONTROLS ============ */
+  .controls-frame {
+    margin-top: 40px;
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .timeline {
+    width: 100%;
+    height: 28px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .timeline-track {
+    width: 100%;
+    height: 2px;
+    background: var(--rule);
+    position: relative;
+  }
+
+  .timeline-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--ink);
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s linear;
+  }
+
+  .timeline-marker:hover { transform: translate(-50%, -50%) scale(1.2); }
+
+  .timeline-years {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+  }
+
+  .controls-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 10px 22px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  button:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  button.primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  button.primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .speed-label {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    margin-top: 60px;
+    padding-top: 28px;
+    border-top: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-methodo {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .footer-methodo h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .footer-methodo p { margin-bottom: 8px; }
+
+  .footer-methodo a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+  }
+
+  .footer-signature {
+    text-align: right;
+    padding-top: 8px;
+  }
+
+  .signature-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 34px;
+    letter-spacing: 0.08em;
+    font-variation-settings: "opsz" 144;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .signature-tag {
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+
+  .signature-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-top: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Responsive */
+  @media (max-width: 840px) {
+    .stage { padding: 20px 20px 40px; }
+    .masthead { flex-wrap: wrap; gap: 12px; }
+    .masthead-center { display: none; }
+    .title-section { padding: 28px 0 20px; }
+    .chart { height: 420px; }
+    .bar { height: 48px; }
+    .bar-main { height: 36px; }
+    .bar-label { width: 110px; font-size: 13px; padding-right: 10px; }
+    .bar-value { font-size: 12px; margin-left: 8px; }
+    .year-display { font-size: 64px; }
+    .footer {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .footer-signature { text-align: left; }
+    .year-stat { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-left">SOARA<span class="dot">·</span>Data stories</div>
+    <div class="masthead-center">Numéro 001 — Sciences & Savoirs</div>
+    <div class="masthead-right">21 · IV · 2026</div>
+  </div>
+
+  <!-- TITLE -->
+  <div class="title-section">
+    <div class="kicker">Vingt ans de bascules scientifiques</div>
+    <h1>Où se produit<br><em>le savoir</em>.</h1>
+    <div class="deck">
+      En 2002, les États-Unis et l'Europe publiaient deux tiers des articles scientifiques mondiaux. En 2023, ils n'en publient plus qu'un tiers. Voici comment, année après année, le centre de gravité de la science a basculé.
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-frame">
+
+    <div class="chart-header">
+      <div>
+        <div class="unit-label">Articles scientifiques · comptage fractionnel</div>
+        <div class="year-display">
+          <span id="year">2002</span>
+          <span class="sep">/</span>
+          <span id="year-end">2023</span>
+        </div>
+      </div>
+      <div class="year-stat">
+        <strong id="world-total">1 157 942</strong>
+        articles publiés dans le monde cette année-là
+      </div>
+    </div>
+
+    <div class="chart" id="chart">
+      <div class="gridlines" id="gridlines"></div>
+    </div>
+
+    <div class="annotations" id="annotations">
+      <div class="annotation" data-year="2007"><span class="annotation-year">2007</span>La Chine dépasse le Japon et l'Allemagne. Troisième producteur mondial.</div>
+      <div class="annotation" data-year="2010"><span class="annotation-year">2010</span>La Chine dépasse le Royaume-Uni. Le plan national "211 universités" produit ses effets.</div>
+      <div class="annotation" data-year="2017"><span class="annotation-year">2017</span>Bascule historique : la Chine publie désormais plus d'articles que les États-Unis.</div>
+      <div class="annotation" data-year="2020"><span class="annotation-year">2020</span>Les publications sur le Covid accélèrent la production mondiale : +9% en un an.</div>
+      <div class="annotation" data-year="2022"><span class="annotation-year">2022</span>La Chine (886 000) dépasse l'Union européenne (569 000) en volume total.</div>
+      <div class="annotation" data-year="2023"><span class="annotation-year">2023</span>La Chine produit 28,5% de la science mondiale. Plus du double des États-Unis.</div>
+    </div>
+
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls-frame">
+    <div>
+      <div class="timeline">
+        <div class="timeline-track">
+          <div class="timeline-fill" id="timelineFill"></div>
+          <div class="timeline-marker" id="timelineMarker" style="left: 0%"></div>
+        </div>
+      </div>
+      <div class="timeline-years">
+        <span>2002</span><span>2007</span><span>2012</span><span>2017</span><span>2023</span>
+      </div>
+    </div>
+
+    <div class="controls-row">
+      <button id="playBtn" class="primary">▸ Lecture</button>
+      <button id="resetBtn">⟲ Réinitialiser</button>
+      <span class="speed-label">Vitesse</span>
+      <button id="speed1x" class="primary">1×</button>
+      <button id="speed2x">2×</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-methodo">
+      <h3>Méthodologie & Sources</h3>
+      <p><strong>Source :</strong> National Science Board, <em>Science & Engineering Indicators</em>, rapport NSB-2025-7 « Discovery: R&D Activity and Research Publications », National Center for Science and Engineering Statistics (NCSES), publié le 23 juillet 2025. Données extraites en février 2025. <a href="https://ncses.nsf.gov/pubs/nsb20257" target="_blank">ncses.nsf.gov/pubs/nsb20257</a></p>
+      <p><strong>Base de données primaire :</strong> Elsevier Scopus, articles de revues à comité de lecture et actes de conférence en sciences et ingénierie.</p>
+      <p><strong>Comptage fractionnel :</strong> pour les articles co-signés par des auteurs de plusieurs pays, chaque pays reçoit une fraction du crédit proportionnelle au nombre de ses auteurs. Les revues prédatrices sont exclues selon le filtre NSB Indicators 2018.</p>
+      <p><strong>Limites connues :</strong> Scopus privilégie les publications en langue anglaise et peut sous-représenter certaines sphères éditoriales (notamment francophone, russophone, en langues d'Asie du Sud-Est). La qualité et l'impact des publications ne sont pas mesurés par ce seul indicateur de volume.</p>
+    </div>
+
+    <div class="footer-signature">
+      <div class="signature-logo">SOARA</div>
+      <div class="signature-tag">Le monde, autrement</div>
+      <div class="signature-url">soara.fr</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ========= FLAGS (SVG stylisés circulaires) =========
+function starPoints(cx, cy, outerR, innerR, n=5, rot=-Math.PI/2) {
+  const pts = [];
+  for (let i = 0; i < 2*n; i++) {
+    const a = rot + i * Math.PI/n;
+    const r = i % 2 === 0 ? outerR : innerR;
+    pts.push(`${(cx + r*Math.cos(a)).toFixed(1)},${(cy + r*Math.sin(a)).toFixed(1)}`);
+  }
+  return pts;
+}
+
+const FLAG_SVG = {
+  cn: `<svg viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid slice">
+    <rect x="-50" y="-50" width="100" height="100" fill="#de2910"/>
+    <polygon points="${starPoints(0,0,28,11).join(' ')}" fill="#ffde00"/>
+  </svg>`,
+  eu: `<svg viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid slice">
+    <rect x="-50" y="-50" width="100" height="100" fill="#003399"/>
+    ${Array.from({length: 12}, (_, k) => {
+      const a = -Math.PI/2 + k * Math.PI/6;
+      const x = 30 * Math.cos(a), y = 30 * Math.sin(a);
+      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5" fill="#ffcc00"/>`;
+    }).join('')}
+  </svg>`,
+  us: `<svg viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid slice">
+    ${[0,1,2,3,4,5,6].map(k => {
+      const color = k % 2 === 0 ? '#b22234' : '#ffffff';
+      const h = 100/7;
+      return `<rect x="-50" y="${-50 + k*h}" width="100" height="${h}" fill="${color}"/>`;
+    }).join('')}
+    <rect x="-50" y="-50" width="42.5" height="${100/7 * 4}" fill="#3c3b6e"/>
+    <polygon points="${starPoints(-27.5, -50 + (100/7)*2, 11, 4.5).join(' ')}" fill="#ffffff"/>
+  </svg>`,
+  in: `<svg viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid slice">
+    <rect x="-50" y="-50" width="100" height="33.33" fill="#ff9933"/>
+    <rect x="-50" y="-16.67" width="100" height="33.33" fill="#ffffff"/>
+    <rect x="-50" y="16.67" width="100" height="33.33" fill="#138808"/>
+    <circle cx="0" cy="0" r="11" fill="none" stroke="#000080" stroke-width="1.5"/>
+    ${Array.from({length: 8}, (_, k) => {
+      const a = k * Math.PI/4;
+      const x1 = 3.5*Math.cos(a), y1 = 3.5*Math.sin(a);
+      const x2 = 11*Math.cos(a), y2 = 11*Math.sin(a);
+      return `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#000080" stroke-width="1"/>`;
+    }).join('')}
+  </svg>`,
+  uk: `<svg viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid slice">
+    <rect x="-50" y="-50" width="100" height="100" fill="#012169"/>
+    <polygon points="-50,-39 -39,-50 50,39 39,50" fill="#ffffff"/>
+    <polygon points="-50,39 -39,50 50,-39 39,-50" fill="#ffffff"/>
+    <rect x="-9" y="-50" width="18" height="100" fill="#ffffff"/>
+    <rect x="-50" y="-9" width="100" height="18" fill="#ffffff"/>
+    <rect x="-4.5" y="-50" width="9" height="100" fill="#C8102E"/>
+    <rect x="-50" y="-4.5" width="100" height="9" fill="#C8102E"/>
+  </svg>`,
+  jp: `<svg viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid slice">
+    <rect x="-50" y="-50" width="100" height="100" fill="#ffffff"/>
+    <circle cx="0" cy="0" r="26" fill="#bc002d"/>
+  </svg>`,
+  row: `<svg viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid slice">
+    <rect x="-50" y="-50" width="100" height="100" fill="#a89e85"/>
+    <line x1="-42" y1="0" x2="42" y2="0" stroke="#5c5340" stroke-width="1" opacity="0.7"/>
+    <line x1="0" y1="-42" x2="0" y2="42" stroke="#5c5340" stroke-width="1" opacity="0.7"/>
+    <line x1="-41" y1="-25" x2="41" y2="-25" stroke="#5c5340" stroke-width="0.7" opacity="0.5"/>
+    <line x1="-41" y1="25" x2="41" y2="25" stroke="#5c5340" stroke-width="0.7" opacity="0.5"/>
+    <path d="M -17.5 -45 Q 0 0 -17.5 45" stroke="#5c5340" stroke-width="0.7" opacity="0.5" fill="none"/>
+    <path d="M 17.5 -45 Q 0 0 17.5 45" stroke="#5c5340" stroke-width="0.7" opacity="0.5" fill="none"/>
+  </svg>`
+};
+
+
+// S&E publications, by selected region, country, or economy and rest of world: 2002–23
+// Source : NCSES; Science-Metrix; Elsevier, Scopus abstract and citation database, accessed February 2025
+// Table DISC-12 / Figure DISC-22 — fractional count
+
+const RAW_DATA = [
+  // [year, China, EU-27, US, India, UK, Japan, Rest of world, World]
+  [2002,  74940, 307259, 321622,  23697,  74894,  98708, 256822, 1157942],
+  [2003,  87586, 319973, 332537,  26124,  76100, 101128, 278901, 1222350],
+  [2004, 120909, 338573, 356186,  28041,  79861, 103608, 303497, 1330675],
+  [2005, 165262, 374012, 385012,  32138,  84953, 111936, 337918, 1491231],
+  [2006, 192021, 392756, 387808,  37022,  88295, 112743, 365910, 1576555],
+  [2007, 212955, 410767, 390237,  41304,  90883, 108598, 389904, 1644647],
+  [2008, 246970, 430826, 392571,  46505,  90802, 106637, 418511, 1732822],
+  [2009, 284471, 449914, 397790,  51851,  92979, 107477, 447789, 1832273],
+  [2010, 307848, 461646, 407406,  58296,  93218, 107213, 481340, 1916968],
+  [2011, 320967, 480846, 420414,  69056,  94938, 109048, 515285, 2010556],
+  [2012, 326401, 500130, 425174,  75559,  97119, 107470, 537025, 2068879],
+  [2013, 351526, 510177, 427373,  80195,  98613, 106968, 554226, 2129076],
+  [2014, 379466, 519982, 428018,  88316,  97947, 103354, 578426, 2195509],
+  [2015, 401136, 525923, 429258,  94794,  99583, 100597, 600519, 2251810],
+  [2016, 430350, 528513, 431808, 104740, 100100, 101167, 640787, 2337464],
+  [2017, 464154, 530740, 435377, 115045, 100864, 101854, 678343, 2426377],
+  [2018, 513575, 530444, 441100, 123053, 101075, 101999, 711843, 2523089],
+  [2019, 608625, 543786, 442657, 128580, 102036, 100156, 786161, 2712000],
+  [2020, 671731, 554457, 453890, 145711, 103342, 100403, 843662, 2873196],
+  [2021, 756203, 588274, 471378, 173096, 108096, 106310, 913679, 3117036],
+  [2022, 885963, 568739, 447539, 200488, 101776, 102423, 919053, 3225981],
+  [2023, 932712, 558077, 430843, 228174,  97536,  96543, 931193, 3275079],
+];
+
+const ENTITIES = [
+  { key: 'cn', name: 'Chine',             color: 'var(--cn)'  },
+  { key: 'eu', name: 'Union européenne',  color: 'var(--eu)'  },
+  { key: 'us', name: 'États-Unis',        color: 'var(--us)'  },
+  { key: 'in', name: 'Inde',              color: 'var(--in)'  },
+  { key: 'uk', name: 'Royaume-Uni',       color: 'var(--uk)'  },
+  { key: 'jp', name: 'Japon',             color: 'var(--jp)'  },
+  { key: 'row', name: 'Reste du monde',   color: 'var(--row)' },
+];
+
+// Transformation en frames
+const YEARS = RAW_DATA.map(r => r[0]);
+function dataForYear(row) {
+  return [
+    { entity: ENTITIES[0], value: row[1] },  // Chine
+    { entity: ENTITIES[1], value: row[2] },  // UE-27
+    { entity: ENTITIES[2], value: row[3] },  // États-Unis
+    { entity: ENTITIES[3], value: row[4] },  // Inde
+    { entity: ENTITIES[4], value: row[5] },  // Royaume-Uni
+    { entity: ENTITIES[5], value: row[6] },  // Japon
+    { entity: ENTITIES[6], value: row[7] },  // Reste du monde
+  ];
+}
+
+// Interpolation pour animation fluide
+const FRAMES_PER_YEAR = 30;
+const frames = [];
+
+for (let i = 0; i < RAW_DATA.length - 1; i++) {
+  const rowA = RAW_DATA[i];
+  const rowB = RAW_DATA[i + 1];
+  const dA = dataForYear(rowA);
+  const dB = dataForYear(rowB);
+  for (let f = 0; f < FRAMES_PER_YEAR; f++) {
+    const t = f / FRAMES_PER_YEAR;
+    const year = rowA[0] + (rowB[0] - rowA[0]) * t;
+    const worldTotal = rowA[8] + (rowB[8] - rowA[8]) * t;
+    const values = dA.map((d, idx) => ({
+      entity: d.entity,
+      value: d.value + (dB[idx].value - d.value) * t
+    }));
+    values.sort((a, b) => b.value - a.value);
+    frames.push({ year, worldTotal, values });
+  }
+}
+// Dernière année - maintenir 3 secondes
+const lastRow = RAW_DATA[RAW_DATA.length - 1];
+const lastData = dataForYear(lastRow);
+lastData.sort((a, b) => b.value - a.value);
+for (let i = 0; i < FRAMES_PER_YEAR * 3; i++) {
+  frames.push({ year: lastRow[0], worldTotal: lastRow[8], values: lastData });
+}
+
+// ========= RENDER =========
+const chart = document.getElementById('chart');
+const gridlinesEl = document.getElementById('gridlines');
+const yearEl = document.getElementById('year');
+const worldTotalEl = document.getElementById('world-total');
+const playBtn = document.getElementById('playBtn');
+const resetBtn = document.getElementById('resetBtn');
+const speed1x = document.getElementById('speed1x');
+const speed2x = document.getElementById('speed2x');
+const timelineMarker = document.getElementById('timelineMarker');
+const timelineFill = document.getElementById('timelineFill');
+const annotations = document.querySelectorAll('.annotation');
+
+const barElements = new Map();
+const GLOBAL_MAX = 950000; // valeur max pour normaliser les barres (Chine 2023 = 932k)
+const ROW_HEIGHT = 60;
+
+function formatNumber(n) {
+  return Math.round(n).toLocaleString('fr-FR').replace(/\u202F/g, ' ').replace(/,/g, ' ');
+}
+
+function updateGridlines() {
+  gridlinesEl.innerHTML = '';
+  const leftOffset = 222; // label 170 + flag 28 + margin 24 = 222
+  const ticks = [0, 250000, 500000, 750000, 1000000];
+  const availWidth = chart.offsetWidth - leftOffset - 120; // reserve space for value label
+  ticks.forEach(t => {
+    if (t > GLOBAL_MAX) return;
+    const x = leftOffset + (t / GLOBAL_MAX) * availWidth;
+    const line = document.createElement('div');
+    line.className = 'gridline';
+    line.style.left = `${x}px`;
+    gridlinesEl.appendChild(line);
+
+    const label = document.createElement('div');
+    label.className = 'gridlabel';
+    label.style.left = `${x}px`;
+    label.textContent = t === 0 ? '0' : `${t/1000}k`;
+    gridlinesEl.appendChild(label);
+  });
+}
+
+function render(frameIndex) {
+  const frame = frames[frameIndex];
+  const yearInt = Math.floor(frame.year);
+  yearEl.textContent = yearInt;
+  worldTotalEl.textContent = formatNumber(frame.worldTotal);
+
+  // Timeline
+  const progress = frameIndex / (frames.length - 1);
+  timelineMarker.style.left = `${progress * 100}%`;
+  timelineFill.style.width = `${progress * 100}%`;
+
+  // Bars
+  const availWidth = chart.offsetWidth - 222 - 120;
+  frame.values.forEach((item, i) => {
+    let el = barElements.get(item.entity.key);
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'bar';
+      el.style.setProperty('--bar-color', item.entity.color);
+      el.innerHTML = `
+        <div class="bar-label"></div>
+        <div class="bar-flag">${FLAG_SVG[item.entity.key] || ''}</div>
+        <div class="bar-main">
+          <div class="bar-fill"></div>
+          <div class="bar-value"></div>
+        </div>
+      `;
+      chart.appendChild(el);
+      barElements.set(item.entity.key, el);
+      el.querySelector('.bar-label').textContent = item.entity.name;
+    }
+    const widthPx = (item.value / GLOBAL_MAX) * availWidth;
+    el.querySelector('.bar-fill').style.width = `${widthPx}px`;
+    el.querySelector('.bar-value').textContent = formatNumber(item.value);
+    el.style.transform = `translateY(${i * ROW_HEIGHT}px)`;
+  });
+
+  // Annotations
+  annotations.forEach(a => {
+    const annYear = parseInt(a.dataset.year);
+    a.classList.toggle('visible', yearInt === annYear);
+  });
+}
+
+updateGridlines();
+window.addEventListener('resize', () => {
+  updateGridlines();
+  render(currentFrame);
+});
+
+// ========= PLAYBACK =========
+let currentFrame = 0;
+let playing = false;
+let timer = null;
+let speed = 1;  // 1x = 80ms/frame, 2x = 40ms/frame
+
+function frameInterval() { return 80 / speed; }
+
+function play() {
+  playing = true;
+  playBtn.textContent = '❚❚ Pause';
+  timer = setInterval(() => {
+    if (currentFrame >= frames.length - 1) {
+      pause();
+      return;
+    }
+    currentFrame++;
+    render(currentFrame);
+  }, frameInterval());
+}
+
+function pause() {
+  playing = false;
+  playBtn.textContent = '▸ Lecture';
+  if (timer) clearInterval(timer);
+}
+
+function reset() {
+  pause();
+  currentFrame = 0;
+  render(0);
+}
+
+playBtn.addEventListener('click', () => {
+  if (playing) pause();
+  else {
+    if (currentFrame >= frames.length - 1) currentFrame = 0;
+    play();
+  }
+});
+
+resetBtn.addEventListener('click', reset);
+
+speed1x.addEventListener('click', () => {
+  speed = 1;
+  speed1x.classList.add('primary');
+  speed2x.classList.remove('primary');
+  if (playing) { pause(); play(); }
+});
+
+speed2x.addEventListener('click', () => {
+  speed = 2;
+  speed2x.classList.add('primary');
+  speed1x.classList.remove('primary');
+  if (playing) { pause(); play(); }
+});
+
+// Timeline scrubbing
+const timelineTrack = document.querySelector('.timeline-track');
+let scrubbing = false;
+
+function scrubTo(e) {
+  const rect = timelineTrack.getBoundingClientRect();
+  const x = (e.clientX || e.touches?.[0]?.clientX || 0) - rect.left;
+  const progress = Math.max(0, Math.min(1, x / rect.width));
+  currentFrame = Math.round(progress * (frames.length - 1));
+  render(currentFrame);
+}
+
+timelineTrack.addEventListener('mousedown', (e) => {
+  scrubbing = true;
+  pause();
+  scrubTo(e);
+});
+document.addEventListener('mousemove', (e) => {
+  if (scrubbing) scrubTo(e);
+});
+document.addEventListener('mouseup', () => { scrubbing = false; });
+
+timelineTrack.addEventListener('touchstart', (e) => {
+  scrubbing = true;
+  pause();
+  scrubTo(e);
+});
+document.addEventListener('touchmove', (e) => {
+  if (scrubbing) scrubTo(e);
+});
+document.addEventListener('touchend', () => { scrubbing = false; });
+
+// Initial render
+render(0);
+
+// Auto-start
+setTimeout(() => play(), 1200);
+
+</script>
+
+</body>
+</html>
