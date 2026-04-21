@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireActiveSubscriber } from '../../../lib/recoupement-auth'
 
 export const maxDuration = 60
 
 export async function POST(req: NextRequest) {
+  const auth = await requireActiveSubscriber()
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status })
+  }
+
   const { analyses } = await req.json()
   if (!analyses?.length) return NextResponse.json({ error: 'No analyses' }, { status: 400 })
 

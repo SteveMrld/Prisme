@@ -1,13 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { requireActiveSubscriber, consumeQuota } from '../../../lib/recoupement-auth'
 
 export const maxDuration = 60 // Vercel max for hobby plan
 
 export async function POST(req: NextRequest) {
+  // 1. Auth + abonnement actif (ou admin)
+  const auth = await requireActiveSubscriber()
+  if (!auth.ok) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status })
+  }
+
   const { query } = await req.json()
   if (!query) return NextResponse.json({ error: 'No query' }, { status: 400 })
 
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
+
+  // 2. Consomme le quota AVANT l'appel API (évite qu'un appel foiré consomme)
+  //    Si quota atteint, on retourne 429 sans rien appeler.
+  const quota = await consumeQuota(auth.userId, auth.isAdmin)
+  if (!quota.ok) {
+    return NextResponse.json({
+      error: quota.error,
+      quota: { used: quota.used, limit: quota.limit, remaining: 0 },
+    }, { status: quota.status })
+  }
 
   const SOURCES = [
     { id: 'ajenews', name: 'Al Jazeera', type: 'Média', bias: 'Qatar / pro-palestinien' },
@@ -118,7 +135,14 @@ Réponds UNIQUEMENT en JSON valide :
   const data = await response.json()
   if (!response.ok) {
     console.error('Anthropic API error:', data)
-    return NextResponse.json({ error: `API error: ${response.status}`, detail: data }, { status: 502 })
+    return NextResponse.json({
+      error: `API error: ${response.status}`,
+      detail: data,
+      quota: { used: quota.used, limit: quota.limit, remaining: quota.remaining },
+    }, { status: 502 })
   }
-  return NextResponse.json(data)
+  return NextResponse.json({
+    ...data,
+    quota: { used: quota.used, limit: quota.limit, remaining: quota.remaining },
+  })
 }

@@ -219,6 +219,7 @@ export default function RecoupementClient() {
   const [narrativeMode, setNarrativeMode] = useState(false)
   const [briefing, setBriefing] = useState<any>(null)
   const [briefingLoading, setBriefingLoading] = useState(false)
+  const [quota, setQuota] = useState<{ used: number; remaining: number; limit: number; isAdmin: boolean } | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const LOADING_MSGS = [
@@ -234,6 +235,21 @@ export default function RecoupementClient() {
       if (saved) setHistory(JSON.parse(saved))
     } catch {}
   }, [])
+
+  // Fetch quota au chargement (silencieux si pas connecté / pas abonné)
+  const refreshQuota = async () => {
+    try {
+      const res = await fetch('/api/recoupement/quota', { cache: 'no-store' })
+      if (res.ok) {
+        const data = await res.json()
+        setQuota(data)
+      }
+    } catch {}
+  }
+
+  useEffect(() => {
+    if (isPremium) refreshQuota()
+  }, [isPremium])
 
   const saveToHistory = (a: Analysis) => {
     try {
@@ -294,6 +310,8 @@ export default function RecoupementClient() {
             body: JSON.stringify({ query: searchQuery })
           })
           if (response.ok) break
+          // Erreurs non-retryables : on sort tout de suite
+          if ([401, 403, 429].includes(response.status)) break
         } catch {
           if (attempt === 1) throw new Error('Network error')
           await new Promise(r => setTimeout(r, 2000))
@@ -301,7 +319,21 @@ export default function RecoupementClient() {
       }
       if (!response) throw new Error('No response')
 
+      // Cas quota / auth / abonnement : message clair, pas de retry
+      if (response.status === 429) {
+        const data = await response.json().catch(() => ({}))
+        if (data.quota) setQuota(q => q ? { ...q, ...data.quota } : null)
+        setError('quota')
+        return
+      }
+      if (response.status === 401) { setError('auth'); return }
+      if (response.status === 403) { setError('subscription'); return }
+
       const data = await response.json()
+      if (data.quota) {
+        setQuota(q => q ? { ...q, ...data.quota } : { ...data.quota, isAdmin: false })
+      }
+
       const text = data.content
         ?.filter((b: any) => b.type === 'text')
         .map((b: any) => b.text)
@@ -494,11 +526,26 @@ export default function RecoupementClient() {
           <button
             className={styles.searchBtn}
             onClick={() => handleSearch()}
-            disabled={loading || !query.trim()}
+            disabled={loading || !query.trim() || (quota !== null && !quota.isAdmin && quota.remaining <= 0)}
           >
             {loading ? <span className={styles.btnSpinner} /> : 'Analyser →'}
           </button>
         </div>
+
+        {quota && !quota.isAdmin && (
+          <div style={{
+            marginTop: '14px',
+            textAlign: 'center',
+            fontSize: '12px',
+            fontFamily: 'monospace',
+            letterSpacing: '0.08em',
+            color: quota.remaining === 0 ? '#C04040' : quota.remaining <= 2 ? '#B8860B' : '#8a7f72',
+          }}>
+            {quota.remaining === 0
+              ? `Quota mensuel atteint · Réinitialisation le 1er du mois prochain`
+              : `${quota.remaining} recoupement${quota.remaining > 1 ? 's' : ''} restant${quota.remaining > 1 ? 's' : ''} ce mois-ci · ${quota.used}/${quota.limit}`}
+          </div>
+        )}
 
         {!analysis && !loading && history.length > 0 && (
           <div className={styles.historyBlock}>
@@ -567,6 +614,38 @@ export default function RecoupementClient() {
             <button className={styles.retryBtn} onClick={() => { setError(''); handleSearch() }}>
               Relancer l'analyse →
             </button>
+          </div>
+        )}
+
+        {error === 'quota' && (
+          <div className={styles.retryBlock}>
+            <div className={styles.retryTitle}>Quota mensuel atteint</div>
+            <p className={styles.retryText}>
+              Vous avez utilisé vos {quota?.limit ?? 10} recoupements de ce mois-ci.
+              Votre quota sera réinitialisé le 1<sup>er</sup> du mois prochain.
+            </p>
+          </div>
+        )}
+
+        {error === 'subscription' && (
+          <div className={styles.retryBlock}>
+            <div className={styles.retryTitle}>Abonnement requis</div>
+            <p className={styles.retryText}>
+              Le Recoupement est réservé aux abonnés Soara.
+            </p>
+            <a href="/abonnement" className={styles.retryBtn} style={{ display: 'inline-block', textDecoration: 'none' }}>
+              Voir l'abonnement →
+            </a>
+          </div>
+        )}
+
+        {error === 'auth' && (
+          <div className={styles.retryBlock}>
+            <div className={styles.retryTitle}>Connexion requise</div>
+            <p className={styles.retryText}>Reconnectez-vous pour continuer.</p>
+            <a href="/connexion" className={styles.retryBtn} style={{ display: 'inline-block', textDecoration: 'none' }}>
+              Se connecter →
+            </a>
           </div>
         )}
       </div>
