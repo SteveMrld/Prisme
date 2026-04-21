@@ -89,6 +89,34 @@ export async function readQuota(userId: string, isAdmin: boolean): Promise<Quota
 }
 
 /**
+ * Vérifie qu'il reste du quota SANS l'incrémenter.
+ * Utilisé avant d'appeler une API externe payante — on ne débite qu'au succès.
+ */
+export async function peekQuota(userId: string, isAdmin: boolean): Promise<QuotaResult & { extraCredits?: number }> {
+  if (isAdmin) {
+    return { ok: true, used: 0, remaining: 9999, limit: 9999, extraCredits: 0 }
+  }
+
+  const q = await readQuota(userId, isAdmin)
+  if (!q.ok) return q
+
+  const hasMonthly = q.remaining > 0
+  const hasExtras = (q.extraCredits ?? 0) > 0
+
+  if (!hasMonthly && !hasExtras) {
+    return {
+      ok: false,
+      status: 429,
+      error: 'Quota mensuel atteint',
+      used: q.used,
+      limit: q.limit,
+      extraCredits: 0,
+    }
+  }
+  return q
+}
+
+/**
  * Incrémente le compteur de manière atomique via la RPC Supabase.
  * Logique : d'abord le quota mensuel, puis les extra_credits, sinon 429.
  */

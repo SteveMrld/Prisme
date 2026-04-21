@@ -318,25 +318,13 @@ export default function RecoupementClient() {
     }, 2200)
 
     try {
-      let response: Response | null = null
-      for (let attempt = 0; attempt < 2; attempt++) {
-        try {
-          response = await fetch('/api/recoupement', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: searchQuery })
-          })
-          if (response.ok) break
-          // Erreurs non-retryables : on sort tout de suite
-          if ([401, 403, 429].includes(response.status)) break
-        } catch {
-          if (attempt === 1) throw new Error('Network error')
-          await new Promise(r => setTimeout(r, 2000))
-        }
-      }
-      if (!response) throw new Error('No response')
+      const response = await fetch('/api/recoupement', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: searchQuery })
+      })
 
-      // Cas quota / auth / abonnement : message clair, pas de retry
+      // Cas quota / auth / abonnement : message clair
       if (response.status === 429) {
         const data = await response.json().catch(() => ({}))
         if (data.quota) setQuota(q => q ? { ...q, ...data.quota } : null)
@@ -345,6 +333,14 @@ export default function RecoupementClient() {
       }
       if (response.status === 401) { setError('auth'); return }
       if (response.status === 403) { setError('subscription'); return }
+
+      // Erreur serveur / API Anthropic — rien n'a été débité
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}))
+        if (data.quota) setQuota(q => q ? { ...q, ...data.quota } : null)
+        setError('retry_free')
+        return
+      }
 
       const data = await response.json()
       if (data.quota) {
@@ -666,7 +662,19 @@ export default function RecoupementClient() {
             <div className={styles.retryTitle}>L'analyse prend plus de temps que prévu</div>
             <p className={styles.retryText}>
               La recherche en temps réel sur {SOURCES.length} sources peut prendre jusqu'à 30 secondes.
-              Attendez quelques instants puis relancez.
+              Attendez quelques instants puis relancez. Aucun crédit n'a été consommé.
+            </p>
+            <button className={styles.retryBtn} onClick={() => { setError(''); handleSearch() }}>
+              Relancer l'analyse →
+            </button>
+          </div>
+        )}
+
+        {error === 'retry_free' && (
+          <div className={styles.retryBlock}>
+            <div className={styles.retryTitle}>L'analyse n'a pas abouti</div>
+            <p className={styles.retryText}>
+              La réponse était incomplète ou le service a été coupé. <strong>Aucun crédit n'a été consommé</strong>, vous pouvez relancer.
             </p>
             <button className={styles.retryBtn} onClick={() => { setError(''); handleSearch() }}>
               Relancer l'analyse →
