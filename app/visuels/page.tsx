@@ -62,6 +62,26 @@ export default function VisuelsPage() {
             </div>
           </a>
 
+          {/* Card — Pauvreté en France */}
+          <a href="/visuels/pauvrete-france.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
+            <div className={styles.featBody}>
+              <div className={styles.featEyebrow}>
+                <span className={styles.featTag} style={{color:'var(--soc)'}}>Société · Économie · Dataviz interactive</span>
+                <span className={styles.featBadge}>Disponible</span>
+              </div>
+              <h3 className={styles.featTitle}>En 1975, un Français sur cinq.</h3>
+              <p className={styles.featSub}>INSEE · Séries longues 1975–2023 · Taux et chiffres absolus</p>
+              <p className={styles.featDesc}>
+                Cinquante ans de pauvreté monétaire en France. Une courbe qui descend, se stabilise, puis remonte.
+                En 2023, 15,4% — son niveau le plus haut depuis 1996. Une visualisation en deux temps : taux et nombre de personnes concernées.
+              </p>
+              <div className={styles.featCta}>
+                <span>Explorer la visualisation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 5l7 7-7 7M5 12h14"/></svg>
+              </div>
+            </div>
+          </a>
+
           {/* Card — Où se produit le savoir */}
           <a href="/visuels/science-race.html" target="_blank" rel="noopener noreferrer" className={styles.featCard} style={{marginTop:'1px'}}>
             <div className={styles.featBody}>
