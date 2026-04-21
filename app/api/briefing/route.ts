@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireActiveSubscriber } from '../../../lib/recoupement-auth'
+import { createClient as createAdminClient } from '@supabase/supabase-js'
 
 export const maxDuration = 60
+
+const DAILY_LIMIT = 3
 
 export async function POST(req: NextRequest) {
   const auth = await requireActiveSubscriber()
@@ -11,6 +14,40 @@ export async function POST(req: NextRequest) {
 
   const { analyses } = await req.json()
   if (!analyses?.length) return NextResponse.json({ error: 'No analyses' }, { status: 400 })
+
+  // Rate limit : 3 briefings / jour / abonné (bypass pour admin)
+  if (!auth.isAdmin) {
+    const admin = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+    const today = new Date().toISOString().slice(0, 10)
+    const dayKey = `briefing-${today}`
+
+    const { data: existing } = await admin
+      .from('recoupement_usage')
+      .select('count')
+      .eq('user_id', auth.userId)
+      .eq('year_month', dayKey)
+      .maybeSingle()
+
+    const current = existing?.count ?? 0
+    if (current >= DAILY_LIMIT) {
+      return NextResponse.json({
+        error: 'Limite quotidienne de briefings atteinte',
+        limit: DAILY_LIMIT,
+      }, { status: 429 })
+    }
+
+    await admin
+      .from('recoupement_usage')
+      .upsert({
+        user_id: auth.userId,
+        year_month: dayKey,
+        count: current + 1,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'user_id,year_month' })
+  }
 
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'No API key' }, { status: 500 })
