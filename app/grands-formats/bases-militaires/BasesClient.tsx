@@ -184,6 +184,7 @@ export default function BasesClient() {
   const [barProgress] = useState(1);
   const [zoom, setZoom] = useState(1);
   const [center, setCenter] = useState<[number, number]>([15, 10]);
+  const [mapActive, setMapActive] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   const toggleNation = (n: Nation) => {
@@ -289,7 +290,35 @@ export default function BasesClient() {
           </div>
 
           {/* Carte */}
-          <div className={styles.mapWrap}>
+          <div
+            className={styles.mapWrap}
+            style={{ position: 'relative', touchAction: mapActive ? 'none' : 'pan-y' }}
+            onClick={() => { if (!mapActive) setMapActive(true); }}
+          >
+            {!mapActive && (
+              <div
+                style={{
+                  position: 'absolute', inset: 0, zIndex: 5,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'rgba(13, 31, 60, 0.08)',
+                  backdropFilter: 'blur(1px)',
+                  cursor: 'pointer',
+                  pointerEvents: 'none',
+                }}
+              >
+                <div style={{
+                  background: 'rgba(13, 31, 60, 0.85)',
+                  color: '#F5F0E8',
+                  padding: '10px 20px',
+                  fontSize: '12px',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  fontFamily: 'monospace',
+                }}>
+                  Toucher pour activer la carte
+                </div>
+              </div>
+            )}
             <div className={styles.zoomControls}>
               <button className={styles.zoomBtn} onClick={() => setZoom(z => Math.min(z * 1.5, 16))} title="Zoom avant">+</button>
               <button className={styles.zoomBtn} onClick={() => { setZoom(1); setCenter([15, 10]); }} title="Réinitialiser">⌂</button>
@@ -306,6 +335,11 @@ export default function BasesClient() {
                 onMoveEnd={({ zoom: z, coordinates }) => { setZoom(z); setCenter(coordinates as [number, number]); }}
                 minZoom={1}
                 maxZoom={16}
+                filterZoomEvent={(evt: any) => {
+                  // Tant que l'utilisateur n'a pas tap la carte, on laisse les gestes
+                  // remonter au scroll de la page (fix scroll horizontal sur mobile).
+                  return mapActive;
+                }}
               >
               <Geographies geography={GEO_URL}>
                 {({ geographies }) =>
