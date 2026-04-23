@@ -1,5 +1,25 @@
 [
   {
+    "slug": "maladie-sans-filet",
+    "title": "La maladie sans filet",
+    "description": "Leila Janah, fondatrice de Samasource, meurt à trente-sept ans en janvier 2020. Sa trajectoire ouvre une question que les sociétés du travail indépendant peinent à formuler : celle de la maladie grave dans un régime professionnel où le corps est l'instrument de la production.",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "category": "soc",
+    "categoryLabel": "Société",
+    "secondaryCategory": "eco",
+    "secondaryCategoryLabel": "Économie",
+    "date": "2026-05-20",
+    "readTime": "14",
+    "image": "/articles/maladie-sans-filet.png",
+    "featured": false,
+    "premium": true,
+    "grandFormat": false,
+    "imageCredit": "© SOARA",
+    "titleEn": "Illness Without a Net",
+    "descriptionEn": "Leila Janah, founder of Samasource, died at thirty-seven in January 2020. Her trajectory opens a question that societies of independent work still struggle to formulate: that of serious illness in a professional regime where the body is the instrument of production."
+  },
+  {
     "slug": "derniere-generation",
     "title": "La dernière génération",
     "description": "Nous avons connu un monde où chercher prenait du temps, où penser demandait qu'on traverse soi-même ses idées. Ce monde est en train de devenir optionnel. Et c'est là que tout se joue.",
