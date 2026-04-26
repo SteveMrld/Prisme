@@ -4,6 +4,55 @@ import styles from './signal.module.css'
 
 const signals = [
   {
+    date: '26 avril 2026',
+    cat: 'Environnement',
+    catColor: 'var(--env)',
+    headline: 'Tchernobyl, quarante ans',
+    body: 'Le 26 avril 1986, le réacteur n°4 explosait. Quatre décennies plus tard, la zone d\'exclusion reste sous contrôle militaire ukrainien. Les liquidateurs survivants, dont l\'âge moyen dépasse soixante-dix ans, parlent désormais de "deux guerres" : celle du nucléaire civil et celle qui se prolonge sur leur sol depuis 2022.',
+  },
+  {
+    date: '25 avril 2026',
+    cat: 'Géopolitique',
+    catColor: 'var(--geo)',
+    headline: 'Bamako — le JNIM frappe la capitale malienne',
+    body: 'Attaques coordonnées sur Bamako, Kati, Gao, Kidal et Sévaré dès l\'aube. La résidence du ministre de la Défense Sadio Camara est détruite. Un hélicoptère de l\'armée est abattu à Gao. Le Front de libération de l\'Azawad annonce la prise de Kidal. La junte affirme que la situation est "sous contrôle". Tournant majeur dans le conflit sahélien.',
+  },
+  {
+    date: '25 avril 2026',
+    cat: 'Société',
+    catColor: 'var(--soc)',
+    headline: 'Détroit d\'Ormuz — premier marin tué',
+    body: 'Dalip Singh, vingt-quatre ans, marin originaire du Pendjab, devient la première victime civile reconnue des tirs iraniens dans le détroit. Sa famille n\'a toujours pas reçu son corps. L\'incident relance le débat sur la condition des marins du Sud global qui assurent près de la moitié du fret mondial sans protection consulaire effective.',
+  },
+  {
+    date: '24 avril 2026',
+    cat: 'Géopolitique',
+    catColor: 'var(--geo)',
+    headline: 'Hegseth annonce un blocus mondial de l\'Iran',
+    body: 'Le secrétaire à la Défense Pete Hegseth déclare que "personne ne passe par Ormuz sans l\'autorisation de la marine américaine". Trente-quatre navires sont déployés. L\'ordre Trump prévoit une riposte létale contre tout bâtiment iranien hostile. Des négociations indirectes pourraient toutefois reprendre à Islamabad sous médiation pakistanaise et émirienne.',
+  },
+  {
+    date: '24 avril 2026',
+    cat: 'Économie',
+    catColor: 'var(--eco)',
+    headline: 'L\'or franchit 4 688 dollars l\'once — fuite vers la sécurité',
+    body: 'Brent à 104,78 dollars, WTI à 94,83 dollars, deuxième semaine consécutive de hausse depuis le début du conflit. Le dollar progresse face à l\'euro et au yen, qui retrouve les 160. La grève dans l\'usine de GNL d\'Ichthys en Australie menace l\'approvisionnement asiatique. Les banques centrales du Golfe et d\'Asie discutent de lignes de liquidité avec Washington.',
+  },
+  {
+    date: '24 avril 2026',
+    cat: 'Environnement',
+    catColor: 'var(--env)',
+    headline: 'Jour du dépassement — la France atteint sa limite annuelle',
+    body: 'Selon le Global Footprint Network et le WWF, si l\'humanité vivait au rythme de consommation française, les ressources que la planète peut régénérer en un an seraient déjà épuisées au 24 avril. La France figure parmi les pays au déficit écologique le plus précoce, derrière les États-Unis et le Qatar. La date avance d\'une semaine par rapport à 2024.',
+  },
+  {
+    date: '23 avril 2026',
+    cat: 'Géopolitique',
+    catColor: 'var(--geo)',
+    headline: 'Pékin annonce la militarisation de onze mille îles',
+    body: 'La Chine bloque physiquement le récif de Scarborough et déclare la mer de Chine méridionale fermée à la navigation non autorisée. Manille hésite entre invocation du traité de défense mutuelle avec Washington, protestation diplomatique formelle et saisine internationale. La présence japonaise aux exercices Balikatan 2026 marque un précédent historique.',
+  },
+  {
     date: '17 mars 2026',
     cat: 'Géopolitique',
     catColor: 'var(--geo)',
@@ -75,7 +124,7 @@ export default function SignalPage() {
             <div className={styles.bandDesc}>L'actualité qui compte. Les faits bruts, sans bruit.</div>
           </div>
         </div>
-        <div className={styles.bandDate}>17 mars 2026</div>
+        <div className={styles.bandDate}>26 avril 2026</div>
       </div>
 
       <div className={styles.feed}>
