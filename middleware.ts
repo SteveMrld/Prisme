@@ -14,10 +14,15 @@ export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
     const isStaticAsset = /\.(jpg|jpeg|png|gif|webp|avif|svg|ico|mp4|webm|woff|woff2|ttf|otf|css|js|json|txt|xml|pdf)$/i.test(pathname)
     const allowedApiPaths = new Set([
-      '/api/auth/callback',
       '/api/stripe/webhook',
+      '/api/stripe/checkout',
       '/api/stripe/portal',
+      '/api/newsletter',
+      '/api/recoupement',
+      '/api/briefing',
     ])
+    const isAllowedApi =
+      pathname.startsWith('/api/auth/') || allowedApiPaths.has(pathname)
     const isAllowed =
       pathname === '/bientot' ||
       pathname === '/preview-unlock' ||
@@ -25,7 +30,7 @@ export async function middleware(request: NextRequest) {
       pathname === '/compte' ||
       pathname.startsWith('/_next') ||
       pathname.startsWith('/favicon') ||
-      allowedApiPaths.has(pathname) ||
+      isAllowedApi ||
       isStaticAsset
     if (!isAllowed) {
       return NextResponse.redirect(new URL('/bientot', request.url))
