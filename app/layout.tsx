@@ -63,11 +63,11 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   },
   alternates: {
