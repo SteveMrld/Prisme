@@ -6,7 +6,15 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/connexion', '/abonnement'],
+        disallow: [
+          '/admin',
+          '/api',
+          '/preview-unlock',
+          '/compte',
+          '/connexion',
+          '/reset-password',
+          '/mot-de-passe-oublie',
+        ],
       },
       {
         // GPTBot, Claude, common AI crawlers — on bloque
