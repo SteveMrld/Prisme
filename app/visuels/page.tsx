@@ -398,31 +398,6 @@ export default function VisuelsPage() {
           </div>
         </section>
 
-        {/* ═══ À VENIR ═══ */}
-        <section className={styles.section}>
-          <div className={styles.sectionHead}>
-            <div className={styles.sectionTag} style={{color:'var(--gris-m)'}}>En préparation</div>
-            <h2 className={styles.sectionTitle} style={{color:'var(--gris-m)'}}>Prochains formats</h2>
-          </div>
-          <div className={styles.upcomingGrid}>
-            {[
-              {title:'L\'Afrique recomposée',sub:'La fin d\'un monde',cat:'Géopolitique'},
-              {title:'Taïwan',sub:'Le détroit le plus dangereux',cat:'Géopolitique'},
-              {title:'BlackRock',sub:'La concentration du capital',cat:'Économie'},
-              {title:'Elon Musk',sub:'L\'homme qui défie son époque',cat:'Tech'},
-              {title:'Semi-conducteurs',sub:'La bataille des puces',cat:'Tech'},
-              {title:'L\'eau',sub:'La prochaine guerre mondiale',cat:'Environnement'},
-              {title:'France Maritime',sub:'L\'empire ignoré',cat:'Géopolitique'},
-            ].map((item,i) => (
-              <div key={i} className={styles.upCard}>
-                <span className={styles.upCat}>{item.cat}</span>
-                <div className={styles.upTitle}>{item.title}</div>
-                <div className={styles.upSub}>{item.sub}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
       </div>
 
       <footer className={styles.footer}>
