@@ -144,8 +144,8 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     sub: 'INSEE · Séries longues 1975–2023',
     desc: "Cinquante ans de pauvreté monétaire en France. En 2023, 15,4% — son niveau le plus haut depuis 1996.",
     cta: 'Explorer la visualisation',
-    image: '/articles/societe-du-consentement.png',
-    alt: "Visualisation de la pauvreté monétaire en France",
+    image: '/articles/atlas/02_en-1975-un-francais-sur-cinq.jpg',
+    alt: "Homme de dos devant des immeubles soviétiques",
   },
   {
     href: '/visuels/science-race.html', external: true,
@@ -154,8 +154,8 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     sub: 'National Science Board 2025',
     desc: "En 2002, les États-Unis et l'Europe publiaient deux tiers des articles scientifiques mondiaux. En 2023, ils n'en publient plus qu'un tiers.",
     cta: 'Explorer la visualisation',
-    image: '/articles/img-chine.jpg',
-    alt: "Laboratoire de recherche scientifique en Chine",
+    image: '/articles/atlas/03_ou-se-produit-le-savoir.jpg',
+    alt: "Scientifiques en laboratoire avec vue sur Tokyo",
   },
   {
     href: '/grands-formats/inegalites', external: false,
@@ -164,8 +164,8 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     sub: 'World Inequality Database · 4 pays · 1980–2022',
     desc: "États-Unis, France, Inde, Chine — en 1980, les quatre captaient la même part de richesse pour leur top 10%. Depuis, leurs trajectoires ont radicalement divergé.",
     cta: 'Explorer la visualisation',
-    image: '/grands-formats/inegalites/05-inegalites-now.jpg',
-    alt: "Visualisation des inégalités économiques mondiales",
+    image: '/articles/atlas/06_en-1980-ils-etaient-tous-pareils.jpg',
+    alt: "Skyline urbain et bidonvilles, contraste des inégalités",
   },
 ]
 
