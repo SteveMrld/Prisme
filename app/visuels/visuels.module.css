@@ -98,11 +98,26 @@
 }
 .featBg { display: none; }
 .featGlobe { display: none; }
+.featMedia {
+  flex: 0 0 38%;
+  background-size: cover;
+  background-position: center;
+  background-color: #0c0f15;
+  position: relative;
+  overflow: hidden;
+}
+.featMedia::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 60%, rgba(7,7,7,0.85) 100%);
+  pointer-events: none;
+}
 .featBody {
   position: relative; z-index: 1;
+  flex: 1;
   padding: 44px 52px;
   display: flex; flex-direction: column; gap: 14px;
-  max-width: 600px;
 }
 .featEyebrow { display: flex; align-items: center; gap: 14px; }
 .featTag {
@@ -224,17 +239,32 @@
   border: 1px solid var(--bord); border-radius: 4px; overflow: hidden;
 }
 .motionCard {
-  display: flex; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; text-decoration: none; color: inherit;
   background: var(--bg); transition: background 0.15s;
   position: relative;
 }
 .motionCard:hover { background: var(--papier); }
 .motionAccent {
-  width: 3px; flex-shrink: 0;
-  transition: width var(--dur-fast) var(--ease-out);
+  height: 3px; width: 100%; flex-shrink: 0;
+  transition: height var(--dur-fast) var(--ease-out);
 }
-.motionCard:hover .motionAccent { width: 5px; }
-.motionBody { padding: 28px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.motionCard:hover .motionAccent { height: 5px; }
+.motionMedia {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  background-color: #0c0f15;
+  position: relative;
+}
+.motionMedia::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+.motionBody { padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .motionEyebrow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .motionCat { font-size: 8px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
 .motionSlides { font-size: 8px; letter-spacing: 1px; color: var(--gris-l); }
@@ -328,6 +358,9 @@
   .heroMeta { flex-direction: row; align-self: stretch; justify-content: flex-start; }
   .page { padding: 48px 24px 64px; gap: 64px; }
   .sectionHead { margin-bottom: 24px; }
+  .featCard { flex-direction: column; min-height: 0; }
+  .featMedia { flex: 0 0 auto; width: 100%; aspect-ratio: 16 / 9; }
+  .featMedia::after { background: linear-gradient(to bottom, transparent 55%, rgba(7,7,7,0.85) 100%); }
   .featBody { padding: 28px 24px; }
   .upcomingGrid { grid-template-columns: repeat(2, 1fr); }
   .footer { flex-direction: column; padding: 32px 24px; gap: 16px; text-align: center; }
