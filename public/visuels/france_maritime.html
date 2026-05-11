@@ -209,7 +209,12 @@ document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==
 var tx=0;
 document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
 document.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){if(d<0)go(cur+1);else go(cur-1)}},{passive:true});
-setTimeout(function(){go(0)},200);
+setTimeout(function(){
+  go(0);
+  autoPlay=true;
+  document.getElementById('ppl').innerHTML='&#9646;&#9646;';
+  tmr=setInterval(function(){if(cur>=total-1){autoPlay=false;document.getElementById('ppl').innerHTML='&#9654;';clearInterval(tmr)}else go(cur+1)},5500);
+},200);
 </script>
 </body>
 </html>
