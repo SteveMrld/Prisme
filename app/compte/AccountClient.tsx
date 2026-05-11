@@ -15,14 +15,26 @@ interface Props {
 
 export default function AccountClient({ user, profile, isActive, isPastDue, successMessage }: Props) {
   const [portalLoading, setPortalLoading] = useState(false)
+  const [portalError, setPortalError] = useState<string | null>(null)
   const supabase = createClient()
   const router = useRouter()
 
   async function openPortal() {
+    setPortalError(null)
     setPortalLoading(true)
-    const res = await fetch('/api/stripe/portal', { method: 'POST' })
-    const { url } = await res.json()
-    window.location.href = url
+    try {
+      const res = await fetch('/api/stripe/portal', { method: 'POST' })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data?.url) {
+        setPortalError(data?.error || 'Impossible d\'ouvrir le portail. Réessayez ou écrivez à contact@soara.fr.')
+        setPortalLoading(false)
+        return
+      }
+      window.location.href = data.url
+    } catch {
+      setPortalError('Connexion impossible. Vérifiez votre réseau puis réessayez.')
+      setPortalLoading(false)
+    }
   }
 
   async function signOut() {
@@ -93,6 +105,11 @@ export default function AccountClient({ user, profile, isActive, isPastDue, succ
             <Link href="/abonnement" className={styles.btnLink}>
               S'abonner →
             </Link>
+          )}
+          {portalError && (
+            <div className={styles.alertCard} role="alert">
+              {portalError}
+            </div>
           )}
         </div>
 
