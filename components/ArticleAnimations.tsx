@@ -2,7 +2,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ReactNode, useRef, useEffect, useState } from 'react'
 
-const ease = [0.22, 1, 0.36, 1]
+// Aligne sur --ease-out (cubic-bezier(0.16,1,0.3,1))
+const ease = [0.16, 1, 0.3, 1] as const
 
 export function ParallaxHero({ src, alt, className }: { src: string; alt: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -45,7 +46,7 @@ export function ReadingTimeCounter({ totalMinutes }: { totalMinutes: number }) {
   return (
     <motion.div
       animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 6 }}
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.25, ease }}
       style={{
         position: 'fixed', bottom: '28px', right: '20px', zIndex: 50,
         background: 'var(--encre)', padding: '7px 13px',
@@ -84,7 +85,7 @@ export function ScrollDepth() {
     <motion.div
       className="scroll-depth-indicator"
       animate={{ opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.3, ease }}
     >
       <div
         className="scroll-depth-fill"
@@ -120,7 +121,7 @@ export function StickyReadingHeader({ title, categoryLabel, color }: { title: st
       display: 'flex', alignItems: 'center', gap: 16,
       padding: '0 24px', height: 48,
       transform: visible ? 'translateY(0)' : 'translateY(-100%)',
-      transition: 'transform 0.3s cubic-bezier(0.22,1,0.36,1)',
+      transition: 'transform var(--dur-base) var(--ease-out)',
     }}>
       <div style={{
         position: 'absolute', bottom: 0, left: 0,
