@@ -252,8 +252,8 @@ export default function ArticleLayout({
           <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
         )}
 
-        {/* CTA ABONNEMENT — articles gratuits uniquement */}
-        {!isPremiumContent && (
+        {/* CTA ABONNEMENT — articles gratuits uniquement, hors Atlas */}
+        {!isPremiumContent && category !== 'concept' && (
           <div style={{borderTop:'2px solid #1a1a1a',margin:'48px 0 0',padding:'40px 0 0',textAlign:'center'}}>
             <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'#C8A96E',marginBottom:'12px'}}>Soara · Média d'analyse indépendant</div>
             <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(20px,3vw,28px)',fontWeight:400,color:'#1a1a1a',marginBottom:'10px',lineHeight:1.2}}>Accédez à tous les grands formats</h3>
@@ -261,6 +261,35 @@ export default function ArticleLayout({
             <a href="/abonnement" style={{display:'inline-block',background:'#1a1a1a',color:'#fff',textDecoration:'none',fontSize:'11px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'13px 28px',marginBottom:'10px'}}>S'abonner — dès 9,99€/mois</a>
             <br/>
             <a href="/connexion" style={{fontSize:'11px',color:'#aaa',textDecoration:'none'}}>Déjà abonné ? Se connecter</a>
+          </div>
+        )}
+
+        {/* FIN DE PAGE ATLAS — vers d'autres visualisations */}
+        {!isPremiumContent && category === 'concept' && (
+          <div style={{borderTop:'2px solid #1a1a1a',margin:'48px 0 0',padding:'40px 0 0'}}>
+            <div style={{textAlign:'center',marginBottom:'28px'}}>
+              <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'#1A1A3E',marginBottom:'12px'}}>Atlas Soara</div>
+              <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(20px,3vw,28px)',fontWeight:400,color:'#1a1a1a',marginBottom:'10px',lineHeight:1.2}}>Découvrir d'autres formats Atlas</h3>
+              <p style={{fontSize:'14px',color:'#888',maxWidth:'420px',margin:'0 auto',lineHeight:1.6,fontStyle:'italic',fontFamily:"'Playfair Display',serif"}}>Motions design, cartes interactives, visualisations de données. Les idées qui se comprennent mieux en les voyant.</p>
+            </div>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))',gap:'18px',marginBottom:'24px'}}>
+              {related.slice(0,3).map((a: any) => (
+                <a key={a.slug} href={`/articles/${a.slug}`} style={{display:'block',textDecoration:'none',color:'inherit',border:'1px solid #eee',borderRadius:'4px',overflow:'hidden',background:'#fff'}}>
+                  {a.image && (
+                    <div style={{aspectRatio:'16/10',background:'#f5f5f5',overflow:'hidden'}}>
+                      <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}} />
+                    </div>
+                  )}
+                  <div style={{padding:'12px 14px 14px'}}>
+                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#1A1A3E',marginBottom:'6px',fontFamily:"'DM Sans',sans-serif"}}>Atlas</div>
+                    <div style={{fontFamily:"'Playfair Display',serif",fontSize:'15px',lineHeight:1.25,color:'#111',fontWeight:400}} dangerouslySetInnerHTML={{__html: a.title.replace(/\n/g,' ')}} />
+                  </div>
+                </a>
+              ))}
+            </div>
+            <div style={{textAlign:'center'}}>
+              <a href="/visuels" style={{display:'inline-block',background:'#1a1a1a',color:'#fff',textDecoration:'none',fontSize:'11px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'13px 28px'}}>Voir tout l'Atlas →</a>
+            </div>
           </div>
         )}
 
@@ -281,7 +310,7 @@ export default function ArticleLayout({
       </div>{/* articleMainCol */}
 
       {/* ── SIDEBAR DROITE — articles liés (desktop uniquement) ── */}
-      {related.length > 0 && (
+      {related.length > 0 && category !== 'concept' && (
         <div className={styles.articleSidebar}>
           <div className={styles.sidebarTitle}>À lire aussi</div>
           {related.map((a: any) => (
@@ -298,7 +327,7 @@ export default function ArticleLayout({
       </div>{/* articlePageLayout */}
 
       {/* ── ARTICLES LIÉS (mobile uniquement) ── */}
-      {related.length > 0 && (
+      {related.length > 0 && category !== 'concept' && (
         <div className={styles.related}>
           <div className={styles.relatedHead}>
             <div className={styles.relatedLabel}>Lire aussi</div>
