@@ -115,7 +115,7 @@
   font-size: 18px;
   color: rgba(200, 169, 110, 0.4);
   align-self: center;
-  text-align: right;
+  justify-self: end;
   transition: color .15s ease, transform .2s ease;
   line-height: 1;
 }
