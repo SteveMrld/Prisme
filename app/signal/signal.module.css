@@ -108,8 +108,8 @@
 
 .itemHeadline {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 400;
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.5px;
   color: var(--encre);
@@ -117,9 +117,9 @@
 
 .itemBody {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
+  font-size: clamp(15px, 1.7vw, 16px);
   color: var(--gris);
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 .footer {

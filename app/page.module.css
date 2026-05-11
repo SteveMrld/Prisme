@@ -527,6 +527,18 @@
   .row2LastSection .rowCol:last-child { border-bottom: none; }
 }
 
+/* Petit mobile : réduire la thumb dernières publications pour laisser respirer le titre */
+@media (max-width: 400px) {
+  .latestItem2 .rowThumb {
+    width: 56px;
+    height: 42px;
+    margin: 12px 10px 0 0;
+  }
+  .latestItem2 .rowItemBody {
+    padding: 12px 10px 14px 8px;
+  }
+}
+
 /* ════════════════════════════════════
    GF META — casque audio
 ════════════════════════════════════ */
