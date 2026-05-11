@@ -32,7 +32,7 @@ export default function PreviewUnlock() {
           color:'#cdd0d8', padding:'12px 20px', fontSize:14,
           fontFamily:'monospace', letterSpacing:2, width:240,
           outline:'none', textAlign:'center', marginBottom:12,
-          transition:'border-color 0.2s',
+          transition:'border-color var(--dur-fast) var(--ease-out)',
         }}
       />
       <button onClick={handleSubmit} style={{

@@ -152,7 +152,9 @@
   text-transform: uppercase;
   color: #555;
   cursor: pointer;
-  transition: border-color .15s, color .15s, background .15s;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
 }
 .planBtn:hover { border-color: #1a1a1a; color: #1a1a1a; }
 .planBtn:disabled { opacity: .45; cursor: default; }
@@ -247,7 +249,7 @@
   background: #DDD9D2;
   cursor: pointer;
   padding: 0;
-  transition: background .2s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .dotActive { background: #1a1a1a; }
 
@@ -358,7 +360,7 @@
   text-transform: uppercase;
   color: rgba(255,255,255,.3);
   text-decoration: none;
-  transition: color .15s;
+  transition: color var(--dur-fast) var(--ease-out);
 }
 .footerLinks a:hover { color: rgba(255,255,255,.7); }
 

@@ -76,7 +76,7 @@
   color: var(--encre);
   font-family: 'DM Sans', sans-serif;
   outline: none;
-  transition: border-color 0.15s;
+  transition: border-color var(--dur-fast) var(--ease-out);
   width: 100%;
 }
 
@@ -93,7 +93,8 @@
   letter-spacing: 2.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
   font-family: 'DM Sans', sans-serif;
   text-decoration: none;
   text-align: center;
@@ -109,7 +110,7 @@
   letter-spacing: 1px;
   text-decoration: none;
   text-align: center;
-  transition: color 0.15s;
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
 .back:hover { color: var(--encre); }

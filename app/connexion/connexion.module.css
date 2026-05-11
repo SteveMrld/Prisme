@@ -49,7 +49,8 @@
   border-bottom: 2px solid transparent;
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
   margin-bottom: -1px;
 }
 
@@ -85,7 +86,7 @@
   color: var(--encre);
   font-family: 'DM Sans', sans-serif;
   outline: none;
-  transition: border-color 0.15s;
+  transition: border-color var(--dur-fast) var(--ease-out);
   width: 100%;
 }
 
@@ -102,7 +103,8 @@
   letter-spacing: 2.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
   font-family: 'DM Sans', sans-serif;
 }
 
@@ -119,7 +121,7 @@
   border: none;
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
-  transition: color 0.15s;
+  transition: color var(--dur-fast) var(--ease-out);
   padding: 4px 0;
 }
 
@@ -156,7 +158,8 @@
   text-align: center;
   padding: 12px;
   border: 1px solid var(--bord);
-  transition: border-color 0.15s, background 0.15s;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
 }
 
 .subscribe:hover { border-color: var(--encre); background: var(--papier); }
