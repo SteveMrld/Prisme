@@ -89,6 +89,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
   padding: 16px 24px;
   border-bottom: 1px solid var(--bord-l);
 }
@@ -101,6 +102,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--gris-l);
+  flex-shrink: 0;
 }
 
 .statusValue {
@@ -110,6 +112,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  text-align: right;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .statusDot {
@@ -281,4 +287,17 @@
   .header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .quickLinks { grid-template-columns: 1fr; }
   .successBanner { padding: 14px 24px; }
+}
+
+@media (max-width: 520px) {
+  .statusRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 18px;
+  }
+  .statusValue {
+    text-align: left;
+    font-size: 15px;
+  }
 }
