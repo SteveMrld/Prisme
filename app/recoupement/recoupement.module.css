@@ -36,7 +36,7 @@
 .searchInner {
   display: flex; gap: 0;
   border: 2px solid var(--encre);
-  transition: border-color .2s;
+  transition: border-color var(--dur-fast) var(--ease-out);
 }
 .searchInner:focus-within { border-color: var(--or); }
 .searchInput {
@@ -52,7 +52,7 @@
   font-size: 10px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; border: none; cursor: pointer;
   font-family: 'DM Sans', sans-serif;
-  transition: background .2s; min-width: 140px;
+  transition: background-color var(--dur-fast) var(--ease-out); min-width: 140px;
   display: flex; align-items: center; justify-content: center;
 }
 .searchBtn:hover:not(:disabled) { background: #1A1A1A; }
@@ -75,7 +75,10 @@
   border: 1px solid var(--bord); cursor: pointer;
   font-size: 12px; color: var(--gris);
   font-family: 'DM Sans', sans-serif;
-  transition: all .2s; text-align: left;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+  text-align: left;
 }
 .exBtn:hover { border-color: var(--encre); color: var(--encre); background: #F5F3EF; }
 
@@ -186,7 +189,7 @@
 .sourceCards { display: flex; flex-direction: column; gap: 1px; }
 .sourceCard {
   background: var(--fond); padding: 20px 24px;
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out);
   border-left: 2px solid transparent;
 }
 .sourceCard:hover {
@@ -243,7 +246,8 @@
 .cardMetaLink {
   color: var(--or);
   text-decoration: none;
-  transition: color .15s, border-color .15s;
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
   border-bottom: 1px solid transparent;
   padding-bottom: 1px;
 }
@@ -256,7 +260,7 @@
   background: none; border: none; cursor: pointer;
   font-size: 12px; color: var(--gris-l);
   font-family: 'DM Sans', sans-serif;
-  padding: 0; transition: color .2s;
+  padding: 0; transition: color var(--dur-fast) var(--ease-out);
   margin-top: 16px;
 }
 .newSearch:hover { color: var(--encre); }
@@ -278,7 +282,7 @@
   background: var(--encre); color: var(--fond);
   font-size: 10px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; text-decoration: none;
-  transition: background .2s; margin-bottom: 12px;
+  transition: background-color var(--dur-fast) var(--ease-out); margin-bottom: 12px;
 }
 .paywallBtn:hover { background: var(--or); color: #0A0A0A; }
 .paywallLink { display: block; font-size: 12px; color: var(--gris-l); text-decoration: none; }
@@ -314,7 +318,7 @@
 }
 .scoreFill {
   height: 100%; background: var(--or);
-  transition: width 1s cubic-bezier(.4,0,.2,1);
+  transition: width 1s var(--ease-out);
 }
 .scoreValue {
   font-family: 'DM Mono', monospace;
@@ -333,7 +337,7 @@
   font-size: 11px; color: var(--gris-l);
   font-family: 'DM Mono', monospace;
   letter-spacing: 1px; padding: 0;
-  transition: color .2s;
+  transition: color var(--dur-fast) var(--ease-out);
 }
 .historyToggle:hover { color: var(--encre); }
 .historyList {
@@ -346,7 +350,7 @@
   padding: 12px 0; border-bottom: 1px solid var(--bord);
   background: none; border-left: none; border-right: none;
   cursor: pointer; text-align: left;
-  transition: padding-left .2s;
+  transition: padding-left var(--dur-fast) var(--ease-out);
 }
 .historyItem:hover { padding-left: 8px; }
 .historyTopic {
@@ -364,7 +368,8 @@
 .exCard {
   background: #F5F3EF; padding: 20px 24px;
   border-left: 2px solid transparent;
-  transition: border-color .2s, background .2s;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
 }
 .exCard:hover { border-left-color: var(--or); background: #F0EDE7; }
 .exCardTop {
@@ -381,7 +386,7 @@
   font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
   text-transform: uppercase; color: var(--or);
   font-family: 'DM Sans', sans-serif;
-  transition: color .2s; padding: 0;
+  transition: color var(--dur-fast) var(--ease-out); padding: 0;
 }
 .exCardBtn:hover { color: var(--encre); }
 .exCardQuery {
@@ -416,7 +421,7 @@
   border: none; cursor: pointer; padding: 12px 28px;
   font-size: 10px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; font-family: 'DM Sans', sans-serif;
-  transition: background .2s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .retryBtn:hover { background: var(--or); color: #0A0A0A; }
 
@@ -441,7 +446,10 @@
   border: none; cursor: pointer;
   font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
   text-transform: uppercase; color: var(--gris-l);
-  font-family: 'DM Sans', sans-serif; transition: all .15s;
+  font-family: 'DM Sans', sans-serif;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
 }
 .viewBtnActive { background: var(--encre); color: #FAF9F7; }
 
@@ -493,7 +501,7 @@
   border: none; cursor: pointer; padding: 12px 24px;
   font-size: 10px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; font-family: 'DM Sans', sans-serif;
-  transition: background .2s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .briefingBtn:hover:not(:disabled) { background: var(--or); color: #0A0A0A; }
 .briefingBtn:disabled { opacity: .5; cursor: not-allowed; }
@@ -535,7 +543,8 @@
   display: flex; flex-direction: column; gap: 8px;
   padding: 22px 20px; background: #F5F3EF;
   text-decoration: none; border-left: 2px solid transparent;
-  transition: border-color .2s, background .15s;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
 }
 .casCard:hover { border-left-color: var(--or); background: #F0EDE7; }
 .casTag {
@@ -591,7 +600,7 @@
 }
 .coverageFill {
   height: 100%; background: var(--or);
-  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+  transition: width 1.2s var(--ease-out);
 }
 .coverageValue {
   font-family: 'DM Mono', monospace;

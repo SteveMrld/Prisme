@@ -45,7 +45,7 @@ export default function BientotPage() {
               outline: 'none',
               textAlign: 'center',
               marginBottom: 14,
-              transition: 'border-color 0.2s',
+              transition: 'border-color var(--dur-fast) var(--ease-out)',
               borderRadius: 2,
             }}
           />

@@ -87,7 +87,8 @@
   overflow: hidden;
   min-height: 260px;
   position: relative;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
   margin-bottom: 16px;
 }
 .featCard:hover {
@@ -137,7 +138,7 @@
   font-size: 11px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
   color: #C8A96E; margin-top: 8px;
-  transition: gap 0.2s;
+  transition: gap var(--dur-fast) var(--ease-out);
 }
 .featCard:hover .featCta { gap: 12px; }
 
@@ -190,7 +191,7 @@
 .trioAccent {
   width: 3px; flex-shrink: 0;
   background: var(--eco);
-  transition: width 0.2s;
+  transition: width var(--dur-fast) var(--ease-out);
 }
 .trioCard:hover .trioAccent { width: 5px; }
 .trioBody { padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
@@ -230,7 +231,7 @@
 .motionCard:hover { background: var(--papier); }
 .motionAccent {
   width: 3px; flex-shrink: 0;
-  transition: width 0.2s;
+  transition: width var(--dur-fast) var(--ease-out);
 }
 .motionCard:hover .motionAccent { width: 5px; }
 .motionBody { padding: 28px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
@@ -261,7 +262,7 @@
 .motionCta {
   font-size: 10px; font-weight: 600;
   letter-spacing: 1px; text-transform: uppercase;
-  margin-top: 10px; transition: opacity 0.15s;
+  margin-top: 10px; transition: opacity var(--dur-fast) var(--ease-out);
 }
 .motionCard:hover .motionCta { opacity: 0.7; }
 

@@ -33,7 +33,7 @@ export function AnimatedItem({ children, index }: { children: React.ReactNode, i
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
-  return <div ref={ref} style={{ opacity:0, transform:'translateY(40px)', transition:`opacity 0.8s ease ${index*0.04}s, transform 0.8s ease ${index*0.04}s` }}>{children}</div>
+  return <div ref={ref} style={{ opacity:0, transform:'translateY(40px)', transition:`opacity var(--dur-page) var(--ease-out) ${index*0.04}s, transform var(--dur-page) var(--ease-out) ${index*0.04}s` }}>{children}</div>
 }
 
 export function AnimatedStat({ num, label }: { num: string, label: string }) {

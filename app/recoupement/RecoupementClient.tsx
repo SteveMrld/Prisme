@@ -844,7 +844,7 @@ export default function RecoupementClient() {
                     style={{
                       opacity: i < visibleResults ? 1 : 0,
                       transform: i < visibleResults ? 'none' : 'translateY(16px)',
-                      transition: 'opacity .4s ease, transform .4s ease',
+                      transition: 'opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out)',
                     }}
                   >
                     <div className={styles.cardTop}>
