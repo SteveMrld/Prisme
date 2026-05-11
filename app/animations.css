@@ -82,3 +82,9 @@
 .image-zoom-wrap:hover > picture > img {
   transform: scale(1.04);
 }
+
+/* ── ownerExpand : reveal accordion content (used inline) ─── */
+@keyframes ownerExpand {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

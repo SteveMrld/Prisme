@@ -168,7 +168,7 @@ function EcoCard({item,accent}){
   const [hov,setHov]=useState(false);
   return(
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
-      style={{background:hov?C.surfaceHover:C.surface,border:`1px solid ${hov?C.muted:C.border}`,borderLeft:`3px solid ${accent}`,padding:"14px 18px",transition:"all 0.2s",display:"grid",gridTemplateColumns:"200px 1fr 1fr",gap:16,alignItems:"center"}}>
+      style={{background:hov?C.surfaceHover:C.surface,border:`1px solid ${hov?C.muted:C.border}`,borderLeft:`3px solid ${accent}`,padding:"14px 18px",transition:"background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out)",display:"grid",gridTemplateColumns:"200px 1fr 1fr",gap:16,alignItems:"center"}}>
       <div>
         <div style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:C.text,marginBottom:6}}>{item.name}</div>
         <div style={{display:"flex",gap:4,flexWrap:"wrap"}}>{item.platforms.map(p=><PlatformTag key={p} name={p}/>)}</div>
@@ -196,7 +196,7 @@ function MediaBadge({item}){
 function OwnerCard({owner,idx,expanded,onToggle}){
   const color=ownerColors[idx%ownerColors.length];
   return(
-    <div style={{border:`1px solid ${expanded?color+"66":C.border}`,background:expanded?C.surfaceHover:C.surface,transition:"all 0.25s",marginBottom:8}}>
+    <div style={{border:`1px solid ${expanded?color+"66":C.border}`,background:expanded?C.surfaceHover:C.surface,transition:"background-color var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out)",marginBottom:8}}>
       <div onClick={onToggle} style={{padding:"16px 20px",cursor:"pointer",display:"grid",gridTemplateColumns:"1fr auto auto",alignItems:"center",gap:16}}>
         <div style={{display:"flex",alignItems:"center",gap:14}}>
           <div style={{width:4,height:40,background:color,flexShrink:0}}/>
@@ -206,10 +206,10 @@ function OwnerCard({owner,idx,expanded,onToggle}){
           </div>
         </div>
         <div style={{fontFamily:"monospace",fontSize:13,color:color,fontWeight:700,textAlign:"right"}}>{owner.fortune}</div>
-        <div style={{fontFamily:"monospace",fontSize:18,color:C.muted,width:20,textAlign:"center",transition:"transform 0.2s",transform:expanded?"rotate(45deg)":"rotate(0deg)"}}>+</div>
+        <div style={{fontFamily:"monospace",fontSize:18,color:C.muted,width:20,textAlign:"center",transition:"transform var(--dur-base) var(--ease-out), color var(--dur-fast) var(--ease-out)",transform:expanded?"rotate(45deg)":"rotate(0deg)"}}>+</div>
       </div>
       {expanded&&(
-        <div style={{borderTop:`1px solid ${C.border}`,padding:"16px 20px 20px"}}>
+        <div style={{borderTop:`1px solid ${C.border}`,padding:"16px 20px 20px",animation:"ownerExpand var(--dur-base) var(--ease-out)"}}>
           <p style={{fontFamily:"'Source Serif 4',serif",fontSize:12,color:C.dim,margin:"0 0 14px",lineHeight:1.6,fontStyle:"italic"}}>{owner.note}</p>
           <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
             {owner.media.map((m,i)=><MediaBadge key={i} item={m}/>)}
@@ -257,12 +257,12 @@ export function CrisisViz() {
   const DIV=()=><div style={{height:1,background:C.border,margin:"44px 0"}}/>;
   const TABS=({value,onChange,options})=>(
     <div style={{display:"flex",borderBottom:`1px solid ${C.border}`,marginBottom:24}}>
-      {options.map(o=><button key={o} onClick={()=>onChange(o)} style={{background:"none",border:"none",borderBottom:`2px solid ${value===o?C.gold:"transparent"}`,color:value===o?C.goldLight:C.dim,fontFamily:"monospace",fontSize:11,letterSpacing:1,padding:"8px 18px 10px",cursor:"pointer",transition:"color 0.2s"}}>{o}</button>)}
+      {options.map(o=><button key={o} onClick={()=>onChange(o)} style={{background:"none",border:"none",borderBottom:`2px solid ${value===o?C.gold:"transparent"}`,color:value===o?C.goldLight:C.dim,fontFamily:"monospace",fontSize:11,letterSpacing:1,padding:"8px 18px 10px",cursor:"pointer",transition:"color var(--dur-fast) var(--ease-out), border-bottom-color var(--dur-base) var(--ease-out)"}}>{o}</button>)}
     </div>
   );
 
   return(
-    <div style={{background:C.bg,minHeight:"100vh",color:C.text,paddingBottom:60,opacity:visible?1:0,transition:"opacity 0.5s"}}>
+    <div style={{background:C.bg,minHeight:"100vh",color:C.text,paddingBottom:60,opacity:visible?1:0,transition:"opacity var(--dur-page) var(--ease-out)"}}>
       <div style={{borderBottom:`1px solid ${C.border}`,padding:"32px 40px 28px",background:"radial-gradient(ellipse at 15% 60%, rgba(201,168,76,0.05) 0%, transparent 55%)"}}>
         <div style={{fontFamily:"monospace",fontSize:9,letterSpacing:4,color:C.muted,textTransform:"uppercase",marginBottom:14}}>SOARA · Analyse · Reuters Institute Digital News Report 2025</div>
         <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(22px,3.5vw,40px)",fontWeight:900,color:C.text,margin:"0 0 10px",lineHeight:1.2,maxWidth:720}}>
@@ -546,7 +546,7 @@ function ArcDiagram({ owners }) {
             stroke={inactive ? CA.muted : `url(#g${m.oi}_${m.mi})`}
             strokeWidth={active ? 1.8 : inactive ? 0.4 : 1.2}
             strokeOpacity={active ? 0.75 : inactive ? 0.06 : 0.3}
-            style={{ transition: "stroke-opacity 0.2s, stroke-width 0.2s" }}
+            style={{ transition: "stroke-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out)" }}
           />
         );
       })}
@@ -565,18 +565,18 @@ function ArcDiagram({ owners }) {
             <line x1={x} y1={ownerY - 32} x2={x} y2={ownerY}
               stroke={o.col} strokeWidth={isHov ? 2 : 1}
               strokeOpacity={inactive ? 0.15 : 0.8}
-              style={{ transition: "all 0.2s" }} />
+              style={{ transition: "stroke-opacity var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out), r var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out)" }} />
             {/* dot */}
             <circle cx={x} cy={ownerY - 34} r={isHov ? 5 : 3.5}
               fill={o.col} fillOpacity={inactive ? 0.15 : 1}
-              style={{ transition: "all 0.2s" }} />
+              style={{ transition: "stroke-opacity var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out), r var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out)" }} />
             {/* name */}
             <text x={x} y={ownerY - 44}
               textAnchor="middle" fill={o.col}
               fontSize={isHov ? 13 : 12}
               fontFamily="'Playfair Display', serif" fontWeight="700"
               fillOpacity={inactive ? 0.2 : 1}
-              style={{ userSelect: "none", transition: "all 0.2s" }}>
+              style={{ userSelect: "none", transition: "stroke-opacity var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out), r var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out)" }}>
               {o.name}
             </text>
             {/* fortune */}
@@ -585,7 +585,7 @@ function ArcDiagram({ owners }) {
                 textAnchor="middle" fill={o.col}
                 fontSize={8} fontFamily="monospace"
                 fillOpacity={inactive ? 0.15 : 0.55}
-                style={{ userSelect: "none", transition: "all 0.2s" }}>
+                style={{ userSelect: "none", transition: "stroke-opacity var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out), r var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out)" }}>
                 {o.fortune}
               </text>
             )}
@@ -609,11 +609,11 @@ function ArcDiagram({ owners }) {
             <line x1={x} y1={mediaY} x2={x} y2={mediaY + 10}
               stroke={tc} strokeWidth={1}
               strokeOpacity={inactive ? 0.06 : 0.5}
-              style={{ transition: "all 0.2s" }} />
+              style={{ transition: "stroke-opacity var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out), r var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out)" }} />
             {/* dot */}
             <circle cx={x} cy={mediaY + 14} r={isHovM ? 5 : 3.5}
               fill={tc} fillOpacity={inactive ? 0.08 : active ? 1 : 0.5}
-              style={{ transition: "all 0.2s" }} />
+              style={{ transition: "stroke-opacity var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out), r var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out)" }} />
             {/* rotated label */}
             <text
               transform={`translate(${x}, ${mediaY + 24}) rotate(-55)`}
@@ -622,7 +622,7 @@ function ArcDiagram({ owners }) {
               fontSize={10.5}
               fontFamily="'Source Serif 4', serif"
               fillOpacity={inactive ? 0.12 : active ? 1 : 0.6}
-              style={{ userSelect: "none", transition: "all 0.2s" }}>
+              style={{ userSelect: "none", transition: "stroke-opacity var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out), r var(--dur-fast) var(--ease-out), font-size var(--dur-fast) var(--ease-out)" }}>
               {m.n}
             </text>
           </g>
@@ -667,7 +667,7 @@ export function OwnershipMap() {
   const owners = OWNERS_DATA[country];
 
   return (
-    <div style={{ background: CA.bg, minHeight: "100vh", color: CA.text, paddingBottom: 60, opacity: visible ? 1 : 0, transition: "opacity 0.5s" }}>
+    <div style={{ background: CA.bg, minHeight: "100vh", color: CA.text, paddingBottom: 60, opacity: visible ? 1 : 0, transition: "opacity var(--dur-page) var(--ease-out)" }}>
 
       {/* Header */}
       <div style={{ borderBottom: `1px solid ${CA.border}`, padding: "28px 36px 22px", background: "radial-gradient(ellipse at 18% 50%, rgba(201,168,76,0.04) 0%, transparent 60%)" }}>
@@ -692,7 +692,7 @@ export function OwnershipMap() {
               borderBottom: `2px solid ${country === c ? CA.gold : "transparent"}`,
               color: country === c ? CA.gold : CA.dim,
               fontFamily: "monospace", fontSize: 11, letterSpacing: 1,
-              padding: "8px 20px 10px", cursor: "pointer", transition: "color 0.2s",
+              padding: "8px 20px 10px", cursor: "pointer", transition: "color var(--dur-fast) var(--ease-out), border-bottom-color var(--dur-base) var(--ease-out)",
             }}>{c}</button>
           ))}
         </div>
