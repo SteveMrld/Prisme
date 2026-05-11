@@ -1,0 +1,84 @@
+/* ── panel : fade-up à l'apparition + border-color transition ── */
+.panel {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out);
+  will-change: opacity, transform;
+}
+.panelMounted {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── content : replay subtle à chaque changement de zone ── */
+.content {
+  animation: contentIn var(--dur-base) var(--ease-out);
+}
+@keyframes contentIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── navigation dots ── */
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out),
+              opacity var(--dur-base) var(--ease-out);
+}
+.dotActive {
+  transform: scale(1.4);
+  animation: dotPulse 2.4s var(--ease-out) infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.78; }
+  50%      { opacity: 1; }
+}
+
+/* ── boutons navigation ── */
+.btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-micro) var(--ease-out);
+}
+.btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.72);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.btn:active { transform: scale(0.97); }
+
+.btnAccent {
+  background: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out),
+              transform var(--dur-micro) var(--ease-out);
+}
+.btnAccent:hover { background: rgba(255, 255, 255, 0.04); }
+.btnAccent:active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dotActive { animation: none; }
+}
