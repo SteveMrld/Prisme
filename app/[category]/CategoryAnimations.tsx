@@ -2,7 +2,9 @@
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
 
-const ease = [0.22, 1, 0.36, 1]
+// Aligne avec --ease-out (cubic-bezier(0.16,1,0.3,1)) — framer-motion accepte
+// les tableaux de coefficients mais pas les CSS vars, donc on duplique.
+const ease = [0.16, 1, 0.3, 1] as const
 
 export function AnimBand({ children, color, className }: { children: ReactNode; color: string; className?: string }) {
   return (
@@ -11,7 +13,7 @@ export function AnimBand({ children, color, className }: { children: ReactNode; 
       style={{ borderColor: color }}
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease }}
+      transition={{ duration: 0.7, ease }}
     >
       {children}
     </motion.div>
@@ -39,7 +41,7 @@ export function AnimGrid({ children, className }: { children: ReactNode; classNa
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.07, delayChildren: 0.25 } }
+        visible: { transition: { staggerChildren: 0.08, delayChildren: 0.25 } }
       }}
     >
       {children}
@@ -52,7 +54,7 @@ export function AnimCard({ children, className }: { children: ReactNode; classNa
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 18 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease } }
       }}
     >

@@ -3,8 +3,9 @@ import React, { useEffect, useRef, useState, useCallback } from 'react'
 
 const EN_PORTRAIT_SLUGS = new Set(["morin","obama","morrison","musk","tutu","nooyi","moreno","wanghuning"])
 
-// ── Courbe d'accélération éditorial — douce, élégante
-const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
+// Tokens motion centralisés dans globals.css : on consomme --ease-out / --dur-*
+// Constantes locales gardees pour les composants qui composent encore en template-strings
+const EASE = 'var(--ease-out)'
 const EASE_IN = 'cubic-bezier(0.4, 0, 1, 1)'
 
 function useReveal(threshold = 0.1) {
@@ -24,7 +25,7 @@ function useReveal(threshold = 0.1) {
   return ref
 }
 
-// ── Section fade-up — léger, 28px, courbe souple
+// ── Section fade-up — léger, 16px, courbe --ease-out
 export function FadeSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useReveal(0.06)
   return (
@@ -33,7 +34,7 @@ export function FadeSection({ children, delay = 0 }: { children: React.ReactNode
       style={{
         opacity: 0,
         transform: 'translateY(16px)',
-        transition: `opacity 0.75s ${EASE} ${delay}s, transform 0.75s ${EASE} ${delay}s`,
+        transition: `opacity var(--dur-page) ${EASE} ${delay}s, transform var(--dur-page) ${EASE} ${delay}s`,
       }}
       onTransitionEnd={() => {}}
       data-fade-section
@@ -52,7 +53,7 @@ export function FadeCard({ children, delay = 0 }: { children: React.ReactNode; d
       style={{
         opacity: 0,
         transform: 'translateY(20px)',
-        transition: `opacity 0.6s ${EASE} ${delay}s, transform 0.6s ${EASE} ${delay}s`,
+        transition: `opacity var(--dur-slow) ${EASE} ${delay}s, transform var(--dur-slow) ${EASE} ${delay}s`,
       }}
       data-fade-card
     >
@@ -97,7 +98,7 @@ export function StaggerItem({ children, index }: { children: React.ReactNode; in
       style={{
         opacity: 0,
         transform: 'translateY(18px)',
-        transition: `opacity 0.55s ${EASE}, transform 0.55s ${EASE}`,
+        transition: `opacity var(--dur-slow) ${EASE}, transform var(--dur-slow) ${EASE}`,
       }}
     >
       {children}
@@ -193,7 +194,7 @@ export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; 
 
   return (
     <div style={{ position: 'relative', overflow: 'hidden', padding: '0 0 16px' }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-      <div style={{ display: 'flex', gap: '16px', transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)' }}>
+      <div style={{ display: 'flex', gap: '16px', transition: 'transform var(--dur-slow) var(--ease-out)' }}>
         {visible.map(({ article, offset }) => (
           <a
             key={article.slug + offset}
@@ -204,7 +205,7 @@ export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; 
               color: 'inherit',
               opacity: offset === 0 ? 1 : 0.5,
               transform: offset === 0 ? 'scale(1)' : 'scale(0.92)',
-              transition: 'opacity 0.4s ease, transform 0.4s ease',
+              transition: 'opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out)',
             }}
           >
             <div style={{ background: '#f5f4f1', overflow: 'hidden', aspectRatio: '3/4' }}>
@@ -229,7 +230,7 @@ export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; 
         <button onClick={prev} style={{ background: 'none', border: '1px solid #DDD9D2', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '16px' }}>←</button>
         <div style={{ display: 'flex', gap: '6px' }}>
           {articles.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)} style={{ width: i === current ? '20px' : '6px', height: '6px', borderRadius: '3px', background: i === current ? '#C8A96E' : '#DDD9D2', border: 'none', cursor: 'pointer', transition: 'all 0.3s ease', padding: 0 }} />
+            <button key={i} onClick={() => setCurrent(i)} style={{ width: i === current ? '20px' : '6px', height: '6px', borderRadius: '3px', background: i === current ? '#C8A96E' : '#DDD9D2', border: 'none', cursor: 'pointer', transition: 'width var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out)', padding: 0 }} />
           ))}
         </div>
         <button onClick={next} style={{ background: 'none', border: '1px solid #DDD9D2', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '16px' }}>→</button>
