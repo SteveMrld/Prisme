@@ -189,6 +189,25 @@ body {
   color: inherit;
 }
 
+/* ── REVEAL IN-BODY pour le corps editorial ──
+   Applique par ArticleLayout via IntersectionObserver sur les elements
+   structurants (figure, blockquote, .pull-quote, h2) injectes par
+   dangerouslySetInnerHTML. Fade-up subtle, ne se declenche qu'au scroll
+   et qu'une seule fois par element. */
+.soara-article .article-reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+.soara-article .article-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .soara-article .article-reveal { opacity: 1; transform: none; transition: none; }
+}
+
 /* ── TRANSITIONS ENTRE PAGES ── */
 @keyframes pageIn {
   from { opacity: 0; transform: translateY(12px); }

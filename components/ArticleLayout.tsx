@@ -107,6 +107,37 @@ export default function ArticleLayout({
     })
   }, [])
 
+  // Reveal-on-scroll des elements editoriaux structurants dans le corps.
+  // Le contenu est injecte par dangerouslySetInnerHTML, donc on l'instrumente
+  // au mount via un observer. Une seule passe par element (unobserve apres).
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (typeof IntersectionObserver === 'undefined') return
+
+    const article = document.querySelector('.soara-article')
+    if (!article) return
+
+    const targets = article.querySelectorAll(
+      'figure, blockquote, .pull-quote, h2'
+    )
+    if (!targets.length) return
+
+    targets.forEach(el => el.classList.add('article-reveal'))
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('article-revealed')
+          obs.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
+
+    targets.forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [content])
+
   return (
     <>
       <ReadingProgress />
