@@ -241,12 +241,23 @@
 }
 .langToggle:hover { opacity: 0.7; }
 
+.langToggleStandalone {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 24px 0;
+}
+
 @media (max-width: 520px) {
   .langToggle {
     font-size: 9px;
     letter-spacing: 1.5px;
     padding-bottom: 1px;
     border-bottom-width: 1px;
+  }
+  .langToggleStandalone {
+    padding: 12px 20px 0;
   }
 }
 

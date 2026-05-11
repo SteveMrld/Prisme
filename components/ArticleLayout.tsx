@@ -186,6 +186,19 @@ export default function ArticleLayout({
         </div>
       )}
 
+      {/* Toggle EN également affiché sur les articles à header interne
+          (eau, france_maritime, taiwan, cygne, overton, predateurs) qui n'ont pas la byline ci-dessus */}
+      {hasInternalHeader && hasEnglish && (
+        <div className={styles.langToggleStandalone}>
+          <a
+            href={lang === 'en' ? `/articles/${slug}` : `/articles/${slug}?lang=en`}
+            className={styles.langToggle}
+          >
+            {lang === 'en' ? 'Lire en français' : 'Read in English'}
+          </a>
+        </div>
+      )}
+
       {/* ── LAYOUT DESKTOP : article + sidebar ── */}
       <div className={styles.articlePageLayout}>
       <div className={styles.articleMainCol}>
