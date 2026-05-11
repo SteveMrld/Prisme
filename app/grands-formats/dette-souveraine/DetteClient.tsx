@@ -365,15 +365,22 @@ export default function DetteClient() {
             color:"#92400E", textTransform:"uppercase" }}>PRISME</span>
           <div style={{ display:"flex", border:BORDER, flexWrap:"wrap" }}>
             {VUES.map(({ k, l }, i) => (
-              <button key={k} onClick={() => setVue(k as typeof vue)} style={{
-                fontFamily:mono, fontSize:"9px", letterSpacing:"0.12em", textTransform:"uppercase",
-                padding:"7px 15px",
-                background: vue === k ? "#1a1a1a" : "transparent",
-                color:      vue === k ? "#F9F7F3" : "#9CA3AF",
-                border:"none",
-                borderRight: i < VUES.length - 1 ? BORDER : "none",
-                cursor:"pointer", transition:"all .2s",
-              }}>{l}</button>
+              <button
+                key={k}
+                onClick={() => setVue(k as typeof vue)}
+                onMouseEnter={(e) => { if (vue !== k) (e.currentTarget as HTMLButtonElement).style.color = "#374151" }}
+                onMouseLeave={(e) => { if (vue !== k) (e.currentTarget as HTMLButtonElement).style.color = "#9CA3AF" }}
+                style={{
+                  fontFamily:mono, fontSize:"9px", letterSpacing:"0.12em", textTransform:"uppercase",
+                  padding:"7px 15px",
+                  background: vue === k ? "#1a1a1a" : "transparent",
+                  color:      vue === k ? "#F9F7F3" : "#9CA3AF",
+                  border:"none",
+                  borderRight: i < VUES.length - 1 ? BORDER : "none",
+                  cursor:"pointer",
+                  transition:"background-color var(--dur-base) var(--ease-out), color var(--dur-fast) var(--ease-out)",
+                }}
+              >{l}</button>
             ))}
           </div>
         </div>
@@ -442,9 +449,9 @@ export default function DetteClient() {
                 Ce que représente cette somme
               </div>
               <div key={idx} style={{
-                animation: vis ? "rise .5s ease" : "none",
+                animation: vis ? "rise var(--dur-slow) var(--ease-out)" : "none",
                 opacity:   vis ? 1 : 0,
-                transition: vis ? "none" : "opacity .3s",
+                transition: vis ? "none" : "opacity var(--dur-base) var(--ease-out)",
               }}>
                 <div style={{ fontFamily:serif, fontStyle:"italic",
                   fontSize:"clamp(11px,1.1vw,13px)", color:"#9CA3AF",
@@ -480,7 +487,8 @@ export default function DetteClient() {
                   onClick={() => { setVis(false); setTimeout(() => { setIdx(i); setVis(true); }, 300); }}
                   style={{ width:i===idx?"24px":"6px", height:"3px",
                     background:i===idx?"#1a1a1a":"#DDD9D2",
-                    transition:"all .4s", borderRadius:"2px", cursor:"pointer" }}/>
+                    transition:"width var(--dur-slow) var(--ease-out), background-color var(--dur-base) var(--ease-out)",
+                    borderRadius:"2px", cursor:"pointer" }}/>
               ))}
             </div>
           </div>
