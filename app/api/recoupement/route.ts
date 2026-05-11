@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireActiveSubscriber, consumeQuota, peekQuota } from '../../../lib/recoupement-auth'
+import { SOURCES, formatSourcesForPrompt } from '../../../lib/recoupement-sources'
 
 export const maxDuration = 60 // Vercel max for hobby plan
 
@@ -26,55 +27,6 @@ export async function POST(req: NextRequest) {
     }, { status: peek.status })
   }
 
-  const SOURCES = [
-    { id: 'ajenews', name: 'Al Jazeera', type: 'Média', bias: 'Qatar / pro-palestinien' },
-    { id: 'haaretzcom', name: 'Haaretz', type: 'Média', bias: 'Israélien progressiste' },
-    { id: 'ft', name: 'Financial Times', type: 'Média', bias: 'Libéral occidental' },
-    { id: 'dropsitenews', name: 'Drop Site News', type: 'Média indép.', bias: 'Journalisme d\'investigation' },
-    { id: 'theintercept', name: 'The Intercept', type: 'Média indép.', bias: 'Gauche américaine' },
-    { id: 'washingtonpost', name: 'Washington Post', type: 'Média', bias: 'Centre libéral US' },
-    { id: 'thecradlemedia', name: 'The Cradle', type: 'Média', bias: 'Pro-résistance' },
-    { id: 'middleeasteye', name: 'Middle East Eye', type: 'Média', bias: 'Indépendant Moyen-Orient' },
-    { id: 'marionawfal', name: 'Marion Awfal', type: 'Journaliste', bias: 'Terrain / sources arabes' },
-    { id: 'rnaudbertrand', name: 'Arnaud Bertrand', type: 'Analyste', bias: 'Pro-multilatéral' },
-    { id: 'karimbitar', name: 'Karim Bitar', type: 'Analyste', bias: 'Académique franco-libanais' },
-    { id: 'sentdefender', name: 'Sentinel Defender', type: 'OSINT', bias: 'Militaire / renseignement' },
-    { id: 'clashreport', name: 'Clash Report', type: 'Agrégateur', bias: 'Breaking news / non filtré' },
-    { id: 'kobeissiletter', name: 'The Kobeissi Letter', type: 'Finance', bias: 'Marchés / géopolitique éco' },
-    { id: 'iaeaorg', name: 'IAEA', type: 'Institution', bias: 'Nucléaire / international' },
-    { id: 'tparsi', name: 'Trita Parsi', type: 'Think tank', bias: 'NIAC / pro-négociation' },
-    { id: 'shanaka86', name: 'Shanaka', type: 'Analyste', bias: 'Géopolitique indépendant' },
-    { id: 'hamidrezaaz', name: 'Hamidreza', type: 'Analyste', bias: 'Iran / stratégie militaire' },
-    { id: 'furkangozukara', name: 'Furkan Gözükara', type: 'Journaliste', bias: 'Terrain Moyen-Orient' },
-    { id: 'allenanalysis', name: 'Allen Analysis', type: 'Analyste', bias: 'Géopolitique indépendant' },
-    { id: 'nowthis_x_media', name: 'Now This Media', type: 'Média', bias: 'Progressiste américain' },
-    { id: 'ramabdu', name: 'Ram Abdu', type: 'Analyste', bias: 'Moyen-Orient indépendant' },
-    { id: 'markseddon1962', name: 'Mark Seddon', type: 'Journaliste', bias: 'Indépendant, ex-ONU' },
-    { id: 'jamesmartinsj', name: 'James Martin SJ', type: 'Analyste', bias: 'Jésuite / éthique internationale' },
-    { id: 'spectateursfr', name: 'Spectateur FR', type: 'Agrégateur', bias: 'Veille France / Moyen-Orient' },
-    { id: 'kuwaittimesnews', name: 'Kuwait Times', type: 'Média', bias: 'Presse du Golfe' },
-    { id: 'ryangrim', name: 'Ryan Grim', type: 'Journaliste', bias: 'Investigation / The Intercept' },
-    { id: 'viviannereim', name: 'Vivian Nereim', type: 'Journaliste', bias: 'Bloomberg / Arabie Saoudite' },
-    { id: 'globeeyenews', name: 'Globe Eye News', type: 'Agrégateur', bias: 'Veille géopolitique globale' },
-    { id: 'nicksortor', name: 'Nick Sortor', type: 'OSINT', bias: 'Breaking news / terrain US' },
-    { id: 'amanpour', name: 'Christiane Amanpour', type: 'Journaliste', bias: 'CNN / international' },
-    { id: 'nexta_tv', name: 'Nexta TV', type: 'Média', bias: 'Est-européen / pro-Ukraine' },
-    { id: 'sprinterpress', name: 'Sprinter Press', type: 'Agrégateur', bias: 'Veille Moyen-Orient' },
-    { id: 'ilangoldenberg', name: 'Ilan Goldenberg', type: 'Analyste', bias: 'Think tank DC / CNAS' },
-    { id: 'glenn_diesen', name: 'Glenn Diesen', type: 'Analyste', bias: 'Académique / Russie-OTAN' },
-    { id: 'theeconomist', name: 'The Economist', type: 'Média', bias: 'Libéral pro-marché' },
-    { id: 'afpfr', name: 'AFP', type: 'Agence', bias: 'Agence officielle française' },
-    { id: 'realscottritter', name: 'Scott Ritter', type: 'Analyste', bias: 'Ex-inspecteur ONU / anti-OTAN' },
-    { id: 'sinatoossi', name: 'Sina Toossi', type: 'Analyste', bias: 'Iran / négociation' },
-    { id: 'citrinowicz',    name: 'Citrinowicz',    type: 'Analyste', bias: 'Moyen-Orient / sécurité' },
-    { id: 'foreignpolicy',  name: 'Foreign Policy', type: 'Média',    bias: 'Géopolitique académique US' },
-    { id: 'timothydsnyder', name: 'Timothy Snyder', type: 'Analyste', bias: 'Historien Yale / autoritarisme' },
-    { id: 'warfrontintel',  name: 'War Front Intel',type: 'OSINT',    bias: 'Veille conflits / terrain' },
-    { id: 'nytimes', name: 'New York Times', type: 'Média', bias: 'Centre libéral US / référence mondiale' },
-    { id: 'reuters', name: 'Reuters', type: 'Agence', bias: 'Agence internationale / factuel' },
-    { id: 'ap', name: 'AP', type: 'Agence', bias: 'Agence américaine / factuel' },
-  ]
-
   // AbortController pour couper proprement avant le timeout Vercel (60s)
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), 50_000)
@@ -99,10 +51,10 @@ export async function POST(req: NextRequest) {
 Sur un fait d'actualité donné, tu croises les positions de sources variées pour identifier consensus et divergences.
 
 SOURCES DISPONIBLES — utilise l'id EXACT comme "sourceId" :
-${SOURCES.map(s => `[${s.id}] ${s.name} — ${s.type}, ${s.bias}`).join('\n')}
+${formatSourcesForPrompt(SOURCES)}
 
 MÉTHODE :
-1. Identifie 8 à 12 sources pertinentes pour le sujet (ne cherche PAS les 48 systématiquement).
+1. Identifie 8 à 12 sources pertinentes pour le sujet (ne cherche PAS les ${SOURCES.length} systématiquement).
 2. Fais 6 à 10 recherches web ciblées, pas plus.
 3. Pour chaque source trouvée, extrais sa position en français.
 4. Vise 6 sources minimum dans "results". Si une source n'a pas traité le sujet, ne l'inclus pas.
