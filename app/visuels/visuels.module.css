@@ -157,6 +157,7 @@
 .atlasCard {
   display: flex; flex-direction: column;
   text-decoration: none; color: inherit;
+  height: 100%;
   transition: transform var(--dur-base) var(--ease-out);
 }
 .atlasImage {
@@ -186,6 +187,7 @@
   display: flex; flex-direction: column;
   gap: 8px;
   padding: 0 2px;
+  flex: 1;
 }
 .atlasEyebrow {
   font-size: 8px; font-weight: 700;
@@ -208,6 +210,7 @@
 .atlasDesc {
   font-size: 13px; line-height: 1.7;
   color: var(--gris-m);
+  flex: 1;
 }
 .atlasCta {
   display: inline-block;
