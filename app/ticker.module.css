@@ -37,11 +37,15 @@
   height: 6px;
   border-radius: 50%;
   background: #C0392B;
-  animation: pulse 2s ease-in-out infinite;
+  animation: tickerPulse 2s var(--ease-in-out) infinite;
   flex-shrink: 0;
 }
 
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+@keyframes tickerPulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; }
+}
 
 .date {
   font-family: 'DM Mono', monospace;
@@ -76,12 +80,18 @@
 
 .track {
   display: flex;
-  animation: scroll 50s linear infinite;
+  animation: tickerScroll 50s linear infinite;
   white-space: nowrap;
+  will-change: transform;
 }
-.track:hover { animation-play-state: paused; }
+.track:hover,
+.track:focus-within { animation-play-state: paused; }
 
-@keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+}
 
 .item {
   display: inline-flex;
@@ -121,6 +131,6 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-  transition: color .15s;
+  transition: color var(--dur-fast) var(--ease-out);
 }
 .signalLink:hover { color: #0A0A0A; }
