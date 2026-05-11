@@ -150,8 +150,10 @@
 ══════════════════════════════════════════════ */
 .atlasGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 340px));
-  justify-content: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1132px;
+  margin-left: auto;
+  margin-right: auto;
   column-gap: 56px;
   row-gap: 72px;
 }
@@ -593,12 +595,14 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-width: 0;
 }
 .atlasGridItem > a,
 .datavizGridItem > a,
 .acteRevealWrap > a,
 .motionRevealWrap > a {
   flex: 1;
+  min-width: 0;
 }
 
 /* Filet or qui se dessine sous le titre de section, après reveal */
