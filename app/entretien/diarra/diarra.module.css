@@ -164,38 +164,43 @@
 
 .comingActions {
   display: flex;
-  align-items: center;
-  gap: 28px;
+  align-items: stretch;
+  gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
-.comingBtn {
-  font-size: 9px;
+.comingBtn,
+.comingLink {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
+  padding: 14px 26px;
+  min-width: 240px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--encre);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.comingBtn {
   color: #fff;
   background: var(--encre);
-  padding: 14px 28px;
-  text-decoration: none;
-  transition: background 0.2s;
 }
-
-.comingBtn:hover { background: var(--geo); }
+.comingBtn:hover { background: var(--geo); border-color: var(--geo); }
 
 .comingLink {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gris-m);
-  text-decoration: none;
-  transition: color 0.15s;
+  color: var(--encre);
+  background: transparent;
+  border-color: var(--bord);
 }
-
-.comingLink:hover { color: var(--encre); }
+.comingLink:hover { border-color: var(--encre); background: rgba(0,0,0,0.03); }
 
 /* ── Footer ── */
 .footer {
@@ -233,5 +238,6 @@
 @media (max-width: 600px) {
   .portrait { max-width: 100%; }
   .coming { padding: 32px 20px; }
-  .comingActions { flex-direction: column; gap: 16px; }
+  .comingActions { flex-direction: column; gap: 12px; width: 100%; }
+  .comingBtn, .comingLink { min-width: 0; width: 100%; }
 }
