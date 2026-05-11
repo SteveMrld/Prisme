@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════
-   HERO
+   HERO DE PAGE
 ══════════════════════════════════════════════ */
 .hero {
   background: #060A14;
@@ -44,8 +44,8 @@
 ══════════════════════════════════════════════ */
 .page {
   max-width: 1280px; margin: 0 auto;
-  padding: 72px 64px 96px;
-  display: flex; flex-direction: column; gap: 88px;
+  padding: 80px 64px 96px;
+  display: flex; flex-direction: column; gap: 104px;
 }
 
 /* ══════════════════════════════════════════════
@@ -54,8 +54,8 @@
 .section {}
 .sectionHead {
   display: flex; flex-direction: column; gap: 8px;
-  margin-bottom: 36px;
-  padding-bottom: 24px;
+  margin-bottom: 44px;
+  padding-bottom: 28px;
   border-bottom: 1px solid var(--bord);
 }
 .sectionTag {
@@ -64,136 +64,215 @@
 }
 .sectionTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 3vw, 32px);
+  font-size: clamp(24px, 3.2vw, 36px);
   font-weight: 300; letter-spacing: -1px;
   color: var(--encre); margin: 0;
 }
 .sectionDesc {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px; font-style: italic;
+  font-size: 17px; font-style: italic;
   color: var(--gris-m); line-height: 1.6;
-  max-width: 580px; margin: 4px 0 0;
+  max-width: 620px; margin: 4px 0 0;
 }
 
 /* ══════════════════════════════════════════════
-   FEATURED CARD (carte navale)
+   LEAD CARD (carte hero de la section Atlas)
 ══════════════════════════════════════════════ */
-.featCard {
-  display: flex; text-decoration: none; color: inherit;
-  background: #070707;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-left: 3px solid rgba(196,162,101,0.5);
-  border-radius: 2px;
+.lead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-decoration: none;
+  color: inherit;
+  background: #07080B;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
   overflow: hidden;
-  min-height: 260px;
-  position: relative;
-  transition: border-color var(--dur-fast) var(--ease-out),
-              box-shadow var(--dur-fast) var(--ease-out);
-  margin-bottom: 16px;
+  margin-bottom: 64px;
+  transition: border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
 }
-.featCard:hover {
-  border-color: rgba(196,162,101,0.4);
-  border-left-color: rgba(196,162,101,0.8);
-  box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+.lead:hover {
+  border-color: rgba(196,162,101,0.35);
+  box-shadow: 0 12px 56px rgba(0,0,0,0.45);
 }
-.featBg { display: none; }
-.featGlobe { display: none; }
-.featMedia {
-  flex: 0 0 38%;
-  background-size: cover;
-  background-position: center;
-  background-color: #0c0f15;
-  position: relative;
+.leadImage {
+  aspect-ratio: 1 / 1;
   overflow: hidden;
+  background: #0c0f15;
+  position: relative;
 }
-.featMedia::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, transparent 60%, rgba(7,7,7,0.85) 100%);
-  pointer-events: none;
+.leadImage img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 600ms var(--ease-out);
 }
-.featMediaIllu {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #070707;
+.lead:hover .leadImage img {
+  transform: scale(1.02);
 }
-.featMediaIllu::after { display: none; }
-.featBody {
-  position: relative; z-index: 1;
-  flex: 1;
-  padding: 44px 52px;
-  display: flex; flex-direction: column; gap: 14px;
+.leadContent {
+  padding: 56px 60px;
+  display: flex; flex-direction: column;
+  gap: 14px; justify-content: center;
 }
-.featEyebrow { display: flex; align-items: center; gap: 14px; }
-.featTag {
+.leadEyebrow {
   font-size: 8px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
 }
-.featBadge {
-  font-size: 8px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase;
-  background: rgba(196,162,101,0.15);
-  color: #C8A96E;
-  padding: 3px 10px; border-radius: 20px;
-  border: 1px solid rgba(196,162,101,0.25);
-}
-.featTitle {
+.leadTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(26px, 3.5vw, 42px);
+  font-size: clamp(28px, 3.8vw, 44px);
   font-weight: 300; letter-spacing: -1.5px;
-  color: #fff; margin: 0; line-height: 1.1;
+  color: #fff; line-height: 1.08;
+  margin: 6px 0 4px;
 }
-.featSub {
-  font-size: 10px; letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(196,162,101,0.55);
+.leadSub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: rgba(196,162,101,0.62); line-height: 1.5;
 }
-.featDesc {
+.leadDesc {
   font-size: 14px; line-height: 1.75;
-  color: rgba(255,255,255,0.48);
-  max-width: 480px;
+  color: rgba(255,255,255,0.55);
+  max-width: 480px; margin-top: 4px;
 }
-.featCta {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: #C8A96E; margin-top: 8px;
-  transition: gap var(--dur-fast) var(--ease-out);
+.leadCta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: #C8A96E; margin-top: 18px;
+  transition: gap var(--dur-base) var(--ease-out);
 }
-.featCard:hover .featCta { gap: 12px; }
+.leadCta svg { width: 14px; height: 14px; stroke: currentColor; }
+.lead:hover .leadCta { gap: 14px; }
 
-/* Coming soon grands formats */
-.comingSoonGrid {
+/* ══════════════════════════════════════════════
+   ATLAS GRID (cartes carrées éditoriales)
+══════════════════════════════════════════════ */
+.atlasGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--bord);
-  border: 1px solid var(--bord);
-  border-radius: 4px; overflow: hidden;
+  column-gap: 40px;
+  row-gap: 56px;
 }
-.comingSoonCard {
-  background: var(--papier);
-  padding: 24px 28px;
-  display: flex; flex-direction: column; gap: 6px;
-  opacity: 0.5;
+.atlasCard {
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.atlasImage {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #0c0f15;
+  border-radius: 2px;
+  margin-bottom: 22px;
   position: relative;
 }
-.csTag {
-  font-size: 7px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--gris-l);
+.atlasImage::after {
+  content: '';
+  position: absolute; inset: 0;
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 2px;
+  pointer-events: none;
 }
-.csTitle {
+.atlasImage img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 700ms var(--ease-out);
+}
+.atlasCard:hover .atlasImage img {
+  transform: scale(1.035);
+}
+.atlasBody {
+  display: flex; flex-direction: column;
+  gap: 8px;
+  padding: 0 2px;
+}
+.atlasEyebrow {
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.atlasTitle {
   font-family: 'Playfair Display', serif;
-  font-size: 17px; font-weight: 400;
-  color: var(--encre); letter-spacing: -0.3px;
+  font-size: 22px; font-weight: 400;
+  letter-spacing: -0.5px; line-height: 1.22;
+  color: var(--encre);
+  margin: 0 0 4px;
 }
-.csSub { font-size: 12px; color: var(--gris-m); }
-.csBadge {
-  position: absolute; top: 18px; right: 18px;
-  font-size: 7px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--gris-l);
-  background: var(--bord); padding: 3px 8px; border-radius: 20px;
+.atlasSub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-style: italic;
+  color: var(--gris-m); line-height: 1.4;
+  margin-bottom: 6px;
+}
+.atlasDesc {
+  font-size: 13px; line-height: 1.7;
+  color: var(--gris-m);
+}
+.atlasCta {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #C8A96E; margin-top: 10px;
+  transition: letter-spacing var(--dur-base) var(--ease-out);
+}
+.atlasCard:hover .atlasCta {
+  letter-spacing: 2.5px;
+}
+
+/* ══════════════════════════════════════════════
+   DATAVIZ GRID (cartes data, format compact)
+══════════════════════════════════════════════ */
+.datavizGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.datavizCard {
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  background: var(--papier);
+  border: 1px solid var(--bord);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.datavizCard:hover {
+  border-color: rgba(196,162,101,0.35);
+  transform: translateY(-2px);
+}
+.datavizImage {
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bord);
+}
+.datavizBody {
+  padding: 22px 24px 24px;
+  display: flex; flex-direction: column;
+  gap: 6px; flex: 1;
+}
+.datavizEyebrow {
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.datavizTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 400;
+  letter-spacing: -0.3px; line-height: 1.22;
+  color: var(--encre);
+  margin: 0 0 4px;
+}
+.datavizDesc {
+  font-size: 12.5px; line-height: 1.65;
+  color: var(--gris-m); flex: 1;
+}
+.datavizCta {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #C8A96E; margin-top: 8px;
 }
 
 /* ══════════════════════════════════════════════
@@ -304,32 +383,6 @@
 .motionCard:hover .motionCta { opacity: 0.7; }
 
 /* ══════════════════════════════════════════════
-   À VENIR
-══════════════════════════════════════════════ */
-.upcomingGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--bord);
-  border: 1px solid var(--bord); border-radius: 4px; overflow: hidden;
-}
-.upCard {
-  background: var(--papier);
-  padding: 20px 22px;
-  display: flex; flex-direction: column; gap: 5px;
-  opacity: 0.42;
-}
-.upCat {
-  font-size: 7px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--gris-l);
-}
-.upTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 16px; font-weight: 400;
-  color: var(--encre); letter-spacing: -0.2px;
-}
-.upSub { font-size: 11px; color: var(--gris-m); }
-
-/* ══════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════ */
 .footer {
@@ -356,23 +409,22 @@
    RESPONSIVE
 ══════════════════════════════════════════════ */
 @media (max-width: 1100px) {
+  .lead { grid-template-columns: 1fr; }
+  .leadContent { padding: 36px 32px 40px; }
+  .atlasGrid { grid-template-columns: repeat(2, 1fr); column-gap: 32px; row-gap: 48px; }
+  .datavizGrid { grid-template-columns: repeat(2, 1fr); }
   .trioGrid, .motionGrid { grid-template-columns: 1fr; }
-  .upcomingGrid { grid-template-columns: repeat(2, 1fr); }
-  .comingSoonGrid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .hero { padding: 48px 24px 40px; flex-direction: column; align-items: flex-start; gap: 32px; }
   .heroMeta { flex-direction: row; align-self: stretch; justify-content: flex-start; }
-  .page { padding: 48px 24px 64px; gap: 64px; }
-  .sectionHead { margin-bottom: 24px; }
-  .featCard { flex-direction: column; min-height: 0; }
-  .featMedia { flex: 0 0 auto; width: 100%; aspect-ratio: 16 / 9; }
-  .featMedia::after { background: linear-gradient(to bottom, transparent 55%, rgba(7,7,7,0.85) 100%); }
-  .featBody { padding: 28px 24px; }
-  .upcomingGrid { grid-template-columns: repeat(2, 1fr); }
+  .page { padding: 56px 24px 72px; gap: 80px; }
+  .sectionHead { margin-bottom: 28px; }
+  .lead { margin-bottom: 48px; }
+  .leadContent { padding: 28px 24px 32px; }
+  .leadTitle { font-size: clamp(26px, 6vw, 36px); }
+  .atlasGrid { grid-template-columns: 1fr; row-gap: 44px; }
+  .datavizGrid { grid-template-columns: 1fr; }
   .footer { flex-direction: column; padding: 32px 24px; gap: 16px; text-align: center; }
   .footerLinks { flex-wrap: wrap; justify-content: center; }
-}
-@media (max-width: 480px) {
-  .upcomingGrid { grid-template-columns: 1fr; }
 }
