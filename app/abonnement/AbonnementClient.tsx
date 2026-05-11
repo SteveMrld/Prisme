@@ -8,8 +8,8 @@ import styles from './abonnement.module.css'
 
 const PREVIEWS = [
   { cat: 'Grand format', title: 'La chambre de ratification', desc: 'Comment Netanyahu a décidé une guerre américaine.', img: '/grands-formats/chambre-hero.jpg' },
-  { cat: 'Grand format', title: "L'eau : la prochaine grande fracture", desc: "Des glaciers himalayens aux barrages africains. La géopolitique de l'eau.", img: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_800/https://i.ibb.co/mVBDmC2j/img-eau.png' },
-  { cat: 'Atlas', title: 'La bataille pour le sous-sol numérique', desc: "Des mines de terres rares aux fabs de Taïwan — la guerre souterraine.", img: 'https://res.cloudinary.com/dnbyi8fw6/image/fetch/f_auto,q_auto,w_800/https://i.ibb.co/vCpv1sLb/img-techgeo.jpg' },
+  { cat: 'Grand format', title: "L'eau : la prochaine grande fracture", desc: "Des glaciers himalayens aux barrages africains. La géopolitique de l'eau.", img: '/articles/img-eau.png' },
+  { cat: 'Atlas', title: 'La bataille pour le sous-sol numérique', desc: "Des mines de terres rares aux fabs de Taïwan — la guerre souterraine.", img: '/articles/img-techgeo.jpg' },
 ]
 
 const FEATURES = [
