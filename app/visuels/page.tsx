@@ -299,28 +299,43 @@ export default function VisuelsPage() {
         </section>
 
         {/* ═══ TRILOGIE DOLLAR ═══ */}
-        <section className={styles.section}>
-          <div className={styles.sectionHead}>
-            <div className={styles.sectionTag} style={{color:'var(--eco)'}}>Économie · Série en 3 parties</div>
-            <h2 className={styles.sectionTitle}>Trilogie du Dollar</h2>
-            <p className={styles.sectionDesc}>Comment une monnaie nationale est devenue l'étalon de l'économie mondiale — et pourquoi son règne pourrait finir.</p>
+        <section className={styles.trilogie}>
+          <div className={styles.trilogieBanner}>
+            <img
+              src="/articles/atlas/15_empire-du-dollar.jpg"
+              alt=""
+              className={styles.trilogieBannerImg}
+              loading="lazy"
+            />
+            <div className={styles.trilogieBannerInner}>
+              <div className={styles.trilogieEyebrow}>Trilogie · Économie</div>
+              <h2 className={styles.trilogieTitle}>L&apos;Empire du dollar</h2>
+              <p className={styles.trilogieSub}>Bretton Woods · Pétrodollar · Sanctions · BRICS</p>
+              <p className={styles.trilogieDesc}>
+                Comment une monnaie nationale est devenue l&apos;étalon de l&apos;économie mondiale —
+                et pourquoi son règne pourrait finir.
+              </p>
+            </div>
           </div>
-          <div className={styles.trioGrid}>
+          <div className={styles.trilogieGrid}>
             {[
               {slug:'dollar1',n:'I',title:'La naissance d\'un empire',desc:'De Bretton Woods au pétrodollar — comment le dollar a pris le trône de la livre sterling.',slides:8},
               {slug:'dollar2',n:'II',title:'L\'arme financière',desc:'SWIFT, sanctions, gel d\'avoirs — le dollar comme instrument de puissance géopolitique.',slides:7},
               {slug:'dollar3',n:'III',title:'Le crépuscule ?',desc:'Dédollarisation, BRICS, yuan — la fin du monopole absolu est-elle en marche ?',slides:7},
             ].map((item) => (
-              <a key={item.slug} href={`/visuels/${item.slug}.html`} target="_blank" rel="noopener noreferrer" className={styles.trioCard}>
-                <div className={styles.trioAccent}/>
-                <div className={styles.trioBody}>
-                  <div className={styles.trioN}>{item.n}</div>
-                  <h3 className={styles.trioTitle}>{item.title}</h3>
-                  <p className={styles.trioDesc}>{item.desc}</p>
-                  <div className={styles.trioMeta}>
-                    <span className={styles.trioSlides}>{item.slides} slides</span>
-                    <span className={styles.trioCta}>Voir →</span>
-                  </div>
+              <a
+                key={item.slug}
+                href={`/visuels/${item.slug}.html`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.acteCard}
+              >
+                <div className={styles.acteN}>{item.n}</div>
+                <h3 className={styles.acteTitle}>{item.title}</h3>
+                <p className={styles.acteDesc}>{item.desc}</p>
+                <div className={styles.acteMeta}>
+                  <span className={styles.acteSlides}>{item.slides} slides</span>
+                  <span className={styles.acteCta}>Lire l&apos;acte →</span>
                 </div>
               </a>
             ))}

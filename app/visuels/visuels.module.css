@@ -276,44 +276,134 @@
 }
 
 /* ══════════════════════════════════════════════
-   TRILOGIE DOLLAR
+   TRILOGIE DOLLAR — bannière + 3 actes
 ══════════════════════════════════════════════ */
-.trioGrid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--bord);
-  border: 1px solid var(--bord); border-radius: 4px; overflow: hidden;
+.trilogie {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(184, 106, 26, 0.35);
+  border-bottom: 1px solid rgba(184, 106, 26, 0.35);
+  margin: 0 -8px;
+  padding: 8px 0;
 }
-.trioCard {
-  display: flex; text-decoration: none; color: inherit;
-  background: var(--bg); transition: background 0.15s;
-  position: relative; overflow: hidden;
+.trilogieBanner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+  background: #07080B;
 }
-.trioCard:hover { background: var(--papier); }
-.trioAccent {
-  width: 3px; flex-shrink: 0;
+.trilogieBannerImg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.trilogieBanner::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(7,8,11,0.30) 0%,
+    rgba(7,8,11,0.55) 55%,
+    rgba(7,8,11,0.82) 100%);
+  pointer-events: none;
+}
+.trilogieBannerInner {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 56px 56px 48px;
+  display: flex; flex-direction: column; gap: 10px;
+  z-index: 1;
+  max-width: 760px;
+}
+.trilogieEyebrow {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(232, 200, 74, 0.85);
+}
+.trilogieTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 300; letter-spacing: -1.5px; line-height: 1.02;
+  color: #fff;
+  margin: 0;
+}
+.trilogieSub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(15px, 1.8vw, 19px);
+  font-style: italic;
+  color: rgba(232, 200, 74, 0.7);
+  margin: 4px 0 0;
+}
+.trilogieDesc {
+  font-size: 14px; line-height: 1.65;
+  color: rgba(255,255,255,0.72);
+  max-width: 600px;
+  margin: 10px 0 0;
+}
+.trilogieGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--bord);
+  border-top: 1px solid var(--bord);
+}
+.acteCard {
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  background: #FAF6EE;
+  padding: 40px 32px 32px;
+  position: relative;
+  transition: background var(--dur-base) var(--ease-out);
+  min-height: 280px;
+}
+.acteCard:hover { background: #F5EFE2; }
+.acteCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
   background: var(--eco);
-  transition: width var(--dur-fast) var(--ease-out);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-base) var(--ease-out);
 }
-.trioCard:hover .trioAccent { width: 5px; }
-.trioBody { padding: 32px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-.trioN {
+.acteCard:hover::before { transform: scaleX(1); }
+.acteN {
   font-family: 'Playfair Display', serif;
-  font-size: 48px; font-weight: 300; letter-spacing: -2px;
-  color: rgba(196,162,101,0.18); line-height: 1;
-  margin-bottom: 4px;
+  font-size: 72px; font-weight: 300;
+  letter-spacing: -3px; line-height: 0.9;
+  color: var(--eco);
+  opacity: 0.85;
+  margin-bottom: 16px;
 }
-.trioTitle {
+.acteTitle {
   font-family: 'Playfair Display', serif;
-  font-size: 19px; font-weight: 400; letter-spacing: -0.3px;
-  color: var(--encre); line-height: 1.25; margin: 0;
+  font-size: 22px; font-weight: 400; letter-spacing: -0.4px;
+  color: var(--encre); line-height: 1.2;
+  margin: 0 0 10px;
 }
-.trioDesc {
-  font-size: 13px; line-height: 1.65;
-  color: var(--gris-m); font-weight: 300; flex: 1;
+.acteDesc {
+  font-size: 14px; line-height: 1.65;
+  color: var(--gris-m); font-weight: 300;
+  flex: 1;
+  margin: 0 0 18px;
 }
-.trioMeta { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
-.trioSlides { font-size: 9px; letter-spacing: 1px; color: var(--gris-l); }
-.trioCta { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: var(--eco); }
+.acteMeta {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(184, 106, 26, 0.15);
+}
+.acteSlides {
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gris-l);
+}
+.acteCta {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--eco);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.acteCard:hover .acteCta { transform: translateX(3px); }
 
 /* ══════════════════════════════════════════════
    MOTIONS GRID
@@ -413,7 +503,8 @@
   .leadContent { padding: 36px 32px 40px; }
   .atlasGrid { grid-template-columns: repeat(2, 1fr); column-gap: 32px; row-gap: 48px; }
   .datavizGrid { grid-template-columns: repeat(2, 1fr); }
-  .trioGrid, .motionGrid { grid-template-columns: 1fr; }
+  .trilogieGrid, .motionGrid { grid-template-columns: 1fr; }
+  .trilogieBannerInner { padding: 40px 32px 32px; }
 }
 @media (max-width: 768px) {
   .hero { padding: 48px 24px 40px; flex-direction: column; align-items: flex-start; gap: 32px; }
@@ -425,6 +516,11 @@
   .leadTitle { font-size: clamp(26px, 6vw, 36px); }
   .atlasGrid { grid-template-columns: 1fr; row-gap: 44px; }
   .datavizGrid { grid-template-columns: 1fr; }
+  .trilogieBanner { aspect-ratio: 4 / 3; }
+  .trilogieBannerInner { padding: 28px 24px 28px; }
+  .trilogieTitle { font-size: clamp(28px, 8vw, 38px); }
+  .acteCard { padding: 32px 24px 24px; min-height: auto; }
+  .acteN { font-size: 56px; }
   .footer { flex-direction: column; padding: 32px 24px; gap: 16px; text-align: center; }
   .footerLinks { flex-wrap: wrap; justify-content: center; }
 }
