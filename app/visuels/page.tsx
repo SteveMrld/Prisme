@@ -18,6 +18,7 @@ type AtlasCard = {
   desc: string
   cta: string
   image: string
+  alt: string
 }
 
 const HERO_CARD: AtlasCard = {
@@ -29,6 +30,7 @@ const HERO_CARD: AtlasCard = {
   desc: "Du combustible civil à la qualité militaire. Une cartographie graphique des capacités mondiales d'enrichissement, des seuils qui font basculer dans le militaire, et de la dépendance structurelle de l'Occident à Rosatom.",
   cta: 'Explorer la cascade',
   image: '/articles/atlas/01_uranium-cascade-monde.jpg',
+  alt: "Centrifugeuses d'enrichissement d'uranium, couloir industriel",
 }
 
 const ATLAS_CARDS: AtlasCard[] = [
@@ -40,6 +42,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "750 bases américaines, 145 britanniques, 21 russes, 6 françaises. La carte interactive des empreintes militaires mondiales.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/05_empire-invisible.jpg',
+    alt: "Vue aérienne d'une base militaire, le Pentagone",
   },
   {
     href: '/visuels/medias-pouvoir', external: false,
@@ -49,6 +52,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "Désaffection du public, concentration médiatique entre les mains d'une poignée de milliardaires, émergence des newsfluenceurs.",
     cta: "Explorer l'analyse",
     image: '/articles/atlas/04_medias-occidentaux.jpg',
+    alt: "Salle de contrôle multi-écrans, surveillance médiatique",
   },
   {
     href: '/grands-formats/climat', external: false,
@@ -58,6 +62,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "Deux courbes, même axe. La Terre a connu des variations de ±10°C sur des millions d'années. Notre +1,6°C est arrivé en 150 ans. Ce qui est sans précédent, c'est la vitesse.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/07_la-terre-a-toujours-change.jpg',
+    alt: "Glacier et fumées industrielles, réchauffement climatique",
   },
   {
     href: '/visuels/terres-rares.html', external: true,
@@ -67,6 +72,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "Du cobalt du Katanga au raffinage de Guangdong, une visualisation animée des flux qui alimentent la transition verte — et la nouvelle géographie de la dépendance.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/08_terres-rares-guerre-invisible.jpg',
+    alt: "Mine à ciel ouvert d'extraction de terres rares",
   },
   {
     href: '/visuels/naval.html', external: true,
@@ -76,6 +82,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "80% du commerce mondial circule sur l'eau. Qui contrôle les mers contrôle l'économie mondiale. Une carte animée en 5 chapitres.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/09_les-mers-du-pouvoir.jpg',
+    alt: "Porte-conteneurs au coucher du soleil, commerce maritime",
   },
   {
     href: '/visuels/predateurs.html', external: true,
@@ -85,6 +92,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "Trois puissances, trois doctrines. Une carte choroplèthe mondiale cliquable qui révèle comment USA, Russie et Chine se partagent le monde.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/10_le-monde-des-predateurs.jpg',
+    alt: "Globe terrestre avec réseau de connexions, prédation géopolitique",
   },
   {
     href: '/visuels/eau.html', external: true,
@@ -94,6 +102,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "Des glaciers himalayens aux barrages africains. Comment la maîtrise de l'eau redessine les rapports de puissance — une carte animée en 5 chapitres.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/11_leau-prochaine-grande-fracture.jpg',
+    alt: "Barrage hydraulique, ressources en eau",
   },
   {
     href: '/visuels/france_maritime.html', external: true,
@@ -103,6 +112,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "La France possède la 2e zone économique exclusive mondiale — et presque personne ne le sait. Une révélation en 6 chapitres sur l'empire maritime invisible de la République.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/12_la-france-maritime.jpg',
+    alt: "Atoll tropical, territoires maritimes français",
   },
   {
     href: '/visuels/cables.html', external: true,
@@ -112,6 +122,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "99% d'internet circule sous les océans. Qui contrôle ces câbles contrôle l'information mondiale. Vue en coupe animée et décryptage des enjeux.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/13_cables-sous-marins.jpg',
+    alt: "Câble fibre optique sous-marin",
   },
   {
     href: '/visuels/techgeo.html', external: true,
@@ -121,6 +132,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     desc: "Des mines de Mongolie aux fabs de Taïwan — une guerre souterraine pour les matériaux qui font tourner l'économie numérique mondiale.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/14_bataille-sous-sol-numerique.jpg',
+    alt: "Excavatrice minière, extraction de matières premières",
   },
 ]
 
@@ -133,6 +145,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     desc: "Cinquante ans de pauvreté monétaire en France. En 2023, 15,4% — son niveau le plus haut depuis 1996.",
     cta: 'Explorer la visualisation',
     image: '/articles/societe-du-consentement.png',
+    alt: "Visualisation de la pauvreté monétaire en France",
   },
   {
     href: '/visuels/science-race.html', external: true,
@@ -142,6 +155,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     desc: "En 2002, les États-Unis et l'Europe publiaient deux tiers des articles scientifiques mondiaux. En 2023, ils n'en publient plus qu'un tiers.",
     cta: 'Explorer la visualisation',
     image: '/articles/img-chine.jpg',
+    alt: "Laboratoire de recherche scientifique en Chine",
   },
   {
     href: '/grands-formats/inegalites', external: false,
@@ -151,6 +165,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     desc: "États-Unis, France, Inde, Chine — en 1980, les quatre captaient la même part de richesse pour leur top 10%. Depuis, leurs trajectoires ont radicalement divergé.",
     cta: 'Explorer la visualisation',
     image: '/grands-formats/inegalites/05-inegalites-now.jpg',
+    alt: "Visualisation des inégalités économiques mondiales",
   },
 ]
 
@@ -194,7 +209,7 @@ function LeadCard({ card }: { card: AtlasCard }) {
   return (
     <a href={card.href} {...linkPropsFor(card)} className={styles.lead}>
       <div className={styles.leadImage}>
-        <img src={card.image} alt="" loading="eager" />
+        <img src={card.image} alt={card.alt} loading="eager" />
       </div>
       <div className={styles.leadContent}>
         <span className={styles.leadEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
@@ -214,7 +229,7 @@ function AtlasGridCard({ card }: { card: AtlasCard }) {
   return (
     <a href={card.href} {...linkPropsFor(card)} className={styles.atlasCard}>
       <div className={styles.atlasImage}>
-        <img src={card.image} alt="" loading="lazy" />
+        <img src={card.image} alt={card.alt} loading="lazy" />
       </div>
       <div className={styles.atlasBody}>
         <span className={styles.atlasEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
@@ -315,7 +330,7 @@ export default function VisuelsPage() {
             <div className={styles.trilogieBanner}>
               <img
                 src="/articles/atlas/15_empire-du-dollar.jpg"
-                alt=""
+                alt="Billet de dollar et graphiques financiers"
                 className={styles.trilogieBannerImg}
                 loading="lazy"
               />
