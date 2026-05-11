@@ -337,7 +337,7 @@
 .tvStrip::-webkit-scrollbar-thumb { background: rgba(200,169,110,.3); }
 .tvCard {
   flex-shrink: 0;
-  width: 170px;
+  width: clamp(160px, 22vw, 220px);
   display: block;
   text-decoration: none;
   color: inherit;
@@ -424,7 +424,7 @@
   .gfSection { grid-template-columns: repeat(4, 1fr); }
   .gfCard:nth-child(even) { border-right: 1px solid #E8E2DA; }
   .gfCard:nth-child(4n) { border-right: none; }
-  .tvCard { width: 200px; }
+  /* tvCard width gere par clamp() sur la regle de base */
   .portraits { padding: 24px 64px 32px; }
   .latestItem { padding: 16px 64px; }
   .sectionHead { padding: 24px 64px 12px; }
