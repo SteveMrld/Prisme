@@ -507,16 +507,14 @@ function showSlide(idx){
   document.querySelectorAll(".dot").forEach(function(d,i){d.classList.toggle("on",i===idx)});
 
   // ── Titre animé (slide 0)
+  var tLabel=document.getElementById("t-label");
   if(idx===0){
-    document.getElementById("t-label").style.opacity="1";
-    document.getElementById("t-label").style.transform="translateY(0)";
+    if(tLabel){tLabel.style.opacity="1";tLabel.style.transform="translateY(0)";}
     setTimeout(function(){
       document.querySelectorAll(".t-word").forEach(function(el){el.classList.add("in")});
     },80);
   } else {
-    // Reset titre pour la prochaine fois
-    document.getElementById("t-label").style.opacity="0";
-    document.getElementById("t-label").style.transform="translateY(12px)";
+    if(tLabel){tLabel.style.opacity="0";tLabel.style.transform="translateY(12px)";}
     document.querySelectorAll(".t-word").forEach(function(el){el.classList.remove("in")});
   }
 
