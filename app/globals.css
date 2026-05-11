@@ -20,6 +20,49 @@
   --concept:#1A1A3E;
   --sciences:#1A5C4A;
   --portrait:#C8A96E;
+
+  /* ── Motion tokens ───────────────────────────────────
+     Durations and easings used across the site.
+     Mobile override below (≤768px) shortens durées de 30%.
+     prefers-reduced-motion neutralise tout. ─────────── */
+  --dur-instant: 50ms;
+  --dur-micro:   80ms;
+  --dur-fast:    150ms;
+  --dur-base:    250ms;
+  --dur-slow:    450ms;
+  --dur-page:    700ms;
+  --dur-hero:    1200ms;
+
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-elegant: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-linear:  linear;
+
+  --stagger-tight: 40ms;
+  --stagger-base:  80ms;
+  --stagger-loose: 120ms;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --dur-instant: 35ms;
+    --dur-micro:   55ms;
+    --dur-fast:    105ms;
+    --dur-base:    175ms;
+    --dur-slow:    315ms;
+    --dur-page:    490ms;
+    --dur-hero:    850ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }

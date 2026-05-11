@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import './animations.css'
 import './article-content.css'
 import BottomNav from '../components/BottomNav'
 import PWARegister from '../components/PWARegister'
