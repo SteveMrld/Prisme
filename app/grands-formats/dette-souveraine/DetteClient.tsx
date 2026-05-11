@@ -362,7 +362,7 @@ export default function DetteClient() {
         padding:"12px 44px", borderBottom:"1.5px solid #DDD9D2", flexWrap:"wrap", gap:"8px" }}>
         <div style={{ display:"flex", alignItems:"center", gap:"20px", flexWrap:"wrap" }}>
           <span style={{ fontFamily:mono, fontSize:"11px", letterSpacing:"0.26em",
-            color:"#92400E", textTransform:"uppercase" }}>PRISME</span>
+            color:"#92400E", textTransform:"uppercase" }}>SOARA</span>
           <div style={{ display:"flex", border:BORDER, flexWrap:"wrap" }}>
             {VUES.map(({ k, l }, i) => (
               <button
