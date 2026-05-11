@@ -794,11 +794,23 @@ sup {
    DROP CAP — Première lettre majuscule stylee
    ═══════════════════════════════════════════════════ */
 
-/* Premier paragraphe après l'en-tête ou l'essentiel */
+/* Premier paragraphe après l'en-tête ou l'essentiel.
+   On vise (a) la 1re <p> direct-child de .soara-article / .article-body / .article-content / .articleBody,
+   et (b) la 1re <p> qui suit un wrapper d'en-tete (.atop, .essentiel, .article-header) parce que dans
+   ces articles (eau, taiwan, france_maritime, cygne, overton, predateurs) le contenu est wrappe.
+   `~ p:first-of-type` cible la 1re <p> parmi les freres qui suivent le wrapper. */
 .soara-article > p:first-of-type::first-letter,
 .article-body > p:first-of-type::first-letter,
 .article-content > p:first-of-type::first-letter,
-.articleBody > p:first-child::first-letter {
+.articleBody > p:first-child::first-letter,
+.soara-article > .atop ~ p:first-of-type::first-letter,
+.soara-article > .essentiel ~ p:first-of-type::first-letter,
+.soara-article > .article-header ~ p:first-of-type::first-letter,
+.soara-article .atop ~ .article-body > p:first-of-type::first-letter,
+.soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
+.soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
+.grand-format-body .article-body > p:first-of-type::first-letter,
+.article-content > .article-body > p:first-of-type::first-letter {
   font-family: 'Playfair Display', serif;
   font-size: 5.6em;
   font-weight: 700;
@@ -830,13 +842,15 @@ sup {
   padding-top: 0;
 }
 
-/* Paragraphe qui suit directement un h2 ou h3 — pas de drop cap */
-.soara-article h2 + p::first-letter,
-.soara-article h3 + p::first-letter,
-.article-body h2 + p::first-letter,
-.article-body h3 + p::first-letter,
-.article-content h2 + p::first-letter,
-.article-content h3 + p::first-letter {
+/* Paragraphe qui suit directement un h2 ou h3 — pas de drop cap.
+   Exception : si ce <p> est aussi :first-of-type dans son parent, on garde la lettrine
+   (cas cygne/overton ou la 1re <p> de .article-body est precedee par <h3>). */
+.soara-article h2 + p:not(:first-of-type)::first-letter,
+.soara-article h3 + p:not(:first-of-type)::first-letter,
+.article-body h2 + p:not(:first-of-type)::first-letter,
+.article-body h3 + p:not(:first-of-type)::first-letter,
+.article-content h2 + p:not(:first-of-type)::first-letter,
+.article-content h3 + p:not(:first-of-type)::first-letter {
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
@@ -879,10 +893,18 @@ sup {
     margin-top: 20px !important;
   }
 
-  /* Drop cap plus petit sur mobile */
+  /* Drop cap plus petit sur mobile — selecteurs alignes avec la regle desktop */
   .soara-article > p:first-of-type::first-letter,
   .article-body > p:first-of-type::first-letter,
-  .article-content > p:first-of-type::first-letter {
+  .article-content > p:first-of-type::first-letter,
+  .soara-article > .atop ~ p:first-of-type::first-letter,
+  .soara-article > .essentiel ~ p:first-of-type::first-letter,
+  .soara-article > .article-header ~ p:first-of-type::first-letter,
+  .soara-article .atop ~ .article-body > p:first-of-type::first-letter,
+  .soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
+  .soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
+  .grand-format-body .article-body > p:first-of-type::first-letter,
+  .article-content > .article-body > p:first-of-type::first-letter {
     font-size: 4.4em;
     margin-right: 8px;
     margin-top: 2px;
