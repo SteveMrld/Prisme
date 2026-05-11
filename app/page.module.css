@@ -89,7 +89,7 @@
   width: 100%; height: 100%;
   object-fit: cover; object-position: center 30%;
   display: block;
-  transition: transform .5s ease;
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 .leadLink:hover .leadImg img { transform: scale(1.02); }
 .leadBody {
@@ -133,7 +133,7 @@
   border-bottom: 1px solid #E8E2DA;
   text-decoration: none;
   color: inherit;
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .rowItem:hover { background: #FAFAF8; }
 .rowItem:last-child { border-bottom: none; }
@@ -186,7 +186,7 @@
   color: inherit;
   padding: 14px 14px 18px;
   border-bottom: 1px solid #E8E2DA;
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .trioCard:hover { background: #FAFAF8; }
 .trioCard:last-child { border-bottom: none; }
@@ -351,7 +351,7 @@
   text-decoration: none;
   color: inherit;
   border-right: 1px solid rgba(255,255,255,.06);
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .tvCard:hover { background: rgba(255,255,255,.04); }
 .tvThumbWrap {
@@ -360,7 +360,7 @@
   aspect-ratio: 16/9;
   overflow: hidden;
 }
-.tvThumb { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.8); transition: transform .4s; }
+.tvThumb { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.8); transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out); }
 .tvCard:hover .tvThumb { transform: scale(1.04); filter: brightness(.95); }
 .tvPlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:16px; color:rgba(255,255,255,.8); }
 .tvInfo { padding: 8px 10px 12px; display:flex; flex-direction:column; gap:3px; }
@@ -388,7 +388,7 @@
   border-bottom: 1px solid #E8E2DA;
   text-decoration: none;
   color: inherit;
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .latestItem:hover { background: #FAFAF8; }
 .latestItem:last-child { border-bottom: none; }
@@ -569,7 +569,7 @@
   border-bottom: 1px solid #E8E2DA;
   text-decoration: none;
   color: inherit;
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out);
   position: relative;
   overflow: hidden;
 }
@@ -581,7 +581,7 @@
   align-self: stretch;
   flex-shrink: 0;
   opacity: 0.7;
-  transition: opacity .2s;
+  transition: opacity var(--dur-fast) var(--ease-out);
 }
 .latestItem2:hover .latestItem2Bar { opacity: 1; }
 
@@ -639,7 +639,7 @@
   border-bottom: 1px solid #E8E2DA;
   text-decoration: none;
   color: inherit;
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 .popularItem:hover { background: #FAFAF8; }
 .popularItem:last-child { border-bottom: none; }
@@ -653,7 +653,7 @@
   line-height: 1;
   flex-shrink: 0;
   width: 32px;
-  transition: color .2s;
+  transition: color var(--dur-fast) var(--ease-out);
 }
 /* #1 en or, #2 argent clair */
 .popularItem:nth-child(1) .popularRank { color: #C8A96E; }
@@ -664,7 +664,8 @@
   font-size: 13px;
   color: #DDD;
   flex-shrink: 0;
-  transition: transform .25s cubic-bezier(0.22,1,0.36,1), color .2s;
+  transition: transform var(--dur-base) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
   display: flex;
   align-items: center;
 }
