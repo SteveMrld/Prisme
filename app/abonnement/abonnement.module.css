@@ -57,7 +57,7 @@
   font-family: 'Georgia', serif;
   font-size: 15px;
   font-style: italic;
-  color: #666;
+  color: #555;
   line-height: 1.65;
   max-width: 500px;
   margin-bottom: 36px;
@@ -67,7 +67,7 @@
 .plans {
   display: flex;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
 }
 
@@ -135,7 +135,7 @@
 
 .planSub {
   font-size: 11px;
-  color: #aaa;
+  color: #777;
   font-style: italic;
   margin-bottom: 18px;
 }
@@ -166,8 +166,8 @@
 
 .heroNote {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: #aaa;
+  font-size: 10px;
+  color: #777;
   letter-spacing: .5px;
   margin-top: 4px;
 }
@@ -182,11 +182,12 @@
 
 .previewLabel {
   font-family: 'DM Mono', monospace;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #bbb;
+  color: #888;
+  margin-bottom: 4px;
 }
 
 .previewCard {
@@ -196,7 +197,7 @@
 }
 
 .previewImg {
-  height: 160px;
+  aspect-ratio: 16 / 9;
   background-size: cover;
   background-position: center center;
   background-color: #e8e4de;
@@ -227,7 +228,7 @@
 
 .previewDesc {
   font-size: 12px;
-  color: #888;
+  color: #666;
   line-height: 1.5;
   margin: 0;
 }
@@ -260,11 +261,11 @@
 
 .featuresLabel {
   font-family: 'DM Mono', monospace;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #aaa;
+  color: #888;
   margin-bottom: 24px;
 }
 
@@ -318,7 +319,7 @@
 .reassuranceItem p {
   font-size: 13px;
   font-style: italic;
-  color: #777;
+  color: #666;
   line-height: 1.65;
   font-family: 'Georgia', serif;
   margin: 0;
@@ -373,9 +374,9 @@
   .hero { padding: 44px 16px 40px; }
   .heroInner { flex-direction: column; gap: 36px; }
   .heroRight { flex: none; width: 100%; }
-  .plans { flex-direction: column; }
+  .plans { flex-direction: column; gap: 28px; }
   .planCard { min-width: unset; }
-  .featuresGrid { grid-template-columns: 1fr; }
+  .featuresGrid { grid-template-columns: 1fr; gap: 14px; }
   .reassurance { grid-template-columns: 1fr; }
   .reassuranceItem { border-right: none; border-bottom: 1px solid #EEE; padding: 28px 20px; }
   .reassuranceItem:last-child { border-bottom: none; }
