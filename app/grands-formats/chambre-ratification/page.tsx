@@ -1,6 +1,7 @@
 import fs from 'fs'
 import nodePath from 'path'
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
+import ScrollReveal from "../../../components/ScrollReveal";
 
 export const dynamic = 'force-dynamic'
 
@@ -86,37 +87,41 @@ export default async function ChambreRatificationPage({ searchParams }: { search
 
         <p>Le lendemain, dans une réunion réservée aux seuls officiels américains, les services de renseignement livrèrent leur verdict. Les deux premiers objectifs, décapiter le régime et démanteler les capacités militaires iraniennes, étaient réalisables. Le soulèvement populaire et le changement de régime étaient «&nbsp;détachés de la réalité.&nbsp;»</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px 24px 28px", background: "#F7F4EF", borderLeft: "4px solid #1a1a1a", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.85", color: "#1a1a1a" }}>
-          «&nbsp;Farcical.&nbsp;»<br />
-          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>John Ratcliffe, directeur de la CIA.</span>
-          <br /><br />
-          «&nbsp;In other words, it&apos;s bullshit.&nbsp;»<br />
-          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Marco Rubio, Secrétaire d&apos;État.</span>
-          <br /><br />
-          «&nbsp;Sir, this is, in my experience, standard operating procedure for the Israelis. They oversell, and their plans are not always well-developed. They know they need us, and that&apos;s why they&apos;re hard-selling.&nbsp;»<br />
-          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Général Dan Caine, chef d&apos;état-major interarmées.</span>
-          <br /><br />
-          «&nbsp;If our goal is regime change or an uprising, we shouldn&apos;t do it. But if the goal is to destroy Iran&apos;s missile program, that&apos;s a goal we can achieve.&nbsp;»<br />
-          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Marco Rubio, réunion finale du 26 février.</span>
-          <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
-            Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
-          </span>
-        </blockquote>
+        <ScrollReveal>
+          <blockquote style={{ margin: "40px 0", padding: "24px 32px 24px 28px", background: "#F7F4EF", borderLeft: "4px solid #1a1a1a", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.85", color: "#1a1a1a" }}>
+            «&nbsp;Farcical.&nbsp;»<br />
+            <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>John Ratcliffe, directeur de la CIA.</span>
+            <br /><br />
+            «&nbsp;In other words, it&apos;s bullshit.&nbsp;»<br />
+            <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Marco Rubio, Secrétaire d&apos;État.</span>
+            <br /><br />
+            «&nbsp;Sir, this is, in my experience, standard operating procedure for the Israelis. They oversell, and their plans are not always well-developed. They know they need us, and that&apos;s why they&apos;re hard-selling.&nbsp;»<br />
+            <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Général Dan Caine, chef d&apos;état-major interarmées.</span>
+            <br /><br />
+            «&nbsp;If our goal is regime change or an uprising, we shouldn&apos;t do it. But if the goal is to destroy Iran&apos;s missile program, that&apos;s a goal we can achieve.&nbsp;»<br />
+            <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Marco Rubio, réunion finale du 26 février.</span>
+            <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
+              Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
+            </span>
+          </blockquote>
+        </ScrollReveal>
 
         <p>Tucker Carlson était venu au Bureau ovale plusieurs fois pour avertir Trump qu&apos;une guerre avec l&apos;Iran détruirait sa présidence. Quelques semaines avant le début des hostilités, Trump le rassura par téléphone&nbsp;: «&nbsp;I know you&apos;re worried about it, but it&apos;s going to be OK.&nbsp;» Carlson demanda comment il le savait. «&nbsp;Because it always is.&nbsp;»</p>
 
         <p>Le 26 février, réunion finale. Vance&nbsp;: «&nbsp;You know I think this is a bad idea, but if you want to do it, I&apos;ll support you.&nbsp;» Hegseth, seul enthousiaste&nbsp;: «&nbsp;We&apos;re going to have to take care of the Iranians eventually, so we might as well do it now.&nbsp;» Chacun formula ses réserves. Chacun se rangea.</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px 24px 28px", background: "#F7F4EF", borderLeft: "4px solid #1a1a1a", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.85", color: "#1a1a1a" }}>
-          «&nbsp;I think we need to do it.&nbsp;»<br />
-          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Donald Trump, réunion finale du Situation Room, 26 février 2026.</span>
-          <br /><br />
-          «&nbsp;Operation Epic Fury is approved. No aborts. Good luck.&nbsp;»<br />
-          <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Ordre transmis depuis Air Force One, 27 février, 22 minutes avant la deadline fixée par le général Caine.</span>
-          <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
-            Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
-          </span>
-        </blockquote>
+        <ScrollReveal>
+          <blockquote style={{ margin: "40px 0", padding: "24px 32px 24px 28px", background: "#F7F4EF", borderLeft: "4px solid #1a1a1a", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.85", color: "#1a1a1a" }}>
+            «&nbsp;I think we need to do it.&nbsp;»<br />
+            <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Donald Trump, réunion finale du Situation Room, 26 février 2026.</span>
+            <br /><br />
+            «&nbsp;Operation Epic Fury is approved. No aborts. Good luck.&nbsp;»<br />
+            <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Ordre transmis depuis Air Force One, 27 février, 22 minutes avant la deadline fixée par le général Caine.</span>
+            <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
+              Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
+            </span>
+          </blockquote>
+        </ScrollReveal>
 
         <p>Le <em>New York Times</em> conclut&nbsp;: «&nbsp;The U.S. decision to strike Iran was a victory for Mr. Netanyahu.&nbsp;»</p>
 
@@ -153,29 +158,33 @@ export default async function ChambreRatificationPage({ searchParams }: { search
         <p>La crise se dénoua. Le monde ne brûla pas. Et pendant ces treize jours, aucun dirigeant étranger ne franchit la porte du Situation Room pour convaincre Kennedy de quoi que ce soit.</p>
 
         {/* CHARNIÈRE */}
-        <div style={{ background: "#F5F0E8", borderLeft: "3px solid #1A2744", padding: "24px 28px", margin: "48px 0", fontFamily: "Georgia, serif", fontSize: "15px", fontStyle: "italic", lineHeight: "1.75", color: "#1A2744" }}>
-          <p style={{ margin: "0 0 12px" }}>En 1962, Kennedy est le président le plus enclin à la diplomatie dans une pièce pleine de faucons. Ses instincts le poussent vers le compromis, contre l&apos;avis de ses propres institutions. Il gagne.</p>
-          <p style={{ margin: "0 0 12px" }}>En 2026, Trump est le président le plus enclin à la guerre dans une pièce où tous ses conseillers lui disent que le plan est «&nbsp;farcical&nbsp;». Ses instincts le poussent vers le conflit, contre l&apos;avis de ses propres institutions. Il gagne aussi.</p>
-          <p style={{ margin: 0 }}>La direction de la résistance est exactement inversée. Le résultat institutionnel est identique&nbsp;: le président passe outre. Ce que cela révèle n&apos;est pas une question de personnalité, c&apos;est une question de système.</p>
-        </div>
+        <ScrollReveal>
+          <div style={{ background: "#F5F0E8", borderLeft: "3px solid #1A2744", padding: "24px 28px", margin: "48px 0", fontFamily: "Georgia, serif", fontSize: "15px", fontStyle: "italic", lineHeight: "1.75", color: "#1A2744" }}>
+            <p style={{ margin: "0 0 12px" }}>En 1962, Kennedy est le président le plus enclin à la diplomatie dans une pièce pleine de faucons. Ses instincts le poussent vers le compromis, contre l&apos;avis de ses propres institutions. Il gagne.</p>
+            <p style={{ margin: "0 0 12px" }}>En 2026, Trump est le président le plus enclin à la guerre dans une pièce où tous ses conseillers lui disent que le plan est «&nbsp;farcical&nbsp;». Ses instincts le poussent vers le conflit, contre l&apos;avis de ses propres institutions. Il gagne aussi.</p>
+            <p style={{ margin: 0 }}>La direction de la résistance est exactement inversée. Le résultat institutionnel est identique&nbsp;: le président passe outre. Ce que cela révèle n&apos;est pas une question de personnalité, c&apos;est une question de système.</p>
+          </div>
+        </ScrollReveal>
 
         <hr style={{ margin: "56px 0", border: "none", borderTop: "1px solid #DDD9D2" }} />
 
         <h2>III. Washington comme chambre de ratification</h2>
 
         {/* Tableau comparatif */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "#DDD9D2", margin: "48px 0", border: "1px solid #DDD9D2" }}>
-          <div style={{ background: "#F5F0E8", padding: "28px 24px" }}>
-            <div style={{ fontFamily: "Georgia, serif", fontSize: "52px", fontWeight: 900, color: "#DDD9D2", lineHeight: 1, marginBottom: "8px" }}>1962</div>
-            <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B8860B", marginBottom: "16px" }}>Cuba, Kennedy</div>
-            <p style={{ fontSize: "14px", lineHeight: "1.65", margin: 0 }}>Instincts du président&nbsp;: vers la diplomatie. Pression de l&apos;institution&nbsp;: vers la frappe. Kennedy résiste à ses généraux. Aucun dirigeant étranger dans la pièce. Issue&nbsp;: pas de guerre.</p>
+        <ScrollReveal>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "#DDD9D2", margin: "48px 0", border: "1px solid #DDD9D2" }}>
+            <div style={{ background: "#F5F0E8", padding: "28px 24px" }}>
+              <div style={{ fontFamily: "Georgia, serif", fontSize: "52px", fontWeight: 900, color: "#DDD9D2", lineHeight: 1, marginBottom: "8px" }}>1962</div>
+              <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B8860B", marginBottom: "16px" }}>Cuba, Kennedy</div>
+              <p style={{ fontSize: "14px", lineHeight: "1.65", margin: 0 }}>Instincts du président&nbsp;: vers la diplomatie. Pression de l&apos;institution&nbsp;: vers la frappe. Kennedy résiste à ses généraux. Aucun dirigeant étranger dans la pièce. Issue&nbsp;: pas de guerre.</p>
+            </div>
+            <div style={{ background: "#F5F0E8", padding: "28px 24px" }}>
+              <div style={{ fontFamily: "Georgia, serif", fontSize: "52px", fontWeight: 900, color: "#DDD9D2", lineHeight: 1, marginBottom: "8px" }}>2026</div>
+              <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B8860B", marginBottom: "16px" }}>Iran, Trump</div>
+              <p style={{ fontSize: "14px", lineHeight: "1.65", margin: 0 }}>Instincts du président&nbsp;: vers la guerre. CIA, état-major, vice-président disent «&nbsp;farcical&nbsp;». Trump passe outre. Un dirigeant étranger a cadré la décision. Issue&nbsp;: Epic Fury.</p>
+            </div>
           </div>
-          <div style={{ background: "#F5F0E8", padding: "28px 24px" }}>
-            <div style={{ fontFamily: "Georgia, serif", fontSize: "52px", fontWeight: 900, color: "#DDD9D2", lineHeight: 1, marginBottom: "8px" }}>2026</div>
-            <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B8860B", marginBottom: "16px" }}>Iran, Trump</div>
-            <p style={{ fontSize: "14px", lineHeight: "1.65", margin: 0 }}>Instincts du président&nbsp;: vers la guerre. CIA, état-major, vice-président disent «&nbsp;farcical&nbsp;». Trump passe outre. Un dirigeant étranger a cadré la décision. Issue&nbsp;: Epic Fury.</p>
-          </div>
-        </div>
+        </ScrollReveal>
 
         <p>En 1962, la menace est établie par les services américains, délibérée entre Américains, résolue par un président qui résistait à ses propres faucons.</p>
 
@@ -234,18 +243,20 @@ export default async function ChambreRatificationPage({ searchParams }: { search
         <p>Le <em>New York Times</em> rapporte que les conseillers de Trump le voyaient comme «&nbsp;un grand homme de l&apos;histoire&nbsp;» avec une confiance presque superstitieuse en ses instincts, et que sa décision «&nbsp;was not driven by intelligence assessments or a strategic consensus among his advisers, which did not exist.&nbsp;» Kennedy se méfiait de ses instincts. Il les soumettait à l&apos;épreuve des faits, de l&apos;histoire, de la logique de l&apos;adversaire. Ce n&apos;est pas un trait de caractère&nbsp;: c&apos;est une méthode. Et la méthode fait la différence entre une délibération et un film.</p>
 
         {/* ÉPILOGUE */}
-        <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "40px", marginTop: "56px" }}>
-          <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8860B", marginBottom: "24px" }}>Épilogue</div>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.75", color: "#2a2a2a", marginBottom: "1.4em" }}>
-            Le cessez-le-feu a été annoncé. L&apos;Iran dit que le détroit est fermé. Netanyahu dit que le doigt est sur la gâchette. L&apos;uranium enrichi n&apos;a pas été retiré. Et Reza Pahlavi est toujours à Washington.
-          </p>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.75", color: "#2a2a2a", marginBottom: "2em" }}>
-            Soixante-dix ans après que son père fut installé au pouvoir par la CIA, le fils attend dans les coulisses d&apos;une histoire qui se répète, sans même se donner la peine de changer de titre.
-          </p>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "21px", fontWeight: 700, fontStyle: "italic", lineHeight: "1.55", color: "#1a1a1a", borderTop: "1px solid #DDD9D2", paddingTop: "28px", marginBottom: 0 }}>
-            Si Washington est devenu une chambre de ratification, la question suivante est immédiate&nbsp;: ratification de quoi, et par qui, la prochaine fois&nbsp;?
-          </p>
-        </div>
+        <ScrollReveal>
+          <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "40px", marginTop: "56px" }}>
+            <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8860B", marginBottom: "24px" }}>Épilogue</div>
+            <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.75", color: "#2a2a2a", marginBottom: "1.4em" }}>
+              Le cessez-le-feu a été annoncé. L&apos;Iran dit que le détroit est fermé. Netanyahu dit que le doigt est sur la gâchette. L&apos;uranium enrichi n&apos;a pas été retiré. Et Reza Pahlavi est toujours à Washington.
+            </p>
+            <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.75", color: "#2a2a2a", marginBottom: "2em" }}>
+              Soixante-dix ans après que son père fut installé au pouvoir par la CIA, le fils attend dans les coulisses d&apos;une histoire qui se répète, sans même se donner la peine de changer de titre.
+            </p>
+            <p style={{ fontFamily: "Georgia, serif", fontSize: "21px", fontWeight: 700, fontStyle: "italic", lineHeight: "1.55", color: "#1a1a1a", borderTop: "1px solid #DDD9D2", paddingTop: "28px", marginBottom: 0 }}>
+              Si Washington est devenu une chambre de ratification, la question suivante est immédiate&nbsp;: ratification de quoi, et par qui, la prochaine fois&nbsp;?
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* SOURCES */}
         <div style={{ marginTop: "48px", paddingTop: "24px", borderTop: "2px solid #DDD9D2" }}>

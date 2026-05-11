@@ -2,6 +2,7 @@ import fs from 'fs'
 import nodePath from 'path'
 import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
+import ScrollReveal from "../../../components/ScrollReveal";
 
 export const dynamic = 'force-dynamic'
 
@@ -86,10 +87,12 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         <p>Palantir affirme que chaque client opère dans un environnement isolé et sécurisé, et que les données ne sont pas partagées entre clients. C&apos;est vrai dans les conditions normales d&apos;opération. La question est ce qui se passe lorsque Washington émet un mandat. Le mécanisme de contestation existe, mais il est lent et suppose une volonté politique d&apos;y recourir. Sous l&apos;administration Trump, avec Thiel dans l&apos;orbite directe du pouvoir, c&apos;est une hypothèse fragile.</p>
 
-        <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1a1612", color: "#f0ece4", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
-          "À partir du moment où l&apos;on voit qu&apos;ils ont pu vouloir débrancher les systèmes de renseignement géospatial en Ukraine, ça veut dire qu&apos;un jour, ils peuvent nous le faire aussi."
-          <br /><span style={{ opacity: 0.9, fontSize: "13px", color: "#C8A96E" }}>Pierre Gastineau, Les espions du président (Albin Michel, 2025).</span>
-        </blockquote>
+        <ScrollReveal>
+          <blockquote style={{ margin: "40px 0", padding: "24px 32px", background: "#1a1612", color: "#f0ece4", fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", lineHeight: "1.75", borderRadius: "2px" }}>
+            "À partir du moment où l&apos;on voit qu&apos;ils ont pu vouloir débrancher les systèmes de renseignement géospatial en Ukraine, ça veut dire qu&apos;un jour, ils peuvent nous le faire aussi."
+            <br /><span style={{ opacity: 0.9, fontSize: "13px", color: "#C8A96E" }}>Pierre Gastineau, Les espions du président (Albin Michel, 2025).</span>
+          </blockquote>
+        </ScrollReveal>
 
         <h2>Ce qu&apos;on ne peut pas désinstaller</h2>
 
@@ -99,15 +102,17 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         <p>On n&apos;achète pas un logiciel. On adopte une épistémologie.</p>
 
-        <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "40px", marginTop: "56px" }}>
-          <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8860B", marginBottom: "24px" }}>Épilogue</div>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.75", color: "#2a2a2a", marginBottom: "1.4em" }}>
-            Palantir a été fondée avec l&apos;argent de la CIA, par un homme qui a écrit noir sur blanc en 2009 qu&apos;il ne croyait plus que la liberté et la démocratie soient compatibles, pour vendre aux démocraties libérales les instruments de leur sécurité. Ces démocraties ont signé, renouvelé, étendu leurs contrats parce que l&apos;outil fonctionne, parce qu&apos;il n&apos;y a pas d&apos;alternative prête, parce que la menace est réelle et que les solutions souveraines sont perpétuellement en cours de développement.
-          </p>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "21px", fontWeight: 700, fontStyle: "italic", lineHeight: "1.55", color: "#1a1a1a", borderTop: "1px solid #DDD9D2", paddingTop: "28px", marginBottom: 0 }}>
-            La question de qui décide qui est l&apos;ennemi n&apos;a pas de réponse administrative. Elle n&apos;attend pas une solution technique. Elle attend une décision politique que personne, jusqu&apos;ici, n&apos;a eu le courage de prendre.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div style={{ borderTop: "2px solid #1a1a1a", paddingTop: "40px", marginTop: "56px" }}>
+            <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B8860B", marginBottom: "24px" }}>Épilogue</div>
+            <p style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontStyle: "italic", lineHeight: "1.75", color: "#2a2a2a", marginBottom: "1.4em" }}>
+              Palantir a été fondée avec l&apos;argent de la CIA, par un homme qui a écrit noir sur blanc en 2009 qu&apos;il ne croyait plus que la liberté et la démocratie soient compatibles, pour vendre aux démocraties libérales les instruments de leur sécurité. Ces démocraties ont signé, renouvelé, étendu leurs contrats parce que l&apos;outil fonctionne, parce qu&apos;il n&apos;y a pas d&apos;alternative prête, parce que la menace est réelle et que les solutions souveraines sont perpétuellement en cours de développement.
+            </p>
+            <p style={{ fontFamily: "Georgia, serif", fontSize: "21px", fontWeight: 700, fontStyle: "italic", lineHeight: "1.55", color: "#1a1a1a", borderTop: "1px solid #DDD9D2", paddingTop: "28px", marginBottom: 0 }}>
+              La question de qui décide qui est l&apos;ennemi n&apos;a pas de réponse administrative. Elle n&apos;attend pas une solution technique. Elle attend une décision politique que personne, jusqu&apos;ici, n&apos;a eu le courage de prendre.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div style={{ marginTop: "48px", paddingTop: "24px", borderTop: "2px solid #DDD9D2" }}>
           <div style={{ fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#8a7f72", marginBottom: "12px" }}>Sources</div>
