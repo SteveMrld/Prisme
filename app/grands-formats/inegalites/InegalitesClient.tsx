@@ -1,6 +1,7 @@
 // @ts-nocheck
 "use client"
 import { useState, useEffect, useRef, useCallback } from "react"
+import { useReveal } from "@/lib/hooks/useReveal"
 
 const BGS = [
   { src:"/grands-formats/inegalites/02-ouvriers-nb.jpg",   kb:"kb1", yr:[1980,1985], label:"L'ère industrielle" },
@@ -84,6 +85,7 @@ export default function InegalitesClient() {
   const raf=useRef(null), last=useRef(null), pr=useRef(0)
   const DUR=22000
   const YR_START=1980, YR_END=2022
+  const [boxRef, boxVisible] = useReveal<HTMLDivElement>({ mode: 'distance' })
 
   useEffect(()=>{ setOk(true); setTimeout(()=>setPlay(true),400) },[])
 
@@ -185,13 +187,19 @@ export default function InegalitesClient() {
         {/* Basculer top10 / bot50 */}
         <div style={{display:"flex",gap:4,alignItems:"center"}}>
           {[["top10","Top 10% — les plus riches"],["bot50","Bottom 50% — les plus pauvres"]].map(([k,l])=>(
-            <button key={k} onClick={()=>setMode(k)} style={{
-              background:mode===k?"rgba(255,255,255,0.12)":"none",
-              border:`1px solid ${mode===k?"rgba(255,255,255,0.3)":"rgba(255,255,255,0.1)"}`,
-              color:mode===k?"#fff":"rgba(255,255,255,0.4)",
-              fontFamily:"'DM Mono',monospace",fontSize:8,letterSpacing:2,
-              padding:"6px 12px",cursor:"pointer",textTransform:"uppercase",transition:"all 0.2s"
-            }}>{l}</button>
+            <button
+              key={k}
+              onClick={()=>setMode(k)}
+              onMouseEnter={(e)=>{ if (mode!==k) { (e.currentTarget as HTMLButtonElement).style.color="rgba(255,255,255,0.7)"; (e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.2)" } }}
+              onMouseLeave={(e)=>{ if (mode!==k) { (e.currentTarget as HTMLButtonElement).style.color="rgba(255,255,255,0.4)"; (e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.1)" } }}
+              style={{
+                background:mode===k?"rgba(255,255,255,0.12)":"none",
+                border:`1px solid ${mode===k?"rgba(255,255,255,0.3)":"rgba(255,255,255,0.1)"}`,
+                color:mode===k?"#fff":"rgba(255,255,255,0.4)",
+                fontFamily:"'DM Mono',monospace",fontSize:8,letterSpacing:2,
+                padding:"6px 12px",cursor:"pointer",textTransform:"uppercase",
+                transition:"background-color var(--dur-base) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out)"
+              }}>{l}</button>
           ))}
           {/* Légende pays */}
           <div style={{display:"flex",gap:12,marginLeft:"auto",flexWrap:"wrap"}}>
@@ -288,27 +296,43 @@ export default function InegalitesClient() {
             })}
           </svg>
 
-          {/* Tooltip événement */}
-          {activeEv && (
-            <div style={{
-              position:"absolute",bottom:48,left:`${(xS(activeEv.yr)/W)*100}%`,
-              transform:"translateX(-50%)",
+          {/* Tooltip événement — toujours monté pour transition fluide */}
+          <div
+            aria-hidden={!activeEv}
+            style={{
+              position:"absolute",bottom:48,
+              left: activeEv ? `${(xS(activeEv.yr)/W)*100}%` : '50%',
+              transform: activeEv
+                ? "translate(-50%, 0)"
+                : "translate(-50%, 4px)",
               background:"rgba(4,6,13,0.95)",border:"1px solid rgba(255,255,255,0.15)",
-              padding:"8px 12px",maxWidth:200,zIndex:10,pointerEvents:"none"
-            }}>
-              <div style={{fontFamily:"'DM Mono',monospace",fontSize:8,color:"rgba(255,255,255,0.5)",marginBottom:4,letterSpacing:2}}>
-                {activeEv.yr} · {activeEv.label}
-              </div>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:12,color:"rgba(255,255,255,0.8)",lineHeight:1.5}}>
-                {activeEv.note}
-              </div>
-            </div>
-          )}
+              padding:"8px 12px",maxWidth:200,zIndex:10,pointerEvents:"none",
+              opacity: activeEv ? 1 : 0,
+              transition: "opacity var(--dur-fast) var(--ease-out), transform var(--dur-base) var(--ease-out), left var(--dur-base) var(--ease-out)",
+            }}
+          >
+            {activeEv && (
+              <>
+                <div style={{fontFamily:"'DM Mono',monospace",fontSize:8,color:"rgba(255,255,255,0.5)",marginBottom:4,letterSpacing:2}}>
+                  {activeEv.yr} · {activeEv.label}
+                </div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:12,color:"rgba(255,255,255,0.8)",lineHeight:1.5}}>
+                  {activeEv.note}
+                </div>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Contrôles */}
         <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <button onClick={onPlay} style={{background:"none",border:"1px solid rgba(255,255,255,0.3)",color:"#fff",fontFamily:"'DM Mono',monospace",fontSize:8,letterSpacing:3,padding:"7px 14px",cursor:"pointer",textTransform:"uppercase",flexShrink:0}}>
+          <button
+            onClick={onPlay}
+            className="btn-press"
+            onMouseEnter={(e)=>{ (e.currentTarget as HTMLButtonElement).style.background="rgba(255,255,255,0.04)"; (e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.55)" }}
+            onMouseLeave={(e)=>{ (e.currentTarget as HTMLButtonElement).style.background="none"; (e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.3)" }}
+            style={{background:"none",border:"1px solid rgba(255,255,255,0.3)",color:"#fff",fontFamily:"'DM Mono',monospace",fontSize:8,letterSpacing:3,padding:"7px 14px",cursor:"pointer",textTransform:"uppercase",flexShrink:0,transition:"background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out)"}}
+          >
             {play?"⏸ Pause":prog>=1?"↺ Rejouer":"▶ Play"}
           </button>
           <span style={{fontSize:7,color:"rgba(255,255,255,0.3)",flexShrink:0}}>1980</span>
@@ -317,7 +341,15 @@ export default function InegalitesClient() {
         </div>
 
         {/* Encadré divergence */}
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:4}}>
+        <div
+          ref={boxRef}
+          style={{
+            display:"grid",gridTemplateColumns:"1fr 1fr",gap:4,
+            opacity: boxVisible ? 1 : 0,
+            transform: boxVisible ? "translateY(0)" : "translateY(8px)",
+            transition: "opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out)",
+          }}
+        >
           <div style={{background:"rgba(4,6,13,0.55)",backdropFilter:"blur(4px)",border:"1px solid rgba(255,255,255,0.1)",padding:"12px 14px"}}>
             <div style={{fontFamily:"'DM Mono',monospace",fontSize:7,color:"rgba(255,255,255,0.3)",letterSpacing:2,marginBottom:6,textTransform:"uppercase"}}>
               Pourquoi 1980 ?
