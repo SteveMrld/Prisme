@@ -17,6 +17,7 @@ type FeatCard = {
   desc: string
   cta: string
   image: string
+  hasIllustration?: boolean
 }
 
 const FEAT_CARDS: FeatCard[] = [
@@ -27,7 +28,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: 'Rosatom · Urenco · CNNC · Orano · Centrus · Cinq paliers de 0,7 % à 90 %',
     desc: "De 0,7 % à 90 %, du combustible civil à la qualité militaire. Une cartographie graphique des capacités mondiales d'enrichissement, des seuils qui font basculer dans le militaire, et de la dépendance structurelle de l'Occident à Rosatom.",
     cta: 'Explorer la cascade',
-    image: '/articles/img-fiscalite.jpg',
+    image: '/articles/atlas/uranium-cascade.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/pauvrete-france.html', external: true,
@@ -54,7 +56,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: 'Reuters Institute 2025 · 48 pays · Newsfluenceurs · Concentration du capital',
     desc: "Désaffection du public, concentration du pouvoir médiatique entre les mains d'une poignée de milliardaires, émergence des newsfluenceurs. Une analyse en deux parties fondée sur les données les plus récentes disponibles.",
     cta: "Explorer l'analyse",
-    image: '/articles/img-medias.jpg',
+    image: '/articles/atlas/medias-occidentaux.png',
+    hasIllustration: true,
   },
   {
     href: '/grands-formats/bases-militaires', external: false,
@@ -63,7 +66,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: '6 puissances · 17 sources vérifiées · Zoom & filtres',
     desc: "750 bases américaines, 145 britanniques, 21 russes, 6 françaises. La carte interactive des empreintes militaires mondiales — avec les données les plus récentes disponibles.",
     cta: 'Explorer la carte',
-    image: '/articles/img-empires.jpg',
+    image: '/articles/atlas/empire-invisible.png',
+    hasIllustration: true,
   },
   {
     href: '/grands-formats/inegalites', external: false,
@@ -81,7 +85,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: "Scotese 2021 · HadCRUT5 · NASA GISS · 500 millions d'années de données",
     desc: "Deux courbes, même axe. La Terre a connu des variations de ±10°C sur des millions d'années. Notre +1,6°C est arrivé en 150 ans. Ce qui est sans précédent, c'est la vitesse.",
     cta: 'Explorer la visualisation',
-    image: '/grands-formats/climat/05-glace-glaciaire.jpg',
+    image: '/articles/atlas/climat-temperature.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/terres-rares.html', external: true,
@@ -90,7 +95,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: 'Congo · Chili · Bolivie · Chine · Europe · États-Unis',
     desc: "Du cobalt du Katanga au raffinage de Guangdong, une visualisation animée des flux qui alimentent la transition verte — et la nouvelle géographie de la dépendance mondiale.",
     cta: 'Explorer la visualisation',
-    image: '/articles/terres-rares.jpg',
+    image: '/articles/atlas/terres-rares.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/naval.html', external: true,
@@ -99,7 +105,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: 'Routes commerciales · Détroits · Marines militaires · Zones de tension',
     desc: "80% du commerce mondial circule sur l'eau. Qui contrôle les mers contrôle l'économie mondiale. Une carte animée en 5 chapitres qui révèle les enjeux invisibles du monde maritime.",
     cta: 'Explorer la carte',
-    image: '/articles/img-arctique.jpg',
+    image: '/articles/atlas/mers-du-pouvoir.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/predateurs.html', external: true,
@@ -108,7 +115,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: "États-Unis · Russie · Chine — zones d'influence mondiales",
     desc: "Trois puissances, trois doctrines. Une carte choroplèthe mondiale cliquable et interactive qui révèle comment USA, Russie et Chine se partagent le monde — avec un focus sur l'Arctique et les points de friction.",
     cta: 'Explorer la carte',
-    image: '/articles/img-predateurs.jpg',
+    image: '/articles/atlas/predateurs.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/eau.html', external: true,
@@ -117,7 +125,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: "Glaciers · Barrages · Conflits · Géopolitique de l'eau",
     desc: "Des glaciers himalayens aux barrages africains. Comment la maîtrise de l'eau redessine les rapports de puissance — une carte animée en 5 chapitres.",
     cta: 'Explorer la carte',
-    image: '/articles/img-eau.png',
+    image: '/articles/atlas/eau-fracture.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/france_maritime.html', external: true,
@@ -126,7 +135,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: 'ZEE · Pacifique · Atlantique · Océan Indien',
     desc: "La France possède la 2e zone économique exclusive mondiale — et presque personne ne le sait. Une révélation en 6 chapitres sur l'empire maritime invisible de la République.",
     cta: 'Explorer la carte',
-    image: '/articles/img-france-maritime.jpg',
+    image: '/articles/atlas/france-maritime.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/cables.html', external: true,
@@ -135,7 +145,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: 'Vue en coupe · Réseau de flux · Enjeux stratégiques',
     desc: "99% d'internet circule sous les océans. Qui contrôle ces câbles contrôle l'information mondiale. Vue en coupe animée, réseau de flux et décryptage des enjeux géopolitiques.",
     cta: 'Explorer la visualisation',
-    image: '/articles/img-reseaux.png',
+    image: '/articles/atlas/cables-sous-marins.png',
+    hasIllustration: true,
   },
   {
     href: '/visuels/techgeo.html', external: true,
@@ -144,7 +155,8 @@ const FEAT_CARDS: FeatCard[] = [
     sub: 'Terres rares · Semi-conducteurs · Câbles sous-marins',
     desc: "Des mines de Mongolie aux fabs de Taïwan — une guerre souterraine pour les matériaux qui font tourner l'économie numérique mondiale.",
     cta: 'Explorer la visualisation',
-    image: '/articles/img-techgeo.jpg',
+    image: '/articles/atlas/sous-sol-numerique.png',
+    hasIllustration: true,
   },
 ]
 
@@ -182,9 +194,12 @@ function FeatCard({ card }: { card: FeatCard }) {
   const linkProps = card.external
     ? { target: '_blank', rel: 'noopener noreferrer' }
     : {}
+  const mediaClass = card.hasIllustration
+    ? `${styles.featMedia} ${styles.featMediaIllu}`
+    : styles.featMedia
   return (
     <a href={card.href} {...linkProps} className={styles.featCard} style={{marginTop:'1px'}}>
-      <div className={styles.featMedia} style={{backgroundImage: `url(${card.image})`}} aria-hidden="true" />
+      <div className={mediaClass} style={{backgroundImage: `url(${card.image})`}} aria-hidden="true" />
       <div className={styles.featBody}>
         <div className={styles.featEyebrow}>
           <span className={styles.featTag} style={{color: card.tagColor}}>{card.tag}</span>

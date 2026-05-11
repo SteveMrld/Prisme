@@ -113,6 +113,13 @@
   background: linear-gradient(to right, transparent 60%, rgba(7,7,7,0.85) 100%);
   pointer-events: none;
 }
+.featMediaIllu {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #070707;
+}
+.featMediaIllu::after { display: none; }
 .featBody {
   position: relative; z-index: 1;
   flex: 1;
