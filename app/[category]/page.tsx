@@ -69,13 +69,6 @@ const CATEGORIES: Record<string, {
     color: '#C8A96E',
     cssVar: 'var(--portrait)',
   },
-  visuels: {
-    label: 'Atlas',
-    labelLong: 'Atlas',
-    description: 'Infographies, animations, concepts. Les idées qui se comprennent mieux en les voyant.',
-    color: '#1A1A3E',
-    cssVar: 'var(--concept)',
-  },
 }
 
 /* Mapping URL slug → category key in articles.json */
@@ -88,13 +81,12 @@ const URL_TO_CATEGORY: Record<string, string> = {
   sciences: 'sciences',
   culture: 'culture',
   portraits: 'portrait',
-  visuels: 'concept',
 }
 
 /* Nav activeNav key */
 const URL_TO_NAV: Record<string, string> = {
   geo: 'geo', eco: 'eco', tech: 'tech', env: 'env',
-  soc: 'soc', sciences: 'sciences', culture: 'culture', portraits: 'portrait', visuels: 'concept',
+  soc: 'soc', sciences: 'sciences', culture: 'culture', portraits: 'portrait',
 }
 
 export function generateStaticParams() {
