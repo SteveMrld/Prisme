@@ -1,6 +1,7 @@
 // @ts-nocheck
 "use client"
 import { useState, useEffect, useRef, useCallback } from "react"
+import { useReveal } from "@/lib/hooks/useReveal"
 
 const BGS = [
   { src:"/grands-formats/climat/01-ocean-cambrien.jpg",  kb:"kb1", r:[500,300] },
@@ -96,7 +97,9 @@ export default function CC() {
   const [bg, setBg]   = useState(0)
   const [ok, setOk]   = useState(false)
   const raf=useRef(null), last=useRef(null), pr=useRef(0)
-  const DUR1=18000, DUR2=10000 // 18s géo + 10s récent
+  const DUR1=18000, DUR2=10000 // 18s géo + 10s récent (timing narratif, intentionnel)
+  const [msgRef, msgVisible] = useReveal<HTMLDivElement>({ mode: 'distance' })
+  const [ctlRef, ctlVisible] = useReveal<HTMLDivElement>({ mode: 'distance' })
 
   useEffect(()=>{setOk(true);setTimeout(()=>setPlay(true),400)},[])
 
@@ -219,7 +222,7 @@ export default function CC() {
             <div style={{fontSize:7,letterSpacing:2,color:"rgba(255,255,255,0.35)",marginBottom:3}}>
               {p<1?(ma>1?`−${Math.round(ma)} Ma`:ma>0.001?`−${Math.round(ma*1000)}k ans`:"passé récent"):`${Math.round(currentYr)}`}
             </div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(26px,3.8vw,48px)",fontWeight:700,lineHeight:1,color:col(p<1?currentT:gTR(Math.min(currentYr,2024))),letterSpacing:"-1px",transition:"color 0.3s"}}>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(26px,3.8vw,48px)",fontWeight:700,lineHeight:1,color:col(p<1?currentT:gTR(Math.min(currentYr,2024))),letterSpacing:"-1px",transition:"color var(--dur-base) var(--ease-out)"}}>
               {(p<1?currentT:gTR(Math.min(currentYr,2024)))>=0?"+":""}{(p<1?currentT:gTR(Math.min(currentYr,2024))).toFixed(2)}<span style={{fontSize:"0.38em",opacity:0.6}}>°C</span>
             </div>
           </div>
@@ -367,7 +370,16 @@ export default function CC() {
         </div>
 
         {/* Message clé entre les deux */}
-        <div style={{borderLeft:"3px solid #dc2626",paddingLeft:16,background:"rgba(4,6,13,0.4)",padding:"12px 12px 12px 16px"}}>
+        <div
+          ref={msgRef}
+          style={{
+            borderLeft:"3px solid #dc2626",paddingLeft:16,
+            background:"rgba(4,6,13,0.4)",padding:"12px 12px 12px 16px",
+            opacity: msgVisible ? 1 : 0,
+            transform: msgVisible ? "translateY(0)" : "translateY(8px)",
+            transition: "opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out)",
+          }}
+        >
           <p style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(13px,1.6vw,17px)",fontWeight:300,color:"#fff",margin:"0 0 6px",lineHeight:1.7}}>
             Ces deux courbes ont le <strong style={{fontWeight:700}}>même axe vertical</strong>. La Terre a toujours changé. La différence : la courbe de gauche s'est déroulée sur <strong style={{fontWeight:600}}>500 millions d'années</strong>. La courbe de droite, en <strong style={{fontWeight:700,color:"#ef4444"}}>150 ans</strong>.
           </p>
@@ -377,8 +389,15 @@ export default function CC() {
         </div>
 
         {/* Contrôles */}
-        <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <button onClick={onPlay} style={{background:"none",border:"1px solid rgba(255,255,255,0.35)",color:"#fff",fontFamily:"'DM Mono',monospace",fontSize:8,letterSpacing:3,padding:"7px 14px",cursor:"pointer",textTransform:"uppercase",flexShrink:0}}>
+        <div
+          ref={ctlRef}
+          style={{
+            display:"flex",alignItems:"center",gap:10,
+            opacity: ctlVisible ? 1 : 0,
+            transition: "opacity var(--dur-base) var(--ease-out)",
+          }}
+        >
+          <button onClick={onPlay} className="btn-press" style={{background:"none",border:"1px solid rgba(255,255,255,0.35)",color:"#fff",fontFamily:"'DM Mono',monospace",fontSize:8,letterSpacing:3,padding:"7px 14px",cursor:"pointer",textTransform:"uppercase",flexShrink:0,transition:"background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out)"}} onMouseEnter={(e)=>{(e.currentTarget as HTMLButtonElement).style.background="rgba(255,255,255,0.04)";(e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.6)"}} onMouseLeave={(e)=>{(e.currentTarget as HTMLButtonElement).style.background="none";(e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.35)"}}>
             {play?"⏸ Pause":(p>=1&&p2>=1)?"↺ Rejouer":"▶ Play"}
           </button>
           <div style={{flex:1,display:"flex",alignItems:"center",gap:6}}>
