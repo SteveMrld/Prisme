@@ -20,7 +20,7 @@ interface Props {
   intervalMs?: number
 }
 
-export default function HeroRotator({ articles, intervalMs = 4500 }: Props) {
+export default function HeroRotator({ articles, intervalMs = 6500 }: Props) {
   const [current, setCurrent] = useState(0)
   const [prev, setPrev] = useState<number | null>(null)
   const [animating, setAnimating] = useState(false)
@@ -30,7 +30,8 @@ export default function HeroRotator({ articles, intervalMs = 4500 }: Props) {
     setAnimating(true)
     setPrev(current)
     setCurrent(idx)
-    setTimeout(() => { setPrev(null); setAnimating(false) }, 600)
+    // Aligne avec --dur-hero (1200ms) pour laisser le crossfade finir
+    setTimeout(() => { setPrev(null); setAnimating(false) }, 1200)
   }
 
   useEffect(() => {

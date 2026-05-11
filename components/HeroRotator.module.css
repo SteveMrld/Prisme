@@ -16,7 +16,7 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.7s ease;
+  transition: opacity var(--dur-hero) var(--ease-elegant);
 }
 
 .imgSlide.active {
@@ -29,6 +29,22 @@
   object-fit: cover;
   object-position: center 35%;
   display: block;
+  transform: scale(1);
+  will-change: transform;
+}
+
+/* Ken Burns lent sur le slide actif — imperceptible, 1 → 1.05 en 8s */
+.imgSlide.active .img {
+  animation: heroKenBurns 8s var(--ease-out) forwards;
+}
+
+@keyframes heroKenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imgSlide.active .img { animation: none; }
 }
 
 /* Dégradé bas pour lisibilité texte */
@@ -120,14 +136,18 @@
   background: rgba(255,255,255,.35);
   cursor: pointer;
   padding: 0;
-  transition: all .3s ease;
+  transition: width var(--dur-base) var(--ease-out),
+              background-color var(--dur-base) var(--ease-out),
+              border-radius var(--dur-base) var(--ease-out);
 }
+.dot:hover { background: rgba(255,255,255,.6); }
 
 .dotActive {
   width: 24px;
   border-radius: 3px;
   background: #C8A96E;
 }
+.dotActive:hover { background: #C8A96E; }
 
 /* Desktop — hauteur fixe */
 @media (min-width: 900px) {

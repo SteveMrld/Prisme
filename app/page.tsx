@@ -127,7 +127,7 @@ export default function HomePage() {
           1. HERO — slider automatique
       ══════════════════════════════════════ */}
       <section className={styles.lead}>
-        <HeroRotator articles={HERO_ROTATION} intervalMs={4000} />
+        <HeroRotator articles={HERO_ROTATION} intervalMs={7000} />
       </section>
 
       {/* ══════════════════════════════════════
