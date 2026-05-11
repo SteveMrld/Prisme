@@ -292,9 +292,15 @@
   padding: 16px;
   border-right: 1px solid #E8E2DA;
   border-bottom: 1px solid #E8E2DA;
-  transition: background .15s;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
 }
-.gfCard:hover { background: #FAFAF8; }
+.gfCard:hover {
+  background: #FAFAF8;
+  box-shadow: 0 6px 24px -8px rgba(10, 10, 10, 0.10);
+  position: relative;
+  z-index: 1;
+}
 .gfCard:nth-child(even) { border-right: none; }
 /* Supprime le double filet bas sur la dernière rangée */
 .gfCard:last-child,
@@ -305,7 +311,10 @@
   overflow: hidden;
   margin-bottom: 10px;
 }
-.gfImgWrap img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .4s; }
+.gfImgWrap img {
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
 .gfCard:hover .gfImgWrap img { transform: scale(1.03); }
 .gfBody { display: flex; flex-direction: column; gap: 5px; }
 .gfTitle {

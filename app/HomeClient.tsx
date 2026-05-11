@@ -61,12 +61,17 @@ export function FadeCard({ children, delay = 0 }: { children: React.ReactNode; d
   )
 }
 
-// ── Grille staggerée — chaque enfant entre avec 60ms de décalage
+// ── Grille staggerée — chaque enfant entre avec 80ms (--stagger-base) de décalage
 export function StaggerGrid({ children, className }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const items = Array.from(el.querySelectorAll('[data-stagger-item]')) as HTMLElement[]
+      items.forEach(item => { item.style.opacity = '1'; item.style.transform = 'translateY(0)' })
+      return
+    }
     const items = Array.from(el.querySelectorAll('[data-stagger-item]')) as HTMLElement[]
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) {
@@ -74,7 +79,7 @@ export function StaggerGrid({ children, className }: { children: React.ReactNode
           setTimeout(() => {
             item.style.opacity = '1'
             item.style.transform = 'translateY(0)'
-          }, i * 60)
+          }, i * 80)
         })
         obs.disconnect()
       }
