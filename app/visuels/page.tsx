@@ -121,15 +121,6 @@ const ATLAS_CARDS: AtlasCard[] = [
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/14_bataille-sous-sol-numerique.jpg',
   },
-  {
-    href: '/visuels/dollar1.html', external: true,
-    tag: 'Économie · Trilogie', tagColor: 'var(--eco)',
-    title: "L'Empire du dollar",
-    sub: 'Bretton Woods · Pétrodollar · Sanctions · BRICS',
-    desc: "Comment une monnaie nationale est devenue l'étalon de l'économie mondiale — et pourquoi son règne pourrait finir. Une trilogie en trois actes.",
-    cta: 'Lancer la trilogie',
-    image: '/articles/atlas/15_empire-du-dollar.jpg',
-  },
 ]
 
 const DATAVIZ_CARDS: AtlasCard[] = [
@@ -268,7 +259,7 @@ export default function VisuelsPage() {
           </p>
         </div>
         <div className={styles.heroMeta}>
-          <div className={styles.heroStat}><span>12</span>cartes Atlas</div>
+          <div className={styles.heroStat}><span>11</span>cartes Atlas</div>
           <div className={styles.heroDivider}/>
           <div className={styles.heroStat}><span>20+</span>en préparation</div>
         </div>
