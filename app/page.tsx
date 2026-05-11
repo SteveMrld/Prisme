@@ -58,12 +58,15 @@ const ENTRETIEN_ART = {
   href: '/entretien/diarra',
   img: '/portraits/diarra.png',
 }
+// 12 grands formats — multiple de 4 pour remplir parfaitement la grille
+// 4-col en desktop, 2-col en mobile : 3 rangees pleines sans case vide.
 const GF = [
-  art('terres-rares'), art('medias'),
-  art('skunkworks'),   art('dette-souveraine'),
-  art('france_maritime'), art('eau'),
-  art('techgeo'),      art('taiwan'),
-  art('semico'),       art('chambre-ratification'),
+  art('terres-rares'),         art('medias'),
+  art('skunkworks'),           art('dette-souveraine'),
+  art('france_maritime'),      art('eau'),
+  art('techgeo'),              art('taiwan'),
+  art('semico'),               art('chambre-ratification'),
+  art('palantir'),             art('architecture-desordre'),
 ]
 const LATEST = (articlesData as any[])
   .filter((a:any) => !a.featured)
@@ -203,18 +206,16 @@ export default function HomePage() {
       <SectionHead label="Grands formats" href="/grands-formats" />
       <FadeSection>
       <section className={styles.gfSection}>
-        {GF.map((a, i) => {
-          const hasImg = i % 4 < 2
-          return (
+        {GF.map((a) => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfCard}>
-              {hasImg && a.image && (
+              {a.image && (
                 <div className={styles.gfImgWrap}>
                   <img src={a.image} alt={a.title} />
                 </div>
               )}
               <div className={styles.gfBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={`${styles.gfTitle} ${!hasImg ? styles.gfTitleLarge : ''}`}>
+                <h3 className={`${styles.gfTitle} ${!a.image ? styles.gfTitleLarge : ''}`}>
                   <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
                 </h3>
                 <div className={styles.gfMeta}>
@@ -228,8 +229,7 @@ export default function HomePage() {
                 </div>
               </div>
             </Link>
-          )
-        })}
+        ))}
       </section>
       </FadeSection>
 
