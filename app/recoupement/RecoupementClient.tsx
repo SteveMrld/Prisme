@@ -93,6 +93,45 @@ type SourceResult = {
   position: string
   confidence: 'haute' | 'moyenne' | 'faible'
   details: string
+  url?: string
+  published_date?: string
+}
+
+function isValidHttpUrl(s: unknown): s is string {
+  if (typeof s !== 'string' || !s) return false
+  try {
+    const u = new URL(s)
+    return u.protocol === 'http:' || u.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+function formatRelativeDate(input?: string): string | null {
+  if (!input || typeof input !== 'string') return null
+  const s = input.trim()
+  if (!s) return null
+  if (/^\d{4}$/.test(s)) return `en ${s}`
+  const ym = s.match(/^(\d{4})-(\d{2})$/)
+  if (ym) {
+    const monthName = new Date(Number(ym[1]), Number(ym[2]) - 1, 1)
+      .toLocaleDateString('fr-FR', { month: 'long' })
+    return `en ${monthName} ${ym[1]}`
+  }
+  const date = new Date(s)
+  if (isNaN(date.getTime())) return null
+  const diffMs = date.getTime() - Date.now()
+  const diffDays = Math.round(diffMs / 86_400_000)
+  const absDays = Math.abs(diffDays)
+  const rtf = new Intl.RelativeTimeFormat('fr', { numeric: 'auto' })
+  if (absDays < 7) return rtf.format(diffDays, 'day')
+  if (absDays < 30) return rtf.format(Math.round(diffDays / 7), 'week')
+  if (absDays < 365) return rtf.format(Math.round(diffDays / 30), 'month')
+  return `en ${date.getFullYear()}`
+}
+
+function sourceHost(url: string): string {
+  try { return new URL(url).hostname.replace(/^www\./, '') } catch { return '' }
 }
 
 const NIVEAU_LABELS: Record<string, { label: string; color: string; note?: string }> = {
@@ -270,7 +309,14 @@ export default function RecoupementClient() {
           || SOURCES.find(s => r.sourceId?.toLowerCase().includes(s.id.toLowerCase()))
           || SOURCES.find(s => s.name.toLowerCase().includes((r.sourceId || '').toLowerCase().split('_')[0]))
           || { id: r.sourceId, name: r.sourceId || '??', type: '', bias: '', abbr: (r.sourceId || '??').slice(0, 2).toUpperCase(), niveau: 'verifie' }
-        return { source, position: r.position, confidence: r.confidence, details: r.details }
+        return {
+          source,
+          position: r.position,
+          confidence: r.confidence,
+          details: r.details,
+          url: isValidHttpUrl(r.url) ? r.url : undefined,
+          published_date: typeof r.published_date === 'string' && r.published_date.trim() ? r.published_date.trim() : undefined,
+        }
       }).filter((r: any) => r.position)
 
       const finalAnalysis: Analysis = {
@@ -766,6 +812,21 @@ export default function RecoupementClient() {
                             <div>
                               <div className={styles.narrativePosition}>{r.position}</div>
                               <div className={styles.narrativeDetail}>{r.details}</div>
+                              {(r.published_date || (r.url && isValidHttpUrl(r.url))) && (
+                                <div className={styles.narrativeMetaLine}>
+                                  {r.published_date && formatRelativeDate(r.published_date) && (
+                                    <span>{formatRelativeDate(r.published_date)}</span>
+                                  )}
+                                  {r.published_date && r.url && isValidHttpUrl(r.url) && (
+                                    <span className={styles.cardMetaSep}>·</span>
+                                  )}
+                                  {r.url && isValidHttpUrl(r.url) && (
+                                    <a href={r.url} target="_blank" rel="noopener noreferrer" className={styles.cardMetaLink}>
+                                      {sourceHost(r.url)} ↗
+                                    </a>
+                                  )}
+                                </div>
+                              )}
                             </div>
                           </div>
                         ))}
@@ -801,6 +862,21 @@ export default function RecoupementClient() {
                     </div>
                     <div className={styles.cardPosition}>{r.position}</div>
                     <div className={styles.cardDetails}>{r.details}</div>
+                    {(r.published_date || (r.url && isValidHttpUrl(r.url))) && (
+                      <div className={styles.cardMetaLine}>
+                        {r.published_date && formatRelativeDate(r.published_date) && (
+                          <span>{formatRelativeDate(r.published_date)}</span>
+                        )}
+                        {r.published_date && r.url && isValidHttpUrl(r.url) && (
+                          <span className={styles.cardMetaSep}>·</span>
+                        )}
+                        {r.url && isValidHttpUrl(r.url) && (
+                          <a href={r.url} target="_blank" rel="noopener noreferrer" className={styles.cardMetaLink}>
+                            {sourceHost(r.url)} ↗
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

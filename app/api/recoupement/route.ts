@@ -59,6 +59,7 @@ MÉTHODE :
 3. Pour chaque source trouvée, extrais sa position en français.
 4. Vise 6 sources minimum dans "results". Si une source n'a pas traité le sujet, ne l'inclus pas.
 5. N'invente jamais une position — si indication vague, confidence "faible".
+6. Pour chaque source, fournis l'URL exacte de l'article web_search trouvé dans "url" (https:// requis, pas de redirection) et la date de publication dans "published_date" au format ISO YYYY-MM-DD. Si l'un des deux n'est pas disponible avec certitude, OMETS simplement le champ — ne mets jamais une valeur incertaine ou inventée.
 
 OUTPUT — uniquement du JSON valide, rien avant ni après :
 {
@@ -70,7 +71,7 @@ OUTPUT — uniquement du JSON valide, rien avant ni après :
   "missing_sources": ["max 3 sources qui n'ont visiblement pas couvert"],
   "historical_context": "1-2 phrases sur la couverture il y a 3-6 mois",
   "results": [
-    {"sourceId": "id exact", "position": "position (<20 mots)", "confidence": "haute|moyenne|faible", "details": "détails (<80 mots)"}
+    {"sourceId": "id exact", "position": "position (<20 mots)", "confidence": "haute|moyenne|faible", "details": "détails (<80 mots)", "url": "https://... (optionnel)", "published_date": "YYYY-MM-DD (optionnel)"}
   ]
 }`,
         messages: [{
