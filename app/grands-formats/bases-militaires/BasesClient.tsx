@@ -373,7 +373,7 @@ export default function BasesClient() {
                       stroke={isSel ? "#fff" : "rgba(255,255,255,0.5)"}
                       strokeWidth={isSel ? 1.5 : 0.6}
                       strokeDasharray={base.certainty !== "confirmée" ? "2,1.5" : undefined}
-                      style={{ cursor: "pointer", transition: "r 0.15s" }}
+                      style={{ cursor: "pointer", transition: "r var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out)" }}
                       onMouseEnter={() => setHoveredBase(base)}
                       onMouseLeave={() => setHoveredBase(null)}
                       onClick={() => setSelectedBase(isSel ? null : base)}
@@ -395,7 +395,7 @@ export default function BasesClient() {
                       fillOpacity={isHov || isSel ? 1 : 0.88}
                       stroke={isSel ? "#fff" : "rgba(255,255,255,0.6)"}
                       strokeWidth={isSel ? 1.8 : 0.8}
-                      style={{ cursor: "pointer", transition: "r 0.15s" }}
+                      style={{ cursor: "pointer", transition: "r var(--dur-fast) var(--ease-out), fill-opacity var(--dur-fast) var(--ease-out), stroke-width var(--dur-fast) var(--ease-out)" }}
                       onMouseEnter={() => setHoveredBase(base)}
                       onMouseLeave={() => setHoveredBase(null)}
                       onClick={() => setSelectedBase(isSel ? null : base)}
