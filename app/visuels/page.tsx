@@ -1,6 +1,7 @@
 import Header from '../../components/Header'
 import styles from './visuels.module.css'
 import Link from 'next/link'
+import { Reveal } from './Reveal'
 
 export const metadata = {
   title: 'Atlas — Soara',
@@ -269,103 +270,120 @@ export default function VisuelsPage() {
 
         {/* ═══ ATLAS ═══ */}
         <section className={styles.section}>
-          <div className={styles.sectionHead}>
-            <div className={styles.sectionTag} style={{color:'var(--geo)'}}>Atlas</div>
-            <h2 className={styles.sectionTitle}>Cartes &amp; Animations immersives</h2>
-            <p className={styles.sectionDesc}>Des animations plein écran pensées pour les sujets qui demandent de l'espace — géopolitique, géographie, data.</p>
-          </div>
+          <Reveal>
+            <div className={styles.sectionHead}>
+              <div className={styles.sectionTag} style={{color:'var(--geo)'}}>Atlas</div>
+              <h2 className={styles.sectionTitle}>Cartes &amp; Animations immersives</h2>
+              <p className={styles.sectionDesc}>Des animations plein écran pensées pour les sujets qui demandent de l'espace — géopolitique, géographie, data.</p>
+            </div>
+          </Reveal>
 
-          <LeadCard card={HERO_CARD} />
+          <Reveal delay={80}>
+            <LeadCard card={HERO_CARD} />
+          </Reveal>
 
           <div className={styles.atlasGrid}>
-            {ATLAS_CARDS.map((card) => (
-              <AtlasGridCard key={card.href} card={card} />
+            {ATLAS_CARDS.map((card, i) => (
+              <Reveal key={card.href} delay={(i % 3) * 80} className={styles.atlasGridItem}>
+                <AtlasGridCard card={card} />
+              </Reveal>
             ))}
           </div>
         </section>
 
         {/* ═══ VISUALISATIONS DATA ═══ */}
         <section className={styles.section}>
-          <div className={styles.sectionHead}>
-            <div className={styles.sectionTag} style={{color:'var(--eco)'}}>Visualisations</div>
-            <h2 className={styles.sectionTitle}>Données &amp; séries longues</h2>
-            <p className={styles.sectionDesc}>Quand le récit vit dans la courbe : visualisations interactives à partir de jeux de données vérifiés.</p>
-          </div>
+          <Reveal>
+            <div className={styles.sectionHead}>
+              <div className={styles.sectionTag} style={{color:'var(--eco)'}}>Visualisations</div>
+              <h2 className={styles.sectionTitle}>Données &amp; séries longues</h2>
+              <p className={styles.sectionDesc}>Quand le récit vit dans la courbe : visualisations interactives à partir de jeux de données vérifiés.</p>
+            </div>
+          </Reveal>
           <div className={styles.datavizGrid}>
-            {DATAVIZ_CARDS.map((card) => (
-              <DatavizGridCard key={card.href} card={card} />
+            {DATAVIZ_CARDS.map((card, i) => (
+              <Reveal key={card.href} delay={(i % 3) * 100} className={styles.datavizGridItem}>
+                <DatavizGridCard card={card} />
+              </Reveal>
             ))}
           </div>
         </section>
 
         {/* ═══ TRILOGIE DOLLAR ═══ */}
         <section className={styles.trilogie}>
-          <div className={styles.trilogieBanner}>
-            <img
-              src="/articles/atlas/15_empire-du-dollar.jpg"
-              alt=""
-              className={styles.trilogieBannerImg}
-              loading="lazy"
-            />
-            <div className={styles.trilogieBannerInner}>
-              <div className={styles.trilogieEyebrow}>Trilogie · Économie</div>
-              <h2 className={styles.trilogieTitle}>L&apos;Empire du dollar</h2>
-              <p className={styles.trilogieSub}>Bretton Woods · Pétrodollar · Sanctions · BRICS</p>
-              <p className={styles.trilogieDesc}>
-                Comment une monnaie nationale est devenue l&apos;étalon de l&apos;économie mondiale —
-                et pourquoi son règne pourrait finir.
-              </p>
+          <Reveal>
+            <div className={styles.trilogieBanner}>
+              <img
+                src="/articles/atlas/15_empire-du-dollar.jpg"
+                alt=""
+                className={styles.trilogieBannerImg}
+                loading="lazy"
+              />
+              <div className={styles.trilogieBannerInner}>
+                <div className={styles.trilogieEyebrow}>Trilogie · Économie</div>
+                <h2 className={styles.trilogieTitle}>L&apos;Empire du dollar</h2>
+                <p className={styles.trilogieSub}>Bretton Woods · Pétrodollar · Sanctions · BRICS</p>
+                <p className={styles.trilogieDesc}>
+                  Comment une monnaie nationale est devenue l&apos;étalon de l&apos;économie mondiale —
+                  et pourquoi son règne pourrait finir.
+                </p>
+              </div>
             </div>
-          </div>
+          </Reveal>
           <div className={styles.trilogieGrid}>
             {[
               {slug:'dollar1',n:'I',title:'La naissance d\'un empire',desc:'De Bretton Woods au pétrodollar — comment le dollar a pris le trône de la livre sterling.',slides:8},
               {slug:'dollar2',n:'II',title:'L\'arme financière',desc:'SWIFT, sanctions, gel d\'avoirs — le dollar comme instrument de puissance géopolitique.',slides:7},
               {slug:'dollar3',n:'III',title:'Le crépuscule ?',desc:'Dédollarisation, BRICS, yuan — la fin du monopole absolu est-elle en marche ?',slides:7},
-            ].map((item) => (
-              <a
-                key={item.slug}
-                href={`/visuels/${item.slug}.html`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.acteCard}
-              >
-                <div className={styles.acteN}>{item.n}</div>
-                <h3 className={styles.acteTitle}>{item.title}</h3>
-                <p className={styles.acteDesc}>{item.desc}</p>
-                <div className={styles.acteMeta}>
-                  <span className={styles.acteSlides}>{item.slides} slides</span>
-                  <span className={styles.acteCta}>Lire l&apos;acte →</span>
-                </div>
-              </a>
+            ].map((item, i) => (
+              <Reveal key={item.slug} delay={i * 120} className={styles.acteRevealWrap}>
+                <a
+                  href={`/visuels/${item.slug}.html`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.acteCard}
+                >
+                  <div className={styles.acteN}>{item.n}</div>
+                  <h3 className={styles.acteTitle}>{item.title}</h3>
+                  <p className={styles.acteDesc}>{item.desc}</p>
+                  <div className={styles.acteMeta}>
+                    <span className={styles.acteSlides}>{item.slides} slides</span>
+                    <span className={styles.acteCta}>Lire l&apos;acte →</span>
+                  </div>
+                </a>
+              </Reveal>
             ))}
           </div>
         </section>
 
         {/* ═══ MOTIONS ═══ */}
         <section className={styles.section}>
-          <div className={styles.sectionHead}>
-            <div className={styles.sectionTag} style={{color:'var(--concept)'}}>Motions design</div>
-            <h2 className={styles.sectionTitle}>Concepts &amp; Analyses</h2>
-            <p className={styles.sectionDesc}>Des présentations animées pour décrypter les idées complexes — économie, géopolitique, technologie.</p>
-          </div>
+          <Reveal>
+            <div className={styles.sectionHead}>
+              <div className={styles.sectionTag} style={{color:'var(--concept)'}}>Motions design</div>
+              <h2 className={styles.sectionTitle}>Concepts &amp; Analyses</h2>
+              <p className={styles.sectionDesc}>Des présentations animées pour décrypter les idées complexes — économie, géopolitique, technologie.</p>
+            </div>
+          </Reveal>
           <div className={styles.motionGrid}>
-            {MOTION_CARDS.map((item) => (
-              <a key={item.slug} href={`/visuels/${item.slug}.html`} target="_blank" rel="noopener noreferrer" className={styles.motionCard}>
-                <div className={styles.motionAccent} style={{background:item.color}}/>
-                <div className={styles.motionMedia} style={{backgroundImage: `url(${item.image})`}} aria-hidden="true" />
-                <div className={styles.motionBody}>
-                  <div className={styles.motionEyebrow}>
-                    <span className={styles.motionCat} style={{color:item.color}}>{item.cat}</span>
-                    <span className={styles.motionSlides}>{item.slides} slides</span>
-                    <span className={styles.motionAvail}>Disponible</span>
+            {MOTION_CARDS.map((item, i) => (
+              <Reveal key={item.slug} delay={(i % 3) * 100} className={styles.motionRevealWrap}>
+                <a href={`/visuels/${item.slug}.html`} target="_blank" rel="noopener noreferrer" className={styles.motionCard}>
+                  <div className={styles.motionAccent} style={{background:item.color}}/>
+                  <div className={styles.motionMedia} style={{backgroundImage: `url(${item.image})`}} aria-hidden="true" />
+                  <div className={styles.motionBody}>
+                    <div className={styles.motionEyebrow}>
+                      <span className={styles.motionCat} style={{color:item.color}}>{item.cat}</span>
+                      <span className={styles.motionSlides}>{item.slides} slides</span>
+                      <span className={styles.motionAvail}>Disponible</span>
+                    </div>
+                    <h3 className={styles.motionTitle}>{item.title}</h3>
+                    <p className={styles.motionSub}>{item.sub}</p>
+                    <p className={styles.motionDesc}>{item.desc}</p>
+                    <span className={styles.motionCta} style={{color:item.color}}>Voir le motion →</span>
                   </div>
-                  <h3 className={styles.motionTitle}>{item.title}</h3>
-                  <p className={styles.motionSub}>{item.sub}</p>
-                  <p className={styles.motionDesc}>{item.desc}</p>
-                  <span className={styles.motionCta} style={{color:item.color}}>Voir le motion →</span>
-                </div>
-              </a>
+                </a>
+              </Reveal>
             ))}
           </div>
         </section>
