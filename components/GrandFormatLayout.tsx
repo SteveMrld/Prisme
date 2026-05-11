@@ -199,18 +199,20 @@ export default function GrandFormatLayout({
       <div className={`${styles.body} grand-format-body`}>
         {content && (
           (showPaywall ?? article?.premium) ? (
-            <div style={{position:'relative'}}>
-              <div style={{maxHeight:'620px',overflow:'hidden',position:'relative'}}>
-                <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
-                <div style={{position:'absolute',bottom:0,left:0,right:0,height:'340px',background:'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,1) 100%)',pointerEvents:'none'}} />
+            <div className={styles.paywallWrap}>
+              <div className={styles.paywallTeaser}>
+                <div
+                  className="soara-article"
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+                <div className={styles.paywallFade} />
               </div>
-              <div style={{textAlign:'center',padding:'0 24px 48px',background:'#fff'}}>
-                <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'#C8A96E',marginBottom:'14px'}}>Contenu réservé aux abonnés</div>
-                <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(24px,4vw,34px)',fontWeight:400,letterSpacing:'-0.5px',color:'#1a1a1a',marginBottom:'12px',lineHeight:1.2}}>Continuez la lecture</h3>
-                <p style={{fontSize:'15px',color:'#888',maxWidth:'360px',margin:'0 auto 28px',lineHeight:1.65,fontStyle:'italic',fontFamily:"'Playfair Display',serif"}}>Accédez à l'intégralité de cet article et à tous les grands formats Soara.</p>
-                <a href="/abonnement" style={{display:'inline-block',background:'#1a1a1a',color:'#fff',textDecoration:'none',fontSize:'11px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'14px 32px',marginBottom:'12px'}}>S&apos;abonner — dès 9,99€/mois</a>
-                <br/>
-                <a href="/connexion" style={{fontSize:'11px',color:'#888',textDecoration:'none'}}>Déjà abonné&nbsp;? Se connecter</a>
+              <div className={styles.paywallBox}>
+                <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
+                <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
+                <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
+                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner — dès 9,99€/mois</a>
+                <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
               </div>
             </div>
           ) : (
@@ -220,18 +222,17 @@ export default function GrandFormatLayout({
         {/* Contenu React (dette-souveraine, etc.) — masqué si content EN fourni */}
         {children && !content && (
           (showPaywall ?? article?.premium) ? (
-            <div style={{position:'relative'}}>
-              <div style={{maxHeight:'620px',overflow:'hidden',position:'relative'}}>
+            <div className={styles.paywallWrap}>
+              <div className={`${styles.paywallTeaser} ${styles.paywallTeaserReact}`}>
                 {children}
-                <div style={{position:'absolute',bottom:0,left:0,right:0,height:'340px',background:'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,1) 100%)',pointerEvents:'none'}} />
+                <div className={styles.paywallFade} />
               </div>
-              <div style={{textAlign:'center',padding:'0 24px 48px',background:'#fff'}}>
-                <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'#C8A96E',marginBottom:'14px'}}>Contenu réservé aux abonnés</div>
-                <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(24px,4vw,34px)',fontWeight:400,letterSpacing:'-0.5px',color:'#1a1a1a',marginBottom:'12px',lineHeight:1.2}}>Continuez la lecture</h3>
-                <p style={{fontSize:'15px',color:'#888',maxWidth:'360px',margin:'0 auto 28px',lineHeight:1.65,fontStyle:'italic',fontFamily:"'Playfair Display',serif"}}>Accédez à l'intégralité de cet article et à tous les grands formats Soara.</p>
-                <a href="/abonnement" style={{display:'inline-block',background:'#1a1a1a',color:'#fff',textDecoration:'none',fontSize:'11px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'14px 32px',marginBottom:'12px'}}>S&apos;abonner — dès 9,99€/mois</a>
-                <br/>
-                <a href="/connexion" style={{fontSize:'11px',color:'#888',textDecoration:'none'}}>Déjà abonné&nbsp;? Se connecter</a>
+              <div className={styles.paywallBox}>
+                <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
+                <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
+                <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
+                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner — dès 9,99€/mois</a>
+                <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
               </div>
             </div>
           ) : (

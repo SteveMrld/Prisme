@@ -17,7 +17,8 @@
     "grandFormat": false,
     "imageCredit": "© SOARA",
     "titleEn": "Illness Without a Net",
-    "descriptionEn": "Leila Janah, founder of Samasource, died at thirty-seven in January 2020. Her trajectory opens a question that societies of independent work still struggle to formulate: that of serious illness in a professional regime where the body is the instrument of production."
+    "descriptionEn": "Leila Janah, founder of Samasource, died at thirty-seven in January 2020. Her trajectory opens a question that societies of independent work still struggle to formulate: that of serious illness in a professional regime where the body is the instrument of production.",
+    "premiumTeaserParagraphs": 4
   },
   {
     "slug": "derniere-generation",
@@ -372,7 +373,8 @@
     "imageCredit": "© SOARA",
     "titleEn": "Water: The Next Great Geopolitical Fracture",
     "descriptionEn": "From Himalayan glaciers to African dams. How mastery of water is silently redrawing power relationships.",
-    "secondaryCategory": "geo"
+    "secondaryCategory": "geo",
+    "premiumTeaserParagraphs": 4
   },
   {
     "slug": "empires",
@@ -387,7 +389,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "Empires Do Not Die",
-    "descriptionEn": "They transform. A long-form reading of imperial cycles applied to the present."
+    "descriptionEn": "They transform. A long-form reading of imperial cycles applied to the present.",
+    "premiumTeaserParagraphs": 4
   },
   {
     "slug": "fiscalite",
@@ -547,7 +550,8 @@
     "premium": true,
     "imageCredit": "© Luc Legay / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA",
     "titleEn": "Edgar Morin",
-    "descriptionEn": "At 100 years old, the sociologist of complexity. A thinker for the era of uncertainty."
+    "descriptionEn": "At 100 years old, the sociologist of complexity. A thinker for the era of uncertainty.",
+    "premiumTeaserParagraphs": 4
   },
   {
     "slug": "tutu",
@@ -607,7 +611,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "The Overton <em>Window</em>",
-    "descriptionEn": "How the unthinkable becomes acceptable and eventually becomes law. A concept forged by Joseph Overton in the 1990s to describe the space of politically acceptable ideas at a given moment."
+    "descriptionEn": "How the unthinkable becomes acceptable and eventually becomes law. A concept forged by Joseph Overton in the 1990s to describe the space of politically acceptable ideas at a given moment.",
+    "premiumTeaserParagraphs": 2
   },
   {
     "slug": "pessimisme",
@@ -638,7 +643,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "The Predators",
-    "descriptionEn": "How certain economic actors plunder states and populations while remaining in legal compliance."
+    "descriptionEn": "How certain economic actors plunder states and populations while remaining in legal compliance.",
+    "premiumTeaserParagraphs": 2
   },
   {
     "slug": "reseaux",
@@ -745,7 +751,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "The Limits of Techno-Solutionism",
-    "descriptionEn": "Is technology the remedy for the problems it helps create? A critical reading of an ideology."
+    "descriptionEn": "Is technology the remedy for the problems it helps create? A critical reading of an ideology.",
+    "premiumTeaserParagraphs": 4
   },
   {
     "slug": "venezuela",
@@ -776,7 +783,8 @@
     "imageCredit": "© SOARA",
     "premium": true,
     "titleEn": "The Satellite Race",
-    "descriptionEn": "Space has become a strategic terrain. Who controls the orbits controls the information."
+    "descriptionEn": "Space has become a strategic terrain. Who controls the orbits controls the information.",
+    "premiumTeaserParagraphs": 4
   },
   {
     "slug": "obama",

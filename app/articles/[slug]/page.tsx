@@ -132,6 +132,14 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     content.includes('art-hero-img') ||
     content.includes('portrait-hero')
 
+  // Si paywall actif, on tronque le contenu cote serveur a N paragraphes (defaut 3).
+  // N est configurable par article via `premiumTeaserParagraphs` dans articles.json.
+  if (showPaywall) {
+    const { truncatePremiumHtml } = await import('../../../lib/truncate-premium')
+    const teaserN = (article as any).premiumTeaserParagraphs ?? 3
+    content = truncatePremiumHtml(content, teaserN)
+  }
+
   // Articles liés — même catégorie, exclu l'article courant
   // Pour les portraits : tous les autres portraits
   const related = (articlesData as any[])
