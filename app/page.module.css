@@ -379,6 +379,7 @@
 .gfLeadImg {
   width: 100%;
   aspect-ratio: 16/9;
+  max-height: 300px;
   overflow: hidden;
 }
 .gfLeadImg img {
@@ -404,9 +405,9 @@
 }
 .gfLeadTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 4.5vw, 44px);
+  font-size: clamp(32px, 4.5vw, 48px);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.06;
   letter-spacing: -0.6px;
   color: #0A0A0A;
   margin: 0;
@@ -697,9 +698,14 @@
   .entretienPullQuote { padding-left: 20px; margin: 12px 0 6px; }
   /* GF Lead : image gauche / texte droite en desktop, format magazine */
   .gfLead { grid-template-columns: 58% 42%; align-items: stretch; }
-  .gfLeadImg { aspect-ratio: auto; height: 100%; min-height: 420px; }
+  .gfLeadImg {
+    aspect-ratio: auto;
+    height: clamp(280px, 38vh, 340px);
+    max-height: none;
+    min-height: 0;
+  }
   .gfLeadImg img { object-position: center 30%; }
-  .gfLeadBody { padding: 40px 48px; gap: 16px; justify-content: center; }
+  .gfLeadBody { padding: 28px 48px; gap: 14px; justify-content: center; }
   .gfSecondary { padding: 28px 32px 32px; }
   .gfTertiary { padding: 22px 24px 26px; }
   .gfQuaternary { padding: 16px 32px; }
