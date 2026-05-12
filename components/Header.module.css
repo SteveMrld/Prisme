@@ -436,11 +436,26 @@
 
   .desktopHeader {
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    height: auto;
+    border-bottom: none;
+  }
+  .desktopHeaderTop {
+    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 40px;
     height: 64px;
     border-bottom: 1px solid var(--bord);
+  }
+  .desktopHeader .nav {
+    border-bottom: 1px solid var(--bord);
+    padding: 0 24px;
+    justify-content: center;
+    gap: 4px;
   }
 
   .desktopLeft {

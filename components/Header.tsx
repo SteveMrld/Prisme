@@ -91,36 +91,50 @@ export default function Header({ activeNav }: { activeNav?: string }) {
 
       {/* ── DESKTOP HEADER ── */}
       <div className={styles.desktopHeader}>
-        <div className={styles.desktopLeft}>
-          <button
-            className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
-            onClick={() => setMenuOpen(o => !o)}
-            aria-label="Menu"
-          >
-            <span /><span /><span />
-          </button>
-          <button className={styles.searchBtn} onClick={() => { setSearchOpen(o => !o); setTimeout(() => inputRef.current?.focus(), 50) }} aria-label="Rechercher">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-            </svg>
-          </button>
-        </div>
+        <div className={styles.desktopHeaderTop}>
+          <div className={styles.desktopLeft}>
+            <button
+              className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}
+              onClick={() => setMenuOpen(o => !o)}
+              aria-label="Menu"
+            >
+              <span /><span /><span />
+            </button>
+            <button className={styles.searchBtn} onClick={() => { setSearchOpen(o => !o); setTimeout(() => inputRef.current?.focus(), 50) }} aria-label="Rechercher">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </button>
+          </div>
 
-        <Link href="/" className={styles.desktopLogo}>So<em>ara</em></Link>
+          <Link href="/" className={styles.desktopLogo}>So<em>ara</em></Link>
 
-        <div className={styles.desktopRight}>
-          {user === undefined ? <div className={styles.actionsPlaceholder} /> : user ? (
-            <>
-              <Link href="/compte" className={styles.btnLogin}>Mon compte</Link>
-              <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
-            </>
-          ) : (
-            <>
-              <Link href="/connexion" className={styles.btnLogin}>Connexion</Link>
-              <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
-            </>
-          )}
+          <div className={styles.desktopRight}>
+            {user === undefined ? <div className={styles.actionsPlaceholder} /> : user ? (
+              <>
+                <Link href="/compte" className={styles.btnLogin}>Mon compte</Link>
+                <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
+              </>
+            ) : (
+              <>
+                <Link href="/connexion" className={styles.btnLogin}>Connexion</Link>
+                <Link href="/abonnement" className={styles.btnSubscribe}>S'abonner</Link>
+              </>
+            )}
+          </div>
         </div>
+        <nav className={styles.nav}>
+          {navItems.map(item => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${styles.navItem} ${styles[item.className]} ${activeNav === item.className ? styles.active : ''}`}
+            >
+              {item.label}
+              {item.className === 'signal' && <span className={styles.signalDot}></span>}
+            </Link>
+          ))}
+        </nav>
       </div>
 
       {/* ── MEGA MENU DESKTOP ── */}
