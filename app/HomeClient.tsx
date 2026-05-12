@@ -208,7 +208,7 @@ export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; 
               transition: 'opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out)',
             }}
           >
-            <div style={{ background: '#f5f4f1', overflow: 'hidden', aspectRatio: '3/4' }}>
+            <div style={{ background: '#f5f4f1', overflow: 'hidden', aspectRatio: '3/4', maxHeight: 'clamp(280px, 35vh, 360px)' }}>
               <img src={article.image} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }} />
             </div>
             <div style={{ padding: '12px 4px 0' }}>
