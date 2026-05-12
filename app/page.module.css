@@ -260,6 +260,34 @@
   margin-top: 8px;
 }
 
+/* Citation Soara : signature éditoriale au pied de la colonne gauche */
+.zone1Quote {
+  display: block;
+  margin: 24px 0 0;
+  padding: 18px 0 4px 16px;
+  border-left: 3px solid #8B1A1A;
+}
+.zone1QuoteText {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.35;
+  letter-spacing: -0.2px;
+  color: #1F1A1A;
+  margin: 0;
+}
+.zone1QuoteCite {
+  display: block;
+  margin-top: 14px;
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: #8B1A1A;
+  font-weight: 700;
+}
+
 /* Mobile : empile gauche → centre → droite avec filets horizontaux */
 @media (max-width: 899px) {
   .homeTopLeft {

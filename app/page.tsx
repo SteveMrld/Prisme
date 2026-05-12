@@ -140,7 +140,7 @@ export default async function HomePage() {
              Droite : 2 stories avec image + sidebar pub
       ══════════════════════════════════════ */}
       <section className={styles.homeTop}>
-        {/* Colonne gauche : 3 articles texte avec deck court */}
+        {/* Colonne gauche : 3 articles texte avec deck court + signature éditoriale */}
         <aside className={styles.homeTopLeft}>
           {UNDER_HERO.slice(0, 3).map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htSideItem}>
@@ -150,6 +150,12 @@ export default async function HomePage() {
               <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
             </Link>
           ))}
+          <blockquote className={styles.zone1Quote}>
+            <p className={styles.zone1QuoteText}>
+              «&nbsp;Ce qui nous oblige à penser autrement, ce n'est pas l'événement mais la durée.&nbsp;»
+            </p>
+            <cite className={styles.zone1QuoteCite}>Soara</cite>
+          </blockquote>
         </aside>
 
         {/* Colonne centre : hero inline rotatif */}
