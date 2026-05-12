@@ -25,9 +25,6 @@ export default async function AdSlot({ slotId, variant = 'banner' }: Props) {
         target="_blank"
         className={styles.link}
       >
-        <div className={styles.eyebrow}>
-          EN PARTENARIAT AVEC {ad.advertiser.toUpperCase()}
-        </div>
         <div className={`${styles.inner} ${hasImage ? '' : styles.noImage}`}>
           {hasImage && (
             <div className={styles.imageWrap}>
@@ -40,10 +37,12 @@ export default async function AdSlot({ slotId, variant = 'banner' }: Props) {
             </div>
           )}
           <div className={styles.body}>
+            <div className={styles.eyebrow}>
+              Paid Post · {ad.advertiser}
+            </div>
             <h3 className={styles.title}>{ad.title}</h3>
-            <span className={styles.rule} aria-hidden="true" />
             {ad.body && <p className={styles.text}>{ad.body}</p>}
-            <span className={styles.cta}>Découvrir →</span>
+            <span className={styles.cta}>Découvrir</span>
           </div>
         </div>
       </a>
