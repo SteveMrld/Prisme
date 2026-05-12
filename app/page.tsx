@@ -56,15 +56,14 @@ const ENTRETIEN_ART = {
   href: '/entretien/diarra',
   img: '/portraits/diarra.png',
 }
-// 12 grands formats — multiple de 4 pour remplir parfaitement la grille
-// 4-col en desktop, 2-col en mobile : 3 rangees pleines sans case vide.
-const GF = [
-  art('terres-rares'),         art('medias'),
-  art('skunkworks'),           art('dette-souveraine'),
-  art('france_maritime'),      art('eau'),
-  art('techgeo'),              art('taiwan'),
-  art('semico'),               art('chambre-ratification'),
-  art('palantir'),             art('architecture-desordre'),
+// 12 grands formats — hiérarchie 4 niveaux type NYT / Le Grand Continent
+// 1 Lead pleine largeur + 2 Secondaires + 3 Tertiaires + 6 Quaternaires (liste compacte)
+const GF_LEAD = art('chambre-ratification')
+const GF_SECONDARY = [art('terres-rares'), art('palantir')]
+const GF_TERTIARY = [art('skunkworks'), art('dette-souveraine'), art('france_maritime')]
+const GF_QUATERNARY = [
+  art('taiwan'), art('semico'), art('architecture-desordre'),
+  art('medias'), art('eau'),    art('techgeo'),
 ]
 const LATEST = (articlesData as any[])
   .filter((a:any) => !a.featured)
@@ -188,30 +187,97 @@ export default function HomePage() {
       <SectionHead label="Grands formats" href="/grands-formats" />
       <FadeSection>
       <section className={styles.gfSection}>
-        {GF.map((a) => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfCard}>
+
+        {/* — LEAD : pleine largeur, format couverture magazine */}
+        <Link href={GF_LEAD.grandFormatUrl || `/articles/${GF_LEAD.slug}`} className={styles.gfLead}>
+          {GF_LEAD.image && (
+            <div className={styles.gfLeadImg}>
+              <img src={GF_LEAD.image} alt={GF_LEAD.title} />
+            </div>
+          )}
+          <div className={styles.gfLeadBody}>
+            <span className={styles.gfLeadEyebrow}>{GF_LEAD.catLabel} · Enquête</span>
+            <h3 className={styles.gfLeadTitle}>
+              <SBadge /><span dangerouslySetInnerHTML={{__html: GF_LEAD.title}} />
+            </h3>
+            {GF_LEAD.description && (
+              <p className={styles.gfLeadDesc}>{GF_LEAD.description}</p>
+            )}
+            <div className={styles.gfLeadMeta}>
+              <ReadTime t={GF_LEAD.readTime || '18'} />
+              {EN_SLUGS.has(GF_LEAD.slug) && <EnBadge />}
+              <span className={styles.gfLeadCta}>Lire l'enquête →</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* — SECONDAIRES : 2 colonnes, image 16/9 + extrait court */}
+        <div className={styles.gfSecondaryRow}>
+          {GF_SECONDARY.map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfSecondary}>
               {a.image && (
-                <div className={styles.gfImgWrap}>
+                <div className={styles.gfSecondaryImg}>
                   <img src={a.image} alt={a.title} />
                 </div>
               )}
-              <div className={styles.gfBody}>
+              <div className={styles.gfSecondaryBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={`${styles.gfTitle} ${!a.image ? styles.gfTitleLarge : ''}`}>
+                <h3 className={styles.gfSecondaryTitle}>
+                  <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
+                </h3>
+                {a.description && (
+                  <p className={styles.gfSecondaryDesc}>{a.description}</p>
+                )}
+                <div className={styles.gfMeta}>
+                  <ReadTime t={a.readTime || '12'} />
+                  {EN_SLUGS.has(a.slug) && <EnBadge />}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* — TERTIAIRES : 3 colonnes, format carte classique */}
+        <div className={styles.gfTertiaryRow}>
+          {GF_TERTIARY.map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfTertiary}>
+              {a.image && (
+                <div className={styles.gfTertiaryImg}>
+                  <img src={a.image} alt={a.title} />
+                </div>
+              )}
+              <div className={styles.gfTertiaryBody}>
+                <span className={styles.cat}>{a.catLabel}</span>
+                <h3 className={styles.gfTertiaryTitle}>
                   <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
                 </h3>
                 <div className={styles.gfMeta}>
                   <ReadTime t={a.readTime || '12'} />
                   {EN_SLUGS.has(a.slug) && <EnBadge />}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,opacity:.7}}>
-                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
-                    <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-                  </svg>
                 </div>
               </div>
             </Link>
-        ))}
+          ))}
+        </div>
+
+        {/* — QUATERNAIRES : 6 articles en format liste compacte 2 colonnes × 3 lignes */}
+        <div className={styles.gfQuaternaryRow}>
+          {GF_QUATERNARY.map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfQuaternary}>
+              {a.image && (
+                <img src={a.image} alt={a.title} className={styles.gfQuaternaryThumb} />
+              )}
+              <div className={styles.gfQuaternaryBody}>
+                <span className={styles.cat}>{a.catLabel}</span>
+                <h3 className={styles.gfQuaternaryTitle}>
+                  <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
+                </h3>
+                <ReadTime t={a.readTime || '12'} />
+              </div>
+            </Link>
+          ))}
+        </div>
+
       </section>
       </FadeSection>
 
