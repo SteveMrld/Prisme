@@ -157,6 +157,17 @@ export default async function HomePage() {
             </p>
             <cite className={styles.zone1QuoteCite}>Soara</cite>
           </blockquote>
+
+          <div className={styles.zone1Newsletter}>
+            <span className={styles.zone1NewsletterEyebrow}>La lettre du mardi</span>
+            <h3 className={styles.zone1NewsletterTitle}>L'analyse qui manque à votre semaine</h3>
+            <p className={styles.zone1NewsletterTeaser}>
+              Une lecture longue chaque mardi matin. Sans algorithme, sans bruit.
+            </p>
+            <Link href="/abonnement" className={styles.zone1NewsletterCta}>
+              S'abonner gratuitement →
+            </Link>
+          </div>
         </aside>
 
         {/* Colonne centre : hero inline rotatif */}

@@ -259,10 +259,12 @@
   margin-top: 8px;
 }
 
-/* Citation Soara : signature éditoriale au pied de la colonne gauche */
+/* Citation Soara : signature éditoriale au pied de la colonne gauche.
+   margin-top: auto la pousse en bas, le bloc newsletter qui suit
+   reste collé dessous — l'air respire entre stories et signature. */
 .zone1Quote {
   display: block;
-  margin: 24px 0 0;
+  margin: auto 0 0;
   padding: 18px 0 4px 16px;
   border-left: 3px solid #8B1A1A;
 }
@@ -286,6 +288,56 @@
   color: #8B1A1A;
   font-weight: 700;
 }
+
+/* Newsletter teaser sous la citation : ancre la colonne gauche en
+   bas pour s'aligner avec la hauteur de la colonne droite. */
+.zone1Newsletter {
+  margin-top: 24px;
+  padding: 22px 0 0;
+  border-top: 1px solid #0A0A0A;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.zone1NewsletterEyebrow {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.zone1NewsletterTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0A0A0A;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+.zone1NewsletterTeaser {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.45;
+  margin: 4px 0 8px;
+}
+.zone1NewsletterCta {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+  border-bottom: 1px solid #0A0A0A;
+  padding-bottom: 1px;
+  align-self: flex-start;
+  transition: opacity 200ms ease;
+}
+.zone1NewsletterCta:hover { opacity: 0.55; }
 
 /* Mobile : empile gauche → centre → droite avec filets horizontaux */
 @media (max-width: 899px) {
