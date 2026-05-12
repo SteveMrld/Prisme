@@ -188,6 +188,9 @@ export default function HomePage() {
           <blockquote className={styles.entretienPullQuote}>
             « La science, le capital, le pouvoir — trois langues d'un même siècle. »
           </blockquote>
+          <p className={styles.entretienAfterQuote}>
+            Soara s'ouvrira par cet entretien fondateur. Diffusion le 1<sup>er</sup> juin 2026.
+          </p>
           <span className={styles.entretienCta}>Lire dès la parution →</span>
         </div>
       </Link>
