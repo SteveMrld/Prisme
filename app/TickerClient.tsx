@@ -10,11 +10,11 @@ function todayFr() {
 }
 
 const ITEMS = [
-  { cat: 'Iran–USA',    color: '#C0392B', text: "Blocus naval américain, pétrole à 103$, 20% de l'approvisionnement mondial menacé" },
-  { cat: 'Hongrie',     color: '#1A3E6B', text: "Orban battu après 16 ans, Peter Magyar remporte une victoire historique" },
-  { cat: 'Ukraine',     color: '#1A3E6B', text: "Cessez-le-feu de Pâques violé 2 299 fois par la Russie" },
-  { cat: 'Détroit d\'Ormuz', color: '#B86A1A', text: "Carburants en rupture dans 12% des stations françaises" },
-  { cat: 'Soudan',      color: '#1A3E6B', text: "ONU, pire crise humanitaire mondiale, 14 millions de déplacés" },
+  { cat: 'Cuba–USA',     color: '#C0392B', text: "Décret Trump, sanctions massives sur l'énergie et la finance, USS Abraham Lincoln au large de La Havane" },
+  { cat: 'Afrique',      color: '#1A3E6B', text: "Sommet Africa Forward à Nairobi, Macron annonce 23 milliards d'euros d'investissements pour le continent" },
+  { cat: 'UE–IA',        color: '#1A5C4A', text: "L'Union européenne interdit les IA de nudification non consentie, 569 voix pour, entrée en vigueur le 2 décembre 2026" },
+  { cat: 'Restitutions', color: '#B86A1A', text: "La France adopte à l'unanimité la loi-cadre des restitutions coloniales, simple décret désormais suffisant" },
+  { cat: 'Taïwan',       color: '#1A3E6B', text: "Pékin réaffirme sa ligne rouge après les déclarations japonaises sur une intervention possible en cas de force chinoise" },
 ]
 
 export default function Ticker() {

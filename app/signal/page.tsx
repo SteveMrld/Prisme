@@ -4,6 +4,48 @@ import styles from './signal.module.css'
 
 const signals = [
   {
+    date: '12 mai 2026',
+    cat: 'Géopolitique',
+    catColor: 'var(--geo)',
+    headline: 'Africa Forward, le pari kényan',
+    body: 'Le sommet Afrique-France s\'ouvre à Nairobi pour deux jours. Pour la première fois depuis sa création en 1973, l\'événement quitte l\'espace francophone. Emmanuel Macron annonce 23 milliards d\'euros d\'investissements, dont 14 milliards français publics et privés, répartis entre transition énergétique, numérique, économie bleue, agriculture et santé. Après les retraits militaires du Mali, du Burkina Faso, du Niger et du Tchad, Paris cherche un nouveau point d\'appui en Afrique de l\'Est anglophone.',
+  },
+  {
+    date: '10 mai 2026',
+    cat: 'Société',
+    catColor: 'var(--soc)',
+    headline: 'Restitutions, la loi-cadre adoptée à l\'unanimité',
+    body: 'Le Parlement français adopte à l\'unanimité la loi facilitant la restitution des œuvres pillées durant la colonisation. Jusque-là, le principe d\'inaliénabilité des collections publiques imposait un vote loi par loi. Un simple décret gouvernemental suffira désormais pour les biens acquis entre 1815 et 1972. Les musées se voient confier une nouvelle mission, rechercher activement la provenance de leurs collections. Vingt-six trésors béninois, un sabre sénégalais et un tambour ivoirien ont été restitués depuis 2020.',
+  },
+  {
+    date: '7 mai 2026',
+    cat: 'Géopolitique',
+    catColor: 'var(--geo)',
+    headline: 'Taïwan, Pékin face à Tokyo',
+    body: 'La diplomatie chinoise réagit aux déclarations de Sanae Takaichi, Première ministre japonaise, qui a évoqué devant la Diète la possibilité d\'une réponse militaire à une intervention chinoise contre Taïwan. Le porte-parole du ministère des Affaires étrangères chinois invoque la Déclaration du Caire et la Charte des Nations Unies pour rappeler les engagements japonais d\'après-guerre. À l\'arrière-plan, le 80e anniversaire des procès de Tokyo et la révision constitutionnelle en discussion à Tokyo.',
+  },
+  {
+    date: '6 mai 2026',
+    cat: 'Société',
+    catColor: 'var(--soc)',
+    headline: 'Une note manuscrite d\'Epstein sort des scellés',
+    body: 'Sept ans après sa mort, un juge fédéral américain rend publique une note manuscrite de Jeffrey Epstein conservée sous scellés à New York. Le document, dont la teneur n\'a pas encore été commentée par le département de la Justice, ravive les questions sur l\'écosystème d\'influence du financier et sur les noms restés dans l\'ombre des enquêtes successives.',
+  },
+  {
+    date: '6 mai 2026',
+    cat: 'Technologie',
+    catColor: 'var(--tech)',
+    headline: 'L\'Union européenne interdit les IA de nudification',
+    body: 'Adoptée par 569 voix contre 45, la révision de l\'AI Act interdit tout système d\'intelligence artificielle générant des contenus à caractère sexuel représentant une personne identifiable sans son consentement. L\'entrée en vigueur est fixée au 2 décembre 2026. La décision a été accélérée par les dérives de Grok fin 2025, l\'IA d\'Elon Musk, massivement utilisée pour produire des deepfakes de femmes et d\'enfants à partir de photos réelles.',
+  },
+  {
+    date: '1er mai 2026',
+    cat: 'Géopolitique',
+    catColor: 'var(--geo)',
+    headline: 'Cuba, le tour de vis Trump',
+    body: 'Donald Trump signe un décret imposant des sanctions massives contre les secteurs cubains de l\'énergie, des mines, de la défense et des services financiers. Nouveauté décisive, les sanctions secondaires, qui exposent toute banque étrangère en relation avec le gouvernement cubain à la liste noire américaine. Le porte-avions USS Abraham Lincoln est déployé à quelques milles des côtes de l\'île. La Havane répond par une manifestation d\'un demi-million de personnes devant l\'ambassade américaine.',
+  },
+  {
     date: '26 avril 2026',
     cat: 'Environnement',
     catColor: 'var(--env)',
