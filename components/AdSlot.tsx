@@ -1,20 +1,22 @@
-import { getActiveAd, bumpImpression } from '../lib/ads'
+import { getActiveAd, bumpImpression, type Ad } from '../lib/ads'
 import styles from './AdSlot.module.css'
 
 type Props = {
   slotId: string
-  variant?: 'banner' | 'inline'
+  variant?: 'banner' | 'inline' | 'sidebar'
+  preloadedAd?: Ad | null
 }
 
-export default async function AdSlot({ slotId, variant = 'banner' }: Props) {
-  const ad = await getActiveAd(slotId)
+export default async function AdSlot({ slotId, variant = 'banner', preloadedAd }: Props) {
+  const ad = preloadedAd !== undefined ? preloadedAd : await getActiveAd(slotId)
   if (!ad) return null
 
-  // Fire-and-forget : on n'attend pas la fin de l'incrément pour ne pas
-  // bloquer le rendu si Supabase est lent.
   bumpImpression(ad.id).catch(() => {})
 
-  const klass = variant === 'inline' ? styles.inline : styles.banner
+  const klass =
+    variant === 'inline' ? styles.inline :
+    variant === 'sidebar' ? styles.sidebar :
+    styles.banner
   const hasImage = !!ad.image_url
 
   return (

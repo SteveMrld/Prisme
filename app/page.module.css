@@ -254,6 +254,12 @@
   overflow: hidden;
 }
 
+/* Sidebar pub dans la colonne droite : marge sous les 2 stories */
+.homeTopAdSlot {
+  width: 100%;
+  margin-top: 8px;
+}
+
 /* Mobile : empile gauche → centre → droite avec filets horizontaux */
 @media (max-width: 899px) {
   .homeTopLeft {

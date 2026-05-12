@@ -3,6 +3,8 @@
    Bloc compact dans le flux éditorial, max-width
    borné, filets fins haut/bas, image 180×180,
    texte serré. Aucun fond coloré, aucune carte.
+   Variante sidebar : skyscraper vertical 320px max
+   destiné à la colonne droite de .homeTop.
    ───────────────────────────────────────────── */
 
 .adslot {
@@ -17,6 +19,14 @@
   display: block;
 }
 
+/* Sidebar : tour verticale, image carrée en haut puis bloc texte. */
+.sidebar {
+  width: 100%;
+  max-width: 320px;
+  margin: 0;
+  padding: 0;
+}
+
 .link {
   display: block;
   text-decoration: none;
@@ -29,11 +39,27 @@
   background: transparent;
 }
 
+.sidebar .link {
+  max-width: none;
+  margin: 0;
+  padding: 20px 0;
+  border-top: 1px solid #0A0A0A;
+  border-bottom: 1px solid #E8E2DA;
+  background: transparent;
+}
+
 .inner {
   display: grid;
   grid-template-columns: 180px 1fr;
   gap: 24px;
   align-items: flex-start;
+}
+
+.sidebar .inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  grid-template-columns: none;
 }
 
 .inner.noImage {
@@ -46,6 +72,12 @@
   overflow: hidden;
   background: #EEE8DD;
   flex-shrink: 0;
+}
+
+.sidebar .imageWrap {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
 }
 
 .image {
@@ -82,6 +114,12 @@
   margin: 0 0 10px;
 }
 
+.sidebar .title {
+  font-size: 20px;
+  line-height: 1.22;
+  margin-bottom: 8px;
+}
+
 .text {
   font-family: 'Georgia', serif;
   font-size: 14.5px;
@@ -92,6 +130,12 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.sidebar .text {
+  font-size: 13.5px;
+  -webkit-line-clamp: 3;
+  margin-bottom: 12px;
 }
 
 .cta {
@@ -120,23 +164,39 @@
     margin: 24px 0;
     padding: 0 16px;
   }
-  .link {
+  .banner .link,
+  .inline .link {
     padding: 20px 0;
   }
-  .inner {
+  .banner .inner,
+  .inline .inner {
     grid-template-columns: 1fr;
     gap: 14px;
   }
-  .imageWrap {
+  .banner .imageWrap,
+  .inline .imageWrap {
     width: 100%;
     height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .sidebar {
+    max-width: 100%;
+  }
+  .sidebar .imageWrap {
     aspect-ratio: 16 / 9;
   }
   .title {
     font-size: 20px;
   }
+  .sidebar .title {
+    font-size: 19px;
+  }
   .text {
     font-size: 14px;
     -webkit-line-clamp: 2;
+  }
+  .sidebar .text {
+    font-size: 13.5px;
+    -webkit-line-clamp: 3;
   }
 }

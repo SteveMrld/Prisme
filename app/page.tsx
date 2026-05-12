@@ -5,6 +5,7 @@ import NewsletterForm from '../components/NewsletterForm'
 import HeroInline from '../components/HeroInline'
 import SoaraUnivers from '../components/SoaraUnivers'
 import AdSlot from '../components/AdSlot'
+import { getActiveAd } from '../lib/ads'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -123,7 +124,11 @@ function SectionHead({ label, href }: { label: string; href?: string }) {
 }
 
 // ─────────────────────────────────────────────────────────
-export default function HomePage() {
+export default async function HomePage() {
+  // Pré-fetch de l'annonce home pour la placer en sidebar verticale
+  // dans la colonne droite de .homeTop, sous les 2 articles avec image.
+  const homeAd = await getActiveAd('home')
+
   return (
     <>
       <Header />
@@ -132,7 +137,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           1. HOME TOP — Grille NYT 3 colonnes
              Gauche : 3 stories texte+deck · Centre : hero inline (image+titre+deck)
-             Droite : 2 stories avec image
+             Droite : 2 stories avec image + sidebar pub
       ══════════════════════════════════════ */}
       <section className={styles.homeTop}>
         {/* Colonne gauche : 3 articles texte avec deck court */}
@@ -152,7 +157,7 @@ export default function HomePage() {
           <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
         </div>
 
-        {/* Colonne droite : 2 articles avec image */}
+        {/* Colonne droite : 2 articles avec image + sidebar pub (si annonce) */}
         <aside className={styles.homeTopRight}>
           {UNDER_HERO.slice(3, 5).map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htRightItem}>
@@ -167,11 +172,14 @@ export default function HomePage() {
               <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
             </Link>
           ))}
+          {homeAd && (
+            <div className={styles.homeTopAdSlot}>
+              {/* @ts-expect-error Async Server Component */}
+              <AdSlot slotId="home" variant="sidebar" preloadedAd={homeAd} />
+            </div>
+          )}
         </aside>
       </section>
-
-      {/* @ts-expect-error Async Server Component */}
-      <AdSlot slotId="home" />
 
       {/* ══════════════════════════════════════
           4. GRAND ENTRETIEN
