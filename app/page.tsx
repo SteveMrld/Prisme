@@ -41,15 +41,15 @@ const HERO_ROTATION = [
   art('chambre-ratification'),
 ]
 
-// Sous le hero — 6 articles en bande éditoriale 2 colonnes × 3 lignes
-// Image carrée 96px à gauche, titre Playfair, lecture verticale type Le Monde "À la une"
+// Sous le hero — 5 articles utilisés (3 gauche texte + 2 droite avec image)
+// Règle de la home : chaque article apparaît au max 2 fois sur la page,
+// hero carousel inclus. Les triples ont été retirés.
 const UNDER_HERO = [
-  art('empire-du-droit'),
-  art('societe-du-consentement'),
-  art('terres-rares'),
-  art('chambre-ratification'),
-  art('dette-souveraine'),
-  art('moreno'),
+  art('empire-du-droit'),       // gauche · 2e occurrence (HERO + Zone 1)
+  art('societe-du-consentement'),// gauche · unique
+  art('wanghuning'),             // gauche · 2e occurrence (HERO + Zone 1) — remplace terres-rares (retiré : était HERO+Zone 1+GF)
+  art('moreno'),                 // droite · 2e occurrence (Zone 1 + POPULAR) — remplace chambre-ratification (retiré : était HERO+Zone 1+GF Lead)
+  art('dette-souveraine'),       // droite · 2e occurrence (Zone 1 + GF Tertiaire)
 ]
 const ENTRETIEN_ART = {
   name: 'Cheick Modibo Diarra',
@@ -73,7 +73,8 @@ const LATEST = (articlesData as any[])
   .slice(0,5)
   .map((a:any) => ({...a, catLabel: CAT[a.category]||a.category}))
 
-const POPULAR = ['empire-du-droit','moreno','lecture','palantir','skunkworks'].map(art)
+// architecture-desordre remplace empire-du-droit (qui était en HERO + Zone 1 + POPULAR = triple)
+const POPULAR = ['architecture-desordre','moreno','lecture','palantir','skunkworks'].map(art)
 
 // ── Composants atomiques ──────────────────────────────────
 function ReadTime({ t }: { t: string }) {
