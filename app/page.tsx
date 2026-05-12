@@ -39,14 +39,12 @@ const HERO_ROTATION = [
   art('chambre-ratification'),
 ]
 
-// Ligne 2 — 4 articles uniques (2 par colonne), titre + vignette
-const ROW2 = [
+// Sous le hero — 6 articles en bande éditoriale 2 colonnes × 3 lignes
+// Image carrée 96px à gauche, titre Playfair, lecture verticale type Le Monde "À la une"
+const UNDER_HERO = [
   art('empire-du-droit'),
   art('societe-du-consentement'),
   art('terres-rares'),
-  art('skunkworks'),
-]
-const TRIO = [                         // ligne 3 — 3 articles différents, texte seul
   art('chambre-ratification'),
   art('dette-souveraine'),
   art('moreno'),
@@ -131,51 +129,35 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          2. LIGNE 2 — 2 colonnes × 3 articles (titre + vignette)
+          2. SOUS LE HERO — bande éditoriale 2 colonnes × 3 lignes
+             Image carrée 96px à gauche, titre Playfair dominant
       ══════════════════════════════════════ */}
       <FadeSection>
-      <section className={styles.row2}>
-        {/* Col gauche */}
-        <div className={styles.rowCol}>
-          {ROW2.slice(0,2).map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
-              <div className={styles.rowItemBody}>
+      <section className={styles.underHero}>
+        <div className={styles.underHeroCol}>
+          {UNDER_HERO.slice(0,3).map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.underHeroItem}>
+              {a.image && <img src={a.image} alt={a.title} className={styles.underHeroThumb} />}
+              <div className={styles.underHeroBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
+                <h3 className={styles.underHeroTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
               </div>
-              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
             </Link>
           ))}
         </div>
-        {/* Col droite */}
-        <div className={styles.rowCol}>
-          {ROW2.slice(2,4).map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rowItem}>
-              <div className={styles.rowItemBody}>
+        <div className={styles.underHeroCol}>
+          {UNDER_HERO.slice(3,6).map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.underHeroItem}>
+              {a.image && <img src={a.image} alt={a.title} className={styles.underHeroThumb} />}
+              <div className={styles.underHeroBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
+                <h3 className={styles.underHeroTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
               </div>
-              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
             </Link>
           ))}
         </div>
-      </section>
-      </FadeSection>
-
-      {/* ══════════════════════════════════════
-          3. TRIO — 3 articles texte seul
-      ══════════════════════════════════════ */}
-      <FadeSection>
-      <section className={styles.trio}>
-        {TRIO.map(a => (
-          <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.trioCard}>
-            <span className={styles.cat}>{a.catLabel}</span>
-            <h3 className={styles.trioTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
-            <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
-          </Link>
-        ))}
       </section>
       </FadeSection>
 
