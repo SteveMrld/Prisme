@@ -15,6 +15,7 @@ export default async function AdSlot({ slotId, variant = 'banner' }: Props) {
   bumpImpression(ad.id).catch(() => {})
 
   const klass = variant === 'inline' ? styles.inline : styles.banner
+  const hasImage = !!ad.image_url
 
   return (
     <aside className={`${styles.adslot} ${klass}`} aria-label="Contenu sponsorisé">
@@ -27,11 +28,11 @@ export default async function AdSlot({ slotId, variant = 'banner' }: Props) {
         <div className={styles.eyebrow}>
           EN PARTENARIAT AVEC {ad.advertiser.toUpperCase()}
         </div>
-        <div className={styles.inner}>
-          {ad.image_url && (
+        <div className={`${styles.inner} ${hasImage ? '' : styles.noImage}`}>
+          {hasImage && (
             <div className={styles.imageWrap}>
               <img
-                src={ad.image_url}
+                src={ad.image_url!}
                 alt=""
                 loading="lazy"
                 className={styles.image}

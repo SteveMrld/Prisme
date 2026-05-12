@@ -1,19 +1,37 @@
+/* ─────────────────────────────────────────────
+   Bandeau publicitaire éditorial — encart magazine
+   Banner : full-bleed, blanc pur, layout 40/60
+   Inline : contenu dans la colonne d'article
+   ───────────────────────────────────────────── */
+
 .adslot {
+  display: block;
+}
+
+/* Variante banner : full-bleed sur toute la largeur de l'écran */
+.banner {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+/* Variante inline : contenue dans le flux de l'article */
+.inline {
   width: 100%;
   max-width: 1200px;
-  margin: 48px auto;
-  padding: 0 24px;
-  box-sizing: border-box;
+  margin: 56px auto;
 }
 
 .link {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: #FAF5EB;
-  border-top: 1px solid #C8A96E;
-  border-bottom: 1px solid #C8A96E;
-  padding: 28px 32px;
+  background: #FFFFFF;
   transition: background 200ms ease;
 }
 
@@ -21,30 +39,61 @@
   .link { transition: none; }
 }
 
-.link:hover {
-  background: #F5EFE0;
+.banner .link {
+  padding: 56px clamp(24px, 6vw, 96px);
+}
+
+.inline .link {
+  padding: 40px 36px;
 }
 
 .eyebrow {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   color: #6E6258;
   text-transform: uppercase;
+  margin-bottom: 28px;
+  font-weight: 400;
+}
+
+.inline .eyebrow {
+  font-size: 10px;
   margin-bottom: 18px;
 }
 
 .inner {
   display: grid;
-  grid-template-columns: minmax(220px, 320px) 1fr;
-  gap: 32px;
+  grid-template-columns: 40% 60%;
+  gap: clamp(28px, 4vw, 64px);
   align-items: center;
 }
 
+.inline .inner {
+  grid-template-columns: 40% 60%;
+  gap: 28px;
+}
+
+/* Quand il n'y a pas d'image, le texte occupe toute la largeur */
+.inner.noImage {
+  grid-template-columns: 1fr;
+}
+
 .imageWrap {
-  aspect-ratio: 16 / 10;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #ECE5D2;
+  background: #F4F0E8;
+}
+
+.banner .imageWrap {
+  aspect-ratio: 16 / 9;
+  max-height: 320px;
+}
+
+.inline .imageWrap {
+  aspect-ratio: 16 / 9;
+  max-height: 220px;
 }
 
 .image {
@@ -57,77 +106,120 @@
 .body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 28px;
-  line-height: 1.18;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.12;
   font-weight: 500;
   color: #161310;
   margin: 0 0 14px;
+  letter-spacing: -0.005em;
+}
+
+.inline .title {
+  font-size: clamp(22px, 2.4vw, 28px);
 }
 
 .rule {
   display: block;
-  width: 24px;
+  width: 28px;
   height: 1px;
   background: #C8A96E;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+}
+
+.inline .rule {
+  width: 22px;
+  margin-bottom: 14px;
 }
 
 .text {
-  font-family: 'Source Serif Pro', Georgia, serif;
-  font-size: 15px;
-  line-height: 1.55;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.5;
   font-style: italic;
+  font-weight: 400;
   color: #3A332B;
-  margin: 0 0 16px;
+  margin: 0 0 22px;
+}
+
+.inline .text {
+  font-size: 16px;
+  margin: 0 0 18px;
 }
 
 .cta {
   font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
   font-size: 12px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #8A6A2E;
   align-self: flex-start;
+  position: relative;
+  padding-bottom: 2px;
 }
 
 .link:hover .cta {
   color: #6E521F;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+}
+.link:hover .cta::after {
+  transform: scaleX(1);
+}
+.cta::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
 }
 
-/* Variante inline (au milieu d'un article) — un peu plus compacte */
-.inline .link {
-  padding: 24px 28px;
-}
-.inline .title {
-  font-size: 24px;
-}
-.inline .inner {
-  grid-template-columns: minmax(180px, 260px) 1fr;
-  gap: 26px;
+@media (prefers-reduced-motion: reduce) {
+  .cta::after { transition: none; }
 }
 
+/* Mobile : stack vertical, paddings latéraux 24px */
 @media (max-width: 720px) {
-  .adslot {
+  .banner {
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+  .inline {
     margin: 36px auto;
-    padding: 0 16px;
   }
-  .link, .inline .link {
-    padding: 22px 18px;
+  .banner .link,
+  .inline .link {
+    padding: 32px 24px;
   }
-  .inner, .inline .inner {
+  .inner,
+  .inline .inner {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 22px;
   }
-  .imageWrap {
+  .banner .imageWrap,
+  .inline .imageWrap {
     aspect-ratio: 16 / 9;
+    max-height: none;
   }
-  .title, .inline .title {
+  .eyebrow {
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .inline .title {
     font-size: 22px;
+  }
+  .text,
+  .inline .text {
+    font-size: 16px;
   }
 }
