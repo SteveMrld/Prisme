@@ -174,6 +174,9 @@ export default function HomePage() {
           <h2 className={styles.entretienName}>Cheick Modibo <em>Diarra</em></h2>
           <p className={styles.entretienRole}>{ENTRETIEN_ART.deck}</p>
           <p className={styles.entretienExcerpt}>Ingénieur de navigation sur cinq missions NASA dont Mars Pathfinder, ancien président de Microsoft Afrique pendant dix ans, ancien Premier ministre du Mali en pleine crise institutionnelle. Cette trajectoire — la science, le capital technologique mondial, le pouvoir politique africain — en fait l'interlocuteur inaugural de Soara&hellip;</p>
+          <blockquote className={styles.entretienPullQuote}>
+            « La science, le capital, le pouvoir — trois langues d'un même siècle. »
+          </blockquote>
           <span className={styles.entretienCta}>Lire dès la parution →</span>
         </div>
       </Link>

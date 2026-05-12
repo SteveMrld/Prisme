@@ -287,21 +287,21 @@
 .entretienImgCol {
   position: relative;
   background: #EEE8DD;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
 }
 .entretienImg {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 22%;
   display: block;
   filter: grayscale(15%);
 }
 .entretienBody {
-  padding: 24px 20px 28px;
+  padding: 28px 20px 32px;
   display: flex; flex-direction: column;
-  gap: 12px;
-  justify-content: center;
+  gap: 14px;
+  justify-content: flex-start;
 }
 .entretienLabel {
   font-family: 'DM Mono', monospace;
@@ -332,14 +332,28 @@
   border-left: 2px solid rgba(139,26,26,.25);
   padding-left: 12px;
 }
+.entretienPullQuote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.9vw, 20px);
+  line-height: 1.35;
+  color: #2A1A1A;
+  border-left: 3px solid #8B1A1A;
+  padding: 4px 0 4px 16px;
+  margin: 8px 0 4px;
+  letter-spacing: -0.1px;
+}
 .entretienCta {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 600;
   color: #8B1A1A;
-  border-bottom: 1px solid rgba(139,26,26,.3);
-  padding-bottom: 1px; width: fit-content;
-  margin-top: 4px;
+  border-bottom: 1px solid rgba(139,26,26,.4);
+  padding-bottom: 2px;
+  width: fit-content;
+  margin-top: 8px;
+  letter-spacing: 0.1px;
 }
 
 /* ════════════════════════════════════
@@ -491,10 +505,11 @@
   .rowCard { padding: 24px 32px; }
   .trio { padding: 0 0; }
   .trioCard { padding: 24px 24px 28px; }
-  .entretien { grid-template-columns: 40% 60%; }
-  .entretienImgCol { aspect-ratio: auto; height: 100%; min-height: 440px; }
-  .entretienImg { object-position: center 12%; }
-  .entretienBody { padding: 48px 56px; gap: 16px; }
+  .entretien { grid-template-columns: 38% 62%; align-items: stretch; }
+  .entretienImgCol { aspect-ratio: 4 / 5; height: auto; min-height: 0; }
+  .entretienImg { object-position: center 22%; }
+  .entretienBody { padding: 40px 48px; gap: 18px; justify-content: flex-start; }
+  .entretienPullQuote { padding-left: 20px; margin: 12px 0 6px; }
   .gfSection { grid-template-columns: repeat(4, 1fr); }
   .gfCard:nth-child(even) { border-right: 1px solid #E8E2DA; }
   .gfCard:nth-child(4n) { border-right: none; }
