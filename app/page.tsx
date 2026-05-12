@@ -93,9 +93,17 @@ const EnBadge = () => (
   </span>
 )
 
-const SBadge = () => (
-  <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:'14px',height:'14px',background:'#0A0A0A',color:'#C8A96E',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,lineHeight:1,marginRight:'5px',flexShrink:0,verticalAlign:'middle',position:'relative',top:'-1px'}}>S</span>
-)
+const SBADGE_SIZES = {
+  sm: { box: 14, fs: 8,  mr: 5,  top: -1 },
+  md: { box: 18, fs: 10, mr: 7,  top: -2 },
+  lg: { box: 26, fs: 14, mr: 10, top: -3 },
+} as const
+const SBadge = ({ size = 'sm' }: { size?: keyof typeof SBADGE_SIZES }) => {
+  const d = SBADGE_SIZES[size]
+  return (
+    <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:`${d.box}px`,height:`${d.box}px`,background:'#0A0A0A',color:'#C8A96E',fontFamily:"'DM Sans',sans-serif",fontSize:`${d.fs}px`,fontWeight:700,lineHeight:1,marginRight:`${d.mr}px`,flexShrink:0,verticalAlign:'middle',position:'relative',top:`${d.top}px`}}>S</span>
+  )
+}
 
 const AudioIcon = () => (
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft:'5px',flexShrink:0,verticalAlign:'middle'}}>
@@ -198,7 +206,7 @@ export default function HomePage() {
           <div className={styles.gfLeadBody}>
             <span className={styles.gfLeadEyebrow}>{GF_LEAD.catLabel} · Enquête</span>
             <h3 className={styles.gfLeadTitle}>
-              <SBadge /><span dangerouslySetInnerHTML={{__html: GF_LEAD.title}} />
+              <SBadge size="lg" /><span dangerouslySetInnerHTML={{__html: GF_LEAD.title}} />
             </h3>
             {GF_LEAD.description && (
               <p className={styles.gfLeadDesc}>{GF_LEAD.description}</p>
@@ -223,7 +231,7 @@ export default function HomePage() {
               <div className={styles.gfSecondaryBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
                 <h3 className={styles.gfSecondaryTitle}>
-                  <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
+                  <SBadge size="md" /><span dangerouslySetInnerHTML={{__html: a.title}} />
                 </h3>
                 {a.description && (
                   <p className={styles.gfSecondaryDesc}>{a.description}</p>
