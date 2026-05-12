@@ -1,51 +1,39 @@
 /* ─────────────────────────────────────────────
-   AdSlot — format Paid Post type NYT
-   Carte compacte, dense, fond blanc, séparation
-   par fine ligne supérieure. Pas de full-bleed.
+   AdSlot — Paid Post type NYT
+   Bloc compact dans le flux éditorial, max-width
+   borné, filets fins haut/bas, image 180×180,
+   texte serré. Aucun fond coloré, aucune carte.
    ───────────────────────────────────────────── */
 
 .adslot {
   display: block;
-}
-
-/* Banner : contenu dans la largeur éditoriale, marges 60px */
-.banner {
   width: 100%;
-  margin: 60px 0;
-  padding: 0 64px;
+  margin: 32px 0;
+  padding: 0 16px;
 }
 
-/* Inline : carte un peu plus serrée pour la colonne d'article */
+.banner,
 .inline {
-  width: 100%;
-  margin: 48px 0;
-  padding: 0;
+  display: block;
 }
 
 .link {
   display: block;
   text-decoration: none;
   color: inherit;
-  background: #FFFFFF;
-  border-top: 1px solid #E8E5DD;
-  padding: 32px;
-}
-
-.inline .link {
-  padding: 28px 0;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px 0;
+  border-top: 1px solid #0A0A0A;
+  border-bottom: 1px solid #E8E2DA;
+  background: transparent;
 }
 
 .inner {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 32px;
-  align-items: center;
-}
-
-.inline .inner {
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 180px 1fr;
   gap: 24px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .inner.noImage {
@@ -53,16 +41,11 @@
 }
 
 .imageWrap {
-  width: 280px;
-  height: 280px;
+  width: 180px;
+  height: 180px;
   overflow: hidden;
-  background: #F4F0E8;
+  background: #EEE8DD;
   flex-shrink: 0;
-}
-
-.inline .imageWrap {
-  width: 200px;
-  height: 200px;
 }
 
 .image {
@@ -76,26 +59,22 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  padding-top: 2px;
 }
 
 .eyebrow {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
   font-size: 10px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #8A6A2E;
-  font-weight: 600;
-  margin: 0 0 14px;
-}
-
-.inline .eyebrow {
-  font-size: 9px;
-  margin-bottom: 12px;
+  color: #8B6A2E;
+  font-weight: 700;
+  margin: 0 0 12px;
 }
 
 .title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
   color: #0A0A0A;
   line-height: 1.2;
@@ -103,31 +82,22 @@
   margin: 0 0 10px;
 }
 
-.inline .title {
-  font-size: 22px;
-}
-
 .text {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 15px;
+  font-family: 'Georgia', serif;
+  font-size: 14.5px;
   color: #3A332B;
   line-height: 1.5;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.inline .text {
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-
 .cta {
   font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #0A0A0A;
   border-bottom: 1px solid #0A0A0A;
@@ -137,45 +107,36 @@
 }
 
 .link:hover .cta {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cta { transition: none; }
 }
 
-/* Mobile : stack vertical, image plein largeur en haut */
+/* Mobile : stack vertical, image plein largeur, plus serré encore */
 @media (max-width: 720px) {
-  .banner {
-    margin: 40px 0;
+  .adslot {
+    margin: 24px 0;
     padding: 0 16px;
   }
-  .inline {
-    margin: 32px 0;
+  .link {
+    padding: 20px 0;
   }
-  .link,
-  .inline .link {
-    padding: 24px 0 0;
-  }
-  .inner,
-  .inline .inner {
+  .inner {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 14px;
   }
-  .imageWrap,
-  .inline .imageWrap {
+  .imageWrap {
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
   }
   .title {
-    font-size: 22px;
-  }
-  .inline .title {
     font-size: 20px;
   }
-  .text,
-  .inline .text {
+  .text {
     font-size: 14px;
+    -webkit-line-clamp: 2;
   }
 }

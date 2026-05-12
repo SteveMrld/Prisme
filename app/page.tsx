@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
-import HeroRotator from '../components/HeroRotator'
+import HeroInline from '../components/HeroInline'
 import SoaraUnivers from '../components/SoaraUnivers'
 import AdSlot from '../components/AdSlot'
 import styles from './page.module.css'
@@ -130,47 +130,48 @@ export default function HomePage() {
       <Ticker />
 
       {/* ══════════════════════════════════════
-          1. HERO — slider automatique
+          1. HOME TOP — Grille NYT 3 colonnes
+             Gauche : 3 stories texte+deck · Centre : hero inline (image+titre+deck)
+             Droite : 2 stories avec image
       ══════════════════════════════════════ */}
-      <section className={styles.lead}>
-        <HeroRotator articles={HERO_ROTATION} intervalMs={7000} />
+      <section className={styles.homeTop}>
+        {/* Colonne gauche : 3 articles texte avec deck court */}
+        <aside className={styles.homeTopLeft}>
+          {UNDER_HERO.slice(0, 3).map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htSideItem}>
+              <span className={styles.cat}>{a.catLabel}</span>
+              <h3 className={styles.htSideTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
+              {a.description && <p className={styles.htSideDesc}>{a.description}</p>}
+              <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
+            </Link>
+          ))}
+        </aside>
+
+        {/* Colonne centre : hero inline rotatif */}
+        <div className={styles.homeTopCenter}>
+          <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
+        </div>
+
+        {/* Colonne droite : 2 articles avec image */}
+        <aside className={styles.homeTopRight}>
+          {UNDER_HERO.slice(3, 5).map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htRightItem}>
+              {a.image && (
+                <div className={styles.htRightImg}>
+                  <img src={a.image} alt={a.title} />
+                </div>
+              )}
+              <span className={styles.cat}>{a.catLabel}</span>
+              <h3 className={styles.htRightTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
+              {a.description && <p className={styles.htRightDesc}>{a.description}</p>}
+              <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
+            </Link>
+          ))}
+        </aside>
       </section>
 
       {/* @ts-expect-error Async Server Component */}
       <AdSlot slotId="home" />
-
-      {/* ══════════════════════════════════════
-          2. SOUS LE HERO — bande éditoriale 2 colonnes × 3 lignes
-             Image carrée 96px à gauche, titre Playfair dominant
-      ══════════════════════════════════════ */}
-      <FadeSection>
-      <section className={styles.underHero}>
-        <div className={styles.underHeroCol}>
-          {UNDER_HERO.slice(0,3).map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.underHeroItem}>
-              {a.image && <img src={a.image} alt={a.title} className={styles.underHeroThumb} />}
-              <div className={styles.underHeroBody}>
-                <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.underHeroTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
-                <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className={styles.underHeroCol}>
-          {UNDER_HERO.slice(3,6).map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.underHeroItem}>
-              {a.image && <img src={a.image} alt={a.title} className={styles.underHeroThumb} />}
-              <div className={styles.underHeroBody}>
-                <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.underHeroTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
-                <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-      </FadeSection>
 
       {/* ══════════════════════════════════════
           4. GRAND ENTRETIEN

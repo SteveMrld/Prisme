@@ -1,0 +1,118 @@
+/* ─────────────────────────────────────────────
+   HeroInline — Hero NYT inline
+   Image 16/9 dessus, titre Playfair dessous,
+   deck Georgia, meta. Rotation discrète.
+   ───────────────────────────────────────────── */
+
+.wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imgWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #EEE8DD;
+}
+
+.imgSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 900ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.imgSlide.active {
+  opacity: 1;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+}
+
+.body {
+  padding: 14px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cat {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8B1A1A;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  color: #0A0A0A;
+  margin: 0;
+}
+
+.title :global(em) { font-style: italic; }
+
+.desc {
+  font-family: 'Georgia', serif;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.5;
+  color: #3A332B;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 2px;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+.dot {
+  width: 24px;
+  height: 2px;
+  background: #D5D0C7;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.dot:hover { background: #888; }
+
+.dotActive {
+  background: #0A0A0A;
+}
+
+.dotActive:hover { background: #0A0A0A; }

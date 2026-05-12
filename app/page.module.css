@@ -113,8 +113,171 @@
 }
 
 /* ════════════════════════════════════
-   2. SOUS LE HERO — bande éditoriale 2×3
-      Image carrée 96px à gauche, titre Playfair dominant
+   2. HOME TOP — Grille NYT 3 colonnes
+      Gauche : stories texte · Centre : hero · Droite : stories avec image
+════════════════════════════════════ */
+.homeTop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: 24px 16px 32px;
+  border-bottom: 1px solid #E8E2DA;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.homeTopLeft,
+.homeTopRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeTopCenter {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  .homeTop {
+    grid-template-columns: 22% 1fr 26%;
+    gap: 28px;
+    padding: 28px 32px 36px;
+  }
+  .homeTopLeft {
+    border-right: 1px solid #E8E2DA;
+    padding-right: 28px;
+  }
+  .homeTopRight {
+    border-left: 1px solid #E8E2DA;
+    padding-left: 28px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .homeTop {
+    padding: 32px 48px 40px;
+    gap: 32px;
+  }
+  .homeTopLeft { padding-right: 32px; }
+  .homeTopRight { padding-left: 32px; }
+}
+
+/* ─ Items colonne gauche : texte uniquement + deck court ─ */
+.htSideItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 0 16px;
+  border-bottom: 1px solid #E8E2DA;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+.htSideItem:hover { opacity: 0.7; }
+.htSideItem:last-child { border-bottom: none; }
+.htSideItem:first-child { padding-top: 0; }
+
+.htSideTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(16px, 1.7vw, 19px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  color: #0A0A0A;
+  margin: 0;
+}
+.htSideTitle em { font-style: italic; }
+
+.htSideDesc {
+  font-family: 'Georgia', serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─ Items colonne droite : image + texte ─ */
+.htRightItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 0 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #E8E2DA;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+.htRightItem:hover { opacity: 0.7; }
+.htRightItem:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.htRightImg {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #EEE8DD;
+}
+.htRightImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.htRightTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.15px;
+  color: #0A0A0A;
+  margin: 4px 0 0;
+}
+.htRightTitle em { font-style: italic; }
+
+.htRightDesc {
+  font-family: 'Georgia', serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Mobile : empile gauche → centre → droite avec filets horizontaux */
+@media (max-width: 899px) {
+  .homeTopLeft {
+    order: 2;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #E8E2DA;
+  }
+  .homeTopCenter {
+    order: 1;
+  }
+  .homeTopRight {
+    order: 3;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #E8E2DA;
+  }
+  .htRightImg {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* ════════════════════════════════════
+   2bis. SOUS LE HERO — bande éditoriale 2×3 (DEPRECATED, gardé pour rétro-compat)
 ════════════════════════════════════ */
 .underHero {
   display: grid;
@@ -280,8 +443,8 @@
   grid-template-columns: 1fr;
   text-decoration: none;
   color: inherit;
-  background: #FAF7F4;
-  border-top: 3px solid #8B1A1A;
+  background: #FFFFFF;
+  border-top: 1px solid #0A0A0A;
   border-bottom: 1px solid #E8E2DA;
 }
 .entretienImgCol {
@@ -298,18 +461,17 @@
   filter: grayscale(15%);
 }
 .entretienBody {
-  padding: 28px 20px 32px;
+  padding: 24px 16px 28px;
   display: flex; flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   justify-content: flex-start;
 }
 .entretienLabel {
   font-family: 'DM Mono', monospace;
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 2.8px; text-transform: uppercase;
-  color: #8B1A1A;
-  border-left: 2px solid #8B1A1A;
-  padding-left: 8px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2.2px; text-transform: uppercase;
+  color: #0A0A0A;
+  padding-left: 0;
   width: fit-content;
 }
 .entretienName {
@@ -555,7 +717,7 @@
 .gfQuaternaryRow {
   display: grid;
   grid-template-columns: 1fr;
-  background: #FAF9F6;
+  background: #FFFFFF;
 }
 @media (min-width: 760px) {
   .gfQuaternaryRow { grid-template-columns: 1fr 1fr; }
@@ -702,9 +864,9 @@
   .entretien { grid-template-columns: 32% 68%; align-items: stretch; }
   .entretienImgCol { aspect-ratio: 4 / 5; height: auto; min-height: 0; }
   .entretienImg { object-position: center 22%; }
-  .entretienBody { padding: 48px 56px; gap: 20px; justify-content: center; }
+  .entretienBody { padding: 32px 40px; gap: 16px; justify-content: center; }
   .entretienBody > * { max-width: none; width: 100%; }
-  .entretienPullQuote { padding-left: 20px; margin: 12px 0 6px; }
+  .entretienPullQuote { padding-left: 16px; margin: 10px 0 4px; }
   /* GF Lead : image gauche / texte droite en desktop, format magazine */
   .gfLead { grid-template-columns: 58% 42%; align-items: stretch; }
   .gfLeadImg {
@@ -714,15 +876,15 @@
     min-height: 0;
   }
   .gfLeadImg img { object-position: center 30%; }
-  .gfLeadBody { padding: 24px 48px; gap: 14px; justify-content: flex-start; }
-  .gfSecondary { padding: 24px 32px 28px; }
-  .gfTertiary { padding: 22px 24px 26px; }
-  .gfQuaternary { padding: 16px 32px; }
+  .gfLeadBody { padding: 20px 32px; gap: 12px; justify-content: flex-start; }
+  .gfSecondary { padding: 20px 24px 24px; }
+  .gfTertiary { padding: 18px 20px 22px; }
+  .gfQuaternary { padding: 14px 24px; }
   /* tvCard width gere par clamp() sur la regle de base */
-  .portraits { padding: 24px 64px 32px; }
-  .latestItem { padding: 16px 64px; }
-  .sectionHead { padding: 24px 64px 12px; }
-  .nl { padding: 64px 64px; }
+  .portraits { padding: 20px 32px 28px; }
+  .latestItem { padding: 14px 32px; }
+  .sectionHead { padding: 18px 32px 10px; }
+  .nl { padding: 48px 32px; }
   .nlInner { max-width: 560px; }
 }
 
