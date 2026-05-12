@@ -339,6 +339,168 @@
 }
 .zone1NewsletterCta:hover { opacity: 0.55; }
 
+/* ── Zone 1 colonne gauche : mini-liste « À lire aussi »
+   entre les articles texte et la citation. Densifie la colonne
+   et résorbe le vide blanc créé par margin-auto de la citation. */
+.zone1AlsoRead {
+  padding: 16px 0 0;
+  margin-top: 14px;
+  border-top: 1px solid #E8E2DA;
+}
+.zone1AlsoReadLabel {
+  display: block;
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.zone1AlsoReadList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.zone1AlsoReadItem {
+  border-bottom: 1px dotted #D6CFC4;
+}
+.zone1AlsoReadItem:last-child { border-bottom: none; }
+.zone1AlsoReadLink {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+.zone1AlsoReadLink:hover { opacity: 0.65; }
+.zone1AlsoReadCat {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888178;
+}
+.zone1AlsoReadTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 14.5px;
+  line-height: 1.25;
+  color: #1A1A1A;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+}
+.zone1AlsoReadTitle em { font-style: italic; }
+
+/* ── Zone 1 colonne centre : bande Atlas sous HeroInline.
+   Ancre la hauteur de la colonne pour qu'elle ne soit plus
+   plus courte que les deux latérales (citation gauche, ad droite). */
+.zone1AtlasStrip {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 2px solid #0A0A0A;
+}
+.zone1AtlasHead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.zone1AtlasLabel {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  font-weight: 700;
+}
+.zone1AtlasSub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #555;
+  flex: 1;
+}
+.zone1AtlasAll {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+  border-bottom: 1px solid #0A0A0A;
+  padding-bottom: 1px;
+  transition: opacity 200ms ease;
+}
+.zone1AtlasAll:hover { opacity: 0.55; }
+.zone1AtlasGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.zone1AtlasCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+.zone1AtlasCard:hover { opacity: 0.8; }
+.zone1AtlasImg {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #1A1A1A;
+}
+.zone1AtlasImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms ease;
+}
+.zone1AtlasCard:hover .zone1AtlasImg img { transform: scale(1.04); }
+.zone1AtlasTag {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.zone1AtlasTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+  letter-spacing: -0.1px;
+}
+@media (max-width: 899px) {
+  .zone1AtlasGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .zone1AtlasCard {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+  .zone1AtlasImg {
+    width: 120px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+  }
+}
+
 /* Mobile : empile gauche → centre → droite avec filets horizontaux */
 @media (max-width: 899px) {
   .homeTopLeft {

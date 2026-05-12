@@ -76,6 +76,35 @@ const LATEST = (articlesData as any[])
 // architecture-desordre remplace empire-du-droit (qui était en HERO + Zone 1 + POPULAR = triple)
 const POPULAR = ['architecture-desordre','moreno','lecture','palantir','skunkworks'].map(art)
 
+// Zone 1 — colonne gauche : mini-liste « À lire aussi » entre les 3 articles et
+// la citation, pour densifier la colonne et résorber le vide blanc.
+// Articles à 1 occurrence ailleurs, qui passent à 2 en y figurant.
+const ZONE1_ALSO_READ = [art('eau'), art('lecture'), art('france_maritime')]
+
+// Zone 1 — colonne centre : bande Atlas sous le hero inline, pour ancrer
+// la colonne centrale à la hauteur des deux latérales. Ce sont des
+// visualisations, pas des articles : aucun impact sur le décompte des doublons.
+const ZONE1_ATLAS = [
+  {
+    href: '/visuels/predateurs.html',
+    tag: 'Géopolitique',
+    title: 'Le monde des prédateurs',
+    image: '/articles/atlas/10_le-monde-des-predateurs.jpg',
+  },
+  {
+    href: '/visuels/naval.html',
+    tag: 'Géopolitique',
+    title: 'Les mers du pouvoir',
+    image: '/articles/atlas/09_les-mers-du-pouvoir.jpg',
+  },
+  {
+    href: '/visuels/cables.html',
+    tag: 'Tech',
+    title: 'Câbles sous-marins',
+    image: '/articles/atlas/13_cables-sous-marins.jpg',
+  },
+]
+
 // ── Composants atomiques ──────────────────────────────────
 function ReadTime({ t }: { t: string }) {
   const n = parseInt(t)
@@ -151,6 +180,21 @@ export default async function HomePage() {
               <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
             </Link>
           ))}
+
+          <div className={styles.zone1AlsoRead}>
+            <span className={styles.zone1AlsoReadLabel}>À lire aussi</span>
+            <ul className={styles.zone1AlsoReadList}>
+              {ZONE1_ALSO_READ.map(a => (
+                <li key={a.slug} className={styles.zone1AlsoReadItem}>
+                  <Link href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.zone1AlsoReadLink}>
+                    <span className={styles.zone1AlsoReadCat}>{a.catLabel}</span>
+                    <span className={styles.zone1AlsoReadTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <blockquote className={styles.zone1Quote}>
             <p className={styles.zone1QuoteText}>
               «&nbsp;Ce qui nous oblige à penser autrement, ce n'est pas l'événement mais la durée.&nbsp;»
@@ -170,9 +214,34 @@ export default async function HomePage() {
           </div>
         </aside>
 
-        {/* Colonne centre : hero inline rotatif */}
+        {/* Colonne centre : hero inline rotatif + bande Atlas pour ancrer la hauteur */}
         <div className={styles.homeTopCenter}>
           <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
+
+          <div className={styles.zone1AtlasStrip}>
+            <div className={styles.zone1AtlasHead}>
+              <span className={styles.zone1AtlasLabel}>Atlas</span>
+              <span className={styles.zone1AtlasSub}>Cartes pour comprendre</span>
+              <Link href="/visuels" className={styles.zone1AtlasAll}>Tout voir →</Link>
+            </div>
+            <div className={styles.zone1AtlasGrid}>
+              {ZONE1_ATLAS.map(card => (
+                <a
+                  key={card.href}
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.zone1AtlasCard}
+                >
+                  <div className={styles.zone1AtlasImg}>
+                    <img src={card.image} alt={card.title} loading="lazy" />
+                  </div>
+                  <span className={styles.zone1AtlasTag}>{card.tag}</span>
+                  <h4 className={styles.zone1AtlasTitle}>{card.title}</h4>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Colonne droite : 2 articles avec image + sidebar pub (si annonce) */}
