@@ -387,7 +387,7 @@
 .gfLeadImg {
   width: 100%;
   aspect-ratio: 16/9;
-  max-height: 300px;
+  max-height: 280px;
   overflow: hidden;
 }
 .gfLeadImg img {
@@ -396,7 +396,7 @@
 }
 .gfLead:hover .gfLeadImg img { transform: scale(1.02); }
 .gfLeadBody {
-  padding: 24px 16px 32px;
+  padding: 24px 16px 24px;
   display: flex; flex-direction: column;
   gap: 12px;
 }
@@ -459,7 +459,7 @@
   display: block;
   text-decoration: none;
   color: inherit;
-  padding: 20px 16px 24px;
+  padding: 16px 16px 24px;
   border-bottom: 1px solid #E8E2DA;
   transition: background-color var(--dur-fast) var(--ease-out);
 }
@@ -709,13 +709,13 @@
   .gfLead { grid-template-columns: 58% 42%; align-items: stretch; }
   .gfLeadImg {
     aspect-ratio: auto;
-    height: clamp(280px, 38vh, 340px);
+    height: clamp(260px, 32vh, 300px);
     max-height: none;
     min-height: 0;
   }
   .gfLeadImg img { object-position: center 30%; }
-  .gfLeadBody { padding: 28px 48px; gap: 14px; justify-content: center; }
-  .gfSecondary { padding: 28px 32px 32px; }
+  .gfLeadBody { padding: 24px 48px; gap: 14px; justify-content: flex-start; }
+  .gfSecondary { padding: 24px 32px 28px; }
   .gfTertiary { padding: 22px 24px 26px; }
   .gfQuaternary { padding: 16px 32px; }
   /* tvCard width gere par clamp() sur la regle de base */
