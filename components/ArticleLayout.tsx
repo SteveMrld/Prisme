@@ -27,6 +27,7 @@ interface ArticleLayoutProps {
   imageFit?: string
   lang?: string
   hasEnglish?: boolean
+  adSlot?: React.ReactNode
 }
 
 const categoryColors: Record<string, string> = {
@@ -67,7 +68,8 @@ export default function ArticleLayout({
   imagePosition,
   imageFit,
   lang = 'fr',
-  hasEnglish = false
+  hasEnglish = false,
+  adSlot = null
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
@@ -251,6 +253,9 @@ export default function ArticleLayout({
         ) : (
           <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
         )}
+
+        {/* SPONSOR — bloc partenaire en fin d'article (hors paywall actif) */}
+        {!isPremiumContent && adSlot}
 
         {/* CTA ABONNEMENT — articles gratuits uniquement, hors Atlas */}
         {!isPremiumContent && category !== 'concept' && (

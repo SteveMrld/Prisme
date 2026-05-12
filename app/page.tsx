@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
 import HeroRotator from '../components/HeroRotator'
 import SoaraUnivers from '../components/SoaraUnivers'
+import AdSlot from '../components/AdSlot'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
@@ -134,6 +135,9 @@ export default function HomePage() {
       <section className={styles.lead}>
         <HeroRotator articles={HERO_ROTATION} intervalMs={7000} />
       </section>
+
+      {/* @ts-expect-error Async Server Component */}
+      <AdSlot slotId="home" />
 
       {/* ══════════════════════════════════════
           2. SOUS LE HERO — bande éditoriale 2 colonnes × 3 lignes

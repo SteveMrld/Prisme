@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import Header from '../../components/Header'
 import Link from 'next/link'
 import AccountClient from './AccountClient'
+import AdSlot from '../../components/AdSlot'
 
 export const metadata = {
   title: 'Mon compte — Soara',
@@ -37,6 +38,8 @@ export default async function ComptePage({
         isPastDue={isPastDue}
         successMessage={searchParams.success === 'true'}
       />
+      {/* @ts-expect-error Async Server Component */}
+      <AdSlot slotId="compte" />
     </>
   )
 }

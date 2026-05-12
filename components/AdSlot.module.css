@@ -1,0 +1,133 @@
+.adslot {
+  width: 100%;
+  max-width: 1200px;
+  margin: 48px auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #FAF5EB;
+  border-top: 1px solid #C8A96E;
+  border-bottom: 1px solid #C8A96E;
+  padding: 28px 32px;
+  transition: background 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link { transition: none; }
+}
+
+.link:hover {
+  background: #F5EFE0;
+}
+
+.eyebrow {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #6E6258;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.imageWrap {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #ECE5D2;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  line-height: 1.18;
+  font-weight: 500;
+  color: #161310;
+  margin: 0 0 14px;
+}
+
+.rule {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: #C8A96E;
+  margin-bottom: 16px;
+}
+
+.text {
+  font-family: 'Source Serif Pro', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  font-style: italic;
+  color: #3A332B;
+  margin: 0 0 16px;
+}
+
+.cta {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8A6A2E;
+  align-self: flex-start;
+}
+
+.link:hover .cta {
+  color: #6E521F;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Variante inline (au milieu d'un article) — un peu plus compacte */
+.inline .link {
+  padding: 24px 28px;
+}
+.inline .title {
+  font-size: 24px;
+}
+.inline .inner {
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 26px;
+}
+
+@media (max-width: 720px) {
+  .adslot {
+    margin: 36px auto;
+    padding: 0 16px;
+  }
+  .link, .inline .link {
+    padding: 22px 18px;
+  }
+  .inner, .inline .inner {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .imageWrap {
+    aspect-ratio: 16 / 9;
+  }
+  .title, .inline .title {
+    font-size: 22px;
+  }
+}

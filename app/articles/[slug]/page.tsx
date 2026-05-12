@@ -1,6 +1,7 @@
 import { notFound, redirect } from 'next/navigation'
 import ArticleLayout from '../../../components/ArticleLayout'
 import GrandFormatLayout from '../../../components/GrandFormatLayout'
+import AdSlot from '../../../components/AdSlot'
 import articlesData from '../../../lib/articles.json'
 import { createClient } from '../../../lib/supabase-server'
 import fs from 'fs'
@@ -176,6 +177,10 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       related={related}
       lang={lang}
       hasEnglish={hasEnglish}
+      adSlot={
+        /* @ts-expect-error Async Server Component */
+        <AdSlot slotId="article" variant="inline" />
+      }
     />
   )
 }
