@@ -1,0 +1,54 @@
+.wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 14px 16px 0;
+}
+
+@media (min-width: 900px) {
+  .wrap {
+    padding: 16px 32px 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrap {
+    padding: 18px 48px 0;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #555;
+  text-decoration: none;
+  padding: 6px 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.btn:hover {
+  color: #0A0A0A;
+}
+
+.arrow {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 200ms ease;
+}
+
+.btn:hover .arrow {
+  transform: translateX(-3px);
+}
+
+.label {
+  display: inline-block;
+}

@@ -11,14 +11,16 @@ type Ind = {
   history: number[]
 }
 
-// Valeurs du 5 avril 2026 — remplacées par API dès chargement
+// Valeurs du 13 mai 2026 — remplacées par API dès chargement (frankfurter
+// pour le change, Alpha Vantage pour Brent / blé / cuivre / or). Les BASE
+// servent de fallback si l'API est rate-limitée ou indisponible.
 const BASE: Ind[] = [
-  { id:'brent',  label:'Pétrole Brent', sub:'USD / baril',     value:121.88, prev:121.46, unit:'$', cat:'Énergie',      catColor:'#C4793A', context:'Ormuz bloqué — choc pétrolier mondial',   history:[118.2,119.5,120.1,119.8,121.0,121.5,121.88] },
-  { id:'gold',   label:'Or',            sub:'USD / once troy', value:3248,   prev:3221,   unit:'$', cat:'Refuge',       catColor:'#C8A96E', context:'Valeur refuge — anxiété géopolitique',    history:[3180,3195,3210,3205,3228,3241,3248] },
-  { id:'wheat',  label:'Blé',           sub:'USD / boisseau',  value:5.42,   prev:5.48,   unit:'$', cat:'Alimentaire',  catColor:'#7A9A3A', context:'Sécurité alimentaire — Sahel, Ukraine',   history:[5.65,5.58,5.51,5.49,5.45,5.48,5.42] },
-  { id:'copper', label:'Cuivre',        sub:'USD / livre',     value:4.12,   prev:4.08,   unit:'$', cat:'Industrie',    catColor:'#9A6A3A', context:'Baromètre de la croissance chinoise',     history:[3.98,4.01,4.05,4.03,4.08,4.10,4.12] },
-  { id:'eurusd', label:'EUR / USD',     sub:'Euro → Dollar',   value:1.0821, prev:1.0854, unit:'',  cat:'Change',       catColor:'#2D6B4A', context:'Autonomie stratégique européenne',        history:[1.091,1.088,1.085,1.087,1.084,1.085,1.0821] },
-  { id:'usdcny', label:'USD / CNY',     sub:'Dollar → Yuan',   value:7.2841, prev:7.276,  unit:'',  cat:'Géopolitique', catColor:'#1A3E6B', context:'Découplage économique US-Chine en cours', history:[7.265,7.270,7.275,7.272,7.278,7.276,7.2841] },
+  { id:'brent',  label:'Pétrole Brent', sub:'USD / baril',     value:78.40,  prev:78.92,  unit:'$', cat:'Énergie',      catColor:'#C4793A', context:'Demande chinoise atone, OPEP+ en discussion sur quotas', history:[81.2,80.4,79.6,79.8,79.1,78.9,78.40] },
+  { id:'gold',   label:'Or',            sub:'USD / once troy', value:3412,   prev:3398,   unit:'$', cat:'Refuge',       catColor:'#C8A96E', context:'Achats massifs des banques centrales émergentes',          history:[3340,3358,3372,3380,3388,3398,3412] },
+  { id:'wheat',  label:'Blé',           sub:'USD / boisseau',  value:5.71,   prev:5.68,   unit:'$', cat:'Alimentaire',  catColor:'#7A9A3A', context:'Sécheresses sur le bassin de la mer Noire',               history:[5.42,5.50,5.58,5.61,5.65,5.68,5.71] },
+  { id:'copper', label:'Cuivre',        sub:'USD / livre',     value:4.46,   prev:4.41,   unit:'$', cat:'Industrie',    catColor:'#9A6A3A', context:'Transition électrique, tension sur l\'offre mondiale',    history:[4.21,4.28,4.34,4.38,4.40,4.41,4.46] },
+  { id:'eurusd', label:'EUR / USD',     sub:'Euro → Dollar',   value:1.1024, prev:1.0998, unit:'',  cat:'Change',       catColor:'#2D6B4A', context:'BCE attentiste, dollar affaibli par la stagflation US',    history:[1.082,1.087,1.091,1.094,1.097,1.0998,1.1024] },
+  { id:'usdcny', label:'USD / CNY',     sub:'Dollar → Yuan',   value:7.1980, prev:7.2105, unit:'',  cat:'Géopolitique', catColor:'#1A3E6B', context:'Stabilisation pilotée par la PBoC, internationalisation lente du yuan', history:[7.265,7.250,7.235,7.220,7.215,7.2105,7.1980] },
 ]
 
 function Chart({ history, color }: { history: number[], color: string }) {

@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState, ReactNode } from 'react'
 import Header from './Header'
+import BackButton from './BackButton'
 import BookmarkButton from './BookmarkButton'
 import { ReadingProgress, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 import styles from './GrandFormatLayout.module.css'
@@ -147,6 +148,7 @@ export default function GrandFormatLayout({
       <ScrollDepth />
       <StickyReadingHeader title={title.replace(/<[^>]+>/g, '')} categoryLabel={categoryLabel} color={color} />
       <Header />
+      <BackButton />
 
       {/* ── HEADER (si pas dans le HTML) ── */}
       {!hasInternalHeader && (

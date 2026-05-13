@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import BookmarkButton from './BookmarkButton'
+import BackButton from './BackButton'
 import Header from './Header'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
@@ -147,6 +148,7 @@ export default function ArticleLayout({
       <ScrollDepth />
       <StickyReadingHeader title={title} categoryLabel={categoryLabel} color={color} />
       <Header activeNav={category} />
+      <BackButton />
 
       {/* TOUS SAUF PORTRAIT : titre + chapeau d'abord */}
       {!hasInternalHeader && (
