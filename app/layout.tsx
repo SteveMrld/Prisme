@@ -1,10 +1,19 @@
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata, Viewport } from 'next'
+import { Source_Serif_4 } from 'next/font/google'
 import './globals.css'
 import './animations.css'
 import './article-content.css'
 import BottomNav from '../components/BottomNav'
 import PWARegister from '../components/PWARegister'
+
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-source-serif',
+  display: 'swap',
+})
 
 const BASE_URL = 'https://soara.fr'
 
@@ -82,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={sourceSerif.variable}>
       <body>
         {children}
         <BottomNav />

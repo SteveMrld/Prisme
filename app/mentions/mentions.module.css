@@ -37,11 +37,11 @@
 }
 
 .section p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  line-height: 1.7;
+  font-family: var(--font-source-serif), 'Source Serif 4', Charter, 'Iowan Old Style', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.6;
   color: var(--gris);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .section p:last-child { margin-bottom: 0; }

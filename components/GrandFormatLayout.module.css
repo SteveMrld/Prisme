@@ -168,11 +168,11 @@
 /* Typography override pour le contenu HTML injecté */
 .body :global(.soara-article) p,
 .body :global(.article-body) p {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-source-serif), 'Source Serif 4', Charter, 'Iowan Old Style', Georgia, serif;
   font-size: clamp(16px, 1.45vw, 18px);
-  line-height: 1.82;
+  line-height: 1.6;
   color: #1F2937;
-  margin: 0 0 26px;
+  margin: 0 0 18px;
 }
 
 .body :global(.atitle) {
