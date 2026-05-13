@@ -794,34 +794,28 @@ sup {
    DROP CAP — Première lettre majuscule stylee
    ═══════════════════════════════════════════════════ */
 
-/* Premier paragraphe après l'en-tête ou l'essentiel.
-   On vise (a) la 1re <p> direct-child de .soara-article / .article-body / .article-content / .articleBody,
-   et (b) la 1re <p> qui suit un wrapper d'en-tete (.atop, .essentiel, .article-header) parce que dans
-   ces articles (eau, taiwan, france_maritime, cygne, overton, predateurs) le contenu est wrappe.
-   `~ p:first-of-type` cible la 1re <p> parmi les freres qui suivent le wrapper. */
-.soara-article > p:first-of-type::first-letter,
-.article-body > p:first-of-type::first-letter,
-.article-content > p:first-of-type::first-letter,
-.articleBody > p:first-child::first-letter,
-.soara-article > .atop ~ p:first-of-type::first-letter,
-.soara-article > .essentiel ~ p:first-of-type::first-letter,
-.soara-article > .article-header ~ p:first-of-type::first-letter,
-.soara-article .atop ~ .article-body > p:first-of-type::first-letter,
-.soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
-.soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
-.grand-format-body .article-body > p:first-of-type::first-letter,
-.article-content > .article-body > p:first-of-type::first-letter {
-  font-family: 'Playfair Display', serif;
-  font-size: 5.6em;
+/* Périmètre : uniquement les grands formats (GrandFormatLayout → .grand-format-body).
+   Pas les articles standards (ArticleLayout), pas les portraits.
+   Le sélecteur cible le 1er <p> direct-child du .soara-article injecté par GrandFormatLayout,
+   ou le 1er <p> qui suit un wrapper d'en-tête (.atop, .essentiel, .article-header) pour les
+   grands formats dont le HTML est wrappé (taiwan, eau, france_maritime). */
+.grand-format-body .soara-article > p:first-of-type::first-letter,
+.grand-format-body .soara-article > .atop ~ p:first-of-type::first-letter,
+.grand-format-body .soara-article > .essentiel ~ p:first-of-type::first-letter,
+.grand-format-body .soara-article > .article-header ~ p:first-of-type::first-letter,
+.grand-format-body .soara-article .atop ~ .article-body > p:first-of-type::first-letter,
+.grand-format-body .soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
+.grand-format-body .soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
+.grand-format-body .soara-article > .article-body > p:first-of-type::first-letter,
+.grand-format-body .soara-article > .article-content > p:first-of-type::first-letter {
+  font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
-  line-height: 0.82;
+  font-size: 5em;
+  line-height: 0.85;
   float: left;
-  margin-right: 10px;
-  margin-top: 4px;
-  margin-bottom: -4px;
-  color: var(--encre);
-  letter-spacing: -3px;
-  font-feature-settings: "lnum";
+  margin: 0.1em 0.15em 0 0;
+  padding-top: 0.05em;
+  color: #0A0A0A;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -842,20 +836,20 @@ sup {
   padding-top: 0;
 }
 
-/* Paragraphe qui suit directement un h2 ou h3 — pas de drop cap.
-   Exception : si ce <p> est aussi :first-of-type dans son parent, on garde la lettrine
-   (cas cygne/overton ou la 1re <p> de .article-body est precedee par <h3>). */
-.soara-article h2 + p:not(:first-of-type)::first-letter,
-.soara-article h3 + p:not(:first-of-type)::first-letter,
-.article-body h2 + p:not(:first-of-type)::first-letter,
-.article-body h3 + p:not(:first-of-type)::first-letter,
-.article-content h2 + p:not(:first-of-type)::first-letter,
-.article-content h3 + p:not(:first-of-type)::first-letter {
+/* Override : un <p> qui suit directement un h2/h3 n'a pas de drop cap (réservé au tout
+   premier paragraphe). Scopé .grand-format-body comme la règle drop cap principale. */
+.grand-format-body .soara-article h2 + p:not(:first-of-type)::first-letter,
+.grand-format-body .soara-article h3 + p:not(:first-of-type)::first-letter,
+.grand-format-body .article-body h2 + p:not(:first-of-type)::first-letter,
+.grand-format-body .article-body h3 + p:not(:first-of-type)::first-letter,
+.grand-format-body .article-content h2 + p:not(:first-of-type)::first-letter,
+.grand-format-body .article-content h3 + p:not(:first-of-type)::first-letter {
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
   float: none;
   margin: 0;
+  padding-top: 0;
   color: inherit;
   letter-spacing: inherit;
 }
@@ -894,22 +888,20 @@ sup {
     margin-top: 20px !important;
   }
 
-  /* Drop cap plus petit sur mobile — selecteurs alignes avec la regle desktop */
-  .soara-article > p:first-of-type::first-letter,
-  .article-body > p:first-of-type::first-letter,
-  .article-content > p:first-of-type::first-letter,
-  .soara-article > .atop ~ p:first-of-type::first-letter,
-  .soara-article > .essentiel ~ p:first-of-type::first-letter,
-  .soara-article > .article-header ~ p:first-of-type::first-letter,
-  .soara-article .atop ~ .article-body > p:first-of-type::first-letter,
-  .soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
-  .soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
-  .grand-format-body .article-body > p:first-of-type::first-letter,
-  .article-content > .article-body > p:first-of-type::first-letter {
-    font-size: 4.4em;
-    margin-right: 8px;
-    margin-top: 2px;
-    letter-spacing: -2px;
+}
+
+/* Drop cap mobile : taille reduite pour eviter ecrasement sur petits ecrans */
+@media (max-width: 760px) {
+  .grand-format-body .soara-article > p:first-of-type::first-letter,
+  .grand-format-body .soara-article > .atop ~ p:first-of-type::first-letter,
+  .grand-format-body .soara-article > .essentiel ~ p:first-of-type::first-letter,
+  .grand-format-body .soara-article > .article-header ~ p:first-of-type::first-letter,
+  .grand-format-body .soara-article .atop ~ .article-body > p:first-of-type::first-letter,
+  .grand-format-body .soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
+  .grand-format-body .soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
+  .grand-format-body .soara-article > .article-body > p:first-of-type::first-letter,
+  .grand-format-body .soara-article > .article-content > p:first-of-type::first-letter {
+    font-size: 4em;
   }
 }
 
