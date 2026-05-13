@@ -808,15 +808,11 @@ sup {
 .grand-format-body .soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
 .grand-format-body .soara-article > .article-body > p:first-of-type::first-letter,
 .grand-format-body .soara-article > .article-content > p:first-of-type::first-letter,
-/* Whitelist articles standards (ArticleLayout) : cygne, overton, predateurs.
-   La classe .has-drop-cap est posee par ArticleLayout sur le wrapper du body.
-   Le 3e selecteur cible .art-intro dans .article-header pour predateurs, qui n'a ni
-   p direct dans .soara-article ni .article-body : seule cible naturelle = le lede.
-   :not(:has(.article-body)) evite que cygne/overton (qui ont AUSSI .art-intro) se
-   retrouvent avec deux lettrines. */
+/* Whitelist articles standards (ArticleLayout) : overton uniquement.
+   cygne et predateurs retires apres regression animations (2026-05-13).
+   La classe .has-drop-cap est posee par ArticleLayout sur le wrapper du body. */
 .has-drop-cap .soara-article > p:first-of-type::first-letter,
-.has-drop-cap .article-body > p:first-of-type::first-letter,
-.has-drop-cap:not(:has(.article-body)) .article-header > p.art-intro::first-letter {
+.has-drop-cap .article-body > p:first-of-type::first-letter {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
   font-size: 5em;
@@ -919,8 +915,7 @@ sup {
   .grand-format-body .soara-article > .article-body > p:first-of-type::first-letter,
   .grand-format-body .soara-article > .article-content > p:first-of-type::first-letter,
   .has-drop-cap .soara-article > p:first-of-type::first-letter,
-  .has-drop-cap .article-body > p:first-of-type::first-letter,
-  .has-drop-cap:not(:has(.article-body)) .article-header > p.art-intro::first-letter {
+  .has-drop-cap .article-body > p:first-of-type::first-letter {
     font-size: 4em;
   }
 }

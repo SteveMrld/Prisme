@@ -75,7 +75,10 @@ export default function ArticleLayout({
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
 
-  const HAS_DROP_CAP = ['cygne', 'overton', 'predateurs']
+  // Whitelist drop cap : seul overton conserve la lettrine.
+  // cygne et predateurs retirés (régression animations rapportée le 2026-05-13,
+  // root cause non isolée depuis le CLI). À ré-investiguer avec preview navigateur.
+  const HAS_DROP_CAP = ['overton']
   const showDropCap = slug ? HAS_DROP_CAP.includes(slug) : false
 
   const MONTHS_FR: Record<string, string> = {
