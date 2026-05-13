@@ -807,7 +807,11 @@ sup {
 .grand-format-body .soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
 .grand-format-body .soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
 .grand-format-body .soara-article > .article-body > p:first-of-type::first-letter,
-.grand-format-body .soara-article > .article-content > p:first-of-type::first-letter {
+.grand-format-body .soara-article > .article-content > p:first-of-type::first-letter,
+/* Whitelist articles standards (ArticleLayout) : cygne, overton, predateurs.
+   La classe .has-drop-cap est posee par ArticleLayout sur le wrapper du body. */
+.has-drop-cap .soara-article > p:first-of-type::first-letter,
+.has-drop-cap .article-body > p:first-of-type::first-letter {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
   font-size: 5em;
@@ -908,7 +912,9 @@ sup {
   .grand-format-body .soara-article .essentiel ~ .article-body > p:first-of-type::first-letter,
   .grand-format-body .soara-article .article-header ~ .article-content > p:first-of-type::first-letter,
   .grand-format-body .soara-article > .article-body > p:first-of-type::first-letter,
-  .grand-format-body .soara-article > .article-content > p:first-of-type::first-letter {
+  .grand-format-body .soara-article > .article-content > p:first-of-type::first-letter,
+  .has-drop-cap .soara-article > p:first-of-type::first-letter,
+  .has-drop-cap .article-body > p:first-of-type::first-letter {
     font-size: 4em;
   }
 }

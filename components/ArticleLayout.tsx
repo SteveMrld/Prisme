@@ -75,6 +75,9 @@ export default function ArticleLayout({
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
 
+  const HAS_DROP_CAP = ['cygne', 'overton', 'predateurs']
+  const showDropCap = slug ? HAS_DROP_CAP.includes(slug) : false
+
   const MONTHS_FR: Record<string, string> = {
     '01': 'Janvier', '02': 'Février', '03': 'Mars', '04': 'Avril',
     '05': 'Mai', '06': 'Juin', '07': 'Juillet', '08': 'Août',
@@ -237,7 +240,7 @@ export default function ArticleLayout({
       {/* ── LAYOUT DESKTOP : article + sidebar ── */}
       <div className={styles.articlePageLayout}>
       <div className={styles.articleMainCol}>
-      <div className={hasInternalHeader ? styles.articleBodyFull : styles.articleBody}>
+      <div className={`${hasInternalHeader ? styles.articleBodyFull : styles.articleBody}${showDropCap ? ' has-drop-cap' : ''}`}>
         {isPremiumContent ? (
           <div className={styles.paywallWrap}>
             <div className={styles.paywallContent}>
