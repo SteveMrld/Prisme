@@ -5,7 +5,7 @@ import articlesData from '../lib/articles.json'
 import styles from './not-found.module.css'
 
 export const metadata = {
-  title: '404 — Page introuvable · Soara',
+  title: '404 : Page introuvable · Soara',
   robots: { index: false, follow: true },
 }
 
@@ -75,7 +75,7 @@ export default function NotFound() {
       <main className={styles.page}>
         <div className={styles.inner}>
 
-          {/* Bandeau supérieur — eyebrow + filets */}
+          {/* Bandeau supérieur : eyebrow + filets */}
           <div className={styles.eyebrowRow}>
             <span className={styles.rule} aria-hidden="true" />
             <span className={styles.eyebrow}>Erreur 404 · Page introuvable</span>
@@ -94,7 +94,7 @@ export default function NotFound() {
           {/* Sous-titre / chapeau */}
           <p className={styles.lede}>
             Cette adresse ne renvoie à aucun article publié sur Soara. Le lien est
-            peut-être périmé, l&apos;URL mal recopiée — ou le sujet attend encore son
+            peut-être périmé, l&apos;URL mal recopiée, ou le sujet attend encore son
             auteur.
           </p>
 
@@ -104,7 +104,7 @@ export default function NotFound() {
               «&nbsp;Tout ce qui mérite d&apos;être su demande qu&apos;on le
               cherche au moins deux fois.&nbsp;»
             </p>
-            <footer className={styles.quoteAttr}>— Soara, note d&apos;intention</footer>
+            <footer className={styles.quoteAttr}>Soara, note d&apos;intention</footer>
           </blockquote>
 
           {/* CTA principal + secondaire */}
