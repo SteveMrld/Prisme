@@ -163,6 +163,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
               <div className={styles.megaDivider} />
               <div className={styles.megaCol}>
                 <div className={styles.megaColTitle}>Soara</div>
+                <Link href="/lectures" className={styles.megaLink} onClick={() => setMenuOpen(false)}>Mes lectures</Link>
                 <Link href="/apropos" className={styles.megaLink} onClick={() => setMenuOpen(false)}>À propos</Link>
                 <Link href="/contributeurs" className={styles.megaLink} onClick={() => setMenuOpen(false)}>Contributeurs</Link>
                 <Link href="/abonnement" className={styles.megaLink} onClick={() => setMenuOpen(false)}>S'abonner</Link>
@@ -281,6 +282,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link href="/retrospective" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Rétrospective</Link>
             <Link href="/visuels" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Atlas</Link>
             <div className={styles.mobilePanelSection}>À propos</div>
+            <Link href="/lectures" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Mes lectures</Link>
             <Link href="/apropos" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>À propos</Link>
             <Link href="/contributeurs" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Contributeurs</Link>
             <Link href="/mentions" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Mentions légales</Link>
