@@ -214,34 +214,27 @@ export default async function HomePage() {
           </div>
         </aside>
 
-        {/* Colonne centre : hero inline rotatif + bande Atlas pour ancrer la hauteur */}
+        {/* Colonne centre : hero inline rotatif + Grand Entretien Diarra
+            Le GE est ré-encadré ici en format vertical compact pour ancrer
+            la hauteur de la colonne. Le bloc pleine largeur historique
+            est remplacé par la bande Atlas, plus bas. */}
         <div className={styles.homeTopCenter}>
           <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
 
-          <div className={styles.zone1AtlasStrip}>
-            <div className={styles.zone1AtlasHead}>
-              <span className={styles.zone1AtlasLabel}>Atlas</span>
-              <span className={styles.zone1AtlasSub}>Cartes pour comprendre</span>
-              <Link href="/visuels" className={styles.zone1AtlasAll}>Tout voir →</Link>
+          <Link href={ENTRETIEN_ART.href} className={styles.zone1Entretien}>
+            <div className={styles.zone1EntretienImg}>
+              <img src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} />
             </div>
-            <div className={styles.zone1AtlasGrid}>
-              {ZONE1_ATLAS.map(card => (
-                <a
-                  key={card.href}
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.zone1AtlasCard}
-                >
-                  <div className={styles.zone1AtlasImg}>
-                    <img src={card.image} alt={card.title} loading="lazy" />
-                  </div>
-                  <span className={styles.zone1AtlasTag}>{card.tag}</span>
-                  <h4 className={styles.zone1AtlasTitle}>{card.title}</h4>
-                </a>
-              ))}
+            <div className={styles.zone1EntretienBody}>
+              <span className={styles.zone1EntretienLabel}>Grand Entretien · 1<sup>er</sup> juin 2026</span>
+              <h3 className={styles.zone1EntretienName}>Cheick Modibo <em>Diarra</em></h3>
+              <p className={styles.zone1EntretienRole}>{ENTRETIEN_ART.deck}</p>
+              <blockquote className={styles.zone1EntretienQuote}>
+                « La science, le capital, le pouvoir, trois langues d'un même siècle. »
+              </blockquote>
+              <span className={styles.zone1EntretienCta}>Lire dès la parution →</span>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Colonne droite : 2 articles avec image + sidebar pub (si annonce) */}
@@ -269,27 +262,40 @@ export default async function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          4. GRAND ENTRETIEN
+          4. ATLAS — bande pleine largeur
+             Remplace l'ancien Grand Entretien, déplacé dans Zone 1
+             pour combler l'espace blanc de la colonne centre.
       ══════════════════════════════════════ */}
       <FadeSection>
-      <Link href={ENTRETIEN_ART.href} className={styles.entretien}>
-        <div className={styles.entretienImgCol}>
-          <img src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} className={styles.entretienImg} />
+      <section className={styles.atlasSection}>
+        <div className={styles.atlasSectionHead}>
+          <div>
+            <span className={styles.atlasSectionEyebrow}>Atlas</span>
+            <h2 className={styles.atlasSectionTitle}>Cartes pour <em>comprendre</em></h2>
+            <p className={styles.atlasSectionIntro}>
+              Six visualisations interactives pour traverser ce que les mots ne suffisent pas à dire.
+            </p>
+          </div>
+          <Link href="/visuels" className={styles.atlasSectionAll}>Toutes les cartes →</Link>
         </div>
-        <div className={styles.entretienBody}>
-          <span className={styles.entretienLabel}>Grand Entretien</span>
-          <h2 className={styles.entretienName}>Cheick Modibo <em>Diarra</em></h2>
-          <p className={styles.entretienRole}>{ENTRETIEN_ART.deck}</p>
-          <p className={styles.entretienExcerpt}>Ingénieur de navigation sur cinq missions NASA dont Mars Pathfinder, ancien président de Microsoft Afrique pendant dix ans, ancien Premier ministre du Mali en pleine crise institutionnelle. Cette trajectoire — la science, le capital technologique mondial, le pouvoir politique africain — en fait l'interlocuteur inaugural de Soara&hellip;</p>
-          <blockquote className={styles.entretienPullQuote}>
-            « La science, le capital, le pouvoir — trois langues d'un même siècle. »
-          </blockquote>
-          <p className={styles.entretienAfterQuote}>
-            Soara s'ouvrira par cet entretien fondateur. Diffusion le 1<sup>er</sup> juin 2026.
-          </p>
-          <span className={styles.entretienCta}>Lire dès la parution →</span>
+        <div className={styles.atlasSectionGrid}>
+          {ZONE1_ATLAS.map(card => (
+            <a
+              key={card.href}
+              href={card.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.atlasSectionCard}
+            >
+              <div className={styles.atlasSectionImg}>
+                <img src={card.image} alt={card.title} loading="lazy" />
+              </div>
+              <span className={styles.atlasSectionTag}>{card.tag}</span>
+              <h4 className={styles.atlasSectionTitle2}>{card.title}</h4>
+            </a>
+          ))}
         </div>
-      </Link>
+      </section>
       </FadeSection>
 
       {/* ══════════════════════════════════════
