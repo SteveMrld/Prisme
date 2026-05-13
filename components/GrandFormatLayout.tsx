@@ -3,6 +3,7 @@ import { useEffect, useState, ReactNode } from 'react'
 import Header from './Header'
 import BackButton from './BackButton'
 import BookmarkButton from './BookmarkButton'
+import ArticleTOC from './ArticleTOC'
 import { ReadingProgress, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 import styles from './GrandFormatLayout.module.css'
 import articlesData from '../lib/articles.json'
@@ -149,6 +150,7 @@ export default function GrandFormatLayout({
       <StickyReadingHeader title={title.replace(/<[^>]+>/g, '')} categoryLabel={categoryLabel} color={color} />
       <Header />
       <BackButton />
+      {minutes >= 10 && <ArticleTOC />}
 
       {/* ── HEADER (si pas dans le HTML) ── */}
       {!hasInternalHeader && (

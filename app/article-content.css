@@ -836,6 +836,14 @@ sup {
   padding-top: 0;
 }
 
+/* Scroll target offset : quand on suit un lien #section (TOC, hash direct), le titre cible
+   doit atterrir sous le Header sticky (~100px). */
+.grand-format-body .soara-article h2,
+.grand-format-body .article-body h2,
+.grand-format-body .article-content h2 {
+  scroll-margin-top: 100px;
+}
+
 /* Override : un <p> qui suit directement un h2/h3 n'a pas de drop cap (réservé au tout
    premier paragraphe). Scopé .grand-format-body comme la règle drop cap principale. */
 .grand-format-body .soara-article h2 + p:not(:first-of-type)::first-letter,
