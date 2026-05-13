@@ -18,7 +18,7 @@
 .heroTitle {
   font-family: 'Playfair Display', serif;
   font-size: clamp(32px, 4.5vw, 58px);
-  font-weight: 300; letter-spacing: -2px; line-height: 1.05;
+  font-weight: 300; letter-spacing: -0.03em; line-height: 1.05;
   color: #fff;
 }
 .heroTitle em { font-style: italic; color: #C8A96E; }

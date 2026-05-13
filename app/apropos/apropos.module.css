@@ -26,8 +26,8 @@
   font-family: 'Playfair Display', serif;
   font-size: clamp(38px, 7vw, 80px);
   font-weight: 300;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   color: rgba(255,255,255,0.9);
 }
 

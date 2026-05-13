@@ -93,7 +93,7 @@
   line-height: 1.15;
   color: var(--encre);
   margin-bottom: 16px;
-  letter-spacing: -1px;
+  letter-spacing: -0.02em;
 }
 
 .heroTitle em {
