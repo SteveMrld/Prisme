@@ -7,79 +7,84 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
+html,body{width:100%;height:100%;overflow:hidden;background:#FAFAF8;color:#0A0A0A;font-family:"DM Sans",sans-serif;-webkit-font-smoothing:antialiased}
 :root{
-  --us:#1B3A5E;       /* bleu nuit profond */
-  --ru:#2E4A38;       /* vert kaki eurasiatique */
-  --cn:#B8920A;       /* or riche */
-  --neutral:#1A2535;
+  --us:#1A3E6B;       /* bleu profond charte geo */
+  --ru:#8B1A1A;       /* grenat signature */
+  --cn:#B86A1A;       /* ocre charte eco */
+  --neutral:#E8E2DA;  /* gris clair pays non concernés */
   --gold:#C8A96E;
-  --ocean:#05080F;
+  --ocean:#FAFAF8;
+  --ink:#0A0A0A;
+  --paper:#F2EDE3;
+  --bord:#D8D3C8;
 }
 #stage{position:fixed;top:0;left:0;width:100%;height:calc(100% - 52px);display:flex}
 #map-wrap{position:relative;flex:1;overflow:hidden;background:var(--ocean)}
 #map-svg{position:absolute;top:0;left:0;width:100%;height:100%}
 #vignette{position:absolute;inset:0;pointer-events:none;z-index:3;
-  background:radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(4,7,15,0.7) 100%)}
+  background:radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(10,10,10,0.04) 100%)}
 
 /* ══ SÉLECTEUR ══ */
 #selector{
   position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
   display:flex;gap:1px;z-index:20;
-  background:rgba(4,7,15,0.88);
-  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.92);
+  border:1px solid rgba(10,10,10,0.1);
   border-radius:40px;overflow:hidden;
   backdrop-filter:blur(20px);
+  box-shadow:0 4px 18px rgba(10,10,10,0.06);
 }
 .sel-btn{
   padding:8px 20px;border:none;cursor:pointer;
   font-family:"DM Sans",sans-serif;font-size:9px;font-weight:700;
   letter-spacing:2.5px;text-transform:uppercase;
-  background:transparent;color:rgba(255,255,255,0.55);
+  background:transparent;color:rgba(10,10,10,0.55);
   transition:all 0.3s;border-radius:40px;
 }
-.sel-btn:hover{color:rgba(255,255,255,0.85)}
-.sel-btn.active{color:#fff;background:rgba(255,255,255,0.1)}
-.sel-btn.us.active{color:#7AAEDD;background:rgba(27,58,94,0.3)}
-.sel-btn.ru.active{color:#72A882;background:rgba(46,74,56,0.3)}
-.sel-btn.cn.active{color:#DDB830;background:rgba(184,146,10,0.25)}
+.sel-btn:hover{color:var(--ink)}
+.sel-btn.active{color:var(--ink);background:rgba(10,10,10,0.06)}
+.sel-btn.us.active{color:var(--us);background:rgba(26,62,107,0.1)}
+.sel-btn.ru.active{color:var(--ru);background:rgba(139,26,26,0.1)}
+.sel-btn.cn.active{color:var(--cn);background:rgba(184,106,26,0.1)}
 
 /* ══ PANNEAU ══ */
 #panel{
   width:clamp(270px,25vw,320px);flex-shrink:0;
   position:relative;z-index:10;
-  background:linear-gradient(to right,transparent 0%,rgba(4,7,15,0.96) 14%);
+  background:var(--paper);
   display:flex;flex-direction:column;justify-content:center;
   padding:52px 36px 52px 28px;
+  border-left:1px solid var(--bord);
 }
 #panel::before{
   content:'';position:absolute;left:0;top:15%;bottom:15%;width:1px;
-  background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.06),transparent);
+  background:linear-gradient(to bottom,transparent,rgba(10,10,10,0.08),transparent);
 }
 .p-year{
   font-size:8px;font-weight:500;letter-spacing:4px;text-transform:uppercase;
-  color:rgba(255,255,255,0.2);margin-bottom:28px;
+  color:rgba(10,10,10,0.4);margin-bottom:28px;
 }
 .p-tag{font-size:7px;font-weight:700;letter-spacing:5px;text-transform:uppercase;margin-bottom:14px;transition:color 0.6s}
 .p-hook{
   font-family:"Playfair Display",serif;
   font-size:clamp(16px,1.6vw,21px);font-style:italic;font-weight:300;
-  color:rgba(255,255,255,0.55);line-height:1.55;
+  color:rgba(10,10,10,0.6);line-height:1.55;
   margin-bottom:22px;padding-bottom:22px;
-  border-bottom:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(10,10,10,0.08);
   transition:opacity 0.5s;
 }
 .p-title{
   font-family:"Playfair Display",serif;
   font-size:clamp(24px,2.6vw,34px);font-weight:300;
-  line-height:1.1;letter-spacing:-0.5px;color:#fff;margin-bottom:16px;
+  line-height:1.1;letter-spacing:-0.5px;color:var(--ink);margin-bottom:16px;
 }
 .p-title em{font-style:italic;transition:color 0.6s}
-.p-body{font-size:12.5px;color:rgba(255,255,255,0.42);line-height:1.9}
-.p-body strong{color:rgba(255,255,255,0.82);font-weight:500}
+.p-body{font-size:12.5px;color:rgba(10,10,10,0.6);line-height:1.9}
+.p-body strong{color:var(--ink);font-weight:500}
 .p-stat{
   margin-top:26px;padding-top:24px;
-  border-top:1px solid rgba(255,255,255,0.06);
+  border-top:1px solid rgba(10,10,10,0.08);
 }
 .p-n{
   font-family:"Playfair Display",serif;
@@ -89,7 +94,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
 }
 .p-l{
   font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;
-  color:rgba(255,255,255,0.26);display:block;margin-top:10px;line-height:1.8;
+  color:rgba(10,10,10,0.4);display:block;margin-top:10px;line-height:1.8;
 }
 
 /* ══ LÉGENDE ══ */
@@ -102,36 +107,36 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
   cursor:pointer;padding:5px 9px;border-radius:5px;
   transition:background 0.2s;
 }
-.li:hover,.li.on{background:rgba(255,255,255,0.05)}
+.li:hover,.li.on{background:rgba(10,10,10,0.05)}
 .li-bar{width:18px;height:3px;border-radius:2px;flex-shrink:0;transition:width 0.2s}
 .li.on .li-bar{width:24px}
-.li-txt{font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.3px;white-space:nowrap}
-.li.on .li-txt{color:rgba(255,255,255,0.82)}
+.li-txt{font-size:10px;color:rgba(10,10,10,0.5);letter-spacing:0.3px;white-space:nowrap}
+.li.on .li-txt{color:var(--ink);font-weight:500}
 
 /* ══ TOOLTIP ══ */
 #tip{
   position:absolute;pointer-events:none;z-index:100;
-  background:rgba(4,7,15,0.95);
-  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.97);
+  border:1px solid rgba(10,10,10,0.12);
   border-radius:8px;padding:13px 17px;
-  font-size:12px;color:#fff;
+  font-size:12px;color:var(--ink);
   opacity:0;transition:opacity 0.12s;
   min-width:170px;backdrop-filter:blur(20px);
-  box-shadow:0 8px 40px rgba(0,0,0,0.6);
+  box-shadow:0 8px 28px rgba(10,10,10,0.12);
 }
 #tip-name{font-weight:600;font-size:13px;margin-bottom:3px}
-#tip-zone{font-size:9px;letter-spacing:2px;text-transform:uppercase;opacity:0.55;margin-bottom:6px}
-#tip-detail{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.55}
+#tip-zone{font-size:9px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;margin-bottom:6px;font-weight:600}
+#tip-detail{font-size:11px;color:rgba(10,10,10,0.55);line-height:1.55}
 
 /* ══ STATS SUR CARTE ══ */
 .map-stat{pointer-events:none}
 .map-stat-n{
   font-family:"Playfair Display",serif;
-  font-weight:300;fill:rgba(255,255,255,0.7);
+  font-weight:400;fill:rgba(10,10,10,0.78);
 }
 .map-stat-l{
   font-family:"DM Sans",sans-serif;
-  fill:rgba(255,255,255,0.35);font-size:7px;letter-spacing:1px;text-transform:uppercase;
+  fill:rgba(10,10,10,0.5);font-size:7px;letter-spacing:1px;text-transform:uppercase;
 }
 
 /* ══ ANIMATIONS ══ */
@@ -150,23 +155,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
 #player{
   position:fixed;bottom:0;left:0;right:0;height:52px;z-index:200;
   display:flex;flex-direction:column;
-  background:rgba(4,7,15,0.98);border-top:1px solid rgba(255,255,255,0.06);
+  background:var(--paper);border-top:1px solid var(--bord);
 }
-#prog-bar{width:100%;height:2px;background:rgba(255,255,255,0.06);cursor:pointer}
-#prog-fill{height:100%;background:var(--gold);width:0%;transition:width 0.1s linear}
+#prog-bar{width:100%;height:2px;background:rgba(10,10,10,0.08);cursor:pointer}
+#prog-fill{height:100%;background:var(--ink);width:0%;transition:width 0.1s linear}
 #ctrl{flex:1;display:flex;align-items:center;justify-content:center;padding:0 20px;position:relative}
 #dots{position:absolute;left:20px;display:flex;gap:6px;align-items:center}
-.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.15);cursor:pointer;transition:all .2s}
-.dot.on{background:var(--gold);transform:scale(1.5)}
-.cbtn{width:36px;height:36px;border:none;background:none;color:rgba(255,255,255,0.38);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 4px}
-.cbtn:hover{color:var(--gold)}
+.dot{width:4px;height:4px;border-radius:50%;background:rgba(10,10,10,0.2);cursor:pointer;transition:all .2s}
+.dot.on{background:var(--ink);transform:scale(1.5)}
+.cbtn{width:36px;height:36px;border:none;background:none;color:rgba(10,10,10,0.45);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s;padding:0;margin:0 4px}
+.cbtn:hover{color:var(--ink)}
 .cbtn svg{width:18px;height:18px;fill:currentColor}
 #bplay .ip{display:block}#bplay .ipa{display:none}
 #bplay.on .ip{display:none}#bplay.on .ipa{display:block}
-#bplay{width:42px;height:42px;border-radius:50%;background:rgba(196,162,101,0.1);color:var(--gold);border:1px solid rgba(196,162,101,0.22)}
-#cnt{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18)}
-.back{position:fixed;top:20px;left:20px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18);text-decoration:none;z-index:300;transition:color .2s}
-.back:hover{color:var(--gold)}
+#bplay{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#FAFAF8;border:1px solid var(--ink)}
+#bplay:hover{color:#FAFAF8;background:rgba(10,10,10,0.85)}
+#cnt{position:absolute;right:20px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(10,10,10,0.35)}
+.back{position:fixed;top:20px;left:20px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(10,10,10,0.4);text-decoration:none;z-index:300;transition:color .2s}
+.back:hover{color:var(--ink)}
 
 /* ══ MOBILE ══ */
 @media(max-width:900px){
@@ -174,10 +180,11 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
   #map-wrap{flex:0 0 48vh;overflow:hidden}
   #panel{
     width:100%;flex:1;
-    background:rgba(4,7,15,0.97);
+    background:var(--paper);
     padding:14px 20px 14px 20px;
     justify-content:flex-start;overflow-y:auto;
-    border-top:1px solid rgba(255,255,255,0.07);
+    border-top:1px solid var(--bord);
+    border-left:none;
   }
   #panel::before{display:none}
   .p-year{margin-bottom:10px}
@@ -210,24 +217,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:#04070F;color:#fff;f
 
   <div id="legend">
     <div class="li on" id="li-all" onclick="filter('all')">
-      <div class="li-bar" style="background:linear-gradient(to right,#2E62A0,#3A6B48,#C8A010)"></div>
+      <div class="li-bar" style="background:linear-gradient(to right,#1A3E6B,#8B1A1A,#B86A1A)"></div>
       <span class="li-txt">Toutes les zones</span>
     </div>
     <div class="li" id="li-us" onclick="filter('us')">
-      <div class="li-bar" style="background:#2E62A0"></div>
+      <div class="li-bar" style="background:#1A3E6B"></div>
       <span class="li-txt">Zone US</span>
     </div>
     <div class="li" id="li-ru" onclick="filter('ru')">
-      <div class="li-bar" style="background:#3A6B48"></div>
+      <div class="li-bar" style="background:#8B1A1A"></div>
       <span class="li-txt">Zone Russie</span>
     </div>
     <div class="li" id="li-cn" onclick="filter('cn')">
-      <div class="li-bar" style="background:#C8A010"></div>
+      <div class="li-bar" style="background:#B86A1A"></div>
       <span class="li-txt">Zone Chine</span>
     </div>
     <div class="li" style="cursor:default;margin-top:4px">
-      <div class="li-bar" style="background:rgba(255,255,255,0.15)"></div>
-      <span class="li-txt" style="opacity:0.32">Non-aligné</span>
+      <div class="li-bar" style="background:#E8E2DA"></div>
+      <span class="li-txt" style="opacity:0.45">Non-aligné</span>
     </div>
   </div>
 
@@ -286,12 +293,12 @@ function addGlow(id,col,b){
   f.append('feGaussianBlur').attr('stdDeviation',b).attr('result','b');
   var m=f.append('feMerge');m.append('feMergeNode').attr('in','b');m.append('feMergeNode').attr('in','SourceGraphic');
 }
-addGlow('gus','#1B3A5E',4);addGlow('gru','#2E4A38',4);addGlow('gcn','#B8920A',4);
-addGlow('ggold','#C8A96E',2);addGlow('gw','#fff',2);
+addGlow('gus','#1A3E6B',3);addGlow('gru','#8B1A1A',3);addGlow('gcn','#B86A1A',3);
+addGlow('ggold','#C8A96E',2);addGlow('gw','#0A0A0A',2);
 
 /* ══ COULEURS ══ */
-var SCOL={us:'#1B3A5E',ru:'#2E4A38',cn:'#B8920A'};
-var SFILL={us:'#080F1C',ru:'#0A120C',cn:'#181200'};
+var SCOL={us:'#1A3E6B',ru:'#8B1A1A',cn:'#B86A1A'};
+var SNEUTRAL='#E8E2DA';
 var SNAME={us:'Zone US',ru:'Zone Russie',cn:'Zone Chine'};
 
 /* ══ MAPPING PAYS ══ */
@@ -366,31 +373,28 @@ var isBuilt=false;
 setTimeout(function(){initPlayer()},50);
 
 d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
-  /* Fond ocean */
-  svg.append('rect').attr('width',mapW).attr('height',mapH).attr('fill','#04070F');
-  svg.append('path').datum({type:'Sphere'}).attr('d',gp).attr('fill','#07101E');
+  /* Fond off-white */
+  svg.append('rect').attr('width',mapW).attr('height',mapH).attr('fill','#FAFAF8');
+  svg.append('path').datum({type:'Sphere'}).attr('d',gp).attr('fill','#FAFAF8');
 
   /* Grille subtile */
   svg.append('path').datum(d3.geoGraticule()()).attr('d',gp)
-    .attr('fill','none').attr('stroke','rgba(255,255,255,0.04)').attr('stroke-width',0.4);
+    .attr('fill','none').attr('stroke','rgba(10,10,10,0.05)').attr('stroke-width',0.4);
 
   /* Equateur */
   svg.append('path').datum({type:'LineString',coordinates:[[-180,0],[180,0]]})
-    .attr('d',gp).attr('fill','none').attr('stroke','rgba(255,255,255,0.09)').attr('stroke-width',0.6);
+    .attr('d',gp).attr('fill','none').attr('stroke','rgba(10,10,10,0.1)').attr('stroke-width',0.6);
 
   var features=topojson.feature(world,world.objects.countries).features;
 
-  /* ── Couche base (tous les pays, fond neutre visible) ── */
+  /* ── Couche base (tous les pays en gris clair charte) ── */
   layerBase=svg.append('g').attr('id','lbase');
   layerBase.selectAll('path').data(features).join('path')
     .attr('d',gp)
-    .attr('fill',function(d){
-      var s=SP[+d.id];
-      return s?SFILL[s]:'#0E1A26';
-    })
-    .attr('stroke','rgba(255,255,255,0.0)').attr('stroke-width',0);
+    .attr('fill',SNEUTRAL)
+    .attr('stroke','rgba(255,255,255,0)').attr('stroke-width',0);
 
-  /* ── Couche couleur (opacité animée au chargement) ── */
+  /* ── Couche couleur (saturée plein, opacity animée au chargement) ── */
   var colorLayer=svg.append('g').attr('id','lcolor');
   colorLayer.selectAll('path').data(features).join('path')
     .attr('d',gp)
@@ -407,20 +411,20 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
     .on('mouseleave',onLeave)
     .on('click',function(e,d){var s=SP[+d.id];if(s)filter(s)});
 
-  /* Animation d\'apparition progressive */
+  /* Animation d'apparition progressive — saturation pleine */
   colorLayer.selectAll('.cpath').transition()
     .duration(1800).delay(function(d,i){return i*4})
-    .attr('opacity',function(d){return SP[+d.id]?0.72:0});
+    .attr('opacity',function(d){return SP[+d.id]?1:0});
 
-  /* Frontières */
+  /* Frontières fines blanches sur fond clair */
   svg.append('path')
     .datum(topojson.mesh(world,world.objects.countries,function(a,b){return a!==b}))
     .attr('d',gp).attr('fill','none')
-    .attr('stroke','rgba(255,255,255,0.1)').attr('stroke-width',0.45);
+    .attr('stroke','#FFFFFF').attr('stroke-width',0.5);
 
   /* Contour sphere */
   svg.append('path').datum({type:'Sphere'}).attr('d',gp)
-    .attr('fill','none').attr('stroke','rgba(255,255,255,0.12)').attr('stroke-width',0.8);
+    .attr('fill','none').attr('stroke','rgba(10,10,10,0.18)').attr('stroke-width',0.8);
 
   /* Labels 3 grands pays */
   [
@@ -429,26 +433,28 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
     {lon:103,lat:35,name:'CHINE',s:'cn'},
   ].forEach(function(l){
     var pt=P(l.lon,l.lat);
-    var LCOL={us:'#6A9FD0',ru:'#5A8E68',cn:'#C8A030'};
     svg.append('text').attr('x',pt[0]).attr('y',pt[1])
       .attr('text-anchor','middle')
       .attr('font-family','"DM Sans",sans-serif')
       .attr('font-size',isMobile?9:11)
-      .attr('font-weight','300')
+      .attr('font-weight','700')
       .attr('letter-spacing',4)
-      .attr('fill',LCOL[l.s])
-      .attr('opacity',0.7)
+      .attr('fill','#FFFFFF')
+      .attr('stroke','rgba(10,10,10,0.25)')
+      .attr('stroke-width',0.3)
+      .attr('paint-order','stroke')
+      .attr('opacity',0.95)
       .attr('pointer-events','none')
       .text(l.name);
   });
 
-  /* Labels oceans */
+  /* Labels oceans — italique gris très subtil sur fond clair */
   [[-35,22,'ATLANTIQUE',isMobile?8:11],[-148,5,'PACIFIQUE',isMobile?8:12],[72,-22,'INDIEN',isMobile?8:10]]
     .forEach(function(l){
       var pt=P(l[0],l[1]);
       svg.append('text').attr('x',pt[0]).attr('y',pt[1]).attr('text-anchor','middle')
         .attr('font-family','"Playfair Display",serif').attr('font-size',l[3])
-        .attr('font-style','italic').attr('fill','rgba(255,255,255,0.07)')
+        .attr('font-style','italic').attr('fill','rgba(10,10,10,0.18)')
         .attr('letter-spacing',4).attr('pointer-events','none').text(l[2]);
     });
 
@@ -466,13 +472,17 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
     g2.append('text').attr('x',pt[0]).attr('y',pt[1])
       .attr('text-anchor','middle').attr('class','map-stat-n')
       .attr('font-family','"DM Sans",sans-serif').attr('font-size',isMobile?10:12)
-      .attr('font-weight','300').attr('fill',SCOL[st.s]).attr('opacity',0.65)
+      .attr('font-weight','600').attr('fill','#FFFFFF')
+      .attr('stroke',SCOL[st.s]).attr('stroke-width',0.4).attr('paint-order','stroke')
+      .attr('opacity',1)
       .text(st.n);
     g2.append('text').attr('x',pt[0]).attr('y',pt[1]+13)
       .attr('text-anchor','middle')
       .attr('font-family','"DM Sans",sans-serif').attr('font-size',isMobile?7:8)
-      .attr('font-weight','300').attr('letter-spacing',1.5)
-      .attr('fill',SCOL[st.s]).attr('opacity',0.4)
+      .attr('font-weight','600').attr('letter-spacing',1.5)
+      .attr('fill','#FFFFFF')
+      .attr('stroke',SCOL[st.s]).attr('stroke-width',0.3).attr('paint-order','stroke')
+      .attr('opacity',0.9)
       .text(st.l);
   });
 
@@ -491,15 +501,16 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
   briPaths.forEach(function(r,i){
     var d=gp({type:'LineString',coordinates:r});if(!d)return;
     layerBri.append('path').attr('d',d).attr('fill','none')
-      .attr('stroke','rgba(184,120,64,0.08)').attr('stroke-width',6).attr('stroke-linecap','round');
+      .attr('stroke','rgba(184,106,26,0.18)').attr('stroke-width',6).attr('stroke-linecap','round');
     layerBri.append('path').attr('d',d).attr('fill','none')
-      .attr('stroke','rgba(184,120,64,0.55)').attr('stroke-width',1.8)
+      .attr('stroke','rgba(184,106,26,0.9)').attr('stroke-width',1.8)
       .attr('class','rf').style('animation-delay',(i*0.5)+'s');
   });
   var bl=P(68,8);
   layerBri.append('text').attr('x',bl[0]).attr('y',bl[1]).attr('text-anchor','middle')
-    .attr('font-family','"DM Sans",sans-serif').attr('font-size',9).attr('font-weight','300')
-    .attr('fill','rgba(190,150,40,0.6)')
+    .attr('font-family','"DM Sans",sans-serif').attr('font-size',9).attr('font-weight','700')
+    .attr('fill','#FFFFFF').attr('stroke','rgba(184,106,26,0.95)').attr('stroke-width',0.3).attr('paint-order','stroke')
+    .attr('letter-spacing',1.5)
     .attr('pointer-events','none').text('Belt & Road Initiative');
 
   /* ══ BASES US ══ */
@@ -510,13 +521,14 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
       if(!x||x<0||x>mapW) return;
       var g2=layerBases.append('g').attr('transform','translate('+x+','+y+')');
       g2.append('circle').attr('r',1).attr('fill','none')
-        .attr('stroke','rgba(91,141,184,0.65)').attr('stroke-width',1.5)
+        .attr('stroke','rgba(26,62,107,0.75)').attr('stroke-width',1.5)
         .attr('class','pr').style('animation-delay',(i*0.35)+'s');
-      g2.append('circle').attr('r',3.5).attr('fill','#5B8DB8').attr('filter','url(#gus)');
-      g2.append('circle').attr('r',1.8).attr('fill','rgba(255,255,255,0.9)');
+      g2.append('circle').attr('r',3.5).attr('fill','#1A3E6B').attr('filter','url(#gus)');
+      g2.append('circle').attr('r',1.8).attr('fill','#FFFFFF');
       layerBases.append('text').attr('x',x+9).attr('y',y+4)
-        .attr('font-family','"DM Sans",sans-serif').attr('font-size',9)
-        .attr('fill','rgba(80,130,195,0.72)')
+        .attr('font-family','"DM Sans",sans-serif').attr('font-size',9).attr('font-weight','700')
+        .attr('fill','#FFFFFF').attr('stroke','rgba(26,62,107,0.95)').attr('stroke-width',0.3).attr('paint-order','stroke')
+        .attr('letter-spacing',1.2)
         .attr('pointer-events','none').text(b[2]);
     });
 
@@ -525,23 +537,24 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
   var aPath=gp({type:'Polygon',coordinates:[[[-180,66.5],[-90,66.5],[0,66.5],[90,66.5],[180,66.5],[180,90],[0,90],[-180,90],[-180,66.5]]]});
   if(aPath){
     layerArctic.append('path').attr('d',aPath)
-      .attr('fill','rgba(100,170,240,0.12)').attr('stroke','rgba(100,170,240,0.38)')
+      .attr('fill','rgba(91,125,168,0.18)').attr('stroke','rgba(91,125,168,0.7)')
       .attr('stroke-width',1.2).attr('stroke-dasharray','5 3').attr('class','arc');
     var aLbl=P(0,79);
     layerArctic.append('text').attr('x',aLbl[0]).attr('y',aLbl[1]).attr('text-anchor','middle')
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','300')
-      .attr('fill','rgba(140,195,255,0.6)').attr('letter-spacing',3)
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',10).attr('font-weight','700')
+      .attr('fill','#FFFFFF').attr('stroke','rgba(91,125,168,0.95)').attr('stroke-width',0.3).attr('paint-order','stroke')
+      .attr('letter-spacing',3)
       .attr('pointer-events','none').text('Arctique');
     var arRoute=gp({type:'LineString',coordinates:[[-165,71],[-120,76],[-60,79],[0,82],[60,79],[120,75],[165,69]]});
     if(arRoute) layerArctic.append('path').attr('d',arRoute).attr('fill','none')
-      .attr('stroke','rgba(130,190,255,0.5)').attr('stroke-width',1.8)
+      .attr('stroke','rgba(91,125,168,0.75)').attr('stroke-width',1.8)
       .attr('stroke-dasharray','7 4').attr('class','rf');
     var sv=P(16,78);
     layerArctic.append('circle').attr('cx',sv[0]).attr('cy',sv[1]).attr('r',3.5)
-      .attr('fill','rgba(184,120,64,0.85)').attr('filter','url(#gcn)');
+      .attr('fill','#B86A1A').attr('filter','url(#gcn)');
     layerArctic.append('text').attr('x',sv[0]+9).attr('y',sv[1]+4)
-      .attr('font-family','"DM Sans",sans-serif').attr('font-size',8.5)
-      .attr('fill','rgba(190,148,30,0.65)')
+      .attr('font-family','"DM Sans",sans-serif').attr('font-size',8.5).attr('font-weight','700')
+      .attr('fill','#FFFFFF').attr('stroke','rgba(184,106,26,0.95)').attr('stroke-width',0.3).attr('paint-order','stroke')
       .attr('pointer-events','none').text('Svalbard (CN)');
   }
 
@@ -551,18 +564,19 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(f
     .forEach(function(z,i){
       var pt=P(z.lon,z.lat);var cx=pt[0],cy=pt[1];if(!cx)return;
       layerFriction.append('circle').attr('cx',cx).attr('cy',cy).attr('r',z.r)
-        .attr('fill','rgba(220,80,60,0.06)').attr('stroke','rgba(220,80,60,0.38)')
+        .attr('fill','rgba(139,26,26,0.1)').attr('stroke','rgba(139,26,26,0.7)')
         .attr('stroke-width',1.2).attr('stroke-dasharray','4 3').attr('class','zp');
       var wg=layerFriction.append('g').attr('transform','translate('+cx+','+cy+')');
       for(var r=0;r<2;r++) wg.append('circle').attr('r',1).attr('fill','none')
-        .attr('stroke','rgba(220,90,70,0.65)').attr('stroke-width',1.8)
+        .attr('stroke','rgba(139,26,26,0.85)').attr('stroke-width',1.8)
         .attr('class','pr').style('animation-delay',(i*0.4+r*0.8)+'s');
-      wg.append('circle').attr('r',4.5).attr('fill','rgba(220,90,70,0.88)').attr('filter','url(#gru)');
-      wg.append('circle').attr('r',2).attr('fill','rgba(255,255,255,0.95)');
+      wg.append('circle').attr('r',4.5).attr('fill','#8B1A1A').attr('filter','url(#gru)');
+      wg.append('circle').attr('r',2).attr('fill','#FFFFFF');
       layerFriction.append('text').attr('x',cx).attr('y',cy-z.r-11)
         .attr('text-anchor','middle')
-        .attr('font-family','"DM Sans",sans-serif').attr('font-size',9).attr('font-weight','400')
-        .attr('fill','rgba(220,100,80,0.75)').attr('letter-spacing',2.5)
+        .attr('font-family','"DM Sans",sans-serif').attr('font-size',9).attr('font-weight','700')
+        .attr('fill','#FFFFFF').attr('stroke','rgba(139,26,26,0.95)').attr('stroke-width',0.3).attr('paint-order','stroke')
+        .attr('letter-spacing',2.5)
         .attr('pointer-events','none').text(z.lbl);
     });
 
@@ -577,9 +591,9 @@ function onHover(evt,d){
   if(!d.properties) return;
   document.getElementById('tip-name').textContent=d.properties.name||'';
   document.getElementById('tip-zone').textContent=s?SNAME[s]:'Non-aligne';
-  document.getElementById('tip-zone').style.color=s?SCOL[s]:'rgba(255,255,255,0.3)';
+  document.getElementById('tip-zone').style.color=s?SCOL[s]:'rgba(10,10,10,0.45)';
   document.getElementById('tip-detail').textContent=info?info.d:'';
-  tip.style.borderColor=s?SCOL[s]:'rgba(255,255,255,0.08)';
+  tip.style.borderColor=s?SCOL[s]:'rgba(10,10,10,0.15)';
   var mx=evt.pageX,my=evt.pageY;
   var tx=mx+16,ty=my-24;
   if(tx+200>mapW) tx=mx-212;
@@ -617,8 +631,9 @@ function filter(s){
   var li=document.getElementById('li-'+s);if(li)li.classList.add('on');
   d3.selectAll('.cpath').transition().duration(500)
     .attr('opacity',function(d){
-      if(s==='all') return SP[+d.id]?0.72:0;
-      return SP[+d.id]===s?0.82:0;
+      var ds=SP[+d.id];
+      if(s==='all') return ds?1:0;
+      return ds===s?1:0;
     });
 }
 
