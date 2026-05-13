@@ -170,7 +170,7 @@
   {
     "slug": "architecture-desordre",
     "title": "L'architecture du désordre",
-    "description": "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne — de Cyrus à San Francisco.",
+    "description": "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne, de Cyrus à San Francisco.",
     "category": "geo",
     "categoryLabel": "Géopolitique",
     "date": "2026-04-28",
@@ -249,7 +249,7 @@
   {
     "slug": "moreno",
     "title": "Et si la crise démocratique commençait au travail ?",
-    "description": "L'isolement professionnel précède le retrait démocratique. Une étude d'HEC Paris révèle ce lien invisible — et ce que les dirigeants ont le devoir de faire.",
+    "description": "L'isolement professionnel précède le retrait démocratique. Une étude d'HEC Paris révèle ce lien invisible, et ce que les dirigeants ont le devoir de faire.",
     "category": "soc",
     "date": "2026-05-05",
     "readTime": "5",
@@ -295,7 +295,7 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "Africa: What They Didn't Teach You",
-    "descriptionEn": "A different reading of the continent — its history, its resources, its political logics."
+    "descriptionEn": "A different reading of the continent: its history, its resources, its political logics."
   },
   {
     "slug": "arctique",
@@ -420,7 +420,7 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "Fragility",
-    "descriptionEn": "Why our systems break — and what that reveals about how they were built.",
+    "descriptionEn": "Why our systems break, and what that reveals about how they were built.",
     "avif": true
   },
   {
@@ -841,7 +841,7 @@
       "pessimisme"
     ],
     "titleEn": "Monopoly",
-    "descriptionEn": "The board game that taught capitalism — and the real economy it reflects."
+    "descriptionEn": "The board game that taught capitalism, and the real economy it reflects."
   },
   {
     "slug": "darkfactories",
