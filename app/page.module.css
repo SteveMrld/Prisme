@@ -401,16 +401,50 @@
    la hauteur de la colonne pour annuler le vide blanc résiduel. */
 .zone1Entretien {
   margin-top: 24px;
-  padding-top: 18px;
+  padding-top: 0;
   border-top: 2px solid #0A0A0A;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0;
   text-decoration: none;
   color: inherit;
   transition: opacity 200ms ease;
 }
-.zone1Entretien:hover { opacity: 0.9; }
+.zone1Entretien:hover { opacity: 0.92; }
+
+/* Bandeau d'annonce au-dessus de la photo : eyebrow Playfair italique
+   + date en mono, séparés par filet rouge. Casse l'effet « carte tombée
+   du ciel » et signale visuellement que c'est l'évènement fondateur. */
+.zone1EntretienBanner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0 12px;
+  border-bottom: 1px solid #8B1A1A;
+  margin-bottom: 14px;
+}
+.zone1EntretienBannerLabel {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  line-height: 1;
+  color: #0A0A0A;
+  letter-spacing: -0.3px;
+}
+.zone1EntretienBannerLabel em {
+  font-style: italic;
+  color: #8B1A1A;
+}
+.zone1EntretienBannerDate {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  font-weight: 700;
+  white-space: nowrap;
+}
 .zone1EntretienImg {
   width: 100%;
   aspect-ratio: 16/10;
@@ -432,14 +466,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-.zone1EntretienLabel {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #8B1A1A;
-  font-weight: 700;
+  padding-top: 14px;
 }
 .zone1EntretienName {
   font-family: 'Playfair Display', Georgia, serif;
@@ -975,25 +1002,16 @@
   .gfSecondary {
     border-bottom: none;
     border-right: 1px solid #E8E2DA;
-    display: grid;
-    grid-template-columns: 42% 1fr;
-    gap: 18px;
-    align-items: start;
-    padding: 18px 22px 22px;
+    padding: 18px 24px 24px;
   }
   .gfSecondary:last-child { border-right: none; }
 }
 .gfSecondaryImg {
   width: 100%;
   aspect-ratio: 16/9;
+  max-height: 220px;
   overflow: hidden;
   margin-bottom: 14px;
-}
-@media (min-width: 760px) {
-  .gfSecondaryImg {
-    aspect-ratio: 4/3;
-    margin-bottom: 0;
-  }
 }
 .gfSecondaryImg img {
   width:100%; height:100%; object-fit:cover; display:block;
@@ -1006,10 +1024,10 @@
 }
 .gfSecondaryTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(18px, 2.2vw, 22px);
+  font-size: clamp(20px, 2.6vw, 26px);
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.35px;
   color: #0A0A0A;
   margin: 0;
 }
@@ -1025,143 +1043,298 @@
   overflow: hidden;
 }
 
-/* ── TERTIAIRES : 3 cartes au format classique ── */
-.gfTertiaryRow {
+/* ── FEATURES : 3 cartes uniformes, format NYT magazine.
+   Image 16/9 + catégorie + titre Playfair (~20-26px) + deck Georgia + meta.
+   Remplace les anciennes rangées tertiaires + quaternaires qui faisaient
+   « tile city ». Plus respirant, hiérarchie typographique homogène. */
+.gfFeatureRow {
   display: grid;
   grid-template-columns: 1fr;
   border-bottom: 1px solid #E8E2DA;
 }
 @media (min-width: 760px) {
-  .gfTertiaryRow { grid-template-columns: repeat(3, 1fr); }
+  .gfFeatureRow { grid-template-columns: repeat(3, 1fr); }
 }
-.gfTertiary {
+.gfFeature {
   display: block;
   text-decoration: none;
   color: inherit;
-  padding: 18px 16px 20px;
+  padding: 18px 16px 24px;
   border-bottom: 1px solid #E8E2DA;
   transition: background-color var(--dur-fast) var(--ease-out);
 }
-.gfTertiary:hover { background: #FAFAF8; }
-.gfTertiary:last-child { border-bottom: none; }
+.gfFeature:hover { background: #FAFAF8; }
+.gfFeature:last-child { border-bottom: none; }
 @media (min-width: 760px) {
-  .gfTertiary { border-bottom: none; border-right: 1px solid #E8E2DA; }
-  .gfTertiary:last-child { border-right: none; }
+  .gfFeature {
+    border-bottom: none;
+    border-right: 1px solid #E8E2DA;
+    padding: 20px 24px 26px;
+  }
+  .gfFeature:last-child { border-right: none; }
 }
-.gfTertiaryImg {
+.gfFeatureImg {
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: 16/9;
+  max-height: 200px;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
-.gfTertiaryImg img {
-  width:100%; height:100%; object-fit:cover; display:block;
+.gfFeatureImg img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform var(--dur-slow) var(--ease-out);
 }
-.gfTertiary:hover .gfTertiaryImg img { transform: scale(1.03); }
-.gfTertiaryBody { display: flex; flex-direction: column; gap: 5px; }
-.gfTertiaryTitle {
+.gfFeature:hover .gfFeatureImg img { transform: scale(1.03); }
+.gfFeatureBody { display: flex; flex-direction: column; gap: 8px; }
+.gfFeatureTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(16px, 1.9vw, 19px);
+  font-size: clamp(19px, 2.3vw, 23px);
   font-weight: 700;
-  line-height: 1.22;
-  letter-spacing: -0.2px;
+  line-height: 1.18;
+  letter-spacing: -0.3px;
   color: #0A0A0A;
   margin: 0;
 }
-.gfTertiaryTitle em { font-style: italic; }
+.gfFeatureTitle em { font-style: italic; }
+.gfFeatureDesc {
+  font-family: 'Georgia', serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-/* ── QUATERNAIRES : 6 articles format liste, 2 colonnes × 3 lignes ── */
-.gfQuaternaryRow {
-  display: grid;
-  grid-template-columns: 1fr;
-  background: #FFFFFF;
+/* ── AUSSI DANS GRANDS FORMATS : liste textuelle compacte
+   sans image, à la NYT « More in this section ». Deux colonnes
+   en desktop, séparation par filets, titres Playfair compacts. */
+.gfMoreSection {
+  padding: 24px 16px 28px;
+  background: #FBFAF7;
 }
 @media (min-width: 760px) {
-  .gfQuaternaryRow { grid-template-columns: 1fr 1fr; }
+  .gfMoreSection { padding: 28px 32px 32px; }
 }
-.gfQuaternary {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-bottom: 1px solid #E8E2DA;
-  border-right: 1px solid #E8E2DA;
-  text-decoration: none;
-  color: inherit;
-  transition: background-color var(--dur-fast) var(--ease-out);
-}
-.gfQuaternary:hover { background: #fff; }
-.gfQuaternary:nth-child(2n) { border-right: none; }
-.gfQuaternary:nth-last-child(-n+2) { border-bottom: none; }
-@media (max-width: 759px) {
-  .gfQuaternary { border-right: none; }
-  .gfQuaternary:last-child { border-bottom: none; }
-}
-.gfQuaternaryThumb {
-  width: 64px;
-  height: 64px;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  flex-shrink: 0;
+.gfMoreLabel {
   display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #8B1A1A;
+  padding-bottom: 10px;
 }
-.gfQuaternaryBody {
-  flex: 1;
-  min-width: 0;
+.gfMoreList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 760px) {
+  .gfMoreList { grid-template-columns: 1fr 1fr; column-gap: 32px; }
+}
+.gfMoreItem {
+  border-bottom: 1px solid #E8E2DA;
+}
+.gfMoreItem:last-child { border-bottom: none; }
+@media (min-width: 760px) {
+  .gfMoreList .gfMoreItem:nth-last-child(-n+2) { border-bottom: none; }
+}
+.gfMoreLink {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
+  padding: 12px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
 }
-.gfQuaternaryTitle {
+.gfMoreLink:hover { opacity: 0.65; }
+.gfMoreCat {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #888178;
+}
+.gfMoreTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(14px, 1.6vw, 16px);
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.15px;
-  color: #0A0A0A;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.2px;
+  color: #1A1A1A;
   margin: 0;
 }
-.gfQuaternaryTitle em { font-style: italic; }
+.gfMoreTitle em { font-style: italic; }
+.gfMoreMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
 
 /* ════════════════════════════════════
    6. SOARA TV
 ════════════════════════════════════ */
-.tvStrip {
+/* ── SOARA TV : layout featured + sidelist façon NYT Video.
+   Un épisode en grand format à gauche (image + play overlay + titre),
+   et une liste verticale d'autres épisodes à droite. Plus de
+   « tile city » 3×2 qui rendait la section trop bloggy. */
+.tvLayout {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  border-bottom: 1px solid #E8E2DA;
-  background: #07090F;
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
-@media (min-width: 700px) {
-  .tvStrip { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) {
+  .tvLayout { grid-template-columns: 1.4fr 1fr; }
 }
-@media (min-width: 1000px) {
-  .tvStrip { grid-template-columns: repeat(3, 1fr); }
-}
-.tvCard {
+
+/* Featured — grand format magazine */
+.tvFeatured {
   display: block;
   text-decoration: none;
   color: inherit;
-  border-right: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  transition: background-color var(--dur-fast) var(--ease-out);
+  background: #07090F;
+  position: relative;
+  transition: opacity 200ms ease;
 }
-.tvCard:hover { background: rgba(255,255,255,.04); }
-.tvThumbWrap {
+.tvFeatured:hover { opacity: 0.95; }
+@media (min-width: 900px) {
+  .tvFeatured { border-right: 1px solid rgba(255,255,255,.08); }
+}
+.tvFeaturedImg {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
+  background: #000;
 }
-.tvThumb { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.8); transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out); }
-.tvCard:hover .tvThumb { transform: scale(1.04); filter: brightness(.95); }
-.tvPlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:16px; color:rgba(255,255,255,.8); }
-.tvInfo { padding: 14px 18px 20px; display:flex; flex-direction:column; gap:5px; }
-.tvNum { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:#C8A96E; }
-.tvTitle { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:#ECE7DD; line-height:1.25; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.tvDur { font-family:'DM Mono',monospace; font-size:9px; color:rgba(236,231,221,.4); margin-top: 2px; }
+.tvFeaturedImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.7) contrast(1.05);
+  transition: transform 600ms ease, filter 400ms ease;
+}
+.tvFeatured:hover .tvFeaturedImg img { transform: scale(1.03); filter: brightness(.85) contrast(1.05); }
+.tvFeaturedPlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 300ms ease;
+}
+.tvFeatured:hover .tvFeaturedPlay { transform: translate(-50%, -50%) scale(1.08); }
+.tvFeaturedBody {
+  padding: 22px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tvFeaturedEyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #C8A96E;
+  font-weight: 700;
+}
+.tvFeaturedTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.8vw, 30px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  color: #F5E6D0;
+  margin: 0;
+}
+.tvFeaturedDur {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245,230,208,.5);
+  margin-top: 2px;
+}
+
+/* Sidelist — colonne verticale d'épisodes en lignes thumb + texte */
+.tvSidelist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #07090F;
+  display: flex;
+  flex-direction: column;
+}
+.tvSideItem {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background-color 200ms ease;
+}
+.tvSidelist li:last-child .tvSideItem { border-bottom: none; }
+.tvSideItem:hover { background: rgba(255,255,255,.04); }
+.tvSideThumb {
+  width: 100px;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+.tvSideThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.85);
+  transition: transform 400ms ease;
+}
+.tvSideItem:hover .tvSideThumb img { transform: scale(1.05); }
+.tvSideBody {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.tvSideNum {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C8A96E;
+  font-weight: 700;
+}
+.tvSideTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ECE7DD;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tvSideDur {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: rgba(236,231,221,.4);
+}
 
 /* ════════════════════════════════════
    7. PORTRAITS

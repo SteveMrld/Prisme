@@ -222,11 +222,14 @@ export default async function HomePage() {
           <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
 
           <Link href={ENTRETIEN_ART.href} className={styles.zone1Entretien}>
+            <div className={styles.zone1EntretienBanner}>
+              <span className={styles.zone1EntretienBannerLabel}>Grand <em>Entretien</em></span>
+              <span className={styles.zone1EntretienBannerDate}>1<sup>er</sup> juin 2026</span>
+            </div>
             <div className={styles.zone1EntretienImg}>
               <img src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} />
             </div>
             <div className={styles.zone1EntretienBody}>
-              <span className={styles.zone1EntretienLabel}>Grand Entretien · 1<sup>er</sup> juin 2026</span>
               <h3 className={styles.zone1EntretienName}>Cheick Modibo <em>Diarra</em></h3>
               <p className={styles.zone1EntretienRole}>{ENTRETIEN_ART.deck}</p>
               <blockquote className={styles.zone1EntretienQuote}>
@@ -354,20 +357,24 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* — TERTIAIRES : 3 colonnes, format carte classique */}
-        <div className={styles.gfTertiaryRow}>
-          {GF_TERTIARY.map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfTertiary}>
+        {/* — FEATURES : 3 colonnes uniformes, format NYT magazine
+             (image 16/9 + catégorie + titre Playfair + deck Georgia + meta) */}
+        <div className={styles.gfFeatureRow}>
+          {[...GF_TERTIARY.slice(0, 1), ...GF_QUATERNARY.slice(0, 2)].map(a => (
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfFeature}>
               {a.image && (
-                <div className={styles.gfTertiaryImg}>
+                <div className={styles.gfFeatureImg}>
                   <img src={a.image} alt={a.title} />
                 </div>
               )}
-              <div className={styles.gfTertiaryBody}>
+              <div className={styles.gfFeatureBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.gfTertiaryTitle}>
-                  <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
+                <h3 className={styles.gfFeatureTitle}>
+                  <SBadge size="md" /><span dangerouslySetInnerHTML={{__html: a.title}} />
                 </h3>
+                {a.description && (
+                  <p className={styles.gfFeatureDesc}>{a.description}</p>
+                )}
                 <div className={styles.gfMeta}>
                   <ReadTime t={a.readTime || '12'} />
                   {EN_SLUGS.has(a.slug) && <EnBadge />}
@@ -377,29 +384,31 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* — QUATERNAIRES : 6 articles en format liste compacte 2 colonnes × 3 lignes */}
-        <div className={styles.gfQuaternaryRow}>
-          {GF_QUATERNARY.map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfQuaternary}>
-              {a.image && (
-                <img src={a.image} alt={a.title} className={styles.gfQuaternaryThumb} />
-              )}
-              <div className={styles.gfQuaternaryBody}>
-                <span className={styles.cat}>{a.catLabel}</span>
-                <h3 className={styles.gfQuaternaryTitle}>
-                  <SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} />
-                </h3>
-                <ReadTime t={a.readTime || '12'} />
-              </div>
-            </Link>
-          ))}
+        {/* — LISTE COMPACTE : textuelle, sans image, façon NYT « More in this section ».
+             6 articles supplémentaires sur deux colonnes, séparés par filets. */}
+        <div className={styles.gfMoreSection}>
+          <span className={styles.gfMoreLabel}>Aussi dans Grands formats</span>
+          <ul className={styles.gfMoreList}>
+            {[...GF_TERTIARY.slice(1), ...GF_QUATERNARY.slice(2)].map(a => (
+              <li key={a.slug} className={styles.gfMoreItem}>
+                <Link href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfMoreLink}>
+                  <span className={styles.gfMoreCat}>{a.catLabel}</span>
+                  <h4 className={styles.gfMoreTitle} dangerouslySetInnerHTML={{__html: a.title}} />
+                  <span className={styles.gfMoreMeta}>
+                    <ReadTime t={a.readTime || '12'} />
+                    {EN_SLUGS.has(a.slug) && <EnBadge />}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
       </section>
       </FadeSection>
 
       {/* ══════════════════════════════════════
-          6. SOARA TV
+          6. SOARA TV — featured + sidelist façon NYT Video
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.tvSection}>
@@ -407,24 +416,51 @@ export default async function HomePage() {
           <div>
             <div className={styles.tvEyebrow}>Soara · Vidéo</div>
             <h2 className={styles.tvTitle}>Soara <em>TV</em></h2>
-            <p className={styles.tvIntro}>Les grandes questions du monde en 60 à 90 secondes. Géopolitique, économie, société — vus autrement.</p>
+            <p className={styles.tvIntro}>Les grandes questions du monde en 60 à 90 secondes. Géopolitique, économie, société, vus autrement.</p>
           </div>
           <Link href="/prismetv" className={styles.tvSeeAll}>Tous les épisodes →</Link>
         </div>
-        <div className={styles.tvStrip}>
-          {TV_EPISODES.map(ep => (
-            <Link key={ep.id} href={ep.href} className={styles.tvCard}>
-              <div className={styles.tvThumbWrap}>
-                <img src={ep.thumb} alt={ep.title} className={styles.tvThumb} />
-                <div className={styles.tvPlay}>▶</div>
-              </div>
-              <div className={styles.tvInfo}>
-                <span className={styles.tvNum}>Ép. {ep.id}</span>
-                <span className={styles.tvTitle2}>{ep.title}</span>
-                <span className={styles.tvDur}>{ep.duration}</span>
-              </div>
-            </Link>
-          ))}
+        <div className={styles.tvLayout}>
+          {/* Épisode featured : dernier en date, grand format avec play overlay */}
+          {(() => {
+            const featured = TV_EPISODES[TV_EPISODES.length - 1]
+            return (
+              <Link href={featured.href} className={styles.tvFeatured}>
+                <div className={styles.tvFeaturedImg}>
+                  <img src={featured.thumb} alt={featured.title} />
+                  <div className={styles.tvFeaturedPlay}>
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                      <circle cx="28" cy="28" r="27" stroke="rgba(255,255,255,.6)" strokeWidth="1.5"/>
+                      <path d="M22 18 L40 28 L22 38 Z" fill="#fff"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className={styles.tvFeaturedBody}>
+                  <span className={styles.tvFeaturedEyebrow}>À l'affiche · Ép. {featured.id}</span>
+                  <h3 className={styles.tvFeaturedTitle}>{featured.title}</h3>
+                  <span className={styles.tvFeaturedDur}>{featured.duration}</span>
+                </div>
+              </Link>
+            )
+          })()}
+          {/* Liste latérale des autres épisodes : pas de carrés, juste
+              thumb compacte + titre + durée en ligne, façon NYT Video index */}
+          <ul className={styles.tvSidelist}>
+            {TV_EPISODES.slice(0, -1).reverse().map(ep => (
+              <li key={ep.id}>
+                <Link href={ep.href} className={styles.tvSideItem}>
+                  <div className={styles.tvSideThumb}>
+                    <img src={ep.thumb} alt={ep.title} />
+                  </div>
+                  <div className={styles.tvSideBody}>
+                    <span className={styles.tvSideNum}>Ép. {ep.id}</span>
+                    <span className={styles.tvSideTitle}>{ep.title}</span>
+                    <span className={styles.tvSideDur}>{ep.duration}</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
       </FadeSection>
