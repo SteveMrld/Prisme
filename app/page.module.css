@@ -446,7 +446,9 @@
   white-space: nowrap;
 }
 .zone1EntretienImg {
-  width: 100%;
+  width: 65%;
+  max-width: 380px;
+  margin: 0 auto;
   aspect-ratio: 1/1;
   overflow: hidden;
   background: #F5F1E8;

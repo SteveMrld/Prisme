@@ -86,19 +86,19 @@ const ZONE1_ALSO_READ = [art('eau'), art('lecture'), art('france_maritime')]
 // visualisations, pas des articles : aucun impact sur le décompte des doublons.
 const ZONE1_ATLAS = [
   {
-    href: '/visuels/predateurs.html',
+    href: '/visuels/predateurs',
     tag: 'Géopolitique',
     title: 'Le monde des prédateurs',
     image: '/articles/atlas/10_le-monde-des-predateurs.jpg',
   },
   {
-    href: '/visuels/naval.html',
+    href: '/visuels/naval',
     tag: 'Géopolitique',
     title: 'Les mers du pouvoir',
     image: '/articles/atlas/09_les-mers-du-pouvoir.jpg',
   },
   {
-    href: '/visuels/cables.html',
+    href: '/visuels/cables',
     tag: 'Tech',
     title: 'Câbles sous-marins',
     image: '/articles/atlas/13_cables-sous-marins.jpg',
@@ -283,11 +283,9 @@ export default async function HomePage() {
         </div>
         <div className={styles.atlasSectionGrid}>
           {ZONE1_ATLAS.map(card => (
-            <a
+            <Link
               key={card.href}
               href={card.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className={styles.atlasSectionCard}
             >
               <div className={styles.atlasSectionImg}>
@@ -295,7 +293,7 @@ export default async function HomePage() {
               </div>
               <span className={styles.atlasSectionTag}>{card.tag}</span>
               <h4 className={styles.atlasSectionTitle2}>{card.title}</h4>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

@@ -65,7 +65,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Glacier et fumées industrielles, réchauffement climatique",
   },
   {
-    href: '/visuels/terres-rares.html', external: true,
+    href: '/visuels/terres-rares', external: false,
     tag: 'Géopolitique · Ressources', tagColor: 'var(--geo)',
     title: 'Terres rares : la guerre invisible',
     sub: 'Congo · Chili · Bolivie · Chine · Europe · États-Unis',
@@ -75,7 +75,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Mine à ciel ouvert d'extraction de terres rares",
   },
   {
-    href: '/visuels/naval.html', external: true,
+    href: '/visuels/naval', external: false,
     tag: 'Géopolitique · Carte animée', tagColor: 'var(--geo)',
     title: 'Les mers du pouvoir',
     sub: 'Routes commerciales · Détroits · Marines · Zones de tension',
@@ -85,7 +85,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Porte-conteneurs au coucher du soleil, commerce maritime",
   },
   {
-    href: '/visuels/predateurs.html', external: true,
+    href: '/visuels/predateurs', external: false,
     tag: 'Géopolitique · Carte', tagColor: 'var(--geo)',
     title: 'Le Monde des Prédateurs',
     sub: "États-Unis · Russie · Chine — zones d'influence",
@@ -95,7 +95,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Globe terrestre avec réseau de connexions, prédation géopolitique",
   },
   {
-    href: '/visuels/eau.html', external: true,
+    href: '/visuels/eau', external: false,
     tag: 'Environnement · Carte', tagColor: 'var(--env)',
     title: "L'eau : la prochaine grande fracture",
     sub: "Glaciers · Barrages · Conflits hydrauliques",
@@ -105,7 +105,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Barrage hydraulique, ressources en eau",
   },
   {
-    href: '/visuels/france_maritime.html', external: true,
+    href: '/visuels/france_maritime', external: false,
     tag: 'Géopolitique · Carte animée', tagColor: 'var(--geo)',
     title: 'La France maritime',
     sub: 'ZEE · Pacifique · Atlantique · Océan Indien',
@@ -115,7 +115,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Atoll tropical, territoires maritimes français",
   },
   {
-    href: '/visuels/cables.html', external: true,
+    href: '/visuels/cables', external: false,
     tag: 'Tech · Géopolitique', tagColor: 'var(--tech)',
     title: 'Câbles sous-marins',
     sub: 'Vue en coupe · Réseau de flux · Enjeux stratégiques',
@@ -125,7 +125,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Câble fibre optique sous-marin",
   },
   {
-    href: '/visuels/techgeo.html', external: true,
+    href: '/visuels/techgeo', external: false,
     tag: 'Tech · Géopolitique', tagColor: 'var(--tech)',
     title: 'La bataille pour le sous-sol numérique',
     sub: 'Terres rares · Semi-conducteurs · Câbles',
@@ -138,7 +138,7 @@ const ATLAS_CARDS: AtlasCard[] = [
 
 const DATAVIZ_CARDS: AtlasCard[] = [
   {
-    href: '/visuels/pauvrete-france.html', external: true,
+    href: '/visuels/pauvrete-france', external: false,
     tag: 'Société · Économie', tagColor: 'var(--soc)',
     title: 'En 1975, un Français sur cinq.',
     sub: 'INSEE · Séries longues 1975–2023',
@@ -148,7 +148,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     alt: "Homme de dos devant des immeubles soviétiques",
   },
   {
-    href: '/visuels/science-race.html', external: true,
+    href: '/visuels/science-race', external: false,
     tag: 'Sciences · Géopolitique', tagColor: '#a6291c',
     title: 'Où se produit le savoir',
     sub: 'National Science Board 2025',
@@ -207,7 +207,7 @@ function linkPropsFor(card: AtlasCard) {
 
 function LeadCard({ card }: { card: AtlasCard }) {
   return (
-    <a href={card.href} {...linkPropsFor(card)} className={styles.lead}>
+    <Link href={card.href} className={styles.lead}>
       <div className={styles.leadImage}>
         <img src={card.image} alt={card.alt} loading="eager" />
       </div>
@@ -221,13 +221,13 @@ function LeadCard({ card }: { card: AtlasCard }) {
           <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5l7 7-7 7M5 12h14" stroke="currentColor" strokeWidth="2" fill="none"/></svg>
         </span>
       </div>
-    </a>
+    </Link>
   )
 }
 
 function AtlasGridCard({ card }: { card: AtlasCard }) {
   return (
-    <a href={card.href} {...linkPropsFor(card)} className={styles.atlasCard}>
+    <Link href={card.href} className={styles.atlasCard}>
       <div className={styles.atlasImage}>
         <img src={card.image} alt={card.alt} loading="lazy" />
       </div>
@@ -238,13 +238,13 @@ function AtlasGridCard({ card }: { card: AtlasCard }) {
         <p className={styles.atlasDesc}>{card.desc}</p>
         <span className={styles.atlasCta}>{card.cta} →</span>
       </div>
-    </a>
+    </Link>
   )
 }
 
 function DatavizGridCard({ card }: { card: AtlasCard }) {
   return (
-    <a href={card.href} {...linkPropsFor(card)} className={styles.datavizCard}>
+    <Link href={card.href} className={styles.datavizCard}>
       <div className={styles.datavizImage} style={{ backgroundImage: `url(${card.image})` }} aria-hidden="true" />
       <div className={styles.datavizBody}>
         <span className={styles.datavizEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
@@ -252,7 +252,7 @@ function DatavizGridCard({ card }: { card: AtlasCard }) {
         <p className={styles.datavizDesc}>{card.desc}</p>
         <span className={styles.datavizCta}>{card.cta} →</span>
       </div>
-    </a>
+    </Link>
   )
 }
 
@@ -352,10 +352,8 @@ export default function VisuelsPage() {
               {slug:'dollar3',n:'III',title:'Le crépuscule ?',desc:'Dédollarisation, BRICS, yuan — la fin du monopole absolu est-elle en marche ?',slides:7},
             ].map((item, i) => (
               <Reveal key={item.slug} delay={i * 120} className={styles.acteRevealWrap}>
-                <a
-                  href={`/visuels/${item.slug}.html`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/visuels/${item.slug}`}
                   className={styles.acteCard}
                 >
                   <div className={styles.acteN}>{item.n}</div>
@@ -365,7 +363,7 @@ export default function VisuelsPage() {
                     <span className={styles.acteSlides}>{item.slides} slides</span>
                     <span className={styles.acteCta}>Lire l&apos;acte →</span>
                   </div>
-                </a>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -383,7 +381,7 @@ export default function VisuelsPage() {
           <div className={styles.motionGrid}>
             {MOTION_CARDS.map((item, i) => (
               <Reveal key={item.slug} delay={(i % 3) * 100} className={styles.motionRevealWrap}>
-                <a href={`/visuels/${item.slug}.html`} target="_blank" rel="noopener noreferrer" className={styles.motionCard}>
+                <Link href={`/visuels/${item.slug}`} className={styles.motionCard}>
                   <div className={styles.motionAccent} style={{background:item.color}}/>
                   <div className={styles.motionMedia} style={{backgroundImage: `url(${item.image})`}} aria-hidden="true" />
                   <div className={styles.motionBody}>
@@ -397,7 +395,7 @@ export default function VisuelsPage() {
                     <p className={styles.motionDesc}>{item.desc}</p>
                     <span className={styles.motionCta} style={{color:item.color}}>Voir le motion →</span>
                   </div>
-                </a>
+                </Link>
               </Reveal>
             ))}
           </div>
