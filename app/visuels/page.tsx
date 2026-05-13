@@ -1,7 +1,10 @@
 import Header from '../../components/Header'
+import AdSlot from '../../components/AdSlot'
 import styles from './visuels.module.css'
 import Link from 'next/link'
 import { Reveal } from './Reveal'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'Atlas — Soara',
@@ -256,7 +259,7 @@ function DatavizGridCard({ card }: { card: AtlasCard }) {
   )
 }
 
-export default function VisuelsPage() {
+export default async function VisuelsPage() {
   return (
     <>
       <Header activeNav="concept" />
@@ -400,6 +403,9 @@ export default function VisuelsPage() {
             ))}
           </div>
         </section>
+
+        {/* ═══ AD SLOT ATLAS — bandeau paysage fin de page ═══ */}
+        <AdSlot slotId="atlas" variant="banner" />
 
       </div>
 
