@@ -400,8 +400,8 @@
    sous le HeroInline. Remplace l'ancien bloc pleine largeur et ancre
    la hauteur de la colonne pour annuler le vide blanc résiduel. */
 .zone1Entretien {
-  margin-top: 24px;
-  padding-top: 0;
+  margin-top: auto;
+  padding-top: 24px;
   border-top: 2px solid #0A0A0A;
   display: flex;
   flex-direction: column;
