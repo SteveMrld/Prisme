@@ -5,6 +5,7 @@ import './globals.css'
 import './animations.css'
 import './article-content.css'
 import BottomNav from '../components/BottomNav'
+import Footer from '../components/Footer'
 import PWARegister from '../components/PWARegister'
 
 const sourceSerif = Source_Serif_4({
@@ -94,6 +95,7 @@ export default function RootLayout({
     <html lang="fr" className={sourceSerif.variable}>
       <body>
         {children}
+        <Footer />
         <BottomNav />
         <PWARegister />
       </body>
