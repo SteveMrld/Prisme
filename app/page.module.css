@@ -447,18 +447,17 @@
 }
 .zone1EntretienImg {
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 1/1;
   overflow: hidden;
-  background: #1A1A1A;
+  background: #F5F1E8;
   position: relative;
 }
 .zone1EntretienImg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center top;
   display: block;
-  filter: grayscale(0.15) contrast(1.02);
   transition: transform 600ms ease;
 }
 .zone1Entretien:hover .zone1EntretienImg img { transform: scale(1.03); }
@@ -1652,4 +1651,46 @@
 .popularItem:hover .popularArrow {
   transform: translateX(5px);
   color: #C8A96E;
+}
+
+/* ════════════════════════════════════
+   MARGES LATÉRALES UNIFORMES
+   Toutes les sections après le Header reçoivent les mêmes gouttières
+   gauche/droite que .homeTop : max-width 1320px centré, padding latéral
+   16px / 32px / 48px selon la largeur d'écran. Placé en fin de fichier
+   pour gagner sur les media queries antérieures par ordre de cascade.
+════════════════════════════════════ */
+.sectionHead,
+.gfSection,
+.tvSection,
+.portraits,
+.row2,
+.nl {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media (min-width: 900px) {
+  .sectionHead,
+  .gfSection,
+  .tvSection,
+  .portraits,
+  .row2,
+  .nl {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media (min-width: 1200px) {
+  .sectionHead,
+  .gfSection,
+  .tvSection,
+  .portraits,
+  .row2,
+  .nl {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
 }
