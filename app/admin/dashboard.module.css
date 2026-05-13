@@ -1,0 +1,135 @@
+.wrapper {
+  min-height: 100vh;
+  background: #0F0F0F;
+  color: #FAFAF8;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: #0F0F0F;
+  color: #9A9590;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+}
+
+.main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 64px 28px 80px;
+}
+
+.header {
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #6B1A1A;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: #FAFAF8;
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #9A9590;
+  margin: 0;
+  max-width: 540px;
+}
+
+.email {
+  color: #FAFAF8;
+  font-weight: 500;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 26px 32px;
+  background: #161616;
+  border: 1px solid #2A2A2A;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+  min-height: 200px;
+}
+
+.card:hover {
+  border-color: #6B1A1A;
+  background: #1A1414;
+}
+
+.card:hover .cardArrow {
+  transform: translateX(4px);
+  color: #FAFAF8;
+}
+
+.cardMeta {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6A6A6A;
+}
+
+.cardTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #FAFAF8;
+  margin-top: 4px;
+}
+
+.cardDesc {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #9A9590;
+  flex: 1;
+}
+
+.cardArrow {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  font-size: 18px;
+  color: #6A6A6A;
+  transition: transform .15s ease, color .15s ease;
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 40px 20px 64px;
+  }
+  .title {
+    font-size: 38px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

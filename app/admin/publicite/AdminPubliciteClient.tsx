@@ -3,6 +3,7 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react'
 import { createClient } from '../../../lib/supabase'
+import AdminNav from '../../../components/AdminNav'
 import styles from './publicite.module.css'
 
 const SLOTS = [
@@ -159,8 +160,9 @@ export default function AdminPubliciteClient() {
 
   return (
     <div className={styles.wrapper}>
+      <AdminNav active="publicite" />
       <header className={styles.header}>
-        <div className={styles.logo}>SOARA <span>admin · publicité</span></div>
+        <div className={styles.sectionTitle}>Publicité</div>
         {view === 'edit' && (
           <button className={styles.btnSecondary} onClick={() => setView('list')}>← retour</button>
         )}

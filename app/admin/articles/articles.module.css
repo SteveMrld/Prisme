@@ -6,30 +6,21 @@
   padding-bottom: 80px;
 }
 
-.header {
+.subHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
-  border-bottom: 1px solid #2A2A2A;
-  position: sticky;
-  top: 0;
-  background: #0F0F0F;
-  z-index: 10;
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid #1A1A1A;
+  gap: 16px;
 }
 
-.logo {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.logo span {
-  font-weight: 300;
-  color: #6A6A6A;
-  margin-left: 8px;
-  font-size: 13px;
+.sectionTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #FAFAF8;
 }
 
 .btnPrimary {
