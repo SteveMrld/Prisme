@@ -291,8 +291,15 @@ export default async function VisuelsPage() {
           <Reveal>
             <div className={styles.sectionHead}>
               <div className={styles.sectionTag} style={{color:'var(--geo)'}}>Atlas</div>
-              <h2 className={styles.sectionTitle}>Cartes &amp; Animations immersives</h2>
-              <p className={styles.sectionDesc}>Des animations plein écran pensées pour les sujets qui demandent de l'espace — géopolitique, géographie, data.</p>
+              <h2 className={styles.sectionTitle}>
+                <svg className={styles.sectionPicto} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                Cartes &amp; Animations immersives
+              </h2>
+              <p className={styles.sectionDesc}>Des cartes interactives et des animations plein écran. Pour explorer les sujets qui demandent de l'espace, du temps, et un regard qui se déplace.</p>
             </div>
           </Reveal>
 
@@ -314,8 +321,16 @@ export default async function VisuelsPage() {
           <Reveal>
             <div className={styles.sectionHead}>
               <div className={styles.sectionTag} style={{color:'var(--eco)'}}>Visualisations</div>
-              <h2 className={styles.sectionTitle}>Données &amp; séries longues</h2>
-              <p className={styles.sectionDesc}>Quand le récit vit dans la courbe : visualisations interactives à partir de jeux de données vérifiés.</p>
+              <h2 className={styles.sectionTitle}>
+                <svg className={styles.sectionPicto} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M3 3v18h18"/>
+                  <path d="M8 17v-5"/>
+                  <path d="M13 17V8"/>
+                  <path d="M18 17v-3"/>
+                </svg>
+                Données &amp; séries longues
+              </h2>
+              <p className={styles.sectionDesc}>Des chiffres mis en récit. Visualisations construites à partir de jeux de données vérifiés et publiquement disponibles.</p>
             </div>
           </Reveal>
           <div className={styles.datavizGrid}>
@@ -329,6 +344,15 @@ export default async function VisuelsPage() {
 
         {/* ═══ TRILOGIE DOLLAR ═══ */}
         <section className={styles.trilogie}>
+          <Reveal>
+            <div className={styles.trilogiePreamble}>
+              <svg className={styles.sectionPicto} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+              <p>Une histoire en trois actes. Lue chapitre par chapitre, comme un livre éditorial sérialisé.</p>
+            </div>
+          </Reveal>
           <Reveal>
             <div className={styles.trilogieBanner}>
               <img
@@ -377,8 +401,15 @@ export default async function VisuelsPage() {
           <Reveal>
             <div className={styles.sectionHead}>
               <div className={styles.sectionTag} style={{color:'var(--concept)'}}>Motions design</div>
-              <h2 className={styles.sectionTitle}>Concepts &amp; Analyses</h2>
-              <p className={styles.sectionDesc}>Des présentations animées pour décrypter les idées complexes — économie, géopolitique, technologie.</p>
+              <h2 className={styles.sectionTitle}>
+                <svg className={styles.sectionPicto} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2.2 1.5-3.5a6 6 0 0 0-12 0c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/>
+                  <path d="M9 18h6"/>
+                  <path d="M10 22h4"/>
+                </svg>
+                Concepts &amp; Analyses
+              </h2>
+              <p className={styles.sectionDesc}>Des présentations animées en motion design. Pour décrypter les idées qui demandent une mise en scène plutôt qu'un paragraphe.</p>
             </div>
           </Reveal>
           <div className={styles.motionGrid}>

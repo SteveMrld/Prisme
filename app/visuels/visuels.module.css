@@ -67,12 +67,31 @@
   font-size: clamp(24px, 3.2vw, 36px);
   font-weight: 300; letter-spacing: -1px;
   color: var(--encre); margin: 0;
+  display: flex; align-items: center; gap: 14px;
+}
+.sectionPicto {
+  width: 16px; height: 16px;
+  color: #8B1A1A;
+  flex-shrink: 0;
 }
 .sectionDesc {
   font-family: 'Cormorant Garamond', serif;
   font-size: 17px; font-style: italic;
-  color: var(--gris-m); line-height: 1.6;
-  max-width: 620px; margin: 4px 0 0;
+  color: #555; line-height: 1.55;
+  max-width: 640px; margin: 8px 0 0;
+}
+.trilogiePreamble {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 32px 16px 36px;
+}
+.trilogiePreamble .sectionPicto {
+  margin-top: 6px;
+}
+.trilogiePreamble p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: #555; line-height: 1.55;
+  max-width: 640px; margin: 0;
 }
 
 /* ══════════════════════════════════════════════
@@ -528,6 +547,9 @@
   .heroMeta { flex-direction: row; align-self: stretch; justify-content: flex-start; }
   .page { padding: 56px 24px 72px; gap: 80px; }
   .sectionHead { margin-bottom: 28px; }
+  .sectionPicto { width: 14px; height: 14px; }
+  .sectionDesc { font-size: 15px; }
+  .trilogiePreamble p { font-size: 15px; }
   .lead { margin-bottom: 48px; }
   .leadContent { padding: 28px 24px 32px; }
   .leadTitle { font-size: clamp(26px, 6vw, 36px); }
