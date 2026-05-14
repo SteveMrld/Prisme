@@ -68,7 +68,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "featured": false,
-    "premium": false,
+    "premium": true,
     "grandFormatUrl": "/grands-formats/pollinisation"
   },
   {
@@ -197,7 +197,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "featured": true,
-    "premium": false,
+    "premium": true,
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/chambre-ratification",
     "imageCredit": "© SOARA",
@@ -292,7 +292,7 @@
     "authorRole": "",
     "date": "2026-05-12",
     "featured": false,
-    "premium": true,
+    "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "Africa: What They Didn't Teach You",
     "descriptionEn": "A different reading of the continent: its history, its resources, its political logics."
@@ -547,7 +547,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "date": "2026-04-11",
-    "premium": true,
+    "premium": false,
     "imageCredit": "© Luc Legay / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA",
     "titleEn": "Edgar Morin",
     "descriptionEn": "At 100 years old, the sociologist of complexity. A thinker for the era of uncertainty.",
@@ -578,7 +578,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "date": "2026-03-26",
-    "premium": true,
+    "premium": false,
     "imageCredit": "Justin Pacheco / U.S. Air Force, Domaine public, modifiée par SOARA",
     "titleEn": "Elon Musk",
     "descriptionEn": "The man who wants to redesign the world. A portrait between genius and destabilization."
@@ -718,7 +718,7 @@
     "author": "Steve Moradel",
     "authorRole": "",
     "date": "2026-01-16",
-    "premium": true,
+    "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "Taiwan, Strategic Maritime Highway",
     "descriptionEn": "The coveted jewel of the electronics industry, pivot of the Asia-Pacific. The small island that makes great powers tremble."
