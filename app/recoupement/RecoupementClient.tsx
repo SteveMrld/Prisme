@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { usePremium } from '../../lib/usePremium'
 import { SOURCES } from '../../lib/recoupement-sources'
+import Skeleton from '../../components/Skeleton'
 import styles from './recoupement.module.css'
 
 
@@ -680,17 +681,27 @@ export default function RecoupementClient() {
       </div>
 
       {loading && (
-        <div className={styles.loadingWrap}>
-          <div className={styles.loadingBar}>
-            <div className={styles.loadingProgress} />
-          </div>
-          <div className={styles.loadingMsg}>{loadingMsg}</div>
-          <div className={styles.loadingSources}>
-            {SOURCES.slice(0, 12).map((s, i) => (
-              <span key={s.id} className={styles.loadingSource} style={{ animationDelay: `${i * 0.15}s` }}>
-                {s.abbr}
-              </span>
+        <div className={styles.skeletonWrap}>
+          <div className={styles.skeletonStatus}>{loadingMsg}</div>
+
+          <Skeleton height={32} width="70%" />
+
+          <div className={styles.skeletonParas}>
+            {[100, 95, 88, 92, 78, 100, 85, 60].map((w, i) => (
+              <Skeleton key={i} height={18} width={`${w}%`} />
             ))}
+          </div>
+
+          <div className={styles.skeletonSourcesBlock}>
+            <Skeleton height={14} width={120} />
+            <div className={styles.skeletonSourceList}>
+              {[70, 65, 75, 60].map((w, i) => (
+                <div key={i} className={styles.skeletonSourceRow}>
+                  <Skeleton width={14} height={14} />
+                  <Skeleton height={14} width={`${w}%`} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

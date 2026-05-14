@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
+import Skeleton from '../../components/Skeleton'
 import styles from './indicateurs.module.css'
 
 const AV_KEY = 'IONR06NZ74XNHBLS'
@@ -39,6 +40,7 @@ function Chart({ history, color }: { history: number[], color: string }) {
 
 export default function IndicateursClient() {
   const [inds, setInds] = useState<Ind[]>(BASE)
+  const [loaded, setLoaded] = useState<Set<string>>(new Set())
   const [time, setTime] = useState('')
 
   useEffect(() => {
@@ -49,6 +51,13 @@ export default function IndicateursClient() {
       setInds(prev_ => prev_.map(ind => ind.id === id ? {...ind, value, prev, history} : ind))
     }
 
+    const markLoaded = (id: string) => setLoaded(prev => {
+      if (prev.has(id)) return prev
+      const next = new Set(prev)
+      next.add(id)
+      return next
+    })
+
     const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
 
     ;(async () => {
@@ -57,6 +66,7 @@ export default function IndicateursClient() {
         if (fx?.rates?.EUR > 0) { const v = 1/fx.rates.EUR; update('eurusd', v, v*0.997, [v*0.991,v*0.993,v*0.996,v*0.998,v*0.999,v*0.997,v]) }
         if (fx?.rates?.CNY > 0) { const v = fx.rates.CNY;   update('usdcny', v, v*1.001, [v*0.997,v*0.998,v*0.999,v*1.001,v*1.002,v*1.001,v]) }
       } catch {}
+      finally { markLoaded('eurusd'); markLoaded('usdcny') }
 
       try {
         await sleep(500)
@@ -66,6 +76,7 @@ export default function IndicateursClient() {
           update('brent', h[h.length-1], h[h.length-2], h)
         }
       } catch {}
+      finally { markLoaded('brent') }
 
       try {
         await sleep(15000)
@@ -76,6 +87,7 @@ export default function IndicateursClient() {
           update('wheat', h[h.length-1], h[h.length-2], h)
         }
       } catch {}
+      finally { markLoaded('wheat') }
 
       try {
         await sleep(15000)
@@ -86,6 +98,7 @@ export default function IndicateursClient() {
           update('copper', h[h.length-1], h[h.length-2], h)
         }
       } catch {}
+      finally { markLoaded('copper') }
 
       try {
         await sleep(15000)
@@ -93,6 +106,7 @@ export default function IndicateursClient() {
         const gr = gold?.['Realtime Currency Exchange Rate']
         if (gr) { const v = parseFloat(gr['5. Exchange Rate']); if (v > 0) update('gold', v, v*0.998, [v*0.991,v*0.993,v*0.996,v*0.995,v*0.998,v*0.999,v]) }
       } catch {}
+      finally { markLoaded('gold') }
     })()
 
     const tick = setInterval(() => setTime(new Date().toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'})), 30000)
@@ -120,11 +134,27 @@ export default function IndicateursClient() {
 
       <div className={styles.grid}>
         {inds.map(ind => {
+          if (!loaded.has(ind.id)) {
+            return (
+              <div key={ind.id} className={styles.cardSkeleton}>
+                <Skeleton width={80} height={12} dark />
+                <div className={styles.cardSkeletonValue}>
+                  <Skeleton width={140} height={36} dark />
+                </div>
+                <Skeleton width={100} height={18} dark />
+                <div className={styles.cardSkeletonContext}>
+                  <Skeleton width="100%" height={12} dark />
+                  <Skeleton width="85%" height={12} dark />
+                  <Skeleton width="70%" height={12} dark />
+                </div>
+              </div>
+            )
+          }
           const up = ind.value >= ind.prev
           const pct = ((ind.value - ind.prev) / ind.prev) * 100
           const dec = ['eurusd','usdcny'].includes(ind.id) ? 4 : 2
           return (
-            <div key={ind.id} className={styles.card}>
+            <div key={ind.id} className={`${styles.card} ${styles.cardReveal}`}>
               <div className={styles.cardHead}>
                 <div>
                   <span className={styles.cat} style={{color:ind.catColor}}>{ind.cat}</span>

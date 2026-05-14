@@ -1,0 +1,35 @@
+.skeleton {
+  display: block;
+  background: linear-gradient(90deg, #F2EDE3 0%, #E8E2DA 50%, #F2EDE3 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton.dark {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.10) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: #EBE5DA;
+  }
+  .skeleton.dark {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
