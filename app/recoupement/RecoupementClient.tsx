@@ -135,6 +135,20 @@ function sourceHost(url: string): string {
   try { return new URL(url).hostname.replace(/^www\./, '') } catch { return '' }
 }
 
+function nextResetMonthLabel(): string {
+  const now = new Date()
+  const next = new Date(now.getFullYear(), now.getMonth() + 1, 1)
+  return next.toLocaleDateString('fr-FR', { month: 'long' })
+}
+
+async function openPackCheckout() {
+  try {
+    const res = await fetch('/api/recoupement/buy-pack', { method: 'POST' })
+    const data = await res.json()
+    if (data.url) window.location.href = data.url
+  } catch {}
+}
+
 const NIVEAU_LABELS: Record<string, { label: string; color: string; note?: string }> = {
   verifie: { label: 'Vérifié',         color: '#4A8FBF' },
   analyse: { label: 'Analyse',         color: '#8A5AAA' },
@@ -499,80 +513,73 @@ export default function RecoupementClient() {
         </div>
       </div>
 
-      <div className={styles.searchWrap}>
-        <div className={styles.searchInner}>
-          <input
-            ref={inputRef}
-            className={styles.searchInput}
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && handleSearch()}
-            placeholder="Entrez un fait d'actualité à analyser…"
-            autoComplete="off"
-          />
-          <button
-            className={styles.searchBtn}
-            onClick={() => handleSearch()}
-            disabled={loading || !query.trim() || (quota !== null && !quota.isAdmin && (quota.remaining + quota.extraCredits) <= 0)}
-          >
-            {loading ? <span className={styles.btnSpinner} /> : 'Analyser →'}
-          </button>
-        </div>
-
-        {quota && (
-          <div style={{
-            marginTop: '14px',
-            textAlign: 'center',
-            fontSize: '12px',
-            fontFamily: 'monospace',
-            letterSpacing: '0.08em',
-            color: quota.isAdmin ? '#8a7f72' : (quota.remaining + quota.extraCredits) === 0 ? '#C04040' : (quota.remaining + quota.extraCredits) <= 2 ? '#B8860B' : '#8a7f72',
-          }}>
-            {quota.isAdmin ? `Accès illimité (admin)` : (() => {
-              const total = quota.remaining + quota.extraCredits
-              if (total === 0) return `Quota mensuel atteint · Réinitialisation le 1er du mois prochain`
-              if (quota.extraCredits > 0 && quota.remaining === 0) {
-                return `${quota.extraCredits} recoupement${quota.extraCredits > 1 ? 's' : ''} (pack acheté) · Mensuel épuisé`
-              }
-              if (quota.extraCredits > 0) {
-                return `${quota.remaining} ce mois + ${quota.extraCredits} pack · ${quota.used}/${quota.limit} consommés`
-              }
-              return `${quota.remaining} recoupement${quota.remaining > 1 ? 's' : ''} restant${quota.remaining > 1 ? 's' : ''} ce mois-ci · ${quota.used}/${quota.limit}`
-            })()}
-          </div>
-        )}
-
-        {quota && !quota.isAdmin && quota.remaining === 0 && quota.extraCredits === 0 && (
-          <div style={{
-            marginTop: '18px',
-            padding: '20px 24px',
-            border: '1px solid #DDD9D2',
-            textAlign: 'center',
-          }}>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', color: '#1a1a1a', marginBottom: '6px' }}>
-              Besoin de plus ?
+      {quota && (() => {
+        if (quota.isAdmin) {
+          return (
+            <div className={styles.quotaBanner}>
+              <div className={styles.quotaBannerMain} data-state="admin">Accès illimité (admin)</div>
             </div>
-            <p style={{ fontSize: '13px', color: '#6B6355', marginBottom: '16px', lineHeight: '1.5' }}>
-              Continuez ce mois-ci avec un pack de 10 recoupements supplémentaires.
-            </p>
-            <button
-              onClick={async () => {
-                try {
-                  const res = await fetch('/api/recoupement/buy-pack', { method: 'POST' })
-                  const data = await res.json()
-                  if (data.url) window.location.href = data.url
-                } catch {}
-              }}
-              style={{
-                display: 'inline-block', padding: '12px 28px',
-                background: '#1a1a1a', color: '#F5F0E8', border: 'none',
-                fontSize: '11px', fontWeight: 700, letterSpacing: '2px',
-                textTransform: 'uppercase', cursor: 'pointer',
-              }}>
-              10 recoupements — 3,99 €
-            </button>
+          )
+        }
+        const total = quota.remaining + quota.extraCredits
+        const state = total === 0 ? 'empty' : total <= 2 ? 'low' : 'normal'
+        return (
+          <div className={styles.quotaBanner}>
+            <div className={styles.quotaBannerMain} data-state={state}>
+              Recoupements utilisés ce mois : {quota.used} / {quota.limit}
+            </div>
+            <div className={styles.quotaBannerSub}>
+              Renouvellement le 1<sup>er</sup> {nextResetMonthLabel()}
+            </div>
+            {quota.extraCredits > 0 && (
+              <div className={styles.quotaBannerExtra}>
+                + {quota.extraCredits} recoupement{quota.extraCredits > 1 ? 's' : ''} de votre pack supplémentaire
+              </div>
+            )}
           </div>
-        )}
+        )
+      })()}
+
+      <div className={styles.searchWrap}>
+        {(() => {
+          const isExhausted = quota !== null && !quota.isAdmin && (quota.remaining + quota.extraCredits) <= 0
+          if (isExhausted) {
+            return (
+              <div className={styles.emptyState}>
+                <div className={styles.emptyStateTitle}>Votre quota mensuel est épuisé</div>
+                <p className={styles.emptyStateText}>
+                  Vos {quota!.limit} recoupements de ce mois ont été utilisés.
+                  Renouvellement le 1<sup>er</sup> {nextResetMonthLabel()}.
+                  Pour continuer dès maintenant, un pack de 10 recoupements
+                  supplémentaires est disponible (valables jusqu'à utilisation).
+                </p>
+                <button className={styles.emptyStateCta} onClick={openPackCheckout}>
+                  Acheter un pack, 3,99 €
+                </button>
+              </div>
+            )
+          }
+          return (
+            <div className={styles.searchInner}>
+              <input
+                ref={inputRef}
+                className={styles.searchInput}
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleSearch()}
+                placeholder="Entrez un fait d'actualité à analyser…"
+                autoComplete="off"
+              />
+              <button
+                className={styles.searchBtn}
+                onClick={() => handleSearch()}
+                disabled={loading || !query.trim()}
+              >
+                {loading ? <span className={styles.btnSpinner} /> : 'Analyser →'}
+              </button>
+            </div>
+          )
+        })()}
 
         {!analysis && !loading && history.length > 0 && (
           <div className={styles.historyBlock}>
@@ -625,6 +632,34 @@ export default function RecoupementClient() {
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {!analysis && !loading && quota && !quota.isAdmin && (
+          <div className={styles.quotaFaq}>
+            <div className={styles.quotaFaqLabel}>Comment fonctionne votre quota</div>
+            <div className={styles.quotaFaqTitle}>{quota.limit} recoupements par mois, plus si besoin</div>
+            <ul className={styles.quotaFaqList}>
+              <li className={styles.quotaFaqItem}>
+                {quota.limit} recoupements par mois sont inclus dans votre abonnement.
+              </li>
+              <li className={styles.quotaFaqItem}>
+                Le décompte se réinitialise le 1<sup>er</sup> de chaque mois.
+                Les recoupements non utilisés ne sont pas reportés.
+              </li>
+              <li className={styles.quotaFaqItem}>
+                Un crédit n'est débité qu'en cas de succès. Les échecs techniques
+                (timeout, erreur API, réponse incomplète) ne consomment rien.
+              </li>
+              <li className={styles.quotaFaqItem}>
+                Pour aller au-delà : un pack supplémentaire à 3,99 € donne droit à
+                10 recoupements additionnels, valables jusqu'à utilisation
+                (pas de date d'expiration).
+              </li>
+            </ul>
+            <button className={styles.quotaFaqCta} onClick={openPackCheckout}>
+              Acheter un pack supplémentaire
+            </button>
           </div>
         )}
 
@@ -990,6 +1025,24 @@ export default function RecoupementClient() {
               )}
             </div>
           )}
+
+          {quota && !quota.isAdmin && (() => {
+            const total = quota.remaining + quota.extraCredits
+            if (total === 0) {
+              return (
+                <div className={`${styles.responseFeedback} ${styles.responseFeedbackZero}`}>
+                  Vous avez utilisé tous vos recoupements du mois. Pack supplémentaire disponible pour 3,99 €.
+                  <button className={styles.responseFeedbackLink} onClick={openPackCheckout}>
+                    Acheter
+                  </button>
+                </div>
+              )
+            }
+            const label = quota.extraCredits > 0 && quota.remaining === 0
+              ? `Il vous reste ${quota.extraCredits} recoupement${quota.extraCredits > 1 ? 's' : ''} dans votre pack`
+              : `Il vous reste ${total} recoupement${total > 1 ? 's' : ''} ce mois-ci`
+            return <div className={styles.responseFeedback}>{label}</div>
+          })()}
 
           <button className={styles.newSearch} onClick={() => { setAnalysis(null); setQuery(''); inputRef.current?.focus() }}>
             ← Nouvelle analyse
