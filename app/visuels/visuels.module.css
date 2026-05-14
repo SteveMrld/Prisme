@@ -135,6 +135,45 @@
 }
 
 /* ══════════════════════════════════════════════
+   FORMAT CHIP — identifiant visuel du type de contenu
+══════════════════════════════════════════════ */
+.formatChip {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  background: #F2EDE3;
+  border: 1px solid #E8E2DA;
+  padding: 4px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+  line-height: 1;
+}
+.formatChipTrilogie {
+  color: #8B1A1A;
+  background: #FAEFED;
+  border-color: rgba(139, 26, 26, 0.18);
+}
+.formatChipDark {
+  color: #C8A96E;
+  background: rgba(196, 169, 110, 0.08);
+  border-color: rgba(196, 169, 110, 0.22);
+}
+.leadMeta,
+.atlasMeta,
+.datavizMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+/* ══════════════════════════════════════════════
    LEAD CARD (carte hero de la section Atlas)
 ══════════════════════════════════════════════ */
 .lead {
@@ -432,6 +471,10 @@
   position: relative;
   transition: background var(--dur-base) var(--ease-out);
   min-height: 280px;
+}
+.acteChip {
+  align-self: flex-start;
+  margin-bottom: 16px;
 }
 .acteCard:hover { background: #F5EFE2; }
 .acteCard::before {

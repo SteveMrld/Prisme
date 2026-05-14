@@ -16,6 +16,7 @@ type AtlasCard = {
   external?: boolean
   tag: string
   tagColor: string
+  format: string
   title: string
   sub: string
   desc: string
@@ -28,6 +29,7 @@ const HERO_CARD: AtlasCard = {
   href: '/visuels/uranium', external: false,
   tag: 'Géopolitique · Nucléaire',
   tagColor: '#C8A96E',
+  format: 'Dataviz',
   title: 'Uranium : la cascade du monde',
   sub: 'Rosatom · Urenco · CNNC · Orano · Centrus — cinq paliers, de 0,7 % à 90 %',
   desc: "Du combustible civil à la qualité militaire. Une cartographie graphique des capacités mondiales d'enrichissement, des seuils qui font basculer dans le militaire, et de la dépendance structurelle de l'Occident à Rosatom.",
@@ -40,6 +42,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/grands-formats/bases-militaires', external: false,
     tag: 'Géopolitique · Carte', tagColor: '#EF9090',
+    format: 'Carte interactive',
     title: "L'Empire invisible",
     sub: '6 puissances · 17 sources vérifiées',
     desc: "750 bases américaines, 145 britanniques, 21 russes, 6 françaises. La carte interactive des empreintes militaires mondiales.",
@@ -50,6 +53,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/visuels/medias-pouvoir', external: false,
     tag: 'Médias · Société', tagColor: 'var(--soc)',
+    format: 'Dataviz',
     title: 'Médias occidentaux',
     sub: 'Reuters Institute 2025 · 48 pays · Concentration du capital',
     desc: "Désaffection du public, concentration médiatique entre les mains d'une poignée de milliardaires, émergence des newsfluenceurs.",
@@ -60,6 +64,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/grands-formats/climat', external: false,
     tag: 'Environnement · Dataviz', tagColor: 'var(--env)',
+    format: 'Dataviz',
     title: 'La Terre a toujours changé de température.',
     sub: "Scotese 2021 · HadCRUT5 · NASA GISS",
     desc: "Deux courbes, même axe. La Terre a connu des variations de ±10°C sur des millions d'années. Notre +1,6°C est arrivé en 150 ans. Ce qui est sans précédent, c'est la vitesse.",
@@ -70,6 +75,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/visuels/terres-rares', external: false,
     tag: 'Géopolitique · Ressources', tagColor: 'var(--geo)',
+    format: 'Carte animée',
     title: 'Terres rares : la guerre invisible',
     sub: 'Congo · Chili · Bolivie · Chine · Europe · États-Unis',
     desc: "Du cobalt du Katanga au raffinage de Guangdong, une visualisation animée des flux qui alimentent la transition verte — et la nouvelle géographie de la dépendance.",
@@ -80,6 +86,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/visuels/naval', external: false,
     tag: 'Géopolitique · Carte animée', tagColor: 'var(--geo)',
+    format: 'Carte animée',
     title: 'Les mers du pouvoir',
     sub: 'Routes commerciales · Détroits · Marines · Zones de tension',
     desc: "80% du commerce mondial circule sur l'eau. Qui contrôle les mers contrôle l'économie mondiale. Une carte animée en 5 chapitres.",
@@ -90,6 +97,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/articles/predateurs', external: false,
     tag: 'Géopolitique · Carte interactive', tagColor: 'var(--geo)',
+    format: 'Carte interactive',
     title: 'Le Monde des Prédateurs',
     sub: "États-Unis · Russie · Chine — zones d'influence",
     desc: "Trois empires, trois doctrines d'expansion. Le retour assumé des sphères d'influence.",
@@ -100,6 +108,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/visuels/eau', external: false,
     tag: 'Environnement · Carte', tagColor: 'var(--env)',
+    format: 'Carte animée',
     title: "L'eau : la prochaine grande fracture",
     sub: "Glaciers · Barrages · Conflits hydrauliques",
     desc: "Des glaciers himalayens aux barrages africains. Comment la maîtrise de l'eau redessine les rapports de puissance — une carte animée en 5 chapitres.",
@@ -110,6 +119,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/visuels/france_maritime', external: false,
     tag: 'Géopolitique · Carte animée', tagColor: 'var(--geo)',
+    format: 'Carte animée',
     title: 'La France maritime',
     sub: 'ZEE · Pacifique · Atlantique · Océan Indien',
     desc: "La France possède la 2e zone économique exclusive mondiale — et presque personne ne le sait. Une révélation en 6 chapitres sur l'empire maritime invisible de la République.",
@@ -120,6 +130,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/visuels/cables', external: false,
     tag: 'Tech · Géopolitique', tagColor: 'var(--tech)',
+    format: 'Animation',
     title: 'Câbles sous-marins',
     sub: 'Vue en coupe · Réseau de flux · Enjeux stratégiques',
     desc: "99% d'internet circule sous les océans. Qui contrôle ces câbles contrôle l'information mondiale. Vue en coupe animée et décryptage des enjeux.",
@@ -130,6 +141,7 @@ const ATLAS_CARDS: AtlasCard[] = [
   {
     href: '/visuels/techgeo', external: false,
     tag: 'Tech · Géopolitique', tagColor: 'var(--tech)',
+    format: 'Animation',
     title: 'La bataille pour le sous-sol numérique',
     sub: 'Terres rares · Semi-conducteurs · Câbles',
     desc: "Des mines de Mongolie aux fabs de Taïwan — une guerre souterraine pour les matériaux qui font tourner l'économie numérique mondiale.",
@@ -143,6 +155,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
   {
     href: '/visuels/pauvrete-france', external: false,
     tag: 'Société · Économie', tagColor: 'var(--soc)',
+    format: 'Dataviz',
     title: 'En 1975, un Français sur cinq.',
     sub: 'INSEE · Séries longues 1975–2023',
     desc: "Cinquante ans de pauvreté monétaire en France. En 2023, 15,4% — son niveau le plus haut depuis 1996.",
@@ -153,6 +166,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
   {
     href: '/visuels/science-race', external: false,
     tag: 'Sciences · Géopolitique', tagColor: '#a6291c',
+    format: 'Dataviz',
     title: 'Où se produit le savoir',
     sub: 'National Science Board 2025',
     desc: "En 2002, les États-Unis et l'Europe publiaient deux tiers des articles scientifiques mondiaux. En 2023, ils n'en publient plus qu'un tiers.",
@@ -163,6 +177,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
   {
     href: '/grands-formats/inegalites', external: false,
     tag: 'Économie · Dataviz', tagColor: 'var(--eco)',
+    format: 'Dataviz',
     title: 'En 1980, ils étaient tous pareils.',
     sub: 'World Inequality Database · 4 pays · 1980–2022',
     desc: "États-Unis, France, Inde, Chine — en 1980, les quatre captaient la même part de richesse pour leur top 10%. Depuis, leurs trajectoires ont radicalement divergé.",
@@ -176,6 +191,7 @@ const MOTION_CARDS = [
   {
     slug: 'cygne-noir',
     cat: 'Concept', color: 'var(--concept)',
+    format: 'Animation',
     title: 'Le Cygne Noir',
     sub: 'Les événements que personne ne voit venir',
     desc: 'Le concept de Nassim Taleb décrypté en 13 slides — imprévisibilité, biais cognitifs, Nvidia, résilience.',
@@ -185,6 +201,7 @@ const MOTION_CARDS = [
   {
     slug: 'overton',
     cat: 'Concept', color: 'var(--concept)',
+    format: 'Animation',
     title: "La Fenêtre d'Overton",
     sub: "Comment l'impensable devient politique",
     desc: 'Visualisation du spectre des idées politiquement acceptables et des mécanismes qui le font glisser.',
@@ -194,6 +211,7 @@ const MOTION_CARDS = [
   {
     slug: 'ia-langage',
     cat: 'Tech', color: 'var(--tech)',
+    format: 'Animation',
     title: 'Ce que les machines appellent comprendre',
     sub: 'IA et le langage',
     desc: 'Tokenisation, espaces sémantiques, réseaux de neurones — comment les modèles de langage fonctionnent vraiment.',
@@ -215,7 +233,10 @@ function LeadCard({ card }: { card: AtlasCard }) {
         <img src={card.image} alt={card.alt} loading="eager" />
       </div>
       <div className={styles.leadContent}>
-        <span className={styles.leadEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
+        <div className={styles.leadMeta}>
+          <span className={styles.leadEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
+          <span className={`${styles.formatChip} ${styles.formatChipDark}`}>{card.format}</span>
+        </div>
         <h3 className={styles.leadTitle}>{card.title}</h3>
         <p className={styles.leadSub}>{card.sub}</p>
         <p className={styles.leadDesc}>{card.desc}</p>
@@ -235,7 +256,10 @@ function AtlasGridCard({ card }: { card: AtlasCard }) {
         <img src={card.image} alt={card.alt} loading="lazy" />
       </div>
       <div className={styles.atlasBody}>
-        <span className={styles.atlasEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
+        <div className={styles.atlasMeta}>
+          <span className={styles.atlasEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
+          <span className={styles.formatChip}>{card.format}</span>
+        </div>
         <h3 className={styles.atlasTitle}>{card.title}</h3>
         <p className={styles.atlasSub}>{card.sub}</p>
         <p className={styles.atlasDesc}>{card.desc}</p>
@@ -250,7 +274,10 @@ function DatavizGridCard({ card }: { card: AtlasCard }) {
     <Link href={card.href} className={styles.datavizCard}>
       <div className={styles.datavizImage} style={{ backgroundImage: `url(${card.image})` }} aria-hidden="true" />
       <div className={styles.datavizBody}>
-        <span className={styles.datavizEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
+        <div className={styles.datavizMeta}>
+          <span className={styles.datavizEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
+          <span className={styles.formatChip}>{card.format}</span>
+        </div>
         <h3 className={styles.datavizTitle}>{card.title}</h3>
         <p className={styles.datavizDesc}>{card.desc}</p>
         <span className={styles.datavizCta}>{card.cta} →</span>
@@ -392,6 +419,7 @@ export default async function VisuelsPage() {
                   href={`/visuels/${item.slug}`}
                   className={styles.acteCard}
                 >
+                  <span className={`${styles.formatChip} ${styles.formatChipTrilogie} ${styles.acteChip}`}>Trilogie {item.n}</span>
                   <div className={styles.acteN}>{item.n}</div>
                   <h3 className={styles.acteTitle}>{item.title}</h3>
                   <p className={styles.acteDesc}>{item.desc}</p>
@@ -430,6 +458,7 @@ export default async function VisuelsPage() {
                   <div className={styles.motionBody}>
                     <div className={styles.motionEyebrow}>
                       <span className={styles.motionCat} style={{color:item.color}}>{item.cat}</span>
+                      <span className={styles.formatChip}>{item.format}</span>
                       <span className={styles.motionSlides}>{item.slides} slides</span>
                       <span className={styles.motionAvail}>Disponible</span>
                     </div>
