@@ -329,33 +329,14 @@ export default async function VisuelsPage() {
     <>
       <Header activeNav="concept" />
 
-      {/* ═══ HERO ═══ */}
-      <div className={styles.hero}>
-        <div className={styles.heroInner}>
-          <div className={styles.heroLabel}>Atlas</div>
-          <h1 className={styles.heroTitle}>
-            Les idées qui se comprennent<br />
-            <em>mieux en les voyant</em>
-          </h1>
-          <p className={styles.heroDesc}>
-            Motions design, cartes animées, visualisations de données.
-            Chaque format est conçu pour rendre visible ce que les mots seuls ne suffisent pas à expliquer.
-          </p>
-        </div>
-        <div className={styles.heroMeta}>
-          <div className={styles.heroStat}><span>11</span>cartes Atlas</div>
-          <div className={styles.heroDivider}/>
-          <div className={styles.heroStat}><span>20+</span>en préparation</div>
-        </div>
-      </div>
-
       <div className={styles.atlasIntro}>
         <div className={styles.atlasIntroEyebrow}>Atlas Soara</div>
-        <h2 className={styles.atlasIntroTitle}>L&apos;index visuel</h2>
+        <h1 className={styles.atlasIntroTitle}>L&apos;index visuel</h1>
         <p className={styles.atlasIntroChapeau}>
           Toutes les visualisations de Soara rassemblées en un seul lieu.
           Cartes interactives, motion designs, trilogies narratives, séries de données : l&apos;index complet de l&apos;analyse Soara.
         </p>
+        <div className={styles.atlasIntroStats}>11 visualisations publiées · 20+ en préparation</div>
       </div>
 
       <div className={styles.page}>

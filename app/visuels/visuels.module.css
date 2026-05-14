@@ -1,51 +1,10 @@
 /* ══════════════════════════════════════════════
-   HERO DE PAGE
-══════════════════════════════════════════════ */
-.hero {
-  background: #060A14;
-  padding: 72px 64px 56px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 48px;
-}
-.heroInner { display: flex; flex-direction: column; gap: 18px; }
-.heroLabel {
-  font-size: 8px; font-weight: 700; letter-spacing: 5px;
-  text-transform: uppercase; color: rgba(196,162,101,0.65);
-}
-.heroTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 4.5vw, 58px);
-  font-weight: 300; letter-spacing: -0.03em; line-height: 1.05;
-  color: #fff;
-}
-.heroTitle em { font-style: italic; color: #C8A96E; }
-.heroDesc {
-  font-size: 14px; line-height: 1.8;
-  color: rgba(255,255,255,0.45); max-width: 520px;
-}
-.heroMeta { display: flex; align-items: center; gap: 28px; flex-shrink: 0; }
-.heroStat {
-  display: flex; flex-direction: column; align-items: flex-end; gap: 3px;
-  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
-  color: rgba(196,162,101,0.5);
-}
-.heroStat span {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px; font-weight: 300; letter-spacing: -1px;
-  color: #C8A96E; line-height: 1;
-}
-.heroDivider { width: 1px; height: 40px; background: rgba(196,162,101,0.2); }
-
-/* ══════════════════════════════════════════════
-   ATLAS INTRO — bandeau éditorial entre hero et grille
+   ATLAS INTRO — hero éditorial unique de la page
 ══════════════════════════════════════════════ */
 .atlasIntro {
   max-width: 1320px;
   margin: 0 auto 64px;
-  padding: 64px 64px 0;
+  padding: 80px 64px 0;
   border-bottom: 2px solid #0A0A0A;
 }
 .atlasIntroEyebrow {
@@ -76,6 +35,14 @@
   line-height: 1.55;
   color: #555;
   max-width: 640px;
+  margin: 0 0 16px;
+}
+.atlasIntroStats {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #888;
   margin: 0 0 48px;
 }
 
@@ -743,9 +710,7 @@
   .trilogieBannerInner { padding: 40px 32px 32px; }
 }
 @media (max-width: 768px) {
-  .hero { padding: 48px 24px 40px; flex-direction: column; align-items: flex-start; gap: 32px; }
-  .heroMeta { flex-direction: row; align-self: stretch; justify-content: flex-start; }
-  .atlasIntro { padding: 40px 24px 0; margin-bottom: 48px; }
+  .atlasIntro { padding: 56px 24px 0; margin-bottom: 48px; }
   .atlasIntroEyebrow { padding-bottom: 10px; margin-bottom: 20px; }
   .atlasIntroTitle { margin-bottom: 20px; }
   .atlasIntroChapeau { font-size: 17px; margin-bottom: 32px; }
@@ -773,21 +738,21 @@
    Hero cascade · Ken Burns · scroll reveals · gold underline
 ══════════════════════════════════════════════ */
 
-/* Hero cascade au mount */
+/* Atlas intro cascade au mount */
 @keyframes atlasHeroIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.heroLabel,
-.heroTitle,
-.heroDesc,
-.heroMeta {
+.atlasIntroEyebrow,
+.atlasIntroTitle,
+.atlasIntroChapeau,
+.atlasIntroStats {
   animation: atlasHeroIn var(--dur-page) var(--ease-elegant) backwards;
 }
-.heroLabel { animation-delay: 0ms; }
-.heroTitle { animation-delay: 120ms; }
-.heroDesc  { animation-delay: 240ms; }
-.heroMeta  { animation-delay: 360ms; }
+.atlasIntroEyebrow { animation-delay: 0ms; }
+.atlasIntroTitle   { animation-delay: 120ms; }
+.atlasIntroChapeau { animation-delay: 240ms; }
+.atlasIntroStats   { animation-delay: 360ms; }
 
 /* Ken Burns très lent sur l'image du LeadCard (Uranium hero) */
 .leadImage img {
@@ -852,10 +817,10 @@
 
 /* prefers-reduced-motion : tout off, sauf hovers */
 @media (prefers-reduced-motion: reduce) {
-  .heroLabel,
-  .heroTitle,
-  .heroDesc,
-  .heroMeta {
+  .atlasIntroEyebrow,
+  .atlasIntroTitle,
+  .atlasIntroChapeau,
+  .atlasIntroStats {
     animation: none;
   }
   .leadImage img {
