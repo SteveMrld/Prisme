@@ -7,7 +7,7 @@ import { Reveal } from './Reveal'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Atlas — Soara',
+  title: 'Atlas · Soara',
   description: 'Cartes interactives, animations, visualisations de données géopolitiques. Atlas Soara.',
 }
 
@@ -31,7 +31,7 @@ const HERO_CARD: AtlasCard = {
   tagColor: '#C8A96E',
   format: 'Dataviz',
   title: 'Uranium : la cascade du monde',
-  sub: 'Rosatom · Urenco · CNNC · Orano · Centrus — cinq paliers, de 0,7 % à 90 %',
+  sub: 'Rosatom · Urenco · CNNC · Orano · Centrus · cinq paliers, de 0,7 % à 90 %',
   desc: "Du combustible civil à la qualité militaire. Une cartographie graphique des capacités mondiales d'enrichissement, des seuils qui font basculer dans le militaire, et de la dépendance structurelle de l'Occident à Rosatom.",
   cta: 'Explorer la cascade',
   image: '/articles/atlas/01_uranium-cascade-monde.jpg',
@@ -78,7 +78,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     format: 'Carte animée',
     title: 'Terres rares : la guerre invisible',
     sub: 'Congo · Chili · Bolivie · Chine · Europe · États-Unis',
-    desc: "Du cobalt du Katanga au raffinage de Guangdong, une visualisation animée des flux qui alimentent la transition verte — et la nouvelle géographie de la dépendance.",
+    desc: "Du cobalt du Katanga au raffinage de Guangdong, une visualisation animée des flux qui alimentent la transition verte, et la nouvelle géographie de la dépendance.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/08_terres-rares-guerre-invisible.jpg',
     alt: "Mine à ciel ouvert d'extraction de terres rares",
@@ -99,7 +99,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     tag: 'Géopolitique · Carte interactive', tagColor: 'var(--geo)',
     format: 'Carte interactive',
     title: 'Le Monde des Prédateurs',
-    sub: "États-Unis · Russie · Chine — zones d'influence",
+    sub: "États-Unis · Russie · Chine · zones d'influence",
     desc: "Trois empires, trois doctrines d'expansion. Le retour assumé des sphères d'influence.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/10_le-monde-des-predateurs.jpg',
@@ -111,7 +111,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     format: 'Carte animée',
     title: "L'eau : la prochaine grande fracture",
     sub: "Glaciers · Barrages · Conflits hydrauliques",
-    desc: "Des glaciers himalayens aux barrages africains. Comment la maîtrise de l'eau redessine les rapports de puissance — une carte animée en 5 chapitres.",
+    desc: "Des glaciers himalayens aux barrages africains. Comment la maîtrise de l'eau redessine les rapports de puissance. Une carte animée en 5 chapitres.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/11_leau-prochaine-grande-fracture.jpg',
     alt: "Barrage hydraulique, ressources en eau",
@@ -122,7 +122,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     format: 'Carte animée',
     title: 'La France maritime',
     sub: 'ZEE · Pacifique · Atlantique · Océan Indien',
-    desc: "La France possède la 2e zone économique exclusive mondiale — et presque personne ne le sait. Une révélation en 6 chapitres sur l'empire maritime invisible de la République.",
+    desc: "La France possède la 2e zone économique exclusive mondiale, et presque personne ne le sait. Une révélation en 6 chapitres sur l'empire maritime invisible de la République.",
     cta: 'Explorer la carte',
     image: '/articles/atlas/12_la-france-maritime.jpg',
     alt: "Atoll tropical, territoires maritimes français",
@@ -144,7 +144,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     format: 'Animation',
     title: 'La bataille pour le sous-sol numérique',
     sub: 'Terres rares · Semi-conducteurs · Câbles',
-    desc: "Des mines de Mongolie aux fabs de Taïwan — une guerre souterraine pour les matériaux qui font tourner l'économie numérique mondiale.",
+    desc: "Des mines de Mongolie aux fabs de Taïwan, une guerre souterraine pour les matériaux qui font tourner l'économie numérique mondiale.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/14_bataille-sous-sol-numerique.jpg',
     alt: "Excavatrice minière, extraction de matières premières",
@@ -158,7 +158,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     format: 'Dataviz',
     title: 'En 1975, un Français sur cinq.',
     sub: 'INSEE · Séries longues 1975–2023',
-    desc: "Cinquante ans de pauvreté monétaire en France. En 2023, 15,4% — son niveau le plus haut depuis 1996.",
+    desc: "Cinquante ans de pauvreté monétaire en France. En 2023, 15,4%, son niveau le plus haut depuis 1996.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/02_en-1975-un-francais-sur-cinq.jpg',
     alt: "Homme de dos devant des immeubles soviétiques",
@@ -180,7 +180,7 @@ const DATAVIZ_CARDS: AtlasCard[] = [
     format: 'Dataviz',
     title: 'En 1980, ils étaient tous pareils.',
     sub: 'World Inequality Database · 4 pays · 1980–2022',
-    desc: "États-Unis, France, Inde, Chine — en 1980, les quatre captaient la même part de richesse pour leur top 10%. Depuis, leurs trajectoires ont radicalement divergé.",
+    desc: "États-Unis, France, Inde, Chine : en 1980, les quatre captaient la même part de richesse pour leur top 10%. Depuis, leurs trajectoires ont radicalement divergé.",
     cta: 'Explorer la visualisation',
     image: '/articles/atlas/06_en-1980-ils-etaient-tous-pareils.jpg',
     alt: "Skyline urbain et bidonvilles, contraste des inégalités",
@@ -194,7 +194,7 @@ const MOTION_CARDS = [
     format: 'Animation',
     title: 'Le Cygne Noir',
     sub: 'Les événements que personne ne voit venir',
-    desc: 'Le concept de Nassim Taleb décrypté en 13 slides — imprévisibilité, biais cognitifs, Nvidia, résilience.',
+    desc: 'Le concept de Nassim Taleb décrypté en 13 slides : imprévisibilité, biais cognitifs, Nvidia, résilience.',
     slides: 13,
     image: '/articles/img-cygne.png',
   },
@@ -214,7 +214,7 @@ const MOTION_CARDS = [
     format: 'Animation',
     title: 'Ce que les machines appellent comprendre',
     sub: 'IA et le langage',
-    desc: 'Tokenisation, espaces sémantiques, réseaux de neurones — comment les modèles de langage fonctionnent vraiment.',
+    desc: 'Tokenisation, espaces sémantiques, réseaux de neurones, comment les modèles de langage fonctionnent vraiment.',
     slides: 15,
     image: '/articles/img-ia-jamais.jpg',
   },
@@ -402,17 +402,17 @@ export default async function VisuelsPage() {
                 <h2 className={styles.trilogieTitle}>L&apos;Empire du dollar</h2>
                 <p className={styles.trilogieSub}>Bretton Woods · Pétrodollar · Sanctions · BRICS</p>
                 <p className={styles.trilogieDesc}>
-                  Comment une monnaie nationale est devenue l&apos;étalon de l&apos;économie mondiale —
-                  et pourquoi son règne pourrait finir.
+                  Comment une monnaie nationale est devenue l&apos;étalon de l&apos;économie mondiale.
+                  Et pourquoi son règne pourrait finir.
                 </p>
               </div>
             </div>
           </Reveal>
           <div className={styles.trilogieGrid}>
             {[
-              {slug:'dollar1',n:'I',title:'La naissance d\'un empire',desc:'De Bretton Woods au pétrodollar — comment le dollar a pris le trône de la livre sterling.',slides:8},
-              {slug:'dollar2',n:'II',title:'L\'arme financière',desc:'SWIFT, sanctions, gel d\'avoirs — le dollar comme instrument de puissance géopolitique.',slides:7},
-              {slug:'dollar3',n:'III',title:'Le crépuscule ?',desc:'Dédollarisation, BRICS, yuan — la fin du monopole absolu est-elle en marche ?',slides:7},
+              {slug:'dollar1',n:'I',title:'La naissance d\'un empire',desc:'De Bretton Woods au pétrodollar, comment le dollar a pris le trône de la livre sterling.',slides:8},
+              {slug:'dollar2',n:'II',title:'L\'arme financière',desc:'SWIFT, sanctions, gel d\'avoirs : le dollar comme instrument de puissance géopolitique.',slides:7},
+              {slug:'dollar3',n:'III',title:'Le crépuscule ?',desc:'Dédollarisation, BRICS, yuan : la fin du monopole absolu est-elle en marche ?',slides:7},
             ].map((item, i) => (
               <Reveal key={item.slug} delay={i * 120} className={styles.acteRevealWrap}>
                 <Link
@@ -473,7 +473,7 @@ export default async function VisuelsPage() {
           </div>
         </section>
 
-        {/* ═══ AD SLOT ATLAS — bandeau paysage fin de page ═══ */}
+        {/* ═══ AD SLOT ATLAS · bandeau paysage fin de page ═══ */}
         <AdSlot slotId="atlas" variant="banner" />
 
       </div>
