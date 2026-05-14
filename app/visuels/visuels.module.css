@@ -340,7 +340,7 @@
 ══════════════════════════════════════════════ */
 .datavizGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 .datavizCard {
@@ -388,6 +388,119 @@
   font-size: 10px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
   color: #C8A96E; margin-top: 8px;
+}
+
+/* ══════════════════════════════════════════════
+   DATAVIZ LEAD — première carte horizontale
+══════════════════════════════════════════════ */
+.datavizLead {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  text-decoration: none; color: inherit;
+  background: var(--papier);
+  border: 1px solid var(--bord);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  transition: border-color var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.datavizLead:hover {
+  border-color: rgba(196,162,101,0.35);
+  transform: translateY(-2px);
+}
+.datavizLeadImage {
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bord);
+  min-height: 320px;
+}
+.datavizLeadContent {
+  padding: 40px 44px;
+  display: flex; flex-direction: column;
+  gap: 10px; justify-content: center;
+}
+.datavizLeadTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 300; letter-spacing: -0.5px;
+  line-height: 1.15;
+  color: var(--encre);
+  margin: 6px 0 4px;
+}
+.datavizLeadDesc {
+  font-size: 14px; line-height: 1.7;
+  color: var(--gris-m);
+  margin-top: 6px;
+}
+.datavizLeadCta {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #C8A96E; margin-top: 16px;
+}
+
+/* ══════════════════════════════════════════════
+   MOTION LEAD — première carte horizontale
+══════════════════════════════════════════════ */
+.motionLead {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  text-decoration: none; color: inherit;
+  background: var(--bg);
+  border: 1px solid var(--bord);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  position: relative;
+  transition: background var(--dur-base) var(--ease-out);
+}
+.motionLead:hover { background: var(--papier); }
+.motionLeadAccent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px; z-index: 1;
+  transition: height var(--dur-fast) var(--ease-out);
+}
+.motionLead:hover .motionLeadAccent { height: 5px; }
+.motionLeadImage {
+  background-size: cover;
+  background-position: center;
+  background-color: #0c0f15;
+  position: relative;
+  min-height: 320px;
+}
+.motionLeadImage::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+.motionLeadContent {
+  padding: 40px 44px;
+  display: flex; flex-direction: column;
+  gap: 10px; justify-content: center;
+}
+.motionLeadTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 38px);
+  font-weight: 300; letter-spacing: -0.5px;
+  line-height: 1.15;
+  color: var(--encre);
+  margin: 6px 0 0;
+}
+.motionLeadSub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-style: italic;
+  color: var(--gris-m); line-height: 1.4;
+}
+.motionLeadDesc {
+  font-size: 14px; line-height: 1.7;
+  color: var(--gris-m); margin-top: 4px;
+}
+.motionLeadCta {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-top: 14px;
 }
 
 /* ══════════════════════════════════════════════
@@ -529,7 +642,7 @@
 ══════════════════════════════════════════════ */
 .motionGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px; background: var(--bord);
   border: 1px solid var(--bord); border-radius: 4px; overflow: hidden;
 }
@@ -623,6 +736,9 @@
   .leadContent { padding: 36px 32px 40px; }
   .atlasGrid { grid-template-columns: repeat(2, 1fr); column-gap: 32px; row-gap: 48px; }
   .datavizGrid { grid-template-columns: repeat(2, 1fr); }
+  .datavizLead, .motionLead { grid-template-columns: 1fr; }
+  .datavizLeadContent, .motionLeadContent { padding: 32px 28px 36px; }
+  .datavizLeadImage, .motionLeadImage { min-height: 240px; }
   .trilogieGrid, .motionGrid { grid-template-columns: 1fr; }
   .trilogieBannerInner { padding: 40px 32px 32px; }
 }

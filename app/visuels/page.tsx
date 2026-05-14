@@ -269,6 +269,44 @@ function AtlasGridCard({ card }: { card: AtlasCard }) {
   )
 }
 
+function DatavizLeadCard({ card }: { card: AtlasCard }) {
+  return (
+    <Link href={card.href} className={styles.datavizLead}>
+      <div className={styles.datavizLeadImage} style={{ backgroundImage: `url(${card.image})` }} aria-hidden="true" />
+      <div className={styles.datavizLeadContent}>
+        <div className={styles.datavizMeta}>
+          <span className={styles.datavizEyebrow} style={{ color: card.tagColor }}>{card.tag}</span>
+          <span className={styles.formatChip}>{card.format}</span>
+        </div>
+        <h3 className={styles.datavizLeadTitle}>{card.title}</h3>
+        <p className={styles.datavizLeadDesc}>{card.desc}</p>
+        <span className={styles.datavizLeadCta}>{card.cta} →</span>
+      </div>
+    </Link>
+  )
+}
+
+function MotionLeadCard({ item }: { item: typeof MOTION_CARDS[number] }) {
+  return (
+    <Link href={`/visuels/${item.slug}`} className={styles.motionLead}>
+      <div className={styles.motionLeadAccent} style={{background: item.color}} />
+      <div className={styles.motionLeadImage} style={{ backgroundImage: `url(${item.image})` }} aria-hidden="true" />
+      <div className={styles.motionLeadContent}>
+        <div className={styles.motionEyebrow}>
+          <span className={styles.motionCat} style={{color: item.color}}>{item.cat}</span>
+          <span className={styles.formatChip}>{item.format}</span>
+          <span className={styles.motionSlides}>{item.slides} slides</span>
+          <span className={styles.motionAvail}>Disponible</span>
+        </div>
+        <h3 className={styles.motionLeadTitle}>{item.title}</h3>
+        <p className={styles.motionLeadSub}>{item.sub}</p>
+        <p className={styles.motionLeadDesc}>{item.desc}</p>
+        <span className={styles.motionLeadCta} style={{color: item.color}}>Voir le motion →</span>
+      </div>
+    </Link>
+  )
+}
+
 function DatavizGridCard({ card }: { card: AtlasCard }) {
   return (
     <Link href={card.href} className={styles.datavizCard}>
@@ -369,9 +407,12 @@ export default async function VisuelsPage() {
               <p className={styles.sectionDesc}>Des chiffres mis en récit. Visualisations construites à partir de jeux de données vérifiés et publiquement disponibles.</p>
             </div>
           </Reveal>
+          <Reveal delay={80}>
+            <DatavizLeadCard card={DATAVIZ_CARDS[0]} />
+          </Reveal>
           <div className={styles.datavizGrid}>
-            {DATAVIZ_CARDS.map((card, i) => (
-              <Reveal key={card.href} delay={(i % 3) * 100} className={styles.datavizGridItem}>
+            {DATAVIZ_CARDS.slice(1).map((card, i) => (
+              <Reveal key={card.href} delay={(i % 2) * 100} className={styles.datavizGridItem}>
                 <DatavizGridCard card={card} />
               </Reveal>
             ))}
@@ -449,9 +490,12 @@ export default async function VisuelsPage() {
               <p className={styles.sectionDesc}>Des présentations animées en motion design. Pour décrypter les idées qui demandent une mise en scène plutôt qu'un paragraphe.</p>
             </div>
           </Reveal>
+          <Reveal delay={80}>
+            <MotionLeadCard item={MOTION_CARDS[0]} />
+          </Reveal>
           <div className={styles.motionGrid}>
-            {MOTION_CARDS.map((item, i) => (
-              <Reveal key={item.slug} delay={(i % 3) * 100} className={styles.motionRevealWrap}>
+            {MOTION_CARDS.slice(1).map((item, i) => (
+              <Reveal key={item.slug} delay={(i % 2) * 100} className={styles.motionRevealWrap}>
                 <Link href={`/visuels/${item.slug}`} className={styles.motionCard}>
                   <div className={styles.motionAccent} style={{background:item.color}}/>
                   <div className={styles.motionMedia} style={{backgroundImage: `url(${item.image})`}} aria-hidden="true" />
