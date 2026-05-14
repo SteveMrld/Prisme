@@ -106,6 +106,7 @@ OUTPUT — uniquement du JSON valide, rien avant ni après :
     console.error('Anthropic fetch failed:', isAbort ? 'timeout 50s' : err?.message)
     return NextResponse.json({
       error: isAbort ? 'Timeout — analyse trop longue' : 'Erreur réseau',
+      code: isAbort ? 'timeout' : 'network',
       quota: { used: peek.used, limit: peek.limit, remaining: peek.remaining },
       not_charged: true,
     }, { status: 504 })
@@ -115,14 +116,19 @@ OUTPUT — uniquement du JSON valide, rien avant ni après :
   const data = await response.json()
   if (!response.ok) {
     // Log-redact : on n'écrit pas la query ni le payload brut dans les logs Vercel
+    const errType = data?.error?.type ?? 'unknown'
     console.error('Anthropic API error', {
       status: response.status,
-      type: data?.error?.type ?? 'unknown',
+      type: errType,
       message: typeof data?.error?.message === 'string' ? data.error.message.slice(0, 200) : undefined,
     })
-    // Aucun quota débité — l'utilisateur peut réessayer sans pénalité
+    // Code applicatif pour diagnostic prod : model_not_found / rate_limit / api_error
+    const code = errType === 'not_found_error' ? 'model_not_found'
+               : errType === 'rate_limit_error' ? 'rate_limit'
+               : 'api_error'
     return NextResponse.json({
       error: `API error: ${response.status}`,
+      code,
       quota: { used: peek.used, limit: peek.limit, remaining: peek.remaining },
       not_charged: true,
     }, { status: 502 })
@@ -131,6 +137,10 @@ OUTPUT — uniquement du JSON valide, rien avant ni après :
   // 3. On vérifie que la réponse est PARSABLE avant de débiter.
   //    Si Anthropic a renvoyé du JSON coupé / invalide, on refuse côté serveur
   //    et on ne consomme pas le quota.
+  // On distingue stop_reason=max_tokens (réponse tronquée par budget) du
+  // simple parse fail : l'UX cliente s'adapte au cas (suggérer reformulation
+  // plus courte au lieu de "réessayez").
+  const stopReason: string | undefined = data?.stop_reason
   try {
     const text: string = data.content
       ?.filter((b: any) => b.type === 'text')
@@ -142,10 +152,14 @@ OUTPUT — uniquement du JSON valide, rien avant ni après :
       throw new Error('Empty results')
     }
   } catch (err: any) {
-    // Log-redact : message tronqué, pas de payload
-    console.error('Anthropic returned unparsable JSON:', err?.message?.slice(0, 120))
+    const truncated = stopReason === 'max_tokens'
+    console.error('Anthropic returned unparsable JSON:', {
+      msg: err?.message?.slice(0, 120),
+      stop_reason: stopReason,
+    })
     return NextResponse.json({
-      error: 'Analyse incomplète, rien consommé',
+      error: truncated ? 'Réponse trop longue, reformulez plus brièvement' : 'Analyse incomplète, rien consommé',
+      code: truncated ? 'response_too_long' : 'parse_error',
       quota: { used: peek.used, limit: peek.limit, remaining: peek.remaining },
       not_charged: true,
     }, { status: 502 })

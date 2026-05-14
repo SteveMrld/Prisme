@@ -285,7 +285,9 @@ export default function RecoupementClient() {
       if (!response.ok) {
         const data = await response.json().catch(() => ({}))
         if (data.quota) setQuota(q => q ? { ...q, ...data.quota } : null)
-        setError('retry_free')
+        // Si le serveur a remonté un code applicatif, on peut adapter le message.
+        // response_too_long → on dit explicitement à l'utilisateur de raccourcir.
+        setError(data.code === 'response_too_long' ? 'too_long' : 'retry_free')
         return
       }
 
@@ -303,13 +305,31 @@ export default function RecoupementClient() {
       const clean = text.replace(/```json|```/g, '').trim()
       const parsed = JSON.parse(clean)
 
+      // Normalise contradictions : le modèle peut dévier vers
+      // [{point, tension, sources}] au lieu de string[]. On aplatit en string.
+      const normalizeBullet = (v: any): string => {
+        if (typeof v === 'string') return v
+        if (v && typeof v === 'object') {
+          if (typeof v.point === 'string' && typeof v.tension === 'string') return `${v.point} : ${v.tension}`
+          if (typeof v.point === 'string') return v.point
+          if (typeof v.tension === 'string') return v.tension
+          if (typeof v.text === 'string') return v.text
+        }
+        return ''
+      }
+      const contradictions = (parsed.contradictions || []).map(normalizeBullet).filter(Boolean)
+      const consensus = (parsed.consensus || []).map(normalizeBullet).filter(Boolean)
+      const missing_sources = (parsed.missing_sources || []).map(normalizeBullet).filter(Boolean)
+
+      // Filtre les results dont le sourceId ne matche aucune source curée.
+      // Évite les cartes vides ou avec des libellés inventés ("NPR / Dr X & Dr Y…").
       const results: SourceResult[] = (parsed.results || []).map((r: any) => {
         r.position = stripTags(r.position)
         r.details = stripTags(r.details)
         const source = SOURCES.find(s => s.id === r.sourceId)
           || SOURCES.find(s => r.sourceId?.toLowerCase().includes(s.id.toLowerCase()))
           || SOURCES.find(s => s.name.toLowerCase().includes((r.sourceId || '').toLowerCase().split('_')[0]))
-          || { id: r.sourceId, name: r.sourceId || '??', type: '', bias: '', abbr: (r.sourceId || '??').slice(0, 2).toUpperCase(), niveau: 'verifie' }
+        if (!source) return null
         return {
           source,
           position: r.position,
@@ -318,15 +338,15 @@ export default function RecoupementClient() {
           url: isValidHttpUrl(r.url) ? r.url : undefined,
           published_date: typeof r.published_date === 'string' && r.published_date.trim() ? r.published_date.trim() : undefined,
         }
-      }).filter((r: any) => r.position)
+      }).filter((r: any): r is SourceResult => !!r && !!r.position)
 
       const finalAnalysis: Analysis = {
         topic: parsed.topic || searchQuery,
-        consensus: parsed.consensus || [],
-        contradictions: parsed.contradictions || [],
+        consensus,
+        contradictions,
         synthesis: parsed.synthesis || '',
         coverage_index: parsed.coverage_index || 0,
-        missing_sources: parsed.missing_sources || [],
+        missing_sources,
         historical_context: parsed.historical_context || '',
         results,
         date: new Date().toLocaleString('fr-FR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }),
@@ -632,6 +652,20 @@ export default function RecoupementClient() {
             </p>
             <button className={styles.retryBtn} onClick={() => { setError(''); handleSearch() }}>
               Relancer l'analyse →
+            </button>
+          </div>
+        )}
+
+        {error === 'too_long' && (
+          <div className={styles.retryBlock}>
+            <div className={styles.retryTitle}>Sujet trop large pour une seule analyse</div>
+            <p className={styles.retryText}>
+              La réponse dépassait le format prévu. <strong>Aucun crédit n'a été consommé.</strong>
+              {' '}Reformulez en ciblant un angle précis : un événement daté, une décision, un chiffre,
+              {' '}plutôt qu'une question ouverte.
+            </p>
+            <button className={styles.retryBtn} onClick={() => { setError(''); setQuery(''); inputRef.current?.focus() }}>
+              Reformuler →
             </button>
           </div>
         )}
