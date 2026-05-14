@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice">
+  <rect width="1080" height="1920" fill="#FAF8F3"/>
+
+  <rect x="0" y="0" width="1080" height="80" fill="#FAF8F3"/>
+  <text x="80" y="55" font-family="Georgia, serif" font-size="32" fill="#1A1A1A">9:41</text>
+
+  <text x="540" y="150" font-family="Georgia, serif" font-size="38" font-weight="400" fill="#1A1A1A" text-anchor="middle">So<tspan font-style="italic" fill="#C4A265">ara</tspan></text>
+  <line x1="0" y1="180" x2="1080" y2="180" stroke="#1A1A1A" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- Titre rubrique -->
+  <text x="540" y="290" font-family="Georgia, serif" font-size="72" font-weight="400" fill="#1A1A1A" text-anchor="middle">Atlas</text>
+  <text x="540" y="350" font-family="Georgia, serif" font-size="26" font-style="italic" fill="#666" text-anchor="middle">Voir, par les images, ce que les mots peinent à dire.</text>
+  <line x1="440" y1="390" x2="640" y2="390" stroke="#C4A265" stroke-width="1"/>
+
+  <!-- Grid 2x3 visuels -->
+  <defs>
+    <linearGradient id="tile1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2A3A4A"/>
+      <stop offset="100%" stop-color="#0A1520"/>
+    </linearGradient>
+    <linearGradient id="tile2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3A2A1A"/>
+      <stop offset="100%" stop-color="#1A1006"/>
+    </linearGradient>
+    <linearGradient id="tile3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A2A2A"/>
+      <stop offset="100%" stop-color="#0A1A1A"/>
+    </linearGradient>
+    <linearGradient id="tile4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3A1A2A"/>
+      <stop offset="100%" stop-color="#1A050F"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Tile 1 -->
+  <rect x="80" y="450" width="440" height="440" fill="url(#tile1)"/>
+  <circle cx="300" cy="650" r="80" fill="none" stroke="#C4A265" stroke-width="0.8" opacity="0.7"/>
+  <circle cx="300" cy="650" r="130" fill="none" stroke="#C4A265" stroke-width="0.5" opacity="0.4"/>
+  <text x="100" y="860" font-family="Georgia, serif" font-size="22" fill="#C4A265" letter-spacing="2">RECOUPEMENT</text>
+
+  <!-- Tile 2 -->
+  <rect x="560" y="450" width="440" height="440" fill="url(#tile2)"/>
+  <rect x="600" y="500" width="360" height="320" fill="none" stroke="#C4A265" stroke-width="0.6" opacity="0.5"/>
+  <line x1="600" y1="660" x2="960" y2="660" stroke="#C4A265" stroke-width="0.4" opacity="0.4"/>
+  <line x1="780" y1="500" x2="780" y2="820" stroke="#C4A265" stroke-width="0.4" opacity="0.4"/>
+  <text x="580" y="860" font-family="Georgia, serif" font-size="22" fill="#C4A265" letter-spacing="2">SIGNAL GLOBE</text>
+
+  <!-- Tile 3 -->
+  <rect x="80" y="920" width="440" height="440" fill="url(#tile3)"/>
+  <path d="M 130 1280 L 200 1180 L 270 1230 L 340 1100 L 410 1170 L 480 1080" fill="none" stroke="#C4A265" stroke-width="2" opacity="0.7"/>
+  <text x="100" y="1330" font-family="Georgia, serif" font-size="22" fill="#C4A265" letter-spacing="2">INDICATEURS</text>
+
+  <!-- Tile 4 -->
+  <rect x="560" y="920" width="440" height="440" fill="url(#tile4)"/>
+  <polygon points="780,1000 880,1180 780,1280 680,1180" fill="none" stroke="#C4A265" stroke-width="1" opacity="0.6"/>
+  <polygon points="780,1060 840,1180 780,1220 720,1180" fill="#C4A265" opacity="0.2"/>
+  <text x="580" y="1330" font-family="Georgia, serif" font-size="22" fill="#C4A265" letter-spacing="2">FRAGMENTS</text>
+
+  <!-- Tagline bottom -->
+  <text x="540" y="1530" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#666" text-anchor="middle">Six visuels par mois, six manières</text>
+  <text x="540" y="1565" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#666" text-anchor="middle">de lire le monde différemment.</text>
+
+  <line x1="0" y1="1760" x2="1080" y2="1760" stroke="#1A1A1A" stroke-width="0.5" opacity="0.2"/>
+  <text x="135" y="1830" font-family="Georgia, serif" font-size="22" fill="#666" text-anchor="middle">Accueil</text>
+  <text x="405" y="1830" font-family="Georgia, serif" font-size="22" fill="#1A1A1A" text-anchor="middle">Atlas</text>
+  <text x="675" y="1830" font-family="Georgia, serif" font-size="22" fill="#666" text-anchor="middle">Recoupe</text>
+  <text x="945" y="1830" font-family="Georgia, serif" font-size="22" fill="#666" text-anchor="middle">Indicateurs</text>
+</svg>

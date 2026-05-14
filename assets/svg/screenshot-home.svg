@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid slice">
+  <rect width="1080" height="1920" fill="#FAF8F3"/>
+
+  <!-- Status bar simulation -->
+  <rect x="0" y="0" width="1080" height="80" fill="#FAF8F3"/>
+  <text x="80" y="55" font-family="Georgia, serif" font-size="32" fill="#1A1A1A">9:41</text>
+
+  <!-- Masthead -->
+  <text x="540" y="200" font-family="Georgia, serif" font-size="76" font-weight="400" fill="#1A1A1A" text-anchor="middle">So<tspan font-style="italic" fill="#C4A265">ara</tspan></text>
+  <text x="540" y="240" font-family="Georgia, serif" font-size="22" font-style="italic" fill="#666" text-anchor="middle" letter-spacing="2">Voir autrement</text>
+  <line x1="440" y1="270" x2="640" y2="270" stroke="#C4A265" stroke-width="1" opacity="0.5"/>
+
+  <!-- Section label -->
+  <text x="80" y="360" font-family="Georgia, serif" font-size="20" fill="#666" letter-spacing="3">À LA UNE</text>
+  <line x1="80" y1="380" x2="1000" y2="380" stroke="#1A1A1A" stroke-width="1"/>
+
+  <!-- Hero article -->
+  <rect x="80" y="420" width="920" height="540" fill="#1A1A1A" opacity="0.85"/>
+  <rect x="80" y="420" width="920" height="540" fill="url(#grad1)"/>
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2A2A2A"/>
+      <stop offset="100%" stop-color="#1A1A1A"/>
+    </linearGradient>
+  </defs>
+  <text x="120" y="560" font-family="Georgia, serif" font-size="24" fill="#C4A265" letter-spacing="2">GÉOPOLITIQUE</text>
+  <text x="120" y="660" font-family="Georgia, serif" font-size="56" font-weight="400" fill="#FAF8F3">L'Afrique en orbite</text>
+  <text x="120" y="720" font-family="Georgia, serif" font-size="56" font-weight="400" fill="#FAF8F3">d'un nouveau monde</text>
+  <text x="120" y="810" font-family="Georgia, serif" font-size="28" font-style="italic" fill="#ECE7DD">Cinquante ans après les indépendances,</text>
+  <text x="120" y="850" font-family="Georgia, serif" font-size="28" font-style="italic" fill="#ECE7DD">le continent redessine ses alliances.</text>
+  <text x="120" y="920" font-family="Georgia, serif" font-size="22" fill="#C4A265" letter-spacing="2">LECTURE 18 MIN</text>
+
+  <!-- Article 2 -->
+  <text x="80" y="1060" font-family="Georgia, serif" font-size="20" fill="#C4A265" letter-spacing="2">ÉCONOMIE</text>
+  <text x="80" y="1130" font-family="Georgia, serif" font-size="42" font-weight="400" fill="#1A1A1A">La dette souveraine</text>
+  <text x="80" y="1180" font-family="Georgia, serif" font-size="42" font-weight="400" fill="#1A1A1A">à l'épreuve du Sud</text>
+  <text x="80" y="1240" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#4A4A4A">Quand les créanciers chinois changent</text>
+  <text x="80" y="1275" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#4A4A4A">les règles du jeu financier.</text>
+  <line x1="80" y1="1320" x2="1000" y2="1320" stroke="#1A1A1A" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Article 3 -->
+  <text x="80" y="1400" font-family="Georgia, serif" font-size="20" fill="#C4A265" letter-spacing="2">TECHNOLOGIE</text>
+  <text x="80" y="1470" font-family="Georgia, serif" font-size="42" font-weight="400" fill="#1A1A1A">Dark factories</text>
+  <text x="80" y="1530" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#4A4A4A">Quand les usines ferment les lumières,</text>
+  <text x="80" y="1565" font-family="Georgia, serif" font-size="24" font-style="italic" fill="#4A4A4A">la chaîne logistique change de nature.</text>
+
+  <!-- Bottom nav -->
+  <line x1="0" y1="1760" x2="1080" y2="1760" stroke="#1A1A1A" stroke-width="0.5" opacity="0.2"/>
+  <text x="135" y="1830" font-family="Georgia, serif" font-size="22" fill="#1A1A1A" text-anchor="middle">Accueil</text>
+  <text x="405" y="1830" font-family="Georgia, serif" font-size="22" fill="#666" text-anchor="middle">Atlas</text>
+  <text x="675" y="1830" font-family="Georgia, serif" font-size="22" fill="#666" text-anchor="middle">Recoupe</text>
+  <text x="945" y="1830" font-family="Georgia, serif" font-size="22" fill="#666" text-anchor="middle">Indicateurs</text>
+</svg>

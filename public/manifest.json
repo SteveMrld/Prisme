@@ -30,5 +30,57 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Recoupement",
+      "short_name": "Recoupement",
+      "description": "Croiser les sources pour démêler l'actualité.",
+      "url": "/recoupement",
+      "icons": [
+        { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }
+      ]
+    },
+    {
+      "name": "Atlas",
+      "short_name": "Atlas",
+      "description": "Lire le monde par les images, six visuels par mois.",
+      "url": "/visuels",
+      "icons": [
+        { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }
+      ]
+    },
+    {
+      "name": "Indicateurs",
+      "short_name": "Indicateurs",
+      "description": "Les chiffres qui comptent, regardés autrement.",
+      "url": "/indicateurs",
+      "icons": [
+        { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Accueil Soara, à la une"
+    },
+    {
+      "src": "/screenshot-article.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Article Soara, lecture éditoriale"
+    },
+    {
+      "src": "/screenshot-atlas.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Atlas Soara, lire par les images"
+    }
   ]
 }
