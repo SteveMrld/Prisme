@@ -1,11 +1,43 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import articlesData from '../lib/articles.json'
+import visuels from '../lib/visuels'
 import { createClient } from '../lib/supabase'
 import styles from './Header.module.css'
+
+const RECENT_KEY = 'soara_recent_searches'
+const RECENT_MAX = 5
+
+type SearchHit = {
+  href: string
+  title: string
+  description: string
+  category: string
+}
+type SearchBuckets = { articles: SearchHit[]; grandsFormats: SearchHit[]; atlas: SearchHit[] }
+
+const stripTags = (s: string) => (s || '').replace(/<[^>]+>/g, '')
+
+function Highlight({ text, query }: { text: string; query: string }) {
+  const safe = stripTags(text)
+  const q = query.trim()
+  if (!q) return <>{safe}</>
+  const lower = safe.toLowerCase()
+  const qLower = q.toLowerCase()
+  const parts: React.ReactNode[] = []
+  let cursor = 0
+  while (cursor < safe.length) {
+    const idx = lower.indexOf(qLower, cursor)
+    if (idx === -1) { parts.push(safe.slice(cursor)); break }
+    if (idx > cursor) parts.push(safe.slice(cursor, idx))
+    parts.push(<strong key={idx}>{safe.slice(idx, idx + q.length)}</strong>)
+    cursor = idx + q.length
+  }
+  return <>{parts}</>
+}
 
 const rubriques = [
   { label: 'Géopolitique', href: '/geo' },
@@ -51,12 +83,36 @@ export default function Header({ activeNav }: { activeNav?: string }) {
   const [user, setUser] = useState<any>(undefined)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<any[]>([])
+  const [searchResults, setSearchResults] = useState<SearchBuckets>({ articles: [], grandsFormats: [], atlas: [] })
+  const [recentSearches, setRecentSearches] = useState<string[]>([])
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobilePanelOpen, setMobilePanelOpen] = useState(false)
   const router = useRouter()
   const inputRef = useRef<HTMLInputElement>(null)
   const supabase = createClient()
+
+  // Index plat pre-calcule au mount, pour ne pas re-mapper a chaque keystroke
+  const searchIndex = useMemo<SearchBuckets>(() => {
+    const articles: SearchHit[] = []
+    const grandsFormats: SearchHit[] = []
+    for (const a of (articlesData as any[])) {
+      const hit: SearchHit = {
+        href: a.grandFormat ? `/grands-formats/${a.slug}` : `/articles/${a.slug}`,
+        title: a.title || '',
+        description: a.description || '',
+        category: a.categoryLabel || a.category || '',
+      }
+      if (a.grandFormat) grandsFormats.push(hit)
+      else articles.push(hit)
+    }
+    const atlas: SearchHit[] = visuels.map(v => ({
+      href: v.href,
+      title: v.title,
+      description: v.description,
+      category: v.eyebrow,
+    }))
+    return { articles, grandsFormats, atlas }
+  }, [])
 
   useEffect(() => {
     const d = new Date()
@@ -68,22 +124,97 @@ export default function Header({ activeNav }: { activeNav?: string }) {
     return () => subscription.unsubscribe()
   }, [])
 
-  // Fermer menu sur Escape
+  // Charge les recherches recentes au mount (cote client uniquement)
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') { setMenuOpen(false); setSearchOpen(false) } }
+    try {
+      const raw = localStorage.getItem(RECENT_KEY)
+      if (raw) {
+        const parsed = JSON.parse(raw)
+        if (Array.isArray(parsed)) setRecentSearches(parsed.filter(s => typeof s === 'string').slice(0, RECENT_MAX))
+      }
+    } catch {}
+  }, [])
+
+  // Echap : ferme menus + blur input. "/" : ouvre search et focus, sauf si
+  // l'utilisateur tape deja dans un input / textarea / contenteditable.
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        setSearchOpen(false)
+        inputRef.current?.blur()
+        return
+      }
+      if (e.key === '/') {
+        const t = e.target as HTMLElement | null
+        const tag = t?.tagName
+        const isField = tag === 'INPUT' || tag === 'TEXTAREA' || (t?.isContentEditable ?? false)
+        if (isField) return
+        e.preventDefault()
+        setSearchOpen(true)
+        setTimeout(() => inputRef.current?.focus(), 50)
+      }
+    }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
+  const matchesQuery = (hit: SearchHit, q: string) => {
+    const needle = q.toLowerCase()
+    return (
+      hit.title.toLowerCase().includes(needle) ||
+      hit.description.toLowerCase().includes(needle) ||
+      hit.category.toLowerCase().includes(needle)
+    )
+  }
+
   const handleSearch = (q: string) => {
     setSearchQuery(q)
-    if (q.trim().length < 2) { setSearchResults([]); return }
-    const results = (articlesData as any[]).filter(a =>
-      a.title.toLowerCase().includes(q.toLowerCase()) ||
-      a.description?.toLowerCase().includes(q.toLowerCase()) ||
-      a.author?.toLowerCase().includes(q.toLowerCase())
-    ).slice(0, 6)
-    setSearchResults(results)
+    if (q.trim().length < 2) {
+      setSearchResults({ articles: [], grandsFormats: [], atlas: [] })
+      return
+    }
+    setSearchResults({
+      articles: searchIndex.articles.filter(h => matchesQuery(h, q)).slice(0, 5),
+      grandsFormats: searchIndex.grandsFormats.filter(h => matchesQuery(h, q)).slice(0, 4),
+      atlas: searchIndex.atlas.filter(h => matchesQuery(h, q)).slice(0, 4),
+    })
+  }
+
+  const totalResults = searchResults.articles.length + searchResults.grandsFormats.length + searchResults.atlas.length
+
+  const firstResultHref = (): string | null => {
+    return (
+      searchResults.articles[0]?.href ||
+      searchResults.grandsFormats[0]?.href ||
+      searchResults.atlas[0]?.href ||
+      null
+    )
+  }
+
+  const pushRecent = (q: string) => {
+    const trimmed = q.trim()
+    if (trimmed.length < 2) return
+    const updated = [trimmed, ...recentSearches.filter(r => r.toLowerCase() !== trimmed.toLowerCase())].slice(0, RECENT_MAX)
+    setRecentSearches(updated)
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(updated)) } catch {}
+  }
+
+  const clearRecent = () => {
+    setRecentSearches([])
+    try { localStorage.removeItem(RECENT_KEY) } catch {}
+  }
+
+  const submitRecent = (q: string) => {
+    setSearchQuery(q)
+    handleSearch(q)
+    pushRecent(q)
+    inputRef.current?.focus()
+  }
+
+  const closeSearch = () => {
+    setSearchOpen(false)
+    setSearchResults({ articles: [], grandsFormats: [], atlas: [] })
   }
 
   return (
@@ -191,28 +322,120 @@ export default function Header({ activeNav }: { activeNav?: string }) {
               value={searchQuery}
               onChange={e => handleSearch(e.target.value)}
               onKeyDown={e => {
-                if (e.key === 'Escape') { setSearchOpen(false); setSearchResults([]) }
-                if (e.key === 'Enter' && searchResults.length > 0) {
-                  router.push('/articles/' + searchResults[0].slug)
-                  setSearchOpen(false)
+                if (e.key === 'Enter') {
+                  const target = firstResultHref()
+                  if (target) {
+                    pushRecent(searchQuery)
+                    router.push(target)
+                    closeSearch()
+                  }
                 }
               }}
             />
-            <button className={styles.searchClose} onClick={() => { setSearchOpen(false); setSearchResults([]) }}>✕</button>
+            {!searchQuery && <span className={styles.searchHint} aria-hidden>esc</span>}
+            <button className={styles.searchClose} onClick={closeSearch} aria-label="Fermer">✕</button>
           </div>
-          {searchResults.length > 0 && (
-            <div className={styles.searchResults}>
-              {searchResults.map((a: any) => (
-                <Link key={a.slug} href={'/articles/' + a.slug}
-                  className={styles.searchResultItem}
-                  onClick={() => { setSearchOpen(false); setSearchResults([]) }}>
-                  <span className={styles.searchResultCat}>{a.category}</span>
-                  <span className={styles.searchResultTitle} dangerouslySetInnerHTML={{ __html: a.title }} />
-                </Link>
+
+          {/* Recherches recentes : visibles uniquement quand la query est vide */}
+          {searchQuery.trim().length < 2 && recentSearches.length > 0 && (
+            <div className={styles.searchRecent}>
+              <div className={styles.searchRecentHead}>
+                <span className={styles.searchRecentLabel}>Recherches récentes</span>
+                <button className={styles.searchRecentClear} onClick={clearRecent}>Effacer</button>
+              </div>
+              {recentSearches.map(q => (
+                <button key={q} className={styles.searchRecentItem} onClick={() => submitRecent(q)}>
+                  <span>{q}</span>
+                  <span className={styles.searchRecentArrow}>↗</span>
+                </button>
               ))}
             </div>
           )}
-          {searchQuery.length >= 2 && searchResults.length === 0 && (
+
+          {/* Resultats categorises */}
+          {totalResults > 0 && (
+            <>
+              {searchResults.articles.length > 0 && (
+                <div className={styles.searchSection}>
+                  <div className={styles.searchSectionLabel}>
+                    <span>Articles</span>
+                    <span className={styles.searchSectionCount}>{searchResults.articles.length}</span>
+                  </div>
+                  {searchResults.articles.map(hit => (
+                    <Link key={hit.href} href={hit.href}
+                      className={styles.searchResultItem}
+                      onClick={() => { pushRecent(searchQuery); closeSearch() }}>
+                      <span className={styles.searchResultCat}>{hit.category}</span>
+                      <span>
+                        <span className={styles.searchResultTitle}>
+                          <Highlight text={hit.title} query={searchQuery} />
+                        </span>
+                        {hit.description && (
+                          <span className={styles.searchResultDesc}>
+                            <Highlight text={hit.description} query={searchQuery} />
+                          </span>
+                        )}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {searchResults.grandsFormats.length > 0 && (
+                <div className={styles.searchSection}>
+                  <div className={styles.searchSectionLabel}>
+                    <span>Grands formats</span>
+                    <span className={styles.searchSectionCount}>{searchResults.grandsFormats.length}</span>
+                  </div>
+                  {searchResults.grandsFormats.map(hit => (
+                    <Link key={hit.href} href={hit.href}
+                      className={styles.searchResultItem}
+                      onClick={() => { pushRecent(searchQuery); closeSearch() }}>
+                      <span className={styles.searchResultCat}>{hit.category}</span>
+                      <span>
+                        <span className={styles.searchResultTitle}>
+                          <Highlight text={hit.title} query={searchQuery} />
+                        </span>
+                        {hit.description && (
+                          <span className={styles.searchResultDesc}>
+                            <Highlight text={hit.description} query={searchQuery} />
+                          </span>
+                        )}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {searchResults.atlas.length > 0 && (
+                <div className={styles.searchSection}>
+                  <div className={styles.searchSectionLabel}>
+                    <span>Atlas</span>
+                    <span className={styles.searchSectionCount}>{searchResults.atlas.length}</span>
+                  </div>
+                  {searchResults.atlas.map(hit => (
+                    <Link key={hit.href} href={hit.href}
+                      className={styles.searchResultItem}
+                      onClick={() => { pushRecent(searchQuery); closeSearch() }}>
+                      <span className={styles.searchResultCat}>{hit.category}</span>
+                      <span>
+                        <span className={styles.searchResultTitle}>
+                          <Highlight text={hit.title} query={searchQuery} />
+                        </span>
+                        {hit.description && (
+                          <span className={styles.searchResultDesc}>
+                            <Highlight text={hit.description} query={searchQuery} />
+                          </span>
+                        )}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+
+          {searchQuery.length >= 2 && totalResults === 0 && (
             <div className={styles.searchEmpty}>Aucun résultat pour « {searchQuery} »</div>
           )}
         </div>

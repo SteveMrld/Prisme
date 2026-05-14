@@ -416,6 +416,109 @@
   font-style: italic;
 }
 
+/* ── Dropdown categorise ─────────────────────────── */
+.searchSection {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--bord);
+}
+.searchSectionLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  padding: 14px 20px 8px;
+  background: var(--fond);
+}
+.searchSectionCount {
+  color: var(--gris-l);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.searchResultTitle strong,
+.searchResultTitle b {
+  font-weight: 700;
+  color: var(--encre);
+}
+.searchResultDesc {
+  font-family: 'Source Serif Pro', 'Source Serif 4', Georgia, serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--gris-l);
+  margin-top: 3px;
+}
+.searchResultDesc strong { font-weight: 700; color: var(--encre); }
+
+/* ── Recent searches ─────────────────────────────── */
+.searchRecent {
+  border-top: 1px solid var(--bord);
+}
+.searchRecentHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 8px;
+}
+.searchRecentLabel {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+}
+.searchRecentClear {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.searchRecentClear:hover { color: var(--encre); }
+.searchRecentItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  font-family: 'Source Serif Pro', 'Source Serif 4', Georgia, serif;
+  font-size: 13px;
+  color: var(--encre);
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.searchRecentItem:hover { background: var(--papier, #F5F3EF); }
+.searchRecentArrow {
+  color: var(--gris-l);
+  font-size: 11px;
+  margin-left: auto;
+}
+
+/* ── Hint "/" pour focus shortcut ────────────────── */
+.searchHint {
+  margin-left: auto;
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--gris-l);
+  padding: 2px 6px;
+  border: 1px solid var(--bord);
+  border-radius: 2px;
+}
+
 /* ═══════════════════════════════════
    DESKTOP HEADER — mega-menu
    masqué sur mobile
