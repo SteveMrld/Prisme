@@ -69,28 +69,41 @@ export async function POST(req: NextRequest) {
 
 Sur un fait d'actualité donné, tu croises les positions de sources variées pour identifier consensus et divergences.
 
-SOURCES DISPONIBLES — utilise l'id EXACT comme "sourceId" :
+SOURCES DISPONIBLES, utilise l'id EXACT (premier champ) comme "sourceId" :
 ${formatSourcesForPrompt(SOURCES)}
 
 MÉTHODE :
-1. Identifie 8 à 12 sources pertinentes pour le sujet (ne cherche PAS les ${SOURCES.length} systématiquement).
-2. Fais 6 à 10 recherches web ciblées, pas plus.
+1. Identifie 7 à 9 sources pertinentes pour le sujet (ne cherche PAS les ${SOURCES.length} systématiquement).
+2. Fais 4 à 7 recherches web ciblées, pas plus. Privilégie les requêtes précises (nom, date, événement) plutôt que générales.
 3. Pour chaque source trouvée, extrais sa position en français.
-4. Vise 6 sources minimum dans "results". Si une source n'a pas traité le sujet, ne l'inclus pas.
-5. N'invente jamais une position — si indication vague, confidence "faible".
-6. Pour chaque source, fournis l'URL exacte de l'article web_search trouvé dans "url" (https:// requis, pas de redirection) et la date de publication dans "published_date" au format ISO YYYY-MM-DD. Si l'un des deux n'est pas disponible avec certitude, OMETS simplement le champ — ne mets jamais une valeur incertaine ou inventée.
+4. "results" doit contenir entre 6 et 8 sources. Si tu en as plus, garde les 8 les plus pertinentes. Si une source n'a pas traité le sujet, ne l'inclus pas.
+5. Le "sourceId" doit OBLIGATOIREMENT être l'un des ids exacts ci-dessus. N'invente jamais d'id. Si une source pertinente n'est pas dans la liste, omets-la.
+6. N'invente jamais une position. Si indication vague, confidence "faible".
+7. Pour chaque source, fournis l'URL exacte de l'article web_search trouvé dans "url" (https:// requis, pas de redirection) et la date de publication dans "published_date" au format ISO YYYY-MM-DD. Si l'un des deux n'est pas disponible avec certitude, OMETS simplement le champ. Ne mets jamais une valeur incertaine ou inventée.
 
-OUTPUT — uniquement du JSON valide, rien avant ni après :
+CONTRAINTES STRICTES DE LONGUEUR (un dépassement casse l'affichage) :
+- "topic" : 5 à 10 mots
+- "synthesis" : 2 à 3 phrases, 60 mots maximum
+- "historical_context" : 1 à 2 phrases, 40 mots maximum
+- "consensus" et "contradictions" : 2 ou 3 éléments chacun, CHAQUE élément est une STRING simple de 25 mots maximum (pas d'objet, pas de tableau imbriqué)
+- "missing_sources" : maximum 3 ids de sources curées
+- "position" par source : 20 mots maximum
+- "details" par source : 60 mots maximum
+
+FORMAT DE SORTIE :
+Tu réponds UNIQUEMENT par un objet JSON valide. Aucun texte avant. Aucun texte après. Aucune balise \`\`\`json. Aucun préambule du type "Voici le JSON". Ta réponse commence par { et finit par }.
+
+Schéma exact :
 {
-  "topic": "résumé en 5-10 mots",
-  "consensus": ["2-3 points de consensus"],
-  "contradictions": ["2-3 divergences notables"],
-  "synthesis": "2-3 phrases neutres et factuelles",
-  "coverage_index": 0-100,
-  "missing_sources": ["max 3 sources qui n'ont visiblement pas couvert"],
-  "historical_context": "1-2 phrases sur la couverture il y a 3-6 mois",
+  "topic": "string",
+  "consensus": ["string", "string"],
+  "contradictions": ["string", "string"],
+  "synthesis": "string",
+  "coverage_index": 0,
+  "missing_sources": ["string"],
+  "historical_context": "string",
   "results": [
-    {"sourceId": "id exact", "position": "position (<20 mots)", "confidence": "haute|moyenne|faible", "details": "détails (<80 mots)", "url": "https://... (optionnel)", "published_date": "YYYY-MM-DD (optionnel)"}
+    {"sourceId": "string", "position": "string", "confidence": "haute", "details": "string", "url": "https://...", "published_date": "2024-01-15"}
   ]
 }`,
         }],
