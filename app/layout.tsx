@@ -76,6 +76,14 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    title: 'Soara',
+    statusBarStyle: 'black-translucent',
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
+  },
   robots: {
     index: true,
     follow: true,
