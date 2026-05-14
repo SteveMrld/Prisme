@@ -86,7 +86,7 @@ const ZONE1_ALSO_READ = [art('eau'), art('lecture'), art('france_maritime')]
 // visualisations, pas des articles : aucun impact sur le décompte des doublons.
 const ZONE1_ATLAS = [
   {
-    href: '/visuels/predateurs',
+    href: '/articles/predateurs',
     tag: 'Géopolitique',
     title: 'Le monde des prédateurs',
     image: '/articles/atlas/10_le-monde-des-predateurs.jpg',
