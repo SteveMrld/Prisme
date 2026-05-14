@@ -8,6 +8,7 @@ import BottomNav from '../components/BottomNav'
 import Footer from '../components/Footer'
 import PWARegister from '../components/PWARegister'
 import ArticleLinkPreview from '../components/ArticleLinkPreview'
+import PageTransition from '../components/PageTransition'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -95,7 +96,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={sourceSerif.variable}>
       <body>
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
         <BottomNav />
         <PWARegister />
