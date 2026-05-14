@@ -4,7 +4,7 @@
 // - Les pages HTML et l'API NE SONT PAS cachées (pour garantir la fraîcheur)
 // - Les images sont cachées avec stratégie "network first, fallback cache"
 
-const CACHE_VERSION = 'soara-v1'
+const CACHE_VERSION = 'soara-v2'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 
 // Assets à précharger immédiatement à l'installation du SW
@@ -16,6 +16,7 @@ const STATIC_ASSETS = [
   '/icon-192.png',
   '/icon-512.png',
   '/apple-touch-icon.png',
+  '/offline.html',
 ]
 
 // Installation : on précharge les assets critiques
@@ -50,8 +51,15 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
-  // Pages HTML : network-only (pas de cache, fraîcheur prioritaire)
+  // Pages HTML : network-first, fallback /offline.html en cas de coupure
   if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(request).catch(() =>
+        caches.match('/offline.html').then((cached) =>
+          cached || new Response('Hors reseau', { status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } })
+        )
+      )
+    )
     return
   }
 
