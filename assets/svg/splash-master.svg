@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2732" preserveAspectRatio="xMidYMid slice">
+  <!-- Fond papier crème (background_color manifest) -->
+  <rect width="2048" height="2732" fill="#FAF8F3"/>
+  <!-- Logo "Soara" centre horizontalement, a 30% de la hauteur depuis le haut
+       = y baseline approx 30% * 2732 = 820. On positionne le baseline a 850
+       pour que le glyph soit visuellement aux 30% souhaites. -->
+  <text x="1024" y="850"
+        font-family="Georgia, 'Playfair Display', serif"
+        font-size="220"
+        font-weight="400"
+        fill="#1A1A1A"
+        text-anchor="middle">So<tspan font-style="italic" fill="#C4A265">ara</tspan></text>
+  <!-- Filet doré discret sous le logo -->
+  <rect x="924" y="900" width="200" height="2" fill="#C4A265" opacity="0.5"/>
+  <!-- Tagline éditoriale -->
+  <text x="1024" y="970"
+        font-family="Georgia, 'Playfair Display', serif"
+        font-size="42"
+        font-style="italic"
+        fill="#666"
+        text-anchor="middle">Voir autrement</text>
+</svg>
