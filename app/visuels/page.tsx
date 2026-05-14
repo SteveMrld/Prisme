@@ -102,8 +102,8 @@ const ATLAS_CARDS: AtlasCard[] = [
     sub: "États-Unis · Russie · Chine · zones d'influence",
     desc: "Trois empires, trois doctrines d'expansion. Le retour assumé des sphères d'influence.",
     cta: 'Explorer la carte',
-    image: '/articles/atlas/10_le-monde-des-predateurs.jpg',
-    alt: "Globe terrestre avec réseau de connexions, prédation géopolitique",
+    image: '/articles/img-predateurs.jpg',
+    alt: "Oiseau de proie au-dessus de Manhattan, prédation géopolitique",
   },
   {
     href: '/visuels/eau', external: false,

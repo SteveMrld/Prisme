@@ -89,7 +89,7 @@ const ZONE1_ATLAS = [
     href: '/articles/predateurs',
     tag: 'Géopolitique',
     title: 'Le monde des prédateurs',
-    image: '/articles/atlas/10_le-monde-des-predateurs.jpg',
+    image: '/articles/img-predateurs.jpg',
   },
   {
     href: '/visuels/naval',
