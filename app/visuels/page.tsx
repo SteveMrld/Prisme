@@ -284,6 +284,15 @@ export default async function VisuelsPage() {
         </div>
       </div>
 
+      <div className={styles.atlasIntro}>
+        <div className={styles.atlasIntroEyebrow}>Atlas Soara</div>
+        <h2 className={styles.atlasIntroTitle}>L&apos;index visuel</h2>
+        <p className={styles.atlasIntroChapeau}>
+          Toutes les visualisations de Soara rassemblées en un seul lieu.
+          Cartes interactives, motion designs, trilogies narratives, séries de données : l&apos;index complet de l&apos;analyse Soara.
+        </p>
+      </div>
+
       <div className={styles.page}>
 
         {/* ═══ ATLAS ═══ */}
