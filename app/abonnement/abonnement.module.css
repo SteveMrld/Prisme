@@ -293,6 +293,160 @@
   margin-top: 1px;
 }
 
+/* ── PLAN PERK (mention "Inclut l'edition imprimee" sur l'annuel) ── */
+.planPerk {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  margin: 4px 0 16px;
+}
+.planPerkDot { font-size: 11px; }
+
+/* ── EDITION IMPRIMÉE (bloc dédié post-features) ── */
+.printSection {
+  background: #FBF8F2;
+  border-top: 1px solid #EEE7DA;
+  border-bottom: 1px solid #EEE7DA;
+  padding: 72px 24px;
+}
+
+.printInner {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.printMock {
+  aspect-ratio: 0.72;
+  background: linear-gradient(180deg, #F4EFE4 0%, #ECE5D4 100%);
+  border: 1px solid #1a1a1a;
+  box-shadow: 0 24px 48px rgba(20, 16, 8, 0.16),
+              0 4px 12px rgba(20, 16, 8, 0.08);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.printMock::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 0.5px solid rgba(26,26,26,0.15);
+  pointer-events: none;
+}
+
+.printMockEyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  position: relative;
+  z-index: 1;
+}
+.printMockSep {
+  width: 32px;
+  height: 1px;
+  background: #8B1A1A;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+}
+.printMockTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.05;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+.printMockTitle em {
+  font-style: italic;
+  color: #8B1A1A;
+}
+.printMockFooter {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: #5a4f3e;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.printBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.printEyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+}
+.printTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4.4vw, 44px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.08;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.printTitle em {
+  font-style: italic;
+  color: #8B1A1A;
+}
+.printDesc {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.55;
+  color: #555;
+  max-width: 540px;
+  margin: 4px 0 0;
+}
+.printNote {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid #DAD2BD;
+}
+
+@media (max-width: 720px) {
+  .printSection { padding: 48px 20px; }
+  .printInner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 420px;
+  }
+  .printMock { max-width: 260px; margin: 0 auto; }
+}
+
 /* ── RÉASSURANCE ── */
 .reassurance {
   display: grid;

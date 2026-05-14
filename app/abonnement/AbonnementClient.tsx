@@ -12,13 +12,14 @@ const PREVIEWS = [
   { cat: 'Atlas', title: 'La bataille pour le sous-sol numérique', desc: "Des mines de terres rares aux fabs de Taïwan — la guerre souterraine.", img: '/articles/img-techgeo.jpg' },
 ]
 
+// Ordre : differenciants en premier, communs ensuite.
 const FEATURES = [
-  "Accès illimité aux grands formats",
-  "Signal quotidien — l'actualité qui compte",
-  "Recoupement de sources en temps réel",
+  "Accès illimité aux grands formats et dossiers",
+  "Recoupement de sources, 10 analyses IA par mois",
+  "Atlas · cartes et visualisations interactives",
   "Grand Entretien en avant-première",
-  "Atlas · Cartes & visualisations interactives",
-  "Soara TV · 6 épisodes disponibles",
+  "Signal quotidien · l'actualité qui compte",
+  "Soara TV · 6 épisodes documentaires",
   'Sans publicité, sans traceur tiers',
 ]
 
@@ -91,9 +92,13 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
                   <span className={styles.planCurrency}>€ / an</span>
                 </div>
                 <div className={styles.planSub}>Soit 8,25 € / mois</div>
+                <div className={styles.planPerk}>
+                  <span className={styles.planPerkDot} aria-hidden>✦</span>
+                  Inclut l&apos;édition imprimée
+                </div>
                 <button className={`${styles.planBtn} ${styles.planBtnPrimary}`}
                   onClick={() => subscribe('yearly')} disabled={loading !== null}>
-                  {loading === 'yearly' ? 'Chargement…' : 'S\'abonner — offre recommandée'}
+                  {loading === 'yearly' ? 'Chargement…' : "S'abonner, offre recommandée"}
                 </button>
               </div>
 
@@ -146,6 +151,27 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
               <span>{f}</span>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ── ÉDITION IMPRIMÉE (bonus annuel) ── */}
+      <div className={styles.printSection}>
+        <div className={styles.printInner}>
+          <div className={styles.printMock} aria-hidden>
+            <div className={styles.printMockEyebrow}>Soara · Édition n°1</div>
+            <div className={styles.printMockSep} />
+            <div className={styles.printMockTitle}>L&apos;ordre<br/><em>qui vient</em></div>
+            <div className={styles.printMockFooter}>Juin 2026 · 80 pages</div>
+          </div>
+          <div className={styles.printBody}>
+            <div className={styles.printEyebrow}>L&apos;édition imprimée</div>
+            <h2 className={styles.printTitle}>L&apos;ordre <em>qui vient</em></h2>
+            <p className={styles.printDesc}>
+              Tous les six mois, une édition papier de 80 pages qui réunit les grands formats,
+              les portraits, et les essais de la saison. Imprimée en France, envoyée chez vous.
+            </p>
+            <div className={styles.printNote}>Incluse dans l&apos;abonnement annuel uniquement</div>
+          </div>
         </div>
       </div>
 
