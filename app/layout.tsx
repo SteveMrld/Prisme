@@ -7,6 +7,7 @@ import './article-content.css'
 import BottomNav from '../components/BottomNav'
 import Footer from '../components/Footer'
 import PWARegister from '../components/PWARegister'
+import ArticleLinkPreview from '../components/ArticleLinkPreview'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -98,6 +99,7 @@ export default function RootLayout({
         <Footer />
         <BottomNav />
         <PWARegister />
+        <ArticleLinkPreview />
       </body>
     </html>
   )
