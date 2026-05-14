@@ -1,0 +1,124 @@
+.formWrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 420ms cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 280ms ease-out;
+}
+.formWrap[data-collapsed="true"] {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+.formInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.form {
+  display: flex;
+  gap: 8px;
+  max-width: 440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-source-serif), 'Source Serif 4', Georgia, serif;
+  font-size: 14px;
+  padding: 11px 14px;
+  background: #FFFFFF;
+  border: 1px solid #D8D3C8;
+  border-radius: 0;
+  color: #1A1A1A;
+  outline: none;
+  transition: border-color 150ms ease-out;
+}
+.input::placeholder { color: #9A9590; font-style: italic; }
+.input:focus { border-color: #0A0A0A; }
+.input[data-error="true"] { border-color: #8B1A1A; }
+.input:disabled { background: #F5F3EF; color: #6B6355; }
+
+.btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 11px 18px;
+  background: #0A0A0A;
+  color: #FFFFFF;
+  border: 1px solid #0A0A0A;
+  border-radius: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 380ms ease-out, border-color 380ms ease-out, color 200ms ease-out;
+}
+.btn:hover:not(:disabled) { background: #8B1A1A; border-color: #8B1A1A; }
+.btn[data-state="success"] {
+  background: #8B1A1A;
+  border-color: #8B1A1A;
+  cursor: default;
+}
+.btn[data-state="submitting"] { opacity: 0.7; cursor: wait; }
+.btn:disabled { cursor: default; }
+
+.btnCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #8B1A1A;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  transform: scale(0);
+  opacity: 0;
+  animation: nlCheckIn 400ms ease-out forwards;
+}
+@keyframes nlCheckIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.error {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  font-family: var(--font-source-serif), 'Source Serif 4', Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  color: #8B1A1A;
+  text-align: center;
+}
+
+.confirmed {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #555;
+  text-align: center;
+  padding: 14px 0;
+  max-width: 440px;
+  margin: 0 auto;
+  animation: nlFadeIn 360ms ease-out;
+}
+@keyframes nlFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnCheck { animation: none; transform: scale(1); opacity: 1; }
+  .formWrap { transition: none; }
+  .confirmed { animation: none; }
+  .btn { transition: none; }
+}

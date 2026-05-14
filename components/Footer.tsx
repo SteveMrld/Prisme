@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import styles from './Footer.module.css'
+import NewsletterForm from './NewsletterForm'
 
 const rubriques = [
   { label: 'Signal', href: '/signal' },
@@ -108,17 +109,7 @@ export default function Footer() {
         <div className={styles.newsletter}>
           <div className={styles.nlEyebrow}>La lettre du mardi</div>
           <h3 className={styles.nlTitle}>L&apos;analyse qui manque à votre semaine</h3>
-          <form action="/abonnement" method="get" className={styles.nlForm}>
-            <input
-              type="email"
-              name="email"
-              placeholder="votre@email.com"
-              required
-              className={styles.nlInput}
-              aria-label="Votre adresse e-mail"
-            />
-            <button type="submit" className={styles.nlBtn}>S&apos;inscrire gratuitement</button>
-          </form>
+          <NewsletterForm />
         </div>
 
         {/* d) Ligne mentions légales + copyright */}

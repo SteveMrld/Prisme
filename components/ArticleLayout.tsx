@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import BookmarkButton from './BookmarkButton'
 import BackButton from './BackButton'
 import Header from './Header'
+import NewsletterForm from './NewsletterForm'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 
@@ -434,10 +435,7 @@ export default function ArticleLayout({
             <div className={styles.newsletterTitle}>Recevoir les analyses chaque semaine</div>
             <p className={styles.newsletterDesc}>Les grands formats, le Signal, les portraits. Sans algorithme, sans bruit.</p>
           </div>
-          <form className={styles.newsletterForm} onSubmit={async e => { e.preventDefault(); const form = e.currentTarget; const email = (form.querySelector('input[type="email"]') as HTMLInputElement)?.value; if (!email) return; await fetch('/api/newsletter', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({email}) }); if (typeof window !== 'undefined') window.location.href = '/abonnement'; }}>
-            <input type="email" placeholder="votre@email.com" className={styles.newsletterInput} required />
-            <button type="submit" className={styles.newsletterBtn}>S&apos;abonner →</button>
-          </form>
+          <NewsletterForm ctaLabel="S'abonner" />
         </div>
       </div>
 
