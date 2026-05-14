@@ -55,9 +55,9 @@ export async function POST(req: NextRequest) {
         'anthropic-beta': 'web-search-2025-03-05',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-7',
-        max_tokens: 3000,
-        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 10 }],
+        model: 'claude-sonnet-4-6',
+        max_tokens: 6000,
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 8 }],
         // System block en array + cache_control:ephemeral pour activer le
         // prompt caching. Le system pèse ~2k tokens (liste des sources) ;
         // après le 1er appel d'une session, Anthropic facture la portion
