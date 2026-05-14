@@ -18,7 +18,7 @@
     "imageCredit": "© SOARA",
     "titleEn": "Illness Without a Net",
     "descriptionEn": "Leila Janah, founder of Samasource, died at thirty-seven in January 2020. Her trajectory opens a question that societies of independent work still struggle to formulate: that of serious illness in a professional regime where the body is the instrument of production.",
-    "premiumTeaserParagraphs": 4
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "derniere-generation",
@@ -52,7 +52,8 @@
     "authorRole": "",
     "featured": false,
     "premium": true,
-    "imageCredit": "© SOARA"
+    "imageCredit": "© SOARA",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "pollinisation",
@@ -69,7 +70,8 @@
     "authorRole": "",
     "featured": false,
     "premium": true,
-    "grandFormatUrl": "/grands-formats/pollinisation"
+    "grandFormatUrl": "/grands-formats/pollinisation",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "ce-que-nous-laissons-entrer",
@@ -165,7 +167,8 @@
     "grandFormat": true,
     "imageCredit": "© SOARA",
     "titleEn": "Rare Earths: The Invisible War Fueling the Green Transition",
-    "descriptionEn": "From Katanga's cobalt to China's refining chokehold, the energy transition has created a new geography of dependence."
+    "descriptionEn": "From Katanga's cobalt to China's refining chokehold, the energy transition has created a new geography of dependence.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "architecture-desordre",
@@ -183,7 +186,8 @@
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/architecture-desordre",
     "imageCredit": "© SOARA",
-    "customRoute": "/grands-formats/architecture-desordre"
+    "customRoute": "/grands-formats/architecture-desordre",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "chambre-ratification",
@@ -203,7 +207,8 @@
     "imageCredit": "© SOARA",
     "customRoute": "/grands-formats/chambre-ratification",
     "titleEn": "Washington as a Ratification Chamber",
-    "descriptionEn": "How Benjamin Netanyahu decided an American war. An investigation in mirror: the Situation Room in 2026, the Situation Room in 1962."
+    "descriptionEn": "How Benjamin Netanyahu decided an American war. An investigation in mirror: the Situation Room in 2026, the Situation Room in 1962.",
+    "premiumTeaserParagraphs": 7
   },
   {
     "slug": "skunkworks",
@@ -222,7 +227,8 @@
     "imageCredit": "© SOARA",
     "customRoute": "/grands-formats/skunkworks",
     "titleEn": "The Factory of the Impossible",
-    "descriptionEn": "Eighty years of Skunk Works: from the Burbank circus tent to detecting a heartbeat in the Iranian desert."
+    "descriptionEn": "Eighty years of Skunk Works: from the Burbank circus tent to detecting a heartbeat in the Iranian desert.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "palantir",
@@ -244,7 +250,8 @@
     "titleEn": "Palantir. The Ontology of the Enemy",
     "descriptionEn": "How a company born from a boardroom coup became the cognitive infrastructure of states that do not control it.",
     "secondaryCategory": "tech",
-    "secondaryCategoryLabel": "Technologie"
+    "secondaryCategoryLabel": "Technologie",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "moreno",
@@ -279,7 +286,8 @@
     "customRoute": "/grands-formats/dette-souveraine",
     "imageCredit": "© SOARA",
     "titleEn": "The Insolvent State",
-    "descriptionEn": "Global public debt has crossed 100 trillion dollars. It is not the debt that is worrying. It is what it reveals."
+    "descriptionEn": "Global public debt has crossed 100 trillion dollars. It is not the debt that is worrying. It is what it reveals.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "afrique",
@@ -310,7 +318,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "The Arctic, New Frontier",
-    "descriptionEn": "Climate change is opening new routes and new rivalries. The north is becoming a theater of power."
+    "descriptionEn": "Climate change is opening new routes and new rivalries. The north is becoming a theater of power.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "blackrock",
@@ -326,7 +335,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "BlackRock, the Silent Power",
-    "descriptionEn": "The largest asset manager in the world manages more than any state. Who controls it?"
+    "descriptionEn": "The largest asset manager in the world manages more than any state. Who controls it?",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "chine",
@@ -341,7 +351,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "China's Offensive",
-    "descriptionEn": "From the Silk Road to the 15th Five-Year Plan. How Beijing is building the world of the day after."
+    "descriptionEn": "From the Silk Road to the 15th Five-Year Plan. How Beijing is building the world of the day after.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "cygne",
@@ -374,7 +385,7 @@
     "titleEn": "Water: The Next Great Geopolitical Fracture",
     "descriptionEn": "From Himalayan glaciers to African dams. How mastery of water is silently redrawing power relationships.",
     "secondaryCategory": "geo",
-    "premiumTeaserParagraphs": 4
+    "premiumTeaserParagraphs": 7
   },
   {
     "slug": "empires",
@@ -390,7 +401,7 @@
     "imageCredit": "© SOARA",
     "titleEn": "Empires Do Not Die",
     "descriptionEn": "They transform. A long-form reading of imperial cycles applied to the present.",
-    "premiumTeaserParagraphs": 4
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "fiscalite",
@@ -436,7 +447,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "Maritime France, an Ignored Empire",
-    "descriptionEn": "The world's second-largest exclusive economic zone. A geostrategic advantage without equal in the West, structurally under-exploited."
+    "descriptionEn": "The world's second-largest exclusive economic zone. A geostrategic advantage without equal in the West, structurally under-exploited.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "ia",
@@ -520,7 +532,8 @@
     "grandFormat": true,
     "titleEn": "Media and Power",
     "descriptionEn": "The architecture of influence. How information has become a geopolitical instrument.",
-    "avif": true
+    "avif": true,
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "morrison",
@@ -550,8 +563,7 @@
     "premium": false,
     "imageCredit": "© Luc Legay / Wikimedia Commons (CC BY-SA 2.0), modifiée par SOARA",
     "titleEn": "Edgar Morin",
-    "descriptionEn": "At 100 years old, the sociologist of complexity. A thinker for the era of uncertainty.",
-    "premiumTeaserParagraphs": 4
+    "descriptionEn": "At 100 years old, the sociologist of complexity. A thinker for the era of uncertainty."
   },
   {
     "slug": "tutu",
@@ -611,8 +623,7 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "The Overton <em>Window</em>",
-    "descriptionEn": "How the unthinkable becomes acceptable and eventually becomes law. A concept forged by Joseph Overton in the 1990s to describe the space of politically acceptable ideas at a given moment.",
-    "premiumTeaserParagraphs": 2
+    "descriptionEn": "How the unthinkable becomes acceptable and eventually becomes law. A concept forged by Joseph Overton in the 1990s to describe the space of politically acceptable ideas at a given moment."
   },
   {
     "slug": "pessimisme",
@@ -643,8 +654,7 @@
     "premium": false,
     "imageCredit": "© SOARA",
     "titleEn": "The Predators",
-    "descriptionEn": "How certain economic actors plunder states and populations while remaining in legal compliance.",
-    "premiumTeaserParagraphs": 2
+    "descriptionEn": "How certain economic actors plunder states and populations while remaining in legal compliance."
   },
   {
     "slug": "reseaux",
@@ -660,7 +670,8 @@
     "imageCredit": "© SOARA",
     "titleEn": "Networks",
     "descriptionEn": "The invisible architecture of influence. How connections structure power more than hierarchies do.",
-    "avif": true
+    "avif": true,
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "rushkoff",
@@ -690,7 +701,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "Nvidia, the Aramco of the Digital Era",
-    "descriptionEn": "Semiconductors have become what oil was in the twentieth century. A single country manufactures the wells."
+    "descriptionEn": "Semiconductors have become what oil was in the twentieth century. A single country manufactures the wells.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "silence",
@@ -736,7 +748,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "The Battle for the Digital World's Subsoil",
-    "descriptionEn": "Rare earths, semiconductors, undersea cables. The new geography of technological power."
+    "descriptionEn": "Rare earths, semiconductors, undersea cables. The new geography of technological power.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "technosolutionnisme",
@@ -752,7 +765,7 @@
     "imageCredit": "© SOARA",
     "titleEn": "The Limits of Techno-Solutionism",
     "descriptionEn": "Is technology the remedy for the problems it helps create? A critical reading of an ideology.",
-    "premiumTeaserParagraphs": 4
+    "premiumTeaserParagraphs": 7
   },
   {
     "slug": "venezuela",
@@ -767,7 +780,8 @@
     "premium": true,
     "imageCredit": "© SOARA",
     "titleEn": "Venezuela, the Destroyed State",
-    "descriptionEn": "Oil, chavismo, exodus. The anatomy of a collapse that other countries could learn from."
+    "descriptionEn": "Oil, chavismo, exodus. The anatomy of a collapse that other countries could learn from.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "orbite",
@@ -784,7 +798,7 @@
     "premium": true,
     "titleEn": "The Satellite Race",
     "descriptionEn": "Space has become a strategic terrain. Who controls the orbits controls the information.",
-    "premiumTeaserParagraphs": 4
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "obama",
@@ -800,7 +814,8 @@
     "premium": true,
     "imageCredit": "The White House, Domaine public, modifiée par SOARA",
     "titleEn": "Barack Obama",
-    "descriptionEn": "The president who changed the face of power without changing the structures of power."
+    "descriptionEn": "The president who changed the face of power without changing the structures of power.",
+    "premiumTeaserParagraphs": 7
   },
   {
     "slug": "wanghuning",
@@ -816,7 +831,8 @@
     "featured": false,
     "imageCredit": "© SOARA",
     "titleEn": "Wang Huning, Architect of the World After Freedom",
-    "descriptionEn": "He visited America in 1988 and returned convinced it was dying. The doctrine governing China today."
+    "descriptionEn": "He visited America in 1988 and returned convinced it was dying. The doctrine governing China today.",
+    "premiumTeaserParagraphs": 5
   },
   {
     "slug": "monopoly",
@@ -857,6 +873,7 @@
     "featured": false,
     "imageCredit": "© SOARA",
     "titleEn": "Dark Factories",
-    "descriptionEn": "Automated factories without humans. The future of production, or the end of work?"
+    "descriptionEn": "Automated factories without humans. The future of production, or the end of work?",
+    "premiumTeaserParagraphs": 5
   }
 ]
