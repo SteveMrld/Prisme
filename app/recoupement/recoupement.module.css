@@ -603,6 +603,39 @@
 
 @media (max-width: 560px) { .casGrid { grid-template-columns: 1fr; } }
 
+/* COMMENT FORMULER */
+.howSection { margin-top: 32px; padding: 20px 0 0; border-top: 1px solid #E5E1D9; }
+.howLabel {
+  font-size: 8px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gris-l);
+  margin-bottom: 14px;
+}
+.howIntro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-style: italic; line-height: 1.55;
+  color: var(--gris); max-width: 620px; margin-bottom: 22px;
+}
+.howGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.howCol { display: flex; flex-direction: column; gap: 10px; }
+.howColLabel {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding-bottom: 6px;
+  border-bottom: 1px solid #E5E1D9;
+}
+.howColLabel[data-type="good"] { color: #3A7A5A; }
+.howColLabel[data-type="bad"]  { color: #B8860B; }
+.howItem {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; line-height: 1.4;
+  color: var(--encre); padding: 4px 0;
+}
+.howItemNote {
+  display: block; margin-top: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; font-style: italic; color: var(--gris-l);
+}
+@media (max-width: 560px) { .howGrid { grid-template-columns: 1fr; gap: 18px; } }
+
 /* NIVEAU BADGE */
 .niveauBadge {
   font-size: 8px; font-weight: 700; letter-spacing: 2px;

@@ -593,6 +593,42 @@ export default function RecoupementClient() {
         )}
 
         {!analysis && !loading && (
+          <div className={styles.howSection}>
+            <div className={styles.howLabel}>Comment formuler une question</div>
+            <p className={styles.howIntro}>
+              Le moteur croise {SOURCES.length} sources en temps réel sur des faits datables :
+              un événement précis, une décision, un chiffre, une déclaration. Plus la question est
+              cadrée, meilleur le recoupement.
+            </p>
+            <div className={styles.howGrid}>
+              <div className={styles.howCol}>
+                <div className={styles.howColLabel} data-type="good">Bien formulé</div>
+                <div className={styles.howItem}>
+                  L'Allemagne réintroduit-elle le service militaire en 2025 ?
+                </div>
+                <div className={styles.howItem}>
+                  Les BRICS ont-ils créé une monnaie commune au sommet de Kazan ?
+                </div>
+                <div className={styles.howItem}>
+                  Traité pandémie OMS, quels pays ont refusé de signer ?
+                </div>
+              </div>
+              <div className={styles.howCol}>
+                <div className={styles.howColLabel} data-type="bad">À éviter</div>
+                <div className={styles.howItem}>
+                  Que pensez-vous de l'économie mondiale ?
+                  <span className={styles.howItemNote}>trop large, pas de fait à recouper</span>
+                </div>
+                <div className={styles.howItem}>
+                  L'intelligence artificielle est-elle dangereuse ?
+                  <span className={styles.howItemNote}>question philosophique, sans réponse factuelle</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!analysis && !loading && (
           <div className={styles.examples}>
             {EXAMPLES.map((ex, i) => (
               <div key={i} className={styles.exCard}>
