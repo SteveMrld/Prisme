@@ -1,0 +1,210 @@
+/* ═══════════════════════════════════════════════════════
+   PRINT STYLESHEET
+   Active uniquement sur Ctrl+P / impression.
+   Cible principalement les articles, mais nettoie aussi les
+   pages globales pour eviter de gacher du papier sur le chrome.
+═══════════════════════════════════════════════════════ */
+
+/* Utilitaires globaux */
+.no-print { /* visible a l'ecran */ }
+.print-only { display: none; }
+
+@media print {
+  /* ── PAGE A4 ───────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 1.8cm 2cm 2.2cm;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+
+  /* ── MASQUE le chrome editorial ───────────────────── */
+  .no-print,
+  [data-no-print="true"] {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+
+  /* ── LAYOUT : casse les colonnes / paywalls / sticky ─ */
+  [class*="articlePageLayout"] {
+    display: block !important;
+    grid-template-columns: none !important;
+  }
+  [class*="articleSidebar"],
+  [class*="articleBodyFull"],
+  [class*="articleBody"],
+  [class*="articleMainCol"] {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+  }
+  [class*="paywallGradient"],
+  [class*="paywallBox"] {
+    display: none !important;
+  }
+
+  /* ── ARTICLE HEADER ───────────────────────────────── */
+  [class*="articleHeader"] {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 0 12pt !important;
+  }
+  [class*="eyebrow"] {
+    font-size: 8pt !important;
+    letter-spacing: 0.15em !important;
+    color: #555 !important;
+    margin-bottom: 8pt !important;
+  }
+  [class*="eyebrow"] [class*="tag"] {
+    background: none !important;
+    color: #000 !important;
+    padding: 0 !important;
+    border: 0.5pt solid #000;
+    padding: 1pt 5pt !important;
+  }
+  [class*="title"] {
+    font-size: 26pt !important;
+    line-height: 1.15 !important;
+    color: #000 !important;
+    margin: 6pt 0 10pt !important;
+  }
+  [class*="chapeau"] {
+    font-size: 12pt !important;
+    line-height: 1.45 !important;
+    color: #222 !important;
+    font-style: italic;
+  }
+
+  /* ── BYLINE ──────────────────────────────────────── */
+  [class*="bylineUniversal"] {
+    margin: 14pt 0 !important;
+    padding: 8pt 0 !important;
+    border-top: 0.5pt solid #888;
+    border-bottom: 0.5pt solid #888;
+  }
+  [class*="bylineTopAvatar"] {
+    display: none !important;
+  }
+  [class*="bylineTopName"],
+  [class*="bylineDate"] {
+    color: #000 !important;
+    font-size: 10pt !important;
+  }
+  [class*="langToggle"] {
+    display: none !important;
+  }
+
+  /* ── IMAGE HERO ──────────────────────────────────── */
+  [class*="heroWrap"] {
+    margin: 12pt 0 !important;
+    background: none !important;
+    page-break-inside: avoid;
+  }
+  [class*="heroImg"] {
+    max-width: 100% !important;
+    max-height: 11cm !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+  [class*="imageCredit"] {
+    font-size: 8pt !important;
+    color: #666 !important;
+    margin-top: 4pt !important;
+  }
+
+  /* ── CORPS ARTICLE ──────────────────────────────── */
+  .soara-article {
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
+    color: #000 !important;
+  }
+  .soara-article p {
+    color: #000 !important;
+    orphans: 3;
+    widows: 3;
+    margin: 0 0 8pt !important;
+  }
+  .soara-article h2,
+  .soara-article h3,
+  .soara-article h4 {
+    color: #000 !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    margin-top: 14pt !important;
+  }
+  .soara-article h2 { font-size: 16pt !important; }
+  .soara-article h3 { font-size: 13pt !important; }
+  .soara-article blockquote,
+  .soara-article .pullquote {
+    border-left: 1.5pt solid #000 !important;
+    background: none !important;
+    color: #000 !important;
+    padding: 4pt 0 4pt 12pt !important;
+    margin: 10pt 0 !important;
+    page-break-inside: avoid;
+  }
+  .soara-article a {
+    color: #000 !important;
+    text-decoration: none !important;
+    border-bottom: 0.4pt solid #888;
+  }
+  .soara-article img,
+  .soara-article figure {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+  .soara-article figcaption {
+    font-size: 8pt !important;
+    color: #555 !important;
+  }
+  /* La lettrine reste lisible mais discrete sur papier */
+  .soara-article.has-drop-cap > p:first-of-type::first-letter,
+  [class*="has-drop-cap"] > p:first-of-type::first-letter {
+    color: #000 !important;
+    background: none !important;
+  }
+
+  /* ── SIGNATURE AUTEUR ───────────────────────────── */
+  [class*="authorSignature"] {
+    margin-top: 16pt !important;
+    padding-top: 10pt !important;
+    border-top: 0.5pt solid #888 !important;
+    page-break-inside: avoid;
+  }
+  [class*="authorSigAvatar"] {
+    display: none !important;
+  }
+  [class*="authorSigName"] {
+    color: #000 !important;
+    font-size: 11pt !important;
+  }
+  [class*="authorSigRole"],
+  [class*="authorSigLabel"] {
+    color: #555 !important;
+    font-size: 9pt !important;
+  }
+
+  /* ── PRINT FOOTER (genere par ArticleLayout) ─────── */
+  .print-footer {
+    margin-top: 18pt !important;
+    padding-top: 8pt !important;
+    border-top: 0.5pt solid #888;
+    font-size: 8pt !important;
+    color: #555 !important;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  /* ── DIVERS ─────────────────────────────────────── */
+  a[href]::after { content: ''; } /* pas d'URL ajoutees automatiquement, le footer s'en charge */
+  * { box-shadow: none !important; text-shadow: none !important; }
+}

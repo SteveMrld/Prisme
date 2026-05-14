@@ -4,6 +4,7 @@ import { Source_Serif_4 } from 'next/font/google'
 import './globals.css'
 import './animations.css'
 import './article-content.css'
+import './article-print.css'
 import BottomNav from '../components/BottomNav'
 import Footer from '../components/Footer'
 import PWARegister from '../components/PWARegister'
@@ -97,8 +98,8 @@ export default function RootLayout({
     <html lang="fr" className={sourceSerif.variable}>
       <body>
         <PageTransition>{children}</PageTransition>
-        <Footer />
-        <BottomNav />
+        <div className="no-print"><Footer /></div>
+        <div className="no-print"><BottomNav /></div>
         <PWARegister />
         <ArticleLinkPreview />
       </body>

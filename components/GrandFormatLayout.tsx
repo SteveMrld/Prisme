@@ -145,12 +145,14 @@ export default function GrandFormatLayout({
 
   return (
     <>
-      <ReadingProgress />
-      <ScrollDepth />
-      <StickyReadingHeader title={title.replace(/<[^>]+>/g, '')} categoryLabel={categoryLabel} color={color} />
-      <Header />
-      <BackButton />
-      {minutes >= 10 && <ArticleTOC />}
+      <div className="no-print">
+        <ReadingProgress />
+        <ScrollDepth />
+        <StickyReadingHeader title={title.replace(/<[^>]+>/g, '')} categoryLabel={categoryLabel} color={color} />
+        <Header />
+        <BackButton />
+        {minutes >= 10 && <ArticleTOC />}
+      </div>
 
       {/* ── HEADER (si pas dans le HTML) ── */}
       {!hasInternalHeader && (
@@ -246,7 +248,7 @@ export default function GrandFormatLayout({
 
         {/* ── BOOKMARK ── */}
         {slug && (
-          <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px 32px', display: 'flex', justifyContent: 'center' }}>
+          <div className="no-print" style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px 32px', display: 'flex', justifyContent: 'center' }}>
             <BookmarkButton slug={slug} title={title} image={image} description={description} readTime={readTime} categoryLabel={categoryLabel} />
           </div>
         )}
@@ -266,7 +268,7 @@ export default function GrandFormatLayout({
 
       {/* ── ARTICLES LIÉS ── */}
       {related.length > 0 && !article?.hideAutoRelated && (
-        <div className={styles.related}>
+        <div className={`${styles.related} no-print`}>
           <div className={styles.relatedHead}>
             <span className={styles.relatedLabel}>Lire aussi</span>
             <div className={styles.relatedLine} />
@@ -283,6 +285,22 @@ export default function GrandFormatLayout({
           </div>
         </div>
       )}
+
+      <PrintFooterGF slug={slug} />
     </>
+  )
+}
+
+function PrintFooterGF({ slug }: { slug?: string }) {
+  const [meta, setMeta] = useState<{ url: string; date: string }>({ url: '', date: '' })
+  useEffect(() => {
+    const url = slug ? `soara.fr/articles/${slug}` : (typeof window !== 'undefined' ? window.location.host + window.location.pathname : '')
+    const date = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+    setMeta({ url, date })
+  }, [slug])
+  return (
+    <div className="print-footer print-only">
+      Article Soara · {meta.url} · imprimé le {meta.date}
+    </div>
   )
 }

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import BookmarkButton from './BookmarkButton'
 import BackButton from './BackButton'
 import Header from './Header'
@@ -149,12 +149,14 @@ export default function ArticleLayout({
 
   return (
     <>
-      <ReadingProgress />
-      <ReadingTimeCounter totalMinutes={minutes} />
-      <ScrollDepth />
-      <StickyReadingHeader title={title} categoryLabel={categoryLabel} color={color} />
-      <Header activeNav={category} />
-      <BackButton />
+      <div className="no-print">
+        <ReadingProgress />
+        <ReadingTimeCounter totalMinutes={minutes} />
+        <ScrollDepth />
+        <StickyReadingHeader title={title} categoryLabel={categoryLabel} color={color} />
+        <Header activeNav={category} />
+        <BackButton />
+      </div>
 
       {/* TOUS SAUF PORTRAIT : titre + chapeau d'abord */}
       {!hasInternalHeader && (
@@ -263,11 +265,11 @@ export default function ArticleLayout({
         )}
 
         {/* SPONSOR — bloc partenaire en fin d'article (hors paywall actif) */}
-        {!isPremiumContent && adSlot}
+        {!isPremiumContent && adSlot && <div className="no-print">{adSlot}</div>}
 
         {/* CTA ABONNEMENT — articles gratuits uniquement, hors Atlas */}
         {!isPremiumContent && category !== 'concept' && (
-          <div style={{borderTop:'2px solid #1a1a1a',margin:'48px 0 0',padding:'40px 0 0',textAlign:'center'}}>
+          <div className="no-print" style={{borderTop:'2px solid #1a1a1a',margin:'48px 0 0',padding:'40px 0 0',textAlign:'center'}}>
             <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'#C8A96E',marginBottom:'12px'}}>Soara · Média d'analyse indépendant</div>
             <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(20px,3vw,28px)',fontWeight:400,color:'#1a1a1a',marginBottom:'10px',lineHeight:1.2}}>Accédez à tous les grands formats</h3>
             <p style={{fontSize:'14px',color:'#888',maxWidth:'340px',margin:'0 auto 24px',lineHeight:1.6,fontStyle:'italic',fontFamily:"'Playfair Display',serif"}}>Analyses approfondies, données exclusives, formats inédits. Sans publicité, sans algorithme.</p>
@@ -279,7 +281,7 @@ export default function ArticleLayout({
 
         {/* FIN DE PAGE ATLAS — vers d'autres visualisations */}
         {!isPremiumContent && category === 'concept' && (
-          <div style={{borderTop:'2px solid #1a1a1a',margin:'48px 0 0',padding:'40px 0 0'}}>
+          <div className="no-print" style={{borderTop:'2px solid #1a1a1a',margin:'48px 0 0',padding:'40px 0 0'}}>
             <div style={{textAlign:'center',marginBottom:'28px'}}>
               <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'#1A1A3E',marginBottom:'12px'}}>Atlas Soara</div>
               <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(20px,3vw,28px)',fontWeight:400,color:'#1a1a1a',marginBottom:'10px',lineHeight:1.2}}>Découvrir d'autres formats Atlas</h3>
@@ -324,7 +326,7 @@ export default function ArticleLayout({
 
       {/* ── SIDEBAR DROITE — articles liés (desktop uniquement) ── */}
       {related.length > 0 && category !== 'concept' && (
-        <div className={styles.articleSidebar}>
+        <div className={`${styles.articleSidebar} no-print`}>
           <div className={styles.sidebarTitle}>À lire aussi</div>
           {related.map((a: any) => (
             <a key={a.slug} href={`/articles/${a.slug}`} className={styles.sidebarItem}>
@@ -341,7 +343,7 @@ export default function ArticleLayout({
 
       {/* ── ARTICLES LIÉS (mobile uniquement) ── */}
       {related.length > 0 && category !== 'concept' && (
-        <div className={styles.related}>
+        <div className={`${styles.related} no-print`}>
           <div className={styles.relatedHead}>
             <div className={styles.relatedLabel}>Lire aussi</div>
             <div className={styles.relatedLine} />
@@ -392,7 +394,7 @@ export default function ArticleLayout({
 
 
 
-      <div className={styles.actionBar}>
+      <div className={`${styles.actionBar} no-print`}>
         <button className={styles.actionBtn} title="Écouter">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
@@ -416,7 +418,7 @@ export default function ArticleLayout({
 
       {/* ── BOOKMARK ── */}
       {slug && (
-        <div style={{
+        <div className="no-print" style={{
           maxWidth: 760, margin: '0 auto', padding: '0 24px 32px',
           display: 'flex', justifyContent: 'center'
         }}>
@@ -425,7 +427,7 @@ export default function ArticleLayout({
       )}
 
       {/* ── NEWSLETTER ── */}
-      <div className={styles.newsletter}>
+      <div className={`${styles.newsletter} no-print`}>
         <div className={styles.newsletterInner}>
           <div className={styles.newsletterText}>
             <div className={styles.newsletterLabel}>Soara · Newsletter</div>
@@ -439,9 +441,25 @@ export default function ArticleLayout({
         </div>
       </div>
 
-      <footer className={styles.footer}>
+      <footer className={`${styles.footer} no-print`}>
         Soara &nbsp;·&nbsp; Média d'analyse indépendant &nbsp;·&nbsp; 2026
       </footer>
+
+      <PrintFooter slug={slug} />
     </>
+  )
+}
+
+function PrintFooter({ slug }: { slug?: string }) {
+  const [meta, setMeta] = useState<{ url: string; date: string }>({ url: '', date: '' })
+  useEffect(() => {
+    const url = slug ? `soara.fr/articles/${slug}` : (typeof window !== 'undefined' ? window.location.host + window.location.pathname : '')
+    const date = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+    setMeta({ url, date })
+  }, [slug])
+  return (
+    <div className="print-footer print-only">
+      Article Soara · {meta.url} · imprimé le {meta.date}
+    </div>
   )
 }
