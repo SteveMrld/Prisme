@@ -29,10 +29,11 @@ export async function POST(request: Request) {
     })
     customerId = customer.id
 
-    await supabase
+    const { error } = await supabase
       .from('profiles')
       .update({ stripe_customer_id: customerId })
       .eq('id', user.id)
+    if (error) console.error('[stripe-checkout] failed to store stripe_customer_id', { userId: user.id, error })
   }
 
   const session = await stripe.checkout.sessions.create({
@@ -42,6 +43,7 @@ export async function POST(request: Request) {
     mode: 'subscription',
     success_url: `${siteUrl}/compte?success=true`,
     cancel_url: `${siteUrl}/abonnement?canceled=true`,
+    client_reference_id: user.id,
     metadata: {
       supabase_user_id: user.id,
       plan,
