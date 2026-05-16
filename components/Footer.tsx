@@ -17,7 +17,7 @@ const rubriques = [
 const formats = [
   { label: 'Grands formats', href: '/grands-formats' },
   { label: 'Atlas', href: '/visuels' },
-  { label: 'Soara TV', href: '/prismetv' },
+  { label: 'Soara TV', href: '/tv' },
   { label: 'Rétrospective', href: '/retrospective' },
   { label: 'Lectures', href: '/lectures' },
   { label: 'Solutions', href: '/solutions' },

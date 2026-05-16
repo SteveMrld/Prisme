@@ -415,7 +415,7 @@ export default async function HomePage() {
             <h2 className={styles.tvTitle}>Soara <em>TV</em></h2>
             <p className={styles.tvIntro}>Les grandes questions du monde en 60 à 90 secondes. Géopolitique, économie, société, vus autrement.</p>
           </div>
-          <Link href="/prismetv" className={styles.tvSeeAll}>Tous les épisodes →</Link>
+          <Link href="/tv" className={styles.tvSeeAll}>Tous les épisodes →</Link>
         </div>
         <div className={styles.tvLayout}>
           {/* Épisode featured : dernier en date, grand format avec play overlay */}

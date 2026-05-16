@@ -37,7 +37,7 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
       description: "Un milliard et demi d'habitants, la plus grande démocratie du monde, une ambition géopolitique qui ne dit pas encore son nom.",
       category: 'tv',
       image: '/articles/inde-video.jpg',
-      customRoute: '/prismetv',
+      customRoute: '/tv',
       readTime: 'Vidéo · 3 min',
       ctaLabel: 'Regarder la vidéo',
     },

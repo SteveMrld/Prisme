@@ -37,7 +37,7 @@ const items = [
   },
   {
     label: 'TV',
-    href: '/prismetv',
+    href: '/tv',
     icon: (active: boolean) => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2 : 1.5} strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2"/>

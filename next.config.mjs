@@ -3,6 +3,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/grands-formats', destination: '/formats', permanent: false },
+      { source: '/prismetv', destination: '/tv', permanent: true },
     ]
   },
   async headers() {
