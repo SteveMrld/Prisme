@@ -13,7 +13,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://youtube-nocookie.com; frame-ancestors 'self';",
+            value: "frame-ancestors 'self';",
           },
           {
             key: 'Strict-Transport-Security',
