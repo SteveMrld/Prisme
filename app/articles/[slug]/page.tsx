@@ -26,7 +26,7 @@ const BASE_URL = 'https://soara.fr'
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
-  portrait: 'Portrait', concept: 'Concept', sciences: 'Sciences'
+  portrait: 'Portrait'
 }
 
 export const dynamic = 'force-dynamic'

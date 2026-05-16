@@ -36,11 +36,9 @@ const CATEGORY_FALLBACK: Record<string, string> = {
   tech: 'Tech',
   env: 'Environnement',
   soc: 'Société',
-  sciences: 'Sciences',
   culture: 'Culture',
   portrait: 'Portraits',
   portraits: 'Portraits',
-  concept: 'Concept',
   indicateurs: 'Indicateurs',
 }
 

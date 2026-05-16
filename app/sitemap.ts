@@ -3,17 +3,33 @@ import articlesData from '../lib/articles.json'
 
 const BASE_URL = 'https://soara.fr'
 
-const CATEGORIES = ['geo', 'eco', 'tech', 'env', 'soc', 'culture', 'portraits', 'visuels']
+const CATEGORIES = ['geo', 'eco', 'tech', 'env', 'soc', 'culture', 'portraits']
 
 const STATIC_PAGES = [
   { url: '/',              priority: 1.0,  changeFrequency: 'daily'   },
   { url: '/signal',        priority: 0.9,  changeFrequency: 'daily'   },
+  { url: '/visuels',       priority: 0.8,  changeFrequency: 'weekly'  },
+  { url: '/grands-formats',priority: 0.8,  changeFrequency: 'weekly'  },
   { url: '/apropos',       priority: 0.5,  changeFrequency: 'monthly' },
   { url: '/contributeurs', priority: 0.5,  changeFrequency: 'monthly' },
   { url: '/mentions',      priority: 0.3,  changeFrequency: 'yearly'  },
   { url: '/abonnement',    priority: 0.7,  changeFrequency: 'monthly' },
   { url: '/entretien/diarra', priority: 0.8, changeFrequency: 'weekly' },
 ] as const
+
+const GRANDS_FORMATS = [
+  'architecture-desordre',
+  'bases-militaires',
+  'chambre-ratification',
+  'climat',
+  'dette-souveraine',
+  'inegalites',
+  'medias',
+  'palantir',
+  'pollinisation',
+  'skunkworks',
+  'terres-rares',
+]
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -32,6 +48,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  const grandsFormats = GRANDS_FORMATS.map(slug => ({
+    url: `${BASE_URL}/grands-formats/${slug}`,
+    lastModified: now,
+    changeFrequency: 'yearly' as const,
+    priority: 0.9,
+  }))
+
   const articles = (articlesData as any[]).map(article => ({
     url: `${BASE_URL}/articles/${article.slug}`,
     lastModified: now,
@@ -39,5 +62,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...statics, ...categories, ...articles]
+  return [...statics, ...categories, ...grandsFormats, ...articles]
 }

@@ -16,7 +16,7 @@ import Ticker from './TickerClient'
 const CAT: Record<string,string> = {
   geo:'Géopolitique', eco:'Économie', tech:'Technologie',
   env:'Environnement', soc:'Société', culture:'Culture',
-  portrait:'Portrait', concept:'Concept',
+  portrait:'Portrait',
 }
 function art(slug: string) {
   const a = (articlesData as any[]).find(x => x.slug === slug)!

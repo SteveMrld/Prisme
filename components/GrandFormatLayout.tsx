@@ -11,13 +11,13 @@ import articlesData from '../lib/articles.json'
 const CAT_LABELS: Record<string,string> = {
   geo:'Géopolitique', eco:'Économie', tech:'Technologie',
   env:'Environnement', soc:'Société', culture:'Culture',
-  portrait:'Portrait', concept:'Concept', sciences:'Sciences'
+  portrait:'Portrait'
 }
 
 const categoryColors: Record<string, string> = {
   geo: '#1A3E6B', eco: '#B86A1A', tech: '#4A2080',
   env: '#2D6B4A', soc: '#7A2D2D', culture: '#6B1A3A',
-  portrait: '#7B5380', concept: '#1A1A3E', sciences: '#1A5C4A'
+  portrait: '#7B5380'
 }
 
 const portraitMap: Record<string, string> = {

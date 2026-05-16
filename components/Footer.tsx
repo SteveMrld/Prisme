@@ -9,7 +9,6 @@ const rubriques = [
   { label: 'Tech', href: '/tech' },
   { label: 'Environnement', href: '/env' },
   { label: 'Société', href: '/soc' },
-  { label: 'Sciences', href: '/sciences' },
   { label: 'Culture', href: '/culture' },
   { label: 'Portraits', href: '/portraits' },
   { label: 'Indicateurs', href: '/indicateurs' },

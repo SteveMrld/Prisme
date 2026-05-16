@@ -8,7 +8,7 @@ const SITE_DESC = "Média d'analyse indépendant — Géopolitique, économie, t
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
-  portrait: 'Portrait', concept: 'Concept',
+  portrait: 'Portrait',
 }
 
 export async function GET() {

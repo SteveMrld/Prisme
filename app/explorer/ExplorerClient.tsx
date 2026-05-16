@@ -6,13 +6,13 @@ import styles from './explorer.module.css'
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
-  portrait: 'Portrait', concept: 'Analyse', sciences: 'Sciences',
+  portrait: 'Portrait',
 }
 
 const categoryColors: Record<string, string> = {
   geo: '#C8621A', eco: '#1A6BC8', tech: '#8B1AC8',
   env: '#1A8B3A', soc: '#C8A91A', culture: '#C81A4A',
-  portrait: '#C8A96E', concept: '#6E8BC8', sciences: '#1AC8C8',
+  portrait: '#C8A96E',
 }
 
 export default function ExplorerClient({ articles }: { articles: any[] }) {

@@ -17,13 +17,13 @@ interface Article {
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
-  portrait: 'Portrait', concept: 'Concept', sciences: 'Sciences',
+  portrait: 'Portrait',
 }
 
 const categoryColors: Record<string, string> = {
   geo: 'var(--geo)', eco: 'var(--eco)', tech: 'var(--tech)',
   env: 'var(--env)', soc: 'var(--soc)', culture: 'var(--culture)',
-  portrait: 'var(--portrait)', concept: 'var(--concept)', sciences: 'var(--sciences)',
+  portrait: 'var(--portrait)',
 }
 
 export default function HeroSlider({ articles }: { articles: Article[] }) {

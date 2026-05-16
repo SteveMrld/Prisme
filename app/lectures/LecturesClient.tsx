@@ -33,7 +33,6 @@ const categoryLabels: Record<string, string> = {
   tech: 'Tech',
   env: 'Environnement',
   soc: 'Société',
-  sciences: 'Sciences',
   culture: 'Culture',
   portraits: 'Portraits',
   portrait: 'Portrait',

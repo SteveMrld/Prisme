@@ -14,7 +14,6 @@ const CATEGORIES = [
   { value: 'soc', label: 'Société' },
   { value: 'culture', label: 'Culture' },
   { value: 'portrait', label: 'Portrait' },
-  { value: 'concept', label: 'Concept' },
 ]
 
 const EMPTY_ARTICLE = {

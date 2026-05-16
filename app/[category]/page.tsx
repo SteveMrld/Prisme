@@ -55,13 +55,6 @@ const CATEGORIES: Record<string, {
     color: '#6B1A3A',
     cssVar: 'var(--culture)',
   },
-  sciences: {
-    label: 'Sciences',
-    labelLong: 'Sciences',
-    description: 'Biologie, médecine, épistémologie. Ce que la science dit du vivant et de nous-mêmes.',
-    color: '#1A5C4A',
-    cssVar: 'var(--sciences)',
-  },
   portraits: {
     label: 'Portraits',
     labelLong: 'Portraits',
@@ -78,7 +71,6 @@ const URL_TO_CATEGORY: Record<string, string> = {
   tech: 'tech',
   env: 'env',
   soc: 'soc',
-  sciences: 'sciences',
   culture: 'culture',
   portraits: 'portrait',
 }
@@ -86,7 +78,7 @@ const URL_TO_CATEGORY: Record<string, string> = {
 /* Nav activeNav key */
 const URL_TO_NAV: Record<string, string> = {
   geo: 'geo', eco: 'eco', tech: 'tech', env: 'env',
-  soc: 'soc', sciences: 'sciences', culture: 'culture', portraits: 'portrait',
+  soc: 'soc', culture: 'culture', portraits: 'portrait',
 }
 
 export function generateStaticParams() {
