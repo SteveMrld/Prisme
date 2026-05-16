@@ -7,7 +7,7 @@ import { CrisisViz, OwnershipMap } from '../../visuels/medias-pouvoir/MediasPouv
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: "La désaffection — Soara",
+  title: "La désaffection · Soara",
   description: "Confiance en chute libre, évitement croissant, pouvoir médiatique concentré entre quelques mains. Le divorce entre le public occidental et ses médias est structurel. Anatomie d'une rupture.",
 }
 

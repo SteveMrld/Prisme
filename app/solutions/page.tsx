@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Changer le monde — Soara',
+  title: 'Changer le monde · Soara',
   description: '157 solutions concrètes pour la planète. Sélection ChangeNow 2026.',
 }
 

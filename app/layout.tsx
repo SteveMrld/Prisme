@@ -31,8 +31,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Soara — Voir autrement',
-    template: '%s — Soara',
+    default: 'Soara, voir autrement',
+    template: '%s · Soara',
   },
   description: 'Média d\'analyse indépendant. Géopolitique, économie, technologie, société, culture. Des lectures de fond pour comprendre ce qui se passe vraiment.',
   keywords: ['géopolitique', 'économie', 'technologie', 'analyse', 'média indépendant'],
@@ -44,20 +44,20 @@ export const metadata: Metadata = {
     locale: 'fr_FR',
     url: BASE_URL,
     siteName: 'Soara',
-    title: 'Soara — Voir autrement',
+    title: 'Soara, voir autrement',
     description: 'Média d\'analyse indépendant. Géopolitique, économie, technologie, société, culture.',
     images: [
       {
         url: '/og-default.jpg',
         width: 1200,
         height: 630,
-        alt: 'Soara — Voir autrement',
+        alt: 'Soara, voir autrement',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Soara — Voir autrement',
+    title: 'Soara, voir autrement',
     description: 'Média d\'analyse indépendant. Géopolitique, économie, technologie, société, culture.',
     images: ['/og-default.jpg'],
     creator: '@soaradotmedia',

@@ -6,7 +6,7 @@ import AccountClient from './AccountClient'
 import AdSlot from '../../components/AdSlot'
 
 export const metadata = {
-  title: 'Mon compte — Soara',
+  title: 'Mon compte · Soara',
 }
 
 export default async function ComptePage({

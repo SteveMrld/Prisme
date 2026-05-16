@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import RecoupementClient from './RecoupementClient'
 
 export const metadata = {
-  title: 'Recoupement — Soara',
+  title: 'Recoupement · Soara',
   description: 'Outil de recoupement d\'information : croisez les sources sur un fait d\'actualité.',
 }
 

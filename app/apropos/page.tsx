@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from './apropos.module.css'
 
 export const metadata = {
-  title: 'À propos — Soara',
+  title: 'À propos · Soara',
   description: 'Ce que Soara est, ce qu\'il n\'est pas, et pourquoi.',
 }
 

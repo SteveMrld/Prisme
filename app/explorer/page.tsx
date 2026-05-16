@@ -2,7 +2,7 @@ import ExplorerClient from './ExplorerClient'
 import articlesData from '../../lib/articles.json'
 
 export const metadata = {
-  title: 'Explorer — Soara',
+  title: 'Explorer · Soara',
   description: 'Parcourez les analyses, portraits et grands formats de Soara.',
 }
 

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import AbonnementClient from './AbonnementClient'
 
 export const metadata = {
-  title: 'S\'abonner — Soara',
+  title: 'S\'abonner · Soara',
   description: 'Accédez à l\'intégralité des analyses Soara.',
 }
 

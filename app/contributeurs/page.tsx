@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from './contributeurs.module.css'
 
 export const metadata = {
-  title: 'Contributeurs — Soara',
+  title: 'Contributeurs · Soara',
   description: 'Les auteurs qui écrivent pour Soara.',
 }
 

@@ -2,7 +2,7 @@ import Header from '../../components/Header'
 import styles from './mentions.module.css'
 
 export const metadata = {
-  title: 'Mentions légales — Soara',
+  title: 'Mentions légales · Soara',
   description: 'Mentions légales, politique de confidentialité et informations légales de Soara.',
 }
 

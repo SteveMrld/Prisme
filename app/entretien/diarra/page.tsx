@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styles from './diarra.module.css'
 
 export const metadata = {
-  title: 'Cheick Modibo Diarra — Le Grand Entretien · Soara',
+  title: 'Cheick Modibo Diarra, Le Grand Entretien · Soara',
   description: "Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali.",
 }
 

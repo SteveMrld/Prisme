@@ -4,8 +4,8 @@ import revues from '../../lib/revues.json'
 import styles from './revue.module.css'
 
 export const metadata = {
-  title: 'Revue quotidienne — Soara',
-  description: 'La revue de presse géopolitique quotidienne de Soara — les faits qui comptent, les sources qui les rapportent.',
+  title: 'Revue quotidienne · Soara',
+  description: 'La revue de presse géopolitique quotidienne de Soara : les faits qui comptent, les sources qui les rapportent.',
 }
 
 const SOURCE_ABBR: Record<string, string> = {

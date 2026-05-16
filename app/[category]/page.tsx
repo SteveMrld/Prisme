@@ -96,7 +96,7 @@ export function generateMetadata({ params }: { params: { category: string } }) {
     openGraph: {
       type: 'website',
       url,
-      title: `${config.labelLong} — Soara`,
+      title: `${config.labelLong} · Soara`,
       description: config.description,
       siteName: 'Soara',
       locale: 'fr_FR',
@@ -104,7 +104,7 @@ export function generateMetadata({ params }: { params: { category: string } }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${config.labelLong} — Soara`,
+      title: `${config.labelLong} · Soara`,
       description: config.description,
       images: ['/og-default.jpg'],
     },

@@ -146,7 +146,7 @@ const signals = [
 ]
 
 export const metadata = {
-  title: 'Signal — Soara',
+  title: 'Signal · Soara',
   description: 'L\'actualité qui compte. Les faits bruts, sans bruit.',
 }
 

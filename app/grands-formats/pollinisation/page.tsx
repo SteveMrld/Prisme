@@ -7,7 +7,7 @@ import PollinisationViz from '../../visuels/pollinisation/PollinisationViz'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: "La ruche vide — Soara",
+  title: "La ruche vide · Soara",
   description: "L'abeille existe depuis 100 millions d'années. Elle est en train de céder face à cinquante ans d'agriculture industrielle. Derrière sa disparition : des brevets, des drones, et une nouvelle fracture mondiale.",
 }
 

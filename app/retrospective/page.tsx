@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styles from './retrospective.module.css'
 
 export const metadata = {
-  title: 'Rétrospective 2025 — Soara',
+  title: 'Rétrospective 2025 · Soara',
   description: 'Les douze mois qui ont changé le monde. Retour analytique sur 2025.',
 }
 
