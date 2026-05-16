@@ -65,9 +65,12 @@ export default async function ChambreRatificationPage({ searchParams }: { search
 
         {/* IMAGE I — Situation Room */}
         <figure style={{ margin: "56px -40px" }}>
-          <img src="/grands-formats/chambre-situation-room.png"
-            alt="Le Situation Room, 11 février 2026, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/chambre-situation-room.avif" type="image/avif" />
+            <img src="/grands-formats/chambre-situation-room.jpg"
+              alt="Le Situation Room, 11 février 2026, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Le Situation Room, 11 février 2026. Scène reconstituée par le <em>New York Times</em> à partir de témoignages de responsables américains. © Soara.
           </figcaption>
@@ -131,9 +134,12 @@ export default async function ChambreRatificationPage({ searchParams }: { search
 
         {/* IMAGE II — Kennedy */}
         <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/chambre-kennedy.png"
-            alt="Kennedy seul, octobre 1962, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/chambre-kennedy.avif" type="image/avif" />
+            <img src="/grands-formats/chambre-kennedy.jpg"
+              alt="Kennedy seul, octobre 1962, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Octobre 1962. Kennedy seul avec les photos U-2 et <em>The Guns of August</em> de Barbara Tuchman. © Soara.
           </figcaption>
@@ -200,9 +206,12 @@ export default async function ChambreRatificationPage({ searchParams }: { search
 
         {/* IMAGE III — Téhéran */}
         <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/chambre-tehran.png"
-            alt="Téhéran, août 1953, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/chambre-tehran.avif" type="image/avif" />
+            <img src="/grands-formats/chambre-tehran.jpg"
+              alt="Téhéran, août 1953, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Téhéran, août 1953. L&apos;opération Ajax renverse Mohammad Mossadegh. La boucle commence. © Soara.
           </figcaption>
@@ -216,9 +225,12 @@ export default async function ChambreRatificationPage({ searchParams }: { search
 
         {/* IMAGE IV — La boucle */}
         <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/chambre-boucle.png"
-            alt="La boucle 1953-2026, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/chambre-boucle.avif" type="image/avif" />
+            <img src="/grands-formats/chambre-boucle.jpg"
+              alt="La boucle 1953-2026, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             1953-2026. Le Shah et son fils. Le coup d&apos;État de la CIA et la présentation du Mossad. Soixante-dix ans du même film. © Soara.
           </figcaption>
