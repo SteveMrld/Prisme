@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import PictureImg from './PictureImg'
 import styles from './HeroInline.module.css'
 
 interface HeroArticle {
@@ -45,7 +46,7 @@ export default function HeroInline({ articles, intervalMs = 7000 }: Props) {
               key={art.slug}
               className={`${styles.imgSlide} ${i === current ? styles.active : ''}`}
             >
-              {art.image && <img src={art.image} alt={art.title} className={styles.img} />}
+              {art.image && <PictureImg src={art.image} alt={art.title} className={styles.img} />}
             </div>
           ))}
         </div>
