@@ -22,11 +22,14 @@ export default function DiarraPage() {
       <article className={styles.article}>
 
         <div className={styles.portraitBlock}>
-          <img
-            src="/portraits/diarra.png"
-            alt="Cheick Modibo Diarra"
-            className={styles.portrait}
-          />
+          <picture>
+            <source srcSet="/portraits/diarra.avif" type="image/avif" />
+            <img
+              src="/portraits/diarra.jpg"
+              alt="Cheick Modibo Diarra"
+              className={styles.portrait}
+            />
+          </picture>
         </div>
 
         <div className={styles.textCol}>

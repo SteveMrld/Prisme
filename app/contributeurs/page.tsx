@@ -1,5 +1,6 @@
 import Header from '../../components/Header'
 import Link from 'next/link'
+import PictureImg from '../../components/PictureImg'
 import styles from './contributeurs.module.css'
 
 export const metadata = {
@@ -121,7 +122,7 @@ export default function ContributeursPage() {
           <div key={c.name} className={styles.item}>
             <div className={styles.itemLeft}>
               {c.portrait
-                ? <img src={c.portrait} alt={c.name} className={styles.avatar} style={{objectFit:'cover', objectPosition:'top center'}} />
+                ? <PictureImg src={c.portrait} alt={c.name} className={styles.avatar} style={{objectFit:'cover', objectPosition:'top center'}} />
                 : <div className={styles.avatar}>{initials(c.name)}</div>
               }
             </div>

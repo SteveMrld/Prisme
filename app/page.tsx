@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
 import HeroInline from '../components/HeroInline'
+import PictureImg from '../components/PictureImg'
 import SoaraUnivers from '../components/SoaraUnivers'
 import AdSlot from '../components/AdSlot'
 import { getActiveAd } from '../lib/ads'
@@ -56,7 +57,7 @@ const ENTRETIEN_ART = {
   italic: 'Diarra',
   deck: 'Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali.',
   href: '/entretien/diarra',
-  img: '/portraits/diarra.png',
+  img: '/portraits/diarra.jpg',
 }
 // 12 grands formats — hiérarchie 4 niveaux type NYT / Le Grand Continent
 // 1 Lead pleine largeur + 2 Secondaires + 3 Tertiaires + 6 Quaternaires (liste compacte)
@@ -227,7 +228,7 @@ export default async function HomePage() {
               <span className={styles.zone1EntretienBannerDate}>1<sup>er</sup> juin 2026</span>
             </div>
             <div className={styles.zone1EntretienImg}>
-              <img src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} />
+              <PictureImg src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} />
             </div>
             <div className={styles.zone1EntretienBody}>
               <h3 className={styles.zone1EntretienName}>Cheick Modibo <em>Diarra</em></h3>
