@@ -178,7 +178,6 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       lang={lang}
       hasEnglish={hasEnglish}
       adSlot={
-        /* @ts-expect-error Async Server Component */
         <AdSlot slotId="article" variant="inline" />
       }
     />

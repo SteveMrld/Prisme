@@ -257,7 +257,6 @@ export default async function HomePage() {
           ))}
           {homeAd && (
             <div className={styles.homeTopAdSlot}>
-              {/* @ts-expect-error Async Server Component */}
               <AdSlot slotId="home" variant="sidebar" preloadedAd={homeAd} />
             </div>
           )}

@@ -38,7 +38,6 @@ export default async function ComptePage({
         isPastDue={isPastDue}
         successMessage={searchParams.success === 'true'}
       />
-      {/* @ts-expect-error Async Server Component */}
       <AdSlot slotId="compte" />
     </>
   )

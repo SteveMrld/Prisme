@@ -21,7 +21,7 @@ const DEFAULTS: Record<RevealMode, { threshold: number; rootMargin: string }> = 
 
 export function useReveal<T extends HTMLElement = HTMLDivElement>(
   options: UseRevealOptions = {}
-): [RefObject<T>, boolean] {
+): [RefObject<T | null>, boolean] {
   const { mode = 'once' } = options
   const defaults = DEFAULTS[mode]
   const threshold = options.threshold ?? defaults.threshold
