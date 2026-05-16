@@ -53,9 +53,12 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         {/* IMAGE HERO */}
         <figure style={{ margin: "56px -40px" }}>
-          <img src="/grands-formats/skunkworks/hangar-1943.png"
-            alt="Le hangar de Burbank, juin 1943, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/skunkworks/hangar-1943.avif" type="image/avif" />
+            <img src="/grands-formats/skunkworks/hangar-1943.jpg"
+              alt="Le hangar de Burbank, juin 1943, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Burbank, Californie, juin 1943. Johnson et son équipe travaillent sous une tente de cirque louée à la hâte. En 143 jours, ils livrent le premier chasseur à réaction américain. © Soara.
           </figcaption>
@@ -83,9 +86,12 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         {/* IMAGE U-2 */}
         <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/skunkworks/u2-survol.png"
-            alt="Le U-2 au-dessus de l'URSS, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/skunkworks/u2-survol.avif" type="image/avif" />
+            <img src="/grands-formats/skunkworks/u2-survol.jpg"
+              alt="Le U-2 au-dessus de l'URSS, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             De 1956 à 1960, le U-2 survola impunément le territoire soviétique à 21 000 mètres. Le 1er mai 1960, Gary Powers fut abattu. © Soara.
           </figcaption>
@@ -99,9 +105,12 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         {/* IMAGE TITANE */}
         <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/skunkworks/titane-sovietique.png"
-            alt="Le titane soviétique, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/skunkworks/titane-sovietique.avif" type="image/avif" />
+            <img src="/grands-formats/skunkworks/titane-sovietique.jpg"
+              alt="Le titane soviétique, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Le paradoxe du Blackbird : la CIA acheta le titane à l&apos;URSS via des sociétés fantômes pour construire l&apos;avion destiné à espionner l&apos;URSS. © Soara.
           </figcaption>
@@ -121,9 +130,12 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         {/* IMAGE GHOST MURMUR */}
         <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/skunkworks/ghost-murmur.png"
-            alt="Ghost Murmur, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/skunkworks/ghost-murmur.avif" type="image/avif" />
+            <img src="/grands-formats/skunkworks/ghost-murmur.jpg"
+              alt="Ghost Murmur, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             "Dude 44 Bravo", officier de systèmes d&apos;armes, 36 heures dans une fissure rocheuse en Iran. Retrouvé, selon des sources anonymes, grâce à la détection de son battement de cœur. © Soara.
           </figcaption>
@@ -148,9 +160,12 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         {/* IMAGE SR-72 */}
         <figure style={{ margin: "48px -40px 56px" }}>
-          <img src="/grands-formats/skunkworks/sr72-fantome.png"
-            alt="Le SR-72, programme fantôme, illustration éditoriale"
-            style={{ width: "100%", height: "auto", display: "block" }} />
+          <picture>
+            <source srcSet="/grands-formats/skunkworks/sr72-fantome.avif" type="image/avif" />
+            <img src="/grands-formats/skunkworks/sr72-fantome.jpg"
+              alt="Le SR-72, programme fantôme, illustration éditoriale"
+              style={{ width: "100%", height: "auto", display: "block" }} />
+          </picture>
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
             Palmdale, désert californien. Ce que Lockheed construit ici, personne ne le sait officiellement. 1,8 milliard de dollars perdus sur un programme sans nom. © Soara.
           </figcaption>
