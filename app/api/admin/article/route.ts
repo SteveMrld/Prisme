@@ -5,6 +5,7 @@ import { createClient } from '../../../../lib/supabase-server'
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN
 const REPO = 'SteveMrld/Prisme'
 const BRANCH = 'main'
+const SLUG_PATTERN = /^[a-z0-9-]+$/
 
 async function getFileSHA(path: string): Promise<string | null> {
   const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
@@ -63,6 +64,10 @@ export async function POST(req: NextRequest) {
 
   const { article, content, isEdit } = await req.json()
 
+  if (!article?.slug || !SLUG_PATTERN.test(article.slug)) {
+    return NextResponse.json({ error: 'Slug invalide' }, { status: 400 })
+  }
+
   // 1. Mettre à jour articles.json
   const articlesRes = await fetch(`https://api.github.com/repos/${REPO}/contents/lib/articles.json`, {
     headers: { Authorization: `Bearer ${GITHUB_TOKEN}`, Accept: 'application/vnd.github+json' },
@@ -107,6 +112,10 @@ export async function DELETE(req: NextRequest) {
   if (!(await isAdmin())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { slug } = await req.json()
+
+  if (!slug || !SLUG_PATTERN.test(slug)) {
+    return NextResponse.json({ error: 'Slug invalide' }, { status: 400 })
+  }
 
   const articlesRes = await fetch(`https://api.github.com/repos/${REPO}/contents/lib/articles.json`, {
     headers: { Authorization: `Bearer ${GITHUB_TOKEN}`, Accept: 'application/vnd.github+json' },
