@@ -81,7 +81,7 @@ export default async function ChambreRatificationPage({ searchParams }: { search
 
         <div className="pull-quote">
           <p>«&nbsp;Sounds good to me.&nbsp;»
-            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>— Donald Trump, répondant à Netanyahu. Situation Room, 11 février 2026. Source&nbsp;: <em>New York Times</em></span>
+            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>Donald Trump, répondant à Netanyahu. Situation Room, 11 février 2026. Source&nbsp;: <em>New York Times</em></span>
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export default async function ChambreRatificationPage({ searchParams }: { search
             «&nbsp;If our goal is regime change or an uprising, we shouldn&apos;t do it. But if the goal is to destroy Iran&apos;s missile program, that&apos;s a goal we can achieve.&nbsp;»<br />
             <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Marco Rubio, réunion finale du 26 février.</span>
             <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
-              Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
+              Source&nbsp;: New York Times, Haberman &amp; Swan, 7 avril 2026
             </span>
           </blockquote>
         </ScrollReveal>
@@ -118,7 +118,7 @@ export default async function ChambreRatificationPage({ searchParams }: { search
             «&nbsp;Operation Epic Fury is approved. No aborts. Good luck.&nbsp;»<br />
             <span style={{ fontSize: "13px", color: "#555", fontStyle: "normal" }}>Ordre transmis depuis Air Force One, 27 février, 22 minutes avant la deadline fixée par le général Caine.</span>
             <span style={{ display: "block", marginTop: "16px", fontStyle: "normal", fontFamily: "monospace", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "#8a7f72" }}>
-              Source&nbsp;: New York Times — Haberman &amp; Swan, 7 avril 2026
+              Source&nbsp;: New York Times, Haberman &amp; Swan, 7 avril 2026
             </span>
           </blockquote>
         </ScrollReveal>
@@ -151,7 +151,7 @@ export default async function ChambreRatificationPage({ searchParams }: { search
 
         <div className="pull-quote">
           <p>«&nbsp;Ces généraux ont un grand avantage&nbsp;: si nous les écoutons et faisons ce qu&apos;ils veulent, aucun de nous ne sera en vie plus tard pour leur dire qu&apos;ils avaient tort.&nbsp;»
-            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>— John F. Kennedy, à son aide Dave Powers. Octobre 1962.</span>
+            <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>John F. Kennedy, à son aide Dave Powers. Octobre 1962.</span>
           </p>
         </div>
 
@@ -220,7 +220,7 @@ export default async function ChambreRatificationPage({ searchParams }: { search
             alt="La boucle 1953-2026, illustration éditoriale"
             style={{ width: "100%", height: "auto", display: "block" }} />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            1953 — 2026. Le Shah et son fils. Le coup d&apos;État de la CIA et la présentation du Mossad. Soixante-dix ans du même film. © Soara.
+            1953-2026. Le Shah et son fils. Le coup d&apos;État de la CIA et la présentation du Mossad. Soixante-dix ans du même film. © Soara.
           </figcaption>
         </figure>
 

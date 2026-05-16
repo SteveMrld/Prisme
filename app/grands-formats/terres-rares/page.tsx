@@ -68,7 +68,7 @@ export default async function TerresRaresPage({ searchParams }: { searchParams?:
             loading="lazy"
           />
           <figcaption style={{ padding: "12px 0 0", fontFamily: "monospace", fontSize: "10.5px", letterSpacing: "0.08em", color: "#8a7f72", borderTop: "1px solid #DDD9D2" }}>
-            Flux mondiaux des terres rares — de l'extraction au raffinage. Sources : IEA Critical Minerals Report 2024 · USGS · Soara.
+            Flux mondiaux des terres rares : de l'extraction au raffinage. Sources : IEA Critical Minerals Report 2024 · USGS · Soara.
           </figcaption>
         </figure>
 
@@ -82,7 +82,7 @@ export default async function TerresRaresPage({ searchParams }: { searchParams?:
 
         <div className="pull-quote">
           <p>
-            "La Chine représente 85% du raffinage mondial des terres rares. Ce n'est pas une domination naturelle — c'est le résultat de trente ans de stratégie industrielle délibérée."
+            "La Chine représente 85% du raffinage mondial des terres rares. Ce n'est pas une domination naturelle : c'est le résultat de trente ans de stratégie industrielle délibérée."
             <br /><span style={{ fontSize: "13px", fontStyle: "normal", opacity: 0.9, color: "#8a7f72" }}>Soara · World Inequality in Minerals Report, IEA 2024</span>
           </p>
         </div>
@@ -97,11 +97,11 @@ export default async function TerresRaresPage({ searchParams }: { searchParams?:
 
         <div className="video-source">
           <div className="video-wrapper">
-            <iframe src="https://www.youtube-nocookie.com/embed/lNwrBlYuufI?start=233&rel=0&modestbranding=1" title="Audition au Select Committee on China — Minéraux critiques, Congrès américain, 2025" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe src="https://www.youtube-nocookie.com/embed/lNwrBlYuufI?start=233&rel=0&modestbranding=1" title="Audition au Select Committee on China, Minéraux critiques, Congrès américain, 2025" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </div>
           <div className="video-label">
             <span className="video-label-tag">Source primaire</span>
-            <span className="video-label-text">Audition au Select Committee on China — Reconstruction des chaînes d&apos;approvisionnement en minéraux critiques, Congrès américain, 2025.</span>
+            <span className="video-label-text">Audition au Select Committee on China, Reconstruction des chaînes d&apos;approvisionnement en minéraux critiques, Congrès américain, 2025.</span>
           </div>
         </div>
 

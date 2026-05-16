@@ -21,7 +21,7 @@ const MARG: Record<string,number>   = { USA:6,   JP:8,   FR:5,   IT:5,  CN:3,  D
 const ANNS = [
   { year:2008, titre:"Lehman Brothers",  desc:"Injections massives pour sauver le système financier" },
   { year:2010, titre:"Crise zone euro",  desc:"Grèce, Portugal, Irlande sous tutelle. Allemagne au pic 80%" },
-  { year:2020, titre:"Covid-19",         desc:"Plans de relance sans précédent — +20 à +25 pts en un an" },
+  { year:2020, titre:"Covid-19",         desc:"Plans de relance sans précédent : +20 à +25 pts en un an" },
 ];
 
 type Pays = typeof PAYS_RACING[0];
@@ -280,7 +280,7 @@ export default function CourbesRacing() {
           {showP ? "✕ Masquer" : "＋"} projection 2025
         </button>
         {showP && <span style={{ fontFamily:"Georgia,serif", fontStyle:"italic", fontSize:"10px", color:"#9CA3AF" }}>
-          Scénario central FMI — avant tout correctif politique ou choc économique
+          Scénario central FMI, avant tout correctif politique ou choc économique
         </span>}
       </div>
 

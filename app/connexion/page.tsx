@@ -29,7 +29,7 @@ export default function ConnexionPage() {
           },
         })
         if (error) throw error
-        setMessage({ type: 'success', text: 'Lien envoyé — vérifiez votre boîte mail.' })
+        setMessage({ type: 'success', text: 'Lien envoyé : vérifiez votre boîte mail.' })
         return
       }
 
@@ -42,7 +42,7 @@ export default function ConnexionPage() {
           },
         })
         if (error) throw error
-        setMessage({ type: 'success', text: 'Compte créé — vérifiez votre email pour confirmer.' })
+        setMessage({ type: 'success', text: 'Compte créé : vérifiez votre email pour confirmer.' })
         return
       }
 

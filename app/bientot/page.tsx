@@ -24,7 +24,7 @@ export default function BientotPage() {
         <div className={styles.logo}>SOARA</div>
         <p className={styles.tagline}>Média d&apos;analyse indépendant</p>
         <div className={styles.divider} />
-        <p className={styles.date}>Lancement — 1<sup>er</sup> juin 2026</p>
+        <p className={styles.date}>Lancement · 1<sup>er</sup> juin 2026</p>
 
         <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <input

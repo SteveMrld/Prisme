@@ -50,8 +50,8 @@ function LiveIndicateurs() {
 
 // ── Tensions éditoriales (pas de globe simulé) ────────────
 const ZONES = [
-  { name:'Iran — États-Unis',   status:'Crise active',    color:'#FC8181', dot:'#FC8181' },
-  { name:'Ukraine — Russie',    status:'Conflit ouvert',  color:'#FC8181', dot:'#FC8181' },
+  { name:'Iran · États-Unis',   status:'Crise active',    color:'#FC8181', dot:'#FC8181' },
+  { name:'Ukraine · Russie',    status:'Conflit ouvert',  color:'#FC8181', dot:'#FC8181' },
   { name:'Mer de Chine',        status:'Tension élevée',  color:'#F6AD55', dot:'#F6AD55' },
   { name:'Sahel',               status:'Déstabilisation', color:'#F6AD55', dot:'#F6AD55' },
   { name:'Détroit d\'Ormuz',    status:'Surveillance',    color:'#F6E05E', dot:'#F6E05E' },
@@ -111,8 +111,8 @@ export default function SoaraUnivers() {
           <h3 className={styles.cardTitle}>Les zones de tension du monde en temps réel</h3>
           <div className={styles.atlasList}>
             {[
-              {n:'🔴', t:'Iran — États-Unis',    tag:'Crise active'},
-              {n:'🔴', t:'Ukraine — Russie',     tag:'Conflit ouvert'},
+              {n:'🔴', t:'Iran · États-Unis',    tag:'Crise active'},
+              {n:'🔴', t:'Ukraine · Russie',     tag:'Conflit ouvert'},
               {n:'🟡', t:'Mer de Chine',         tag:'Tension élevée'},
             ].map(c => (
               <div key={c.n} className={styles.atlasItem}>

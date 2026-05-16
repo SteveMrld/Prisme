@@ -73,8 +73,8 @@ export function StatCount({ value, suffix = '', prefix = '', label }: {
 
 // ── 3. SECTION "EN CE MOMENT" ──────────────────────────────
 const actus = [
-  { cat: 'GÉOPOLITIQUE', catColor: 'var(--geo)', text: 'Iran frappe Ras Laffan — dommages considérables sur le 1er site GNL mondial', time: 'Il y a 2h', href: '/articles/france_maritime' },
-  { cat: 'ÉCONOMIE', catColor: 'var(--eco)', text: 'Brent +6% à 87$ — première hausse significative depuis trois semaines', time: 'Il y a 4h', href: '/articles/techgeo' },
+  { cat: 'GÉOPOLITIQUE', catColor: 'var(--geo)', text: 'Iran frappe Ras Laffan : dommages considérables sur le 1er site GNL mondial', time: 'Il y a 2h', href: '/articles/france_maritime' },
+  { cat: 'ÉCONOMIE', catColor: 'var(--eco)', text: 'Brent +6% à 87$, première hausse significative depuis trois semaines', time: 'Il y a 4h', href: '/articles/techgeo' },
   { cat: 'GÉOPOLITIQUE', catColor: 'var(--geo)', text: 'Trump/South Pars : Washington ouvre des négociations directes sur le gaz iranien', time: 'Il y a 5h', href: '/articles/venezuela' },
 ]
 

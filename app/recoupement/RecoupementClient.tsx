@@ -35,7 +35,7 @@ const MOCK_ANALYSES: Record<string, any> = {
       "Les deux thèses restent scientifiquement possibles"
     ],
     contradictions: [
-      "OMS et Nature : origine zoonotique probable — FBI et DOE : fuite de laboratoire probable",
+      "OMS et Nature : origine zoonotique probable, FBI et DOE : fuite de laboratoire probable",
       "Peter Daszak (EcoHealth) siégeait dans la commission d'enquête tout en finançant l'IVW",
       "Les premiers lanceurs d'alerte chinois ont été réduits au silence en janvier 2020",
       "La thèse laboratoire, censurée en 2020, est aujourd'hui jugée crédible par les services US"
@@ -67,7 +67,7 @@ const MOCK_ANALYSES: Record<string, any> = {
     ],
     coverage_index: 28,
     missing_sources: ["MSNBC", "CNN Politics", "Politico Playbook"],
-    historical_context: "Le cas Biden illustre un phénomène documenté de capture éditoriale — quand la proximité idéologique entre une rédaction et un sujet politique produit des angles morts systématiques. Le New Yorker a publié une autocritique explicite en août 2024.",
+    historical_context: "Le cas Biden illustre un phénomène documenté de capture éditoriale, quand la proximité idéologique entre une rédaction et un sujet politique produit des angles morts systématiques. Le New Yorker a publié une autocritique explicite en août 2024.",
     results: [
       { source: { id: "nytimes", name: "New York Times", abbr: "NYT", type: "Média", bias: "Centre-gauche" }, position: "Couverture tardive", details: "A minimisé les signaux cognitifs jusqu'au débat. Autocritique publiée en juillet 2024.", reliability: "veille" },
       { source: { id: "washingtonpost", name: "Washington Post", abbr: "WP", type: "Média", bias: "Centre-gauche" }, position: "Omission documentée", details: "Sources internes citées par le Columbia Journalism Review évoquent des pressions éditoriales.", reliability: "veille" },
@@ -152,7 +152,7 @@ async function openPackCheckout() {
 const NIVEAU_LABELS: Record<string, { label: string; color: string; note?: string }> = {
   verifie: { label: 'Vérifié',         color: '#4A8FBF' },
   analyse: { label: 'Analyse',         color: '#8A5AAA' },
-  veille:  { label: 'Veille · non vérifié', color: '#C8A96E', note: 'Signal de terrain — à recouper avec des sources vérifiées avant diffusion' },
+  veille:  { label: 'Veille · non vérifié', color: '#C8A96E', note: 'Signal de terrain, à recouper avec des sources vérifiées avant diffusion' },
 }
 
 type Analysis = {
@@ -413,7 +413,7 @@ export default function RecoupementClient() {
               <div className={styles.scoreLabel}>Indice de fiabilité</div>
               <div className={styles.scoreBar}><div className={styles.scoreFill} style={{ width: `${mock.coverage_index}%` }} /></div>
               <div className={styles.scoreValue}>{mock.coverage_index}%</div>
-              <div className={styles.scoreNote}>Couverture partielle — angle mort documenté</div>
+              <div className={styles.scoreNote}>Couverture partielle : angle mort documenté</div>
             </div>
             <div className={styles.synthesis}>
               <div className={styles.synthLabel}>Synthèse</div>
@@ -439,7 +439,7 @@ export default function RecoupementClient() {
                   <div className={styles.coverageLabel}>Indice de couverture</div>
                   <div className={styles.coverageBar}><div className={styles.coverageFill} style={{ width: `${mock.coverage_index}%` }} /></div>
                   <div className={styles.coverageValue}>{mock.coverage_index}%</div>
-                  <div className={styles.coverageNote}>Couverture partielle — angle mort possible</div>
+                  <div className={styles.coverageNote}>Couverture partielle : angle mort possible</div>
                 </div>
                 <div className={styles.missingItem}>
                   <div className={styles.coverageLabel}>Sources silencieuses</div>
@@ -497,9 +497,9 @@ export default function RecoupementClient() {
         <h1 className={styles.heroTitle}>Recoupement de <em>sources</em></h1>
         <p className={styles.heroSub}>
           Sur n'importe quel fait d'actualité géopolitique, cet outil interroge en temps réel
-          {' '}{SOURCES.length} sources indépendantes — médias, agences, analystes, OSINT, institutions.
+          {' '}{SOURCES.length} sources indépendantes : médias, agences, analystes, OSINT, institutions.
           Il identifie ce sur quoi elles s'accordent, ce sur quoi elles divergent,
-          et produit une synthèse éditoriale neutre. Pas pour vous dire quoi penser —
+          et produit une synthèse éditoriale neutre. Pas pour vous dire quoi penser,
           pour vous donner toutes les cartes.
         </p>
         <div className={styles.heroMeta}>
@@ -584,7 +584,7 @@ export default function RecoupementClient() {
         {!analysis && !loading && history.length > 0 && (
           <div className={styles.historyBlock}>
             <button className={styles.historyToggle} onClick={() => setShowHistory(!showHistory)}>
-              {showHistory ? '↑ Masquer' : `↓ Historique — ${history.length} analyse${history.length > 1 ? 's' : ''}`}
+              {showHistory ? '↑ Masquer' : `↓ Historique · ${history.length} analyse${history.length > 1 ? 's' : ''}`}
             </button>
             {showHistory && (
               <div className={styles.historyList}>
@@ -693,7 +693,7 @@ export default function RecoupementClient() {
               </a>
               <a href="/visuels/covid_consensus.html" target="_blank" className={styles.casCard}>
                 <div className={styles.casTag} style={{color:'#4A8FBF',borderColor:'rgba(74,143,191,.2)'}}>Covid & Institutions</div>
-                <div className={styles.casTitle}>Fuite de labo : censurée avant enquête — origine du Covid encore non déterminée</div>
+                <div className={styles.casTitle}>Fuite de labo : censurée avant enquête, origine du Covid encore non déterminée</div>
                 <div className={styles.casDesc}>Conflits d'intérêts documentés · 8 agences US · Timeline de la censure au retournement</div>
                 <div className={styles.casArrow}>Voir l'analyse →</div>
               </a>
@@ -757,7 +757,7 @@ export default function RecoupementClient() {
                   if (data.url) window.location.href = data.url
                 } catch {}
               }}>
-              Acheter 10 recoupements — 3,99 €
+              Acheter 10 recoupements · 3,99 €
             </button>
           </div>
         )}
@@ -828,9 +828,9 @@ export default function RecoupementClient() {
             </div>
             <div className={styles.scoreValue}>{reliabilityScore(analysis.results)}%</div>
             <div className={styles.scoreNote}>
-              {reliabilityScore(analysis.results) >= 75 ? 'Bien documenté — forte convergence des sources' :
-               reliabilityScore(analysis.results) >= 50 ? 'Partiellement documenté — vérification recommandée' :
-               'Peu documenté — traiter avec prudence'}
+              {reliabilityScore(analysis.results) >= 75 ? 'Bien documenté : forte convergence des sources' :
+               reliabilityScore(analysis.results) >= 50 ? 'Partiellement documenté : vérification recommandée' :
+               'Peu documenté : traiter avec prudence'}
             </div>
           </div>
 
@@ -875,15 +875,15 @@ export default function RecoupementClient() {
                 <div className={styles.coverageValue}>{analysis.coverage_index}%</div>
                 <div className={styles.coverageNote}>
                   {analysis.coverage_index >= 70 ? 'Fait largement couvert par les médias de référence' :
-                   analysis.coverage_index >= 40 ? 'Couverture partielle — angle mort possible' :
-                   'Faiblement couvert — sujet sous-médiatisé'}
+                   analysis.coverage_index >= 40 ? 'Couverture partielle : angle mort possible' :
+                   'Faiblement couvert : sujet sous-médiatisé'}
                 </div>
               </div>
 
               {analysis.missing_sources.length > 0 && (
                 <div className={styles.missingItem}>
                   <div className={styles.coverageLabel}>Sources silencieuses</div>
-                  <div className={styles.missingNote}>Ces sources n'ont pas couvert ce fait — l'omission est aussi une information</div>
+                  <div className={styles.missingNote}>Ces sources n'ont pas couvert ce fait : l'omission est aussi une information</div>
                   <div className={styles.missingList}>
                     {analysis.missing_sources.map((s, i) => (
                       <span key={i} className={styles.missingTag}>{s}</span>

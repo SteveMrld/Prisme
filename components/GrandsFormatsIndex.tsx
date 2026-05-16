@@ -6,10 +6,10 @@ import styles from './GrandsFormatsIndex.module.css'
 
 const FORMATS = [
   { slug:'palantir',              title:"Palantir. L'ontologie de l'ennemi",                      category:'Tech · Puissance',            desc:"Comment une entreprise de data a vendu à l'État la capacité de penser la menace." },
-  { slug:'chambre-ratification',  title:"La chambre de ratification",                              category:'Géopolitique · Pouvoir',      desc:"Comment se décide vraiment une guerre — pas dans les capitales, mais dans les pièces où personne ne regarde." },
-  { slug:'skunkworks',            title:"Skunk Works — L'usine à l'impossible",                    category:'Tech · Défense',              desc:"Comment Lockheed a inventé l'avion invisible dans un hangar secret en Californie." },
+  { slug:'chambre-ratification',  title:"La chambre de ratification",                              category:'Géopolitique · Pouvoir',      desc:"Comment se décide vraiment une guerre, pas dans les capitales, mais dans les pièces où personne ne regarde." },
+  { slug:'skunkworks',            title:"Skunk Works · L'usine à l'impossible",                    category:'Tech · Défense',              desc:"Comment Lockheed a inventé l'avion invisible dans un hangar secret en Californie." },
   { slug:'terres-rares',          title:"Terres rares : la guerre invisible",                      category:'Géopolitique · Environnement',desc:"Du cobalt du Katanga au verrou chinois du raffinage, une nouvelle géographie de la dépendance." },
-  { slug:'medias',                title:"Médias — Les prédateurs",                                 category:'Société · Pouvoir',           desc:"Qui possède l'information ? La carte mondiale de la concentration des médias." },
+  { slug:'medias',                title:"Médias · Les prédateurs",                                 category:'Société · Pouvoir',           desc:"Qui possède l'information ? La carte mondiale de la concentration des médias." },
   { slug:'dette-souveraine',      title:"Dette souveraine",                                        category:'Économie · Géopolitique',     desc:"Quand la dette devient une arme géopolitique. Les États pris en otage par leurs créanciers." },
   { slug:'architecture-desordre', title:"L'architecture du désordre",                              category:'Géopolitique · Droit',        desc:"Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien." },
 ]

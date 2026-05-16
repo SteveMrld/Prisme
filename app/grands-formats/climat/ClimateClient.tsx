@@ -314,7 +314,7 @@ export default function CC() {
           <div style={{border:"1px solid rgba(255,255,255,0.15)",background:"rgba(4,6,13,0.4)",backdropFilter:"blur(4px)"}}>
             <div style={{padding:"8px 10px 4px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
               <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:600,fontSize:"clamp(11px,1.4vw,14px)",color:"#fff"}}>1500 → aujourd'hui · <span style={{color:"#ef4444"}}>Même échelle</span></div>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.2vw,12px)",fontWeight:300,color:"rgba(255,255,255,0.6)",marginTop:3,lineHeight:1.4}}>+1,6°C en 150 ans — là où les réchauffements naturels du passé prenaient des dizaines de milliers d'années.</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(10px,1.2vw,12px)",fontWeight:300,color:"rgba(255,255,255,0.6)",marginTop:3,lineHeight:1.4}}>+1,6°C en 150 ans, là où les réchauffements naturels du passé prenaient des dizaines de milliers d'années.</div>
             </div>
             <svg viewBox={`0 0 ${W2} ${H2}`} style={{width:"100%",display:"block"}}>
               {/* Grid Y identique */}
@@ -384,7 +384,7 @@ export default function CC() {
             Ces deux courbes ont le <strong style={{fontWeight:700}}>même axe vertical</strong>. La Terre a toujours changé. La différence : la courbe de gauche s'est déroulée sur <strong style={{fontWeight:600}}>500 millions d'années</strong>. La courbe de droite, en <strong style={{fontWeight:700,color:"#ef4444"}}>150 ans</strong>.
           </p>
           <p style={{fontFamily:"'Cormorant Garamond',serif",fontStyle:"italic",fontSize:"clamp(11px,1.3vw,14px)",fontWeight:300,color:"rgba(255,255,255,0.45)",margin:0,lineHeight:1.6}}>
-            Les variations de température ont toujours existé. Ce qui est sans précédent, c'est la vitesse — et la cause : les émissions humaines de CO₂ depuis la révolution industrielle.
+            Les variations de température ont toujours existé. Ce qui est sans précédent, c'est la vitesse : et la cause : les émissions humaines de CO₂ depuis la révolution industrielle.
           </p>
         </div>
 
@@ -415,7 +415,7 @@ export default function CC() {
 
 
         <div style={{fontSize:7,color:"rgba(255,255,255,0.15)",lineHeight:1.8,paddingTop:2,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
-          Scotese et al. (2021) · PAGES 2k (2019) · HadCRUT5 · NASA GISS · EPICA — Anomalie vs. pré-industriel (1850–1900)
+          Scotese et al. (2021) · PAGES 2k (2019) · HadCRUT5 · NASA GISS · EPICA · Anomalie vs. pré-industriel (1850–1900)
         </div>
       </div>
     </div>

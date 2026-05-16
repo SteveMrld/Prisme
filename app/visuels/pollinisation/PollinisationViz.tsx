@@ -12,7 +12,7 @@ const C = {
 const TIMELINE = [
   { year: 1970, loss: 5,  label: 'Premières monocultures intensives' },
   { year: 1980, loss: 8,  label: 'Généralisation des pesticides organochlorés' },
-  { year: 1994, loss: 11, label: 'Introduction des néonicotinoïdes — Bayer' },
+  { year: 1994, loss: 11, label: 'Introduction des néonicotinoïdes · Bayer' },
   { year: 2000, loss: 15, label: 'Déclin documenté en Europe et Amérique du Nord' },
   { year: 2006, loss: 24, label: '"Colony Collapse Disorder" nommé aux États-Unis' },
   { year: 2010, loss: 30, label: '30% de pertes annuelles aux États-Unis' },
@@ -206,7 +206,7 @@ function Timeline() {
         <div style={{marginTop:'16px', padding:'16px 20px', background:C.bg, border:`1px solid ${C.border}`, borderLeft:`3px solid ${active?C.gold:C.border}`, minHeight:'60px', transition:'border-color .3s'}}>
           {active ? (
             <>
-              <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:'10px', color:C.gold, letterSpacing:'1px', marginBottom:'4px'}}>{active.year} — {active.loss}% de pertes annuelles</div>
+              <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:'10px', color:C.gold, letterSpacing:'1px', marginBottom:'4px'}}>{active.year} · {active.loss}% de pertes annuelles</div>
               <div style={{fontFamily:"'Playfair Display',serif", fontStyle:'italic', color:C.text, fontSize:'14px'}}>{active.label}</div>
             </>
           ) : (

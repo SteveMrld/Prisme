@@ -518,7 +518,7 @@ export default function DetteClient() {
                     letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"2px" }}>{label}</div>
                   <div style={{ fontFamily:serif, fontWeight:700, color,
                     fontSize:"clamp(11px,1.3vw,15px)" }}>
-                    {ratios[k] != null ? ratios[k].toFixed(1) : "—"}
+                    {ratios[k] != null ? ratios[k].toFixed(1) : "–"}
                     <span style={{ fontSize:"0.6em", color:"#CBD5E1" }}>%</span>
                   </div>
                 </div>

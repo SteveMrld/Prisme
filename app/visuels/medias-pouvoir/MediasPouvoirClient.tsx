@@ -38,7 +38,7 @@ const ecosystem={
       {name:"Tucker Carlson",platforms:["YouTube","X"],reach:"14% des Américains / semaine",note:"Ex-Fox News, ligne nationaliste"},
       {name:"Lex Fridman",platforms:["YouTube","Spotify"],reach:"~5M abonnés",note:"Tech, IA, géopolitique"},
       {name:"Philip DeFranco",platforms:["YouTube"],reach:"6,6M abonnés",note:"Actu quotidienne, centriste"},
-      {name:"Dylan Page",platforms:["TikTok","YouTube"],reach:"Millions — mondial",note:"Résumés d'actu ultra-courts, Gen Z"},
+      {name:"Dylan Page",platforms:["TikTok","YouTube"],reach:"Millions · mondial",note:"Résumés d'actu ultra-courts, Gen Z"},
     ],
     media:[
       {name:"The Intercept",platforms:["Web","Podcast"],reach:"~5M visiteurs/mois",note:"Journalisme d'investigation"},
@@ -66,7 +66,7 @@ const ecosystem={
   },
   "Royaume-Uni":{
     influencers:[
-      {name:"Dylan Page",platforms:["TikTok","YouTube"],reach:"Millions — mondial",note:"Gen Z, pas journaliste formé"},
+      {name:"Dylan Page",platforms:["TikTok","YouTube"],reach:"Millions · mondial",note:"Gen Z, pas journaliste formé"},
       {name:"Blackbelt Barrister",platforms:["YouTube"],reach:"~500K abonnés",note:"Avocat en exercice, droit et libertés"},
       {name:"Martin Lewis",platforms:["YouTube","X","TV"],reach:"7M+ followers totaux",note:"Finance perso, hybride trad./réseaux"},
       {name:"Gary Lineker",platforms:["X","Podcast"],reach:"9M followers X",note:"Ex-BBC, prise de position politique"},
@@ -116,7 +116,7 @@ const ownership={
       media:[{name:"Elle",type:"Presse",year:2018},{name:"Marianne",type:"Presse"},{name:"Franc Tireur",type:"Presse"},{name:"TF1",type:"TV",note:"~5%"},{name:"Loopsider",type:"Digital",note:"45%"}]},
     {owner:"Pierre-Édouard Stérin",fortune:"1,4 Md €",sector:"Smartbox / Investissements",note:"Stratégie d'influence numérique ciblant les 15-35 ans (plan Périclès, 150M€ / 10 ans). Sources : INPI, Cash Investigation France 2 (24 juin 2025), AFP.",
       media:[{name:"Valeurs Actuelles",type:"Presse",year:2025},{name:"Cerfia",type:"Réseaux",year:2024,note:"1,2M abonnés X"},{name:"Neo.tv",type:"Digital"},{name:"Explore Media",type:"Digital",note:"12M followers"},{name:"Marmeladz",type:"Digital",note:"agence influenceurs"}]},
-    {owner:"Famille Mohn (Bertelsmann)",fortune:"—",sector:"Médias (allemand)",note:"Groupe allemand Bertelsmann, principal actionnaire du groupe M6 via RTL Group.",
+    {owner:"Famille Mohn (Bertelsmann)",fortune:"–",sector:"Médias (allemand)",note:"Groupe allemand Bertelsmann, principal actionnaire du groupe M6 via RTL Group.",
       media:[{name:"M6",type:"TV"},{name:"W9",type:"TV"},{name:"RTL",type:"Radio"}]},
   ],
   "États-Unis":[
@@ -128,11 +128,11 @@ const ownership={
       media:[{name:"Washington Post",type:"Presse",year:2013}]},
     {owner:"Famille Ellison (Skydance)",fortune:"~150 Mds €",sector:"Oracle / Tech",note:"Acquisition de Paramount / CBS en août 2025. Restructuration idéologique immédiate : Bari Weiss nommée rédactrice en chef de CBS News, annulation du Late Show de Colbert.",
       media:[{name:"CBS News",type:"TV",year:2025},{name:"Paramount+",type:"Streaming",year:2025},{name:"MTV",type:"TV",year:2025}]},
-    {owner:"Comcast / Roberts",fortune:"—",sector:"Télécoms",note:"Conglomérat contrôlé par la famille Roberts via des actions à droits de vote supérieurs. A scissionné MSNBC en entité Versant fin 2025.",
+    {owner:"Comcast / Roberts",fortune:"–",sector:"Télécoms",note:"Conglomérat contrôlé par la famille Roberts via des actions à droits de vote supérieurs. A scissionné MSNBC en entité Versant fin 2025.",
       media:[{name:"NBC",type:"TV"},{name:"CNBC",type:"TV"},{name:"Peacock",type:"Streaming"},{name:"Universal",type:"Cinéma"}]},
-    {owner:"Famille Ochs-Sulzberger",fortune:"—",sector:"Médias (NYT)",note:"Propriétaires du NYT depuis 1896. Plus de 5,5 milliards de visites annuelles (2025). Premier site d'info aux États-Unis.",
+    {owner:"Famille Ochs-Sulzberger",fortune:"–",sector:"Médias (NYT)",note:"Propriétaires du NYT depuis 1896. Plus de 5,5 milliards de visites annuelles (2025). Premier site d'info aux États-Unis.",
       media:[{name:"New York Times",type:"Presse"},{name:"The Athletic",type:"Digital"},{name:"Wirecutter",type:"Digital"}]},
-    {owner:"Walt Disney Company",fortune:"—",sector:"Divertissement",note:"Conglomérat coté. Contrôle une large part de l'info et du divertissement américains.",
+    {owner:"Walt Disney Company",fortune:"–",sector:"Divertissement",note:"Conglomérat coté. Contrôle une large part de l'info et du divertissement américains.",
       media:[{name:"ABC News",type:"TV"},{name:"ESPN",type:"TV"},{name:"Hulu",type:"Streaming"},{name:"Disney+",type:"Streaming"},{name:"National Geographic",type:"TV / Presse"}]},
   ],
   "Royaume-Uni":[
@@ -142,19 +142,19 @@ const ownership={
       media:[{name:"Daily Mail",type:"Presse"},{name:"Metro",type:"Presse"},{name:"i newspaper",type:"Presse"},{name:"MailOnline",type:"Digital"}]},
     {owner:"Daniel Kretinsky",fortune:"~7 Mds €",sector:"Énergie / Médias (tchèque)",note:"Entrée dans les médias britanniques. The Independent est passé full-digital.",
       media:[{name:"Evening Standard",type:"Presse"},{name:"The Independent",type:"Digital"}]},
-    {owner:"Scott Trust (indépendant)",fortune:"—",sector:"Fondation",note:"Structure unique : The Guardian est protégé par une fiducie qui garantit son indépendance éditoriale à perpétuité. Aucun actionnaire privé.",
+    {owner:"Scott Trust (indépendant)",fortune:"–",sector:"Fondation",note:"Structure unique : The Guardian est protégé par une fiducie qui garantit son indépendance éditoriale à perpétuité. Aucun actionnaire privé.",
       media:[{name:"The Guardian",type:"Presse"},{name:"The Observer",type:"Presse"}]},
-    {owner:"BBC (service public)",fortune:"—",sector:"Service public",note:"Financée par la redevance. Indépendance structurelle, mais sous pression politique croissante du gouvernement.",
+    {owner:"BBC (service public)",fortune:"–",sector:"Service public",note:"Financée par la redevance. Indépendance structurelle, mais sous pression politique croissante du gouvernement.",
       media:[{name:"BBC News",type:"TV / Radio"},{name:"BBC iPlayer",type:"Streaming"},{name:"BBC World Service",type:"Radio"}]},
   ],
   "Allemagne":[
     {owner:"Famille Mohn (Bertelsmann)",fortune:"~5 Mds €",sector:"Médias (groupe mondial)",note:"Premier groupe médiatique européen. Propriétaire de RTL Group, actif en Allemagne et dans toute l'Europe.",
       media:[{name:"RTL",type:"TV"},{name:"VOX",type:"TV"},{name:"Stern",type:"Presse"},{name:"Brigitte",type:"Presse"},{name:"Penguin Random House",type:"Édition"}]},
-    {owner:"Axel Springer",fortune:"—",sector:"Médias (coté / KKR)",note:"Groupe coté, majoritairement contrôlé par KKR depuis 2019. Leader de la presse populaire allemande et présent aux États-Unis via Politico.",
+    {owner:"Axel Springer",fortune:"–",sector:"Médias (coté / KKR)",note:"Groupe coté, majoritairement contrôlé par KKR depuis 2019. Leader de la presse populaire allemande et présent aux États-Unis via Politico.",
       media:[{name:"Bild",type:"Presse"},{name:"Die Welt",type:"Presse"},{name:"Politico Europe",type:"Digital"},{name:"Business Insider",type:"Digital"}]},
-    {owner:"ARD / ZDF (service public)",fortune:"—",sector:"Service public",note:"Service public dominant. Maintient une forte confiance, particulièrement sur les réseaux sociaux. La Tagesschau est la chaîne YouTube la plus suivie d'Allemagne.",
+    {owner:"ARD / ZDF (service public)",fortune:"–",sector:"Service public",note:"Service public dominant. Maintient une forte confiance, particulièrement sur les réseaux sociaux. La Tagesschau est la chaîne YouTube la plus suivie d'Allemagne.",
       media:[{name:"Das Erste (ARD)",type:"TV"},{name:"ZDF",type:"TV"},{name:"Tagesschau",type:"App"},{name:"Deutschlandfunk",type:"Radio"}]},
-    {owner:"Funke Mediengruppe",fortune:"—",sector:"Médias régionaux",note:"Groupe indépendant, leader de la presse régionale allemande avec plus de 600 publications.",
+    {owner:"Funke Mediengruppe",fortune:"–",sector:"Médias régionaux",note:"Groupe indépendant, leader de la presse régionale allemande avec plus de 600 publications.",
       media:[{name:"Hamburger Abendblatt",type:"Presse"},{name:"Berliner Morgenpost",type:"Presse"},{name:"WAZ",type:"Presse"}]},
   ],
 };
@@ -251,7 +251,7 @@ export function CrisisViz() {
 
   const ecoData=ecosystem[ecoCountry];
   const ownerData=ownership[ownerCountry];
-  const SL=({n,children})=><div style={{fontFamily:"monospace",fontSize:10,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:8}}>{n} — {children}</div>;
+  const SL=({n,children})=><div style={{fontFamily:"monospace",fontSize:10,letterSpacing:3,color:C.gold,textTransform:"uppercase",marginBottom:8}}>{n} · {children}</div>;
   const ST=({children})=><h2 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:700,color:C.text,margin:"0 0 6px",lineHeight:1.3}}>{children}</h2>;
   const SS=({children})=><p style={{fontFamily:"'Source Serif 4',serif",fontSize:13,color:C.dim,margin:"0 0 28px",lineHeight:1.6,maxWidth:560}}>{children}</p>;
   const DIV=()=><div style={{height:1,background:C.border,margin:"44px 0"}}/>;
@@ -275,7 +275,7 @@ export function CrisisViz() {
 
       <div style={{padding:"40px 40px 0"}}>
         <div style={{display:"flex",gap:12,flexWrap:"wrap",marginBottom:44}}>
-          {[["40%","Confiance mondiale dans les médias — stable 3 ans, 4 pts sous le pic COVID"],["40%","Des personnes évitent les infos — vs 29% en 2017. Record absolu."],["-32 pts","Chute de l'intérêt pour l'info au Royaume-Uni entre 2015 et 2024"],["9","Milliardaires français contrôlent plus de 80% des médias nationaux (2025)"]].map(([v,l])=>(
+          {[["40%","Confiance mondiale dans les médias, stable 3 ans, 4 pts sous le pic COVID"],["40%","Des personnes évitent les infos, vs 29% en 2017. Record absolu."],["-32 pts","Chute de l'intérêt pour l'info au Royaume-Uni entre 2015 et 2024"],["9","Milliardaires français contrôlent plus de 80% des médias nationaux (2025)"]].map(([v,l])=>(
             <div key={v+l} style={{background:C.surface,border:`1px solid ${C.border}`,borderLeft:`3px solid ${C.gold}`,padding:"16px 20px",flex:1,minWidth:140}}>
               <div style={{fontFamily:"monospace",fontSize:28,fontWeight:700,color:C.goldLight,letterSpacing:-1}}>{v}</div>
               <div style={{fontFamily:"'Source Serif 4',serif",fontSize:11,color:C.dim,marginTop:4,lineHeight:1.5}}>{l}</div>
@@ -360,11 +360,11 @@ export function CrisisViz() {
           ))}
         </div>
         <TABS value={ecoCountry} onChange={setEcoCountry} options={Object.keys(ecosystem)}/>
-        <div style={{fontFamily:"monospace",fontSize:10,color:C.gold,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Newsfluenceurs — {ecoCountry}</div>
+        <div style={{fontFamily:"monospace",fontSize:10,color:C.gold,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Newsfluenceurs · {ecoCountry}</div>
         <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:28}}>
           {ecoData.influencers.map((item,i)=><EcoCard key={i} item={item} accent={C.gold}/>)}
         </div>
-        <div style={{fontFamily:"monospace",fontSize:10,color:C.uk,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Nouveaux médias — {ecoCountry}</div>
+        <div style={{fontFamily:"monospace",fontSize:10,color:C.uk,letterSpacing:2,textTransform:"uppercase",marginBottom:10}}>Nouveaux médias · {ecoCountry}</div>
         <div style={{display:"flex",flexDirection:"column",gap:8}}>
           {ecoData.media.map((item,i)=><EcoCard key={i} item={item} accent={C.uk}/>)}
         </div>
@@ -394,7 +394,7 @@ export function CrisisViz() {
         </div>
 
         <div style={{marginTop:48,paddingTop:24,borderTop:`1px solid ${C.border}`,fontFamily:"monospace",fontSize:10,color:C.muted,lineHeight:1.9}}>
-          <strong style={{color:C.dim}}>Sources :</strong> Reuters Institute Digital News Report 2025 (Oxford University, 48 pays) · Reuters Institute "Mapping news creators and influencers" 2025 · Pew Research Center "News Influencers" 2024 · Free Press Media Capitulation Index 2025 · Cash Investigation France 2 (24 juin 2025) · INPI — données publiques · L'Essentiel de l'Éco, Basta!, Vert.eco (2025) · Données plateformes 2024–2025
+          <strong style={{color:C.dim}}>Sources :</strong> Reuters Institute Digital News Report 2025 (Oxford University, 48 pays) · Reuters Institute "Mapping news creators and influencers" 2025 · Pew Research Center "News Influencers" 2024 · Free Press Media Capitulation Index 2025 · Cash Investigation France 2 (24 juin 2025) · INPI, données publiques · L'Essentiel de l'Éco, Basta!, Vert.eco (2025) · Données plateformes 2024–2025
         </div>
       </div>
     </div>
@@ -432,7 +432,7 @@ const OWNERS_DATA = {
       media:[{n:"Elle",t:"Presse"},{n:"Marianne",t:"Presse"},{n:"Franc Tireur",t:"Presse"},{n:"Loopsider",t:"Digital"}] },
     { name:"Stérin",    col:"#c87050", fortune:"1,4 Md €",
       media:[{n:"Valeurs Actuelles",t:"Presse"},{n:"Cerfia",t:"Réseaux"},{n:"Neo.tv",t:"Digital"},{n:"Explore Media",t:"Digital"}] },
-    { name:"Mohn",      col:"#70a870", fortune:"—",
+    { name:"Mohn",      col:"#70a870", fortune:"–",
       media:[{n:"M6",t:"TV"},{n:"W9",t:"TV"},{n:"RTL",t:"Radio"}] },
   ],
   "États-Unis": [
@@ -444,11 +444,11 @@ const OWNERS_DATA = {
       media:[{n:"Washington Post",t:"Presse"}] },
     { name:"Ellison",    col:"#d4703a", fortune:"~150 Mds €",
       media:[{n:"CBS News",t:"TV"},{n:"Paramount+",t:"Streaming"},{n:"MTV",t:"TV"}] },
-    { name:"Comcast",    col:"#9b6bc8", fortune:"—",
+    { name:"Comcast",    col:"#9b6bc8", fortune:"–",
       media:[{n:"NBC",t:"TV"},{n:"CNBC",t:"TV"},{n:"Peacock",t:"Streaming"},{n:"Universal",t:"Cinéma"}] },
-    { name:"Sulzberger", col:"#6890b8", fortune:"—",
+    { name:"Sulzberger", col:"#6890b8", fortune:"–",
       media:[{n:"New York Times",t:"Presse"},{n:"The Athletic",t:"Digital"}] },
-    { name:"Disney",     col:"#c87050", fortune:"—",
+    { name:"Disney",     col:"#c87050", fortune:"–",
       media:[{n:"ABC News",t:"TV"},{n:"ESPN",t:"TV"},{n:"Hulu",t:"Streaming"},{n:"Disney+",t:"Streaming"}] },
   ],
   "Royaume-Uni": [
@@ -458,19 +458,19 @@ const OWNERS_DATA = {
       media:[{n:"Daily Mail",t:"Presse"},{n:"Metro",t:"Presse"},{n:"i newspaper",t:"Presse"},{n:"MailOnline",t:"Digital"}] },
     { name:"Kretinsky",   col:"#5b8fd4", fortune:"~7 Mds €",
       media:[{n:"Evening Standard",t:"Presse"},{n:"The Independent",t:"Digital"}] },
-    { name:"Scott Trust", col:"#6890b8", fortune:"—",
+    { name:"Scott Trust", col:"#6890b8", fortune:"–",
       media:[{n:"The Guardian",t:"Presse"},{n:"The Observer",t:"Presse"}] },
-    { name:"BBC",         col:"#70a870", fortune:"—",
+    { name:"BBC",         col:"#70a870", fortune:"–",
       media:[{n:"BBC News",t:"TV/Radio"},{n:"BBC iPlayer",t:"Streaming"},{n:"BBC World",t:"Radio"}] },
   ],
   "Allemagne": [
     { name:"Mohn / Bertelsmann", col:"#d4a020", fortune:"~5 Mds €",
       media:[{n:"RTL",t:"TV"},{n:"VOX",t:"TV"},{n:"Stern",t:"Presse"},{n:"Brigitte",t:"Presse"}] },
-    { name:"Axel Springer",      col:"#5b8fd4", fortune:"—",
+    { name:"Axel Springer",      col:"#5b8fd4", fortune:"–",
       media:[{n:"Bild",t:"Presse"},{n:"Die Welt",t:"Presse"},{n:"Politico Europe",t:"Digital"},{n:"Business Insider",t:"Digital"}] },
-    { name:"ARD / ZDF",          col:"#5caa7a", fortune:"—",
+    { name:"ARD / ZDF",          col:"#5caa7a", fortune:"–",
       media:[{n:"Das Erste",t:"TV"},{n:"ZDF",t:"TV"},{n:"Tagesschau",t:"App"},{n:"Deutschlandfunk",t:"Radio"}] },
-    { name:"Funke",              col:"#d4703a", fortune:"—",
+    { name:"Funke",              col:"#d4703a", fortune:"–",
       media:[{n:"Hamburger Abendblatt",t:"Presse"},{n:"Berliner Morgenpost",t:"Presse"},{n:"WAZ",t:"Presse"}] },
   ],
 };
@@ -580,7 +580,7 @@ function ArcDiagram({ owners }) {
               {o.name}
             </text>
             {/* fortune */}
-            {o.fortune !== "—" && (
+            {o.fortune !== "–" && (
               <text x={x} y={ownerY - 56}
                 textAnchor="middle" fill={o.col}
                 fontSize={8} fontFamily="monospace"
@@ -764,7 +764,7 @@ export default function MediasPouvoirClient() {
         {/* Section 1 — Analyse crise */}
         <div style={{ borderBottom: '1px solid #1a1d25', padding: '16px 64px 8px' }}>
           <div style={{ fontFamily: 'monospace', fontSize: 9, letterSpacing: 3, color: '#c9a84c', textTransform: 'uppercase' }}>
-            Partie I — Chiffres de la désaffection & nouveaux acteurs
+            Partie I · Chiffres de la désaffection & nouveaux acteurs
           </div>
         </div>
         <CrisisViz />
@@ -772,7 +772,7 @@ export default function MediasPouvoirClient() {
         {/* Section 2 — Qui possède */}
         <div style={{ borderTop: '2px solid #1a1d25', borderBottom: '1px solid #1a1d25', padding: '16px 64px 8px', marginTop: 8 }}>
           <div style={{ fontFamily: 'monospace', fontSize: 9, letterSpacing: 3, color: '#c9a84c', textTransform: 'uppercase' }}>
-            Partie II — Qui possède les médias traditionnels ?
+            Partie II · Qui possède les médias traditionnels ?
           </div>
         </div>
         <OwnershipMap />

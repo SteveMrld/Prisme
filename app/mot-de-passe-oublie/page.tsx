@@ -48,7 +48,7 @@ export default function MotDePasseOubliePage() {
           ) : (
             <>
               <h1 className={styles.title}>Mot de passe oublié</h1>
-              <p className={styles.sub}>Entrez votre email — nous vous enverrons un lien pour choisir un nouveau mot de passe.</p>
+              <p className={styles.sub}>Entrez votre email, nous vous enverrons un lien pour choisir un nouveau mot de passe.</p>
 
               {error && <div className={styles.error}>{error}</div>}
 

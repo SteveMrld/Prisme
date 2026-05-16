@@ -9,7 +9,7 @@ import styles from './abonnement.module.css'
 const PREVIEWS = [
   { cat: 'Grand format', title: 'La chambre de ratification', desc: 'Comment Netanyahu a décidé une guerre américaine.', img: '/grands-formats/chambre-hero.jpg' },
   { cat: 'Grand format', title: "L'eau : la prochaine grande fracture", desc: "Des glaciers himalayens aux barrages africains. La géopolitique de l'eau.", img: '/articles/img-eau.png' },
-  { cat: 'Atlas', title: 'La bataille pour le sous-sol numérique', desc: "Des mines de terres rares aux fabs de Taïwan — la guerre souterraine.", img: '/articles/img-techgeo.jpg' },
+  { cat: 'Atlas', title: 'La bataille pour le sous-sol numérique', desc: "Des mines de terres rares aux fabs de Taïwan : la guerre souterraine.", img: '/articles/img-techgeo.jpg' },
 ]
 
 // Ordre : differenciants en premier, communs ensuite.

@@ -40,7 +40,7 @@ export default function Footer() {
 
         {/* a) Bandeau supérieur — logo + tagline */}
         <div className={styles.brand}>
-          <Link href="/" className={styles.logo} aria-label="Soara — accueil">
+          <Link href="/" className={styles.logo} aria-label="Soara · accueil">
             So<em>ara</em>
           </Link>
           <p className={styles.tagline}>
@@ -113,7 +113,7 @@ export default function Footer() {
 
         {/* d) Ligne mentions légales + copyright */}
         <div className={styles.legal}>
-          © 2026 SOARA. Tous droits réservés. — Édition&nbsp;: Steve Moradel. — ISSN&nbsp;: à venir.
+          © 2026 SOARA. Tous droits réservés. · Édition&nbsp;: Steve Moradel. · ISSN&nbsp;: à venir.
         </div>
 
         {/* e) Mini-liens bas */}

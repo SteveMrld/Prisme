@@ -7,11 +7,11 @@ import AdminNav from '../../../components/AdminNav'
 import styles from './publicite.module.css'
 
 const SLOTS = [
-  { id: 'home',        label: 'Home — sous le hero',           hint: 'Bandeau paysage ~1200×250' },
-  { id: 'article',     label: 'Article — milieu de lecture',   hint: 'Carré ou paysage' },
-  { id: 'atlas',       label: 'Atlas — fin de page',            hint: 'Bandeau paysage' },
+  { id: 'home',        label: 'Home · sous le hero',           hint: 'Bandeau paysage ~1200×250' },
+  { id: 'article',     label: 'Article · milieu de lecture',   hint: 'Carré ou paysage' },
+  { id: 'atlas',       label: 'Atlas · fin de page',            hint: 'Bandeau paysage' },
   { id: 'newsletter',  label: 'Newsletter (à venir)',           hint: 'Non encore inséré dans le site' },
-  { id: 'compte',      label: 'Compte abonné — bloc partenaires', hint: 'Bloc partenaires bas de page' },
+  { id: 'compte',      label: 'Compte abonné · bloc partenaires', hint: 'Bloc partenaires bas de page' },
 ]
 
 const EMPTY = {

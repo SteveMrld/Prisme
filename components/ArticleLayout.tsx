@@ -209,7 +209,7 @@ export default function ArticleLayout({
             <div style={{flex:1, minWidth:0}}>
               <div className={styles.bylineTopName}>
                 <span className={styles.bylinePrefix}>{lang === 'en' ? 'By ' : 'Par '}</span>{author}
-                {authorRole && <span className={styles.bylineSep}> — </span>}
+                {authorRole && <span className={styles.bylineSep}> · </span>}
                 {authorRole && <span className={styles.bylineTopRole}>{authorRole}</span>}
               </div>
               {fullDate && (
@@ -257,7 +257,7 @@ export default function ArticleLayout({
               <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
               <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
               <p className={styles.paywallDesc}>Accédez à l'intégralité de cet article et à tous les grands formats Soara.</p>
-              <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner — dès 9,99€/mois</a>
+              <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
               <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function ArticleLayout({
             <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',color:'#C8A96E',marginBottom:'12px'}}>Soara · Média d'analyse indépendant</div>
             <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:'clamp(20px,3vw,28px)',fontWeight:400,color:'#1a1a1a',marginBottom:'10px',lineHeight:1.2}}>Accédez à tous les grands formats</h3>
             <p style={{fontSize:'14px',color:'#888',maxWidth:'340px',margin:'0 auto 24px',lineHeight:1.6,fontStyle:'italic',fontFamily:"'Playfair Display',serif"}}>Analyses approfondies, données exclusives, formats inédits. Sans publicité, sans algorithme.</p>
-            <a href="/abonnement" style={{display:'inline-block',background:'#1a1a1a',color:'#fff',textDecoration:'none',fontSize:'11px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'13px 28px',marginBottom:'10px'}}>S'abonner — dès 9,99€/mois</a>
+            <a href="/abonnement" style={{display:'inline-block',background:'#1a1a1a',color:'#fff',textDecoration:'none',fontSize:'11px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'13px 28px',marginBottom:'10px'}}>S'abonner, dès 9,99€/mois</a>
             <br/>
             <a href="/connexion" style={{fontSize:'11px',color:'#aaa',textDecoration:'none'}}>Déjà abonné ? Se connecter</a>
           </div>

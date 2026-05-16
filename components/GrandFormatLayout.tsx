@@ -217,7 +217,7 @@ export default function GrandFormatLayout({
                 <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
                 <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
                 <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
-                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner — dès 9,99€/mois</a>
+                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
                 <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
               </div>
             </div>
@@ -237,7 +237,7 @@ export default function GrandFormatLayout({
                 <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
                 <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
                 <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
-                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner — dès 9,99€/mois</a>
+                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
                 <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
               </div>
             </div>

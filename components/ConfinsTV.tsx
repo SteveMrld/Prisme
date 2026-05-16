@@ -52,7 +52,7 @@ const episodes = [
     duration: '2 min 07',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
-    description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA — comment les inégalités s'accélèrent.",
+    description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA : comment les inégalités s'accélèrent.",
   },
   {
     id: '06',
@@ -62,7 +62,7 @@ const episodes = [
     duration: '1 min 49',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME6_v2_koofw8',
     thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/PRISME6_v2_koofw8.jpg',
-    description: "69% des vertébrés sauvages disparus depuis 1970. La 6e extinction est différente — c'est la première causée par une seule espèce.",
+    description: "69% des vertébrés sauvages disparus depuis 1970. La 6e extinction est différente : c'est la première causée par une seule espèce.",
   },
 ]
 

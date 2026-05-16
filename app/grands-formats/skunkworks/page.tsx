@@ -47,7 +47,7 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
 
         <p>Johnson livra en cent quarante-trois jours. Sept de moins que prévu.</p>
 
-        <p>Quatre-vingt ans plus tard, Lockheed Martin a reconnu dans ses résultats financiers avoir perdu 1,8 milliard de dollars sur un programme aéronautique classifié dont elle n&apos;a pas révélé le nom. Et cette semaine, le directeur de la CIA a évoqué devant la presse des "technologies exquises que nul autre service de renseignement ne possède" — liées à la détection d&apos;un battement de cœur humain à soixante-cinq kilomètres de distance dans le désert iranien.</p>
+        <p>Quatre-vingt ans plus tard, Lockheed Martin a reconnu dans ses résultats financiers avoir perdu 1,8 milliard de dollars sur un programme aéronautique classifié dont elle n&apos;a pas révélé le nom. Et cette semaine, le directeur de la CIA a évoqué devant la presse des "technologies exquises que nul autre service de renseignement ne possède", liées à la détection d&apos;un battement de cœur humain à soixante-cinq kilomètres de distance dans le désert iranien.</p>
 
         <p>L&apos;histoire du Skunk Works, c&apos;est l&apos;histoire d&apos;une institution qui, depuis plus de huit décennies, fabrique des objets que le reste du monde ne sait pas encore que c&apos;est possible.</p>
 
@@ -129,7 +129,7 @@ export default async function Page({ searchParams }: { searchParams?: { lang?: s
           </figcaption>
         </figure>
 
-        <p>Le 3 avril 2026, un F-15E américain est abattu au-dessus du sud de l&apos;Iran. L&apos;officier de systèmes d&apos;armes, identifié uniquement par son indicatif d&apos;appel "Dude 44 Bravo" — disparaît dans la nature, blessé, 200 miles en territoire ennemi, avec une prime sur sa tête. Il se cache dans une fissure rocheuse en montagne pendant trente-six heures.</p>
+        <p>Le 3 avril 2026, un F-15E américain est abattu au-dessus du sud de l&apos;Iran. L&apos;officier de systèmes d&apos;armes, identifié uniquement par son indicatif d&apos;appel "Dude 44 Bravo", disparaît dans la nature, blessé, 200 miles en territoire ennemi, avec une prime sur sa tête. Il se cache dans une fissure rocheuse en montagne pendant trente-six heures.</p>
 
         <p>Le 6 avril, Trump et le directeur de la CIA John Ratcliffe convoquent la presse. Ratcliffe parle de "technologies exquises qu&apos;aucun autre service de renseignement ne possède." Trump dit que la CIA a localisé l&apos;aviateur à quarante miles de distance. Deux jours plus tard, le <em>New York Post</em> rapporte, citant deux sources anonymes, que l&apos;outil s&apos;appelle Ghost Murmur. Développé par le Skunk Works. Première utilisation opérationnelle. Le système combine magnétométrie quantique et intelligence artificielle pour détecter la signature électromagnétique d&apos;un battement de cœur humain à soixante-cinq kilomètres de distance.</p>
 

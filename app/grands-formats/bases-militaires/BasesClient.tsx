@@ -15,14 +15,14 @@ const SOURCES = [
   { id: "pentagon2024",  nation: "usa",    label: "Pentagon Base Structure Report 2024",                          url: "https://www.acq.osd.mil/eie/BSI/BEI_Library.html",                            note: "128 bases dans 55 pays, chiffre officiel US" },
   { id: "vine2021",      nation: "usa",    label: "David Vine, Base Nation (2015, mise à jour 2021)",              url: "https://www.amazon.com/Base-Nation-Americas-Overseas-Military/dp/1627791507",  note: "750+ bases, méthodologie élargie incluant lily pads" },
   { id: "crs2024",       nation: "usa",    label: "Congressional Research Service, U.S. Military Bases Abroad",  url: "https://crsreports.congress.gov",                                              note: "Juillet 2024, données non classifiées" },
-  { id: "quincy2021",    nation: "usa",    label: "Quincy Institute — Drawdown (2021)",                           url: "https://quincyinst.org/report/drawdown/",                                      note: "Coût annuel estimé à 156 Md$/an" },
-  { id: "dmdc2025",      nation: "usa",    label: "Defense Manpower Data Center — Personnel by Country (déc. 2025)", url: "https://dwp.dmdc.osd.mil/dwp/app/main",                                   note: "221 599 militaires et civils en poste à l'étranger" },
-  { id: "declassifieduk",nation: "uk",     label: "Declassified UK — Phil Miller (nov. 2020)",                    url: "https://www.declassifieduk.org/revealed-the-uk-militarys-overseas-base-network-involves-145-sites-in-42-countries/", note: "145 sites dans 42 pays, enquête indépendante" },
-  { id: "ukcommons2024", nation: "uk",     label: "House of Commons Library — UK Forces in the Middle East (oct. 2024)", url: "https://commonslibrary.parliament.uk/research-briefings/cbp-8794/",   note: "Bases permanentes Bahreïn, Oman, Chypre" },
+  { id: "quincy2021",    nation: "usa",    label: "Quincy Institute · Drawdown (2021)",                           url: "https://quincyinst.org/report/drawdown/",                                      note: "Coût annuel estimé à 156 Md$/an" },
+  { id: "dmdc2025",      nation: "usa",    label: "Defense Manpower Data Center · Personnel by Country (déc. 2025)", url: "https://dwp.dmdc.osd.mil/dwp/app/main",                                   note: "221 599 militaires et civils en poste à l'étranger" },
+  { id: "declassifieduk",nation: "uk",     label: "Declassified UK · Phil Miller (nov. 2020)",                    url: "https://www.declassifieduk.org/revealed-the-uk-militarys-overseas-base-network-involves-145-sites-in-42-countries/", note: "145 sites dans 42 pays, enquête indépendante" },
+  { id: "ukcommons2024", nation: "uk",     label: "House of Commons Library · UK Forces in the Middle East (oct. 2024)", url: "https://commonslibrary.parliament.uk/research-briefings/cbp-8794/",   note: "Bases permanentes Bahreïn, Oman, Chypre" },
   { id: "modgov",        nation: "uk",     label: "GOV.UK, Permanent Joint Operating Bases",                     url: "https://www.gov.uk/government/publications/permanent-joint-operating-bases-pjobs/fd", note: "Liste officielle du Ministère de la Défense britannique" },
   { id: "izvestiya2018", nation: "russia", label: "Izvestiya / Ministère russe de la Défense (2018)",             url: "https://newlinesinstitute.org/strategic-competition/russia/russias-extraterritorial-military-deployments/", note: "21 installations significatives, seul chiffre officiel russe" },
   { id: "ponars2021",    nation: "russia", label: "PONARS Eurasia, Russia's Foreign Military Basing Strategy",   url: "https://www.ponarseurasia.org/russias-foreign-military-basing-strategy/",     note: "Analyse de la stratégie de basing russe" },
-  { id: "tartus2026",    nation: "russia", label: "Wikipedia — Tartus Naval Base (fév. 2026)",                    url: "https://en.wikipedia.org/wiki/Tartus_naval_base",                              note: "Statut 2025 : traité suspendu mais non terminé" },
+  { id: "tartus2026",    nation: "russia", label: "Wikipedia · Tartus Naval Base (fév. 2026)",                    url: "https://en.wikipedia.org/wiki/Tartus_naval_base",                              note: "Statut 2025 : traité suspendu mais non terminé" },
   { id: "atlanticcouncil", nation:"russia",label: "Atlantic Council, Russia's Most Important Middle East Base (déc. 2025)", url: "https://www.atlanticcouncil.org/blogs/menasource/russias-most-important-middle-east-base-is-not-where-you-think/", note: "Réseau logistique libyen et Africa Corps post-Syrie" },
   { id: "euractiv2025",  nation: "france", label: "Euractiv, La France perd sa dernière base en Afrique (juil. 2025)", url: "https://euractiv.fr/news/larmee-francaise-perd-lune-de-ses-dernieres-bases-en-afrique/", note: "Depuis le 17 juillet 2025, seule base africaine = Djibouti" },
   { id: "publicsenat",   nation: "france", label: "Public Sénat, Fin de la présence permanente en Afrique de l'Ouest (juil. 2025)", url: "https://www.publicsenat.fr/actualites/international/defense-la-france-met-fin-a-sa-presence-permanente-en-afrique-de-louest", note: "Tchad jan. 2025, Côte d'Ivoire fév. 2025, Sénégal juil. 2025" },
@@ -116,7 +116,7 @@ const BASES: Base[] = [
 
   // ── RUSSIE (Izvestiya/MoD 2018 — 21 installations — + Africa Corps 2025) ──
   { id:201, nation:"russia", name:"Hmeimim Air Base",     country:"Syrie",            lat:35.40,  lng:35.95,   troops:2000,  certainty:"probable",  note:"Réactivée octobre 2025 après suspension. Statut précaire après chute d'Assad. Accord avec al-Sharaa en négociation.", sourceId:"tartus2026" },
-  { id:202, nation:"russia", name:"Tartus Naval Base",    country:"Syrie",            lat:34.89,  lng:35.89,   troops:500,   certainty:"probable",  note:"Traité 'suspendu mais non terminé' — les navires russes ont quitté début mars 2025. Accès au cas par cas depuis. Seul accès russe à la Méditerranée.", sourceId:"tartus2026" },
+  { id:202, nation:"russia", name:"Tartus Naval Base",    country:"Syrie",            lat:34.89,  lng:35.89,   troops:500,   certainty:"probable",  note:"Traité 'suspendu mais non terminé', les navires russes ont quitté début mars 2025. Accès au cas par cas depuis. Seul accès russe à la Méditerranée.", sourceId:"tartus2026" },
   { id:203, nation:"russia", name:"Base 102, Gyumri",   country:"Arménie",          lat:40.80,  lng:43.86,   troops:3500,  certainty:"confirmée", note:"Verrou face à la Turquie et l'Azerbaïdjan. L'Arménie paie le prix de cette dépendance après la défaite au Karabagh.", sourceId:"izvestiya2018" },
   { id:204, nation:"russia", name:"201e base, Douchanbe",country:"Tadjikistan",      lat:38.56,  lng:68.77,   troops:7000,  certainty:"confirmée", note:"Plus grande base russe à l'étranger en effectifs. Surveillance de l'Afghanistan post-retrait américain.", sourceId:"izvestiya2018" },
   { id:205, nation:"russia", name:"Base de Kant",         country:"Kirghizstan",      lat:42.89,  lng:74.85,   troops:500,   certainty:"confirmée", note:"Seule base aérienne russe en Asie centrale.", sourceId:"izvestiya2018" },
@@ -218,7 +218,7 @@ export default function BasesClient() {
         <p className={styles.chapeau}>
           En 2025, <strong>19 pays seulement</strong> maintiennent des bases militaires à l'étranger.
           Six d'entre eux concentrent la quasi-totalité de l'empreinte mondiale.
-          La dissymétrie est totale et les équilibres sont en train de changer —
+          La dissymétrie est totale et les équilibres sont en train de changer,
           au Sahel, en Méditerranée, dans le Pacifique.
         </p>
       </div>
@@ -228,7 +228,7 @@ export default function BasesClient() {
 
         {/* BARRE COMPARATIVE */}
         <div className={styles.barPanel}>
-          <div className={styles.barTitle}>Bases militaires à l'étranger — 2025</div>
+          <div className={styles.barTitle}>Bases militaires à l'étranger · 2025</div>
           <div className={styles.barSubtitle}>Données vérifiées · Sources primaires</div>
           <div className={styles.barGrid}>
           {BAR_DATA.map((d) => {
@@ -483,7 +483,7 @@ export default function BasesClient() {
             <strong>Note méthodologique</strong>, Les chiffres de bases militaires varient fortement selon la définition retenue.
             Le Pentagone comptabilise les installations permanentes majeures (128 pour les USA).
             David Vine et le Quincy Institute incluent les "lily pads", accords d'accès et sites temporaires recurrents (750+).
-            Pour la Russie, seul le chiffre officiel du Ministère de la Défense est utilisé (21 installations, Izvestiya 2018) —
+            Pour la Russie, seul le chiffre officiel du Ministère de la Défense est utilisé (21 installations, Izvestiya 2018),
             le statut des bases syriennes est indiqué "probable" en raison de la situation post-Assad (voir Wikipedia Tartus, fév. 2026).
             Pour la France, les données sont mises à jour au 17 juillet 2025 (dernières bases africaines restituées au Sénégal, Euractiv).
           </div>

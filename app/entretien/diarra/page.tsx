@@ -46,11 +46,11 @@ export default function DiarraPage() {
 
           <p className={styles.deck}>
             Cheick Modibo Diarra n'est pas un homme qu'on résume facilement.
-            Ingénieur de navigation interplanétaire à la NASA sur cinq missions —
-            dont Mars Pathfinder et Mars Global Surveyor —, ancien président de Microsoft Afrique
+            Ingénieur de navigation interplanétaire à la NASA sur cinq missions (
+            dont Mars Pathfinder et Mars Global Surveyor), ancien président de Microsoft Afrique
             pendant dix ans, ancien Premier ministre du Mali en 2012–2013 dans un contexte
-            de crise institutionnelle majeure. C'est cette trajectoire singulière — la science,
-            le capital technologique mondial, le pouvoir politique africain — qui en fait
+            de crise institutionnelle majeure. C'est cette trajectoire singulière (la science,
+            le capital technologique mondial, le pouvoir politique africain) qui en fait
             l'interlocuteur idéal pour l'entretien inaugural de Soara.
           </p>
 

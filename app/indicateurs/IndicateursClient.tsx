@@ -123,7 +123,7 @@ export default function IndicateursClient() {
         </div>
         <div className={styles.topRight}>
           <span className={styles.liveDot}/>
-          <span className={styles.liveText}>En direct · {time || '—'}</span>
+          <span className={styles.liveText}>En direct · {time || '–'}</span>
         </div>
       </div>
 

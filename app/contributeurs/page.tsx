@@ -148,7 +148,7 @@ export default function ContributeursPage() {
           <h3 className={styles.openCallTitle}>Vous souhaitez contribuer ?</h3>
           <p className={styles.openCallDesc}>
             Soara accueille des contributions ponctuelles ou régulières d'analystes, chercheurs,
-            praticiens et journalistes indépendants. Le critère central n'est pas le statut — c'est
+            praticiens et journalistes indépendants. Le critère central n'est pas le statut : c'est
             la rigueur et la singularité du point de vue.
           </p>
           <a href="mailto:contact@soara.media" className={styles.openCallCta}>

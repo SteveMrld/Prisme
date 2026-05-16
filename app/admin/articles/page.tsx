@@ -101,7 +101,7 @@ export default function AdminPage() {
     })
     setSaving(false)
     if (res.ok) {
-      setMsg('✅ Publié — Vercel redéploie dans ~1 min.')
+      setMsg('✅ Publié, Vercel redéploie dans ~1 min.')
       loadArticles()
     } else {
       setMsg('❌ Erreur lors de la publication.')

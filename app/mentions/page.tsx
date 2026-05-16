@@ -31,7 +31,7 @@ export default function MentionsPage() {
               Ce site est hébergé par :<br />
               <strong>Vercel Inc.</strong><br />
               340 Pine Street, Suite 701<br />
-              San Francisco, CA 94104 — États-Unis<br />
+              San Francisco, CA 94104, États-Unis<br />
               <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>
             </p>
           </section>
@@ -39,7 +39,7 @@ export default function MentionsPage() {
           <section className={styles.section}>
             <h2>Propriété intellectuelle</h2>
             <p>
-              L'ensemble des contenus publiés sur Soara — textes, analyses, visuels, infographies, vidéos — est protégé par le droit d'auteur. Toute reproduction, même partielle, est soumise à autorisation préalable de l'éditeur, sauf mention contraire explicite.
+              L'ensemble des contenus publiés sur Soara (textes, analyses, visuels, infographies, vidéos) est protégé par le droit d'auteur. Toute reproduction, même partielle, est soumise à autorisation préalable de l'éditeur, sauf mention contraire explicite.
             </p>
             <p>
               Conformément à la loi du 11 mars 1957 et au Code de la propriété intellectuelle, toute utilisation non autorisée des contenus constitue une contrefaçon passible de sanctions civiles et pénales.
@@ -52,7 +52,7 @@ export default function MentionsPage() {
               Soara collecte uniquement les données strictement nécessaires à la relation avec ses abonnés et lecteurs : adresse e-mail pour la newsletter et le compte abonné.
             </p>
             <p>
-              Ces données sont traitées conformément au Règlement général sur la protection des données (RGPD — Règlement UE 2016/679). Elles ne sont ni vendues, ni cédées à des tiers.
+              Ces données sont traitées conformément au Règlement général sur la protection des données (RGPD, Règlement UE 2016/679). Elles ne sont ni vendues, ni cédées à des tiers.
             </p>
             <p>
               Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Pour exercer ces droits : <a href="mailto:contact@soara.fr">contact@soara.fr</a>

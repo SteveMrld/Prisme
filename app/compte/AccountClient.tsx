@@ -51,7 +51,7 @@ export default function AccountClient({ user, profile, isActive, isPastDue, succ
 
       {successMessage && (
         <div className={styles.successBanner}>
-          Abonnement activé — bienvenue chez Soara. Accès complet débloqué.
+          Abonnement activé, bienvenue chez Soara. Accès complet débloqué.
         </div>
       )}
 

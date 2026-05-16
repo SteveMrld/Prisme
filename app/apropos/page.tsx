@@ -29,10 +29,10 @@ export default function AProposPage() {
             Soara est née de deux mots, deux langues, deux lumières.
           </p>
           <p>
-            <em>Jua</em>, en swahili, c'est le soleil — brut, vivant, africain. <em>Sora</em>, en japonais, c'est le ciel — vaste, silencieux, infini. Entre les deux, il y a exactement l'espace où nous voulions exister : là où la lumière vient du dehors et résonne au-dedans.
+            <em>Jua</em>, en swahili, c'est le soleil : brut, vivant, africain. <em>Sora</em>, en japonais, c'est le ciel : vaste, silencieux, infini. Entre les deux, il y a exactement l'espace où nous voulions exister : là où la lumière vient du dehors et résonne au-dedans.
           </p>
           <p>
-            Nous n'avons pas lancé Soara parce que le marché nous y invitait. Nous l'avons lancé parce que nous croyons que certaines choses — une image, un mot, une histoire — peuvent faire ce que le soleil fait : éclairer ce qu'on ne voyait plus.
+            Nous n'avons pas lancé Soara parce que le marché nous y invitait. Nous l'avons lancé parce que nous croyons que certaines choses (une image, un mot, une histoire) peuvent faire ce que le soleil fait : éclairer ce qu'on ne voyait plus.
           </p>
           <p>
             C'est ça, notre raison d'être. Pas produire du contenu. Faire de la lumière.
@@ -47,9 +47,9 @@ export default function AProposPage() {
             inverse : les événements sont des symptômes. Ce qui mérite analyse, c'est ce qui les rend possibles.
           </p>
           <p>
-            Un coup d'État au Sahel n'est pas une surprise — c'est l'aboutissement d'une décennie de politique
+            Un coup d'État au Sahel n'est pas une surprise : c'est l'aboutissement d'une décennie de politique
             française mal calibrée, de compétition sino-russe et de frustrations démographiques non résolues.
-            L'effondrement d'une startup technologique n'est pas un accident — c'est la conséquence logique
+            L'effondrement d'une startup technologique n'est pas un accident : c'est la conséquence logique
             d'une idéologie qui a substitué la foi en la technologie à la rigueur analytique.
           </p>
           <p>
@@ -85,7 +85,7 @@ export default function AProposPage() {
           <p>
             Cela signifie que nous pouvons écrire que la politique africaine de la France a échoué, que
             le techno-solutionnisme est une idéologie, que certains dirigeants admirés ont des trajectoires
-            moralement ambiguës — sans que personne ne nous appelle pour nous demander de nuancer.
+            moralement ambiguës, sans que personne ne nous appelle pour nous demander de nuancer.
           </p>
         </section>
 

@@ -85,7 +85,7 @@ const mois = [
     stat: { num: '47', unit: '°C', label: 'record de température en Sicile en juillet 2025' },
     chartType: 'thermo',
     chartData: { value: 47, max: 55 },
-    chartLabel: 'Record de chaleur — Sicile'
+    chartLabel: 'Record de chaleur · Sicile'
   },
   {
     m: 'Août', slug: 'aout', cat: 'geo', catLabel: 'Géopolitique', article: 'taiwan',
@@ -94,12 +94,12 @@ const mois = [
     stat: { num: '10 600', unit: 'Mds $', label: 'coût d\'un conflit dans le détroit la 1ère année' },
     chartType: 'gauge',
     chartData: 9,
-    chartLabel: 'Niveau de tension — Détroit de Taïwan'
+    chartLabel: 'Niveau de tension · Détroit de Taïwan'
   },
   {
     m: 'Septembre', slug: 'sep', cat: 'eco', catLabel: 'Économie', article: 'blackrock',
     titre: 'BlackRock dépasse les 11 000 Mds sous gestion',
-    desc: "BlackRock, Vanguard, State Street : trois fonds américains gèrent collectivement 28 000 milliards de dollars — plus que le PIB de la Chine. Ils sont actionnaires de presque toutes les grandes entreprises mondiales simultanément. Cette concentration du capital n'a aucun précédent dans l'histoire du capitalisme. Qui contrôle ces fonds contrôle l'économie mondiale.",
+    desc: "BlackRock, Vanguard, State Street : trois fonds américains gèrent collectivement 28 000 milliards de dollars, plus que le PIB de la Chine. Ils sont actionnaires de presque toutes les grandes entreprises mondiales simultanément. Cette concentration du capital n'a aucun précédent dans l'histoire du capitalisme. Qui contrôle ces fonds contrôle l'économie mondiale.",
     stat: { num: '28 000', unit: 'Mds $', label: 'gérés par BlackRock, Vanguard et State Street réunis' },
     chartType: 'bubble',
     chartData: [
@@ -131,11 +131,11 @@ const mois = [
       { label: 'xAI', value: 50 },
       { label: 'X / Neuralink', value: 30 },
     ],
-    chartLabel: 'Empire Musk — 6 entités'
+    chartLabel: 'Empire Musk · 6 entités'
   },
   {
     m: 'Décembre', slug: 'dec', cat: 'geo', catLabel: 'Géopolitique', article: 'venezuela',
-    titre: 'L\'opération Venezuela — retour de la doctrine Monroe',
+    titre: 'L\'opération Venezuela, retour de la doctrine Monroe',
     desc: 'Les États-Unis capturent Maduro sans mandat international. Le droit international recule. L\'ordre mondial post-1945 s\'effondre.',
     stat: { num: '90', unit: '%', label: 'de la cocaïne US transite par le Mexique, pas le Venezuela' },
     chartType: 'line',
@@ -154,7 +154,7 @@ export default function RetrospectivePage() {
         <div className={styles.hero}>
           <div className={styles.heroInner}>
             <span className={styles.eyebrow}>Rétrospective</span>
-            <h1 className={styles.title}>2025 — L'année <em>des ruptures</em></h1>
+            <h1 className={styles.title}>2025 · L'année <em>des ruptures</em></h1>
             <p className={styles.subtitle}>
               Douze mois. Douze moments qui ont reconfiguré le monde.
               Retour analytique sur une année de basculements.

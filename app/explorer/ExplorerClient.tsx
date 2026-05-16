@@ -24,7 +24,7 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
   const specialFormats = [
     {
       slug: 'signal-map',
-      title: 'Signal Map — <em>La carte des tensions</em>',
+      title: 'Signal Map · <em>La carte des tensions</em>',
       description: 'Un globe interactif en temps réel. Les zones de tension, les routes maritimes, les arcs de connexion géopolitique.',
       category: 'visuel',
       image: '/articles/img-arctique.jpg',
