@@ -161,7 +161,7 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
             <div className={styles.printMockEyebrow}>Soara · Édition n°1</div>
             <div className={styles.printMockSep} />
             <div className={styles.printMockTitle}>L&apos;ordre<br/><em>qui vient</em></div>
-            <div className={styles.printMockFooter}>Juin 2026 · 80 pages</div>
+            <div className={styles.printMockFooter}>Automne 2026 · 80 pages</div>
           </div>
           <div className={styles.printBody}>
             <div className={styles.printEyebrow}>L&apos;édition imprimée</div>
@@ -170,7 +170,7 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
               Tous les six mois, une édition papier de 80 pages qui réunit les grands formats,
               les portraits, et les essais de la saison. Imprimée en France, envoyée chez vous.
             </p>
-            <div className={styles.printNote}>Incluse dans l&apos;abonnement annuel uniquement</div>
+            <div className={styles.printNote}>Incluse dans l&apos;abonnement annuel · premier numéro à l&apos;automne 2026</div>
           </div>
         </div>
       </div>
