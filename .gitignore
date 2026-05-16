@@ -2,3 +2,4 @@ node_modules/
 .next/
 .env*
 AUDIT_PRE_LAUNCH.md
+tsconfig.tsbuildinfo
