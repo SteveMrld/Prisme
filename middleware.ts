@@ -18,11 +18,13 @@ export async function middleware(request: NextRequest) {
       '/api/stripe/checkout',
       '/api/stripe/portal',
       '/api/newsletter',
-      '/api/recoupement',
       '/api/briefing',
+      '/api/ads/click',
     ])
     const isAllowedApi =
-      pathname.startsWith('/api/auth/') || allowedApiPaths.has(pathname)
+      pathname.startsWith('/api/auth/') ||
+      pathname.startsWith('/api/recoupement') ||
+      allowedApiPaths.has(pathname)
     const isAllowed =
       pathname === '/bientot' ||
       pathname === '/preview-unlock' ||
