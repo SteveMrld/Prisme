@@ -1,9 +1,21 @@
-// @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '../../../../lib/supabase-server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 
 const ADMIN_EMAIL = 'steve.moradel@gmail.com'
+
+type AdBody = {
+  id?: string
+  slot_id?: string
+  image_url?: string | null
+  title?: string
+  body?: string | null
+  target_url?: string
+  advertiser?: string
+  start_date?: string
+  end_date?: string
+  active?: boolean
+}
 
 async function isAdmin(): Promise<boolean> {
   const supabase = createClient()
@@ -35,7 +47,7 @@ export async function POST(req: NextRequest) {
   if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  const body = await req.json()
+  const body = (await req.json()) as AdBody
   const admin = supabaseAdmin()
 
   const payload = {
@@ -75,7 +87,8 @@ export async function DELETE(req: NextRequest) {
   if (!(await isAdmin())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  const { id } = await req.json()
+  const { id } = (await req.json()) as { id?: string }
+  if (!id) return NextResponse.json({ error: 'Missing id' }, { status: 400 })
   const admin = supabaseAdmin()
   const { error } = await admin.from('advertisements').delete().eq('id', id)
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
