@@ -4,6 +4,8 @@ const nextConfig = {
     return [
       { source: '/grands-formats', destination: '/formats', permanent: false },
       { source: '/prismetv', destination: '/tv', permanent: true },
+      { source: '/articles/longo', destination: '/entretien/longo', permanent: true },
+      { source: '/articles/diarra', destination: '/entretien/diarra', permanent: true },
     ]
   },
   async headers() {

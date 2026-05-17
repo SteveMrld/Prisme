@@ -3,7 +3,7 @@ import articlesData from '../../lib/articles.json'
 
 const BASE_URL = 'https://soara.fr'
 const SITE_NAME = 'Soara'
-const SITE_DESC = "Média d'analyse indépendant — Géopolitique, économie, technologie, société."
+const SITE_DESC = "Média d'analyse indépendant : Géopolitique, économie, technologie, société."
 
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
