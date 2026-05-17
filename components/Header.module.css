@@ -82,10 +82,12 @@
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
+  scroll-padding-inline-start: 12px;
   height: 36px;
   justify-content: space-between;
   width: 100%;
   position: relative;
+  padding-inline-start: 12px;
 }
 
 .nav::-webkit-scrollbar {
