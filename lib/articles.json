@@ -1,5 +1,26 @@
 [
   {
+    "slug": "longo",
+    "title": "Valter Longo : «Le jeûne gratuit fait probablement plus de mal que de bien»",
+    "description": "Le chercheur le plus cité au monde sur la longévité répond à Soara. Sur le jeûne, l’immortalité de la Silicon Valley, l’industrie pharmaceutique, les centenaires de Calabre, et ce que la médecine refuse encore de regarder en face.",
+    "author": "Valter Longo",
+    "authorRole": "Directeur de l’Institut de Longévité, USC Los Angeles",
+    "category": "sciences",
+    "categoryLabel": "Sciences",
+    "secondaryCategory": "soc",
+    "secondaryCategoryLabel": "Société",
+    "date": "2026-06-01",
+    "readTime": "12",
+    "image": "/portraits/longo-cover.jpg",
+    "featured": true,
+    "premium": false,
+    "grandFormat": false,
+    "grandEntretien": true,
+    "imageCredit": "© USC / Soara",
+    "titleEn": "Valter Longo: “Free fasting probably does more harm than good”",
+    "descriptionEn": "The world’s most cited longevity researcher answers Soara. On fasting, Silicon Valley immortality, the pharmaceutical industry, Calabrian centenarians, and what medicine still refuses to confront."
+  },
+  {
     "slug": "maladie-sans-filet",
     "title": "La maladie sans filet",
     "description": "Leila Janah, fondatrice de Samasource, meurt à trente-sept ans en janvier 2020. Sa trajectoire ouvre une question que les sociétés du travail indépendant peinent à formuler : celle de la maladie grave dans un régime professionnel où le corps est l'instrument de la production.",

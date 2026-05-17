@@ -26,7 +26,7 @@ const BASE_URL = 'https://soara.fr'
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',
   env: 'Environnement', soc: 'Société', culture: 'Culture',
-  portrait: 'Portrait'
+  portrait: 'Portrait', sciences: 'Sciences'
 }
 
 export const dynamic = 'force-dynamic'
@@ -166,6 +166,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       hasHeroInContent={hasHeroInContent}
       premium={showPaywall}
       avif={(article as any).avif === true}
+      grandEntretien={(article as any).grandEntretien === true}
       date={(article as any).date}
       slug={article.slug}
       content={content}

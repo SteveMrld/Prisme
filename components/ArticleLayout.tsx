@@ -19,6 +19,7 @@ interface ArticleLayoutProps {
   hasHeroInContent?: boolean
   premium?: boolean
   avif?: boolean
+  grandEntretien?: boolean
   slug?: string
   content: string
   author?: string
@@ -62,7 +63,7 @@ function portraitUrl(name: string): string | null {
 
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
-  readTime, date, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, avif = false, content, slug = '',
+  readTime, date, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, avif = false, grandEntretien = false, content, slug = '',
   author = 'Steve Moradel',
   authorRole = '',
   related = [],
@@ -174,6 +175,9 @@ export default function ArticleLayout({
             )}
             {avif && (
               <span style={{display:'inline-block',background:'#7A1A2E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'2px',marginTop:'10px',marginLeft:isPremiumContent?'8px':'0',width:'fit-content'}}>À VIF</span>
+            )}
+            {grandEntretien && (
+              <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'2px',marginTop:'10px',marginLeft:(isPremiumContent||avif)?'8px':'0',width:'fit-content'}}>GRAND ENTRETIEN</span>
             )}
           </div>
           {description && (
