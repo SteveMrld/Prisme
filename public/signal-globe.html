@@ -335,55 +335,14 @@ function goToZone(i){
   currentZone=i;
   const z=ZONES[i];
 
-  // Voler vers la zone — formule correcte pour ll2v qui utilise (lng+180)
+  // Voler vers la zone : formule correcte pour ll2v qui utilise (lng+180)
   autoRot=false;
   targetRotY=-(Math.PI/2 + z.lng*Math.PI/180);
   targetRotX=z.lat*Math.PI/180;
   targetCamZ=2.05; // zoom in
 
-  // Envoyer les données au parent Next.js
+  // Envoyer les données au parent Next.js (qui rend la card React)
   window.parent.postMessage({type:'ZONE_CHANGE', zone:z, index:i, total:ZONES.length}, '*');
-
-  // Mettre à jour la card (supprimé — géré par le parent)
-  const col=COLOR[z.status];
-  document.getElementById('ch-card').style.setProperty('--zone-col',col);
-  document.getElementById('ch-region').textContent=z.region;
-  document.getElementById('ch-name').textContent=z.name;
-  document.getElementById('ch-trend').textContent=TRENDSYM[z.trend];
-  document.getElementById('ch-trend').style.color=TRENDCOL[z.trend];
-  document.getElementById('ch-desc').textContent=z.desc;
-  document.getElementById('ch-num').textContent=(i+1)+' / '+ZONES.length;
-
-  // Tags
-  const tagsEl=document.getElementById('ch-tags');
-  tagsEl.innerHTML='';
-  z.tags.forEach((tag,ti)=>{
-    const span=document.createElement('span');
-    span.className='ch-tag';
-    span.textContent=tag;
-    span.style.color=z.tagColors[ti];
-    span.style.borderColor=z.tagColors[ti]+'44';
-    tagsEl.appendChild(span);
-  });
-
-  // Dots
-  const dotsEl=document.getElementById('ch-dots');
-  dotsEl.innerHTML='';
-  ZONES.forEach((_,di)=>{
-    const d=document.createElement('div');
-    d.className='ch-dot'+(di===i?' active':di<i?' visited':'');
-    d.onclick=()=>goToZone(di);
-    dotsEl.appendChild(d);
-  });
-
-  // Bouton suivant
-  const nb=document.getElementById('next-btn');
-  if(i===ZONES.length-1){nb.textContent='Recommencer';nb.onclick=()=>goToZone(0);}
-  else{nb.textContent='Suiv. →';nb.onclick=nextZone;}
-
-  // Afficher la card
-  const ch=document.getElementById('chapter');
-  ch.classList.remove('hidden');
 }
 
 function nextZone(){goToZone(currentZone+1);}
@@ -538,11 +497,6 @@ function animate(){
   });
 }
 animate();
-
-document.getElementById('ch-card').addEventListener('scroll',function(){
-  const hint=document.getElementById('scroll-hint');
-  if(hint) hint.style.opacity=this.scrollTop>10?'0':'1';
-});
 
 </script>
 </body>
