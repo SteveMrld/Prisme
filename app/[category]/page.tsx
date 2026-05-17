@@ -55,6 +55,13 @@ const CATEGORIES: Record<string, {
     color: '#6B1A3A',
     cssVar: 'var(--culture)',
   },
+  sciences: {
+    label: 'Sciences',
+    labelLong: 'Sciences',
+    description: 'Recherche, médecine, longévité. Ce que la science dit du monde et de l\'humain.',
+    color: '#1A5A6B',
+    cssVar: 'var(--tech)',
+  },
   portraits: {
     label: 'Portraits',
     labelLong: 'Portraits',
@@ -72,13 +79,14 @@ const URL_TO_CATEGORY: Record<string, string> = {
   env: 'env',
   soc: 'soc',
   culture: 'culture',
+  sciences: 'sciences',
   portraits: 'portrait',
 }
 
 /* Nav activeNav key */
 const URL_TO_NAV: Record<string, string> = {
   geo: 'geo', eco: 'eco', tech: 'tech', env: 'env',
-  soc: 'soc', culture: 'culture', portraits: 'portrait',
+  soc: 'soc', culture: 'culture', sciences: 'sciences', portraits: 'portrait',
 }
 
 export function generateStaticParams() {
