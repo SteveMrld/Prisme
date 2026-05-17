@@ -69,7 +69,7 @@ const GF_QUATERNARY = [
   art('medias'), art('eau'),    art('techgeo'),
 ]
 const LATEST = (articlesData as any[])
-  .filter((a:any) => !a.featured)
+  .filter((a:any) => !a.featured && !a.interviewType)
   .sort((a:any,b:any) => new Date(b.date).getTime() - new Date(a.date).getTime())
   .slice(0,5)
   .map((a:any) => ({...a, catLabel: CAT[a.category]||a.category}))

@@ -55,13 +55,6 @@ const CATEGORIES: Record<string, {
     color: '#6B1A3A',
     cssVar: 'var(--culture)',
   },
-  sciences: {
-    label: 'Sciences',
-    labelLong: 'Sciences',
-    description: 'Recherche, médecine, longévité. Ce que la science dit du monde et de l\'humain.',
-    color: '#1A5A6B',
-    cssVar: 'var(--tech)',
-  },
   portraits: {
     label: 'Portraits',
     labelLong: 'Portraits',
@@ -79,14 +72,13 @@ const URL_TO_CATEGORY: Record<string, string> = {
   env: 'env',
   soc: 'soc',
   culture: 'culture',
-  sciences: 'sciences',
   portraits: 'portrait',
 }
 
 /* Nav activeNav key */
 const URL_TO_NAV: Record<string, string> = {
   geo: 'geo', eco: 'eco', tech: 'tech', env: 'env',
-  soc: 'soc', culture: 'culture', sciences: 'sciences', portraits: 'portrait',
+  soc: 'soc', culture: 'culture', portraits: 'portrait',
 }
 
 export function generateStaticParams() {
@@ -125,7 +117,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
   if (!config) notFound()
 
   const categoryKey = URL_TO_CATEGORY[category]
-  const articles = (articlesData as any[]).filter(a => a.category === categoryKey)
+  const articles = (articlesData as any[]).filter(a => a.category === categoryKey && !a.interviewType)
 
   const [featured, ...rest] = articles
 

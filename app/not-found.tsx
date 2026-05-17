@@ -34,7 +34,7 @@ type Article = {
 }
 
 function pickReadings(): Article[] {
-  const all = articlesData as Article[]
+  const all = (articlesData as Article[]).filter(a => !(a as any).interviewType)
   const featured = all
     .filter(a => a.featured)
     .sort((a, b) => (b.date || '').localeCompare(a.date || ''))

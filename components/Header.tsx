@@ -94,8 +94,13 @@ export default function Header({ activeNav }: { activeNav?: string }) {
     const articles: SearchHit[] = []
     const grandsFormats: SearchHit[] = []
     for (const a of (articlesData as any[])) {
+      const href = a.interviewType
+        ? `/entretien/${a.slug}`
+        : a.grandFormat
+          ? `/grands-formats/${a.slug}`
+          : `/articles/${a.slug}`
       const hit: SearchHit = {
-        href: a.grandFormat ? `/grands-formats/${a.slug}` : `/articles/${a.slug}`,
+        href,
         title: a.title || '',
         description: a.description || '',
         category: a.categoryLabel || a.category || '',
