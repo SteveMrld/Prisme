@@ -23,7 +23,9 @@ export default function SignalMapPage() {
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useEffect(() => {
+    console.log('[DEBUG-REACT] mount: attaching message listener')
     const handler = (e: MessageEvent) => {
+      console.log('[DEBUG-REACT] message received:', e.data?.type, e.data?.zone?.name, 'origin:', e.origin)
       if (e.data?.type === 'ZONE_CHANGE') {
         setZone(e.data.zone)
         setIdx(e.data.index)

@@ -334,6 +334,7 @@ function goToZone(i){
   if(i<0||i>=ZONES.length) return;
   currentZone=i;
   const z=ZONES[i];
+  console.log('[DEBUG-IFRAME] goToZone:', i, z?.name);
 
   // Voler vers la zone : formule correcte pour ll2v qui utilise (lng+180)
   autoRot=false;
@@ -342,6 +343,7 @@ function goToZone(i){
   targetCamZ=2.05; // zoom in
 
   // Envoyer les données au parent Next.js (qui rend la card React)
+  console.log('[DEBUG-IFRAME] posting ZONE_CHANGE to parent');
   window.parent.postMessage({type:'ZONE_CHANGE', zone:z, index:i, total:ZONES.length}, '*');
 }
 
@@ -372,6 +374,7 @@ window.addEventListener('mouseup',e=>{
     mouse.y=-(e.clientY/window.innerHeight)*2+1;
     raycaster.setFromCamera(mouse,cam);
     const hits=raycaster.intersectObjects(markers);
+    console.log('[DEBUG-IFRAME] mouseup click, hits:', hits.length, hits[0]?.object?.userData?.zone?.name);
     if(hits.length>0){
       const idx=hits[0].object.userData.index;
       goToZone(idx);
