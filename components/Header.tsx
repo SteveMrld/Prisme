@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import articlesData from '../lib/articles.json'
 import visuels from '../lib/visuels'
 import { createClient } from '../lib/supabase'
@@ -76,7 +76,13 @@ const navItems = [
   { label: 'Solutions', href: '/solutions', className: 'env' },
 ]
 
-export default function Header({ activeNav }: { activeNav?: string }) {
+export default function Header({ activeNav: _activeNav }: { activeNav?: string }) {
+  const pathname = usePathname() || ''
+  const isActive = (href: string) => {
+    if (pathname === href) return true
+    if (href === '/') return false
+    return pathname.startsWith(href + '/')
+  }
   const [date, setDate] = useState('')
   const [user, setUser] = useState<any>(undefined)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -262,7 +268,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link
               key={item.href}
               href={item.href}
-              className={`${styles.navItem} ${styles[item.className]} ${activeNav === item.className ? styles.active : ''}`}
+              className={`${styles.navItem} ${styles[item.className]} ${isActive(item.href) ? styles.active : ''}`}
             >
               {item.label}
               {item.className === 'signal' && <span className={styles.signalDot}></span>}
@@ -476,7 +482,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <Link
               key={item.href}
               href={item.href}
-              className={`${styles.navItem} ${styles[item.className]} ${activeNav === item.className ? styles.active : ''}`}
+              className={`${styles.navItem} ${styles[item.className]} ${isActive(item.href) ? styles.active : ''}`}
             >
               {item.label}
               {item.className === 'signal' && <span className={styles.signalDot}></span>}
