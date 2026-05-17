@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import articlesData from '../lib/articles.json'
+import { getAllInterviews } from '../lib/interviews'
 
 const BASE_URL = 'https://soara.fr'
 
@@ -14,7 +15,6 @@ const STATIC_PAGES = [
   { url: '/contributeurs', priority: 0.5,  changeFrequency: 'monthly' },
   { url: '/mentions',      priority: 0.3,  changeFrequency: 'yearly'  },
   { url: '/abonnement',    priority: 0.7,  changeFrequency: 'monthly' },
-  { url: '/entretien/diarra', priority: 0.8, changeFrequency: 'weekly' },
 ] as const
 
 const GRANDS_FORMATS = [
@@ -55,12 +55,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
-  const articles = (articlesData as any[]).map(article => ({
-    url: `${BASE_URL}/articles/${article.slug}`,
+  const articles = (articlesData as any[])
+    .filter(a => !a.interviewType)
+    .map(article => ({
+      url: `${BASE_URL}/articles/${article.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+
+  const interviews = getAllInterviews().map(i => ({
+    url: `${BASE_URL}/entretien/${i.slug}`,
     lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
   }))
 
-  return [...statics, ...categories, ...grandsFormats, ...articles]
+  return [...statics, ...categories, ...grandsFormats, ...articles, ...interviews]
 }

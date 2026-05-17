@@ -13,14 +13,18 @@ const categoryLabels: Record<string, string> = {
 
 export async function GET() {
   const articles = (articlesData as any[])
+    .filter(a => a.interviewStatus !== 'coming')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 20)
 
   const items = articles.map(a => {
     const title = a.title.replace(/<[^>]+>/g, '').replace(/&/g, '&amp;')
     const desc = (a.description || '').replace(/&/g, '&amp;')
-    const url = `${BASE_URL}/articles/${a.slug}`
-    const cat = categoryLabels[a.category] || a.category
+    const isInterview = a.interviewType === 'grand' || a.interviewType === 'classique'
+    const url = isInterview
+      ? `${BASE_URL}/entretien/${a.slug}`
+      : `${BASE_URL}/articles/${a.slug}`
+    const cat = isInterview ? 'Entretien' : (categoryLabels[a.category] || a.category)
     const date = new Date(a.date).toUTCString()
     return `
     <item>
