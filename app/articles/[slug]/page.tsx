@@ -82,6 +82,11 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     redirect(`/grands-formats/${params.slug}`)
   }
 
+  // Redirection vers la route entretien dédiée pour les interviews
+  if ((article as any).interviewType) {
+    redirect(`/entretien/${params.slug}`)
+  }
+
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
   const contentFile = lang === 'en' ? `${params.slug}-en.html` : `${params.slug}.html`
   const contentPath = path.join(process.cwd(), 'lib', 'content', contentFile)

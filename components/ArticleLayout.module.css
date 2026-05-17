@@ -1013,32 +1013,3 @@
   letter-spacing: 0.2px;
   margin: 0;
 }
-
-/* ── INTERVIEW Q&A ── */
-.articleBody :global(p.interview-intro) {
-  font-size: 15px;
-  color: #555;
-  font-style: italic;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e0dbd2;
-}
-
-.articleBody :global(p.interview-question) {
-  font-family: 'Playfair Display', 'Fraunces', serif;
-  font-size: 17px;
-  font-weight: 700;
-  color: #C8A96E;
-  line-height: 1.5;
-  margin-top: 2.5rem;
-  margin-bottom: 0.8rem;
-  font-style: italic;
-}
-
-.articleBody :global(p.interview-answer) {
-  font-size: 16px;
-  line-height: 1.75;
-  color: #1a1a17;
-  margin-bottom: 0.5rem;
-}
