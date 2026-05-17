@@ -1,0 +1,130 @@
+.root {
+  --accent: #8B1A1A;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 2px solid #0A0A0A;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+
+.root[data-interview-type="classique"] {
+  --accent: #1B2D45;
+}
+
+.root:hover { opacity: 0.92; }
+
+.banner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0 12px;
+  border-bottom: 1px solid var(--accent);
+  margin-bottom: 14px;
+}
+
+.bannerLabel {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 700;
+  line-height: 1;
+  color: #0A0A0A;
+  letter-spacing: -0.3px;
+}
+
+.bannerLabel em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.bannerDate {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.img {
+  width: 65%;
+  max-width: 380px;
+  margin: 0 auto;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: #FFFFFF;
+  position: relative;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 600ms ease;
+}
+
+.root:hover .img img { transform: scale(1.03); }
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.4px;
+  color: #0A0A0A;
+  margin: 0;
+}
+
+.name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.role {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #444;
+  margin: 0;
+}
+
+.quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.4;
+  color: #1F1A1A;
+  padding-left: 12px;
+  border-left: 3px solid var(--accent);
+  margin: 4px 0 0;
+}
+
+.cta {
+  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  border-bottom: 1px solid #0A0A0A;
+  padding-bottom: 1px;
+  align-self: flex-start;
+  margin-top: 4px;
+  transition: opacity 200ms ease;
+}
+
+.root:hover .cta { opacity: 0.6; }

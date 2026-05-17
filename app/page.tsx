@@ -6,6 +6,7 @@ import HeroInline from '../components/HeroInline'
 import PictureImg from '../components/PictureImg'
 import SoaraUnivers from '../components/SoaraUnivers'
 import AdSlot from '../components/AdSlot'
+import HomeInterviewBanner from '../components/HomeInterviewBanner'
 import { getActiveAd } from '../lib/ads'
 import styles from './page.module.css'
 import Link from 'next/link'
@@ -52,13 +53,6 @@ const UNDER_HERO = [
   art('moreno'),                 // droite · 2e occurrence (Zone 1 + POPULAR) — remplace chambre-ratification (retiré : était HERO+Zone 1+GF Lead)
   art('dette-souveraine'),       // droite · 2e occurrence (Zone 1 + GF Tertiaire)
 ]
-const ENTRETIEN_ART = {
-  name: 'Cheick Modibo Diarra',
-  italic: 'Diarra',
-  deck: 'Astrophysicien à la NASA, ancien patron de Microsoft Afrique, ancien Premier ministre du Mali.',
-  href: '/entretien/diarra',
-  img: '/portraits/diarra.jpg',
-}
 // 12 grands formats — hiérarchie 4 niveaux type NYT / Le Grand Continent
 // 1 Lead pleine largeur + 2 Secondaires + 3 Tertiaires + 6 Quaternaires (liste compacte)
 const GF_LEAD = art('chambre-ratification')
@@ -215,30 +209,13 @@ export default async function HomePage() {
           </div>
         </aside>
 
-        {/* Colonne centre : hero inline rotatif + Grand Entretien Diarra
-            Le GE est ré-encadré ici en format vertical compact pour ancrer
-            la hauteur de la colonne. Le bloc pleine largeur historique
-            est remplacé par la bande Atlas, plus bas. */}
+        {/* Colonne centre : hero inline rotatif + bandeau Interview alterné.
+            Le bandeau lit getNextInterviewForHome() : published récent prioritaire,
+            fallback coming proche. Variante visuelle pilotée par data-interview-type. */}
         <div className={styles.homeTopCenter}>
           <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
 
-          <Link href={ENTRETIEN_ART.href} className={styles.zone1Entretien}>
-            <div className={styles.zone1EntretienBanner}>
-              <span className={styles.zone1EntretienBannerLabel}>Grand <em>Entretien</em></span>
-              <span className={styles.zone1EntretienBannerDate}>1<sup>er</sup> juin 2026</span>
-            </div>
-            <div className={styles.zone1EntretienImg}>
-              <PictureImg src={ENTRETIEN_ART.img} alt={ENTRETIEN_ART.name} />
-            </div>
-            <div className={styles.zone1EntretienBody}>
-              <h3 className={styles.zone1EntretienName}>Cheick Modibo <em>Diarra</em></h3>
-              <p className={styles.zone1EntretienRole}>{ENTRETIEN_ART.deck}</p>
-              <blockquote className={styles.zone1EntretienQuote}>
-                « La science, le capital, le pouvoir, trois langues d'un même siècle. »
-              </blockquote>
-              <span className={styles.zone1EntretienCta}>Lire dès la parution →</span>
-            </div>
-          </Link>
+          <HomeInterviewBanner />
         </div>
 
         {/* Colonne droite : 2 articles avec image + sidebar pub (si annonce) */}

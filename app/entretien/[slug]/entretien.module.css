@@ -8,9 +8,8 @@
 }
 
 .article[data-interview-type="classique"] {
-  /* Bleu froid provisoire, finalisé au Bloc 4 */
-  --accent: #1E3A5F;
-  --accent-em: #1E3A5F;
+  --accent: #1B2D45;
+  --accent-em: #1B2D45;
 }
 
 /* ── Portrait ── */
