@@ -170,6 +170,36 @@ export default function EntretienPage({
         </div>
       </article>
 
+      {(() => {
+        const others = getAllInterviews().filter(o => o.slug !== i.slug).slice(0, 3)
+        if (others.length === 0) return null
+        return (
+          <section className={styles.others}>
+            <h2 className={styles.othersTitle}>Autres entretiens</h2>
+            <div className={styles.othersGrid}>
+              {others.map(o => {
+                const oLabel = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
+                return (
+                  <Link
+                    key={o.slug}
+                    href={`/entretien/${o.slug}`}
+                    className={styles.otherCard}
+                    data-interview-type={o.interviewType}
+                  >
+                    <div className={styles.otherPortraitWrap}>
+                      <img src={o.image} alt={o.interviewSubject} className={styles.otherPortrait} />
+                    </div>
+                    <div className={styles.otherEyebrow}>{oLabel}</div>
+                    <div className={styles.otherName}>{o.interviewSubject}</div>
+                    <div className={styles.otherDeck}>{o.interviewDeck}</div>
+                  </Link>
+                )
+              })}
+            </div>
+          </section>
+        )
+      })()}
+
       <footer className={styles.footer}>
         <div className={styles.footerLinks}>
           <Link href="/apropos">À propos</Link>
