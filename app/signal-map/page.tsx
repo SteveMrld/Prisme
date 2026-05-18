@@ -53,6 +53,21 @@ export default function SignalMapPage() {
         allowFullScreen
       />
 
+      {/* TODO DEBUG signal-map : carre test inconditionnel.
+          Si Steve ne voit pas ce carre magenta : composant React entier ne rend pas.
+          Si Steve voit ce carre mais pas le panel : c'est {zone && ...} qui ne passe pas.
+          A retirer une fois la cause identifiee. */}
+      <div style={{
+        position:'fixed', bottom:20, right:20,
+        width:200, height:200,
+        background:'magenta', zIndex:9999,
+        display:'flex', alignItems:'center', justifyContent:'center',
+        color:'white', fontFamily:'monospace', fontSize:'28px', fontWeight:700,
+        letterSpacing:'2px',
+      }}>
+        TEST
+      </div>
+
       {zone && (
         <div style={{
           position:'fixed', bottom:0, left:0, right:0,
