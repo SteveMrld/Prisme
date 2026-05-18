@@ -2,6 +2,14 @@
 .panel {
   animation: panelIn var(--dur-base) var(--ease-out) both;
   transition: border-color var(--dur-base) var(--ease-out);
+
+  /* TODO DEBUG signal-map : force panel visible pour diagnostiquer
+     pourquoi le panel reste invisible malgre setState OK. A retirer. */
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  visibility: visible !important;
+  outline: 4px solid magenta !important;
 }
 @keyframes panelIn {
   from { opacity: 0; transform: translateY(8px); }
