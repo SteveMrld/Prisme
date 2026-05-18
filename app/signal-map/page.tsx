@@ -19,7 +19,6 @@ export default function SignalMapPage() {
   const [zone, setZone] = useState<Zone|null>(null)
   const [idx, setIdx] = useState(0)
   const [total, setTotal] = useState(12)
-  const [panelMounted, setPanelMounted] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useEffect(() => {
@@ -35,13 +34,6 @@ export default function SignalMapPage() {
     window.addEventListener('message', handler)
     return () => window.removeEventListener('message', handler)
   }, [])
-
-  useEffect(() => {
-    if (zone && !panelMounted) {
-      const id = requestAnimationFrame(() => setPanelMounted(true))
-      return () => cancelAnimationFrame(id)
-    }
-  }, [zone, panelMounted])
 
   const call = (fn: string, arg?: number) => {
     iframeRef.current?.contentWindow?.postMessage({type:'CALL', fn, arg}, '*')
@@ -71,7 +63,7 @@ export default function SignalMapPage() {
           pointerEvents:'none',
         }}>
           <div
-            className={`${styles.panel} ${panelMounted ? styles.panelMounted : ''}`}
+            className={styles.panel}
             style={{
               margin:'0 12px',
               background:'rgba(4,6,13,0.96)',

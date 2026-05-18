@@ -1,15 +1,11 @@
-/* ── panel : fade-up à l'apparition + border-color transition ── */
+/* ── panel : fade-up auto au mount via @keyframes (pas de race rAF) ── */
 .panel {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--dur-base) var(--ease-out),
-              transform var(--dur-base) var(--ease-out),
-              border-color var(--dur-base) var(--ease-out);
-  will-change: opacity, transform;
+  animation: panelIn var(--dur-base) var(--ease-out) both;
+  transition: border-color var(--dur-base) var(--ease-out);
 }
-.panelMounted {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ── content : replay subtle à chaque changement de zone ── */
