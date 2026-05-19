@@ -1,0 +1,145 @@
+{
+  "date_maj": "2026-05-12",
+  "breves": [
+    {
+      "date": "12 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Africa Forward, le pari kényan",
+      "body": "Le sommet Afrique-France s'ouvre à Nairobi pour deux jours. Pour la première fois depuis sa création en 1973, l'événement quitte l'espace francophone. Emmanuel Macron annonce 23 milliards d'euros d'investissements, dont 14 milliards français publics et privés, répartis entre transition énergétique, numérique, économie bleue, agriculture et santé. Après les retraits militaires du Mali, du Burkina Faso, du Niger et du Tchad, Paris cherche un nouveau point d'appui en Afrique de l'Est anglophone."
+    },
+    {
+      "date": "10 mai 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Restitutions, la loi-cadre adoptée à l'unanimité",
+      "body": "Le Parlement français adopte à l'unanimité la loi facilitant la restitution des œuvres pillées durant la colonisation. Jusque-là, le principe d'inaliénabilité des collections publiques imposait un vote loi par loi. Un simple décret gouvernemental suffira désormais pour les biens acquis entre 1815 et 1972. Les musées se voient confier une nouvelle mission, rechercher activement la provenance de leurs collections. Vingt-six trésors béninois, un sabre sénégalais et un tambour ivoirien ont été restitués depuis 2020."
+    },
+    {
+      "date": "7 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Taïwan, Pékin face à Tokyo",
+      "body": "La diplomatie chinoise réagit aux déclarations de Sanae Takaichi, Première ministre japonaise, qui a évoqué devant la Diète la possibilité d'une réponse militaire à une intervention chinoise contre Taïwan. Le porte-parole du ministère des Affaires étrangères chinois invoque la Déclaration du Caire et la Charte des Nations Unies pour rappeler les engagements japonais d'après-guerre. À l'arrière-plan, le 80e anniversaire des procès de Tokyo et la révision constitutionnelle en discussion à Tokyo."
+    },
+    {
+      "date": "6 mai 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Une note manuscrite d'Epstein sort des scellés",
+      "body": "Sept ans après sa mort, un juge fédéral américain rend publique une note manuscrite de Jeffrey Epstein conservée sous scellés à New York. Le document, dont la teneur n'a pas encore été commentée par le département de la Justice, ravive les questions sur l'écosystème d'influence du financier et sur les noms restés dans l'ombre des enquêtes successives."
+    },
+    {
+      "date": "6 mai 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "L'Union européenne interdit les IA de nudification",
+      "body": "Adoptée par 569 voix contre 45, la révision de l'AI Act interdit tout système d'intelligence artificielle générant des contenus à caractère sexuel représentant une personne identifiable sans son consentement. L'entrée en vigueur est fixée au 2 décembre 2026. La décision a été accélérée par les dérives de Grok fin 2025, l'IA d'Elon Musk, massivement utilisée pour produire des deepfakes de femmes et d'enfants à partir de photos réelles."
+    },
+    {
+      "date": "1er mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Cuba, le tour de vis Trump",
+      "body": "Donald Trump signe un décret imposant des sanctions massives contre les secteurs cubains de l'énergie, des mines, de la défense et des services financiers. Nouveauté décisive, les sanctions secondaires, qui exposent toute banque étrangère en relation avec le gouvernement cubain à la liste noire américaine. Le porte-avions USS Abraham Lincoln est déployé à quelques milles des côtes de l'île. La Havane répond par une manifestation d'un demi-million de personnes devant l'ambassade américaine."
+    },
+    {
+      "date": "26 avril 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Tchernobyl, quarante ans",
+      "body": "Le 26 avril 1986, le réacteur n°4 explosait. Quatre décennies plus tard, la zone d'exclusion reste sous contrôle militaire ukrainien. Les liquidateurs survivants, dont l'âge moyen dépasse soixante-dix ans, parlent désormais de \"deux guerres\" : celle du nucléaire civil et celle qui se prolonge sur leur sol depuis 2022."
+    },
+    {
+      "date": "25 avril 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Bamako : le JNIM frappe la capitale malienne",
+      "body": "Attaques coordonnées sur Bamako, Kati, Gao, Kidal et Sévaré dès l'aube. La résidence du ministre de la Défense Sadio Camara est détruite. Un hélicoptère de l'armée est abattu à Gao. Le Front de libération de l'Azawad annonce la prise de Kidal. La junte affirme que la situation est \"sous contrôle\". Tournant majeur dans le conflit sahélien."
+    },
+    {
+      "date": "25 avril 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Détroit d'Ormuz : premier marin tué",
+      "body": "Dalip Singh, vingt-quatre ans, marin originaire du Pendjab, devient la première victime civile reconnue des tirs iraniens dans le détroit. Sa famille n'a toujours pas reçu son corps. L'incident relance le débat sur la condition des marins du Sud global qui assurent près de la moitié du fret mondial sans protection consulaire effective."
+    },
+    {
+      "date": "24 avril 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Hegseth annonce un blocus mondial de l'Iran",
+      "body": "Le secrétaire à la Défense Pete Hegseth déclare que \"personne ne passe par Ormuz sans l'autorisation de la marine américaine\". Trente-quatre navires sont déployés. L'ordre Trump prévoit une riposte létale contre tout bâtiment iranien hostile. Des négociations indirectes pourraient toutefois reprendre à Islamabad sous médiation pakistanaise et émirienne."
+    },
+    {
+      "date": "24 avril 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "L'or franchit 4 688 dollars l'once, fuite vers la sécurité",
+      "body": "Brent à 104,78 dollars, WTI à 94,83 dollars, deuxième semaine consécutive de hausse depuis le début du conflit. Le dollar progresse face à l'euro et au yen, qui retrouve les 160. La grève dans l'usine de GNL d'Ichthys en Australie menace l'approvisionnement asiatique. Les banques centrales du Golfe et d'Asie discutent de lignes de liquidité avec Washington."
+    },
+    {
+      "date": "24 avril 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Jour du dépassement : la France atteint sa limite annuelle",
+      "body": "Selon le Global Footprint Network et le WWF, si l'humanité vivait au rythme de consommation française, les ressources que la planète peut régénérer en un an seraient déjà épuisées au 24 avril. La France figure parmi les pays au déficit écologique le plus précoce, derrière les États-Unis et le Qatar. La date avance d'une semaine par rapport à 2024."
+    },
+    {
+      "date": "23 avril 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Pékin annonce la militarisation de onze mille îles",
+      "body": "La Chine bloque physiquement le récif de Scarborough et déclare la mer de Chine méridionale fermée à la navigation non autorisée. Manille hésite entre invocation du traité de défense mutuelle avec Washington, protestation diplomatique formelle et saisine internationale. La présence japonaise aux exercices Balikatan 2026 marque un précédent historique."
+    },
+    {
+      "date": "17 mars 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Israël frappe Téhéran et Beyrouth",
+      "body": "Dix-huitième jour de l'opération. Les frappes visent les infrastructures de commandement du Hezbollah et deux sites supposés du programme nucléaire iranien. La Russie convoque le Conseil de sécurité. Washington maintient son soutien tout en appelant à la désescalade."
+    },
+    {
+      "date": "17 mars 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "La Fed se réunit, stagflation en ligne de mire",
+      "body": "Le pétrole à 103$ complique la décision de Jerome Powell. Une hausse des taux aggraverait le ralentissement ; un statu quo valide l'inflation. Les marchés anticipent une pause assortie d'un discours hawkish. Le dollar s'apprécie face à l'euro et au yen."
+    },
+    {
+      "date": "17 mars 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "Nvidia H200 : rupture de stock mondiale",
+      "body": "TSMC a confirmé ne pas pouvoir satisfaire la demande au-delà du troisième trimestre. Les hyperscalers (Microsoft, Google, Amazon) ont absorbé l'essentiel de l'allocation 2026. Les startups européennes d'IA signalent des délais de livraison allant jusqu'à 18 mois."
+    },
+    {
+      "date": "16 mars 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Trump face au mur : alliés absents",
+      "body": "Le sommet de l'OTAN s'est conclu sans communiqué commun pour la deuxième fois consécutive. Les délégations européennes ont refusé d'entériner la formulation américaine sur Taïwan. Le secrétaire général a évoqué une \"période de recalibrage stratégique\"."
+    },
+    {
+      "date": "16 mars 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Sécheresse record en Europe du Sud, 4e année consécutive",
+      "body": "L'Espagne, le Portugal et l'Italie du Sud affichent des réserves hydriques à 34% de leur capacité moyenne pour mars. L'Union européenne a activé le mécanisme de solidarité hydrique pour la troisième fois depuis sa création. Les négociations agricoles sur la PAC sont suspendues."
+    },
+    {
+      "date": "15 mars 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "France : mobilisation nationale jeudi",
+      "body": "Les syndicats appellent à une journée interprofessionnelle contre la réforme des retraites portée à 67 ans. La CFDT, habituellement réformiste, a rejoint le front commun. Le gouvernement refuse toute négociation avant le vote en commission, prévu le 24 mars."
+    },
+    {
+      "date": "15 mars 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Bitcoin dépasse 94 000$, institutionnels en retrait",
+      "body": "Le mouvement est porté par des flux de retail asiatique et des ETF spot lancés à Singapour et à Dubaï. BlackRock et Fidelity ont réduit leurs expositions de 12% depuis janvier. Les analystes divergent entre un test des 100 000$ et une correction liée à la liquidité globale."
+    }
+  ]
+}
