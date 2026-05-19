@@ -1,0 +1,77 @@
+{
+  "date_maj": "2026-05-13",
+  "indicateurs": [
+    {
+      "id": "brent",
+      "label": "Pétrole Brent",
+      "sub": "USD / baril",
+      "unit": "$",
+      "cat": "Énergie",
+      "catColor": "#C4793A",
+      "context": "Demande chinoise atone, OPEP+ en discussion sur quotas",
+      "value": 78.40,
+      "prev": 78.92,
+      "history": [81.2, 80.4, 79.6, 79.8, 79.1, 78.9, 78.40]
+    },
+    {
+      "id": "gold",
+      "label": "Or",
+      "sub": "USD / once troy",
+      "unit": "$",
+      "cat": "Refuge",
+      "catColor": "#C8A96E",
+      "context": "Achats massifs des banques centrales émergentes",
+      "value": 3412,
+      "prev": 3398,
+      "history": [3340, 3358, 3372, 3380, 3388, 3398, 3412]
+    },
+    {
+      "id": "wheat",
+      "label": "Blé",
+      "sub": "USD / boisseau",
+      "unit": "$",
+      "cat": "Alimentaire",
+      "catColor": "#7A9A3A",
+      "context": "Sécheresses sur le bassin de la mer Noire",
+      "value": 5.71,
+      "prev": 5.68,
+      "history": [5.42, 5.50, 5.58, 5.61, 5.65, 5.68, 5.71]
+    },
+    {
+      "id": "copper",
+      "label": "Cuivre",
+      "sub": "USD / livre",
+      "unit": "$",
+      "cat": "Industrie",
+      "catColor": "#9A6A3A",
+      "context": "Transition électrique, tension sur l'offre mondiale",
+      "value": 4.46,
+      "prev": 4.41,
+      "history": [4.21, 4.28, 4.34, 4.38, 4.40, 4.41, 4.46]
+    },
+    {
+      "id": "eurusd",
+      "label": "EUR / USD",
+      "sub": "Euro vers Dollar",
+      "unit": "",
+      "cat": "Change",
+      "catColor": "#2D6B4A",
+      "context": "BCE attentiste, dollar affaibli par la stagflation US",
+      "value": 1.1024,
+      "prev": 1.0998,
+      "history": [1.082, 1.087, 1.091, 1.094, 1.097, 1.0998, 1.1024]
+    },
+    {
+      "id": "usdcny",
+      "label": "USD / CNY",
+      "sub": "Dollar vers Yuan",
+      "unit": "",
+      "cat": "Géopolitique",
+      "catColor": "#1A3E6B",
+      "context": "Stabilisation pilotée par la PBoC, internationalisation lente du yuan",
+      "value": 7.1980,
+      "prev": 7.2105,
+      "history": [7.265, 7.250, 7.235, 7.220, 7.215, 7.2105, 7.1980]
+    }
+  ]
+}
