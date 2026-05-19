@@ -12,21 +12,28 @@ declare global {
 const MAPLIBRE_JS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js'
 const MAPLIBRE_CSS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css'
 
-/* OSM raster fallback, libre, pas de clé.
-   Sera remplacé par MapTiler dès que la clé NEXT_PUBLIC_MAPTILER_KEY est en place. */
-const OSM_STYLE = {
+/* Carto Voyager raster, libre, attribution OSM + Carto.
+   Labels en anglais standard, plus lisibles pour un lectorat francophone
+   que les labels natifs OSM (chinois, arabe, cyrillique selon la zone).
+   Sera remplacé par MapTiler avec labels français dès que la clé
+   NEXT_PUBLIC_MAPTILER_KEY est en place. */
+const FALLBACK_STYLE = {
   version: 8 as const,
   glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
   sources: {
-    osm: {
+    base: {
       type: 'raster' as const,
-      tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+      tiles: [
+        'https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
+        'https://b.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
+        'https://c.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png',
+      ],
       tileSize: 256,
-      attribution: '© OpenStreetMap',
-      maxzoom: 18,
+      attribution: '© OpenStreetMap, © CARTO',
+      maxzoom: 19,
     },
   },
-  layers: [{ id: 'osm-layer', type: 'raster' as const, source: 'osm' }],
+  layers: [{ id: 'base-layer', type: 'raster' as const, source: 'base' }],
 }
 
 function loadMaplibre(): Promise<any> {
@@ -76,7 +83,7 @@ export default function EauVizClient({ activeChapter }: { activeChapter: number 
         const firstView = getChapterView(eauData.chapitres[0], isMobile)
         const map = new maplibregl.Map({
           container: containerRef.current,
-          style: OSM_STYLE,
+          style: FALLBACK_STYLE,
           center: firstView.center,
           zoom: firstView.zoom,
           interactive: false,

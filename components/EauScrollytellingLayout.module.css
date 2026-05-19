@@ -190,7 +190,9 @@
     display: grid;
     grid-template-columns: 45fr 55fr;
     gap: 48px;
-    align-items: start;
+    /* Pas d'align-items: start, on garde le stretch par défaut pour que
+       .mapCol s'étire sur toute la hauteur de .narrativeCol et que la
+       carte sticky reste collée pendant tout le scroll des 5 chapitres. */
   }
 }
 
