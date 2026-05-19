@@ -180,6 +180,12 @@
 
 /* ── Scrollytelling : 2 colonnes desktop, stack mobile ── */
 
+/* IMPORTANT pour le sticky de la carte.
+   Aucun ancestor de .mapSticky ne doit avoir transform, filter, perspective
+   ou contain, sinon le sticky se casse (containing block décalé). Le bypass
+   de PageTransition pour /articles/eau (components/PageTransition.tsx) est
+   ce qui rend ce sticky robuste. Ne pas le retirer. */
+
 .scrollytelling {
   display: block;
   margin: 48px 0;
@@ -188,16 +194,18 @@
 @media (min-width: 1024px) {
   .scrollytelling {
     display: grid;
-    grid-template-columns: 45fr 55fr;
+    /* 55fr texte, 45fr carte : lecture dominante, carte appui visuel. */
+    grid-template-columns: 55fr 45fr;
     gap: 48px;
-    /* Pas d'align-items: start, on garde le stretch par défaut pour que
-       .mapCol s'étire sur toute la hauteur de .narrativeCol et que la
-       carte sticky reste collée pendant tout le scroll des 5 chapitres. */
+    /* align-items: stretch explicite pour garantir que .mapCol prenne la
+       hauteur totale de .narrativeCol. C'est cette hauteur étirée qui sert
+       de containing block au sticky enfant. */
+    align-items: stretch;
   }
 }
 
 .narrativeCol {
-  max-width: 720px;
+  max-width: 760px;
 }
 
 .mapCol {
@@ -209,6 +217,9 @@
   .mapCol {
     margin: 0;
     position: relative;
+    align-self: stretch;
+    background: var(--papier);
+    border: 1px solid var(--bord-l);
   }
 }
 
@@ -224,8 +235,11 @@
 
 @media (min-width: 1024px) {
   .mapSticky {
+    /* height fixe : MapLibre a besoin d'une hauteur définie pour
+       initialiser son canvas. min-height couvre les petits viewports. */
     height: calc(100vh - 48px);
     min-height: 520px;
+    border: none;
   }
 }
 
