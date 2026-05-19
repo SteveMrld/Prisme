@@ -1,0 +1,257 @@
+{
+  "date_maj": "2026-04-13",
+  "zones": [
+    {
+      "slug": "iran-usa",
+      "name": "Iran, États-Unis",
+      "region": "Moyen-Orient",
+      "lat": 32.4,
+      "lng": 53.6,
+      "status": "crisis",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 9,
+      "affected": "5 000+ morts (Iran + Liban)",
+      "figures": [
+        "Jour 45 du conflit",
+        "Pétrole : +$100/baril",
+        "Blocus US des ports iraniens"
+      ],
+      "desc": "Jour 45. Le blocus naval américain des ports iraniens entre en vigueur ce matin. Les négociations de paix d'Islamabad ont échoué après 21 heures de pourparlers. Le cessez-le-feu du 7 avril reste fragile jusqu'au 22 avril.",
+      "tags": ["Conflit armé", "Blocus naval", "Nucléaire"],
+      "tagColors": ["#FC8181", "#FC8181", "#F6AD55"],
+      "linkedTo": ["ormuz"]
+    },
+    {
+      "slug": "ormuz",
+      "name": "Détroit d'Ormuz",
+      "region": "Golfe Persique",
+      "lat": 26.5,
+      "lng": 56.3,
+      "status": "crisis",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 8,
+      "affected": "20% du pétrole mondial",
+      "figures": [
+        "Blocus US actif depuis 10h ET",
+        "Pétrole dépasse $100/baril",
+        "Iran contrôle l'accès"
+      ],
+      "desc": "Le blocus naval américain de tous les ports iraniens est entré en vigueur ce lundi. Trump menace d'éliminer tout navire iranien approchant le dispositif. L'Iran prévient qu'il ripostera.",
+      "tags": ["Blocus", "Énergie", "Escalade"],
+      "tagColors": ["#FC8181", "#FC8181", "#F6E05E"],
+      "linkedTo": ["iran-usa"]
+    },
+    {
+      "slug": "ukraine",
+      "name": "Ukraine",
+      "region": "Europe de l'Est",
+      "lat": 49.0,
+      "lng": 31.0,
+      "status": "tension",
+      "trend": "stable",
+      "updated": "13 avril 2026",
+      "france": 7,
+      "affected": "44 millions",
+      "figures": [
+        "Jour 1509 du conflit",
+        "2 299 violations du cessez-le-feu de Pâques",
+        "1,3M de pertes russes totales"
+      ],
+      "desc": "Cessez-le-feu de Pâques (32h) violé 2 299 fois par la Russie. Orban battu en Hongrie, Magyar prend le pouvoir. Front stable, Russie gagne du terrain à très haut coût humain.",
+      "tags": ["Guerre", "Trêve violée", "Front est"],
+      "tagColors": ["#FC8181", "#F6AD55", "#F6E05E"],
+      "linkedTo": ["coree-nord"]
+    },
+    {
+      "slug": "sahel",
+      "name": "Sahel",
+      "region": "Afrique de l'Ouest",
+      "lat": 14.0,
+      "lng": -2.0,
+      "status": "tension",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 9,
+      "affected": "80 millions",
+      "figures": [
+        "5 000 soldats français retirés",
+        "+340% attaques jihadistes",
+        "3 coups d'État en 3 ans"
+      ],
+      "desc": "Retrait français consommé. Wagner omniprésent au Mali et Burkina Faso. Vide sécuritaire exploité par les groupes jihadistes. La France perd son influence dans sa zone historique.",
+      "tags": ["Jihadisme", "Post-colonialisme", "Wagner"],
+      "tagColors": ["#FC8181", "#F6AD55", "#F6E05E"],
+      "linkedTo": ["lac-tchad"]
+    },
+    {
+      "slug": "taiwan",
+      "name": "Taïwan",
+      "region": "Asie-Pacifique",
+      "lat": 23.6,
+      "lng": 121.0,
+      "status": "tension",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 5,
+      "affected": "23 millions",
+      "figures": [
+        "L'APL étudie la guerre d'Iran",
+        "90% des puces avancées mondiales",
+        "400Md$ commerce USA-Chine menacé"
+      ],
+      "desc": "La guerre Iran-USA est un laboratoire pour l'Armée Populaire de Libération. Pékin analyse les capacités et limites américaines en temps réel. Washington surveille le détroit de Taïwan avec attention.",
+      "tags": ["Chine", "APL", "Semi-conducteurs"],
+      "tagColors": ["#F6AD55", "#F6AD55", "#F6E05E"],
+      "linkedTo": ["coree-nord"]
+    },
+    {
+      "slug": "corne-afrique",
+      "name": "Corne de l'Afrique",
+      "region": "Afrique de l'Est",
+      "lat": 8.0,
+      "lng": 42.0,
+      "status": "climate",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 6,
+      "affected": "40 millions",
+      "figures": [
+        "5e année de sécheresse consécutive",
+        "600 000 déplacés/mois",
+        "-60% précipitations"
+      ],
+      "desc": "Sécheresse chronique. 40 millions en insécurité alimentaire. Principal couloir de migration vers l'Europe via la Libye. La crise iranienne aggrave les prix alimentaires mondiaux.",
+      "tags": ["Sécheresse", "Migrations", "Famine"],
+      "tagColors": ["#4dd9ac", "#4dd9ac", "#F6E05E"],
+      "linkedTo": []
+    },
+    {
+      "slug": "coree-nord",
+      "name": "Corée du Nord",
+      "region": "Asie du Nord-Est",
+      "lat": 40.0,
+      "lng": 127.5,
+      "status": "watch",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 3,
+      "affected": "26 millions",
+      "figures": [
+        "20 000 soldats déployés en Ukraine",
+        "Arsenal estimé : 50 têtes nucléaires",
+        "Aide à l'Iran via la Russie"
+      ],
+      "desc": "20 000 soldats nord-coréens combattent en Ukraine aux côtés de la Russie. Pyongyang fournit missiles et uranium à l'Iran via Moscou selon les services de renseignement occidentaux.",
+      "tags": ["Nucléaire", "Russie", "Missiles"],
+      "tagColors": ["#F6E05E", "#F6E05E", "#FC8181"],
+      "linkedTo": ["ukraine"]
+    },
+    {
+      "slug": "lac-tchad",
+      "name": "Lac Tchad",
+      "region": "Afrique centrale",
+      "lat": 15.0,
+      "lng": 17.0,
+      "status": "climate",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 7,
+      "affected": "30 millions",
+      "figures": [
+        "-90% superficie depuis 1960",
+        "4 États en tension",
+        "Boko Haram : 40 000 membres"
+      ],
+      "desc": "90% de réduction depuis 1960. Ressource partagée par 4 États. Boko Haram exploite le vide créé par la crise hydrique. La France n'a plus de levier depuis le retrait du Sahel.",
+      "tags": ["Guerre de l'eau", "Boko Haram", "Sécurité"],
+      "tagColors": ["#4dd9ac", "#FC8181", "#F6AD55"],
+      "linkedTo": ["sahel"]
+    },
+    {
+      "slug": "cachemire",
+      "name": "Cachemire",
+      "region": "Asie du Sud",
+      "lat": 33.5,
+      "lng": 76.0,
+      "status": "tension",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 3,
+      "affected": "15 millions",
+      "figures": [
+        "3 guerres depuis 1947",
+        "800 000 soldats déployés",
+        "2 puissances nucléaires"
+      ],
+      "desc": "Tensions persistantes entre Inde et Pakistan. Deux puissances nucléaires face à face sur fond de conflit pour l'eau du fleuve Indus, ressource menacée par la fonte des glaciers himalayens.",
+      "tags": ["Guerre de l'eau", "Nucléaire", "Inde-Pakistan"],
+      "tagColors": ["#4dd9ac", "#FC8181", "#F6AD55"],
+      "linkedTo": []
+    },
+    {
+      "slug": "jourdain-eau",
+      "name": "Jourdain, Eau",
+      "region": "Moyen-Orient",
+      "lat": 32.5,
+      "lng": 35.5,
+      "status": "climate",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 5,
+      "affected": "20 millions",
+      "figures": [
+        "-75% débit du Jourdain",
+        "Accès eau Gaza : -80%",
+        "1M de déplacés liés à l'eau"
+      ],
+      "desc": "Le Jourdain a perdu 75% de son débit. Israël, Jordanie, Palestine et Syrie se disputent une ressource en voie d'épuisement. La guerre en cours aggrave la crise hydrique à Gaza.",
+      "tags": ["Guerre de l'eau", "Conflit", "Sécheresse"],
+      "tagColors": ["#4dd9ac", "#FC8181", "#4dd9ac"],
+      "linkedTo": []
+    },
+    {
+      "slug": "nil-gerd",
+      "name": "Nil, Barrage GERD",
+      "region": "Afrique de l'Est",
+      "lat": 11.0,
+      "lng": 37.0,
+      "status": "tension",
+      "trend": "up",
+      "updated": "13 avril 2026",
+      "france": 4,
+      "affected": "110 millions",
+      "figures": [
+        "110M dépendent du Nil",
+        "74Md m³ capacité GERD",
+        "Égypte menace d'action militaire"
+      ],
+      "desc": "Le Grand Barrage éthiopien (GERD) menace l'approvisionnement en eau de l'Égypte et du Soudan. 110 millions dépendent du Nil. Le Caire refuse toute solution négociée.",
+      "tags": ["Guerre de l'eau", "Éthiopie", "Égypte"],
+      "tagColors": ["#4dd9ac", "#F6AD55", "#FC8181"],
+      "linkedTo": []
+    },
+    {
+      "slug": "inde-puissance",
+      "name": "Inde, Puissance",
+      "region": "Asie du Sud",
+      "lat": 20.0,
+      "lng": 78.0,
+      "status": "watch",
+      "trend": "stable",
+      "updated": "13 avril 2026",
+      "france": 6,
+      "affected": "1,4 milliard",
+      "figures": [
+        "7% de croissance",
+        "3e économie mondiale en 2027",
+        "Partenaire de paix Iran-USA via Pakistan"
+      ],
+      "desc": "New Delhi refuse de choisir entre Washington et Moscou. L'Inde joue un rôle discret dans la médiation Iran-USA via son influence au Pakistan. Pivot géopolitique du siècle.",
+      "tags": ["Non-alignement", "Croissance", "Indo-Pacifique"],
+      "tagColors": ["#F6E05E", "#68D391", "#F6AD55"],
+      "linkedTo": ["cachemire"]
+    }
+  ]
+}

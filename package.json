@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
+    "predev": "node scripts/sync-signal-zones.mjs",
     "build": "next build",
+    "prebuild": "node scripts/sync-signal-zones.mjs",
     "start": "next start"
   },
   "dependencies": {
