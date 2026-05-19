@@ -1,0 +1,178 @@
+{
+  "version": "1.0",
+  "date_maj": "2026-05-19",
+  "chapitres": [
+    {
+      "id": "monde",
+      "ordre": 1,
+      "tag": "I, Vue mondiale, 2026",
+      "titre_court": "La grande fracture hydrique",
+      "titre_em": "fracture hydrique",
+      "hook": "L'eau n'est pas rare en moyenne. Elle est mal distribuée. Cette distribution est une question politique.",
+      "stat": { "valeur": "310", "suffixe": "", "label": "bassins fluviaux transfrontaliers" },
+      "couleur": "#8B4A1A",
+      "carte": {
+        "centre": [10, 20],
+        "zoom_desktop": 2,
+        "zoom_mobile": 1.5,
+        "duree_fly_ms": 1400
+      },
+      "fleuves": [
+        { "id": "nile",    "coords": [[33,-1],[33.5,1],[34,3],[34.8,6],[35.2,10],[36,12],[36.5,13.5],[37,14.5],[36.8,16.5],[35.3,19],[33.3,22],[32.2,25],[31.5,29],[30.4,31.2]], "epaisseur": 1.4, "opacite": 0.5 },
+        { "id": "amazon",  "coords": [[-74,-3.5],[-68,-3],[-60,-2.5],[-52,-1.5],[-48,-1.8]], "epaisseur": 1.6, "opacite": 0.5 },
+        { "id": "congo",   "coords": [[18,-3],[22,-1.5],[26,-0.5],[30,1.5]], "epaisseur": 1.3, "opacite": 0.45 },
+        { "id": "mekong",  "coords": [[99,23],[102,16.5],[103.8,12],[106,10],[106.5,9.5]], "epaisseur": 1.2, "opacite": 0.45 },
+        { "id": "miss",    "coords": [[-93,47],[-91,43],[-91,39],[-90,35],[-89.5,29]], "epaisseur": 1.3, "opacite": 0.45 },
+        { "id": "yangtze", "coords": [[91,32],[100,31],[109,30],[120.5,31]], "epaisseur": 1.3, "opacite": 0.45 },
+        { "id": "danube",  "coords": [[13.5,47.5],[20,47.5],[26,45],[30,45.7]], "epaisseur": 1.0, "opacite": 0.4 },
+        { "id": "niger",   "coords": [[-11,10],[-3,13],[3,14.5],[5.5,5]], "epaisseur": 1.0, "opacite": 0.4 },
+        { "id": "indus",   "coords": [[75,36],[72,30.5],[68,25.5],[67.2,23.2]], "epaisseur": 1.0, "opacite": 0.4 },
+        { "id": "gange",   "coords": [[79,32],[84,27],[88.5,24.5],[90,23.2]], "epaisseur": 1.0, "opacite": 0.4 },
+        { "id": "zambezi", "coords": [[24,-11],[28.5,-17],[33,-17],[36,-15.5]], "epaisseur": 1.0, "opacite": 0.38 },
+        { "id": "tigre",   "coords": [[39,38.5],[44,34.8],[47.5,32],[48.2,30.5]], "epaisseur": 1.0, "opacite": 0.38 },
+        { "id": "volga",   "coords": [[47,56],[47.5,51.5],[46.5,47]], "epaisseur": 0.9, "opacite": 0.35 },
+        { "id": "ob",      "coords": [[80,55],[70,62],[68,68]], "epaisseur": 0.9, "opacite": 0.35 },
+        { "id": "lena",    "coords": [[112,53],[122,62],[127,70],[126,72]], "epaisseur": 0.9, "opacite": 0.35 },
+        { "id": "amur",    "coords": [[110,48],[120,50],[134,48],[141,46]], "epaisseur": 0.9, "opacite": 0.35 },
+        { "id": "parana",  "coords": [[-55,-20],[-58,-27],[-58,-34]], "epaisseur": 1.0, "opacite": 0.38 },
+        { "id": "murray",  "coords": [[148,-36],[142,-35],[136,-35]], "epaisseur": 0.8, "opacite": 0.32 },
+        { "id": "rhine",   "coords": [[7,47],[8,48.5],[7.5,50],[5,52],[4,52]], "epaisseur": 0.8, "opacite": 0.32 },
+        { "id": "orinoco", "coords": [[-64,4],[-62,7],[-66,8]], "epaisseur": 0.8, "opacite": 0.32 },
+        { "id": "yellow",  "coords": [[96,35],[106,35],[113,34],[120.5,37]], "epaisseur": 1.0, "opacite": 0.38 }
+      ],
+      "couleur_fleuve_rgba": "rgba(40,95,210,OPACITY)",
+      "barrages": [],
+      "tensions": [],
+      "labels_pays": [],
+      "legende": [
+        { "swatch_html": "<div style=\"width:19px;height:1.5px;background:rgba(40,95,210,.6);border-radius:1px;margin-top:1px\"></div>", "label": "Grand fleuve" }
+      ]
+    },
+    {
+      "id": "himalaya",
+      "ordre": 2,
+      "tag": "II, Himalaya, Empire hydraulique",
+      "titre_court": "L'empire hydraulique chinois",
+      "titre_em": "hydraulique chinois",
+      "hook": "La Chine contrôle les sources de l'Indus, du Gange, du Mékong. Soit l'eau de 2 milliards de personnes.",
+      "stat": { "valeur": "2 Mds", "suffixe": "", "label": "personnes dépendent des fleuves himalayens" },
+      "couleur": "#1A4A8A",
+      "carte": {
+        "centre_desktop": [98, 26],
+        "centre_mobile": [96, 24],
+        "zoom_desktop": 5.5,
+        "zoom_mobile": 4.5,
+        "duree_fly_ms": 1600
+      },
+      "fleuves": [
+        { "id": "mekong",  "coords": [[95,33],[98,27],[99,23],[102,16.5],[103.8,12],[106,10],[106.5,9.5]], "epaisseur": 2.4, "opacite": 0.9, "label": "Mékong",   "label_pos": [9.5, 107.5] },
+        { "id": "indus",   "coords": [[75,36],[73.5,31.5],[70,28.5],[68,25.5],[67.2,23.2]], "epaisseur": 2.0, "opacite": 0.8, "label": "Indus",    "label_pos": [22, 63.5] },
+        { "id": "gange",   "coords": [[79,32],[82.5,27.5],[85.5,26.5],[88.5,24.5],[90,23.2]], "epaisseur": 2.0, "opacite": 0.82, "label": "Gange", "label_pos": [26.5, 84.5] },
+        { "id": "brahma",  "coords": [[92,30],[91,27.5],[90,26.5],[91,24.5],[91.5,23.8]], "epaisseur": 1.6, "opacite": 0.72 },
+        { "id": "yangtze", "coords": [[91,32],[100,31],[109,30],[118,30.8],[121.8,31.5]], "epaisseur": 1.7, "opacite": 0.65 },
+        { "id": "yellow",  "coords": [[96,35],[106,35],[113,34],[120.5,37]], "epaisseur": 1.4, "opacite": 0.55 },
+        { "id": "irraw",   "coords": [[96,26],[97,23],[97,21],[96,19],[95,17],[96.5,16]], "epaisseur": 1.4, "opacite": 0.55 },
+        { "id": "salween", "coords": [[95,28],[97,26],[99,22],[99,20],[98,17],[98,16]], "epaisseur": 1.2, "opacite": 0.5 }
+      ],
+      "couleur_fleuve_rgba": "rgba(30,100,210,OPACITY)",
+      "barrages": [[24,99],[21,100.5],[19,101],[17,102],[15,103]],
+      "tensions": [],
+      "labels_pays": [[28,82,"Chine (amont)"]],
+      "legende": [
+        { "swatch_html": "<div style=\"width:19px;height:1.5px;background:rgba(30,100,210,.85);border-radius:1px;margin-top:1px\"></div>", "label": "Fleuves himalayens" },
+        { "swatch_html": "<svg width=\"15\" height=\"9\" viewBox=\"0 0 15 9\" style=\"display:block\"><line x1=\"1\" y1=\"4.5\" x2=\"14\" y2=\"4.5\" stroke=\"#8B1A1A\" stroke-width=\"2\" stroke-linecap=\"square\"/><line x1=\"3.5\" y1=\"4.5\" x2=\"2.8\" y2=\"8.5\" stroke=\"#8B1A1A\" stroke-width=\".9\"/><line x1=\"7.5\" y1=\"4.5\" x2=\"6.8\" y2=\"8.5\" stroke=\"#8B1A1A\" stroke-width=\".9\"/><line x1=\"11.5\" y1=\"4.5\" x2=\"10.8\" y2=\"8.5\" stroke=\"#8B1A1A\" stroke-width=\".9\"/></svg>", "label": "Barrages (×11)" }
+      ]
+    },
+    {
+      "id": "indus",
+      "ordre": 3,
+      "tag": "III, Inde-Pakistan, Nucléaire",
+      "titre_court": "L'eau entre deux bombes",
+      "titre_em": "deux bombes",
+      "hook": "Le traité de l'Indus a survécu à trois guerres. Il ne survivra pas au changement climatique.",
+      "stat": { "valeur": "1960", "suffixe": "", "label": "Traité de l'Indus, fragilisé par le climat" },
+      "couleur": "#7A5010",
+      "carte": {
+        "centre_desktop": [72, 30],
+        "centre_mobile": [71, 29],
+        "zoom_desktop": 5.75,
+        "zoom_mobile": 4.75,
+        "duree_fly_ms": 1600
+      },
+      "fleuves": [
+        { "id": "indus",  "coords": [[75,36],[73.5,31.5],[71,29.5],[68,25.5],[67.2,23.2]], "epaisseur": 2.8, "opacite": 0.95, "label": "Indus", "label_pos": [34, 71.5] },
+        { "id": "gange",  "coords": [[79,32],[84,27],[88.5,24.5],[90,23.2]], "epaisseur": 1.5, "opacite": 0.5 },
+        { "id": "brahma", "coords": [[92,30],[91,27.5],[90,26.5],[91,24.5],[91.5,23.8]], "epaisseur": 1.2, "opacite": 0.42 }
+      ],
+      "couleur_fleuve_rgba": "rgba(30,105,225,OPACITY)",
+      "barrages": [],
+      "tensions": [[30,71]],
+      "frontiere_disputee": [[37,73],[34,74],[32,74],[30,72],[28,70],[25,68],[23,67.2]],
+      "labels_pays": [[30,79,"INDE"],[30,64,"PAKISTAN"]],
+      "legende": [
+        { "swatch_html": "<div style=\"width:19px;height:1.5px;background:rgba(30,105,225,.9);border-radius:1px;margin-top:1px\"></div>", "label": "Indus" },
+        { "swatch_html": "<div style=\"width:19px;height:0;border-top:1.5px dashed rgba(28,24,20,.4);margin-top:1px\"></div>", "label": "Frontière disputée" }
+      ]
+    },
+    {
+      "id": "nil",
+      "ordre": 4,
+      "tag": "IV, Nil, Éthiopie vs Égypte",
+      "titre_court": "Le barrage de la Renaissance",
+      "titre_em": "de la Renaissance",
+      "hook": "L'Égypte a vécu grâce au Nil depuis l'Antiquité. L'Éthiopie décide aujourd'hui de son débit.",
+      "stat": { "valeur": "85", "suffixe": "%", "label": "de l'eau égyptienne contrôlée par l'Éthiopie" },
+      "couleur": "#1A6040",
+      "carte": {
+        "centre_desktop": [36, 17],
+        "centre_mobile": [35, 15],
+        "zoom_desktop": 5.25,
+        "zoom_mobile": 4.5,
+        "duree_fly_ms": 1600
+      },
+      "fleuves": [
+        { "id": "nile",  "coords": [[33,-1],[34,3],[34.8,6],[35.2,10],[36,12],[36.5,13.5],[37,14.5],[36.8,16.5],[35.3,19],[33.3,22],[32.2,25],[31.5,29],[30.4,31.2]], "epaisseur": 2.8, "opacite": 0.95, "label": "Nil", "label_pos": [29, 31.5] },
+        { "id": "nilb",  "coords": [[35,7.5],[37,8.5],[38,9],[38.2,10],[38,11.5],[37.8,12.5],[37,14.5]], "epaisseur": 2.0, "opacite": 0.8, "label": "Nil Bleu", "label_pos": [8.5, 36] },
+        { "id": "congo", "coords": [[18,-3],[22,-1.5],[26,-0.5],[30,1.5]], "epaisseur": 1.0, "opacite": 0.3 }
+      ],
+      "couleur_fleuve_rgba": "rgba(20,155,85,OPACITY)",
+      "barrages": [[11,35.1]],
+      "tensions": [],
+      "labels_pays": [[26,30,"ÉGYPTE"],[9,40,"ÉTHIOPIE"]],
+      "legende": [
+        { "swatch_html": "<div style=\"width:19px;height:1.5px;background:rgba(20,155,85,.9);border-radius:1px;margin-top:1px\"></div>", "label": "Nil" },
+        { "swatch_html": "<svg width=\"15\" height=\"9\" viewBox=\"0 0 15 9\" style=\"display:block\"><line x1=\"1\" y1=\"4.5\" x2=\"14\" y2=\"4.5\" stroke=\"#8B1A1A\" stroke-width=\"2\" stroke-linecap=\"square\"/><line x1=\"3.5\" y1=\"4.5\" x2=\"2.8\" y2=\"8.5\" stroke=\"#8B1A1A\" stroke-width=\".9\"/><line x1=\"7.5\" y1=\"4.5\" x2=\"6.8\" y2=\"8.5\" stroke=\"#8B1A1A\" stroke-width=\".9\"/><line x1=\"11.5\" y1=\"4.5\" x2=\"10.8\" y2=\"8.5\" stroke=\"#8B1A1A\" stroke-width=\".9\"/></svg>", "label": "Barrage de la Renaissance" }
+      ]
+    },
+    {
+      "id": "mena",
+      "ordre": 5,
+      "tag": "V, Moyen-Orient, Rupture",
+      "titre_court": "Là où l'eau vaut plus que le pétrole",
+      "titre_em": "vaut plus que le pétrole",
+      "hook": "Les prochaines guerres ne se feront pas pour le pétrole, mais pour l'eau.",
+      "stat": { "valeur": "6", "suffixe": "×", "label": "plus d'eau utilisée que reçue en précipitation" },
+      "couleur": "#8B1A1A",
+      "carte": {
+        "centre_desktop": [42, 34],
+        "centre_mobile": [41, 33],
+        "zoom_desktop": 5.75,
+        "zoom_mobile": 5.0,
+        "duree_fly_ms": 1600
+      },
+      "fleuves": [
+        { "id": "tigre",    "coords": [[38.5,39],[36.5,41.5],[35.5,43.5],[34.8,44.5],[33,46.5],[31,48],[30.5,48.2]], "epaisseur": 2.2, "opacite": 0.9, "label": "Tigre", "label_pos": [34.5, 47] },
+        { "id": "euphrate", "coords": [[37.5,38],[35.8,40.5],[34.2,43.5],[33.5,45],[31.8,47.5],[30.5,48.2]], "epaisseur": 2.0, "opacite": 0.85, "label": "Euphrate", "label_pos": [35.5, 40.5] },
+        { "id": "jordan",   "coords": [[33,35.6],[32.5,35.4],[32,35.1],[31.5,35.1],[31,35.4]], "epaisseur": 1.4, "opacite": 0.7, "label": "Jourdain", "label_pos": [31, 35.9] }
+      ],
+      "couleur_fleuve_rgba": "rgba(35,100,215,OPACITY)",
+      "barrages": [],
+      "tensions": [[37.5,38.5],[31.5,35.5]],
+      "labels_pays": [[39,35,"TURQUIE"],[34.5,43.5,"IRAK"]],
+      "legende": [
+        { "swatch_html": "<div style=\"width:19px;height:1.5px;background:rgba(35,100,215,.85);border-radius:1px;margin-top:1px\"></div>", "label": "Tigre, Euphrate, Jourdain" },
+        { "swatch_html": "<svg width=\"12\" height=\"16\" viewBox=\"0 0 12 16\" style=\"display:block\"><circle cx=\"6\" cy=\"5.5\" r=\"4.5\" fill=\"#8B1A1A\" opacity=\".82\" stroke=\"rgba(248,244,238,.7)\" stroke-width=\".8\"/><line x1=\"6\" y1=\"10\" x2=\"6\" y2=\"15.5\" stroke=\"#8B1A1A\" stroke-width=\"1.2\" stroke-linecap=\"round\"/></svg>", "label": "Zone de tension" }
+      ]
+    }
+  ]
+}

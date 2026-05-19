@@ -1,0 +1,28 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #EDE8DF;
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--bord);
+  font-family: var(--font-mono);
+  font-size: var(--type-sm);
+  color: var(--gris);
+  max-width: 320px;
+  text-align: center;
+}

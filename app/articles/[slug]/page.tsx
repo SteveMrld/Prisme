@@ -1,6 +1,7 @@
 import { notFound, redirect } from 'next/navigation'
 import ArticleLayout from '../../../components/ArticleLayout'
 import GrandFormatLayout from '../../../components/GrandFormatLayout'
+import EauScrollytellingLayout from '../../../components/EauScrollytellingLayout'
 import AdSlot from '../../../components/AdSlot'
 import articlesData from '../../../lib/articles.json'
 import { createClient } from '../../../lib/supabase-server'
@@ -151,6 +152,18 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
   const related = (articlesData as any[])
     .filter(a => a.category === article.category && a.slug !== params.slug)
     .slice(0, article.category === 'portrait' ? 10 : 3)
+
+  // Scrollytelling dédié pour l'article eau (carte sticky + IntersectionObserver)
+  if (params.slug === 'eau') {
+    return (
+      <EauScrollytellingLayout
+        article={article as any}
+        showPaywall={showPaywall}
+        lang={lang}
+        hasEnglish={hasEnglish}
+      />
+    )
+  }
 
   // Grand format → layout dédié
   if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
