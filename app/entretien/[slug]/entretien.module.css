@@ -78,11 +78,11 @@
 }
 
 .name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 58px);
-  font-weight: 700;
+  font-family: var(--font-serif-display);
+  font-size: var(--type-h1);
+  font-weight: var(--weight-bold);
   letter-spacing: -0.025em;
-  line-height: 1.05;
+  line-height: var(--lh-title);
   color: var(--encre);
   margin: 0 0 16px;
 }
@@ -106,7 +106,7 @@
 }
 
 .deck {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 20px;
   color: var(--gris);
   line-height: 1.75;
@@ -144,14 +144,14 @@
 .question:last-child { border-bottom: none; }
 
 .questionNum {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--accent);
 }
 
 .questionText {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 20px;
   font-style: italic;
   color: var(--encre);
@@ -180,7 +180,7 @@
 }
 
 .comingDesc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 18px;
   font-style: italic;
   color: var(--gris-m);
@@ -198,7 +198,7 @@
 
 .comingBtn,
 .comingLink {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -233,7 +233,7 @@
 }
 
 .body :global(p.interview-intro) {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 19px;
   font-style: italic;
   color: var(--gris);
@@ -244,7 +244,7 @@
 }
 
 .body :global(p.interview-question) {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 19px;
   font-weight: 700;
   font-style: italic;
@@ -254,7 +254,7 @@
 }
 
 .body :global(p.interview-answer) {
-  font-family: 'Source Serif Pro', 'Georgia', serif;
+  font-family: var(--font-serif-reading);
   font-size: 17px;
   line-height: 1.75;
   color: var(--encre);
@@ -269,7 +269,7 @@
   background: var(--papier);
   border-left: 3px solid var(--accent);
   padding: 20px 24px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 17px;
   font-style: italic;
   color: var(--gris);
@@ -277,7 +277,7 @@
 }
 
 .pullQuote {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 22px;
   font-style: italic;
   color: var(--accent);
@@ -290,7 +290,7 @@
 }
 
 .empty {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 18px;
   color: var(--gris-l);
   font-style: italic;
@@ -307,7 +307,7 @@
 }
 
 .othersTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 28px;
   font-weight: 700;
   color: var(--encre);
@@ -364,7 +364,7 @@
 }
 
 .otherName {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 22px;
   font-weight: 700;
   line-height: 1.15;
@@ -373,7 +373,7 @@
 }
 
 .otherDeck {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 16px;
   color: var(--gris);
   line-height: 1.5;

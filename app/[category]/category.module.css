@@ -24,16 +24,16 @@
 }
 
 .bandTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 300;
+  font-family: var(--font-serif-display);
+  font-size: var(--type-h1);
+  font-weight: var(--weight-bold);
   letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: var(--lh-title);
   color: var(--encre);
 }
 
 .bandDesc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 18px;
   font-style: italic;
   color: var(--gris-m);
@@ -134,7 +134,7 @@
 }
 
 .featuredTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(24px, 3vw, 42px);
   font-weight: 400;
   line-height: 1.1;
@@ -143,7 +143,7 @@
 }
 
 .featuredDeck {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 18px;
   font-style: italic;
   color: var(--gris);
@@ -239,7 +239,7 @@
 }
 
 .cardTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 18px;
   font-weight: 400;
   line-height: 1.25;
@@ -252,7 +252,7 @@
 }
 
 .cardDeck {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 15px;
   font-style: italic;
   color: var(--gris-m);
@@ -288,7 +288,7 @@
   align-items: center;
   gap: 24px;
   color: var(--gris-m);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 20px;
   font-style: italic;
 }
@@ -313,7 +313,7 @@
 }
 
 .footerLogo {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -1px;
@@ -322,7 +322,7 @@
 
 .footerLogo em {
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .footerLinks {
@@ -381,7 +381,7 @@
   height: 16px;
   background: var(--encre);
   color: var(--or);
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 9px;
   font-weight: 700;
   font-style: italic;
@@ -402,7 +402,7 @@
   height: 14px;
   background: #0a0a0a;
   color: #C8A96E;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 8px;
   font-weight: 700;
   font-style: normal;

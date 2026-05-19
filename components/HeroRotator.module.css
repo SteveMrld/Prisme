@@ -33,7 +33,7 @@
   will-change: transform;
 }
 
-/* Ken Burns lent sur le slide actif — imperceptible, 1 → 1.05 en 8s */
+/* Ken Burns lent sur le slide actif , imperceptible, 1 → 1.05 en 8s */
 .imgSlide.active .img {
   animation: heroKenBurns 8s var(--ease-out) forwards;
 }
@@ -75,7 +75,7 @@
 }
 
 .cat {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -83,7 +83,7 @@
 }
 
 .title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(20px, 4vw, 32px);
   font-weight: 700;
   line-height: 1.15;
@@ -109,7 +109,7 @@
   display: inline-block;
   background: #C8A96E;
   color: #fff;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -149,7 +149,7 @@
 }
 .dotActive:hover { background: #C8A96E; }
 
-/* Desktop — hauteur fixe */
+/* Desktop , hauteur fixe */
 @media (min-width: 900px) {
   .wrap { aspect-ratio: unset; height: 480px; }
   .content { bottom: 52px; padding: 0 40px; }

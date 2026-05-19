@@ -20,7 +20,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.18em;

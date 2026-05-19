@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════
-   ATLAS INTRO — hero éditorial unique de la page
+   ATLAS INTRO , hero éditorial unique de la page
 ══════════════════════════════════════════════ */
 .atlasIntro {
   max-width: 1320px;
@@ -8,7 +8,7 @@
   border-bottom: 2px solid #0A0A0A;
 }
 .atlasIntroEyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.25em;
@@ -19,17 +19,17 @@
   margin-bottom: 28px;
 }
 .atlasIntroTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-style: italic;
-  font-weight: 300;
-  font-size: clamp(48px, 6vw, 72px);
+  font-weight: var(--weight-bold);
+  font-size: var(--type-h1);
   letter-spacing: -0.025em;
-  line-height: 1.04;
-  color: #0A0A0A;
+  line-height: var(--lh-title);
+  color: var(--encre);
   margin: 0 0 28px;
 }
 .atlasIntroChapeau {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-style: italic;
   font-size: 19px;
   line-height: 1.55;
@@ -38,7 +38,7 @@
   margin: 0 0 16px;
 }
 .atlasIntroStats {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -70,9 +70,9 @@
   letter-spacing: 4px; text-transform: uppercase;
 }
 .sectionTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(24px, 3.2vw, 36px);
-  font-weight: 300; letter-spacing: -1px;
+  font-weight: 400; letter-spacing: -1px;
   color: var(--encre); margin: 0;
   display: flex; align-items: center; gap: 14px;
 }
@@ -82,7 +82,7 @@
   flex-shrink: 0;
 }
 .sectionDesc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 17px; font-style: italic;
   color: #555; line-height: 1.55;
   max-width: 640px; margin: 8px 0 0;
@@ -95,19 +95,19 @@
   margin-top: 6px;
 }
 .trilogiePreamble p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 17px; font-style: italic;
   color: #555; line-height: 1.55;
   max-width: 640px; margin: 0;
 }
 
 /* ══════════════════════════════════════════════
-   FORMAT CHIP — identifiant visuel du type de contenu
+   FORMAT CHIP , identifiant visuel du type de contenu
 ══════════════════════════════════════════════ */
 .formatChip {
   display: inline-flex;
   align-items: center;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -184,14 +184,14 @@
   letter-spacing: 3px; text-transform: uppercase;
 }
 .leadTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(28px, 3.8vw, 44px);
-  font-weight: 300; letter-spacing: -1.5px;
+  font-weight: 400; letter-spacing: -1.5px;
   color: #fff; line-height: 1.08;
   margin: 6px 0 4px;
 }
 .leadSub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 17px; font-style: italic;
   color: rgba(196,162,101,0.62); line-height: 1.5;
 }
@@ -274,14 +274,14 @@
   margin-bottom: 4px;
 }
 .atlasTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 22px; font-weight: 400;
   letter-spacing: -0.5px; line-height: 1.22;
   color: var(--encre);
   margin: 0 0 4px;
 }
 .atlasSub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 15px; font-style: italic;
   color: var(--gris-m); line-height: 1.4;
   margin-bottom: 6px;
@@ -341,7 +341,7 @@
   margin-bottom: 2px;
 }
 .datavizTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 18px; font-weight: 400;
   letter-spacing: -0.3px; line-height: 1.22;
   color: var(--encre);
@@ -358,7 +358,7 @@
 }
 
 /* ══════════════════════════════════════════════
-   DATAVIZ LEAD — première carte horizontale
+   DATAVIZ LEAD , première carte horizontale
 ══════════════════════════════════════════════ */
 .datavizLead {
   display: grid;
@@ -388,9 +388,9 @@
   gap: 10px; justify-content: center;
 }
 .datavizLeadTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(28px, 3.5vw, 38px);
-  font-weight: 300; letter-spacing: -0.5px;
+  font-weight: 400; letter-spacing: -0.5px;
   line-height: 1.15;
   color: var(--encre);
   margin: 6px 0 4px;
@@ -407,7 +407,7 @@
 }
 
 /* ══════════════════════════════════════════════
-   MOTION LEAD — première carte horizontale
+   MOTION LEAD , première carte horizontale
 ══════════════════════════════════════════════ */
 .motionLead {
   display: grid;
@@ -448,15 +448,15 @@
   gap: 10px; justify-content: center;
 }
 .motionLeadTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(28px, 3.5vw, 38px);
-  font-weight: 300; letter-spacing: -0.5px;
+  font-weight: 400; letter-spacing: -0.5px;
   line-height: 1.15;
   color: var(--encre);
   margin: 6px 0 0;
 }
 .motionLeadSub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 18px; font-style: italic;
   color: var(--gris-m); line-height: 1.4;
 }
@@ -471,7 +471,7 @@
 }
 
 /* ══════════════════════════════════════════════
-   TRILOGIE DOLLAR — bannière + 3 actes
+   TRILOGIE DOLLAR , bannière + 3 actes
 ══════════════════════════════════════════════ */
 .trilogie {
   display: flex;
@@ -517,14 +517,14 @@
   color: rgba(232, 200, 74, 0.85);
 }
 .trilogieTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(32px, 5vw, 64px);
-  font-weight: 300; letter-spacing: -1.5px; line-height: 1.02;
+  font-weight: 400; letter-spacing: -1.5px; line-height: 1.02;
   color: #fff;
   margin: 0;
 }
 .trilogieSub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: clamp(15px, 1.8vw, 19px);
   font-style: italic;
   color: rgba(232, 200, 74, 0.7);
@@ -569,22 +569,22 @@
 }
 .acteCard:hover::before { transform: scaleX(1); }
 .acteN {
-  font-family: 'Playfair Display', serif;
-  font-size: 72px; font-weight: 300;
+  font-family: var(--font-serif-display);
+  font-size: 72px; font-weight: 400;
   letter-spacing: -3px; line-height: 0.9;
   color: var(--eco);
   opacity: 0.85;
   margin-bottom: 16px;
 }
 .acteTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 22px; font-weight: 400; letter-spacing: -0.4px;
   color: var(--encre); line-height: 1.2;
   margin: 0 0 10px;
 }
 .acteDesc {
   font-size: 14px; line-height: 1.65;
-  color: var(--gris-m); font-weight: 300;
+  color: var(--gris-m); font-weight: 400;
   flex: 1;
   margin: 0 0 18px;
 }
@@ -651,18 +651,18 @@
   border: 1px solid rgba(74,196,74,0.15);
 }
 .motionTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 20px; font-weight: 400; letter-spacing: -0.5px;
   color: var(--encre); line-height: 1.2; margin: 4px 0 0;
 }
 .motionSub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 15px; font-style: italic;
   color: var(--gris-m); line-height: 1.4;
 }
 .motionDesc {
   font-size: 13px; line-height: 1.65;
-  color: var(--gris-m); font-weight: 300; flex: 1;
+  color: var(--gris-m); font-weight: 400; flex: 1;
 }
 .motionCta {
   font-size: 10px; font-weight: 600;
@@ -681,8 +681,8 @@
   background: var(--papier);
 }
 .footerLogo {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px; font-weight: 300;
+  font-family: var(--font-serif-display);
+  font-size: 20px; font-weight: 400;
   letter-spacing: -0.5px; color: var(--encre);
 }
 .footerLogo em { font-style: italic; color: var(--or, #C8A96E); }
@@ -734,7 +734,7 @@
 }
 
 /* ══════════════════════════════════════════════
-   MOTION — page Atlas vivante
+   MOTION , page Atlas vivante
    Hero cascade · Ken Burns · scroll reveals · gold underline
 ══════════════════════════════════════════════ */
 
@@ -764,7 +764,7 @@
   to   { transform: scale(1.04) translate(-1%, 0.6%); }
 }
 
-/* Reveal au scroll — opacity + translateY */
+/* Reveal au scroll , opacity + translateY */
 .reveal {
   opacity: 0;
   transform: translateY(16px);

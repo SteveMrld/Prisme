@@ -56,11 +56,11 @@
 }
 
 .title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(34px, 6vw, 64px);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -1.5px;
+  font-family: var(--font-serif-display);
+  font-size: var(--type-h1);
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-title);
+  letter-spacing: -0.025em;
   color: var(--encre);
   margin-bottom: 20px;
   text-align: center;
@@ -72,11 +72,12 @@
 }
 
 .chapeau {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(17px, 2.2vw, 21px);
+  font-family: var(--font-serif-text);
+  font-size: var(--type-lg);
   font-style: italic;
+  font-weight: var(--weight-regular);
   color: var(--gris);
-  line-height: 1.65;
+  line-height: var(--lh-reading);
   margin-top: 16px;
   margin-bottom: 0;
   max-width: 600px;
@@ -85,7 +86,7 @@
 }
 
 .description {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 22px;
   font-style: italic;
   color: var(--gris);
@@ -139,7 +140,7 @@
   padding: 16px 24px 16px;
 }
 
-/* Pour les articles avec header interne — on laisse le HTML gérer ses propres marges */
+/* Pour les articles avec header interne , on laisse le HTML gérer ses propres marges */
 .articleBodyFull {
   width: 100%;
   padding: 0;
@@ -156,7 +157,7 @@
 }
 
 .articleBody h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 26px;
   font-weight: 400;
   font-style: italic;
@@ -192,11 +193,12 @@
   }
   .title { font-size: clamp(24px, 6vw, 36px); }
   .chapeau {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(17px, 2.2vw, 21px);
+  font-family: var(--font-serif-text);
+  font-size: var(--type-lg);
   font-style: italic;
+  font-weight: var(--weight-regular);
   color: var(--gris);
-  line-height: 1.65;
+  line-height: var(--lh-reading);
   margin-top: 16px;
   margin-bottom: 0;
   max-width: 600px;
@@ -225,7 +227,7 @@
 }
 
 .langToggle {
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -270,7 +272,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 13px;
   font-weight: 400;
   flex-shrink: 0;
@@ -278,7 +280,7 @@
 }
 
 .bylineTopName {
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
   color: var(--encre);
@@ -294,11 +296,11 @@
 .bylineSep {
   color: var(--gris-l);
   margin: 0 2px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .bylineTopRole {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 13px;
   color: var(--gris-m);
   font-style: italic;
@@ -307,7 +309,7 @@
 }
 
 .bylineDate {
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 11px;
   color: var(--gris-l);
   margin-top: 4px;
@@ -342,7 +344,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 18px;
   font-weight: 400;
   flex-shrink: 0;
@@ -358,7 +360,7 @@
 }
 
 .authorSigName {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 15px;
   font-weight: 400;
   color: var(--encre);
@@ -393,7 +395,7 @@
   height: 18px;
   background: var(--encre);
   color: var(--or);
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 10px;
   font-weight: 700;
   font-style: italic;
@@ -492,9 +494,9 @@
   color: var(--or);
 }
 .newsletterTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 300;
+  font-weight: 400;
   color: #ECE7DD;
   line-height: 1.2;
   letter-spacing: -0.5px;
@@ -614,7 +616,7 @@
 }
 
 .relatedTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 15px;
   font-weight: 400;
   color: var(--encre);
@@ -761,7 +763,7 @@
 .actionBtn:hover { color: var(--encre); }
 
 /* ── PAYWALL ── */
-/* ── PAYWALL — teaser tronque server-side + fade-out ── */
+/* ── PAYWALL , teaser tronque server-side + fade-out ── */
 .paywallWrap {
   position: relative;
 }
@@ -802,7 +804,7 @@
   margin-bottom: 14px;
 }
 .paywallTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(24px, 4vw, 34px);
   font-weight: 400;
   letter-spacing: -0.5px;
@@ -817,7 +819,7 @@
   margin: 0 auto 28px;
   line-height: 1.65;
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
 }
 .paywallCta {
   display: inline-block;
@@ -876,7 +878,7 @@
 }
 
 .stickyTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 14px;
   font-weight: 400;
   color: var(--encre);
@@ -897,7 +899,7 @@
 }
 
 /* ═══════════════════════════════════════════════
-   LAYOUT DESKTOP — Article + Sidebar
+   LAYOUT DESKTOP , Article + Sidebar
    ═══════════════════════════════════════════════ */
 
 .articlePageLayout {
@@ -995,7 +997,7 @@
   }
 
   .sidebarItemTitle {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif-display);
     font-size: 13px;
     font-weight: 400;
     color: var(--encre);

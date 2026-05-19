@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   SOARA — Page d'accueil · Style NYT
+   SOARA , Page d'accueil · Style NYT
    Fond blanc, titres serif, filets, respiration
    ═══════════════════════════════════════════════════════ */
 
@@ -24,7 +24,7 @@
 
 /* ── ATOMES ── */
 .cat {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -36,7 +36,7 @@
 .readTime {
   font-size: 11px;
   color: #999;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   letter-spacing: .3px;
   display: block;
   margin-top: 6px;
@@ -51,14 +51,14 @@
   border-top: 2px solid #0A0A0A;
 }
 .sectionHeadLabel {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(18px, 2.5vw, 22px);
   font-weight: 700;
   letter-spacing: -0.3px;
   color: #0A0A0A;
 }
 .sectionHeadAll {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -96,12 +96,12 @@
   padding: 14px 16px 20px;
 }
 .leadTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(26px, 5vw, 38px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.5px;
-  color: #0A0A0A;
+  font-family: var(--font-serif-display);
+  font-size: var(--type-h1-hero);
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  color: var(--encre);
   margin-bottom: 8px;
 }
 .leadTitle em { font-style: italic; }
@@ -113,7 +113,7 @@
 }
 
 /* ════════════════════════════════════
-   2. HOME TOP — Grille NYT 3 colonnes
+   2. HOME TOP , Grille NYT 3 colonnes
       Gauche : stories texte · Centre : hero · Droite : stories avec image
 ════════════════════════════════════ */
 .homeTop {
@@ -177,7 +177,7 @@
 .htSideItem:first-child { padding-top: 0; }
 
 .htSideTitle {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(16px, 1.7vw, 19px);
   font-weight: 700;
   line-height: 1.2;
@@ -231,7 +231,7 @@
 }
 
 .htRightTitle {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(15px, 1.6vw, 17px);
   font-weight: 700;
   line-height: 1.22;
@@ -261,7 +261,7 @@
 
 /* Citation Soara : signature éditoriale au pied de la colonne gauche.
    margin-top: auto la pousse en bas, le bloc newsletter qui suit
-   reste collé dessous — l'air respire entre stories et signature. */
+   reste collé dessous , l'air respire entre stories et signature. */
 .zone1Quote {
   display: block;
   margin: auto 0 0;
@@ -269,7 +269,7 @@
   border-left: 3px solid #8B1A1A;
 }
 .zone1QuoteText {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-serif-text);
   font-style: italic;
   font-size: clamp(20px, 2.4vw, 26px);
   line-height: 1.35;
@@ -280,7 +280,7 @@
 .zone1QuoteCite {
   display: block;
   margin-top: 14px;
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -300,7 +300,7 @@
   gap: 6px;
 }
 .zone1NewsletterEyebrow {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -309,7 +309,7 @@
   margin-bottom: 4px;
 }
 .zone1NewsletterTitle {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: 19px;
   font-weight: 700;
   line-height: 1.2;
@@ -318,7 +318,7 @@
   letter-spacing: -0.2px;
 }
 .zone1NewsletterTeaser {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-serif-text);
   font-style: italic;
   font-size: 14px;
   color: #444;
@@ -326,7 +326,7 @@
   margin: 4px 0 8px;
 }
 .zone1NewsletterCta {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -349,7 +349,7 @@
 }
 .zone1AlsoReadLabel {
   display: block;
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -380,14 +380,14 @@
 }
 .zone1AlsoReadLink:hover { opacity: 0.65; }
 .zone1AlsoReadCat {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #888178;
 }
 .zone1AlsoReadTitle {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: 14.5px;
   line-height: 1.25;
   color: #1A1A1A;
@@ -425,7 +425,7 @@
   margin-bottom: 14px;
 }
 .zone1EntretienBannerLabel {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(18px, 2.2vw, 22px);
   font-weight: 700;
   line-height: 1;
@@ -437,7 +437,7 @@
   color: #8B1A1A;
 }
 .zone1EntretienBannerDate {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -470,7 +470,7 @@
   padding-top: 14px;
 }
 .zone1EntretienName {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(22px, 2.6vw, 28px);
   font-weight: 700;
   line-height: 1.1;
@@ -488,7 +488,7 @@
   margin: 0;
 }
 .zone1EntretienQuote {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-serif-text);
   font-style: italic;
   font-size: 15.5px;
   line-height: 1.4;
@@ -498,7 +498,7 @@
   margin: 4px 0 0;
 }
 .zone1EntretienCta {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -536,7 +536,7 @@
 }
 .atlasSectionEyebrow {
   display: block;
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -545,7 +545,7 @@
   margin-bottom: 8px;
 }
 .atlasSectionTitle {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(26px, 3.4vw, 36px);
   font-weight: 700;
   line-height: 1.1;
@@ -555,7 +555,7 @@
 }
 .atlasSectionTitle em { font-style: italic; color: #8B1A1A; }
 .atlasSectionIntro {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-serif-text);
   font-style: italic;
   font-size: clamp(14px, 1.6vw, 16px);
   line-height: 1.5;
@@ -564,7 +564,7 @@
   margin: 0;
 }
 .atlasSectionAll {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -608,7 +608,7 @@
 }
 .atlasSectionCard:hover .atlasSectionImg img { transform: scale(1.04); }
 .atlasSectionTag {
-  font-family: 'DM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -617,7 +617,7 @@
   margin-top: 6px;
 }
 .atlasSectionTitle2 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(17px, 2vw, 20px);
   font-weight: 700;
   line-height: 1.2;
@@ -649,7 +649,7 @@
 }
 
 /* ════════════════════════════════════
-   2bis. SOUS LE HERO — bande éditoriale 2×3 (DEPRECATED, gardé pour rétro-compat)
+   2bis. SOUS LE HERO , bande éditoriale 2×3 (DEPRECATED, gardé pour rétro-compat)
 ════════════════════════════════════ */
 .underHero {
   display: grid;
@@ -695,7 +695,7 @@
   gap: 4px;
 }
 .underHeroTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(17px, 2.1vw, 20px);
   font-weight: 700;
   line-height: 1.25;
@@ -713,7 +713,7 @@
 }
 
 /* ════════════════════════════════════
-   2bis. LIGNE 2 — 2 colonnes × 3 articles (utilisée en section 8)
+   2bis. LIGNE 2 , 2 colonnes × 3 articles (utilisée en section 8)
 ════════════════════════════════════ */
 .row2 {
   display: grid;
@@ -746,7 +746,7 @@
   flex-shrink: 0;
 }
 .rowTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(13px, 1.6vw, 16px);
   font-weight: 700;
   line-height: 1.25;
@@ -771,7 +771,7 @@
 .rowImgWrap img { width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ════════════════════════════════════
-   3. TRIO — 3 cols texte seul
+   3. TRIO , 3 cols texte seul
 ════════════════════════════════════ */
 .trio {
   display: grid;
@@ -798,7 +798,7 @@
   .trioCard:last-child { border-right: none; }
 }
 .trioTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(14px, 1.8vw, 17px);
   font-weight: 700;
   line-height: 1.25;
@@ -808,7 +808,7 @@
 .trioTitle em { font-style: italic; }
 
 /* ════════════════════════════════════
-   4. GRAND ENTRETIEN — magazine style
+   4. GRAND ENTRETIEN , magazine style
 ════════════════════════════════════ */
 .entretien {
   display: grid;
@@ -839,7 +839,7 @@
   justify-content: flex-start;
 }
 .entretienLabel {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px; font-weight: 700;
   letter-spacing: 2.2px; text-transform: uppercase;
   color: #0A0A0A;
@@ -847,7 +847,7 @@
   width: fit-content;
 }
 .entretienName {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(28px, 5vw, 44px);
   font-weight: 700; line-height: 1.05; letter-spacing: -0.8px;
   color: #0A0A0A;
@@ -875,7 +875,7 @@
   margin-top: 4px;
 }
 .entretienPullQuote {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-style: italic;
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.35;
@@ -886,7 +886,7 @@
   letter-spacing: -0.1px;
 }
 .entretienCta {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-style: italic;
   font-size: 13px;
   font-weight: 600;
@@ -899,7 +899,7 @@
 }
 
 /* ════════════════════════════════════
-   5. GRANDS FORMATS — hiérarchie 4 niveaux
+   5. GRANDS FORMATS , hiérarchie 4 niveaux
       Lead → Secondaires → Tertiaires → Quaternaires
 ════════════════════════════════════ */
 .gfSection {
@@ -935,7 +935,7 @@
   gap: 12px;
 }
 .gfLeadEyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -946,7 +946,7 @@
   width: fit-content;
 }
 .gfLeadTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(32px, 4.5vw, 48px);
   font-weight: 700;
   line-height: 1.06;
@@ -968,7 +968,7 @@
   margin-top: 4px;
 }
 .gfLeadCta {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-style: italic;
   font-size: 14px;
   font-weight: 600;
@@ -1024,7 +1024,7 @@
   gap: 8px;
 }
 .gfSecondaryTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(20px, 2.6vw, 26px);
   font-weight: 700;
   line-height: 1.15;
@@ -1088,7 +1088,7 @@
 .gfFeature:hover .gfFeatureImg img { transform: scale(1.03); }
 .gfFeatureBody { display: flex; flex-direction: column; gap: 8px; }
 .gfFeatureTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(19px, 2.3vw, 23px);
   font-weight: 700;
   line-height: 1.18;
@@ -1120,7 +1120,7 @@
 }
 .gfMoreLabel {
   display: block;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -1159,14 +1159,14 @@
 }
 .gfMoreLink:hover { opacity: 0.65; }
 .gfMoreCat {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #888178;
 }
 .gfMoreTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 16px;
   font-weight: 600;
   line-height: 1.22;
@@ -1199,7 +1199,7 @@
   .tvLayout { grid-template-columns: 1.4fr 1fr; }
 }
 
-/* Featured — grand format magazine */
+/* Featured , grand format magazine */
 .tvFeatured {
   display: block;
   text-decoration: none;
@@ -1243,7 +1243,7 @@
   gap: 10px;
 }
 .tvFeaturedEyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -1251,7 +1251,7 @@
   font-weight: 700;
 }
 .tvFeaturedTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(22px, 2.8vw, 30px);
   font-weight: 700;
   line-height: 1.15;
@@ -1260,7 +1260,7 @@
   margin: 0;
 }
 .tvFeaturedDur {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1268,7 +1268,7 @@
   margin-top: 2px;
 }
 
-/* Sidelist — colonne verticale d'épisodes en lignes thumb + texte */
+/* Sidelist , colonne verticale d'épisodes en lignes thumb + texte */
 .tvSidelist {
   list-style: none;
   margin: 0;
@@ -1313,7 +1313,7 @@
   min-width: 0;
 }
 .tvSideNum {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1321,7 +1321,7 @@
   font-weight: 700;
 }
 .tvSideTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.25;
@@ -1332,7 +1332,7 @@
   overflow: hidden;
 }
 .tvSideDur {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   color: rgba(236,231,221,.4);
 }
@@ -1363,7 +1363,7 @@
 .latestItem:last-child { border-bottom: none; }
 .latestBody { flex: 1; min-width: 0; }
 .latestTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(16px, 2vw, 19px);
   font-weight: 700;
   line-height: 1.2;
@@ -1380,8 +1380,8 @@
 ════════════════════════════════════ */
 .nl { background:#FAF9F6; padding:48px 16px; border-top:2px solid #0A0A0A; }
 .nlInner { max-width:480px; margin:0 auto; }
-.nlEyebrow { font-family:'DM Mono',monospace; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#C8A96E; margin-bottom:10px; }
-.nlTitle { font-family:'Playfair Display',serif; font-size:clamp(22px,4vw,32px); font-weight:700; color:#0A0A0A; line-height:1.15; letter-spacing:-0.5px; margin-bottom:10px; }
+.nlEyebrow { font-family:var(--font-mono); font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#C8A96E; margin-bottom:10px; }
+.nlTitle { font-family:var(--font-serif-display); font-size:clamp(22px,4vw,32px); font-weight:700; color:#0A0A0A; line-height:1.15; letter-spacing:-0.5px; margin-bottom:10px; }
 .nlDesc { font-size:13px; color:#777; line-height:1.6; margin-bottom:24px; font-family:'Georgia',serif; font-style:italic; }
 
 /* ════════════════════════════════════
@@ -1424,7 +1424,7 @@
 
 /* ── Portrait intro text ── */
 .portraitsIntro {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-style: italic;
   font-size: clamp(14px, 2vw, 17px);
   color: #555;
@@ -1449,7 +1449,7 @@
   margin-bottom: 24px;
 }
 .tvEyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -1458,7 +1458,7 @@
   margin-bottom: 6px;
 }
 .tvTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(22px, 4vw, 32px);
   font-weight: 700;
   color: #F5E6D0;
@@ -1476,7 +1476,7 @@
   max-width: 400px;
 }
 .tvSeeAll {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -1490,7 +1490,7 @@
   padding-bottom: 1px;
 }
 .tvTitle2 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 15px;
   font-weight: 700;
   color: #ECE7DD;
@@ -1502,7 +1502,7 @@
 }
 
 /* ════════════════════════════════════
-   MOBILE — section 8 stack
+   MOBILE , section 8 stack
 ════════════════════════════════════ */
 @media (max-width: 768px) {
   /* Section 8 : Dernières + Populaires empilées verticalement */
@@ -1530,7 +1530,7 @@
 }
 
 /* ════════════════════════════════════
-   GF META — casque audio
+   GF META , casque audio
 ════════════════════════════════════ */
 .gfMeta {
   display: flex;
@@ -1540,7 +1540,7 @@
 }
 
 /* ════════════════════════════════════
-   DERNIÈRES PUBLICATIONS — redesign
+   DERNIÈRES PUBLICATIONS , redesign
 ════════════════════════════════════ */
 .latestItem2 {
   display: flex;
@@ -1574,7 +1574,7 @@
 }
 
 .latestItem2Date {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 8px;
   color: #BBB;
   letter-spacing: .5px;
@@ -1583,7 +1583,7 @@
 }
 
 .recentTag {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 7px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -1610,7 +1610,7 @@
 }
 
 /* ════════════════════════════════════
-   LES PLUS LUS — ranked list
+   LES PLUS LUS , ranked list
 ════════════════════════════════════ */
 .popularItem {
   display: flex;
@@ -1626,7 +1626,7 @@
 .popularItem:last-child { border-bottom: none; }
 
 .popularRank {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 22px;
   font-weight: 700;
   color: #E8E2DA;

@@ -40,15 +40,16 @@
 }
 
 .bandLabel {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-mono-bold);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--or);
 }
 
 .bandDesc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 16px;
   font-style: italic;
   color: rgba(255,255,255,0.5);
@@ -107,7 +108,7 @@
 }
 
 .itemHeadline {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(24px, 3vw, 30px);
   font-weight: 600;
   line-height: 1.2;
@@ -116,7 +117,7 @@
 }
 
 .itemBody {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: clamp(15px, 1.7vw, 16px);
   color: var(--gris);
   line-height: 1.65;
@@ -132,14 +133,14 @@
 }
 
 .footerLogo {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -1px;
   color: rgba(255,255,255,0.8);
 }
 
-.footerLogo em { font-style: italic; font-weight: 300; }
+.footerLogo em { font-style: italic; font-weight: 400; }
 
 .footerLinks {
   display: flex;

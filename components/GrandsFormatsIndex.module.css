@@ -17,7 +17,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .eyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -25,16 +25,16 @@
   margin-bottom: 14px;
 }
 .title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(32px, 7vw, 44px);
-  font-weight: 300;
+  font-weight: 400;
   color: #ECE7DD;
   line-height: 1.1;
   margin: 0 0 16px;
 }
 .title em { font-weight: 600; font-style: italic; }
 .lede {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: clamp(16px, 2.2vw, 18px);
   font-style: italic;
   color: rgba(236, 231, 221, 0.55);
@@ -74,7 +74,7 @@
 }
 
 .num {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 1.5px;
   color: rgba(255, 255, 255, 0.22);
@@ -85,7 +85,7 @@
   min-width: 0;
 }
 .category {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -94,7 +94,7 @@
   margin-bottom: 8px;
 }
 .itemTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(19px, 3.5vw, 22px);
   font-weight: 700;
   color: #ECE7DD;
@@ -104,7 +104,7 @@
   transition: color .15s ease;
 }
 .desc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: clamp(14px, 1.9vw, 16px);
   font-style: italic;
   color: rgba(236, 231, 221, 0.55);

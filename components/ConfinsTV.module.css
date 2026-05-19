@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   CONFINS TV — Homepage section
+   CONFINS TV , Homepage section
    Architecture propre, padding 64px = header
    ═══════════════════════════════════════════════ */
 
@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-/* tvInner supprimé — padding direct sur chaque zone */
+/* tvInner supprimé , padding direct sur chaque zone */
 
 /* ── Header ── */
 .tvHeader {
@@ -33,7 +33,7 @@
 }
 
 .tvLogoText {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 18px;
   font-weight: 400;
   color: var(--encre);
@@ -41,7 +41,7 @@
 }
 
 .tvLogoTag {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -86,9 +86,9 @@
 }
 
 .tvEpNum {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--bord);
   line-height: 1;
 }
@@ -246,7 +246,7 @@
 }
 
 .playerFooterTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 18px;
   font-weight: 400;
   color: var(--encre);
@@ -349,7 +349,7 @@
 }
 
 .epItemTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 13px;
   color: var(--encre);
   line-height: 1.3;
@@ -396,7 +396,7 @@
 .epNextTitle {
   display: block;
   font-size: 13px;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   color: var(--encre);
 }
 

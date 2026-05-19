@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap');
 
 :root {
   --bg:#FFFFFF;
@@ -20,6 +20,36 @@
   --concept:#1A1A3E;
   --sciences:#1A5C4A;
   --portrait:#C8A96E;
+
+  /* ── Système typographique (cf. docs/typography-system.md) ───
+     Échelle modulaire à 6 tailles + 1 modificateur hero.
+     Trois poids autorisés (400/600/700) plus le 500 réservé
+     à DM Mono qui ne charge pas au-delà.
+     Critère chiffres : Playfair Display si intégré au récit,
+     DM Mono si donnée technique (lecture rapide). ───────────── */
+  --type-xs:      10px;
+  --type-sm:      13px;
+  --type-base:    17px;
+  --type-lg:      clamp(18px, 1.6vw, 21px);
+  --type-h2:      clamp(24px, 2.6vw, 32px);
+  --type-h1:      clamp(34px, 4.8vw, 56px);
+  --type-h1-hero: clamp(56px, 7vw, 88px);
+
+  --weight-regular:   400;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-mono-bold: 500;
+
+  --lh-tight:   1.0;
+  --lh-title:   1.1;
+  --lh-ui:      1.45;
+  --lh-reading: 1.65;
+
+  --font-serif-display: 'Playfair Display', Georgia, serif;
+  --font-serif-text:    'Cormorant Garamond', Georgia, serif;
+  --font-serif-reading: var(--font-source-serif), Georgia, serif;
+  --font-sans:          'DM Sans', system-ui, sans-serif;
+  --font-mono:          'DM Mono', ui-monospace, monospace;
 
   /* ── Motion tokens ───────────────────────────────────
      Durations and easings used across the site.
@@ -71,8 +101,8 @@ html { scroll-behavior:smooth; overflow-x: hidden; }
 body {
   background:var(--bg);
   color:var(--encre);
-  font-family:'DM Sans', sans-serif;
-  font-weight:300;
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
   -webkit-font-smoothing:antialiased;
   overflow-x: hidden;
 }

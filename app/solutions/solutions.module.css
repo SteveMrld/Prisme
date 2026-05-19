@@ -63,7 +63,7 @@
 }
 .catEmoji { font-size: 24px; line-height: 1; }
 .catTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 400;
   margin: 0 0 2px;
@@ -110,7 +110,7 @@
   letter-spacing: 0.3px;
 }
 .cardName {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(15px, 1.8vw, 18px);
   font-weight: 400;
   color: var(--encre);

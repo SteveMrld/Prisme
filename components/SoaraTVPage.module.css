@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   CONFINS TV — Design éditorial blanc
+   CONFINS TV , Design éditorial blanc
    Standard NYT/Arte
    ═══════════════════════════════════════════════ */
 
@@ -35,7 +35,7 @@
 }
 
 .logoText {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 20px;
   font-weight: 400;
   color: var(--encre);
@@ -47,7 +47,7 @@
 }
 
 .logoTV {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -87,7 +87,7 @@
 }
 
 .heroTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 400;
   line-height: 1.15;
@@ -102,7 +102,7 @@
 }
 
 .heroBaseline {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 18px;
   font-style: italic;
   color: var(--gris);
@@ -290,7 +290,7 @@
 }
 
 .epTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(22px, 3vw, 30px);
   font-weight: 400;
   color: var(--encre);
@@ -300,14 +300,14 @@
 }
 
 .epDesc {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: 17px;
   font-style: italic;
   color: var(--gris);
   line-height: 1.6;
 }
 
-/* ── SIDEBAR — liste épisodes ── */
+/* ── SIDEBAR , liste épisodes ── */
 .sidebar {
   border-left: 1px solid var(--bord);
   padding-left: 32px;
@@ -399,7 +399,7 @@
 }
 
 .epCardTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 13px;
   font-weight: 400;
   color: var(--encre);
@@ -444,7 +444,7 @@
 }
 
 .nextEpTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 16px;
   color: var(--encre);
   margin-bottom: 4px;
@@ -493,7 +493,7 @@
 }
 
 .manifestoText {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: clamp(18px, 2.5vw, 22px);
   font-style: italic;
   color: rgba(255,255,255,0.75);

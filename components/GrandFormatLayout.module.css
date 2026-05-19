@@ -20,7 +20,7 @@
   position: relative;
 }
 
-/* Grain photographique — pseudo-élément overlay */
+/* Grain photographique , pseudo-élément overlay */
 .heroWrap::after {
   content: '';
   position: absolute;
@@ -61,7 +61,7 @@
 }
 
 .tag {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -71,26 +71,26 @@
 }
 
 .readTime {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.14em;
   color: #9CA3AF;
 }
 
 .readDate {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.14em;
   color: #CBD5E1;
 }
 
 .title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(36px, 5.5vw, 68px);
-  font-weight: 900;
+  font-family: var(--font-serif-display);
+  font-size: var(--type-h1-hero);
+  font-weight: var(--weight-bold);
   letter-spacing: -0.03em;
-  line-height: 1.0;
-  color: #111;
+  line-height: var(--lh-tight);
+  color: var(--encre);
   margin: 0 0 20px;
 }
 
@@ -100,11 +100,12 @@
 }
 
 .chapeau {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(15px, 1.7vw, 19px);
-  font-style: italic;
-  color: #6B7280;
-  line-height: 1.6;
+  font-family: var(--font-serif-text);
+  font-size: var(--type-lg);
+  font-style: normal;
+  font-weight: var(--weight-regular);
+  color: var(--gris);
+  line-height: var(--lh-reading);
   margin: 0;
   max-width: 680px;
 }
@@ -127,7 +128,7 @@
   border-radius: 50%;
   background: #1a1a1a;
   color: #F9F7F3;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   display: flex;
   align-items: center;
@@ -143,14 +144,14 @@
 }
 
 .authorName {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: 14px;
   font-weight: 700;
   color: #111;
 }
 
 .authorRole {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.14em;
   color: #9CA3AF;
@@ -176,9 +177,9 @@
 }
 
 .body :global(.atitle) {
-  font-family: 'Playfair Display', Georgia, serif !important;
+  font-family: var(--font-serif-display) !important;
   font-size: clamp(36px, 5.5vw, 68px) !important;
-  font-weight: 900 !important;
+  font-weight: 700 !important;
   letter-spacing: -0.03em !important;
   line-height: 1.0 !important;
   color: #111 !important;
@@ -190,7 +191,7 @@
 }
 
 .body :global(.adeck) {
-  font-family: 'Playfair Display', Georgia, serif !important;
+  font-family: var(--font-serif-display) !important;
   font-size: clamp(15px, 1.7vw, 19px) !important;
   font-style: italic !important;
   color: #6B7280 !important;
@@ -201,7 +202,7 @@
 .body :global(.article-body h2),
 .body :global(h3),
 .body :global(.article-body h3) {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(22px, 2.5vw, 30px);
   font-weight: 700 !important;
   font-style: normal !important;
@@ -229,7 +230,7 @@
 
 .body :global(.pull-quote p),
 .body :global(blockquote p) {
-  font-family: 'Playfair Display', Georgia, serif !important;
+  font-family: var(--font-serif-display) !important;
   font-size: clamp(18px, 2vw, 23px) !important;
   font-style: italic !important;
   line-height: 1.5 !important;
@@ -253,9 +254,9 @@
 }
 
 .body :global(.sbloc-num) {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(28px, 3.5vw, 42px);
-  font-weight: 900;
+  font-weight: 700;
   color: #B91C1C;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -263,7 +264,7 @@
 }
 
 .body :global(.sbloc-label) {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.1em;
   color: #9CA3AF;
@@ -302,7 +303,7 @@
 }
 
 .sigLabel {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -311,14 +312,14 @@
 }
 
 .sigName {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: 16px;
   font-weight: 700;
   color: #111;
 }
 
 .sigRole {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.12em;
   color: #9CA3AF;
@@ -340,7 +341,7 @@
 }
 
 .relatedLabel {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -378,7 +379,7 @@
 }
 
 .relatedCat {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -386,7 +387,7 @@
 }
 
 .relatedTitle {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: 15px;
   font-weight: 700;
   color: #111;
@@ -398,13 +399,13 @@
 }
 
 .relatedCta {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.14em;
   color: #B91C1C;
 }
 
-/* ── PAYWALL — teaser tronque + fade-out + bloc CTA ── */
+/* ── PAYWALL , teaser tronque + fade-out + bloc CTA ── */
 .paywallWrap {
   position: relative;
 }
@@ -439,7 +440,7 @@
   z-index: 2;
 }
 .paywallEyebrow {
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -448,7 +449,7 @@
   margin-bottom: 14px;
 }
 .paywallTitle {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(24px, 4vw, 34px);
   font-weight: 400;
   letter-spacing: -0.5px;
@@ -457,7 +458,7 @@
   line-height: 1.2;
 }
 .paywallDesc {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif-display);
   font-size: 15px;
   font-style: italic;
   color: #888;
@@ -470,7 +471,7 @@
   background: #1a1a1a;
   color: #fff;
   text-decoration: none;
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -484,7 +485,7 @@
 }
 .paywallLogin {
   display: block;
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 11px;
   color: #888;
   text-decoration: none;

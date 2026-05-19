@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────────
-   Page 404 éditoriale — Soara
+   Page 404 éditoriale , Soara
    Bandeau eyebrow, gros 404, titre Playfair, citation,
    3 lectures choisies (NYT-style), chips rubriques.
    Le Footer global (layout.tsx) s'affiche en dessous.
@@ -32,7 +32,7 @@
 }
 
 .eyebrow {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.24em;
@@ -44,8 +44,8 @@
 /* ── 404 géant ────────────────────────────────── */
 
 .num {
-  font-family: 'Playfair Display', serif;
-  font-weight: 300;
+  font-family: var(--font-serif-display);
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(140px, 22vw, 240px);
   line-height: 0.9;
@@ -58,7 +58,7 @@
 /* ── Titre principal ──────────────────────────── */
 
 .title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-weight: 400;
   font-size: clamp(32px, 5vw, 56px);
   line-height: 1.08;
@@ -98,7 +98,7 @@
 }
 
 .quote p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(20px, 2.4vw, 26px);
@@ -108,7 +108,7 @@
 }
 
 .quoteAttr {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -126,7 +126,7 @@
 }
 
 .btnPrimary {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -176,7 +176,7 @@
 
 .sectionEyebrow {
   display: block;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.24em;
@@ -186,7 +186,7 @@
 }
 
 .sectionTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-weight: 400;
   font-style: italic;
   font-size: clamp(24px, 3vw, 32px);
@@ -237,7 +237,7 @@
 }
 
 .cardCat {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -246,7 +246,7 @@
 }
 
 .cardTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-weight: 500;
   font-size: 21px;
   line-height: 1.18;
@@ -273,7 +273,7 @@
 }
 
 .cardMeta {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -291,7 +291,7 @@
 }
 
 .rubriquesLabel {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.24em;

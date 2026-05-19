@@ -29,14 +29,14 @@
   text-transform: uppercase; color: #C8A96E; display: block; margin-bottom: 20px;
 }
 .title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(36px, 6vw, 72px);
   font-weight: 400; line-height: 1.05; letter-spacing: -0.03em;
   color: #FAF9F7; margin-bottom: 20px;
 }
 .title em { color: #C8A96E; font-style: italic; }
 .subtitle {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif-text);
   font-size: clamp(16px, 2vw, 20px); font-style: italic;
   color: rgba(250,249,247,0.65); line-height: 1.6;
 }
@@ -88,7 +88,7 @@
   color: var(--bord); font-variant-numeric: tabular-nums;
 }
 .itemMois {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 22px; font-weight: 400; color: var(--encre);
 }
 .itemCat {
@@ -102,7 +102,7 @@
   display: flex; flex-direction: column; justify-content: center; gap: 10px;
 }
 .itemTitre {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: clamp(16px, 2.2vw, 22px);
   font-weight: 400; line-height: 1.25; color: var(--encre);
 }
@@ -144,7 +144,7 @@
   flex-wrap: wrap;
 }
 .footerLogo {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-serif-display);
   font-size: 20px; color: var(--encre);
 }
 .footerLinks { display: flex; gap: 24px; font-size: 11px; }
