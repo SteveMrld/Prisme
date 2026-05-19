@@ -118,6 +118,17 @@
 
 .navItem:first-child { border-left: 1px solid var(--bord-l); }
 
+/* Confort mobile : 13 items à 13px dépasseraient l'écran trop vite.
+   La nav reste scrollable mais on gagne ~1 item visible sans casser la
+   lisibilité. */
+@media (max-width: 480px) {
+  .navItem {
+    font-size: 12px;
+    padding: 0 16px;
+    letter-spacing: 0.05em;
+  }
+}
+
 .navItem::after {
   content: '';
   position: absolute;
