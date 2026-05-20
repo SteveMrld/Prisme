@@ -12,9 +12,7 @@ declare global {
 const MAPLIBRE_JS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js'
 const MAPLIBRE_CSS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css'
 
-/* Carto Voyager raster, libre, attribution OSM + Carto.
-   Labels en anglais standard, plus lisibles pour un lectorat francophone
-   que les labels natifs OSM (chinois, arabe, cyrillique selon la zone).
+/* Carto Voyager raster, libre, attribution OSM + Carto. Labels en anglais.
    Sera remplacé par MapTiler avec labels français dès que la clé
    NEXT_PUBLIC_MAPTILER_KEY est en place. */
 const FALLBACK_STYLE = {
@@ -60,37 +58,42 @@ function loadMaplibre(): Promise<any> {
   })
 }
 
-function getChapterView(chapter: any, isMobile: boolean): { center: [number, number]; zoom: number; duration: number } {
+function getChapterView(chapter: any, isMobile: boolean): { center: [number, number]; zoom: number } {
   const c = chapter.carte
   const center = (isMobile && c.centre_mobile) ? c.centre_mobile : (c.centre_desktop ?? c.centre)
   const zoom = isMobile ? (c.zoom_mobile ?? c.zoom_desktop) : c.zoom_desktop
-  const duration = c.duree_fly_ms ?? 1400
-  return { center: [center[0], center[1]], zoom, duration }
+  return { center: [center[0], center[1]], zoom }
 }
 
-export default function EauVizClient({ activeChapter }: { activeChapter: number }) {
+/* Une carte par chapitre, centrée sur sa zone, sans flyTo.
+   Interactivité légère : dragPan et touchZoom, pas de scrollZoom
+   (évite le hijack du scroll page quand le curseur passe sur la carte). */
+export default function EauVizClient({ chapterIdx }: { chapterIdx: number }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<any>(null)
-  const [ready, setReady] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
+    const chapter = eauData.chapitres[chapterIdx]
+    if (!chapter) return
+
     loadMaplibre()
       .then(maplibregl => {
         if (cancelled || !containerRef.current || mapRef.current) return
         const isMobile = window.innerWidth < 768
-        const firstView = getChapterView(eauData.chapitres[0], isMobile)
+        const view = getChapterView(chapter, isMobile)
         const map = new maplibregl.Map({
           container: containerRef.current,
           style: FALLBACK_STYLE,
-          center: firstView.center,
-          zoom: firstView.zoom,
-          interactive: false,
+          center: view.center,
+          zoom: view.zoom,
           attributionControl: true,
+          dragRotate: false,
+          pitchWithRotate: false,
+          scrollZoom: false,
         })
         mapRef.current = map
-        map.on('load', () => { if (!cancelled) setReady(true) })
       })
       .catch(err => { if (!cancelled) setError(err.message) })
 
@@ -101,25 +104,14 @@ export default function EauVizClient({ activeChapter }: { activeChapter: number 
         mapRef.current = null
       }
     }
-  }, [])
+  }, [chapterIdx])
 
-  useEffect(() => {
-    if (!ready || !mapRef.current) return
-    const ch = eauData.chapitres[activeChapter]
-    if (!ch) return
-    const isMobile = window.innerWidth < 768
-    const view = getChapterView(ch, isMobile)
-    mapRef.current.flyTo({
-      center: view.center,
-      zoom: view.zoom,
-      duration: view.duration,
-      essential: true,
-    })
-  }, [ready, activeChapter])
+  const chapter = eauData.chapitres[chapterIdx]
+  const ariaLabel = chapter ? `Carte, ${chapter.titre_court}` : 'Carte'
 
   return (
     <div className={styles.wrap}>
-      <div ref={containerRef} className={styles.map} aria-label="Carte interactive, eau et géopolitique" />
+      <div ref={containerRef} className={styles.map} aria-label={ariaLabel} />
       {error && <div className={styles.error}>Carte indisponible, {error}</div>}
     </div>
   )

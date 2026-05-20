@@ -178,78 +178,33 @@
   line-height: 1;
 }
 
-/* ── Scrollytelling : 2 colonnes desktop, stack mobile ── */
+/* ── Chapitres mono-colonne : carte pleine largeur en tête, texte centré ── */
 
-/* IMPORTANT pour le sticky de la carte.
-   Aucun ancestor de .mapSticky ne doit avoir transform, filter, perspective
-   ou contain, sinon le sticky se casse (containing block décalé). Le bypass
-   de PageTransition pour /articles/eau (components/PageTransition.tsx) est
-   ce qui rend ce sticky robuste. Ne pas le retirer. */
-
-.scrollytelling {
-  display: block;
+.chapters {
   margin: 48px 0;
 }
 
-@media (min-width: 1024px) {
-  .scrollytelling {
-    display: grid;
-    /* 55fr texte, 45fr carte : lecture dominante, carte appui visuel. */
-    grid-template-columns: 55fr 45fr;
-    gap: 48px;
-    /* align-items: stretch explicite pour garantir que .mapCol prenne la
-       hauteur totale de .narrativeCol. C'est cette hauteur étirée qui sert
-       de containing block au sticky enfant. */
-    align-items: stretch;
-  }
-}
-
-.narrativeCol {
-  max-width: 760px;
-}
-
-.mapCol {
-  display: block;
-  margin: 0 0 32px;
-}
-
-@media (min-width: 1024px) {
-  .mapCol {
-    margin: 0;
-    position: relative;
-    align-self: stretch;
-    background: var(--papier);
-    border: 1px solid var(--bord-l);
-  }
-}
-
-.mapSticky {
-  position: sticky;
-  top: 12px;
-  width: 100%;
-  height: 60vh;
-  min-height: 420px;
-  background: #EDE8DF;
-  border: 1px solid var(--bord);
-}
-
-@media (min-width: 1024px) {
-  .mapSticky {
-    /* height fixe : MapLibre a besoin d'une hauteur définie pour
-       initialiser son canvas. min-height couvre les petits viewports. */
-    height: calc(100vh - 48px);
-    min-height: 520px;
-    border: none;
-  }
-}
-
 .chapter {
-  padding: 80px 0 80px;
+  padding: 56px 0 64px;
   border-bottom: 1px solid var(--bord-l);
+}
+
+.chapter:first-child {
+  padding-top: 24px;
 }
 
 .chapter:last-child {
   border-bottom: none;
+}
+
+.chapterMap {
+  margin: 0 0 40px;
+}
+
+.chapterBody {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 8px;
 }
 
 .chapterTag {

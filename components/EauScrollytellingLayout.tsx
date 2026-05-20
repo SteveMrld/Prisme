@@ -1,4 +1,4 @@
-import EauScrollytellingWrapper from './EauScrollytellingWrapper'
+import EauVizClient from './EauVizClient'
 import eauData from '../lib/eau-data.json'
 import styles from './EauScrollytellingLayout.module.css'
 
@@ -63,13 +63,13 @@ export default function EauScrollytellingLayout({ article }: ArticleProps) {
         </ul>
       </section>
 
-      <EauScrollytellingWrapper>
+      <div className={styles.chapters}>
         {chapitres.map((ch, i) => (
           <ChapterFrame key={ch.id} chapter={ch} idx={i}>
             {renderChapterNarrative(ch.id)}
           </ChapterFrame>
         ))}
-      </EauScrollytellingWrapper>
+      </div>
 
       <section className={styles.outro}>
         <h3 className={styles.outroH3}>
@@ -149,21 +149,26 @@ function ChapterFrame({ chapter, idx, children }: { chapter: Chapter; idx: numbe
       data-chapter-idx={idx}
       className={styles.chapter}
     >
-      <div className={styles.chapterTag} style={{ color: chapter.couleur }}>
-        {chapter.tag}
+      <div className={styles.chapterMap}>
+        <EauVizClient chapterIdx={idx} />
       </div>
-      <h2 className={styles.chapterTitle}>
-        <ChapterTitleSplit titre={chapter.titre_court} em={chapter.titre_em} />
-      </h2>
-      <p className={styles.chapterHook}>{chapter.hook}</p>
-      <div className={styles.chapterStat}>
-        <span className={styles.chapterStatValue} style={{ color: chapter.couleur }}>
-          {chapter.stat.valeur}
-          {chapter.stat.suffixe}
-        </span>
-        <span className={styles.chapterStatLabel}>{chapter.stat.label}</span>
+      <div className={styles.chapterBody}>
+        <div className={styles.chapterTag} style={{ color: chapter.couleur }}>
+          {chapter.tag}
+        </div>
+        <h2 className={styles.chapterTitle}>
+          <ChapterTitleSplit titre={chapter.titre_court} em={chapter.titre_em} />
+        </h2>
+        <p className={styles.chapterHook}>{chapter.hook}</p>
+        <div className={styles.chapterStat}>
+          <span className={styles.chapterStatValue} style={{ color: chapter.couleur }}>
+            {chapter.stat.valeur}
+            {chapter.stat.suffixe}
+          </span>
+          <span className={styles.chapterStatLabel}>{chapter.stat.label}</span>
+        </div>
+        <div className={styles.chapterNarrative}>{children}</div>
       </div>
-      <div className={styles.chapterNarrative}>{children}</div>
     </section>
   )
 }
