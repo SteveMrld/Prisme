@@ -101,6 +101,25 @@ export default function EauVizClient({ chapterIdx }: { chapterIdx: number }) {
           scrollZoom: false,
         })
         mapRef.current = map
+
+        /* MapTiler streets-v2 expose les noms multilingues via name:fr et
+           name:latin. Le paramètre &language=fr de l'URL ne couvre pas
+           tous les layers, on force chaque layer symbol à utiliser le
+           français avec fallback latin puis nom natif. */
+        if (MAPTILER_STYLE_URL) {
+          map.on('load', () => {
+            const layers = map.getStyle().layers ?? []
+            for (const layer of layers) {
+              if (layer.type !== 'symbol') continue
+              if (!layer.layout || !layer.layout['text-field']) continue
+              map.setLayoutProperty(
+                layer.id,
+                'text-field',
+                ['coalesce', ['get', 'name:fr'], ['get', 'name:latin'], ['get', 'name']],
+              )
+            }
+          })
+        }
       })
       .catch(err => { if (!cancelled) setError(err.message) })
 
