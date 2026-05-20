@@ -72,6 +72,74 @@ function getChapterView(chapter: any, isMobile: boolean): { center: [number, num
   return { center: [center[0], center[1]], zoom }
 }
 
+/* Remplace name par name:fr avec fallback name:latin puis name natif.
+   Appelé uniquement quand MapTiler est actif (le fallback Carto raster
+   n'a pas de layers symbol). */
+function applyFrenchLabels(map: any) {
+  const layers = map.getStyle().layers ?? []
+  for (const layer of layers) {
+    if (layer.type !== 'symbol') continue
+    if (!layer.layout || !layer.layout['text-field']) continue
+    map.setLayoutProperty(
+      layer.id,
+      'text-field',
+      ['coalesce', ['get', 'name:fr'], ['get', 'name:latin'], ['get', 'name']],
+    )
+  }
+}
+
+/* Premier layer symbol du style. Sert de beforeId pour insérer nos
+   overlays sous les labels MapTiler (les noms de pays restent lisibles
+   par-dessus les tracés de fleuves). undefined en mode fallback raster. */
+function getFirstSymbolLayerId(map: any): string | undefined {
+  const layers = map.getStyle().layers ?? []
+  for (const layer of layers) {
+    if (layer.type === 'symbol') return layer.id
+  }
+  return undefined
+}
+
+/* Ajoute les overlays narratifs propres au chapitre, par-dessus la
+   carte de base, sous les labels MapTiler quand possible. */
+function addChapterOverlays(map: any, chapter: any) {
+  const beforeId = getFirstSymbolLayerId(map)
+  if (chapter.fleuves?.length) addFleuvesLayer(map, chapter, beforeId)
+}
+
+/* chapter.fleuves[].coords est en [lon, lat] (standard GeoJSON).
+   couleur_fleuve_rgba est un template avec OPACITY remplacé par
+   l'opacite de chaque fleuve, ce qui donne une hiérarchie visuelle
+   sans empiler line-color et line-opacity. */
+function addFleuvesLayer(map: any, chapter: any, beforeId: string | undefined) {
+  const colorTemplate: string = chapter.couleur_fleuve_rgba
+  const features = chapter.fleuves.map((f: any) => ({
+    type: 'Feature',
+    properties: {
+      id: f.id,
+      couleur: colorTemplate.replace('OPACITY', String(f.opacite ?? 0.5)),
+      epaisseur: f.epaisseur ?? 1,
+    },
+    geometry: { type: 'LineString', coordinates: f.coords },
+  }))
+  map.addSource('chap-fleuves', {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features },
+  })
+  map.addLayer(
+    {
+      id: 'chap-fleuves-line',
+      type: 'line',
+      source: 'chap-fleuves',
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: {
+        'line-color': ['get', 'couleur'],
+        'line-width': ['get', 'epaisseur'],
+      },
+    },
+    beforeId,
+  )
+}
+
 /* Une carte par chapitre, centrée sur sa zone, sans flyTo.
    Interactivité légère : dragPan et touchZoom, pas de scrollZoom
    (évite le hijack du scroll page quand le curseur passe sur la carte). */
@@ -102,24 +170,10 @@ export default function EauVizClient({ chapterIdx }: { chapterIdx: number }) {
         })
         mapRef.current = map
 
-        /* MapTiler streets-v2 expose les noms multilingues via name:fr et
-           name:latin. Le paramètre &language=fr de l'URL ne couvre pas
-           tous les layers, on force chaque layer symbol à utiliser le
-           français avec fallback latin puis nom natif. */
-        if (MAPTILER_STYLE_URL) {
-          map.on('load', () => {
-            const layers = map.getStyle().layers ?? []
-            for (const layer of layers) {
-              if (layer.type !== 'symbol') continue
-              if (!layer.layout || !layer.layout['text-field']) continue
-              map.setLayoutProperty(
-                layer.id,
-                'text-field',
-                ['coalesce', ['get', 'name:fr'], ['get', 'name:latin'], ['get', 'name']],
-              )
-            }
-          })
-        }
+        map.on('load', () => {
+          if (MAPTILER_STYLE_URL) applyFrenchLabels(map)
+          addChapterOverlays(map, chapter)
+        })
       })
       .catch(err => { if (!cancelled) setError(err.message) })
 
