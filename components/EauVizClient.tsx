@@ -12,9 +12,16 @@ declare global {
 const MAPLIBRE_JS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js'
 const MAPLIBRE_CSS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css'
 
-/* Carto Voyager raster, libre, attribution OSM + Carto. Labels en anglais.
-   Sera remplacé par MapTiler avec labels français dès que la clé
-   NEXT_PUBLIC_MAPTILER_KEY est en place. */
+/* MapTiler Streets v2 avec labels français. Inliné au build via
+   NEXT_PUBLIC_MAPTILER_KEY. Le plan gratuit couvre 100k chargements
+   de tuiles par mois, largement au-dessus du trafic Soara actuel. */
+const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY
+const MAPTILER_STYLE_URL = MAPTILER_KEY
+  ? `https://api.maptiler.com/maps/streets-v2/style.json?key=${MAPTILER_KEY}&language=fr`
+  : null
+
+/* Fallback Carto Voyager raster si la clé MapTiler n'est pas définie
+   (dev local sans .env, fork). Labels en anglais. */
 const FALLBACK_STYLE = {
   version: 8 as const,
   glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
@@ -85,7 +92,7 @@ export default function EauVizClient({ chapterIdx }: { chapterIdx: number }) {
         const view = getChapterView(chapter, isMobile)
         const map = new maplibregl.Map({
           container: containerRef.current,
-          style: FALLBACK_STYLE,
+          style: MAPTILER_STYLE_URL ?? FALLBACK_STYLE,
           center: view.center,
           zoom: view.zoom,
           attributionControl: true,
