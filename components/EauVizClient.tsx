@@ -104,6 +104,17 @@ function getFirstSymbolLayerId(map: any): string | undefined {
 function addChapterOverlays(map: any, chapter: any) {
   const beforeId = getFirstSymbolLayerId(map)
   if (chapter.fleuves?.length) addFleuvesLayer(map, chapter, beforeId)
+  if (chapter.frontiere_disputee?.length) addFrontiereLayer(map, chapter, beforeId)
+  if (chapter.barrages?.length) addBarragesLayer(map, chapter, beforeId)
+  if (chapter.tensions?.length) addTensionsLayer(map, chapter, beforeId)
+}
+
+/* Les arrays barrages, tensions, frontiere_disputee et labels_pays du
+   JSON sont stockés en [lat, lon] (plus naturel à l'écriture humaine).
+   Les fleuves[].coords sont en [lon, lat] standard GeoJSON. On swap ici
+   pour normaliser au format MapLibre. */
+function toLonLat(point: number[]): [number, number] {
+  return [point[1], point[0]]
 }
 
 /* chapter.fleuves[].coords est en [lon, lat] (standard GeoJSON).
@@ -134,6 +145,95 @@ function addFleuvesLayer(map: any, chapter: any, beforeId: string | undefined) {
       paint: {
         'line-color': ['get', 'couleur'],
         'line-width': ['get', 'epaisseur'],
+      },
+    },
+    beforeId,
+  )
+}
+
+/* Cercle rouge sobre avec contour clair, suffisamment lisible aux zooms
+   éditoriaux (5 à 6) sans surcharger la carte. Pas de label texte ici,
+   le contexte du chapitre suffit à identifier (GERD pour le Nil,
+   barrages chinois pour le Mékong). */
+function addBarragesLayer(map: any, chapter: any, beforeId: string | undefined) {
+  const features = chapter.barrages.map((p: number[], i: number) => ({
+    type: 'Feature',
+    properties: { idx: i },
+    geometry: { type: 'Point', coordinates: toLonLat(p) },
+  }))
+  map.addSource('chap-barrages', {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features },
+  })
+  map.addLayer(
+    {
+      id: 'chap-barrages-circle',
+      type: 'circle',
+      source: 'chap-barrages',
+      paint: {
+        'circle-radius': 6,
+        'circle-color': '#8B1A1A',
+        'circle-stroke-color': '#F8F4EE',
+        'circle-stroke-width': 1.5,
+        'circle-opacity': 0.92,
+      },
+    },
+    beforeId,
+  )
+}
+
+/* Cercle rouge plus appuyé pour les zones de tension. Légèrement plus
+   gros que les barrages, et avec un anneau plus marqué pour signifier
+   l'alerte sans recourir à une animation pulse. */
+function addTensionsLayer(map: any, chapter: any, beforeId: string | undefined) {
+  const features = chapter.tensions.map((p: number[], i: number) => ({
+    type: 'Feature',
+    properties: { idx: i },
+    geometry: { type: 'Point', coordinates: toLonLat(p) },
+  }))
+  map.addSource('chap-tensions', {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features },
+  })
+  map.addLayer(
+    {
+      id: 'chap-tensions-circle',
+      type: 'circle',
+      source: 'chap-tensions',
+      paint: {
+        'circle-radius': 8,
+        'circle-color': '#8B1A1A',
+        'circle-stroke-color': '#F8F4EE',
+        'circle-stroke-width': 2,
+        'circle-opacity': 0.82,
+      },
+    },
+    beforeId,
+  )
+}
+
+/* Ligne pointillée gris foncé pour signaler une frontière contestée
+   sans dramatiser. Sert au chapitre III sur la ligne Cachemire. */
+function addFrontiereLayer(map: any, chapter: any, beforeId: string | undefined) {
+  const coords = chapter.frontiere_disputee.map(toLonLat)
+  map.addSource('chap-frontiere', {
+    type: 'geojson',
+    data: {
+      type: 'Feature',
+      properties: {},
+      geometry: { type: 'LineString', coordinates: coords },
+    },
+  })
+  map.addLayer(
+    {
+      id: 'chap-frontiere-line',
+      type: 'line',
+      source: 'chap-frontiere',
+      layout: { 'line-cap': 'butt', 'line-join': 'round' },
+      paint: {
+        'line-color': 'rgba(28, 24, 20, 0.6)',
+        'line-width': 1.4,
+        'line-dasharray': [2, 2],
       },
     },
     beforeId,
