@@ -107,6 +107,42 @@ function addChapterOverlays(map: any, chapter: any) {
   if (chapter.frontiere_disputee?.length) addFrontiereLayer(map, chapter, beforeId)
   if (chapter.barrages?.length) addBarragesLayer(map, chapter, beforeId)
   if (chapter.tensions?.length) addTensionsLayer(map, chapter, beforeId)
+  if (chapter.fleuves?.length) addFleuveLabelsLayer(map, chapter, beforeId)
+  if (chapter.labels_pays?.length) addLabelsPaysLayer(map, chapter)
+}
+
+/* Mapping id court → nom français pour les labels sur fleuves. Centralisé
+   ici plutôt que dans eau-data.json pour garder le JSON purement
+   géométrique. Ajouter une entrée si un nouvel id de fleuve apparaît. */
+const FLEUVE_NOMS: Record<string, string> = {
+  amazon: 'Amazone',
+  amur: 'Amour',
+  brahma: 'Brahmapoutre',
+  congo: 'Congo',
+  danube: 'Danube',
+  euphrate: 'Euphrate',
+  gange: 'Gange',
+  indus: 'Indus',
+  irraw: 'Irrawaddy',
+  jordan: 'Jourdain',
+  lena: 'Léna',
+  mekong: 'Mékong',
+  miss: 'Mississippi',
+  murray: 'Murray',
+  niger: 'Niger',
+  nil: 'Nil',
+  nilb: 'Nil Bleu',
+  nile: 'Nil',
+  ob: 'Ob',
+  orinoco: 'Orénoque',
+  parana: 'Paraná',
+  rhine: 'Rhin',
+  salween: 'Salouen',
+  tigre: 'Tigre',
+  volga: 'Volga',
+  yangtze: 'Yangzi Jiang',
+  yellow: 'Fleuve Jaune',
+  zambezi: 'Zambèze',
 }
 
 /* Les arrays barrages, tensions, frontiere_disputee et labels_pays du
@@ -238,6 +274,86 @@ function addFrontiereLayer(map: any, chapter: any, beforeId: string | undefined)
     },
     beforeId,
   )
+}
+
+/* Label texte placé le long de la ligne du fleuve. Filtre les fleuves
+   sans entrée dans FLEUVE_NOMS, ce qui permet d'ignorer un id sans
+   nom officiel sans casser le rendu. Anti-overlap activé : sur la carte
+   monde (21 fleuves), MapLibre masque automatiquement les labels qui
+   se chevauchent, ce qui produit une densité d'étiquettes lisible
+   sans curation manuelle. */
+function addFleuveLabelsLayer(map: any, chapter: any, beforeId: string | undefined) {
+  const features = chapter.fleuves
+    .filter((f: any) => FLEUVE_NOMS[f.id])
+    .map((f: any) => ({
+      type: 'Feature',
+      properties: { nom: FLEUVE_NOMS[f.id] },
+      geometry: { type: 'LineString', coordinates: f.coords },
+    }))
+  if (!features.length) return
+  map.addSource('chap-fleuves-labels', {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features },
+  })
+  map.addLayer(
+    {
+      id: 'chap-fleuves-labels',
+      type: 'symbol',
+      source: 'chap-fleuves-labels',
+      layout: {
+        'symbol-placement': 'line',
+        'text-field': ['get', 'nom'],
+        'text-font': ['Open Sans Regular'],
+        'text-size': 10,
+        'text-letter-spacing': 0.06,
+        'symbol-spacing': 240,
+        'text-allow-overlap': false,
+        'text-ignore-placement': false,
+      },
+      paint: {
+        'text-color': 'rgba(28, 24, 20, 0.78)',
+        'text-halo-color': 'rgba(248, 244, 238, 0.95)',
+        'text-halo-width': 1.4,
+        'text-halo-blur': 0.2,
+      },
+    },
+    beforeId,
+  )
+}
+
+/* Labels pays curés dans chapter.labels_pays au format [lat, lon, texte].
+   Rendus par-dessus la carte (pas de beforeId) pour signifier qu'ils
+   relèvent de la narration éditoriale, pas du fond cartographique.
+   Texte gris encre, halo crème pour rester lisibles sur toute zone. */
+function addLabelsPaysLayer(map: any, chapter: any) {
+  const features = chapter.labels_pays.map((entry: any[], i: number) => ({
+    type: 'Feature',
+    properties: { texte: entry[2], idx: i },
+    geometry: { type: 'Point', coordinates: [entry[1], entry[0]] },
+  }))
+  map.addSource('chap-labels-pays', {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features },
+  })
+  map.addLayer({
+    id: 'chap-labels-pays-text',
+    type: 'symbol',
+    source: 'chap-labels-pays',
+    layout: {
+      'text-field': ['get', 'texte'],
+      'text-font': ['Open Sans Regular'],
+      'text-size': 12,
+      'text-letter-spacing': 0.12,
+      'text-allow-overlap': false,
+      'text-anchor': 'center',
+    },
+    paint: {
+      'text-color': 'rgba(28, 24, 20, 0.85)',
+      'text-halo-color': 'rgba(248, 244, 238, 0.95)',
+      'text-halo-width': 1.6,
+      'text-halo-blur': 0.3,
+    },
+  })
 }
 
 /* Une carte par chapitre, centrée sur sa zone, sans flyTo.
