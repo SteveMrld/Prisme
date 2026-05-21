@@ -40,7 +40,7 @@
 }
 
 .bandLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-weight: var(--weight-mono-bold);
   letter-spacing: 0.08em;

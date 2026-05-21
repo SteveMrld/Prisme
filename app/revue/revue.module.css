@@ -38,7 +38,7 @@
 }
 .itemLink:hover .itemText { color: var(--or); }
 .itemSource {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px; font-weight: 500;
   color: var(--gris-l); flex-shrink: 0;
   background: #F0EDE7; padding: 2px 6px;
