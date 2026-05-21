@@ -60,7 +60,7 @@ export default function GlobalError({
             <p
               style={{
                 marginTop: 32,
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'DM Sans, system-ui, sans-serif',
                 fontSize: 11,
                 letterSpacing: '0.12em',
                 textAlign: 'center',
