@@ -1767,7 +1767,7 @@ sup {
   background: #EDEADF;
 }
 .art-chart-eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -1787,7 +1787,7 @@ sup {
   margin-bottom: 4px;
 }
 .art-chart-sub {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   color: #888;
   letter-spacing: 0.3px;
@@ -2011,7 +2011,7 @@ sup {
 }
 
 .grand-format-body .atag {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.22em;
   padding: 4px 10px;
@@ -2019,14 +2019,14 @@ sup {
 }
 
 .grand-format-body .adate {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.14em;
   color: #CBD5E1;
 }
 
 .grand-format-body .afmt {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.22em;
   color: #B91C1C;
@@ -2175,7 +2175,7 @@ sup {
 }
 
 .video-source .video-label-tag {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -2185,7 +2185,7 @@ sup {
 }
 
 .video-source .video-label-text {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   color: var(--gris-l);
   line-height: 1.5;

@@ -61,7 +61,7 @@
 }
 
 .tag {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -71,14 +71,14 @@
 }
 
 .readTime {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.14em;
   color: #9CA3AF;
 }
 
 .readDate {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.14em;
   color: #CBD5E1;
@@ -128,7 +128,7 @@
   border-radius: 50%;
   background: #1a1a1a;
   color: #F9F7F3;
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 11px;
   display: flex;
   align-items: center;
@@ -151,7 +151,7 @@
 }
 
 .authorRole {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.14em;
   color: #9CA3AF;
@@ -264,7 +264,7 @@
 }
 
 .body :global(.sbloc-label) {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.1em;
   color: #9CA3AF;
@@ -303,7 +303,7 @@
 }
 
 .sigLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -319,7 +319,7 @@
 }
 
 .sigRole {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.12em;
   color: #9CA3AF;
@@ -341,7 +341,7 @@
 }
 
 .relatedLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -379,7 +379,7 @@
 }
 
 .relatedCat {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 8px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -399,7 +399,7 @@
 }
 
 .relatedCta {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.14em;
   color: #B91C1C;

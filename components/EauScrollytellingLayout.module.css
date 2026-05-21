@@ -21,7 +21,7 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 24px;
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-weight: var(--weight-mono-bold);
   letter-spacing: 0.08em;
@@ -92,7 +92,7 @@
   border-radius: 50%;
   background: var(--encre);
   color: var(--papier);
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 11px;
   font-weight: var(--weight-mono-bold);
   display: flex;
@@ -108,7 +108,7 @@
 }
 
 .bylineRole {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -134,7 +134,7 @@
 }
 
 .essentielLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-weight: var(--weight-mono-bold);
   letter-spacing: 0.12em;
@@ -143,7 +143,7 @@
 }
 
 .essentielSub {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -208,7 +208,7 @@
 }
 
 .chapterTag {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-weight: var(--weight-mono-bold);
   letter-spacing: 0.1em;
@@ -260,7 +260,7 @@
 }
 
 .chapterStatLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -284,7 +284,7 @@
 }
 
 .chapterNarrative sup {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 0.65em;
   color: var(--gris-m);
   vertical-align: super;
@@ -336,7 +336,7 @@
 }
 
 .statsLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -361,7 +361,7 @@
 }
 
 .pullQuote cite {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-style: normal;
   letter-spacing: 0.08em;
@@ -390,7 +390,7 @@
 }
 
 .outro sup {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 0.65em;
   color: var(--gris-m);
   vertical-align: super;
@@ -420,7 +420,7 @@
 }
 
 .prospectifLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-weight: var(--weight-mono-bold);
   letter-spacing: 0.12em;
@@ -459,7 +459,7 @@
 }
 
 .notesTitle {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-weight: var(--weight-mono-bold);
   letter-spacing: 0.12em;
@@ -489,7 +489,7 @@
 }
 
 .notesNum {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--type-xs);
   font-weight: var(--weight-mono-bold);
   color: var(--env);
