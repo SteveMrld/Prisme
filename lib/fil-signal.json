@@ -1,6 +1,34 @@
 {
-  "date_maj": "2026-05-12",
+  "date_maj": "2026-05-21",
   "breves": [
+    {
+      "date": "20 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Flottille pour Gaza : la vidéo qui embarrasse Israël",
+      "body": "Le ministre israélien de la Sécurité nationale Itamar Ben Gvir diffuse une vidéo de militants de la flottille pour Gaza agenouillés et mains liées, filmés à Ashdod après l'interception de leurs bateaux au large de Chypre le 18 mai. Quatre cent trente militants ont été transférés vers Israël. La scène provoque un tollé international. Fait rare, Benjamin Netanyahou désavoue son ministre, jugeant ces images non conformes aux valeurs d'Israël, tandis que le chef de la diplomatie Gideon Saar l'accuse d'avoir sciemment nui à l'image du pays. Paris, Ottawa et Madrid dénoncent des agissements inadmissibles et convoquent l'ambassadeur israélien."
+    },
+    {
+      "date": "20 mai 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Chine : pluies record, au moins 22 morts",
+      "body": "Le bilan des pluies diluviennes qui frappent le centre et le sud de la Chine depuis plusieurs jours s'alourdit à 22 morts et une vingtaine de disparus, selon les médias officiels. Cinq provinces sont touchées, Hunan, Guizhou, Hubei, Guangxi et Jiangxi, avec des précipitations qualifiées de records historiques. Près de 24 000 personnes ont été évacuées, écoles fermées et activités suspendues. Pékin a débloqué une aide d'urgence de 120 millions de yuans. Ces épisodes extrêmes, de plus en plus fréquents à l'approche de l'été, illustrent la vulnérabilité croissante du pays face au dérèglement climatique."
+    },
+    {
+      "date": "8 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Ormuz : un pétrolier attaqué, équipage chinois à bord",
+      "body": "La diplomatie chinoise confirme qu'un pétrolier battant pavillon des Îles Marshall, avec des membres d'équipage chinois à bord, a été attaqué dans le détroit d'Ormuz. Aucune victime signalée. Pékin se dit profondément préoccupé par le nombre de navires civils bloqués dans le détroit et appelle au rétablissement de la libre circulation. Le Golfe reste à un tournant entre guerre et paix, la Chine affirmant maintenir le dialogue avec toutes les parties, y compris l'Iran, pour favoriser une désescalade."
+    },
+    {
+      "date": "7 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Taïwan : Pékin hausse le ton face à Tokyo",
+      "body": "Le porte-parole du ministère chinois des Affaires étrangères Lin Jian réaffirme que toute tentative liée à l'indépendance de Taïwan et la paix dans le détroit sont aussi incompatibles que le feu et l'eau. Pékin réagit aux propos de la Première ministre japonaise Sanae Takaichi, qui avait évoqué devant la Diète une possible réponse militaire japonaise à une intervention chinoise contre Taïwan. La Chine invoque le principe d'une seule Chine et les trois communiqués conjoints sino-américains comme socle de relations stables avec Washington."
+    },
     {
       "date": "12 mai 2026",
       "cat": "Géopolitique",
