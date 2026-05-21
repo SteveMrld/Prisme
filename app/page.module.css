@@ -24,7 +24,7 @@
 
 /* ── ATOMES ── */
 .cat {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -36,7 +36,7 @@
 .readTime {
   font-size: 11px;
   color: #999;
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   letter-spacing: .3px;
   display: block;
   margin-top: 6px;
@@ -58,7 +58,7 @@
   color: #0A0A0A;
 }
 .sectionHeadAll {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -280,7 +280,7 @@
 .zone1QuoteCite {
   display: block;
   margin-top: 14px;
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -300,7 +300,7 @@
   gap: 6px;
 }
 .zone1NewsletterEyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -326,7 +326,7 @@
   margin: 4px 0 8px;
 }
 .zone1NewsletterCta {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -349,7 +349,7 @@
 }
 .zone1AlsoReadLabel {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -380,7 +380,7 @@
 }
 .zone1AlsoReadLink:hover { opacity: 0.65; }
 .zone1AlsoReadCat {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -437,7 +437,7 @@
   color: #8B1A1A;
 }
 .zone1EntretienBannerDate {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -498,7 +498,7 @@
   margin: 4px 0 0;
 }
 .zone1EntretienCta {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -536,7 +536,7 @@
 }
 .atlasSectionEyebrow {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -564,7 +564,7 @@
   margin: 0;
 }
 .atlasSectionAll {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -608,7 +608,7 @@
 }
 .atlasSectionCard:hover .atlasSectionImg img { transform: scale(1.04); }
 .atlasSectionTag {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -839,7 +839,7 @@
   justify-content: flex-start;
 }
 .entretienLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px; font-weight: 700;
   letter-spacing: 2.2px; text-transform: uppercase;
   color: #0A0A0A;
@@ -935,7 +935,7 @@
   gap: 12px;
 }
 .gfLeadEyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -1120,7 +1120,7 @@
 }
 .gfMoreLabel {
   display: block;
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -1159,7 +1159,7 @@
 }
 .gfMoreLink:hover { opacity: 0.65; }
 .gfMoreCat {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1243,7 +1243,7 @@
   gap: 10px;
 }
 .tvFeaturedEyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -1260,7 +1260,7 @@
   margin: 0;
 }
 .tvFeaturedDur {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1313,7 +1313,7 @@
   min-width: 0;
 }
 .tvSideNum {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1332,7 +1332,7 @@
   overflow: hidden;
 }
 .tvSideDur {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px;
   color: rgba(236,231,221,.4);
 }
@@ -1380,7 +1380,7 @@
 ════════════════════════════════════ */
 .nl { background:#FAF9F6; padding:48px 16px; border-top:2px solid #0A0A0A; }
 .nlInner { max-width:480px; margin:0 auto; }
-.nlEyebrow { font-family:var(--font-mono); font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#C8A96E; margin-bottom:10px; }
+.nlEyebrow { font-family:var(--font-ui); font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#C8A96E; margin-bottom:10px; }
 .nlTitle { font-family:var(--font-serif-display); font-size:clamp(22px,4vw,32px); font-weight:700; color:#0A0A0A; line-height:1.15; letter-spacing:-0.5px; margin-bottom:10px; }
 .nlDesc { font-size:13px; color:#777; line-height:1.6; margin-bottom:24px; font-family:'Georgia',serif; font-style:italic; }
 
@@ -1449,7 +1449,7 @@
   margin-bottom: 24px;
 }
 .tvEyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -1476,7 +1476,7 @@
   max-width: 400px;
 }
 .tvSeeAll {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -1574,7 +1574,7 @@
 }
 
 .latestItem2Date {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 8px;
   color: #BBB;
   letter-spacing: .5px;
@@ -1583,7 +1583,7 @@
 }
 
 .recentTag {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 7px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -1626,7 +1626,7 @@
 .popularItem:last-child { border-bottom: none; }
 
 .popularRank {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 22px;
   font-weight: 700;
   color: #E8E2DA;

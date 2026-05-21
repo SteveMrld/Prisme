@@ -6,7 +6,7 @@
 }
 .header { margin-bottom: 28px; }
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
   color: #C8A96E; margin-bottom: 8px;
 }
@@ -43,12 +43,12 @@
 
 .cardTop { display: flex; align-items: center; justify-content: space-between; }
 .cardEyebrow {
-  font-family: var(--font-mono); font-size: 8px; font-weight: 700;
+  font-family: var(--font-ui); font-size: 8px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
 }
 .liveTag {
   display: flex; align-items: center; gap: 4px;
-  font-family: var(--font-mono); font-size: 8px; font-weight: 700;
+  font-family: var(--font-ui); font-size: 8px; font-weight: 700;
   color: #FC8181; letter-spacing: 1.5px;
 }
 .liveDot {
@@ -57,7 +57,7 @@
 }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.2} }
 .updateTag {
-  font-family: var(--font-mono); font-size: 8px;
+  font-family: var(--font-ui); font-size: 8px;
   color: rgba(200,169,110,.4); letter-spacing: 1px;
 }
 
@@ -67,7 +67,7 @@
   color: #F5E6D0; line-height: 1.2;
 }
 .cardCta {
-  font-family: var(--font-mono); font-size: 8px; font-weight: 700;
+  font-family: var(--font-ui); font-size: 8px; font-weight: 700;
   letter-spacing: 1.5px; text-transform: uppercase;
   color: rgba(245,230,208,.3); margin-top: auto;
   opacity: 0; transition: opacity .2s;
@@ -83,7 +83,7 @@
 .zoneItem:last-child { border-bottom: none; }
 .zoneDot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
 .zoneName { font-family: var(--font-serif-display); font-size: 11px; color: #F5E6D0; flex: 1; }
-.zoneStatus { font-family: var(--font-mono); font-size: 8px; letter-spacing: .5px; flex-shrink: 0; }
+.zoneStatus { font-family: var(--font-ui); font-size: 8px; letter-spacing: .5px; flex-shrink: 0; }
 
 /* ── Indicateurs ── */
 .indGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -92,9 +92,9 @@
   transition: background .3s;
 }
 .indFlash { background: rgba(255,255,255,.06); }
-.indLabel { font-family: var(--font-mono); font-size: 7px; color: rgba(245,230,208,.35); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
-.indVal { font-family: var(--font-mono); font-size: 16px; font-weight: 700; line-height: 1; }
-.indDelta { font-family: var(--font-mono); font-size: 9px; margin-top: 2px; }
+.indLabel { font-family: var(--font-ui); font-size: 7px; color: rgba(245,230,208,.35); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+.indVal { font-family: var(--font-ui); font-size: 16px; font-weight: 700; line-height: 1; }
+.indDelta { font-family: var(--font-ui); font-size: 9px; margin-top: 2px; }
 .up { color: #4dd9ac; }
 .down { color: #FC8181; }
 
@@ -105,9 +105,9 @@
   padding: 10px 12px; border-right: 1px solid rgba(106,176,232,.1);
 }
 .atlasItem:last-child { border-right: none; }
-.atlasN { font-family: var(--font-mono); font-size: 10px; font-weight: 700; }
+.atlasN { font-family: var(--font-ui); font-size: 10px; font-weight: 700; }
 .atlasT { font-family: var(--font-serif-display); font-size: 12px; color: #F5E6D0; line-height: 1.3; }
-.atlasTag { font-family: var(--font-mono); font-size: 7px; color: rgba(106,176,232,.4); letter-spacing: 1px; text-transform: uppercase; }
+.atlasTag { font-family: var(--font-ui); font-size: 7px; color: rgba(106,176,232,.4); letter-spacing: 1px; text-transform: uppercase; }
 
 /* ── Desktop ── */
 @media (min-width: 900px) {

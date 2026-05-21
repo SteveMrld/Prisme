@@ -42,7 +42,7 @@
 }
 
 .bannerDate {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -115,7 +115,7 @@
 }
 
 .cta {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
