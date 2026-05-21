@@ -1,5 +1,25 @@
 [
   {
+    "slug": "tiedeur-des-heritiers",
+    "title": "La tiédeur des héritiers",
+    "description": "De Machiavel à la transition écologique, une même loi : l'ordre ancien trouve des défenseurs ardents, l'ordre nouveau de bien tièdes partisans. Sur l'asymétrie qui condamne les réformes, et un climat dont les bénéficiaires ne sont pas encore là pour le défendre.",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "category": "env",
+    "categoryLabel": "Environnement",
+    "secondaryCategory": "",
+    "secondaryCategoryLabel": "",
+    "date": "2026-06-01",
+    "readTime": "9",
+    "image": "/articles/tiedeur-des-heritiers.jpg",
+    "featured": false,
+    "premium": false,
+    "grandFormat": false,
+    "imageCredit": "© SOARA",
+    "titleEn": "The Tepid Heirs",
+    "descriptionEn": "From Machiavelli to the green transition, one law holds: the old order finds ardent defenders, the new order only lukewarm ones. On the asymmetry that dooms reform, and a climate whose beneficiaries are not yet here to defend it."
+  },
+  {
     "slug": "longo",
     "title": "Valter Longo : «Le jeûne gratuit fait probablement plus de mal que de bien»",
     "description": "Le chercheur le plus cité au monde sur la longévité répond à Soara. Sur le jeûne, l’immortalité de la Silicon Valley, l’industrie pharmaceutique, les centenaires de Calabre, et ce que la médecine refuse encore de regarder en face.",
