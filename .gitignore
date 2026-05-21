@@ -3,3 +3,6 @@ node_modules/
 .env*
 AUDIT_PRE_LAUNCH.md
 tsconfig.tsbuildinfo
+
+# Garde-fou : empêche tout clone parasite imbriqué (cf. ancien sous-dossier Prisme/Prisme périmé)
+/Prisme/
