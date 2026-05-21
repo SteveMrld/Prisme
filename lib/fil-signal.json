@@ -6,42 +6,54 @@
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
       "headline": "Flottille pour Gaza : la vidéo qui embarrasse Israël",
-      "body": "Le ministre israélien de la Sécurité nationale Itamar Ben Gvir diffuse une vidéo de militants de la flottille pour Gaza agenouillés et mains liées, filmés à Ashdod après l'interception de leurs bateaux au large de Chypre le 18 mai. Quatre cent trente militants ont été transférés vers Israël. La scène provoque un tollé international. Fait rare, Benjamin Netanyahou désavoue son ministre, jugeant ces images non conformes aux valeurs d'Israël, tandis que le chef de la diplomatie Gideon Saar l'accuse d'avoir sciemment nui à l'image du pays. Paris, Ottawa et Madrid dénoncent des agissements inadmissibles et convoquent l'ambassadeur israélien."
+      "body": "Le ministre israélien de la Sécurité nationale Itamar Ben Gvir diffuse une vidéo de militants de la flottille pour Gaza agenouillés et mains liées, filmés à Ashdod après l'interception de leurs bateaux au large de Chypre le 18 mai. Quatre cent trente militants ont été transférés vers Israël. La scène provoque un tollé international. Fait rare, Benjamin Netanyahou désavoue son ministre, jugeant ces images non conformes aux valeurs d'Israël, tandis que le chef de la diplomatie Gideon Saar l'accuse d'avoir sciemment nui à l'image du pays. Paris, Ottawa et Madrid dénoncent des agissements inadmissibles et convoquent l'ambassadeur israélien.",
+      "tickerCat": "Gaza",
+      "tickerText": "Ben Gvir diffuse une vidéo de militants de la flottille mains liées, tollé international, Netanyahou désavoue son ministre"
     },
     {
       "date": "20 mai 2026",
       "cat": "Environnement",
       "catColor": "var(--env)",
       "headline": "Chine : pluies record, au moins 22 morts",
-      "body": "Le bilan des pluies diluviennes qui frappent le centre et le sud de la Chine depuis plusieurs jours s'alourdit à 22 morts et une vingtaine de disparus, selon les médias officiels. Cinq provinces sont touchées, Hunan, Guizhou, Hubei, Guangxi et Jiangxi, avec des précipitations qualifiées de records historiques. Près de 24 000 personnes ont été évacuées, écoles fermées et activités suspendues. Pékin a débloqué une aide d'urgence de 120 millions de yuans. Ces épisodes extrêmes, de plus en plus fréquents à l'approche de l'été, illustrent la vulnérabilité croissante du pays face au dérèglement climatique."
+      "body": "Le bilan des pluies diluviennes qui frappent le centre et le sud de la Chine depuis plusieurs jours s'alourdit à 22 morts et une vingtaine de disparus, selon les médias officiels. Cinq provinces sont touchées, Hunan, Guizhou, Hubei, Guangxi et Jiangxi, avec des précipitations qualifiées de records historiques. Près de 24 000 personnes ont été évacuées, écoles fermées et activités suspendues. Pékin a débloqué une aide d'urgence de 120 millions de yuans. Ces épisodes extrêmes, de plus en plus fréquents à l'approche de l'été, illustrent la vulnérabilité croissante du pays face au dérèglement climatique.",
+      "tickerCat": "Chine",
+      "tickerText": "Pluies diluviennes dans le centre et le sud, 22 morts, près de 24 000 évacués, aide d'urgence de 120 millions de yuans"
     },
     {
       "date": "8 mai 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
       "headline": "Ormuz : un pétrolier attaqué, équipage chinois à bord",
-      "body": "La diplomatie chinoise confirme qu'un pétrolier battant pavillon des Îles Marshall, avec des membres d'équipage chinois à bord, a été attaqué dans le détroit d'Ormuz. Aucune victime signalée. Pékin se dit profondément préoccupé par le nombre de navires civils bloqués dans le détroit et appelle au rétablissement de la libre circulation. Le Golfe reste à un tournant entre guerre et paix, la Chine affirmant maintenir le dialogue avec toutes les parties, y compris l'Iran, pour favoriser une désescalade."
+      "body": "La diplomatie chinoise confirme qu'un pétrolier battant pavillon des Îles Marshall, avec des membres d'équipage chinois à bord, a été attaqué dans le détroit d'Ormuz. Aucune victime signalée. Pékin se dit profondément préoccupé par le nombre de navires civils bloqués dans le détroit et appelle au rétablissement de la libre circulation. Le Golfe reste à un tournant entre guerre et paix, la Chine affirmant maintenir le dialogue avec toutes les parties, y compris l'Iran, pour favoriser une désescalade.",
+      "tickerCat": "Ormuz",
+      "tickerText": "Un pétrolier des Îles Marshall attaqué, équipage chinois à bord, Pékin appelle à la libre circulation des navires civils"
     },
     {
       "date": "7 mai 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
       "headline": "Taïwan : Pékin hausse le ton face à Tokyo",
-      "body": "Le porte-parole du ministère chinois des Affaires étrangères Lin Jian réaffirme que toute tentative liée à l'indépendance de Taïwan et la paix dans le détroit sont aussi incompatibles que le feu et l'eau. Pékin réagit aux propos de la Première ministre japonaise Sanae Takaichi, qui avait évoqué devant la Diète une possible réponse militaire japonaise à une intervention chinoise contre Taïwan. La Chine invoque le principe d'une seule Chine et les trois communiqués conjoints sino-américains comme socle de relations stables avec Washington."
+      "body": "Le porte-parole du ministère chinois des Affaires étrangères Lin Jian réaffirme que toute tentative liée à l'indépendance de Taïwan et la paix dans le détroit sont aussi incompatibles que le feu et l'eau. Pékin réagit aux propos de la Première ministre japonaise Sanae Takaichi, qui avait évoqué devant la Diète une possible réponse militaire japonaise à une intervention chinoise contre Taïwan. La Chine invoque le principe d'une seule Chine et les trois communiqués conjoints sino-américains comme socle de relations stables avec Washington.",
+      "tickerCat": "Taïwan",
+      "tickerText": "Pékin réaffirme sa ligne rouge après les déclarations japonaises sur une intervention possible en cas de force chinoise"
     },
     {
       "date": "12 mai 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
       "headline": "Africa Forward, le pari kényan",
-      "body": "Le sommet Afrique-France s'ouvre à Nairobi pour deux jours. Pour la première fois depuis sa création en 1973, l'événement quitte l'espace francophone. Emmanuel Macron annonce 23 milliards d'euros d'investissements, dont 14 milliards français publics et privés, répartis entre transition énergétique, numérique, économie bleue, agriculture et santé. Après les retraits militaires du Mali, du Burkina Faso, du Niger et du Tchad, Paris cherche un nouveau point d'appui en Afrique de l'Est anglophone."
+      "body": "Le sommet Afrique-France s'ouvre à Nairobi pour deux jours. Pour la première fois depuis sa création en 1973, l'événement quitte l'espace francophone. Emmanuel Macron annonce 23 milliards d'euros d'investissements, dont 14 milliards français publics et privés, répartis entre transition énergétique, numérique, économie bleue, agriculture et santé. Après les retraits militaires du Mali, du Burkina Faso, du Niger et du Tchad, Paris cherche un nouveau point d'appui en Afrique de l'Est anglophone.",
+      "tickerCat": "Afrique",
+      "tickerText": "Sommet Africa Forward à Nairobi, Macron annonce 23 milliards d'euros d'investissements pour le continent"
     },
     {
       "date": "10 mai 2026",
       "cat": "Société",
       "catColor": "var(--soc)",
       "headline": "Restitutions, la loi-cadre adoptée à l'unanimité",
-      "body": "Le Parlement français adopte à l'unanimité la loi facilitant la restitution des œuvres pillées durant la colonisation. Jusque-là, le principe d'inaliénabilité des collections publiques imposait un vote loi par loi. Un simple décret gouvernemental suffira désormais pour les biens acquis entre 1815 et 1972. Les musées se voient confier une nouvelle mission, rechercher activement la provenance de leurs collections. Vingt-six trésors béninois, un sabre sénégalais et un tambour ivoirien ont été restitués depuis 2020."
+      "body": "Le Parlement français adopte à l'unanimité la loi facilitant la restitution des œuvres pillées durant la colonisation. Jusque-là, le principe d'inaliénabilité des collections publiques imposait un vote loi par loi. Un simple décret gouvernemental suffira désormais pour les biens acquis entre 1815 et 1972. Les musées se voient confier une nouvelle mission, rechercher activement la provenance de leurs collections. Vingt-six trésors béninois, un sabre sénégalais et un tambour ivoirien ont été restitués depuis 2020.",
+      "tickerCat": "Restitutions",
+      "tickerText": "La France adopte à l'unanimité la loi-cadre des restitutions coloniales, simple décret désormais suffisant"
     },
     {
       "date": "6 mai 2026",
@@ -55,7 +67,9 @@
       "cat": "Technologie",
       "catColor": "var(--tech)",
       "headline": "L'Union européenne interdit les IA de nudification",
-      "body": "Adoptée par 569 voix contre 45, la révision de l'AI Act interdit tout système d'intelligence artificielle générant des contenus à caractère sexuel représentant une personne identifiable sans son consentement. L'entrée en vigueur est fixée au 2 décembre 2026. La décision a été accélérée par les dérives de Grok fin 2025, l'IA d'Elon Musk, massivement utilisée pour produire des deepfakes de femmes et d'enfants à partir de photos réelles."
+      "body": "Adoptée par 569 voix contre 45, la révision de l'AI Act interdit tout système d'intelligence artificielle générant des contenus à caractère sexuel représentant une personne identifiable sans son consentement. L'entrée en vigueur est fixée au 2 décembre 2026. La décision a été accélérée par les dérives de Grok fin 2025, l'IA d'Elon Musk, massivement utilisée pour produire des deepfakes de femmes et d'enfants à partir de photos réelles.",
+      "tickerCat": "UE-IA",
+      "tickerText": "L'Union européenne interdit les IA de nudification non consentie, 569 voix pour, entrée en vigueur le 2 décembre 2026"
     },
     {
       "date": "1er mai 2026",

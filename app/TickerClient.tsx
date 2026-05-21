@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from './ticker.module.css'
+import filSignal from '../lib/fil-signal.json'
 
 function todayFr() {
   return new Date().toLocaleDateString('fr-FR', {
@@ -9,13 +10,21 @@ function todayFr() {
   })
 }
 
-const ITEMS = [
-  { cat: 'Cuba–USA',     color: '#C0392B', text: "Décret Trump, sanctions massives sur l'énergie et la finance, USS Abraham Lincoln au large de La Havane" },
-  { cat: 'Afrique',      color: '#1A3E6B', text: "Sommet Africa Forward à Nairobi, Macron annonce 23 milliards d'euros d'investissements pour le continent" },
-  { cat: 'UE–IA',        color: '#1A5C4A', text: "L'Union européenne interdit les IA de nudification non consentie, 569 voix pour, entrée en vigueur le 2 décembre 2026" },
-  { cat: 'Restitutions', color: '#B86A1A', text: "La France adopte à l'unanimité la loi-cadre des restitutions coloniales, simple décret désormais suffisant" },
-  { cat: 'Taïwan',       color: '#1A3E6B', text: "Pékin réaffirme sa ligne rouge après les déclarations japonaises sur une intervention possible en cas de force chinoise" },
-]
+type Breve = {
+  cat: string
+  catColor: string
+  headline: string
+  tickerCat?: string
+  tickerText?: string
+}
+
+const ITEMS = (filSignal.breves as Breve[])
+  .filter(b => b.tickerText)
+  .map(b => ({
+    cat: b.tickerCat || b.cat,
+    color: b.catColor,
+    text: b.tickerText as string,
+  }))
 
 export default function Ticker() {
   const [date, setDate] = useState('')
