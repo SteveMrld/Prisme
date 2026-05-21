@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect, useCallback } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { usePremium } from '../lib/usePremium'
 import Link from 'next/link'
 import styles from './SoaraTVPage.module.css'
@@ -77,9 +78,12 @@ const episodes = [
 
 export default function SoaraTVPage() {
   const IS_PREMIUM = usePremium()
+  const searchParams = useSearchParams()
+  const epParam = searchParams.get('ep')
+  const initialIndex = epParam ? episodes.findIndex(e => e.id === epParam) : -1
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(initialIndex >= 0 ? initialIndex : 0)
   const [transitioning, setTransitioning] = useState(false)
   const [fadeIn, setFadeIn] = useState(true)
   const ep = episodes[active]
