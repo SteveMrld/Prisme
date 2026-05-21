@@ -408,7 +408,57 @@ export default function EauVizClient({ chapterIdx }: { chapterIdx: number }) {
   return (
     <div className={styles.wrap}>
       <div ref={containerRef} className={styles.map} aria-label={ariaLabel} />
+      {chapter && <ChapterLegend chapter={chapter} />}
       {error && <div className={styles.error}>Carte indisponible, {error}</div>}
+    </div>
+  )
+}
+
+/* Légende discrète en bas à gauche. Rend uniquement les lignes
+   pertinentes pour le chapitre courant (pas de "Barrages" si le
+   chapitre n'en a aucun). pointer-events:none côté CSS, n'intercepte
+   pas l'interaction carte. */
+function ChapterLegend({ chapter }: { chapter: any }) {
+  const fleuveSample = (chapter.couleur_fleuve_rgba as string | undefined)?.replace('OPACITY', '0.75') ?? 'rgba(30,100,210,0.75)'
+  const hasFleuves = !!chapter.fleuves?.length
+  const hasBarrages = !!chapter.barrages?.length
+  const hasTensions = !!chapter.tensions?.length
+  const hasFrontiere = !!chapter.frontiere_disputee?.length
+  if (!hasFleuves && !hasBarrages && !hasTensions && !hasFrontiere) return null
+  return (
+    <div className={styles.legend} aria-hidden="true">
+      {hasFleuves && (
+        <div className={styles.legendRow}>
+          <svg width="22" height="8" viewBox="0 0 22 8" aria-hidden="true">
+            <line x1="0" y1="4" x2="22" y2="4" stroke={fleuveSample} strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+          <span>Fleuves</span>
+        </div>
+      )}
+      {hasBarrages && (
+        <div className={styles.legendRow}>
+          <svg width="22" height="10" viewBox="0 0 22 10" aria-hidden="true">
+            <circle cx="11" cy="5" r="3.5" fill="#8B1A1A" stroke="#F8F4EE" strokeWidth="1" opacity="0.92" />
+          </svg>
+          <span>Barrages</span>
+        </div>
+      )}
+      {hasTensions && (
+        <div className={styles.legendRow}>
+          <svg width="22" height="10" viewBox="0 0 22 10" aria-hidden="true">
+            <circle cx="11" cy="5" r="4" fill="#8B1A1A" stroke="#F8F4EE" strokeWidth="1.2" opacity="0.82" />
+          </svg>
+          <span>Zones de tension</span>
+        </div>
+      )}
+      {hasFrontiere && (
+        <div className={styles.legendRow}>
+          <svg width="22" height="6" viewBox="0 0 22 6" aria-hidden="true">
+            <line x1="0" y1="3" x2="22" y2="3" stroke="rgba(28,24,20,0.6)" strokeWidth="1.4" strokeDasharray="3 3" />
+          </svg>
+          <span>Frontière contestée</span>
+        </div>
+      )}
     </div>
   )
 }
