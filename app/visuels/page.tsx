@@ -412,7 +412,7 @@ export default async function VisuelsPage() {
             </div>
           </Reveal>
           <Reveal>
-            <div className={styles.trilogieBanner}>
+            <Link href="/visuels/dollar1" className={styles.trilogieBanner} aria-label="Lancer l'animation de l'Acte I, La naissance d'un empire">
               <img
                 src="/articles/atlas/15_empire-du-dollar.jpg"
                 alt="Billet de dollar et graphiques financiers"
@@ -427,8 +427,9 @@ export default async function VisuelsPage() {
                   Comment une monnaie nationale est devenue l&apos;étalon de l&apos;économie mondiale.
                   Et pourquoi son règne pourrait finir.
                 </p>
+                <span className={styles.trilogieBannerCta}>Lancer l&apos;animation →</span>
               </div>
-            </div>
+            </Link>
           </Reveal>
           <div className={styles.trilogieGrid}>
             {[
@@ -447,7 +448,7 @@ export default async function VisuelsPage() {
                   <p className={styles.acteDesc}>{item.desc}</p>
                   <div className={styles.acteMeta}>
                     <span className={styles.acteSlides}>{item.slides} slides</span>
-                    <span className={styles.acteCta}>Lire l&apos;acte →</span>
+                    <span className={styles.acteCta}>Lancer l&apos;animation →</span>
                   </div>
                 </Link>
               </Reveal>
