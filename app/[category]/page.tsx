@@ -117,7 +117,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
   if (!config) notFound()
 
   const categoryKey = URL_TO_CATEGORY[category]
-  const articles = (articlesData as any[]).filter(a => a.category === categoryKey && !a.interviewType)
+  const articles = (articlesData as any[]).filter(a => a.category === categoryKey && !a.interviewType && !a.excludeFromCategoryList)
 
   const [featured, ...rest] = articles
 

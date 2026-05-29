@@ -403,6 +403,22 @@
     "premiumTeaserParagraphs": 5
   },
   {
+    "slug": "empire-du-dollar",
+    "title": "L'Empire du dollar",
+    "description": "Bretton Woods, pétrodollar, sanctions, BRICS. Comment une monnaie nationale est devenue l'étalon de l'économie mondiale, et pourquoi son règne pourrait finir. Une trilogie animée en trois actes.",
+    "image": "/articles/atlas/15_empire-du-dollar.jpg",
+    "category": "eco",
+    "readTime": "Trilogie",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "date": "2026-05-12",
+    "premium": false,
+    "imageCredit": "© SOARA",
+    "grandFormatUrl": "/visuels/empire-du-dollar",
+    "titleEn": "The Empire of the Dollar",
+    "descriptionEn": "From Bretton Woods to BRICS. How a national currency became the world's standard, and why its reign may end. An animated trilogy in three acts."
+  },
+  {
     "slug": "cygne",
     "title": "Le Cygne Noir",
     "description": "Ces événements rares, imprévisibles et à fort impact que nos modèles ignorent systématiquement.",
@@ -414,6 +430,7 @@
     "date": "2026-04-04",
     "premium": false,
     "imageCredit": "© SOARA",
+    "excludeFromCategoryList": true,
     "titleEn": "The Black Swan and Geopolitics",
     "descriptionEn": "Taleb's concept applied to international relations. How to think the unthinkable."
   },
