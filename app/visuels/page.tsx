@@ -95,7 +95,7 @@ const ATLAS_CARDS: AtlasCard[] = [
     alt: "Porte-conteneurs au coucher du soleil, commerce maritime",
   },
   {
-    href: '/articles/predateurs', external: false,
+    href: '/visuels/predateurs', external: false,
     tag: 'Géopolitique · Carte interactive', tagColor: 'var(--geo)',
     format: 'Carte interactive',
     title: 'Le Monde des Prédateurs',

@@ -66,7 +66,7 @@ const visuels: Visuel[] = [
     format: 'Carte animée',
   },
   {
-    href: '/articles/predateurs',
+    href: '/visuels/predateurs',
     title: 'Le Monde des Prédateurs',
     image: '/articles/img-predateurs.jpg',
     eyebrow: 'Géopolitique · Carte interactive',
