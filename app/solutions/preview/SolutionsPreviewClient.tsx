@@ -140,32 +140,43 @@ export default function SolutionsPreviewClient() {
       map.on('load', () => {
         if (cancelled) return
         for (const agg of aggs) {
-          const el = document.createElement('button')
-          el.type = 'button'
-          el.setAttribute('aria-label', `${agg.fr}, ${agg.total} solutions`)
+          /* Le wrapper de taille nulle est positionné par MapLibre via
+             transform: translate3d(...). Le bouton enfant porte la
+             géométrie visuelle et reçoit les transforms d'animation,
+             sans écraser le placement géo. */
+          const wrap = document.createElement('div')
+          wrap.style.cssText = 'width:0;height:0;position:relative;'
+
+          const dot = document.createElement('button')
+          dot.type = 'button'
+          dot.setAttribute('aria-label', `${agg.fr}, ${agg.total} solutions`)
           const r = bubbleRadius(agg.total)
-          el.style.cssText = `
+          dot.style.cssText = `
+            position:absolute;left:${-r}px;top:${-r}px;
             width:${r * 2}px;height:${r * 2}px;border-radius:50%;
             background:${agg.topColor};opacity:.78;
             border:1.5px solid #FAF9F6;
-            cursor:pointer;padding:0;
+            cursor:pointer;padding:0;margin:0;
             transition:transform .2s, opacity .2s;
             box-shadow:0 2px 8px rgba(0,0,0,.18);
+            transform-origin:center center;
           `
-          el.onmouseenter = (e) => {
-            el.style.opacity = '1'
-            el.style.transform = 'scale(1.15)'
+          wrap.appendChild(dot)
+
+          dot.onmouseenter = (e) => {
+            dot.style.opacity = '1'
+            dot.style.transform = 'scale(1.15)'
             const rect = mapRef.current!.getBoundingClientRect()
             const evt = e as MouseEvent
             setHoverAgg(agg)
             setHoverPos({ x: evt.clientX - rect.left, y: evt.clientY - rect.top })
           }
-          el.onmouseleave = () => {
-            el.style.opacity = '.78'
-            el.style.transform = 'scale(1)'
+          dot.onmouseleave = () => {
+            dot.style.opacity = '.78'
+            dot.style.transform = 'scale(1)'
             setHoverAgg(null); setHoverPos(null)
           }
-          el.onclick = () => {
+          dot.onclick = () => {
             document.getElementById('annuaire')?.scrollIntoView({ behavior: 'smooth' })
             setTimeout(() => {
               const sel = document.getElementById('country-select') as HTMLSelectElement | null
@@ -175,7 +186,7 @@ export default function SolutionsPreviewClient() {
               }
             }, 700)
           }
-          const marker = new window.maplibregl.Marker({ element: el })
+          const marker = new window.maplibregl.Marker({ element: wrap })
             .setLngLat([agg.lng, agg.lat])
             .addTo(map)
           markersRef.current.push(marker)
