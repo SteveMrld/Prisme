@@ -13,6 +13,14 @@ import Link from 'next/link'
 import articlesData from '../lib/articles.json'
 import { FadeSection, PortraitsSlider } from './HomeClient'
 import Ticker from './TickerClient'
+import {
+  dailySeed, slotSeed, pickFromPool, seededShuffle,
+  parseDateOverride, applyHourOverride,
+} from '../lib/rotation'
+import {
+  HERO_POOL, UNDER_HERO_POOL, GF_POOL_AFTER_LEAD,
+  ALSO_READ_POOL, ATLAS_POOL, POPULAR_POOL,
+} from '../lib/home-pools'
 
 // ── Helpers ───────────────────────────────────────────────
 const CAT: Record<string,string> = {
@@ -24,81 +32,25 @@ function art(slug: string) {
   const a = (articlesData as any[]).find(x => x.slug === slug)!
   return { ...a, catLabel: CAT[a.category] || a.category }
 }
+function withCatLabel<T extends { category: string }>(a: T) {
+  return { ...a, catLabel: CAT[a.category] || a.category }
+}
 
-// ── Articles ──────────────────────────────────────────────
-const PORTRAITS = ['morin','obama','morrison','musk','tutu','nooyi'].map(art)
+// LEAD et 1er SECONDAIRE des grands formats : jugement éditorial figé.
+const GF_LEAD_SLUG = 'chambre-ratification'
+const GF_SECONDARY_1_SLUG = 'terres-rares'
+
+// TV : 6 épisodes fixes (catalogue clos, peu de valeur à faire tourner).
 const TV_EPISODES = [
-  { id:'01', title:"L'Inde, le siècle qui vient",             duration:'1 min 19', href:'/tv?ep=01',            thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_inde_final-1_hitfsr.jpg' },
-  { id:'02', title:"L'Afrique : ce qu'on ne vous a pas appris",duration:'2 min 02', href:'/tv?ep=02',            thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_afrique_ep2-1_xp6mvu.jpg' },
-  { id:'03', title:"La biologie devient un logiciel",           duration:'2 min 07', href:'/tv?ep=03',            thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_biologie_ep3_ouqzr4.jpg' },
-  { id:'04', title:"L'arme qui a failli nous tuer",             duration:'2 min 25', href:'/tv?ep=04',            thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_arme_ep4_eo7uyk.jpg' },
-  { id:'05', title:"8 hommes. 3,5 milliards.",                  duration:'2 min 07', href:'/tv?ep=05',            thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg' },
-  { id:'06', title:"Nous sommes l'astéroïde",                   duration:'1 min 49', href:'/tv?ep=06',            thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_asteroide_ep6_qkipn3.jpg' },
+  { id:'01', title:"L'Inde, le siècle qui vient",             duration:'1 min 19', href:'/tv?ep=01', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_inde_final-1_hitfsr.jpg' },
+  { id:'02', title:"L'Afrique : ce qu'on ne vous a pas appris",duration:'2 min 02', href:'/tv?ep=02', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_afrique_ep2-1_xp6mvu.jpg' },
+  { id:'03', title:"La biologie devient un logiciel",          duration:'2 min 07', href:'/tv?ep=03', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_biologie_ep3_ouqzr4.jpg' },
+  { id:'04', title:"L'arme qui a failli nous tuer",            duration:'2 min 25', href:'/tv?ep=04', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_arme_ep4_eo7uyk.jpg' },
+  { id:'05', title:"8 hommes. 3,5 milliards.",                  duration:'2 min 07', href:'/tv?ep=05', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg' },
+  { id:'06', title:"Nous sommes l'astéroïde",                  duration:'1 min 49', href:'/tv?ep=06', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_asteroide_ep6_qkipn3.jpg' },
 ]
 
-// Sections de la une — ordre éditorial
-// Hero — 5 articles mixtes qui tournent
-const HERO_ROTATION = [
-  art('wanghuning'), art('afrique'), art('pollinisation'), art('empire-du-droit'), art('terres-rares'),
-  art('chambre-ratification'),
-]
-
-// Sous le hero — 5 articles utilisés (3 gauche texte + 2 droite avec image)
-// Règle de la home : chaque article apparaît au max 2 fois sur la page,
-// hero carousel inclus. Les triples ont été retirés.
-const UNDER_HERO = [
-  art('empire-du-droit'),       // gauche · 2e occurrence (HERO + Zone 1)
-  art('societe-du-consentement'),// gauche · unique
-  art('wanghuning'),             // gauche · 2e occurrence (HERO + Zone 1) — remplace terres-rares (retiré : était HERO+Zone 1+GF)
-  art('moreno'),                 // droite · 2e occurrence (Zone 1 + POPULAR) — remplace chambre-ratification (retiré : était HERO+Zone 1+GF Lead)
-  art('dette-souveraine'),       // droite · 2e occurrence (Zone 1 + GF Tertiaire)
-]
-// 12 grands formats — hiérarchie 4 niveaux type NYT / Le Grand Continent
-// 1 Lead pleine largeur + 2 Secondaires + 3 Tertiaires + 6 Quaternaires (liste compacte)
-const GF_LEAD = art('chambre-ratification')
-const GF_SECONDARY = [art('terres-rares'), art('palantir')]
-const GF_TERTIARY = [art('skunkworks'), art('dette-souveraine'), art('france_maritime')]
-const GF_QUATERNARY = [
-  art('taiwan'), art('semico'), art('architecture-desordre'),
-  art('medias'), art('eau'),    art('techgeo'),
-]
-const LATEST = (articlesData as any[])
-  .filter((a:any) => !a.featured && !a.interviewType)
-  .sort((a:any,b:any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(0,5)
-  .map((a:any) => ({...a, catLabel: CAT[a.category]||a.category}))
-
-// architecture-desordre remplace empire-du-droit (qui était en HERO + Zone 1 + POPULAR = triple)
-const POPULAR = ['architecture-desordre','moreno','lecture','palantir','skunkworks'].map(art)
-
-// Zone 1 — colonne gauche : mini-liste « À lire aussi » entre les 3 articles et
-// la citation, pour densifier la colonne et résorber le vide blanc.
-// Articles à 1 occurrence ailleurs, qui passent à 2 en y figurant.
-const ZONE1_ALSO_READ = [art('eau'), art('lecture'), art('france_maritime')]
-
-// Zone 1 — colonne centre : bande Atlas sous le hero inline, pour ancrer
-// la colonne centrale à la hauteur des deux latérales. Ce sont des
-// visualisations, pas des articles : aucun impact sur le décompte des doublons.
-const ZONE1_ATLAS = [
-  {
-    href: '/visuels/predateurs',
-    tag: 'Géopolitique',
-    title: 'Le monde des prédateurs',
-    image: '/articles/img-predateurs.jpg',
-  },
-  {
-    href: '/visuels/naval',
-    tag: 'Géopolitique',
-    title: 'Les mers du pouvoir',
-    image: '/articles/atlas/09_les-mers-du-pouvoir.jpg',
-  },
-  {
-    href: '/visuels/cables',
-    tag: 'Tech',
-    title: 'Câbles sous-marins',
-    image: '/articles/atlas/13_cables-sous-marins.jpg',
-  },
-]
+const PORTRAITS_BASE = ['morin','obama','morrison','musk','tutu','nooyi'].map(art)
 
 // ── Composants atomiques ──────────────────────────────────
 function ReadTime({ t }: { t: string }) {
@@ -106,7 +58,6 @@ function ReadTime({ t }: { t: string }) {
   return <span className={styles.readTime}>{isNaN(n) ? t : `${n} min`}</span>
 }
 
-// Slugs disponibles en anglais
 const EN_SLUGS = new Set(["societe-du-consentement","ceux-qui-nont-pas-cede","empire-du-droit","terres-rares","moreno","afrique","arctique","blackrock","chine","cygne","empires","fiscalite","fragilite","france_maritime","ia","ia_ecriture","kintsugi","lecture","medias","morrison","morin","tutu","musk","nooyi","pessimisme","predateurs","reseaux","rushkoff","semico","silence","taiwan","technosolutionnisme","venezuela","orbite","obama","wanghuning","monopoly","darkfactories","eau","techgeo","dette-souveraine","palantir","skunkworks","chambre-ratification","pollinisation","ce-que-nous-laissons-entrer"])
 
 const EnBadge = () => (
@@ -132,13 +83,6 @@ const SBadge = ({ size = 'sm' }: { size?: keyof typeof SBADGE_SIZES }) => {
   )
 }
 
-const AudioIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft:'5px',flexShrink:0,verticalAlign:'middle'}}>
-    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-  </svg>
-)
-
 function SectionHead({ label, href }: { label: string; href?: string }) {
   return (
     <div className={styles.sectionHead}>
@@ -148,26 +92,150 @@ function SectionHead({ label, href }: { label: string; href?: string }) {
   )
 }
 
+// Bandeau discret affiché en haut de page si ?date= ou ?hour= est utilisé.
+// Permet à Steve de vérifier qu'il prévisualise bien un autre jour.
+function PreviewPin({ date, hour }: { date?: string; hour?: string }) {
+  if (!date && !hour) return null
+  return (
+    <div style={{
+      background:'#C8A96E', color:'#0A0A0A',
+      fontFamily:"'DM Mono', ui-monospace, monospace",
+      fontSize:'10px', letterSpacing:'2px', textTransform:'uppercase',
+      padding:'6px 16px', textAlign:'center',
+      borderBottom:'1px solid #0A0A0A',
+    }}>
+      Preview de rotation · seed simulé {date ? `date=${date}` : ''}{hour ? ` hour=${hour}` : ''} · rendu réel à {new Date().toISOString().slice(0,10)}
+    </div>
+  )
+}
+
 // ─────────────────────────────────────────────────────────
-export default async function HomePage() {
-  // Pré-fetch de l'annonce home pour la placer en sidebar verticale
-  // dans la colonne droite de .homeTop, sous les 2 articles avec image.
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams?: { date?: string; hour?: string }
+}) {
   const homeAd = await getActiveAd('home')
+
+  // ── Seeds ──────────────────────────────────────────────
+  // ?date=YYYYMMDD et ?hour=0-23 servent à prévisualiser la rotation
+  // d'autres jours sans attendre. Sans paramètre, seed = jour courant.
+  const dateOverride = parseDateOverride(searchParams?.date)
+  const baseDate = dateOverride ?? new Date()
+  const refDate = applyHourOverride(baseDate, searchParams?.hour)
+  const daily = dailySeed(refDate)
+  const slot4h = slotSeed(4, refDate)
+
+  // ── Tirages déterministes ──────────────────────────────
+  // On consomme les pools dans l'ordre éditorial. Chaque article tiré
+  // entre dans `used` pour éviter les doublons sur la home (règle
+  // historique : un article max 2 fois sur la page).
+  const used = new Set<string>([GF_LEAD_SLUG, GF_SECONDARY_1_SLUG])
+  const excludeArt = <T extends { slug: string }>(pool: readonly T[]) =>
+    pool.filter(a => !used.has(a.slug))
+  const consume = <T extends { slug: string }>(items: T[]) => {
+    items.forEach(a => used.add(a.slug))
+    return items
+  }
+
+  // Hero rotatif (6 articles, diversifié sur 3 catégories min)
+  const HERO_ROTATION = consume(
+    pickFromPool(excludeArt(HERO_POOL), `${daily}:hero`, 6, {
+      diversifyBy: (a: any) => a.category, minDiversity: 3,
+    })
+  ).map(withCatLabel)
+
+  // Sous le hero : 3 à gauche, 2 à droite (avec image)
+  const withImagePool = (UNDER_HERO_POOL as any[]).filter(a => a.image)
+  const UNDER_HERO_LEFT = consume(
+    pickFromPool(excludeArt(UNDER_HERO_POOL), `${daily}:under-left`, 3, {
+      diversifyBy: (a: any) => a.category, minDiversity: 3,
+    })
+  ).map(withCatLabel)
+  const UNDER_HERO_RIGHT = consume(
+    pickFromPool(excludeArt(withImagePool), `${daily}:under-right`, 2, {
+      diversifyBy: (a: any) => a.category, minDiversity: 2,
+    })
+  ).map(withCatLabel)
+
+  // Grands formats : LEAD + SECONDARY1 figés, le reste tourne
+  const GF_LEAD = art(GF_LEAD_SLUG)
+  const GF_SECONDARY_1 = art(GF_SECONDARY_1_SLUG)
+  const GF_SECONDARY_2 = consume(
+    pickFromPool(excludeArt(GF_POOL_AFTER_LEAD), `${daily}:gf-sec2`, 1)
+  ).map(withCatLabel)[0]
+  const GF_SECONDARY = [GF_SECONDARY_1, GF_SECONDARY_2]
+  const GF_TERTIARY = consume(
+    pickFromPool(excludeArt(GF_POOL_AFTER_LEAD), `${daily}:gf-tert`, 3, {
+      diversifyBy: (a: any) => a.category, minDiversity: 2,
+    })
+  ).map(withCatLabel)
+  const GF_QUATERNARY = consume(
+    pickFromPool(excludeArt(GF_POOL_AFTER_LEAD), `${daily}:gf-quat`, 6, {
+      diversifyBy: (a: any) => a.category, minDiversity: 3,
+    })
+  ).map(withCatLabel)
+
+  // À lire aussi (zone 1 colonne gauche)
+  const ZONE1_ALSO_READ = consume(
+    pickFromPool(excludeArt(ALSO_READ_POOL), `${daily}:also-read`, 3, {
+      diversifyBy: (a: any) => a.category, minDiversity: 2,
+    })
+  ).map(withCatLabel)
+
+  // Atlas (3 cartes, pas d'exclusion : ce ne sont pas des articles)
+  const ZONE1_ATLAS = pickFromPool(ATLAS_POOL, `${daily}:atlas`, 3)
+
+  // Dernières publications : 3 plus récents par date + 2 redécouvertes seedées
+  const allArticles = articlesData as any[]
+  const recentByDate = allArticles
+    .filter(a => !a.featured && !a.interviewType && !used.has(a.slug))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const LATEST_RECENT = consume(recentByDate.slice(0, 3)).map(withCatLabel)
+
+  const thirtyDaysAgo = refDate.getTime() - 30 * 86400 * 1000
+  const olderPool = allArticles.filter(a =>
+    !a.featured && !a.interviewType && !used.has(a.slug)
+    && new Date(a.date).getTime() < thirtyDaysAgo
+  )
+  const LATEST_REDISCOVER = consume(
+    pickFromPool(olderPool, `${daily}:latest-redisc`, 2, {
+      diversifyBy: (a: any) => a.category, minDiversity: 2,
+    })
+  ).map(withCatLabel)
+  const LATEST = [...LATEST_RECENT, ...LATEST_REDISCOVER]
+
+  // POPULAR (tourne toutes les 4h)
+  const POPULAR = consume(
+    pickFromPool(excludeArt(POPULAR_POOL), `${slot4h}:popular`, 5, {
+      diversifyBy: (a: any) => a.category, minDiversity: 3,
+    })
+  ).map(withCatLabel)
+
+  // Portraits : 6 articles, simple shuffle journalier de l'ordre
+  const PORTRAITS = seededShuffle(PORTRAITS_BASE, `${daily}:portraits`)
+
+  // À redécouvrir (bas de home) : 3 articles >30j, diversifiés
+  const rediscoverPool = allArticles.filter(a =>
+    !a.interviewType && !used.has(a.slug)
+    && new Date(a.date).getTime() < thirtyDaysAgo
+  )
+  const REDISCOVER = pickFromPool(rediscoverPool, `${daily}:rediscover-zone`, 3, {
+    diversifyBy: (a: any) => a.category, minDiversity: 3,
+  }).map(withCatLabel)
 
   return (
     <>
       <Header />
+      <PreviewPin date={searchParams?.date} hour={searchParams?.hour} />
       <Ticker />
 
       {/* ══════════════════════════════════════
-          1. HOME TOP — Grille NYT 3 colonnes
-             Gauche : 3 stories texte+deck · Centre : hero inline (image+titre+deck)
-             Droite : 2 stories avec image + sidebar pub
+          1. HOME TOP , Grille NYT 3 colonnes
       ══════════════════════════════════════ */}
       <section className={styles.homeTop}>
-        {/* Colonne gauche : 3 articles texte avec deck court + signature éditoriale */}
         <aside className={styles.homeTopLeft}>
-          {UNDER_HERO.slice(0, 3).map(a => (
+          {UNDER_HERO_LEFT.map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htSideItem}>
               <span className={styles.cat}>{a.catLabel}</span>
               <h3 className={styles.htSideTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
@@ -209,18 +277,13 @@ export default async function HomePage() {
           </div>
         </aside>
 
-        {/* Colonne centre : hero inline rotatif + bandeau Interview alterné.
-            Le bandeau lit getNextInterviewForHome() : published récent prioritaire,
-            fallback coming proche. Variante visuelle pilotée par data-interview-type. */}
         <div className={styles.homeTopCenter}>
           <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
-
           <HomeInterviewBanner />
         </div>
 
-        {/* Colonne droite : 2 articles avec image + sidebar pub (si annonce) */}
         <aside className={styles.homeTopRight}>
-          {UNDER_HERO.slice(3, 5).map(a => (
+          {UNDER_HERO_RIGHT.map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htRightItem}>
               {a.image && (
                 <div className={styles.htRightImg}>
@@ -242,9 +305,7 @@ export default async function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          4. ATLAS — bande pleine largeur
-             Remplace l'ancien Grand Entretien, déplacé dans Zone 1
-             pour combler l'espace blanc de la colonne centre.
+          2. ATLAS , bande pleine largeur
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.atlasSection}>
@@ -253,7 +314,7 @@ export default async function HomePage() {
             <span className={styles.atlasSectionEyebrow}>Atlas</span>
             <h2 className={styles.atlasSectionTitle}>Cartes pour <em>comprendre</em></h2>
             <p className={styles.atlasSectionIntro}>
-              Six visualisations interactives pour traverser ce que les mots ne suffisent pas à dire.
+              Des visualisations interactives pour traverser ce que les mots ne suffisent pas à dire.
             </p>
           </div>
           <Link href="/visuels" className={styles.atlasSectionAll}>Toutes les cartes →</Link>
@@ -277,13 +338,11 @@ export default async function HomePage() {
       </FadeSection>
 
       {/* ══════════════════════════════════════
-          5. GRANDS FORMATS
+          3. GRANDS FORMATS
       ══════════════════════════════════════ */}
       <SectionHead label="Grands formats" href="/grands-formats" />
       <FadeSection>
       <section className={styles.gfSection}>
-
-        {/* — LEAD : pleine largeur, format couverture magazine */}
         <Link href={GF_LEAD.grandFormatUrl || `/articles/${GF_LEAD.slug}`} className={styles.gfLead}>
           {GF_LEAD.image && (
             <div className={styles.gfLeadImg}>
@@ -306,7 +365,6 @@ export default async function HomePage() {
           </div>
         </Link>
 
-        {/* — SECONDAIRES : 2 colonnes, image 16/9 + extrait court */}
         <div className={styles.gfSecondaryRow}>
           {GF_SECONDARY.map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfSecondary}>
@@ -332,8 +390,6 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* — FEATURES : 3 colonnes uniformes, format NYT magazine
-             (image 16/9 + catégorie + titre Playfair + deck Georgia + meta) */}
         <div className={styles.gfFeatureRow}>
           {[...GF_TERTIARY.slice(0, 1), ...GF_QUATERNARY.slice(0, 2)].map(a => (
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfFeature}>
@@ -359,8 +415,6 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* — LISTE COMPACTE : textuelle, sans image, façon NYT « More in this section ».
-             6 articles supplémentaires sur deux colonnes, séparés par filets. */}
         <div className={styles.gfMoreSection}>
           <span className={styles.gfMoreLabel}>Aussi dans Grands formats</span>
           <ul className={styles.gfMoreList}>
@@ -378,12 +432,11 @@ export default async function HomePage() {
             ))}
           </ul>
         </div>
-
       </section>
       </FadeSection>
 
       {/* ══════════════════════════════════════
-          6. SOARA TV — featured + sidelist façon NYT Video
+          4. SOARA TV
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.tvSection}>
@@ -396,7 +449,6 @@ export default async function HomePage() {
           <Link href="/tv" className={styles.tvSeeAll}>Tous les épisodes →</Link>
         </div>
         <div className={styles.tvLayout}>
-          {/* Épisode featured : dernier en date, grand format avec play overlay */}
           {(() => {
             const featured = TV_EPISODES[TV_EPISODES.length - 1]
             return (
@@ -418,8 +470,6 @@ export default async function HomePage() {
               </Link>
             )
           })()}
-          {/* Liste latérale des autres épisodes : pas de carrés, juste
-              thumb compacte + titre + durée en ligne, façon NYT Video index */}
           <ul className={styles.tvSidelist}>
             {TV_EPISODES.slice(0, -1).reverse().map(ep => (
               <li key={ep.id}>
@@ -441,7 +491,7 @@ export default async function HomePage() {
       </FadeSection>
 
       {/* ══════════════════════════════════════
-          7. PORTRAITS
+          5. PORTRAITS
       ══════════════════════════════════════ */}
       <SectionHead label="Portraits" href="/portraits" />
       <FadeSection>
@@ -454,10 +504,9 @@ export default async function HomePage() {
       </FadeSection>
 
       {/* ══════════════════════════════════════
-          8. DERNIÈRES + POPULAIRES
+          6. DERNIÈRES + POPULAIRES
       ══════════════════════════════════════ */}
       <div className={`${styles.row2} ${styles.row2LastSection}`}>
-        {/* Dernières publications */}
         <div className={styles.rowCol}>
           <SectionHead label="Dernières publications" />
           {LATEST.map((a, i) => (
@@ -481,7 +530,6 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* Les plus lus */}
         <div className={styles.rowCol}>
           <SectionHead label="Les plus lus" />
           {POPULAR.map((a, i) => (
@@ -499,12 +547,57 @@ export default async function HomePage() {
       </div>
 
       {/* ══════════════════════════════════════
-          9. L'UNIVERS SOARA
+          7. À REDÉCOUVRIR , puise dans l'archive (>30 jours)
+      ══════════════════════════════════════ */}
+      {REDISCOVER.length > 0 && (
+        <FadeSection>
+        <section className={styles.rediscover}>
+          <div className={styles.rediscoverHead}>
+            <span className={styles.rediscoverEyebrow}>Choix du jour · Archive</span>
+            <h2 className={styles.rediscoverTitle}>À <em>redécouvrir</em></h2>
+            <p className={styles.rediscoverIntro}>
+              Trois textes parus il y a quelques semaines, replacés en haut de page aujourd'hui.
+              Le fond ne périme pas à la même vitesse que l'actualité.
+            </p>
+          </div>
+          <div className={styles.rediscoverGrid}>
+            {REDISCOVER.map(a => (
+              <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rediscoverCard}>
+                {a.image && (
+                  <div className={styles.rediscoverImg}>
+                    <img src={a.image} alt={a.title} loading="lazy" />
+                  </div>
+                )}
+                <div className={styles.rediscoverBody}>
+                  <span className={styles.cat}>{a.catLabel}</span>
+                  <h3 className={styles.rediscoverCardTitle}>
+                    <SBadge size="md" /><span dangerouslySetInnerHTML={{__html: a.title}} />
+                  </h3>
+                  {a.description && (
+                    <p className={styles.rediscoverDesc}>{a.description}</p>
+                  )}
+                  <div className={styles.rediscoverMeta}>
+                    <span className={styles.rediscoverDate}>
+                      {new Date(a.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
+                    <ReadTime t={a.readTime || '7'} />
+                    {EN_SLUGS.has(a.slug) && <EnBadge />}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        </FadeSection>
+      )}
+
+      {/* ══════════════════════════════════════
+          8. L'UNIVERS SOARA
       ══════════════════════════════════════ */}
       <SoaraUnivers />
 
       {/* ══════════════════════════════════════
-          10. NEWSLETTER
+          9. NEWSLETTER
       ══════════════════════════════════════ */}
       <FadeSection>
       <section className={styles.nl}>
