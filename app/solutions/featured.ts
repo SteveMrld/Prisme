@@ -1,4 +1,4 @@
-import type { Category } from '../data'
+import type { Category } from './data'
 
 export type Pick = {
   name: string

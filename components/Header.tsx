@@ -55,7 +55,7 @@ const formats = [
   { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions en temps réel' },
   { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
   { label: 'Recoupement', href: '/recoupement', desc: 'Vérification par IA' },
-  { label: 'Changer le monde', href: '/solutions', desc: '157 solutions ChangeNow 2026' },
+  { label: 'Changer le monde', href: '/solutions', desc: '166 solutions ChangeNow 2026' },
   { label: 'Rétrospective', href: '/retrospective', desc: "Les ruptures de 2025" },
   { label: 'Atlas', href: '/visuels', desc: 'Cartes & visualisations' },
 ]
