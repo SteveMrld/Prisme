@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import PictureImg from './PictureImg'
 import styles from './HeroInline.module.css'
+import { formatReadTime, stripHtml } from '../lib/format'
 
 interface HeroArticle {
   slug: string
@@ -46,7 +47,7 @@ export default function HeroInline({ articles, intervalMs = 7000 }: Props) {
               key={art.slug}
               className={`${styles.imgSlide} ${i === current ? styles.active : ''}`}
             >
-              {art.image && <PictureImg src={art.image} alt={art.title} className={styles.img} />}
+              {art.image && <PictureImg src={art.image} alt={stripHtml(art.title)} className={styles.img} />}
             </div>
           ))}
         </div>
@@ -57,7 +58,7 @@ export default function HeroInline({ articles, intervalMs = 7000 }: Props) {
             dangerouslySetInnerHTML={{ __html: a.title }}
           />
           {a.description && <p className={styles.desc}>{a.description}</p>}
-          {a.readTime && <span className={styles.meta}>{a.readTime} min de lecture</span>}
+          {a.readTime && <span className={styles.meta}>{formatReadTime(a.readTime, 'long')}</span>}
         </div>
       </Link>
       {articles.length > 1 && (

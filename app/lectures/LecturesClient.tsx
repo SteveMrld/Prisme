@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import articlesData from '../../lib/articles.json'
 import styles from './lectures.module.css'
+import { formatReadTime } from '../../lib/format'
 
 type Bookmark = {
   slug: string
@@ -157,7 +158,7 @@ export default function LecturesClient() {
                           <p className={styles.cardDesc}>{description}</p>
                         )}
                         <div className={styles.cardMeta}>
-                          {readTime && <span>{readTime} min de lecture</span>}
+                          {readTime && <span>{formatReadTime(readTime, 'long')}</span>}
                           {readTime && savedStr && <span aria-hidden="true">·</span>}
                           {savedStr && <span>Sauvegardé le {savedStr}</span>}
                         </div>

@@ -6,6 +6,7 @@ import Header from './Header'
 import NewsletterForm from './NewsletterForm'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
+import { formatReadTime } from '../lib/format'
 
 interface ArticleLayoutProps {
   title: string
@@ -330,7 +331,7 @@ export default function ArticleLayout({
                     </div>
                   )}
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#7B5380',marginBottom:'4px',fontFamily:"'DM Sans',sans-serif"}}>Portrait · {a.readTime} min</div>
+                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#7B5380',marginBottom:'4px',fontFamily:"'DM Sans',sans-serif"}}>Portrait · {formatReadTime(a.readTime, 'short')}</div>
                     <div style={{fontFamily:"'Playfair Display',serif",fontSize:'15px',lineHeight:1.3,color:'#111',fontWeight:400}}>{a.title.replace(/<[^>]+>/g,'')}</div>
                   </div>
                 </a>

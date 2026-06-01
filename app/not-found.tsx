@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import articlesData from '../lib/articles.json'
 import styles from './not-found.module.css'
+import { formatReadTime } from '../lib/format'
 
 export const metadata = {
   title: '404 : Page introuvable · Soara',
@@ -160,7 +161,7 @@ export default function NotFound() {
                       <p className={styles.cardDesc}>{a.description}</p>
                       <div className={styles.cardMeta}>
                         {dateStr}
-                        {a.readTime && <> · {a.readTime} min</>}
+                        {a.readTime && <> · {formatReadTime(a.readTime, 'short')}</>}
                       </div>
                     </div>
                   </Link>

@@ -4,6 +4,7 @@ import Header from '../../components/Header'
 import articlesData from '../../lib/articles.json'
 import styles from './category.module.css'
 import { AnimBand, AnimFeatured, AnimGrid, AnimCard } from './CategoryAnimations'
+import { formatReadTime, stripHtml } from '../../lib/format'
 
 /* ── Config rubriques ── */
 const CATEGORIES: Record<string, {
@@ -158,7 +159,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
                     </div>
                   )}
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#7B5380',marginBottom:'5px',fontFamily:"'DM Sans',sans-serif"}}>Portrait · {article.readTime} min{(article as any).premium ? ' · ★' : ''}</div>
+                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#7B5380',marginBottom:'5px',fontFamily:"'DM Sans',sans-serif"}}>Portrait · {formatReadTime(article.readTime, 'short')}{(article as any).premium ? ' · ★' : ''}</div>
                     <div style={{fontFamily:"'Playfair Display',serif",fontSize:'16px',lineHeight:1.25,color:'#111',fontWeight:400,marginBottom:'4px'}} dangerouslySetInnerHTML={{__html: article.title.replace(/\n/g,' ')}} />
                     <div style={{fontSize:'12px',color:'#888',fontStyle:'italic',fontFamily:"'Playfair Display',serif",lineHeight:1.4,display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden'}}>{article.description}</div>
                   </div>
@@ -172,7 +173,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
             <Link href={featured.grandFormatUrl || `/articles/${featured.slug}`} className={styles.featured}>
               {featured.image && (
                 <div className={styles.featuredImgWrap}>
-                  <img src={featured.image} alt={featured.title} className={styles.featuredImg} />
+                  <img src={featured.image} alt={stripHtml(featured.title)} className={styles.featuredImg} />
                 </div>
               )}
               <div className={styles.featuredBody}>
@@ -180,7 +181,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
                   <span className={styles.featuredTag} style={{ background: config.color }}>
                     {config.label}
                   </span>
-                  <span className={styles.featuredTime}>{featured.readTime} min</span>
+                  <span className={styles.featuredTime}>{formatReadTime(featured.readTime, 'short')}</span>
                 </div>
                 <h2 className={styles.featuredTitle}>
                   <span dangerouslySetInnerHTML={{ __html: featured.title.replace(/\n/g, ' ') }} />
@@ -204,12 +205,12 @@ export default function CategoryPage({ params }: { params: { category: string } 
                 <Link href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.card}>
                   {article.image && (
                     <div className={params.category === "portraits" ? styles.cardImgWrapPortrait : styles.cardImgWrap}>
-                      <img src={article.image} alt={article.title} className={params.category === "portraits" ? styles.cardImgPortrait : styles.cardImg} />
+                      <img src={article.image} alt={stripHtml(article.title)} className={params.category === "portraits" ? styles.cardImgPortrait : styles.cardImg} />
                     </div>
                   )}
                   <div className={styles.cardBody}>
                     <div className={styles.cardEyebrow}>
-                      <span className={styles.cardTime}>{article.readTime} min</span>
+                      <span className={styles.cardTime}>{formatReadTime(article.readTime, 'short')}</span>
                     </div>
                     <h3 className={styles.cardTitle}>
                       <span dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }} />

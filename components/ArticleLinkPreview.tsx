@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import articlesData from '../lib/articles.json'
 import visuelsData, { type Visuel } from '../lib/visuels'
 import styles from './ArticleLinkPreview.module.css'
+import { formatReadTime } from '../lib/format'
 
 type Article = {
   slug: string
@@ -57,12 +58,6 @@ function formatDateFR(iso?: string): string {
   const d = new Date(iso)
   if (isNaN(d.getTime())) return ''
   return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
-}
-
-function formatReadTime(rt?: string): string {
-  if (!rt) return ''
-  if (/^\d+$/.test(rt)) return `${rt} min`
-  return rt
 }
 
 function articleToPreview(a: Article): Preview {
