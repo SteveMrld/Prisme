@@ -1,6 +1,96 @@
 {
-  "date_maj": "2026-05-21",
+  "date_maj": "2026-06-03",
   "breves": [
+    {
+      "date": "22 mai 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "OpenAI durcit ses protocoles de signalement après une attaque au Canada",
+      "body": "Suite à une attaque dont l'auteur utilisait ChatGPT, OpenAI annonce aux autorités canadiennes des ajustements de ses critères de signalement internes : seuil abaissé pour alerter les forces de l'ordre, recours à des experts en santé mentale, et création d'un point de contact direct avec la police canadienne. Le ministre canadien de l'IA réclame un plan détaillé et évoque une réponse législative si les engagements tardent.",
+      "tickerCat": "IA",
+      "tickerText": "OpenAI abaisse son seuil de signalement aux forces de l'ordre après une attaque liée à ChatGPT au Canada"
+    },
+    {
+      "date": "24 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Trump devant le Congrès : le discours le plus long de l'histoire présidentielle américaine",
+      "body": "Donald Trump prononce devant le Congrès ce que les médias américains décrivent comme le discours présidentiel le plus long jamais réalisé. Il revendique une économie «plus forte que jamais», vante ses résultats sur les frontières et présente l'Amérique comme redevenue la «nation la plus en vue». L'hémicycle est profondément polarisé : des élus démocrates boycottent, d'autres interrompent le président, un député est escorté hors de la salle. Sur l'international, Trump réitère ses avertissements à l'Iran sur le nucléaire.",
+      "tickerCat": "États-Unis",
+      "tickerText": "Trump prononce le discours présidentiel le plus long de l'histoire américaine devant un Congrès divisé"
+    },
+    {
+      "date": "27 mai 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Mai de chaleur record en France : 33°C à Paris",
+      "body": "Une chaleur exceptionnelle frappe la France en ce mois de mai, avec des températures avoisinant 33°C à Paris le 27 mai. Météo-France qualifie cet épisode d'anomalie thermique significative pour la saison. Les autorités sanitaires rappellent les consignes de prévention, notamment pour les personnes vulnérables. Cet épisode s'inscrit dans une tendance de fond : les mois de mai anormalement chauds se multiplient en Europe depuis dix ans.",
+      "tickerCat": "Climat",
+      "tickerText": "33°C à Paris le 27 mai, épisode de chaleur qualifié d'anomalie thermique significative pour la saison"
+    },
+    {
+      "date": "28 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Détroit d'Ormuz : le commandement américain frappe des drones iraniens",
+      "body": "Le commandement central américain annonce avoir détruit quatre drones kamikazes iraniens près du détroit d'Ormuz ainsi qu'une station de contrôle à Bandar Abbas. Washington affirme avoir neutralisé un cinquième appareil prêt au décollage. L'incident survient alors que les négociations sur le nucléaire iranien se poursuivent. Donald Trump affirme que l'Iran a accepté de renoncer au développement d'une arme nucléaire, une affirmation que Téhéran dément partiellement. Le négociateur en chef iranien Mohammad Bagher Ghalibaf déclare ne croire «ni aux paroles ni aux promesses» américaines.",
+      "tickerCat": "Iran",
+      "tickerText": "Le commandement américain détruit quatre drones iraniens près du détroit d'Ormuz, Téhéran dément avoir renoncé au nucléaire"
+    },
+    {
+      "date": "28 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Gaza : le fonds de reconstruction du Board of Peace est vide",
+      "body": "Le fonds officiel de reconstruction de Gaza créé par le Board of Peace de Donald Trump ne contient aucun dollar américain, malgré des promesses de milliards formulées par plusieurs pays membres, selon une source proche du dossier citée par l'AFP. Le Financial Times révèle que les donations transitent par un compte JPMorgan sans exigences indépendantes de transparence. Les principales puissances européennes ont refusé de rejoindre le board. Israël contrôle toujours plus de 60% du territoire de Gaza, dont l'intégralité des points d'entrée et de sortie.",
+      "tickerCat": "Gaza",
+      "tickerText": "Le fonds de reconstruction Gaza du Board of Peace est vide malgré des milliards promis, selon l'AFP"
+    },
+    {
+      "date": "29 mai 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Ukraine : record de drones russes en mai, un navire turc touché en mer Noire",
+      "body": "Selon Kiev, la Russie a tiré plus de 8 000 drones contre l'Ukraine au cours du mois de mai, un record depuis le début de la guerre. Dans la nuit du 28 au 29 mai, une attaque massive touche plusieurs zones résidentielles et des infrastructures. La marine ukrainienne annonce qu'un drone russe a frappé un navire commercial turc en mer Noire, blessant deux marins. L'incident provoque une vive réaction d'Ankara.",
+      "tickerCat": "Ukraine",
+      "tickerText": "Plus de 8 000 drones russes en mai contre l'Ukraine, record depuis le début de la guerre, un navire turc touché en mer Noire"
+    },
+    {
+      "date": "1er juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Liban : l'armée israélienne reprend ses opérations terrestres et avance vers le nord",
+      "body": "L'armée israélienne a repris ses opérations terrestres au Liban et progresse vers le nord du pays à une profondeur inédite depuis le début du conflit. Les hôpitaux du sud du Liban font face à une saturation selon les correspondants sur place, qui décrivent des «combats sans interruption». La progression israélienne soulève de vives inquiétudes à Beyrouth et dans les capitales européennes.",
+      "tickerCat": "Liban",
+      "tickerText": "Israël reprend ses opérations terrestres au Liban et progresse vers le nord à une profondeur inédite"
+    },
+    {
+      "date": "1er juin 2026",
+      "cat": "Politique",
+      "catColor": "var(--geo)",
+      "headline": "Malte : le Parti travailliste remporte un quatrième mandat consécutif, une première",
+      "body": "Le Premier ministre maltais Robert Abela, 48 ans, remporte les élections législatives avec une nette victoire pour le Parti travailliste, qui décroche un quatrième mandat consécutif, une première dans l'histoire du pays. La participation atteint 87,4%, en légère hausse. Son adversaire nationaliste Alex Borg, avocat de 30 ans qui appelait au changement, reconnaît sa défaite dès dimanche soir.",
+      "tickerCat": "Malte",
+      "tickerText": "Le Parti travailliste remporte un quatrième mandat consécutif à Malte, une première dans l'histoire du pays"
+    },
+    {
+      "date": "2 juin 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Allemagne : les ventes de voitures électriques bondissent de 41% en un an",
+      "body": "Les ventes de véhicules 100% électriques ont augmenté de 41% en Allemagne en un an, portées par une prime gouvernementale de 1 500 à 6 000 euros versée aux ménages dont le revenu imposable annuel ne dépasse pas 80 000 euros. En mai 2026, une voiture sur quatre vendue en Allemagne était entièrement électrique. Cette dynamique contraste avec le ralentissement observé dans d'autres pays européens et relance le débat sur l'efficacité des aides à l'achat.",
+      "tickerCat": "Automobile",
+      "tickerText": "Les ventes de voitures électriques bondissent de 41% en Allemagne, une sur quatre vendue en mai était 100% électrique"
+    },
+    {
+      "date": "2 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Trump et Netanyahou : un recadrage rare qui dévoile des tensions profondes",
+      "body": "Selon plusieurs sources diplomatiques, Donald Trump a directement recadré Benjamin Netanyahou lors d'un entretien privé, marquant un moment de friction inhabituel entre les deux dirigeants. Sans en dévoiler la teneur précise, des officiels américains confirment que Washington exerce une pression croissante sur Tel Aviv sur la gestion du dossier gazaoui et les conditions humanitaires sur le territoire. Cette tension intervient alors que l'opération militaire israélienne au Liban s'intensifie.",
+      "tickerCat": "États-Unis",
+      "tickerText": "Trump recadre Netanyahou lors d'un entretien privé, signe de tensions croissantes entre Washington et Tel Aviv"
+    },
     {
       "date": "20 mai 2026",
       "cat": "Géopolitique",
