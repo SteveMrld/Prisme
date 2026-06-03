@@ -1,5 +1,20 @@
 [
   {
+    "slug": "portes",
+    "title": "La porte par laquelle on entre",
+    "description": "On croit connaître les gens. On croit les avoir vus, compris, classés. Mais la plupart du temps, on n’a pas connu la personne. On a connu la porte par laquelle on est entré pour la découvrir.",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur de Soara",
+    "category": "soc",
+    "date": "2026-06-01",
+    "readTime": "4",
+    "image": "/visuels/derniere-generation-cover.png",
+    "featured": true,
+    "premium": false,
+    "avif": true,
+    "imageCredit": "© Soara"
+  },
+  {
     "slug": "langage-ia",
     "title": "L’écriture, dernier territoire",
     "description": "On nous dit qu’il faut former les jeunes aux algorithmes et renforcer les mathématiques. Ce discours n’est pas faux. Mais il est incomplet d’une façon qui ne l’est pas innocente.",
