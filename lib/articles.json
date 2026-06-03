@@ -1,5 +1,22 @@
 [
   {
+    "slug": "langage-ia",
+    "title": "L’écriture, dernier territoire",
+    "description": "On nous dit qu’il faut former les jeunes aux algorithmes et renforcer les mathématiques. Ce discours n’est pas faux. Mais il est incomplet d’une façon qui ne l’est pas innocente.",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur de Soara",
+    "category": "soc",
+    "date": "2026-06-01",
+    "readTime": "7",
+    "image": "/visuels/derniere-generation-cover.png",
+    "featured": true,
+    "premium": false,
+    "avif": true,
+    "imageCredit": "© Soara",
+    "titleEn": "Writing, the Last Territory",
+    "descriptionEn": "We are told to train young people in algorithms and strengthen mathematics. This argument is not wrong. But it is incomplete in a way that is not innocent."
+  },
+  {
     "slug": "tiedeur-des-heritiers",
     "title": "La tiédeur des héritiers",
     "description": "De Machiavel à la transition écologique, une même loi : l'ordre ancien trouve des défenseurs ardents, l'ordre nouveau de bien tièdes partisans. Sur l'asymétrie qui condamne les réformes, et un climat dont les bénéficiaires ne sont pas encore là pour le défendre.",
