@@ -529,6 +529,30 @@
   color: var(--gris-m);
 }
 
+/* ── Titres d'œuvres et noms d'auteurs (style NYT) ──
+   Scope inline-paragraph: ne touche pas aux <cite> d'attribution
+   dans .pull-quote ou .exergue qui ont leur propre traitement. */
+.soara-article p cite {
+  font-style: italic;
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  color: inherit;
+}
+
+.soara-article p .auteur {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  color: var(--encre);
+}
+
+@supports not (font-variant-caps: all-small-caps) {
+  .soara-article p .auteur {
+    text-transform: uppercase;
+    font-size: 0.92em;
+    letter-spacing: 0.08em;
+  }
+}
+
 /* ── Tip / encadré ── */
 .tip {
   display: inline;
