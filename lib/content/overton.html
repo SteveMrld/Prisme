@@ -28,12 +28,11 @@
 /* Scoped styles for overton */
 
   .visuel-inline.overton {
-    --bg: #FAFAF8;
     --unacceptable: #7A2D2D;
     --radical: #B86A1A;
     --acceptable: #2D6B4A;
     --politique: #1A3E6B;
-    background: var(--bg);
+    background-color: #FAFAF8;
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
     color: var(--encre);
@@ -143,8 +142,23 @@
     border-radius: 2px;
     transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
-    box-shadow: 0 0 0 9999px rgba(10,10,10,0.35);
+    z-index: 2;
   }
+
+  /* Masques d'assombrissement scopés à la bande de gradient.
+     Remplacent l'ancien box-shadow 9999px qui noircissait tout le panneau. */
+  .spectrum-mask {
+    position: absolute;
+    top: 0;
+    height: 80px;
+    background: rgba(10, 10, 10, 0.35);
+    pointer-events: none;
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+  .spectrum-mask-left { left: 0; width: 33.333%; }
+  .spectrum-mask-right { right: 0; width: 33.333%; }
 
   /* libellé retiré : redondant avec la légende en bas (bordure dorée = Fenêtre d'Overton) */
 
@@ -162,7 +176,7 @@
     flex: 1;
     padding: 10px 8px;
     border: 1px solid var(--bord);
-    background: var(--bg);
+    background: #FAFAF8;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -340,6 +354,9 @@
       <div class="zone zone-6"><span class="zone-label">Politique</span></div>
     </div>
 
+    <div class="spectrum-mask spectrum-mask-left" id="maskLeft"></div>
+    <div class="spectrum-mask spectrum-mask-right" id="maskRight"></div>
+
     <div class="window" id="window"></div>
 
     <div class="ideas" id="ideas"></div>
@@ -445,13 +462,19 @@ const win = root.querySelector('#window')
 const ideasEl = root.querySelector('#ideas')
 const examplesEl = root.querySelector('#examples')
 const sliderVal = root.querySelector('#sliderVal')
+const maskLeft = root.querySelector('#maskLeft')
+const maskRight = root.querySelector('#maskRight')
 
-if (!slider || !win || !ideasEl || !examplesEl || !sliderVal) return
+if (!slider || !win || !ideasEl || !examplesEl || !sliderVal || !maskLeft || !maskRight) return
+
+const WIN_WIDTH_PCT = 100 / 3 // .window est 33.333% large
 
 function setWindow(val) {
   const pct = val / 100
   const leftPct = pct * 66.666
   win.style.left = leftPct + '%'
+  maskLeft.style.width = leftPct + '%'
+  maskRight.style.width = Math.max(0, 100 - leftPct - WIN_WIDTH_PCT) + '%'
   sliderVal.textContent = positions[Math.round(pct * 6)]
   updateIdeas(val)
 }
