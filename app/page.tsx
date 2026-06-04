@@ -206,11 +206,27 @@ export default async function HomePage({
   const LATEST = [...LATEST_RECENT, ...LATEST_REDISCOVER]
 
   // POPULAR (tourne toutes les 4h)
-  const POPULAR = consume(
-    pickFromPool(excludeArt(POPULAR_POOL), `${slot4h}:popular`, 5, {
-      diversifyBy: (a: any) => a.category, minDiversity: 3,
-    })
-  ).map(withCatLabel)
+  // Les plus lus est un axe de popularité indépendant : un article peut y
+  // figurer même s'il apparaît ailleurs sur la home. On préfère les non-
+  // déjà-affichés, puis on complète depuis le pool complet pour atteindre
+  // la cible de 5. POPULAR ne consomme PAS used : la section ne se vide
+  // jamais et REDISCOVER (tiré après) garde son pool intact.
+  const POPULAR_TARGET = 5
+  const popularPrefer = pickFromPool(excludeArt(POPULAR_POOL), `${slot4h}:popular`, POPULAR_TARGET, {
+    diversifyBy: (a: any) => a.category, minDiversity: 3,
+  })
+  let popularList: any[] = popularPrefer
+  if (popularList.length < POPULAR_TARGET) {
+    const have = new Set(popularList.map(a => a.slug))
+    const fill = pickFromPool(
+      POPULAR_POOL.filter(a => !have.has(a.slug)),
+      `${slot4h}:popular-fill`,
+      POPULAR_TARGET - popularList.length,
+      { diversifyBy: (a: any) => a.category, minDiversity: 2 }
+    )
+    popularList = [...popularList, ...fill]
+  }
+  const POPULAR = popularList.map(withCatLabel)
 
   // Portraits : 6 articles, simple shuffle journalier de l'ordre
   const PORTRAITS = seededShuffle(PORTRAITS_BASE, `${daily}:portraits`)
