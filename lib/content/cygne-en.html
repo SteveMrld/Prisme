@@ -15,12 +15,18 @@
 
 <div class="article-content">
 
-  <div class="visuel-inline">
+  <div class="visuel-inline cygne">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    --encre: #0A0A0A; --or: #C8A96E; --bg: #FAFAF8; --papier: #F2EDE3;
-    --gris: #3D3D3D; --gris-m: #6A6A6A; --gris-l: #9A9590; --bord: #D8D3C8;
+  .visuel-inline.cygne {
+    --bg: #FAFAF8;
+    background: var(--encre);
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
   }
+  .visuel-inline.cygne *, .visuel-inline.cygne *::before, .visuel-inline.cygne *::after { box-sizing: border-box; }
 
   .deck { width: 100%; height: 100vh; display: flex; flex-direction: column; }
 
@@ -171,13 +177,18 @@
   <div class="card-area" id="cardArea"></div>
 
   <div class="controls">
-    <button class="btn" id="btnPrev" onclick="prev()">← Previous</button>
+    <button type="button" class="btn" id="btnPrev" data-act="prev">← Previous</button>
     <div class="dots" id="dots"></div>
-    <button class="btn btn-next" id="btnNext" onclick="next()">Next →</button>
+    <button type="button" class="btn btn-next" id="btnNext" data-act="next">Next →</button>
   </div>
 </div>
 
 <script>
+(function () {
+const root = document.querySelector('.visuel-inline.cygne')
+if (!root || root.dataset.inited === '1') return
+root.dataset.inited = '1'
+
 const cards = [
   {
     num: '01',
@@ -239,12 +250,15 @@ const cards = [
 
 let current = 0
 
-function render() {
-  const area = document.getElementById('cardArea')
-  const dots = document.getElementById('dots')
-  const counter = document.getElementById('counter')
-  const progress = document.getElementById('progress')
+const area = root.querySelector('#cardArea')
+const dotsEl = root.querySelector('#dots')
+const counter = root.querySelector('#counter')
+const progress = root.querySelector('#progress')
+const btnPrev = root.querySelector('#btnPrev')
+const btnNext = root.querySelector('#btnNext')
+if (!area || !dotsEl || !counter || !progress || !btnPrev || !btnNext) return
 
+function render() {
   area.innerHTML = cards.map((c, i) => `
     <div class="card ${i === current ? 'active' : ''}">
       <div class="card-num">${c.num}</div>
@@ -256,24 +270,37 @@ function render() {
     </div>
   `).join('')
 
-  dots.innerHTML = cards.map((_, i) => `<div class="dot ${i === current ? 'active' : ''}" onclick="goTo(${i})"></div>`).join('')
+  dotsEl.innerHTML = cards.map((_, i) => `<div class="dot ${i === current ? 'active' : ''}" data-i="${i}"></div>`).join('')
   counter.textContent = `${current + 1} / ${cards.length}`
   progress.style.width = `${((current + 1) / cards.length) * 100}%`
 
-  document.getElementById('btnPrev').disabled = current === 0
-  document.getElementById('btnNext').disabled = current === cards.length - 1
+  btnPrev.disabled = current === 0
+  btnNext.disabled = current === cards.length - 1
 }
 
 function next() { if (current < cards.length - 1) { current++; render(); } }
 function prev() { if (current > 0) { current--; render(); } }
 function goTo(i) { current = i; render(); }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === ' ') next()
-  if (e.key === 'ArrowLeft') prev()
+btnPrev.addEventListener('click', prev)
+btnNext.addEventListener('click', next)
+dotsEl.addEventListener('click', (e) => {
+  const dot = e.target.closest('.dot')
+  if (dot && dot.dataset.i != null) goTo(parseInt(dot.dataset.i, 10))
 })
 
+const keyHandler = (e) => {
+  if (!document.body.contains(root)) {
+    document.removeEventListener('keydown', keyHandler)
+    return
+  }
+  if (e.key === 'ArrowRight' || e.key === ' ') next()
+  if (e.key === 'ArrowLeft') prev()
+}
+document.addEventListener('keydown', keyHandler)
+
 render()
+})()
 </script>
 </div>
 </div>

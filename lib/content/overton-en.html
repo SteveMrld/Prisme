@@ -23,34 +23,28 @@
     Remplacer par l'infographie, motion ou animation correspondante
     ════════════════════════════════════════
   -->
-  <div class="visuel-inline">
+  <div class="visuel-inline overton">
 <style>
 /* Scoped styles for overton */
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  /* removed: :root { */
-    --encre: #0A0A0A;
-    --or: #C8A96E;
+  .visuel-inline.overton {
     --bg: #FAFAF8;
-    --papier: #F2EDE3;
-    --gris: #3D3D3D;
-    --gris-m: #6A6A6A;
-    --gris-l: #9A9590;
-    --bord: #D8D3C8;
     --unacceptable: #7A2D2D;
     --radical: #B86A1A;
     --acceptable: #2D6B4A;
     --politique: #1A3E6B;
-  }
-
-  /* removed: html, body { */
     background: var(--bg);
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
     color: var(--encre);
-    height: 100%;
     -webkit-font-smoothing: antialiased;
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+  }
+
+  .visuel-inline.overton *, .visuel-inline.overton *::before, .visuel-inline.overton *::after {
+    box-sizing: border-box;
   }
 
   .header {
@@ -374,10 +368,10 @@
   <div>
     <div class="slider-title" style="margin-bottom:10px">Historical scenarios</div>
     <div class="scenarios">
-      <button class="scenario-btn" onclick="setScenario('mariage')">Same-sex marriage (2000→2013)</button>
-      <button class="scenario-btn" onclick="setScenario('retraites')">Retirement at 65 (1990→2023)</button>
-      <button class="scenario-btn" onclick="setScenario('cannabis')">Cannabis legalisation</button>
-      <button class="scenario-btn" onclick="setScenario('revenu')">Universal basic income</button>
+      <button type="button" class="scenario-btn" data-scenario="mariage">Same-sex marriage (2000→2013)</button>
+      <button type="button" class="scenario-btn" data-scenario="retraites">Retirement at 65 (1990→2023)</button>
+      <button type="button" class="scenario-btn" data-scenario="cannabis">Cannabis legalisation</button>
+      <button type="button" class="scenario-btn" data-scenario="revenu">Universal basic income</button>
     </div>
   </div>
 </div>
@@ -396,6 +390,11 @@
 </div>
 
 <script>
+(function () {
+const root = document.querySelector('.visuel-inline.overton')
+if (!root || root.dataset.inited === '1') return
+root.dataset.inited = '1'
+
 const scenarios = {
   mariage: {
     pos: 60,
@@ -447,14 +446,15 @@ const scenarios = {
   },
 }
 
-let currentPos = 50
 const positions = ['Far left', 'Left', 'Centre-left', 'Centre', 'Centre-right', 'Right', 'Far right']
 
-const slider = document.getElementById('slider')
-const win = document.getElementById('window')
-const ideasEl = document.getElementById('ideas')
-const examplesEl = document.getElementById('examples')
-const sliderVal = document.getElementById('sliderVal')
+const slider = root.querySelector('#slider')
+const win = root.querySelector('#window')
+const ideasEl = root.querySelector('#ideas')
+const examplesEl = root.querySelector('#examples')
+const sliderVal = root.querySelector('#sliderVal')
+
+if (!slider || !win || !ideasEl || !examplesEl || !sliderVal) return
 
 function setWindow(val) {
   const pct = val / 100
@@ -487,19 +487,23 @@ function renderExample(text) {
   examplesEl.innerHTML = `<div class="example active">${text}</div>`
 }
 
-function setScenario(key) {
-  document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'))
-  event.target.classList.add('active')
+function setScenario(key, triggerBtn) {
+  root.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'))
+  if (triggerBtn) triggerBtn.classList.add('active')
 
   const s = scenarios[key]
+  if (!s) return
   renderIdeas(s.ideas)
   renderExample(s.example)
   slider.value = s.pos
   setWindow(s.pos)
 }
 
-// Init
 slider.addEventListener('input', e => setWindow(parseInt(e.target.value)))
+
+root.querySelectorAll('.scenario-btn').forEach(btn => {
+  btn.addEventListener('click', () => setScenario(btn.dataset.scenario, btn))
+})
 
 // Default ideas
 const defaultIdeas = [
@@ -513,6 +517,7 @@ const defaultIdeas = [
 renderIdeas(defaultIdeas)
 renderExample('"Slide the cursor to move the window, or choose a historical scenario."')
 setWindow(50)
+})()
 </script>
 </div>
 </div>

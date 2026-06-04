@@ -8,9 +8,9 @@
   </div>
   <div class="sw" id="sw"><div class="si" id="sc"></div></div>
   <div class="mnav">
-    <button class="mb pp" id="bPrev" onclick="go(-1)" disabled>← Précédent</button>
-    <button class="mb pa" id="bPause" onclick="togglePause()">⏸ Pause</button>
-    <button class="mb nx" id="bNext" onclick="go(1)">Suivant →</button>
+    <button type="button" class="mb pp" id="bPrev" data-act="prev" disabled>← Précédent</button>
+    <button type="button" class="mb pa" id="bPause" data-act="pause">⏸ Pause</button>
+    <button type="button" class="mb nx" id="bNext" data-act="next">Suivant →</button>
   </div>
 </div>
 
@@ -282,6 +282,14 @@
 
 <script>
 (function() {
+  var root = document.querySelector('.mzone')
+  if (!root) return
+  if (root.dataset.iaTimer) { try { clearTimeout(parseInt(root.dataset.iaTimer, 10)) } catch (e) {} }
+  if (root.dataset.inited === '1') {
+    root.dataset.inited = '0'
+  }
+  root.dataset.inited = '1'
+
   var slides = [
     {
       num: '01', tag: 'Point de départ',
@@ -419,9 +427,9 @@
 
   function render(animate) {
     var s = slides[cur]
-    var el = document.getElementById('sc')
+    var el = root.querySelector('#sc')
     el.parentNode.replaceChild(el.cloneNode(false), el)
-    el = document.getElementById('sc')
+    el = root.querySelector('#sc')
 
     var html = '<div class="sl-num">' + s.num + '</div>'
     html += '<div class="sl-tag">' + s.tag + '</div>'
@@ -467,35 +475,43 @@
     el.innerHTML = html
 
     var pct = ((cur + 1) / slides.length * 100).toFixed(2)
-    document.getElementById('prog').style.width = pct + '%'
-    document.getElementById('ctr').textContent = (cur + 1) + ' / ' + slides.length
-    document.getElementById('bPrev').disabled = cur === 0
-    document.getElementById('bNext').disabled = cur === slides.length - 1
+    root.querySelector('#prog').style.width = pct + '%'
+    root.querySelector('#ctr').textContent = (cur + 1) + ' / ' + slides.length
+    root.querySelector('#bPrev').disabled = cur === 0
+    root.querySelector('#bNext').disabled = cur === slides.length - 1
 
     if (!paused && cur < slides.length - 1) {
       clearTimeout(timer)
       timer = setTimeout(function() { go(1) }, DELAY)
+      root.dataset.iaTimer = String(timer)
     }
   }
 
-  window.go = function(d) {
+  function go(d) {
     var next = cur + d
     if (next < 0 || next >= slides.length) return
     cur = next
     render(true)
   }
 
-  window.togglePause = function() {
+  function togglePause() {
     paused = !paused
-    var btn = document.getElementById('bPause')
+    var btn = root.querySelector('#bPause')
     if (paused) {
       clearTimeout(timer)
       btn.textContent = '▶ Reprendre'
     } else {
       btn.textContent = '⏸ Pause'
-      if (cur < slides.length - 1) timer = setTimeout(function() { go(1) }, DELAY)
+      if (cur < slides.length - 1) {
+        timer = setTimeout(function() { go(1) }, DELAY)
+        root.dataset.iaTimer = String(timer)
+      }
     }
   }
+
+  root.querySelector('#bPrev').addEventListener('click', function() { go(-1) })
+  root.querySelector('#bNext').addEventListener('click', function() { go(1) })
+  root.querySelector('#bPause').addEventListener('click', togglePause)
 
   render(false)
 })()
