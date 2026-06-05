@@ -529,28 +529,20 @@
   color: var(--gris-m);
 }
 
-/* ── Titres d'œuvres et noms d'auteurs (style NYT) ──
-   Scope inline-paragraph: ne touche pas aux <cite> d'attribution
-   dans .pull-quote ou .exergue qui ont leur propre traitement. */
+/* ── Titres d'œuvres et noms d'auteurs cités ──
+   Deux règles uniques, point d'ajustement central.
+   .soara-article p cite : scope strict aux <cite> inline dans des
+   paragraphes, pour ne pas écraser les <cite> d'attribution dans
+   .pull-quote et .exergue qui ont leurs propres styles plus bas. */
 .soara-article p cite {
   font-style: italic;
   font-feature-settings: 'liga' 1, 'kern' 1;
   color: inherit;
 }
 
-.soara-article p .auteur {
+.soara-article .nom-cite {
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.06em;
-  font-weight: 500;
-  color: var(--encre);
-}
-
-@supports not (font-variant-caps: all-small-caps) {
-  .soara-article p .auteur {
-    text-transform: uppercase;
-    font-size: 0.92em;
-    letter-spacing: 0.08em;
-  }
+  letter-spacing: 0.04em;
 }
 
 /* ── Tip / encadré ── */
