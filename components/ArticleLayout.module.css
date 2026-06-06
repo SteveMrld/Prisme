@@ -319,7 +319,7 @@
 
 @media (max-width: 520px) {
   .bylineTopName { font-size: 12px; }
-  .bylineTopRole { font-size: 12px; }
+  .bylineTopRole { font-size: 12px; display: block; margin-top: 2px; }
   .bylineDate { font-size: 10px; }
   .bylineSep { display: none; }
 }
