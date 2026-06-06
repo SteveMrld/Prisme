@@ -1003,5 +1003,20 @@
       "Qu'est-ce que Trump révèle sur la place réelle de l'Afrique ?",
       "Qu'est-ce que doit être un dirigeant africain au XXIe siècle ?"
     ]
+  },
+  {
+    "slug": "la-guerre-des-moi",
+    "title": "La guerre des MOI",
+    "description": "Le plus grand adversaire de l’humanité ne se cache pas : il se promène au soleil, salué, adulé, nourri par des mains qui ne voient pas qu’elles nourrissent leur geôlier. Il s’appelle MOI, et il fait la guerre depuis qu’il existe deux hommes sur cette terre.",
+    "author": "Abad Boumsong",
+    "authorRole": "Philosophe et poète",
+    "category": "culture",
+    "date": "2026-06-06",
+    "readTime": "7",
+    "image": "/visuels/la-guerre-des-moi-cover.png",
+    "featured": false,
+    "premium": false,
+    "avif": false,
+    "imageCredit": "© Soara"
   }
 ]

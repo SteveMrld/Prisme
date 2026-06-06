@@ -57,6 +57,7 @@ function portraitUrl(name: string): string | null {
     'Éric Ouzounian':     '/portraits/ouzounian.jpg',
     'Pierre Sonigo':      '/portraits/sonigo.jpg',
     'Majda Vincent':      '/portraits/vincent.jpg',
+    'Abad Boumsong':      '/portraits/boumsong.jpg',
   }
   return map[name] || null
 }

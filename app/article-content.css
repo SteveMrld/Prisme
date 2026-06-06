@@ -2211,3 +2211,11 @@ sup {
 a.byline-li {
   display: none !important;
 }
+
+/* Essai « La guerre des MOI » : le dispositif tout-capitales (MOI, JE, LUI, MON…)
+   rendu en petites capitales pour garder la réification du mot sans saturer la page. */
+.soara-article .ego {
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "smcp", "c2sc";
+  letter-spacing: 0.03em;
+}
