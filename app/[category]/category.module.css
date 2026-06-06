@@ -358,11 +358,83 @@
   .featured { grid-template-columns: 1fr; }
   .featuredImgWrap { height: 240px; }
   .featuredBody { padding: 32px 24px; border-left: none; border-top: 1px solid var(--bord); }
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .cardImgWrapPortrait { aspect-ratio: 1 / 1; }
-  .cardBody { padding: 8px 10px 12px; }
-  .cardTitle { font-size: 11px; }
   .footer { padding: 40px 24px; }
+
+  /* ── Fil d'articles façon New York Times ──
+     Une seule colonne, vignette carrée à droite, filets fins.
+     Pas de carte, pas d'ombre, pas de cadre — juste typo et filets. */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--bord);
+  }
+  .card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--bord);
+    overflow: visible;
+    transition: none;
+  }
+  .grid > :last-child .card { border-bottom: none; }
+  .card:hover { opacity: 1; }
+  .card:hover .cardImg,
+  .card:hover .cardImgPortrait { transform: none; }
+
+  .cardImgWrap,
+  .cardImgWrapPortrait {
+    order: 2;
+    width: 96px;
+    height: 96px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    border-bottom: none;
+    background: #f5f5f5;
+  }
+  .cardImg,
+  .cardImgPortrait {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .cardBody {
+    order: 1;
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    gap: 6px;
+  }
+
+  /* Auteur en petites capitales grises, AU-DESSUS du titre */
+  .cardAuthor {
+    order: -1;
+    margin: 0;
+    color: var(--gris-l);
+    font-family: var(--font-sans, inherit);
+    font-style: normal;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  /* Le titre : héros de la ligne, serif d'affichage */
+  .cardTitle {
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.2px;
+    -webkit-line-clamp: 3;
+  }
+
+  /* La durée de lecture passe SOUS le titre, en tout petit */
+  .cardEyebrow { order: 2; margin-top: 2px; }
+  .cardTime { font-size: 10px; letter-spacing: 1.2px; }
+
+  /* On dégage tout ce qui alourdit : chapô, CTA, barre d'accent */
+  .cardDeck,
+  .cardCta,
+  .cardAccent { display: none; }
 }
 
 .cardAuthor {
