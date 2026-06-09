@@ -178,16 +178,25 @@
   line-height: 1.6;
 }
 
-/* ── Hero image ── */
+/* ── Hero image ─────────────────────────────────────
+   Pleine largeur 100vw via la technique de breakout, comme le
+   heroWrap d'ArticleLayout (cf. composants/ArticleLayout.module.css).
+   La hauteur est cadrée pour matcher Caracas, object-fit: cover évite
+   les déformations sur les images en mauvais ratio. overflow: hidden
+   empêche un éventuel scroll horizontal. */
 .art-hero-wrap {
-  max-width: 900px;
-  margin: 0 auto 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-width: none;
   overflow: hidden;
 }
 
 .art-hero-img {
   width: 100%;
-  height: auto;
+  height: clamp(320px, 55vw, 620px);
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -1544,9 +1553,15 @@ sup {
   line-height: 1.7;
 }
 
-/* ── CONTENT-EMBED (iframes) ── */
+/* ── CONTENT-EMBED (iframes) ────────────────────────
+   L'iframe occupe toute la largeur de la colonne principale.
+   Hauteur généreuse côté desktop large pour laisser tourner les
+   animations interactives en entier. Sur mobile, hauteur fixe
+   raisonnable. Pas de breakout 100vw : le HTML d'origine est
+   imbriqué dans le main col, un breakout fonctionnerait mal
+   depuis un parent décentré. */
 .content-embed {
-  margin: 40px 0;
+  margin: 48px 0;
   overflow: hidden;
   border: none;
 }
@@ -1554,13 +1569,17 @@ sup {
   width: 100%;
   border: none;
   display: block;
+  min-height: clamp(520px, 70vh, 760px);
 }
 
 @media (max-width: 768px) {
   .vgrid { grid-template-columns: 1fr; gap: 24px; }
   .anav { flex-direction: column; }
   .anavitem { max-width: 100%; }
-  .content-embed iframe { height: 400px !important; }
+  .content-embed iframe {
+    height: 480px !important;
+    min-height: 0;
+  }
 }
 
 /* ── VERSO-ITEM-TEXT ── */
