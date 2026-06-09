@@ -1,6 +1,60 @@
 {
-  "date_maj": "2026-06-03",
+  "date_maj": "2026-06-09",
   "breves": [
+    {
+      "date": "5 juin 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Pétrole : le Brent reflue autour de 93 dollars sur les espoirs d'un accord avec Téhéran",
+      "body": "Le marché pétrolier reste d'une instabilité chronique en ce début juin. Le Brent évolue autour de 93 dollars le baril et reflue en fin de semaine, les opérateurs misant sur un compromis américano-iranien après l'établissement d'un cadre qui permettrait la réouverture du détroit d'Ormuz. Le FMI et la Banque mondiale alertent conjointement sur des stocks mondiaux au plus bas à l'approche du pic de demande estivale. En France, le gouvernement de Sébastien Lecornu détaille de nouvelles aides face à la facture à la pompe.",
+      "tickerCat": "Pétrole",
+      "tickerText": "Le Brent reflue autour de 93 dollars sur les espoirs d'un accord avec Téhéran, le FMI et la Banque mondiale alertent sur des stocks au plus bas"
+    },
+    {
+      "date": "5 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Élargissement de l'UE : Merz et Macron plaident pour une approche par étapes",
+      "body": "Le chancelier allemand Friedrich Merz et Emmanuel Macron proposent une approche par étapes de l'élargissement de l'Union européenne, afin de relancer des négociations d'adhésion enlisées. La proposition intervient en amont d'un sommet consacré aux Balkans occidentaux. L'idée est d'offrir aux pays candidats des étapes intermédiaires d'intégration sans attendre une adhésion pleine et entière.",
+      "tickerCat": "Union européenne",
+      "tickerText": "Merz et Macron proposent un élargissement de l'UE par étapes pour relancer les adhésions, avant le sommet sur les Balkans occidentaux"
+    },
+    {
+      "date": "4 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Liban : le Hezbollah rejette le cessez-le-feu annoncé la veille",
+      "body": "Un cessez-le-feu entre Israël et le gouvernement libanais est annoncé le 3 juin, à l'issue d'une quatrième session de négociations. Dès le lendemain, le chef du Hezbollah Naïm Qassem le rejette, exige un retrait total des forces israéliennes et menace le nord d'Israël de nouvelles attaques, qualifiant les pourparlers d'absurdes et d'humiliants. L'accord conditionnait la trêve à l'arrêt des tirs et au repli des combattants au nord du Litani. Depuis le début de la guerre, le bilan dépasse 3 500 morts au Liban et plus d'un million de déplacés.",
+      "tickerCat": "Liban",
+      "tickerText": "Le Hezbollah rejette le cessez-le-feu annoncé le 3 juin et exige un retrait total israélien, plus de 3 500 morts depuis le début de la guerre"
+    },
+    {
+      "date": "4 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Iran : le pouvoir prépare la population à un accord de paix",
+      "body": "Le guide suprême iranien Mojtaba Khamenei prépare la population à un possible accord de paix et appelle à l'unité nationale, selon plusieurs médias internationaux. La déclaration intervient après l'établissement, fin mai, d'un accord-cadre provisoire prolongeant de soixante jours le cessez-le-feu et ouvrant des négociations sur le programme nucléaire, en attente de validation par Donald Trump. Le texte prévoirait la réouverture du détroit d'Ormuz. Téhéran continue d'affirmer que l'enrichissement de l'uranium relève d'un droit souverain.",
+      "tickerCat": "Iran",
+      "tickerText": "Le guide suprême Mojtaba Khamenei prépare la population iranienne à un accord de paix, un cadre provisoire de soixante jours attend le feu vert de Trump"
+    },
+    {
+      "date": "4 juin 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Mort de Marjane Satrapi à Paris, à 56 ans",
+      "body": "L'autrice et réalisatrice franco-iranienne Marjane Satrapi est décédée le 4 juin à Paris, à l'âge de 56 ans. Révélée par la bande dessinée Persepolis, récit de son enfance à Téhéran sous la République islamique, adaptée au cinéma et primée à Cannes, elle était l'une des voix les plus reconnues de la diaspora iranienne. Sa disparition survient alors que l'Iran occupe le centre de l'actualité internationale.",
+      "tickerCat": "Disparition",
+      "tickerText": "L'autrice et réalisatrice franco-iranienne Marjane Satrapi, révélée par Persepolis, est morte à Paris à 56 ans"
+    },
+    {
+      "date": "3 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Conseil de sécurité : l'Allemagne échoue, le Portugal et l'Autriche élus",
+      "body": "L'Assemblée générale des Nations unies élit le Portugal et l'Autriche comme membres non permanents du Conseil de sécurité pour la période 2027-2028. L'Allemagne échoue pour la première fois, ne recueillant que 104 voix, alors qu'elle avait déjà siégé six fois depuis sa réunification. Berlin paie une candidature officialisée tardivement face à deux pays en campagne de longue date, et les polémiques nées de son repositionnement sur le droit international depuis le dossier de Gaza.",
+      "tickerCat": "ONU",
+      "tickerText": "L'Allemagne échoue pour la première fois à entrer au Conseil de sécurité, le Portugal et l'Autriche élus pour 2027-2028"
+    },
     {
       "date": "22 mai 2026",
       "cat": "Technologie",
