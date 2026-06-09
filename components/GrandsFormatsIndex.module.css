@@ -1,34 +1,39 @@
 /* ═══════════════════════════════════════════════════════
-   Liste-index des Grands Formats (utilisé par /grands-formats et /formats)
-   Mobile-first. Breakpoints explicites + clamps pour micro-ajustements.
+   Landing Grands Formats (utilisé par /grands-formats et /formats)
+   Refonte fond clair, vignettes, dot catégoriel.
+   Mobile-first. Tout réversible via :
+   - .main { background: var(--bg) }  → pour repasser au noir, fixer à #0a0908
+   - .category::before                → dot 7px catColor, supprimer pour neutraliser
 ═══════════════════════════════════════════════════════ */
 
 .main {
   min-height: 100vh;
-  background: #0a0908;
+  background: var(--bg);
+  color: var(--encre);
   padding-bottom: 100px;
 }
 
-/* ── Header ─────────────────────────────────────────── */
+/* ── En-tête ─────────────────────────────────────────── */
 .headerWrap {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 64px 20px 32px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--bord);
 }
 .eyebrow {
   font-family: var(--font-ui);
   font-size: 9px;
+  font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: #C8A96E;
+  color: var(--gris-m);
   margin-bottom: 14px;
 }
 .title {
   font-family: var(--font-serif-display);
   font-size: clamp(32px, 7vw, 44px);
   font-weight: 400;
-  color: #ECE7DD;
+  color: var(--encre);
   line-height: 1.1;
   margin: 0 0 16px;
 }
@@ -37,132 +42,229 @@
   font-family: var(--font-serif-text);
   font-size: clamp(16px, 2.2vw, 18px);
   font-style: italic;
-  color: rgba(236, 231, 221, 0.55);
+  color: var(--gris);
   line-height: 1.6;
   max-width: 600px;
   margin: 0;
 }
 
+/* ── Open : le grand format phare (chambre-ratification) ── */
+.openLink {
+  display: block;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 20px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid var(--bord);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.openLink:hover { background: var(--papier); }
+
+.open {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.openImg {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--catColor, var(--bord)) 12%, var(--blanc));
+}
+.openImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.openLink:hover .openImg img { transform: scale(1.02); }
+
+.openBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.openTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(26px, 4.6vw, 38px);
+  font-weight: 700;
+  color: var(--encre);
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+.openTitle em { font-style: italic; }
+.openDesc {
+  font-family: var(--font-serif-text);
+  font-size: clamp(15px, 2vw, 17px);
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 720px;
+}
+.openCta {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--encre);
+  padding-top: 4px;
+}
+
 /* ── Liste ─────────────────────────────────────────── */
 .list {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 .link {
   text-decoration: none;
   display: block;
+  color: inherit;
 }
 .row {
   display: grid;
-  grid-template-columns: 32px 1fr 24px;
+  grid-template-columns: 32px 1fr 76px 24px;
   gap: 14px;
-  align-items: start;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  align-items: center;
+  border-bottom: 1px solid var(--bord);
   padding: 22px 0;
-  transition: background .15s ease;
+  transition: background var(--dur-fast) var(--ease-out);
 }
-.row:hover {
-  background: rgba(200, 169, 110, 0.025);
-}
+.row:hover { background: var(--papier); }
 .row:hover .arrow {
-  color: rgba(200, 169, 110, 0.9);
+  color: var(--encre);
   transform: translateX(3px);
 }
-.row:hover .itemTitle {
-  color: #fff;
-}
+.row:hover .itemTitle { color: var(--encre); }
 
 .num {
   font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 1.5px;
-  color: rgba(255, 255, 255, 0.22);
+  color: var(--gris-l);
   text-align: left;
+  align-self: start;
   padding-top: 5px;
 }
 .body {
   min-width: 0;
+  align-self: start;
 }
+
+/* Étiquette de rubrique : dot 7px en catColor + texte gris dark.
+   Même grammaire que sur la home (cf. app/page.module.css .cat). */
 .category {
   font-family: var(--font-ui);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #C8A96E;
+  color: #555;
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
+.category::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--catColor, transparent);
+  flex-shrink: 0;
+}
+
 .itemTitle {
   font-family: var(--font-serif-display);
   font-size: clamp(19px, 3.5vw, 22px);
   font-weight: 700;
-  color: #ECE7DD;
+  color: var(--encre);
   line-height: 1.25;
   letter-spacing: -0.3px;
   margin: 0 0 8px;
-  transition: color .15s ease;
+  transition: color var(--dur-fast) var(--ease-out);
 }
 .desc {
   font-family: var(--font-serif-text);
   font-size: clamp(14px, 1.9vw, 16px);
   font-style: italic;
-  color: rgba(236, 231, 221, 0.55);
+  color: var(--gris);
   line-height: 1.55;
   margin: 0;
 }
+
+/* Vignette : carré net à droite du texte.
+   Fallback aplat catColor 12 % si l'image manque (aucun cas aujourd'hui). */
+.thumb {
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--catColor, var(--bord)) 12%, var(--blanc));
+  flex-shrink: 0;
+  align-self: center;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .arrow {
   font-size: 18px;
-  color: rgba(200, 169, 110, 0.4);
+  color: var(--gris-l);
   align-self: center;
   justify-self: end;
-  transition: color .15s ease, transform .2s ease;
+  transition: color var(--dur-fast) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
   line-height: 1;
 }
 
 /* ═══ Tablet ≥ 600px ═══════════════════════════════ */
 @media (min-width: 600px) {
-  .headerWrap {
-    padding: 80px 24px 40px;
+  .headerWrap { padding: 80px 24px 40px; }
+  .openLink { padding: 48px 24px; }
+  .open {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
   }
+  .openImg { aspect-ratio: 4 / 3; }
   .row {
-    grid-template-columns: 48px 1fr 32px;
-    gap: 16px;
+    grid-template-columns: 48px 1fr 96px 32px;
+    gap: 18px;
     padding: 26px 0;
   }
+  .thumb { width: 96px; height: 96px; }
   .num {
     font-size: 11px;
     padding-top: 6px;
   }
   .category {
     font-size: 9px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
   }
 }
 
 /* ═══ Desktop ≥ 900px ═══════════════════════════════ */
 @media (min-width: 900px) {
-  .headerWrap {
-    padding: 96px 24px 56px;
-  }
-  .title {
-    font-size: clamp(44px, 5vw, 56px);
-  }
-  .lede {
-    font-size: 18px;
-  }
+  .headerWrap { padding: 96px 24px 56px; }
+  .title { font-size: clamp(44px, 5vw, 56px); }
+  .lede { font-size: 18px; }
+  .openLink { padding: 56px 24px; }
+  .openTitle { font-size: clamp(32px, 3.6vw, 42px); }
   .row {
-    grid-template-columns: 56px 1fr 40px;
+    grid-template-columns: 56px 1fr 120px 40px;
     gap: 24px;
     padding: 30px 0;
   }
-  .itemTitle {
-    font-size: 24px;
-  }
-  .desc {
-    font-size: 16px;
-  }
-  .arrow {
-    font-size: 20px;
-  }
+  .thumb { width: 120px; height: 120px; }
+  .itemTitle { font-size: 24px; }
+  .desc { font-size: 16px; }
+  .arrow { font-size: 20px; }
 }
