@@ -294,7 +294,7 @@
   right: 0;
   width: 320px;
   height: 100vh;
-  background: var(--fond);
+  background: var(--bg);
   border-left: 1px solid var(--bord);
   z-index: 1;
   display: flex;
@@ -377,7 +377,7 @@
   left: 0;
   right: 0;
   z-index: 500;
-  background: var(--fond);
+  background: var(--bg);
   border-bottom: 2px solid var(--encre);
   box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
@@ -441,7 +441,7 @@
   text-transform: uppercase;
   color: #8B1A1A;
   padding: 14px 20px 8px;
-  background: var(--fond);
+  background: var(--bg);
 }
 .searchSectionCount {
   color: var(--gris-l);

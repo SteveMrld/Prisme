@@ -48,7 +48,7 @@
 .cta { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--bord); }
 .ctaBtn {
   display: inline-block; padding: 14px 28px;
-  background: var(--encre); color: var(--fond);
+  background: var(--encre); color: var(--bg);
   font-size: 10px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; text-decoration: none;
   transition: background-color var(--dur-fast) var(--ease-out);
