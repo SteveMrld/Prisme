@@ -19,6 +19,8 @@ type Livre = {
   accroche: string
 }
 
+const INTRO = `Il y a des livres que l'on referme et que l'on garde près de soi, parce qu'ils ont déplacé quelque chose en nous. Cette page leur est réservée. J'y choisis, au gré de mes lectures, un ouvrage dont j'ai envie de parler, et je prends le temps de dire pourquoi il compte. Des coups de cœur assumés, qui éclairent une part du monde que l'on regarde trop rarement. On y croisera des voix venues du Sud que l'on traduit trop tard, des romans, des essais, des textes anciens, à la seule condition qu'ils tiennent encore debout longtemps après qu'on les a quittés. Je vous les confie comme on glisse un livre dans la main de quelqu'un dont on espère qu'il l'aimera autant.`
+
 export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
   const startIndex = Math.max(0, livres.findIndex((l) => l.coupDeCoeur))
   const [active, setActive] = useState(startIndex)
@@ -35,14 +37,14 @@ export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
   return (
     <div className={styles.page}>
       <header className={styles.head}>
-        <div className={styles.eyebrow}>Soara · Une page de Jade Desroses</div>
+        <div className={styles.eyebrow}>Soara · Bibliothèque</div>
         <h1>
           La <em>Bibliothèque</em>
         </h1>
-        <p className={styles.lede}>
-          Touchez un livre sur l&apos;étagère. Une lecture, un parti pris, la raison pour
-          laquelle il compte.
-        </p>
+        <div className={styles.introText}>
+          <p>{INTRO}</p>
+          <p className={styles.signature}>Jade Desroses</p>
+        </div>
       </header>
 
       <div className={styles.shelfWrap}>

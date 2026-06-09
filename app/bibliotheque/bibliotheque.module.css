@@ -43,6 +43,25 @@
   margin: 18px auto 0;
   line-height: 1.45;
 }
+.introText {
+  max-width: 600px;
+  margin: 26px auto 0;
+  text-align: left;
+}
+.introText p {
+  font-family: var(--font-serif-reading);
+  font-size: 18px;
+  line-height: 1.72;
+  color: var(--gris);
+}
+.signature {
+  margin-top: 16px;
+  text-align: right;
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--encre);
+}
 
 /* L'étagère */
 .shelfWrap {
