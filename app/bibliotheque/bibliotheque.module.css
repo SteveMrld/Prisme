@@ -191,6 +191,14 @@
   width: 7px;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.18), transparent);
 }
+.dCoverImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .dcBands {
   display: flex;
   flex-direction: column;

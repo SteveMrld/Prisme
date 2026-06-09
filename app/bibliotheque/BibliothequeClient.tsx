@@ -11,6 +11,7 @@ type Livre = {
   auteurCourt?: string
   editeur: string
   pays: string
+  couverture?: string | null
   coupDeCoeur?: boolean
   lien?: string | null
   hauteur?: number
@@ -83,12 +84,22 @@ export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
 
       <section className={styles.detail} key={active}>
         <div className={styles.dCover} style={coverStyle}>
-          <span className={styles.dcPub}>{current.editeur}</span>
-          <span className={styles.dcBands}>
-            <i /><i />
-          </span>
-          <span className={styles.dcTitle}>{current.titre}</span>
-          <span className={styles.dcAuthor}>{current.auteur}</span>
+          {current.couverture ? (
+            <img
+              src={current.couverture}
+              alt={`Couverture de ${current.titre}, ${current.auteur}`}
+              className={styles.dCoverImg}
+            />
+          ) : (
+            <>
+              <span className={styles.dcPub}>{current.editeur}</span>
+              <span className={styles.dcBands}>
+                <i /><i />
+              </span>
+              <span className={styles.dcTitle}>{current.titre}</span>
+              <span className={styles.dcAuthor}>{current.auteur}</span>
+            </>
+          )}
         </div>
         <div className={styles.dBody}>
           {current.coupDeCoeur && <span className={styles.kicker}>Coup de cœur</span>}
