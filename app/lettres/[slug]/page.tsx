@@ -3,6 +3,7 @@ import Link from 'next/link'
 import fs from 'fs'
 import path from 'path'
 import Header from '../../../components/Header'
+import { FleuronIcon } from '../../../components/LettresIcons'
 import lettres from '../../../lib/lettres.json'
 import articlesData from '../../../lib/articles.json'
 import styles from './lettre.module.css'
@@ -67,17 +68,28 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
     body = '<p>Contenu à venir.</p>'
   }
 
-  // Bloc "Pour prolonger" : configuration par lettre. Pour la lettre n°1,
-  // deux articles cités dans le corps + un livre cité sans lien.
-  const prolonger = params.slug === 'a-qui-appartient-l-orbite'
-    ? {
-        liens: [
-          { slug: 'blackrock', label: findArticleTitle('blackrock') || 'BlackRock et Vanguard, les nouveaux maîtres du jeu' },
-          { slug: 'dette-souveraine', label: findArticleTitle('dette-souveraine') || 'La dette souveraine' },
-        ],
-        livre: { auteur: 'Hannah Arendt', titre: 'Du mensonge à la violence' },
-      }
-    : null
+  // Bloc "Pour prolonger" : configuration par lettre. Mélange possible
+  // de liens vers des articles ou grands formats du site (kind: 'link')
+  // et de références sans lien (kind: 'book') rendues auteur + titre
+  // italique via <cite>, avec un éventuel contexte court après le titre.
+  type ProlongerLink = { kind: 'link'; slug: string; label: string }
+  type ProlongerBook = { kind: 'book'; auteur: string; titre: string; context?: string }
+  type ProlongerItem = ProlongerLink | ProlongerBook
+
+  const PROLONGER: Record<string, ProlongerItem[]> = {
+    'a-qui-appartient-l-orbite': [
+      { kind: 'link', slug: 'blackrock', label: findArticleTitle('blackrock') || 'BlackRock et Vanguard, les nouveaux maîtres du jeu' },
+      { kind: 'link', slug: 'dette-souveraine', label: findArticleTitle('dette-souveraine') || 'La dette souveraine' },
+      { kind: 'book', auteur: 'Hannah Arendt', titre: 'Du mensonge à la violence' },
+    ],
+    'ce-que-letat-doit-a-un-enfant': [
+      { kind: 'book', auteur: 'Édouard Durand', titre: '160 000 enfants. Violences sexuelles et déni social' },
+      { kind: 'book', auteur: 'Alexis de Tocqueville', titre: 'De la démocratie en Amérique', context: 'sur le pouvoir tutélaire' },
+      { kind: 'book', auteur: 'Albert Camus', titre: 'La Peste' },
+      { kind: 'book', auteur: 'François Sureau', titre: 'Pour la liberté' },
+    ],
+  }
+  const prolonger: ProlongerItem[] | null = PROLONGER[params.slug] || null
 
   return (
     <>
@@ -85,10 +97,19 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
       <main className={styles.main}>
         <article className={styles.article}>
           <header className={styles.head}>
-            <div className={styles.bandeau}>
-              La lettre du mardi <span className={styles.bandeauSep}>·</span> N° {String(lettre.numero).padStart(2, '0')}
+            {/* Cartouche réduit : picto + label "La lettre du mardi",
+                déclinaison de l'en-tête de /lettres, au-dessus du bandeau N°. */}
+            <div className={styles.miniCartouche}>
+              <span className={styles.miniCartouchePicto} aria-hidden="true">
+                <FleuronIcon width={16} height={16} />
+              </span>
+              <span className={styles.miniCartoucheLabel}>La lettre du mardi</span>
             </div>
-            <time className={styles.date} dateTime={lettre.dateISO}>{lettre.date}</time>
+            <div className={styles.bandeau}>
+              N° {String(lettre.numero).padStart(2, '0')}
+              <span className={styles.bandeauSep}>·</span>
+              <time dateTime={lettre.dateISO}>{lettre.date}</time>
+            </div>
             <h1 className={styles.title}>{lettre.title}</h1>
             {lettre.teaser && <p className={styles.teaser}>{lettre.teaser}</p>}
           </header>
@@ -106,21 +127,25 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
             )}
           </footer>
 
-          {prolonger && (
+          {prolonger && prolonger.length > 0 && (
             <aside className={styles.prolonger}>
               <h2 className={styles.prolongerTitle}>Pour prolonger</h2>
               <ul className={styles.prolongerList}>
-                {prolonger.liens.map(l => (
-                  <li key={l.slug} className={styles.prolongerItem}>
-                    <Link href={hrefForArticle(l.slug)} className={styles.prolongerLink}>
-                      {l.label}
-                    </Link>
+                {prolonger.map((item, idx) => (
+                  <li key={idx} className={styles.prolongerItem}>
+                    {item.kind === 'link' ? (
+                      <Link href={hrefForArticle(item.slug)} className={styles.prolongerLink}>
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <>
+                        <span className={styles.prolongerAuthor}>{item.auteur},</span>{' '}
+                        <cite className={styles.prolongerBook}>{item.titre}</cite>
+                        {item.context && <>, {item.context}</>}
+                      </>
+                    )}
                   </li>
                 ))}
-                <li className={styles.prolongerItem}>
-                  <span className={styles.prolongerAuthor}>{prolonger.livre.auteur},</span>{' '}
-                  <cite className={styles.prolongerBook}>{prolonger.livre.titre}</cite>
-                </li>
               </ul>
             </aside>
           )}

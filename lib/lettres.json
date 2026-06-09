@@ -1,5 +1,16 @@
 [
   {
+    "slug": "ce-que-letat-doit-a-un-enfant",
+    "numero": 2,
+    "title": "Ce que l'État doit à un enfant",
+    "date": "16 juin 2026",
+    "dateISO": "2026-06-16",
+    "teaser": "Sur l'affaire Lyhanna, et ce qu'une défaillance révèle d'un État qui sait et ne fait rien.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "ce-que-letat-doit-a-un-enfant"
+  },
+  {
     "slug": "a-qui-appartient-l-orbite",
     "numero": 1,
     "title": "À qui appartient l'orbite",

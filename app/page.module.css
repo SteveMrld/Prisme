@@ -350,7 +350,9 @@
 .zone1NewsletterCta:hover { opacity: 0.55; }
 
 .zone1NewsletterArchive {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   align-self: flex-start;
   margin-top: 6px;
   font-family: var(--font-ui);
@@ -1441,7 +1443,9 @@
 .nl { background:#FAF9F6; padding:48px 16px; border-top:2px solid #0A0A0A; }
 .nlInner { max-width:480px; margin:0 auto; }
 .nlArchive {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-top: 18px;
   font-family: var(--font-ui);
   font-size: 10.5px;

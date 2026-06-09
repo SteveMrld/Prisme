@@ -24,28 +24,44 @@
   margin-bottom: 40px;
 }
 
+/* Cartouche réduit, déclinaison de /lettres : picto + label sobre,
+   séparé par un fin filet du bandeau N° qui suit. */
+.miniCartouche {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--bord);
+}
+.miniCartouchePicto {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gris-m);
+}
+.miniCartoucheLabel {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gris);
+  letter-spacing: 0.2px;
+}
+
 .bandeau {
+  display: inline-flex;
+  align-items: baseline;
   font-family: var(--font-ui);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--gris-m);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 .bandeauSep {
   color: var(--gris-l);
-  margin: 0 6px;
-}
-
-.date {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gris-l);
-  margin-bottom: 18px;
+  margin: 0 8px;
 }
 
 .title {

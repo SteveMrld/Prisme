@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styles from './Footer.module.css'
 import NewsletterForm from './NewsletterForm'
+import { FleuronIcon } from './LettresIcons'
 
 const rubriques = [
   { label: 'Signal', href: '/signal' },
@@ -110,7 +111,10 @@ export default function Footer() {
           <div className={styles.nlEyebrow}>La lettre du mardi</div>
           <h3 className={styles.nlTitle}>L&apos;analyse qui manque à votre semaine</h3>
           <NewsletterForm />
-          <Link href="/lettres" className={styles.nlArchive}>Lire les lettres →</Link>
+          <Link href="/lettres" className={styles.nlArchive}>
+            <FleuronIcon width={16} height={16} />
+            <span>Lire les lettres →</span>
+          </Link>
         </div>
 
         {/* d) Ligne mentions légales + copyright */}

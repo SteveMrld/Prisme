@@ -8,6 +8,7 @@ import SoaraUnivers from '../components/SoaraUnivers'
 import BibliothequeHome from '../components/BibliothequeHome'
 import AdSlot from '../components/AdSlot'
 import HomeInterviewBanner from '../components/HomeInterviewBanner'
+import { FleuronIcon } from '../components/LettresIcons'
 import { getActiveAd } from '../lib/ads'
 import styles from './page.module.css'
 import Link from 'next/link'
@@ -292,7 +293,8 @@ export default async function HomePage({
               S'abonner gratuitement →
             </Link>
             <Link href="/lettres" className={styles.zone1NewsletterArchive}>
-              Lire les lettres
+              <FleuronIcon width={14} height={14} />
+              <span>Lire les lettres</span>
             </Link>
           </div>
         </aside>
@@ -633,7 +635,10 @@ export default async function HomePage({
           <h2 className={styles.nlTitle}>L'analyse qui manque à votre semaine</h2>
           <p className={styles.nlDesc}>Sans algorithme, sans bruit. Chaque semaine.</p>
           <NewsletterForm />
-          <Link href="/lettres" className={styles.nlArchive}>Lire les lettres →</Link>
+          <Link href="/lettres" className={styles.nlArchive}>
+            <FleuronIcon width={16} height={16} />
+            <span>Lire les lettres →</span>
+          </Link>
         </div>
       </section>
       </FadeSection>
