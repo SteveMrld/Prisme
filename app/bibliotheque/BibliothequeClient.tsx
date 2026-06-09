@@ -67,7 +67,17 @@ export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
         </h1>
         <div className={styles.introText}>
           <p>{INTRO}</p>
-          <p className={styles.signature}>Jade Desroses</p>
+          <p className={styles.signature}>
+            Jade Desroses, fondatrice du site{' '}
+            <a
+              href="https://www.lespagesdejade.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.signatureLink}
+            >
+              Les Pages de Jade
+            </a>
+          </p>
         </div>
       </header>
 
