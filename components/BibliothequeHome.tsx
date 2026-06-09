@@ -27,8 +27,8 @@ export default function BibliothequeHome() {
             La <em>Bibliothèque</em>
           </h2>
           <p className={styles.intro}>
-            Une page de Jade Desroses. À chaque coup de cœur, un livre qui mérite
-            d&apos;être lu, et la raison pour laquelle il compte.
+            Une page de Jade Desroses. Des livres qui méritent d&apos;être lus,
+            et la raison pour laquelle ils comptent.
           </p>
           <Link href="/bibliotheque" className={styles.cta}>
             Parcourir l&apos;étagère →
