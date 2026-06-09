@@ -1,6 +1,6 @@
 .root {
   --accent: #8B1A1A;
-  margin-top: auto;
+  margin-top: 24px;
   padding-top: 24px;
   border-top: 2px solid #0A0A0A;
   display: flex;
