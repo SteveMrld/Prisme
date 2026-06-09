@@ -1576,8 +1576,15 @@ sup {
   .vgrid { grid-template-columns: 1fr; gap: 24px; }
   .anav { flex-direction: column; }
   .anavitem { max-width: 100%; }
+}
+
+/* Seuil 900px aligné sur le breakpoint interne des animations
+   (cf. public/visuels/france_maritime.html qui empile la carte,
+   le panneau et le lecteur sous 900). Hauteur 760 px pour que
+   l'ensemble tienne sans coupe sur mobile/tablette. */
+@media (max-width: 900px) {
   .content-embed iframe {
-    height: 480px !important;
+    height: 760px !important;
     min-height: 0;
   }
 }

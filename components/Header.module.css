@@ -564,7 +564,10 @@
   .desktopHeader .nav {
     border-bottom: 1px solid var(--bord);
     padding: 0 24px;
-    justify-content: center;
+    justify-content: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
     gap: 4px;
   }
 
