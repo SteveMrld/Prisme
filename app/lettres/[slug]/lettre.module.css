@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════════════════
+   /lettres/[slug] : une lettre lue
+   Réutilise la typo de lecture .soara-article via le className du
+   conteneur body. Ajoute un bandeau, un titre, une signature et un
+   bloc "Pour prolonger" sobres, dans l'identité claire du site.
+═══════════════════════════════════════════════════════ */
+
+.main {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--encre);
+  padding-bottom: 100px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 0;
+}
+
+.head {
+  border-bottom: 1px solid var(--bord);
+  padding-bottom: 32px;
+  margin-bottom: 40px;
+}
+
+.bandeau {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  margin-bottom: 16px;
+}
+.bandeauSep {
+  color: var(--gris-l);
+  margin: 0 6px;
+}
+
+.date {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin-bottom: 18px;
+}
+
+.title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(34px, 6vw, 52px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.5px;
+  color: var(--encre);
+  margin: 0 0 18px;
+}
+.title em { font-style: italic; font-weight: 600; }
+
+.teaser {
+  font-family: var(--font-serif-text);
+  font-size: clamp(17px, 2.2vw, 20px);
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 620px;
+}
+
+/* Corps : .soara-article s'occupe de la typo et du rythme.
+   On ne fait ici que cadrer la largeur de lecture. */
+.body {
+  font-family: var(--font-serif-reading);
+}
+
+/* ── Signature ─────────────────────────────────────── */
+.signature {
+  margin: 56px 0 24px;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--bord);
+  font-family: var(--font-serif-text);
+}
+.signatureSalut {
+  font-style: italic;
+  font-size: 17px;
+  color: var(--gris);
+  margin: 0 0 14px;
+}
+.signatureAuteur {
+  font-family: var(--font-serif-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--encre);
+  margin: 0 0 2px;
+  letter-spacing: -0.2px;
+}
+.signatureRole {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin: 0;
+}
+
+/* ── Pour prolonger ─────────────────────────────────── */
+.prolonger {
+  margin: 40px 0 0;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--bord);
+}
+.prolongerTitle {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  margin: 0 0 18px;
+}
+.prolongerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.prolongerItem {
+  font-family: var(--font-serif-text);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gris);
+}
+.prolongerLink {
+  color: var(--encre);
+  text-decoration: none;
+  border-bottom: 1px solid var(--bord);
+  padding-bottom: 1px;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.prolongerLink:hover {
+  border-bottom-color: var(--encre);
+}
+.prolongerAuthor {
+  color: var(--encre);
+  font-weight: 500;
+}
+.prolongerBook {
+  font-style: italic;
+  color: var(--encre);
+}
+
+/* ── CTA bas de page ─────────────────────────────────── */
+.cta {
+  margin: 48px 0 0;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--bord);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ctaBack,
+.ctaSubscribe {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--encre);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.ctaBack:hover { opacity: 0.6; }
+.ctaSubscribe {
+  border-bottom: 1px solid var(--encre);
+  padding-bottom: 2px;
+}
+.ctaSubscribe:hover { opacity: 0.6; }
+
+@media (min-width: 700px) {
+  .article { padding: 80px 24px 0; }
+}

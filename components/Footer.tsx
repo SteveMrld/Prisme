@@ -16,6 +16,7 @@ const rubriques = [
 
 const formats = [
   { label: 'Grands formats', href: '/grands-formats' },
+  { label: 'La lettre du mardi', href: '/lettres' },
   { label: 'Atlas', href: '/visuels' },
   { label: 'Soara TV', href: '/tv' },
   { label: 'Rétrospective', href: '/retrospective' },
@@ -109,6 +110,7 @@ export default function Footer() {
           <div className={styles.nlEyebrow}>La lettre du mardi</div>
           <h3 className={styles.nlTitle}>L&apos;analyse qui manque à votre semaine</h3>
           <NewsletterForm />
+          <Link href="/lettres" className={styles.nlArchive}>Lire les lettres →</Link>
         </div>
 
         {/* d) Ligne mentions légales + copyright */}

@@ -349,6 +349,21 @@
 }
 .zone1NewsletterCta:hover { opacity: 0.55; }
 
+.zone1NewsletterArchive {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 6px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.zone1NewsletterArchive:hover { color: var(--encre); }
+
 /* ── Zone 1 colonne gauche : mini-liste « À lire aussi »
    entre les articles texte et la citation. Densifie la colonne
    et résorbe le vide blanc créé par margin-auto de la citation. */
@@ -1425,6 +1440,21 @@
 ════════════════════════════════════ */
 .nl { background:#FAF9F6; padding:48px 16px; border-top:2px solid #0A0A0A; }
 .nlInner { max-width:480px; margin:0 auto; }
+.nlArchive {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+  border-bottom: 1px solid #0A0A0A;
+  padding-bottom: 2px;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.nlArchive:hover { opacity: 0.6; }
 .nlEyebrow { font-family:var(--font-ui); font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#C8A96E; margin-bottom:10px; }
 .nlTitle { font-family:var(--font-serif-display); font-size:clamp(22px,4vw,32px); font-weight:700; color:#0A0A0A; line-height:1.15; letter-spacing:-0.5px; margin-bottom:10px; }
 .nlDesc { font-size:13px; color:#777; line-height:1.6; margin-bottom:24px; font-family:'Georgia',serif; font-style:italic; }

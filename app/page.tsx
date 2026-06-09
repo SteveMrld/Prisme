@@ -291,6 +291,9 @@ export default async function HomePage({
             <Link href="/abonnement" className={styles.zone1NewsletterCta}>
               S'abonner gratuitement →
             </Link>
+            <Link href="/lettres" className={styles.zone1NewsletterArchive}>
+              Lire les lettres
+            </Link>
           </div>
         </aside>
 
@@ -630,6 +633,7 @@ export default async function HomePage({
           <h2 className={styles.nlTitle}>L'analyse qui manque à votre semaine</h2>
           <p className={styles.nlDesc}>Sans algorithme, sans bruit. Chaque semaine.</p>
           <NewsletterForm />
+          <Link href="/lettres" className={styles.nlArchive}>Lire les lettres →</Link>
         </div>
       </section>
       </FadeSection>

@@ -148,6 +148,23 @@
   margin: 0 0 20px;
 }
 
+.nlArchive {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+  border-bottom: 1px solid #0A0A0A;
+  padding-bottom: 2px;
+  transition: opacity 150ms ease-out;
+}
+.nlArchive:hover,
+.nlArchive:focus-visible { opacity: 0.6; }
+
 .nlForm {
   display: flex;
   gap: 8px;
