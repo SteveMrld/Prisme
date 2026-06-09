@@ -114,10 +114,21 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
             {lettre.teaser && <p className={styles.teaser}>{lettre.teaser}</p>}
           </header>
 
+          {/* Fleuron d'ouverture : séparation discrète entre le bandeau de
+              tête et l'entrée dans le corps de la lettre. */}
+          <div className={styles.bodyDivider} aria-hidden="true">
+            <FleuronIcon width={22} height={22} />
+          </div>
+
           <div
             className={`${styles.body} soara-article soara-lettre`}
             dangerouslySetInnerHTML={{ __html: body }}
           />
+
+          {/* Fleuron de clôture avant la signature. */}
+          <div className={styles.bodyDivider} aria-hidden="true">
+            <FleuronIcon width={22} height={22} />
+          </div>
 
           <footer className={styles.signature}>
             <p className={styles.signatureSalut}>À mardi prochain,</p>

@@ -91,6 +91,43 @@
   font-family: var(--font-serif-reading);
 }
 
+/* Lettrine sur le premier paragraphe, registre beau livre.
+   Grande majuscule en serif d'affichage italique qui glisse à
+   gauche sur trois ou quatre lignes. Le float natif fait travailler
+   le texte autour, sans toucher au HTML injecté. */
+.body > p:first-of-type::first-letter {
+  font-family: var(--font-serif-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 4.8em;
+  line-height: 0.85;
+  float: left;
+  color: var(--encre);
+  margin: 6px 12px 0 0;
+}
+
+/* Ornement centré, fleuron en accent.
+   Utilisé en ouverture (entre le bandeau et le corps) et en
+   clôture (avant la signature), respiration éditoriale. */
+.bodyDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 36px 0 32px;
+  color: var(--gris-l);
+}
+.bodyDivider svg {
+  display: block;
+}
+
+@media (min-width: 700px) {
+  .body > p:first-of-type::first-letter {
+    font-size: 5.4em;
+    margin: 8px 14px 0 0;
+  }
+  .bodyDivider { margin: 44px 0 40px; }
+}
+
 /* ── Signature ─────────────────────────────────────── */
 .signature {
   margin: 56px 0 24px;
