@@ -8,6 +8,7 @@ type Livre = {
   titre: string
   auteur: string
   auteurCourt?: string
+  couverture?: string | null
   hauteur?: number
   largeur?: number
 }
@@ -55,14 +56,20 @@ export default function BibliothequeHome() {
                   className={styles.spine}
                   style={spineStyle}
                 >
-                  <span className={styles.band}>
-                    <i /><i />
-                  </span>
-                  <span className={styles.sTitle}>{l.titre}</span>
-                  <span className={styles.sAuthor}>{l.auteurCourt || l.auteur}</span>
-                  <span className={styles.band}>
-                    <i />
-                  </span>
+                  {l.couverture ? (
+                    <img src={l.couverture} alt="" className={styles.spineCover} />
+                  ) : (
+                    <>
+                      <span className={styles.band}>
+                        <i /><i />
+                      </span>
+                      <span className={styles.sTitle}>{l.titre}</span>
+                      <span className={styles.sAuthor}>{l.auteurCourt || l.auteur}</span>
+                      <span className={styles.band}>
+                        <i />
+                      </span>
+                    </>
+                  )}
                 </span>
               )
             })}

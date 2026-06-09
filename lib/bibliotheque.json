@@ -5,11 +5,11 @@
     "auteurCourt": "Tesson",
     "editeur": "Éditions des Équateurs",
     "pays": "France",
-    "couverture": "https://www.lespagesdejade.com/avec-les-fees-cover.avif",
+    "couverture": "/visuels/biblio-avec-les-fees.webp",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 252,
-    "largeur": 32,
+    "largeur": 51,
     "accroche": "Tesson longe les côtes atlantiques, de la Galice aux îles britanniques, en quête de ce que le monde a cessé de voir. Une prose ciselée qui fait du merveilleux une façon de résister au désenchantement."
   },
   {
@@ -18,11 +18,11 @@
     "auteurCourt": "Schlesser",
     "editeur": "Albin Michel",
     "pays": "France",
-    "couverture": "https://static.wixstatic.com/media/2ac949_74992b3f445e469792a83097d189a853~mv2.png/v1/fill/w_600,h_800,q_90,enc_avif,quality_auto/2ac949_74992b3f445e469792a83097d189a853~mv2.webp",
+    "couverture": null,
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 268,
-    "largeur": 33,
+    "largeur": 53,
     "accroche": "Un grand-père emmène sa petite-fille devant cinquante-deux chefs-d'œuvre, un par semaine, avant qu'elle ne risque de perdre la vue. Une éducation du regard tendre et lumineuse, qui donne envie de retourner au musée."
   },
   {
@@ -31,11 +31,11 @@
     "auteurCourt": "Andrea",
     "editeur": "L'Iconoclaste",
     "pays": "Italie",
-    "couverture": "https://www.lespagesdejade.com/veiller-sur-elle-cover.png",
+    "couverture": "/visuels/biblio-veiller-sur-elle.webp",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 278,
-    "largeur": 32,
+    "largeur": 51,
     "accroche": "Dans l'Italie qui bascule vers le fascisme, Mimo, sculpteur de génie né de rien, se lie à Viola, aristocrate empêchée. Un roman ample et tenu, profondément romanesque, qui mérite son Goncourt 2023."
   },
   {
@@ -44,11 +44,11 @@
     "auteurCourt": "Faye",
     "editeur": "Grasset",
     "pays": "Rwanda",
-    "couverture": "https://static.wixstatic.com/media/2ac949_2cafe6ccf6b949408f2f208755177e56~mv2.png/v1/fill/w_600,h_800,q_90,enc_avif,quality_auto/2ac949_2cafe6ccf6b949408f2f208755177e56~mv2.webp",
+    "couverture": "/visuels/biblio-jacaranda.jpg",
     "coupDeCoeur": true,
     "lien": null,
     "hauteur": 264,
-    "largeur": 36,
+    "largeur": 58,
     "accroche": "Après Petit pays, Gaël Faye revient au Rwanda avec Milan, qui remonte le fil d'un secret familial sous l'ombre d'un jacaranda. Plus retenu et plus adulte que son aîné, d'une douceur déchirante, justement couronné du Renaudot 2024."
   },
   {
@@ -57,11 +57,11 @@
     "auteurCourt": "Diome",
     "editeur": "Albin Michel",
     "pays": "Sénégal",
-    "couverture": "https://static.wixstatic.com/media/2ac949_943f3830c88e45c4bb434cc453eb4ceb~mv2.png/v1/fill/w_600,h_800,q_90,enc_avif,quality_auto/2ac949_943f3830c88e45c4bb434cc453eb4ceb~mv2.webp",
+    "couverture": "/visuels/biblio-aucune-nuit.jpg",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 296,
-    "largeur": 33,
+    "largeur": 53,
     "accroche": "Fatou Diome y parle d'un grand-père disparu comme on parle d'une boussole que l'on aurait égarée. Un récit de transmission et de deuil porté par une langue charnue, parmi ses pages les plus intimes."
   },
   {
@@ -70,11 +70,11 @@
     "auteurCourt": "Cagé",
     "editeur": "Flammarion",
     "pays": "France",
-    "couverture": null,
+    "couverture": "/visuels/biblio-classes-figees.jpg",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 274,
-    "largeur": 33,
+    "largeur": 53,
     "accroche": "Agathe Cagé décrit une France dont l'ascenseur social s'est arrêté, une société de classes figées où la mobilité promise n'est plus tenue. Un essai politique nerveux et documenté, qui nomme l'immobilité française sans jamais s'y résigner."
   },
   {
@@ -83,11 +83,11 @@
     "auteurCourt": "Jancovici",
     "editeur": "Dargaud",
     "pays": "France",
-    "couverture": "https://www.lespagesdejade.com/le-monde-sans-fin-cover.png",
+    "couverture": "/visuels/biblio-monde-sans-fin.jpg",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 258,
-    "largeur": 31,
+    "largeur": 50,
     "accroche": "Jean-Marc Jancovici explique l'énergie et le climat au dessinateur Christophe Blain, et à nous avec lui. La bande dessinée la plus claire qui soit pour comprendre notre dépendance aux énergies fossiles."
   },
   {
@@ -96,11 +96,11 @@
     "auteurCourt": "Stuart",
     "editeur": "J'ai lu",
     "pays": "Royaume-Uni",
-    "couverture": "https://static.wixstatic.com/media/2ac949_21eab98ebf6147b7831359792094a087~mv2.jpg/v1/fill/w_600,h_800,q_90,enc_avif,quality_auto/2ac949_21eab98ebf6147b7831359792094a087~mv2.webp",
+    "couverture": "/visuels/biblio-sage-femme-auschwitz.jpg",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 292,
-    "largeur": 34,
+    "largeur": 54,
     "accroche": "Inspiré d'une histoire vraie, le roman suit une sage-femme déportée qui continue, dans l'enfer du camp, de mettre des enfants au monde. Un récit bouleversant sur la vie tenue contre tout."
   },
   {
@@ -109,11 +109,11 @@
     "auteurCourt": "Sirbey",
     "editeur": "Edysseus",
     "pays": "France",
-    "couverture": null,
+    "couverture": "/visuels/biblio-le-point-zero.jpg",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 286,
-    "largeur": 35,
+    "largeur": 56,
     "accroche": "Philosophe et entrepreneur, Boris Sirbey lit notre époque comme la fin simultanée de plusieurs grands cycles, économique, politique, anthropologique, et le seuil d'une bascule. Un essai ample et spéculatif, qui assume sa part de vision et s'adresse à ceux qui préfèrent penser le temps présent plutôt que le subir."
   },
   {
@@ -122,11 +122,11 @@
     "auteurCourt": "Moradel",
     "editeur": "Jabrilia",
     "pays": "France",
-    "couverture": "https://www.lespagesdejade.com/niagara-cover.webp",
+    "couverture": "/visuels/biblio-niagara.jpg",
     "coupDeCoeur": false,
     "lien": null,
     "hauteur": 300,
-    "largeur": 34,
+    "largeur": 54,
     "accroche": "Un premier roman qui traverse l'esclavage, la liberté et la quête de soi. Une écriture lyrique qui ne recule pas devant les grands sujets et porte une vraie ambition romanesque."
   }
 ]
