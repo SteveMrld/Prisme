@@ -5,6 +5,7 @@ import NewsletterForm from '../components/NewsletterForm'
 import HeroInline from '../components/HeroInline'
 import PictureImg from '../components/PictureImg'
 import SoaraUnivers from '../components/SoaraUnivers'
+import BibliothequeHome from '../components/BibliothequeHome'
 import AdSlot from '../components/AdSlot'
 import HomeInterviewBanner from '../components/HomeInterviewBanner'
 import { getActiveAd } from '../lib/ads'
@@ -504,6 +505,13 @@ export default async function HomePage({
           </ul>
         </div>
       </section>
+      </FadeSection>
+
+      {/* ══════════════════════════════════════
+          4b. BIBLIOTHÈQUE
+      ══════════════════════════════════════ */}
+      <FadeSection>
+      <BibliothequeHome />
       </FadeSection>
 
       {/* ══════════════════════════════════════

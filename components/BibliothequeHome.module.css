@@ -1,0 +1,178 @@
+/* ── Bibliothèque · bloc d'accueil (teaser) ─────────────────
+   Bande sobre : texte d'accroche + étagère de tranches, cliquable
+   vers /bibliotheque. Tokens globaux de Soara. */
+
+.section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 7vw 8px;
+}
+.inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.3fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  border-top: 1px solid var(--bord-l);
+  padding-top: 44px;
+}
+
+.text {
+  max-width: 360px;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--or-deep);
+}
+.text h2 {
+  font-family: var(--font-serif-display);
+  font-weight: 500;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 14px 0 0;
+  color: var(--encre);
+}
+.text h2 em {
+  font-style: italic;
+  font-weight: 400;
+}
+.intro {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: clamp(18px, 1.7vw, 21px);
+  line-height: 1.45;
+  color: var(--gris);
+  margin: 16px 0 0;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 22px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--encre);
+  text-decoration: none;
+  border-bottom: 1px solid var(--or);
+  padding-bottom: 3px;
+}
+
+/* Étagère cliquable */
+.shelfLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  min-height: 232px;
+  padding: 0 4px;
+}
+.board {
+  height: 7px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, #3d3326, #241d13);
+  box-shadow: 0 16px 24px -15px rgba(20, 15, 8, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.spine {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0 9px;
+  border-radius: 2px 1px 1px 2px;
+  box-shadow: inset -2px 0 4px -2px rgba(0, 0, 0, 0.22),
+    1px 0 0 rgba(0, 0, 0, 0.05);
+  transition: transform 0.45s var(--ease-out);
+}
+.spine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0 1px,
+    transparent 1px 3px
+  );
+}
+.shelfLink:hover .spine:nth-child(odd) {
+  transform: translateY(-6px);
+}
+.shelfLink:hover .spine:nth-child(even) {
+  transform: translateY(-11px);
+}
+.band {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.band i {
+  display: block;
+  width: 13px;
+  height: 1px;
+  background: var(--ac);
+}
+.sTitle {
+  flex: 1;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif-display);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.04;
+  padding: 6px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.sAuthor {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 10px;
+  opacity: 0.8;
+  padding-bottom: 4px;
+}
+
+@media (max-width: 860px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  .text {
+    max-width: none;
+  }
+  .shelf {
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .shelf::-webkit-scrollbar {
+    height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spine {
+    transition: none !important;
+  }
+}
