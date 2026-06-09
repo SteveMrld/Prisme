@@ -123,12 +123,14 @@ export default function RootLayout({
         {APPLE_SPLASH.map(s => (
           <link key={s.href} rel="apple-touch-startup-image" media={s.media} href={s.href} />
         ))}
+        {/* Privacy-friendly analytics by Plausible */}
         <Script
-          defer
-          data-domain="soara.fr"
-          src={`${process.env.NEXT_PUBLIC_PLAUSIBLE_HOST || 'https://plausible.io'}/js/script.js`}
+          src="https://plausible.io/js/pa-ensWIP0S1kx_PjlC_A8az.js"
           strategy="afterInteractive"
         />
+        <Script id="plausible-init" strategy="afterInteractive">
+          {`window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`}
+        </Script>
       </head>
       <body>
         <PageTransition>{children}</PageTransition>
