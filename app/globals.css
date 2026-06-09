@@ -11,6 +11,9 @@
   --bord:#D8D3C8;
   --bord-l:#E8E4DC;
   --or:#C8A96E;
+  /* Variante or saturée pour les marqueurs micro (dot 7px) qui se
+     perdaient sur fond blanc avec le ton champagne par défaut. */
+  --or-deep:#8C6F2E;
   --geo:#1A3E6B;
   --eco:#B86A1A;
   --tech:#4A2080;
@@ -74,6 +77,21 @@
   --stagger-base:  80ms;
   --stagger-loose: 120ms;
 }
+
+/* ── Couleur d'accent par rubrique ─────────────────────
+   data-cat sur n'importe quel conteneur propage une variable
+   --catColor que les enfants lisent (étiquettes uppercase, barre
+   verticale des dernières publications, etc.). Un seul point de
+   bascule, entièrement réversible : retirer ce bloc et tout
+   retombe au gris neutre. Ne définit AUCUNE couleur transverse,
+   chaque page choisit explicitement où consommer --catColor. */
+[data-cat="geo"]      { --catColor: var(--geo); }
+[data-cat="eco"]      { --catColor: var(--eco); }
+[data-cat="tech"]     { --catColor: var(--tech); }
+[data-cat="env"]      { --catColor: var(--env); }
+[data-cat="soc"]      { --catColor: var(--soc); }
+[data-cat="culture"]  { --catColor: var(--culture); }
+[data-cat="portrait"] { --catColor: var(--or-deep); }
 
 @media (max-width: 768px) {
   :root {

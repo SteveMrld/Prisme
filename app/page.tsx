@@ -252,7 +252,7 @@ export default async function HomePage({
       <section className={styles.homeTop}>
         <aside className={styles.homeTopLeft}>
           {UNDER_HERO_LEFT.map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htSideItem}>
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htSideItem} data-cat={a.category}>
               <span className={styles.cat}>{a.catLabel}</span>
               <h3 className={styles.htSideTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
               {a.description && <p className={styles.htSideDesc}>{a.description}</p>}
@@ -265,7 +265,7 @@ export default async function HomePage({
             <ul className={styles.zone1AlsoReadList}>
               {ZONE1_ALSO_READ.map(a => (
                 <li key={a.slug} className={styles.zone1AlsoReadItem}>
-                  <Link href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.zone1AlsoReadLink}>
+                  <Link href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.zone1AlsoReadLink} data-cat={a.category}>
                     <span className={styles.zone1AlsoReadCat}>{a.catLabel}</span>
                     <span className={styles.zone1AlsoReadTitle} dangerouslySetInnerHTML={{__html: a.title}} />
                   </Link>
@@ -300,7 +300,7 @@ export default async function HomePage({
 
         <aside className={styles.homeTopRight}>
           {UNDER_HERO_RIGHT.map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htRightItem}>
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.htRightItem} data-cat={a.category}>
               {a.image && (
                 <div className={styles.htRightImg}>
                   <img src={a.image} alt={a.title} />
@@ -383,7 +383,7 @@ export default async function HomePage({
 
         <div className={styles.gfSecondaryRow}>
           {GF_SECONDARY.map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfSecondary}>
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfSecondary} data-cat={a.category}>
               {a.image && (
                 <div className={styles.gfSecondaryImg}>
                   <img src={a.image} alt={a.title} />
@@ -408,7 +408,7 @@ export default async function HomePage({
 
         <div className={styles.gfFeatureRow}>
           {[...GF_TERTIARY.slice(0, 1), ...GF_QUATERNARY.slice(0, 2)].map(a => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfFeature}>
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfFeature} data-cat={a.category}>
               {a.image && (
                 <div className={styles.gfFeatureImg}>
                   <img src={a.image} alt={a.title} />
@@ -436,7 +436,7 @@ export default async function HomePage({
           <ul className={styles.gfMoreList}>
             {[...GF_TERTIARY.slice(1), ...GF_QUATERNARY.slice(2)].map(a => (
               <li key={a.slug} className={styles.gfMoreItem}>
-                <Link href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfMoreLink}>
+                <Link href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfMoreLink} data-cat={a.category}>
                   <span className={styles.gfMoreCat}>{a.catLabel}</span>
                   <h4 className={styles.gfMoreTitle} dangerouslySetInnerHTML={{__html: a.title}} />
                   <span className={styles.gfMoreMeta}>
@@ -526,8 +526,8 @@ export default async function HomePage({
         <div className={styles.rowCol}>
           <SectionHead label="Dernières publications" />
           {LATEST.map((a, i) => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.latestItem2}>
-              <div className={styles.latestItem2Bar} style={{background: a.catColor || '#C8A96E', width: i === 0 ? '4px' : '3px'}} />
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.latestItem2} data-cat={a.category}>
+              <div className={styles.latestItem2Bar} style={{width: i === 0 ? '6px' : '5px'}} />
               <div className={styles.rowItemBody}>
                 <div className={styles.latestItem2Top}>
                   <span className={styles.cat}>{a.catLabel}</span>
@@ -549,7 +549,7 @@ export default async function HomePage({
         <div className={styles.rowCol}>
           <SectionHead label="Les plus lus" />
           {POPULAR.map((a, i) => (
-            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.popularItem}>
+            <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.popularItem} data-cat={a.category}>
               <span className={styles.popularRank}>0{i + 1}</span>
               <div className={styles.rowItemBody}>
                 <span className={styles.cat}>{a.catLabel}</span>
@@ -578,7 +578,7 @@ export default async function HomePage({
           </div>
           <div className={styles.rediscoverGrid}>
             {REDISCOVER.map(a => (
-              <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rediscoverCard}>
+              <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rediscoverCard} data-cat={a.category}>
                 {a.image && (
                   <div className={styles.rediscoverImg}>
                     <img src={a.image} alt={a.title} loading="lazy" />

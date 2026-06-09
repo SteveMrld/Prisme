@@ -140,44 +140,39 @@
   transition: transform var(--dur-fast) var(--ease-out);
 }
 
-.navItem.active::after,
-.navItem:hover::after { transform: scaleX(1); }
+.navItem.active::after { transform: scaleX(1); }
 
-.geo::after { background: var(--geo); }
-.geo:hover { color: var(--geo); }
-.geo.active { color: var(--encre); background: color-mix(in srgb, var(--geo) 12%, transparent); }
+/* Couleur catégorielle réservée à l'état .active uniquement.
+   Le survol ne déclenche plus de coloration ni de filet : la couleur
+   signe l'entrée dans la rubrique, pas la simple proximité du curseur. */
+.geo::after      { background: var(--geo); }
+.geo.active      { background: color-mix(in srgb, var(--geo) 12%, transparent); }
 
-.eco::after { background: var(--eco); }
-.eco:hover { color: var(--eco); }
-.eco.active { color: var(--encre); background: color-mix(in srgb, var(--eco) 12%, transparent); }
+.eco::after      { background: var(--eco); }
+.eco.active      { background: color-mix(in srgb, var(--eco) 12%, transparent); }
 
-.tech::after { background: var(--tech); }
-.tech:hover { color: var(--tech); }
-.tech.active { color: var(--encre); background: color-mix(in srgb, var(--tech) 12%, transparent); }
+.tech::after     { background: var(--tech); }
+.tech.active     { background: color-mix(in srgb, var(--tech) 12%, transparent); }
 
-.env::after { background: var(--env); }
-.env:hover { color: var(--env); }
-.env.active { color: var(--encre); background: color-mix(in srgb, var(--env) 12%, transparent); }
+.env::after      { background: var(--env); }
+.env.active      { background: color-mix(in srgb, var(--env) 12%, transparent); }
 
-.soc::after { background: var(--soc); }
-.soc:hover { color: var(--soc); }
-.soc.active { color: var(--encre); background: color-mix(in srgb, var(--soc) 12%, transparent); }
+.soc::after      { background: var(--soc); }
+.soc.active      { background: color-mix(in srgb, var(--soc) 12%, transparent); }
 
 .sciences::after { background: var(--sciences); }
-.sciences:hover { color: var(--sciences); }
-.sciences.active { color: var(--encre); background: color-mix(in srgb, var(--sciences) 12%, transparent); }
+.sciences.active { background: color-mix(in srgb, var(--sciences) 12%, transparent); }
 
-.culture::after { background: var(--culture); }
-.culture:hover { color: var(--culture); }
-.culture.active { color: var(--encre); background: color-mix(in srgb, var(--culture) 12%, transparent); }
+.culture::after  { background: var(--culture); }
+.culture.active  { background: color-mix(in srgb, var(--culture) 12%, transparent); }
 
 .portrait::after { background: var(--portrait); }
-.portrait:hover { color: var(--portrait); }
-.portrait.active { color: var(--encre); background: color-mix(in srgb, var(--portrait) 12%, transparent); }
+.portrait.active { background: color-mix(in srgb, var(--portrait) 12%, transparent); }
 
-.concept::after { background: var(--concept); }
-.concept:hover { color: var(--concept); }
-.concept.active { color: var(--encre); background: color-mix(in srgb, var(--concept) 12%, transparent); }
+/* Onglets non catégoriels (Signal, Grands formats, Atlas, Rétrospective) :
+   teinte très discrète à l'actif, pas de couleur signature. */
+.concept::after  { background: var(--gris-m); }
+.concept.active  { background: color-mix(in srgb, var(--encre) 5%, transparent); }
 
 .signalDot {
   width: 6px;
@@ -203,8 +198,6 @@
   min-width: 200px;
   height: 36px;
 }
-
-.retro::after, .retro:hover, .retro.active { background: var(--or); color: var(--or); }
 
 /* ── RECHERCHE ── */
 .searchBtn {

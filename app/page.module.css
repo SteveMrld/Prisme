@@ -29,9 +29,19 @@
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #777;
-  display: block;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 4px;
+}
+.cat::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--catColor, transparent);
+  flex-shrink: 0;
 }
 .readTime {
   font-size: 11px;
@@ -382,9 +392,21 @@
 .zone1AlsoReadCat {
   font-family: var(--font-ui);
   font-size: 9px;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #888178;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.zone1AlsoReadCat::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--catColor, transparent);
+  flex-shrink: 0;
 }
 .zone1AlsoReadTitle {
   font-family: var(--font-serif-display);
@@ -940,10 +962,21 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #8B1A1A;
-  border-left: 2px solid #8B1A1A;
+  color: #555;
+  border-left: 2px solid var(--catColor, #8B1A1A);
   padding-left: 8px;
   width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.gfLeadEyebrow::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--catColor, transparent);
+  flex-shrink: 0;
 }
 .gfLeadTitle {
   font-family: var(--font-serif-display);
@@ -1161,9 +1194,21 @@
 .gfMoreCat {
   font-family: var(--font-ui);
   font-size: 9px;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #888178;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.gfMoreCat::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--catColor, transparent);
+  flex-shrink: 0;
 }
 .gfMoreTitle {
   font-family: var(--font-serif-display);
@@ -1561,6 +1606,7 @@
   width: 3px;
   align-self: stretch;
   flex-shrink: 0;
+  background: var(--catColor, var(--bord));
   opacity: 0.7;
   transition: opacity var(--dur-fast) var(--ease-out);
 }
