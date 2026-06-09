@@ -22,12 +22,12 @@ const PERIODS = [
   { id: '12mo', label: '12 mois' },
 ]
 
-function fmtNumber(n) {
+function fmtNumber(n: number | null | undefined) {
   if (n == null) return '—'
   return new Intl.NumberFormat('fr-FR').format(n)
 }
 
-function fmtDuration(seconds) {
+function fmtDuration(seconds: number | null | undefined) {
   if (seconds == null) return '—'
   const m = Math.floor(seconds / 60)
   const s = Math.round(seconds % 60)
@@ -35,7 +35,7 @@ function fmtDuration(seconds) {
   return `${m}m ${s.toString().padStart(2, '0')}s`
 }
 
-function fmtPercent(n) {
+function fmtPercent(n: number | null | undefined) {
   if (n == null) return '—'
   return `${Math.round(n)}%`
 }
@@ -44,10 +44,10 @@ export default function AdminAudienceClient() {
   const [authorized, setAuthorized] = useState(false)
   const [loading, setLoading] = useState(true)
   const [period, setPeriod] = useState('30d')
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<any>(null)
   const [state, setState] = useState('idle')
 
-  const load = useCallback(async (p) => {
+  const load = useCallback(async (p: string) => {
     setState('loading')
     try {
       const res = await fetch(`/api/admin/audience?period=${p}`)
@@ -78,7 +78,7 @@ export default function AdminAudienceClient() {
     })
   }, [load, period])
 
-  function changePeriod(p) {
+  function changePeriod(p: string) {
     setPeriod(p)
     if (authorized) load(p)
   }
@@ -87,7 +87,7 @@ export default function AdminAudienceClient() {
   if (!authorized) return <div className={styles.center}>Accès refusé.</div>
 
   const agg = data?.aggregate || {}
-  const series = (data?.timeseries || []).map(r => ({
+  const series = (data?.timeseries || []).map((r: any) => ({
     date: r.date,
     visiteurs: r.visitors,
     pages: r.pageviews,
@@ -183,7 +183,7 @@ export default function AdminAudienceClient() {
               <div className={styles.tableCard}>
                 <div className={styles.cardTitle}>Articles les plus lus</div>
                 <ul className={styles.list}>
-                  {(data.pages || []).map((r, i) => (
+                  {(data.pages || []).map((r: any, i: number) => (
                     <li key={i} className={styles.row}>
                       <span className={styles.rowLabel}>{r.page}</span>
                       <span className={styles.rowValue}>{fmtNumber(r.pageviews)}</span>
@@ -195,7 +195,7 @@ export default function AdminAudienceClient() {
               <div className={styles.tableCard}>
                 <div className={styles.cardTitle}>Sources de trafic</div>
                 <ul className={styles.list}>
-                  {(data.sources || []).map((r, i) => (
+                  {(data.sources || []).map((r: any, i: number) => (
                     <li key={i} className={styles.row}>
                       <span className={styles.rowLabel}>{r.source || 'Direct'}</span>
                       <span className={styles.rowValue}>{fmtNumber(r.visitors)}</span>
@@ -207,7 +207,7 @@ export default function AdminAudienceClient() {
               <div className={styles.tableCard}>
                 <div className={styles.cardTitle}>Appareils</div>
                 <ul className={styles.list}>
-                  {(data.devices || []).map((r, i) => (
+                  {(data.devices || []).map((r: any, i: number) => (
                     <li key={i} className={styles.row}>
                       <span className={styles.rowLabel}>{r.device}</span>
                       <span className={styles.rowValue}>{fmtNumber(r.visitors)}</span>
@@ -219,7 +219,7 @@ export default function AdminAudienceClient() {
               <div className={styles.tableCard}>
                 <div className={styles.cardTitle}>Pays</div>
                 <ul className={styles.list}>
-                  {(data.countries || []).map((r, i) => (
+                  {(data.countries || []).map((r: any, i: number) => (
                     <li key={i} className={styles.row}>
                       <span className={styles.rowLabel}>{r.country}</span>
                       <span className={styles.rowValue}>{fmtNumber(r.visitors)}</span>
