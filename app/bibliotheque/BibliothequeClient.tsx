@@ -102,20 +102,14 @@ export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
                 aria-pressed={i === active}
                 onClick={() => setActive(i)}
               >
-                {l.couverture ? (
-                  <img src={l.couverture} alt="" className={styles.spineCover} />
-                ) : (
-                  <>
-                    <span className={styles.band}>
-                      <i /><i />
-                    </span>
-                    <span className={styles.sTitle}>{l.titre}</span>
-                    <span className={styles.sAuthor}>{l.auteurCourt || l.auteur}</span>
-                    <span className={styles.band}>
-                      <i />
-                    </span>
-                  </>
-                )}
+                <span className={styles.band}>
+                  <i /><i />
+                </span>
+                <span className={styles.sTitle}>{l.titre}</span>
+                <span className={styles.sAuthor}>{l.auteurCourt || l.auteur}</span>
+                <span className={styles.band}>
+                  <i />
+                </span>
               </button>
             )
           })}
