@@ -12,6 +12,7 @@ type Livre = {
   editeur: string
   pays: string
   couverture?: string | null
+  spine?: [string, string, string]
   coupDeCoeur?: boolean
   lien?: string | null
   hauteur?: number
@@ -84,7 +85,7 @@ export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
       <div className={styles.shelfWrap}>
         <div className={styles.shelf}>
           {livres.map((l, i) => {
-            const tone = toneFor(i, total)
+            const tone = l.spine ?? toneFor(i, total)
             const spineStyle: CSSProperties = {
               height: (l.hauteur ?? 270) + 'px',
               width: (l.largeur ?? 32) + 'px',

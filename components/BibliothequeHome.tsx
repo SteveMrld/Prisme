@@ -9,6 +9,7 @@ type Livre = {
   auteur: string
   auteurCourt?: string
   couverture?: string | null
+  spine?: [string, string, string]
   hauteur?: number
   largeur?: number
 }
@@ -41,7 +42,7 @@ export default function BibliothequeHome() {
         >
           <div className={styles.shelf}>
             {items.map((l, i) => {
-              const tone = toneFor(i, total)
+              const tone = l.spine ?? toneFor(i, total)
               const h = Math.round((l.hauteur ?? 270) * 0.72)
               const spineStyle: CSSProperties = {
                 height: h + 'px',

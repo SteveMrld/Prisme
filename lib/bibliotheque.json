@@ -10,7 +10,12 @@
     "lien": null,
     "hauteur": 252,
     "largeur": 32,
-    "accroche": "Tesson longe les côtes atlantiques, de la Galice aux îles britanniques, en quête de ce que le monde a cessé de voir. Une prose ciselée qui fait du merveilleux une façon de résister au désenchantement."
+    "accroche": "Tesson longe les côtes atlantiques, de la Galice aux îles britanniques, en quête de ce que le monde a cessé de voir. Une prose ciselée qui fait du merveilleux une façon de résister au désenchantement.",
+    "spine": [
+      "#4E80AE",
+      "#F2EFE8",
+      "#C8A96E"
+    ]
   },
   {
     "titre": "Les Yeux de Mona",
@@ -23,7 +28,12 @@
     "lien": null,
     "hauteur": 268,
     "largeur": 33,
-    "accroche": "Un grand-père emmène sa petite-fille devant cinquante-deux chefs-d'œuvre, un par semaine, avant qu'elle ne risque de perdre la vue. Une éducation du regard tendre et lumineuse, qui donne envie de retourner au musée."
+    "accroche": "Un grand-père emmène sa petite-fille devant cinquante-deux chefs-d'œuvre, un par semaine, avant qu'elle ne risque de perdre la vue. Une éducation du regard tendre et lumineuse, qui donne envie de retourner au musée.",
+    "spine": [
+      "#15120F",
+      "#EFE7D6",
+      "#C8A96E"
+    ]
   },
   {
     "titre": "Veiller sur elle",
@@ -36,7 +46,12 @@
     "lien": null,
     "hauteur": 278,
     "largeur": 32,
-    "accroche": "Dans l'Italie qui bascule vers le fascisme, Mimo, sculpteur de génie né de rien, se lie à Viola, aristocrate empêchée. Un roman ample et tenu, profondément romanesque, qui mérite son Goncourt 2023."
+    "accroche": "Dans l'Italie qui bascule vers le fascisme, Mimo, sculpteur de génie né de rien, se lie à Viola, aristocrate empêchée. Un roman ample et tenu, profondément romanesque, qui mérite son Goncourt 2023.",
+    "spine": [
+      "#5C84A2",
+      "#F2EFE8",
+      "#C8A96E"
+    ]
   },
   {
     "titre": "Jacaranda",
@@ -49,7 +64,12 @@
     "lien": null,
     "hauteur": 264,
     "largeur": 36,
-    "accroche": "Après Petit pays, Gaël Faye revient au Rwanda avec Milan, qui remonte le fil d'un secret familial sous l'ombre d'un jacaranda. Plus retenu et plus adulte que son aîné, d'une douceur déchirante, justement couronné du Renaudot 2024."
+    "accroche": "Après Petit pays, Gaël Faye revient au Rwanda avec Milan, qui remonte le fil d'un secret familial sous l'ombre d'un jacaranda. Plus retenu et plus adulte que son aîné, d'une douceur déchirante, justement couronné du Renaudot 2024.",
+    "spine": [
+      "#F1E7B8",
+      "#1E1B16",
+      "#8C6F2E"
+    ]
   },
   {
     "titre": "Aucune nuit ne sera noire",
@@ -62,7 +82,12 @@
     "lien": null,
     "hauteur": 296,
     "largeur": 33,
-    "accroche": "Fatou Diome y parle d'un grand-père disparu comme on parle d'une boussole que l'on aurait égarée. Un récit de transmission et de deuil porté par une langue charnue, parmi ses pages les plus intimes."
+    "accroche": "Fatou Diome y parle d'un grand-père disparu comme on parle d'une boussole que l'on aurait égarée. Un récit de transmission et de deuil porté par une langue charnue, parmi ses pages les plus intimes.",
+    "spine": [
+      "#0B5894",
+      "#EFE7D6",
+      "#C8A96E"
+    ]
   },
   {
     "titre": "Classes figées",
@@ -75,7 +100,12 @@
     "lien": null,
     "hauteur": 274,
     "largeur": 33,
-    "accroche": "Agathe Cagé décrit une France dont l'ascenseur social s'est arrêté, une société de classes figées où la mobilité promise n'est plus tenue. Un essai politique nerveux et documenté, qui nomme l'immobilité française sans jamais s'y résigner."
+    "accroche": "Agathe Cagé décrit une France dont l'ascenseur social s'est arrêté, une société de classes figées où la mobilité promise n'est plus tenue. Un essai politique nerveux et documenté, qui nomme l'immobilité française sans jamais s'y résigner.",
+    "spine": [
+      "#08ABA6",
+      "#10302E",
+      "#0C5A50"
+    ]
   },
   {
     "titre": "Le Monde sans fin",
@@ -88,7 +118,12 @@
     "lien": null,
     "hauteur": 258,
     "largeur": 31,
-    "accroche": "Jean-Marc Jancovici explique l'énergie et le climat au dessinateur Christophe Blain, et à nous avec lui. La bande dessinée la plus claire qui soit pour comprendre notre dépendance aux énergies fossiles."
+    "accroche": "Jean-Marc Jancovici explique l'énergie et le climat au dessinateur Christophe Blain, et à nous avec lui. La bande dessinée la plus claire qui soit pour comprendre notre dépendance aux énergies fossiles.",
+    "spine": [
+      "#E2BE44",
+      "#1E1B16",
+      "#8C6F2E"
+    ]
   },
   {
     "titre": "La Sage-femme d'Auschwitz",
@@ -101,7 +136,12 @@
     "lien": null,
     "hauteur": 292,
     "largeur": 34,
-    "accroche": "Inspiré d'une histoire vraie, le roman suit une sage-femme déportée qui continue, dans l'enfer du camp, de mettre des enfants au monde. Un récit bouleversant sur la vie tenue contre tout."
+    "accroche": "Inspiré d'une histoire vraie, le roman suit une sage-femme déportée qui continue, dans l'enfer du camp, de mettre des enfants au monde. Un récit bouleversant sur la vie tenue contre tout.",
+    "spine": [
+      "#6E8498",
+      "#F2EFE8",
+      "#C8A96E"
+    ]
   },
   {
     "titre": "Le Point Zéro",
@@ -114,7 +154,12 @@
     "lien": null,
     "hauteur": 286,
     "largeur": 35,
-    "accroche": "Philosophe et entrepreneur, Boris Sirbey lit notre époque comme la fin simultanée de plusieurs grands cycles, économique, politique, anthropologique, et le seuil d'une bascule. Un essai ample et spéculatif, qui assume sa part de vision et s'adresse à ceux qui préfèrent penser le temps présent plutôt que le subir."
+    "accroche": "Philosophe et entrepreneur, Boris Sirbey lit notre époque comme la fin simultanée de plusieurs grands cycles, économique, politique, anthropologique, et le seuil d'une bascule. Un essai ample et spéculatif, qui assume sa part de vision et s'adresse à ceux qui préfèrent penser le temps présent plutôt que le subir.",
+    "spine": [
+      "#2A1A1C",
+      "#EFE7D6",
+      "#C8A96E"
+    ]
   },
   {
     "titre": "La Stratégie du Caméléon",
@@ -127,7 +172,12 @@
     "lien": null,
     "hauteur": 270,
     "largeur": 32,
-    "accroche": "Sémiologue du langage, Élodie Mielczareck décortique ce que disent nos mots et nos gestes quand nous croyons ne rien révéler. Un guide vif et accessible pour lire la communication non verbale et mieux comprendre ceux qui nous font face."
+    "accroche": "Sémiologue du langage, Élodie Mielczareck décortique ce que disent nos mots et nos gestes quand nous croyons ne rien révéler. Un guide vif et accessible pour lire la communication non verbale et mieux comprendre ceux qui nous font face.",
+    "spine": [
+      "#C83A40",
+      "#F6E9E3",
+      "#F0C58A"
+    ]
   },
   {
     "titre": "Sur les hauteurs des chutes du Niagara",
@@ -140,6 +190,11 @@
     "lien": null,
     "hauteur": 300,
     "largeur": 34,
-    "accroche": "Un premier roman qui traverse l'esclavage, la liberté et la quête de soi. Une écriture lyrique qui ne recule pas devant les grands sujets et porte une vraie ambition romanesque."
+    "accroche": "Un premier roman qui traverse l'esclavage, la liberté et la quête de soi. Une écriture lyrique qui ne recule pas devant les grands sujets et porte une vraie ambition romanesque.",
+    "spine": [
+      "#B0703A",
+      "#F6ECDE",
+      "#F0C58A"
+    ]
   }
 ]
