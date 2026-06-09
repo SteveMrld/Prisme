@@ -3,7 +3,7 @@
 import { useState, type CSSProperties } from 'react'
 import Link from 'next/link'
 import styles from './bibliotheque.module.css'
-import { toneFor } from '../../lib/bibliotheque-palette'
+import { toneFor, type Tone } from '../../lib/bibliotheque-palette'
 
 type Livre = {
   titre: string
@@ -21,18 +21,42 @@ type Livre = {
 
 const INTRO = `Il y a des livres que l'on referme et que l'on garde près de soi, parce qu'ils ont déplacé quelque chose en nous. Cette page leur est réservée. J'y choisis, au gré de mes lectures, un ouvrage dont j'ai envie de parler, et je prends le temps de dire pourquoi il compte. Des coups de cœur assumés, qui éclairent une part du monde que l'on regarde trop rarement. On y croisera des voix venues du Sud que l'on traduit trop tard, des romans, des essais, des textes anciens, à la seule condition qu'ils tiennent encore debout longtemps après qu'on les a quittés. Je vous les confie comme on glisse un livre dans la main de quelqu'un dont on espère qu'il l'aimera autant.`
 
+function CoverFace({ livre, tone }: { livre: Livre; tone: Tone }) {
+  const [err, setErr] = useState(false)
+  const style: CSSProperties = {
+    background: tone[0],
+    color: tone[1],
+    ['--ac' as any]: tone[2],
+  }
+  return (
+    <div className={styles.dCover} style={style}>
+      {livre.couverture && !err ? (
+        <img
+          src={livre.couverture}
+          alt={`Couverture de ${livre.titre}, ${livre.auteur}`}
+          className={styles.dCoverImg}
+          onError={() => setErr(true)}
+        />
+      ) : (
+        <>
+          <span className={styles.dcPub}>{livre.editeur}</span>
+          <span className={styles.dcBands}>
+            <i /><i />
+          </span>
+          <span className={styles.dcTitle}>{livre.titre}</span>
+          <span className={styles.dcAuthor}>{livre.auteur}</span>
+        </>
+      )}
+    </div>
+  )
+}
+
 export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
   const startIndex = Math.max(0, livres.findIndex((l) => l.coupDeCoeur))
   const [active, setActive] = useState(startIndex)
   const total = livres.length
   const current = livres[active]
   const curTone = toneFor(active, total)
-
-  const coverStyle: CSSProperties = {
-    background: curTone[0],
-    color: curTone[1],
-    ['--ac' as any]: curTone[2],
-  }
 
   return (
     <div className={styles.page}>
@@ -85,24 +109,7 @@ export default function BibliothequeClient({ livres }: { livres: Livre[] }) {
       </div>
 
       <section className={styles.detail} key={active}>
-        <div className={styles.dCover} style={coverStyle}>
-          {current.couverture ? (
-            <img
-              src={current.couverture}
-              alt={`Couverture de ${current.titre}, ${current.auteur}`}
-              className={styles.dCoverImg}
-            />
-          ) : (
-            <>
-              <span className={styles.dcPub}>{current.editeur}</span>
-              <span className={styles.dcBands}>
-                <i /><i />
-              </span>
-              <span className={styles.dcTitle}>{current.titre}</span>
-              <span className={styles.dcAuthor}>{current.auteur}</span>
-            </>
-          )}
-        </div>
+        <CoverFace livre={current} tone={curTone} />
         <div className={styles.dBody}>
           {current.coupDeCoeur && <span className={styles.kicker}>Coup de cœur</span>}
           <h2>{current.titre}</h2>
