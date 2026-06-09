@@ -1,5 +1,21 @@
 [
   {
+    "slug": "epstein",
+    "title": "L’impunité comme système",
+    "description": "Ce n’est pas l’histoire d’un homme. C’est l’histoire de tout ce qui a dû fonctionner pour que cet homme reste libre aussi longtemps.",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur de Soara",
+    "category": "geo",
+    "categoryLabel": "Géopolitique",
+    "date": "2026-06-09",
+    "readTime": "9",
+    "image": "/visuels/epstein-cover.png",
+    "featured": true,
+    "premium": false,
+    "avif": true,
+    "imageCredit": "© Soara"
+  },
+  {
     "slug": "portes",
     "title": "La porte par laquelle on entre",
     "description": "On croit connaître les gens. On croit les avoir vus, compris, classés. Mais la plupart du temps, on n’a pas connu la personne. On a connu la porte par laquelle on est entré pour la découvrir.",
