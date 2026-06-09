@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react'
+import Script from 'next/script'
 import type { Metadata, Viewport } from 'next'
 import { Source_Serif_4 } from 'next/font/google'
 import './globals.css'
@@ -122,6 +123,12 @@ export default function RootLayout({
         {APPLE_SPLASH.map(s => (
           <link key={s.href} rel="apple-touch-startup-image" media={s.media} href={s.href} />
         ))}
+        <Script
+          defer
+          data-domain="soara.fr"
+          src={`${process.env.NEXT_PUBLIC_PLAUSIBLE_HOST || 'https://plausible.io'}/js/script.js`}
+          strategy="afterInteractive"
+        />
       </head>
       <body>
         <PageTransition>{children}</PageTransition>

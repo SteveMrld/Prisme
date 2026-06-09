@@ -20,6 +20,12 @@ const CARDS = [
     desc: "Gérer les emplacements éditoriaux sponsorisés et suivre les performances.",
     meta: 'Brand Studio',
   },
+  {
+    href: '/admin/audience',
+    title: 'Audience',
+    desc: "Fréquentation, articles les plus lus, sources et appareils. Les chiffres à présenter aux régies et annonceurs.",
+    meta: 'Mesure',
+  },
 ]
 
 export default function AdminDashboard() {

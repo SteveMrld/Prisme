@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { createClient } from '../lib/supabase'
 import styles from './AdminNav.module.css'
 
-type Section = 'dashboard' | 'articles' | 'publicite'
+type Section = 'dashboard' | 'articles' | 'publicite' | 'audience'
 
 export default function AdminNav({ active }: { active?: Section }) {
   async function logout() {
@@ -30,6 +30,12 @@ export default function AdminNav({ active }: { active?: Section }) {
           className={active === 'publicite' ? `${styles.link} ${styles.active}` : styles.link}
         >
           Publicité
+        </Link>
+        <Link
+          href="/admin/audience"
+          className={active === 'audience' ? `${styles.link} ${styles.active}` : styles.link}
+        >
+          Audience
         </Link>
       </div>
 
