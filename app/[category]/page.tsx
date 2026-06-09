@@ -5,6 +5,8 @@ import articlesData from '../../lib/articles.json'
 import styles from './category.module.css'
 import { AnimBand, AnimFeatured, AnimGrid, AnimCard } from './CategoryAnimations'
 import { formatReadTime, stripHtml } from '../../lib/format'
+import CategorySidebar from '../../components/CategorySidebar'
+import type { CategoryKey } from '../../lib/category-modules'
 
 /* ── Config rubriques ── */
 const CATEGORIES: Record<string, {
@@ -146,90 +148,101 @@ export default function CategoryPage({ params }: { params: { category: string } 
           <Link href="/" className={styles.emptyBack}>← Retour à l'accueil</Link>
         </div>
       ) : (
-        <div className={styles.content}>
+        <div className={styles.layout} data-cat={categoryKey}>
+          <div className={styles.mainCol}>
 
-          {/* PORTRAITS : liste vignettes horizontales */}
-          {params.category === "portraits" ? (
-            <div style={{padding:'0 20px'}}>
-              {articles.map((article: any) => (
-                <Link key={article.slug} href={`/articles/${article.slug}`} style={{display:'flex',alignItems:'center',gap:'16px',padding:'16px 0',borderBottom:'1px solid #eee',textDecoration:'none',color:'inherit'}}>
-                  {article.image && (
-                    <div style={{width:'88px',height:'88px',flexShrink:0,borderRadius:'4px',overflow:'hidden',background:'#f5f5f5'}}>
-                      <img src={article.image} alt={article.title.replace(/<[^>]+>/g,'')} style={{width:'100%',height:'100%',objectFit:'contain',objectPosition:'center top',display:'block'}} />
-                    </div>
-                  )}
-                  <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:'9px',fontWeight:700,letterSpacing:'2px',textTransform:'uppercase',color:'#7B5380',marginBottom:'5px',fontFamily:"'DM Sans',sans-serif"}}>Portrait · {formatReadTime(article.readTime, 'short')}{(article as any).premium ? ' · ★' : ''}</div>
-                    <div style={{fontFamily:"'Playfair Display',serif",fontSize:'16px',lineHeight:1.25,color:'#111',fontWeight:400,marginBottom:'4px'}} dangerouslySetInnerHTML={{__html: article.title.replace(/\n/g,' ')}} />
-                    <div style={{fontSize:'12px',color:'#888',fontStyle:'italic',fontFamily:"'Playfair Display',serif",lineHeight:1.4,display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden'}}>{article.description}</div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-          <AnimFeatured>
-          {/* ARTICLE FEATURED */}
-          {featured && (
-            <Link href={featured.grandFormatUrl || `/articles/${featured.slug}`} className={styles.featured}>
-              {featured.image && (
-                <div className={styles.featuredImgWrap}>
-                  <img src={featured.image} alt={stripHtml(featured.title)} className={styles.featuredImg} />
-                </div>
-              )}
-              <div className={styles.featuredBody}>
-                <div className={styles.featuredEyebrow}>
-                  <span className={styles.featuredTag} style={{ background: config.color }}>
-                    {config.label}
-                  </span>
-                  <span className={styles.featuredTime}>{formatReadTime(featured.readTime, 'short')}</span>
-                </div>
-                <h2 className={styles.featuredTitle}>
-                  <span dangerouslySetInnerHTML={{ __html: featured.title.replace(/\n/g, ' ') }} />
-                </h2>
-                {(featured as any).premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content'}}>★ PREMIUM</span>}
-                <p className={styles.featuredDeck}>{featured.description}</p>
-                <span className={styles.featuredCta} style={{ color: config.color }}>
-                  Lire l'analyse →
-                </span>
-              </div>
-            </Link>
-          )}
-          </AnimFeatured>
-          )}
-
-          {/* GRILLE DES AUTRES ARTICLES */}
-          {rest.length > 0 && params.category !== "portraits" && (
-            <AnimGrid className={styles.grid}>
-              {rest.map(article => (
-                <AnimCard key={article.slug}>
-                <Link href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.card}>
-                  {article.image && (
-                    <div className={params.category === "portraits" ? styles.cardImgWrapPortrait : styles.cardImgWrap}>
-                      <img src={article.image} alt={stripHtml(article.title)} className={params.category === "portraits" ? styles.cardImgPortrait : styles.cardImg} />
-                    </div>
-                  )}
-                  <div className={styles.cardBody}>
-                    <div className={styles.cardEyebrow}>
-                      <span className={styles.cardTime}>{formatReadTime(article.readTime, 'short')}</span>
-                    </div>
-                    <h3 className={styles.cardTitle}>
-                      <span dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }} />
-                    </h3>
-                    {(article as any).premium && <span style={{display:'inline-block',background:'#C8A96E',color:'#fff',fontFamily:"'DM Sans',sans-serif",fontSize:'8px',fontWeight:700,letterSpacing:'1.5px',textTransform:'uppercase',padding:'3px 8px',borderRadius:'3px',width:'fit-content'}}>★ PREMIUM</span>}
-                    <p className={styles.cardDeck}>{article.description}</p>
-                    {(article as any).author && (
-                      <div className={styles.cardAuthor}>Par {(article as any).author}</div>
+            {/* PORTRAITS : liste vignettes horizontales spécifique */}
+            {params.category === "portraits" ? (
+              <div className={styles.portraitsList}>
+                {articles.map((article: any) => (
+                  <Link key={article.slug} href={`/articles/${article.slug}`} className={styles.portraitItem}>
+                    {article.image && (
+                      <div className={styles.portraitImg}>
+                        <img src={article.image} alt={stripHtml(article.title)} />
+                      </div>
                     )}
-                    <span className={styles.cardCta} style={{ color: config.color }}>
-                      Lire →
-                    </span>
-                  </div>
-                  <div className={styles.cardAccent} style={{ background: config.color }} />
-                </Link>
-                </AnimCard>
-              ))}
-            </AnimGrid>
-          )}
+                    <div className={styles.portraitBody}>
+                      <div className={styles.portraitEyebrow}>
+                        Portrait · {formatReadTime(article.readTime, 'short')}{(article as any).premium ? ' · ★' : ''}
+                      </div>
+                      <div className={styles.portraitTitle} dangerouslySetInnerHTML={{__html: article.title.replace(/\n/g,' ')}} />
+                      {article.description && (
+                        <div className={styles.portraitDesc}>{article.description}</div>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <>
+                <AnimFeatured>
+                  {/* ARTICLE FEATURED */}
+                  {featured && (
+                    <Link href={featured.grandFormatUrl || `/articles/${featured.slug}`} className={styles.featured}>
+                      {featured.image && (
+                        <div className={styles.featuredImgWrap}>
+                          <img src={featured.image} alt={stripHtml(featured.title)} className={styles.featuredImg} />
+                        </div>
+                      )}
+                      <div className={styles.featuredBody}>
+                        <div className={styles.featuredEyebrow}>
+                          <span className={styles.featuredTag} style={{ background: config.color }}>
+                            {config.label}
+                          </span>
+                          <span className={styles.featuredTime}>{formatReadTime(featured.readTime, 'short')}</span>
+                        </div>
+                        <h2 className={styles.featuredTitle}>
+                          <span dangerouslySetInnerHTML={{ __html: featured.title.replace(/\n/g, ' ') }} />
+                        </h2>
+                        {(featured as any).premium && <span className={styles.premiumBadge}>★ Premium</span>}
+                        <p className={styles.featuredDeck}>{featured.description}</p>
+                        <span className={styles.featuredCta} style={{ color: config.color }}>
+                          Lire l'analyse →
+                        </span>
+                      </div>
+                    </Link>
+                  )}
+                </AnimFeatured>
+
+                {/* LISTE VERTICALE DES AUTRES ARTICLES (deux colonnes oblige) */}
+                {rest.length > 0 && (
+                  <AnimGrid className={styles.articleList}>
+                    {rest.map(article => (
+                      <AnimCard key={article.slug}>
+                        <Link href={article.grandFormatUrl || `/articles/${article.slug}`} className={styles.articleRow}>
+                          {article.image && (
+                            <div className={styles.articleImg}>
+                              <img src={article.image} alt={stripHtml(article.title)} />
+                            </div>
+                          )}
+                          <div className={styles.articleBody}>
+                            <div className={styles.articleEyebrow}>
+                              <span className={styles.articleCat} style={{ color: config.color }}>{config.label}</span>
+                              <span className={styles.articleTime}>{formatReadTime(article.readTime, 'short')}</span>
+                              {(article as any).premium && <span className={styles.articlePremium}>★ Premium</span>}
+                            </div>
+                            <h3 className={styles.articleTitle}>
+                              <span dangerouslySetInnerHTML={{ __html: article.title.replace(/\n/g, ' ') }} />
+                            </h3>
+                            {article.description && (
+                              <p className={styles.articleDeck}>{article.description}</p>
+                            )}
+                            {(article as any).author && (
+                              <div className={styles.articleAuthor}>Par {(article as any).author}</div>
+                            )}
+                          </div>
+                        </Link>
+                      </AnimCard>
+                    ))}
+                  </AnimGrid>
+                )}
+              </>
+            )}
+          </div>
+
+          <div className={styles.sideCol}>
+            <CategorySidebar category={categoryKey as CategoryKey} />
+          </div>
         </div>
       )}
 

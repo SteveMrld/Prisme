@@ -56,13 +56,58 @@
   padding: 0 64px 64px;
 }
 
+/* ── LAYOUT 2 COLONNES ──
+   Colonne principale à gauche (souple), colonne de droite sticky
+   d'environ 320 px, séparées par une gouttière nette avec filet
+   vertical. Sous 1024 px, la colonne de droite passe sous la
+   principale en pleine largeur. */
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 64px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+.mainCol { min-width: 0; }
+.sideCol { min-width: 0; }
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 48px;
+    padding: 0 48px 80px;
+  }
+  .sideCol {
+    border-left: 1px solid var(--bord);
+    padding-left: 32px;
+    align-self: start;
+    position: sticky;
+    top: 88px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+  /* Masquer la scrollbar de la sidebar sticky tout en gardant
+     le scroll fonctionnel quand le contenu déborde. */
+  .sideCol::-webkit-scrollbar { width: 0; background: transparent; }
+  .sideCol { scrollbar-width: none; }
+}
+
+@media (min-width: 1280px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 56px;
+  }
+}
+
 /* ── FEATURED ── */
 .featured {
   display: grid;
-  grid-template-columns: 460px 1fr;
+  grid-template-columns: minmax(280px, 0.95fr) 1fr;
   text-decoration: none;
   color: inherit;
   border-bottom: 2px solid var(--encre);
+  margin-bottom: 32px;
   transition: background-color var(--dur-fast) var(--ease-out);
 }
 
@@ -106,8 +151,8 @@
   padding: 48px 52px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 18px;
   border-left: 1px solid var(--bord);
 }
 
@@ -148,7 +193,6 @@
   font-style: italic;
   color: var(--gris);
   line-height: 1.65;
-  flex: 1;
 }
 
 .featuredCta {
@@ -485,4 +529,202 @@
   flex-shrink: 0;
   position: relative;
   top: -1px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   LISTE VERTICALE des articles (refonte deux colonnes).
+   Remplace l'ancienne grille 3 colonnes : vignette à gauche,
+   bloc texte à droite, filets fins entre items. Pensée pour
+   une colonne main rétrécie par la sidebar.
+═══════════════════════════════════════════════════════ */
+.articleList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--bord);
+}
+.articleRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--bord);
+  text-decoration: none;
+  color: inherit;
+  align-items: flex-start;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.articleRow:hover { background: var(--papier); }
+.articleRow:last-child { border-bottom: none; }
+
+.articleImg {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #F5F4F0;
+}
+.articleImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.articleRow:hover .articleImg img { transform: scale(1.02); }
+
+.articleBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.articleEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+.articleCat {
+  font-weight: 700;
+}
+.articleTime {
+  color: var(--gris-l);
+  letter-spacing: 1.4px;
+}
+.articlePremium {
+  background: #C8A96E;
+  color: #fff;
+  padding: 2px 7px;
+  letter-spacing: 1.4px;
+  font-size: 8px;
+}
+.articleTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(20px, 2.4vw, 24px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.3px;
+  color: var(--encre);
+  margin: 0;
+}
+.articleTitle em { font-style: italic; }
+.articleDeck {
+  font-family: var(--font-serif-text);
+  font-size: 15.5px;
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.articleAuthor {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  margin-top: 2px;
+}
+
+@media (max-width: 700px) {
+  .articleRow {
+    grid-template-columns: 120px 1fr;
+    gap: 14px;
+    padding: 18px 0;
+  }
+  .articleTitle { font-size: 17px; }
+  .articleDeck {
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PORTRAITS : liste vignettes (extraction de l'inline style)
+═══════════════════════════════════════════════════════ */
+.portraitsList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--bord);
+}
+.portraitItem {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--bord);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.portraitItem:hover { background: var(--papier); }
+.portraitItem:last-child { border-bottom: none; }
+
+.portraitImg {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #F5F4F0;
+}
+.portraitImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.portraitBody {
+  flex: 1;
+  min-width: 0;
+}
+.portraitEyebrow {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--portrait);
+  margin-bottom: 6px;
+}
+.portraitTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(17px, 2.2vw, 20px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  color: var(--encre);
+  margin-bottom: 4px;
+}
+.portraitDesc {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gris);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Badge Premium réutilisable */
+.premiumBadge {
+  display: inline-block;
+  width: fit-content;
+  background: #C8A96E;
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
 }

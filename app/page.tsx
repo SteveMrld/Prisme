@@ -9,6 +9,7 @@ import BibliothequeHome from '../components/BibliothequeHome'
 import AdSlot from '../components/AdSlot'
 import HomeInterviewBanner from '../components/HomeInterviewBanner'
 import { FleuronIcon } from '../components/LettresIcons'
+import { TV_EPISODES } from '../lib/tv-episodes'
 import { getActiveAd } from '../lib/ads'
 import styles from './page.module.css'
 import Link from 'next/link'
@@ -41,16 +42,6 @@ function withCatLabel<T extends { category: string }>(a: T) {
 // LEAD et 1er SECONDAIRE des grands formats : jugement éditorial figé.
 const GF_LEAD_SLUG = 'chambre-ratification'
 const GF_SECONDARY_1_SLUG = 'terres-rares'
-
-// TV : 6 épisodes fixes (catalogue clos, peu de valeur à faire tourner).
-const TV_EPISODES = [
-  { id:'01', title:"L'Inde, le siècle qui vient",             duration:'1 min 19', href:'/tv?ep=01', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_inde_final-1_hitfsr.jpg' },
-  { id:'02', title:"L'Afrique : ce qu'on ne vous a pas appris",duration:'2 min 02', href:'/tv?ep=02', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_afrique_ep2-1_xp6mvu.jpg' },
-  { id:'03', title:"La biologie devient un logiciel",          duration:'2 min 07', href:'/tv?ep=03', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_biologie_ep3_ouqzr4.jpg' },
-  { id:'04', title:"L'arme qui a failli nous tuer",            duration:'2 min 25', href:'/tv?ep=04', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_arme_ep4_eo7uyk.jpg' },
-  { id:'05', title:"8 hommes. 3,5 milliards.",                  duration:'2 min 07', href:'/tv?ep=05', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg' },
-  { id:'06', title:"Nous sommes l'astéroïde",                  duration:'1 min 49', href:'/tv?ep=06', thumb:'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_640,h_360,c_fill,f_jpg,q_80/soara_asteroide_ep6_qkipn3.jpg' },
-]
 
 const PORTRAITS_BASE = ['morin','obama','morrison','musk','tutu','nooyi'].map(art)
 

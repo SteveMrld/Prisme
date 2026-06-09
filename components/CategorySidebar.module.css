@@ -1,0 +1,358 @@
+/* ═══════════════════════════════════════════════════════
+   Colonne droite des pages catégorie. Modules éditoriaux sobres,
+   accent en couleur de rubrique via --catColor hérité du conteneur
+   .main de la page catégorie (data-cat). Largeur cible : ~320 px
+   en desktop, pleine largeur sous tablette.
+═══════════════════════════════════════════════════════ */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: var(--encre);
+}
+
+.adSlotReserved {
+  /* Pas de hauteur fixée tant que l'AdSlot n'est pas branché. */
+  min-height: 0;
+}
+
+/* ── Module générique ───────────────────────────────── */
+.module {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--encre);
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--catColor, var(--encre));
+}
+
+.moreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: 4px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.moreLink:hover { color: var(--encre); }
+
+/* ── Liens articles compacts (Ailleurs sur Soara) ──── */
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.linkItem {
+  border-bottom: 1px solid var(--bord-l);
+}
+.linkItem:last-child { border-bottom: none; }
+.linkRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.linkRow:hover { opacity: 0.7; }
+.linkCat {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+}
+.linkTitle {
+  font-family: var(--font-serif-display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--encre);
+  letter-spacing: -0.15px;
+}
+
+/* ── Liste avec vignettes carrées (Portraits, Grands formats) ── */
+.thumbList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.thumbItem {
+  border-bottom: 1px solid var(--bord-l);
+  padding-bottom: 12px;
+}
+.thumbItem:last-child { border-bottom: none; padding-bottom: 0; }
+.thumbRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.thumbRow:hover { opacity: 0.75; }
+.thumbImg {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--catColor, var(--bord)) 12%, var(--blanc));
+}
+.thumbImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.thumbTitle {
+  font-family: var(--font-serif-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--encre);
+  letter-spacing: -0.15px;
+}
+
+/* ── Lettre du mardi (encart) ───────────────────────── */
+.lettreLink {
+  display: flex;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  padding: 14px 0 6px;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.lettreLink:hover { opacity: 0.7; }
+.lettrePicto {
+  flex-shrink: 0;
+  color: var(--gris-m);
+  padding-top: 2px;
+}
+.lettreBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.lettreNum {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+}
+.lettreTitle {
+  font-family: var(--font-serif-display);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--encre);
+  letter-spacing: -0.2px;
+}
+.lettreTeaser {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--gris);
+}
+
+/* ── Soara TV ───────────────────────────────────────── */
+.tvLink {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.tvLink:hover { opacity: 0.85; }
+.tvLink:hover .tvImg img { transform: scale(1.02); }
+.tvImg {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1A1A1A;
+}
+.tvImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.tvPlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.tvNum {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+}
+.tvTitle {
+  font-family: var(--font-serif-display);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--encre);
+  letter-spacing: -0.2px;
+}
+
+/* ── Rétrospective ──────────────────────────────────── */
+.retroLink {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  padding: 4px 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.retroLink:hover { opacity: 0.75; }
+.retroMonth {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+}
+.retroTitle {
+  font-family: var(--font-serif-display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--encre);
+  letter-spacing: -0.2px;
+}
+.retroStat {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 10px 12px;
+  background: color-mix(in srgb, var(--catColor, var(--encre)) 8%, var(--blanc));
+}
+.retroStatNum {
+  font-family: var(--font-serif-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--catColor, var(--encre));
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.retroStatUnit {
+  font-family: var(--font-serif-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--catColor, var(--encre));
+}
+.retroStatLabel {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--gris);
+  flex-basis: 100%;
+}
+
+/* ── Indicateurs ────────────────────────────────────── */
+.indicList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.indicItem {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--bord-l);
+}
+.indicItem:last-child { border-bottom: none; }
+.indicLabel {
+  font-family: var(--font-serif-display);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--encre);
+  letter-spacing: -0.1px;
+}
+.indicValue {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--encre);
+}
+.indicDelta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--gris-m);
+}
+.indicDelta[data-trend="up"]   { color: #2D6B4A; }
+.indicDelta[data-trend="down"] { color: #7A2D2D; }
+
+/* ── Newsletter compact ─────────────────────────────── */
+.newsletterCopy {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gris);
+  margin: 0;
+}
+.newsletterCta {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 6px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--encre);
+  text-decoration: none;
+  border-bottom: 1px solid var(--encre);
+  padding-bottom: 2px;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.newsletterCta:hover { opacity: 0.6; }
