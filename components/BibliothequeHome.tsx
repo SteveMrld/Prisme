@@ -9,7 +9,7 @@ type Livre = {
   auteur: string
   auteurCourt?: string
   couverture?: string | null
-  spine?: [string, string, string]
+  spine?: string[]
   hauteur?: number
   largeur?: number
 }

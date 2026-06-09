@@ -12,7 +12,7 @@ type Livre = {
   editeur: string
   pays: string
   couverture?: string | null
-  spine?: [string, string, string]
+  spine?: string[]
   coupDeCoeur?: boolean
   lien?: string | null
   hauteur?: number

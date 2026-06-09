@@ -3,7 +3,7 @@
 // position, quel que soit leur nombre : l'étagère reste harmonieuse à mesure
 // qu'elle se remplit. Partagé entre la page /bibliotheque et le bloc home.
 
-export type Tone = [string, string, string]
+export type Tone = string[]
 
 export const PALETTE: Tone[] = [
   ['#E9E0CD', '#2A2620', '#8C6F2E'],
