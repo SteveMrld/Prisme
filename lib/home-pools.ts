@@ -1,58 +1,74 @@
 /* Pools éditoriaux de la home Soara.
-   Chaque pool est une liste de slugs éligibles à un emplacement.
+   Auto-alimentés depuis articles.json par règles : tout article ajouté
+   au JSON (image + date) rejoint automatiquement la rotation sans édition
+   de ce fichier. Les seuls leviers éditoriaux par article sont les champs
+   `featured` (force le passage en tête) et `hideFromHome` (exclut de la
+   rotation home sans toucher aux rubriques).
    La sélection effective se fait dans app/page.tsx via lib/rotation.ts
-   à partir d'un seed quotidien. Le LEAD des grands formats et son
-   premier secondaire restent figés en page.tsx, leur jugement
-   éditorial est sanctuaire. */
+   à partir d'un seed quotidien. Le LEAD des grands formats et son premier
+   secondaire restent figés (sanctuaire éditorial), exposés ici pour que
+   les pools puissent les exclure proprement. */
 
 import articlesData from './articles.json'
 
 type Article = (typeof articlesData)[number]
 const ALL = articlesData as Article[]
 
-function bySlug(slugs: readonly string[]): Article[] {
-  const out: Article[] = []
-  for (const s of slugs) {
-    const a = ALL.find(x => x.slug === s)
-    if (a) out.push(a)
-  }
-  return out
+/* LEAD et SECONDARY1 des grands formats : jugement éditorial figé.
+   Exportés pour que app/page.tsx s'aligne sur la même source. */
+export const GF_LEAD_SLUG = 'chambre-ratification'
+export const GF_SECONDARY_1_SLUG = 'terres-rares'
+
+const SANCTUARY = new Set<string>([GF_LEAD_SLUG, GF_SECONDARY_1_SLUG])
+
+/* Liste des grands formats. Doit rester alignée avec GRAND_FORMAT_SLUGS
+   dans app/articles/[slug]/page.tsx. */
+const GRAND_FORMAT_SLUGS = new Set<string>([
+  'pollinisation', 'france_maritime', 'eau', 'techgeo', 'taiwan',
+  'semico', 'medias', 'terres-rares', 'architecture-desordre',
+  'chambre-ratification', 'palantir', 'science-race',
+])
+
+/* Critères d'éligibilité à la home : image présente, pas en
+   `hideFromHome`, pas une interview (les interviews ont leur propre
+   bandeau via HomeInterviewBanner). */
+function eligible(a: Article): boolean {
+  if (!(a as any).image) return false
+  if ((a as any).hideFromHome === true) return false
+  if ((a as any).interviewType) return false
+  return true
 }
 
-/* HERO : pool élargi de 14 articles à forte charge visuelle et éditoriale.
-   Le carousel client en tirera 6 par jour. */
-export const HERO_POOL = bySlug([
-  'wanghuning', 'afrique', 'pollinisation', 'empire-du-droit',
-  'terres-rares', 'chambre-ratification', 'chine', 'palantir',
-  'empire-du-dollar', 'tiedeur-des-heritiers', 'monopoly',
-  'dette-souveraine', 'architecture-desordre', 'skunkworks',
-])
+/* HERO : tous les articles à image, hors portraits, hors sanctuaire. */
+export const HERO_POOL: Article[] = ALL.filter(a =>
+  eligible(a) && a.category !== 'portrait' && !SANCTUARY.has(a.slug)
+)
 
-/* UNDER_HERO : articles affichés sous le hero (3 colonne gauche
-   + 2 colonne droite avec image). */
-export const UNDER_HERO_POOL = bySlug([
-  'empire-du-droit', 'societe-du-consentement', 'wanghuning',
-  'moreno', 'dette-souveraine', 'blackrock', 'fiscalite',
-  'reseaux', 'maladie-sans-filet', 'lecture',
-])
+/* UNDER_HERO : même règle que HERO (articles à image, hors portraits,
+   hors sanctuaire). Le pool est partagé entre colonne gauche et droite ;
+   pickFromPool diversifie. */
+export const UNDER_HERO_POOL: Article[] = ALL.filter(a =>
+  eligible(a) && a.category !== 'portrait' && !SANCTUARY.has(a.slug)
+)
 
-/* Pool pour les grands formats après le LEAD et son SECONDARY1
-   (qui restent codés en dur dans page.tsx). Sert à tirer SECONDARY2,
-   TERTIARY (3) et QUATERNARY (6). */
-export const GF_POOL_AFTER_LEAD = bySlug([
-  'palantir', 'skunkworks', 'dette-souveraine', 'france_maritime',
-  'taiwan', 'semico', 'architecture-desordre', 'medias', 'eau',
-  'techgeo', 'monopoly', 'blackrock', 'empire-du-dollar', 'chine',
-  'afrique', 'wanghuning',
-])
+/* Grands formats après le LEAD et son SECONDARY1 (figés en page.tsx).
+   Sert à tirer SECONDARY2, TERTIARY (3) et QUATERNARY (6). */
+export const GF_POOL_AFTER_LEAD: Article[] = ALL.filter(a =>
+  eligible(a) && GRAND_FORMAT_SLUGS.has(a.slug) && !SANCTUARY.has(a.slug)
+)
 
-/* À LIRE AUSSI (zone 1, colonne gauche). Articles courts, autonomes,
-   bonne entrée par un fil thématique. */
-export const ALSO_READ_POOL = bySlug([
-  'eau', 'lecture', 'france_maritime', 'kintsugi', 'fragilite',
-  'silence', 'ia_ecriture', 'ce-que-nous-laissons-entrer',
-  'derniere-generation', 'arctique', 'reseaux',
-])
+/* À LIRE AUSSI : catalogue éligible hors portraits + sanctuaire.
+   La diversification de catégories est imposée par pickFromPool. */
+export const ALSO_READ_POOL: Article[] = ALL.filter(a =>
+  eligible(a) && a.category !== 'portrait' && !SANCTUARY.has(a.slug)
+)
+
+/* POPULAR : catalogue éligible hors portraits. Tourne sur 4h.
+   Peut contenir un sanctuaire (la popularité ne correspond pas à un
+   placement éditorial figé, c'est juste une page lue). */
+export const POPULAR_POOL: Article[] = ALL.filter(a =>
+  eligible(a) && a.category !== 'portrait'
+)
 
 /* ATLAS (zone 2, bande pleine largeur). Visualisations interactives,
    pas des articles. Cartes référencées par leur route /visuels/X. */
@@ -73,11 +89,3 @@ export const ATLAS_POOL: AtlasCard[] = [
   { href: '/visuels/medias-pouvoir', tag: 'Société',       title: 'Médias occidentaux',              image: '/articles/atlas/04_medias-occidentaux.jpg' },
   { href: '/visuels/eau-carte',      tag: 'Environnement', title: "L'eau, prochaine fracture",       image: '/articles/atlas/11_leau-prochaine-grande-fracture.jpg' },
 ]
-
-/* POPULAR (rotation 4h). Pool de candidats à la section "Les plus lus".
-   Tourne quatre fois par jour via slotSeed(4). */
-export const POPULAR_POOL = bySlug([
-  'architecture-desordre', 'moreno', 'lecture', 'palantir', 'skunkworks',
-  'wanghuning', 'empire-du-droit', 'blackrock', 'monopoly', 'afrique',
-  'chine', 'pollinisation',
-])

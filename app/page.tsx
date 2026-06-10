@@ -23,6 +23,7 @@ import {
 import {
   HERO_POOL, UNDER_HERO_POOL, GF_POOL_AFTER_LEAD,
   ALSO_READ_POOL, ATLAS_POOL, POPULAR_POOL,
+  GF_LEAD_SLUG, GF_SECONDARY_1_SLUG,
 } from '../lib/home-pools'
 
 // ── Helpers ───────────────────────────────────────────────
@@ -39,9 +40,9 @@ function withCatLabel<T extends { category: string }>(a: T) {
   return { ...a, catLabel: CAT[a.category] || a.category }
 }
 
-// LEAD et 1er SECONDAIRE des grands formats : jugement éditorial figé.
-const GF_LEAD_SLUG = 'chambre-ratification'
-const GF_SECONDARY_1_SLUG = 'terres-rares'
+// LEAD et 1er SECONDAIRE des grands formats : jugement éditorial figé,
+// défini dans lib/home-pools.ts pour que les pools puissent les exclure
+// du même endroit.
 
 const PORTRAITS_BASE = ['morin','obama','morrison','musk','tutu','nooyi'].map(art)
 
@@ -131,25 +132,68 @@ export default async function HomePage({
     return items
   }
 
+  // ── Front-loading des nouveautés ──────────────────────
+  // Les ~3 articles les plus récents (par date) et tous les articles
+  // marqués `featured: true` dans articles.json passent automatiquement
+  // en tête du hero, puis débordent sous le hero. Conséquence : un
+  // article publié remonte de lui-même sans édition de home-pools.ts,
+  // et bascule dans la rotation classique quand de plus récents arrivent.
+  // Les dates futures (publication programmée) sont ignorées.
+  const allArticles = articlesData as any[]
+  const refTs = refDate.getTime()
+  const priorityCandidates = allArticles.filter(a => {
+    if (used.has(a.slug)) return false           // sanctuaire grand format
+    if (a.interviewType) return false
+    if (a.hideFromHome === true) return false
+    if (a.category === 'portrait') return false
+    if (!a.image) return false
+    if (new Date(a.date).getTime() > refTs) return false  // publication future
+    return true
+  })
+  const RECENT_COUNT = 3
+  const recentSlugs = new Set(
+    [...priorityCandidates]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, RECENT_COUNT)
+      .map(a => a.slug)
+  )
+  // Featured d'abord (jugement éditorial explicite), puis recents non-featured.
+  // Dans chaque groupe : date décroissante.
+  const byDateDesc = (a: any, b: any) =>
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  const priorityArticles = [
+    ...priorityCandidates.filter(a => a.featured === true).sort(byDateDesc),
+    ...priorityCandidates.filter(a => !a.featured && recentSlugs.has(a.slug)).sort(byDateDesc),
+  ]
+
+  // Helper : top-N de la priorité en tête, rotation seedée pour combler.
+  // `priority` est consommé en place : ce qui passe en tête disparaît
+  // de la queue pour les emplacements suivants.
+  let priorityQueue = [...priorityArticles]
+  function frontLoad(
+    target: number,
+    pool: readonly any[],
+    seed: string,
+    minDiversity: number,
+  ) {
+    const front = priorityQueue.slice(0, target).map(withCatLabel)
+    front.forEach(a => used.add(a.slug))
+    priorityQueue = priorityQueue.slice(front.length)
+    const fillN = Math.max(0, target - front.length)
+    const fill = consume(
+      pickFromPool(excludeArt(pool), seed, fillN, {
+        diversifyBy: (a: any) => a.category, minDiversity,
+      })
+    ).map(withCatLabel)
+    return [...front, ...fill]
+  }
+
   // Hero rotatif (6 articles, diversifié sur 3 catégories min)
-  const HERO_ROTATION = consume(
-    pickFromPool(excludeArt(HERO_POOL), `${daily}:hero`, 6, {
-      diversifyBy: (a: any) => a.category, minDiversity: 3,
-    })
-  ).map(withCatLabel)
+  const HERO_ROTATION = frontLoad(6, HERO_POOL, `${daily}:hero`, 3)
 
   // Sous le hero : 3 à gauche, 2 à droite (avec image)
-  const withImagePool = (UNDER_HERO_POOL as any[]).filter(a => a.image)
-  const UNDER_HERO_LEFT = consume(
-    pickFromPool(excludeArt(UNDER_HERO_POOL), `${daily}:under-left`, 3, {
-      diversifyBy: (a: any) => a.category, minDiversity: 3,
-    })
-  ).map(withCatLabel)
-  const UNDER_HERO_RIGHT = consume(
-    pickFromPool(excludeArt(withImagePool), `${daily}:under-right`, 2, {
-      diversifyBy: (a: any) => a.category, minDiversity: 2,
-    })
-  ).map(withCatLabel)
+  const UNDER_HERO_LEFT = frontLoad(3, UNDER_HERO_POOL, `${daily}:under-left`, 3)
+  const UNDER_HERO_RIGHT = frontLoad(2, UNDER_HERO_POOL, `${daily}:under-right`, 2)
 
   // Grands formats : LEAD + SECONDARY1 figés, le reste tourne
   const GF_LEAD = art(GF_LEAD_SLUG)
@@ -179,16 +223,17 @@ export default async function HomePage({
   // Atlas (3 cartes, pas d'exclusion : ce ne sont pas des articles)
   const ZONE1_ATLAS = pickFromPool(ATLAS_POOL, `${daily}:atlas`, 3)
 
-  // Dernières publications : 3 plus récents par date + 2 redécouvertes seedées
-  const allArticles = articlesData as any[]
+  // Dernières publications : 3 plus récents par date + 2 redécouvertes seedées.
+  // Les featured et les nouveautés sont déjà front-load dans le hero, donc
+  // exclus ici pour ne pas réapparaître.
   const recentByDate = allArticles
-    .filter(a => !a.featured && !a.interviewType && !used.has(a.slug))
+    .filter(a => !a.featured && !a.interviewType && !a.hideFromHome && !used.has(a.slug))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   const LATEST_RECENT = consume(recentByDate.slice(0, 3)).map(withCatLabel)
 
   const thirtyDaysAgo = refDate.getTime() - 30 * 86400 * 1000
   const olderPool = allArticles.filter(a =>
-    !a.featured && !a.interviewType && !used.has(a.slug)
+    !a.featured && !a.interviewType && !a.hideFromHome && !used.has(a.slug)
     && new Date(a.date).getTime() < thirtyDaysAgo
   )
   const LATEST_REDISCOVER = consume(
@@ -226,7 +271,7 @@ export default async function HomePage({
 
   // À redécouvrir (bas de home) : 3 articles >30j, diversifiés
   const rediscoverPool = allArticles.filter(a =>
-    !a.interviewType && !used.has(a.slug)
+    !a.interviewType && !a.hideFromHome && !used.has(a.slug)
     && new Date(a.date).getTime() < thirtyDaysAgo
   )
   const REDISCOVER = pickFromPool(rediscoverPool, `${daily}:rediscover-zone`, 3, {
