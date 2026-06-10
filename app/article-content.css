@@ -179,17 +179,17 @@
 }
 
 /* ── Hero image ─────────────────────────────────────
-   Pleine largeur 100vw via la technique de breakout, comme le
-   heroWrap d'ArticleLayout (cf. composants/ArticleLayout.module.css).
-   La hauteur est cadrée pour matcher Caracas, object-fit: cover évite
-   les déformations sur les images en mauvais ratio. overflow: hidden
-   empêche un éventuel scroll horizontal. */
+   ArticleLayout : le hero est dans le contenu (constrained body), donc
+   il faut un breakout 100vw. GrandFormatLayout : le hero est extrait au
+   niveau racine (cf. GrandFormatLayout.tsx), parent déjà 100vw, le breakout
+   se neutralise tout seul (margin = 0, width = 100vw). */
 .art-hero-wrap {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   max-width: none;
   overflow: hidden;
+  line-height: 0;
 }
 
 .art-hero-img {
@@ -2012,16 +2012,8 @@ sup {
   padding: 0 0 32px;
 }
 
-.grand-format-body .art-hero-wrap {
-  margin: 0 0 0;
-  max-height: 520px;
-}
-
-.grand-format-body .art-hero-img {
-  height: 520px;
-  object-fit: cover;
-  object-position: center 30%;
-}
+/* Hero remonté au niveau racine du fragment (cf. GrandFormatLayout.tsx).
+   Ne s'applique plus dans .grand-format-body, règles retirées. */
 
 .grand-format-body .atitle {
   font-family: var(--font-serif-display) !important;
@@ -2124,7 +2116,6 @@ sup {
 }
 
 @media (max-width: 700px) {
-  .grand-format-body .art-hero-img { height: 280px; }
   .grand-format-body .atop { padding: 0 0 24px; }
 }
 

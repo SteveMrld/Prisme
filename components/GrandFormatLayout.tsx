@@ -98,7 +98,18 @@ export default function GrandFormatLayout({
   const gfBase = (article as any)?.grandFormatUrl || (slug ? `/grands-formats/${slug}` : '')
   const gfToggleHref = lang === 'en' ? gfBase : (gfBase ? `${gfBase}?lang=en` : '')
   const hasInternalHeader = !!(content?.includes('class="atop"') || content?.includes('class="article-header"'))
-  const hasHeroInContent  = !!(content?.includes('art-hero-wrap') || content?.includes('art-hero-img') || content?.includes('portrait-hero') || article?.category === 'portrait')
+
+  // Extraction du hero embarqué dans le HTML : on le remonte en tête du fragment
+  // pour qu'il soit pleine largeur, au-dessus du titre, pour TOUS les grands formats.
+  let extractedHero: string | null = null
+  let bodyContent: string = content || ''
+  if (content) {
+    const heroMatch = content.match(/<div\s+class="art-hero-wrap"[^>]*>[\s\S]*?<\/div>/i)
+    if (heroMatch && typeof heroMatch.index === 'number') {
+      extractedHero = heroMatch[0]
+      bodyContent = content.slice(0, heroMatch.index) + content.slice(heroMatch.index + heroMatch[0].length)
+    }
+  }
 
   // Articles liés — toujours 4 articles
   const _allArticles = articlesData as any[]
@@ -154,6 +165,21 @@ export default function GrandFormatLayout({
         {minutes >= 10 && <ArticleTOC />}
       </div>
 
+      {/* ── HERO PLEINE LARGEUR (toujours en tête, avant le titre) ── */}
+      {extractedHero ? (
+        <div dangerouslySetInnerHTML={{ __html: extractedHero }} />
+      ) : image ? (
+        <div className={styles.heroWrap} style={{height: imageHeight + 'px', maxHeight: 'none'}}>
+          <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
+            style={{
+              objectPosition: imagePosition,
+              height: imageHeight + 'px',
+              objectFit: (article?.imageFit || 'cover') as 'cover' | 'contain',
+              background: article?.imageFit === 'contain' ? '#F8F4EE' : undefined
+            }} />
+        </div>
+      ) : null}
+
       {/* ── HEADER (si pas dans le HTML) ── */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
@@ -188,28 +214,15 @@ export default function GrandFormatLayout({
         </div>
       )}
 
-      {/* ── COVER IMAGE (après le header) ── */}
-      {image && !hasHeroInContent && (
-        <div className={styles.heroWrap} style={{height: imageHeight + 'px', maxHeight: 'none'}}>
-          <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
-            style={{
-              objectPosition: imagePosition,
-              height: imageHeight + 'px',
-              objectFit: (article?.imageFit || 'cover') as 'cover' | 'contain',
-              background: article?.imageFit === 'contain' ? '#F8F4EE' : undefined
-            }} />
-        </div>
-      )}
-
       {/* ── BODY ── */}
       <div className={`${styles.body} grand-format-body`}>
-        {content && (
+        {bodyContent && (
           (showPaywall ?? article?.premium) ? (
             <div className={styles.paywallWrap}>
               <div className={styles.paywallTeaser}>
                 <div
                   className="soara-article"
-                  dangerouslySetInnerHTML={{ __html: content }}
+                  dangerouslySetInnerHTML={{ __html: bodyContent }}
                 />
                 <div className={styles.paywallFade} />
               </div>
@@ -222,7 +235,7 @@ export default function GrandFormatLayout({
               </div>
             </div>
           ) : (
-            <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
+            <div className="soara-article" dangerouslySetInnerHTML={{ __html: bodyContent }} />
           )
         )}
         {/* Contenu React (dette-souveraine, etc.) — masqué si content EN fourni */}
