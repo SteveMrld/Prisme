@@ -22,7 +22,7 @@ export default function BientotPage() {
     <div className={styles.wrapper}>
       <div className={styles.inner}>
         <div className={styles.logo}>SOARA</div>
-        <p className={styles.tagline}>Média d&apos;analyse indépendant</p>
+        <p className={styles.tagline}>Comprendre le monde. Éclairer l&apos;avenir.</p>
         <div className={styles.divider} />
         <p className={styles.date}>Lancement · 20 juin 2026</p>
 

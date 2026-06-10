@@ -46,7 +46,7 @@ export default function Footer() {
             So<em>ara</em>
           </Link>
           <p className={styles.tagline}>
-            Le temps long, vu autrement. Une plateforme analytique indépendante.
+            Média analytique indépendant.
           </p>
         </div>
 
