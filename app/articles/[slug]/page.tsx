@@ -147,11 +147,26 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     content = truncatePremiumHtml(content, teaserN)
   }
 
-  // Articles liés — même catégorie, exclu l'article courant
-  // Pour les portraits : tous les autres portraits
-  const related = (articlesData as any[])
-    .filter(a => a.category === article.category && a.slug !== params.slug)
-    .slice(0, article.category === 'portrait' ? 10 : 3)
+  // Articles liés — mélangés à chaque requête (page force-dynamic), pour varier
+  // les recommandations. Portraits : 10 autres portraits mélangés. Sinon : mix
+  // 2 même catégorie + 2 d'une autre catégorie, shuffle.
+  const _shuffle = <T,>(arr: T[]): T[] => {
+    const a = [...arr]
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[a[i], a[j]] = [a[j], a[i]]
+    }
+    return a
+  }
+  const _allOthers = (articlesData as any[]).filter(a => a.slug !== params.slug)
+  let related: any[]
+  if (article.category === 'portrait') {
+    related = _shuffle(_allOthers.filter(a => a.category === 'portrait')).slice(0, 10)
+  } else {
+    const _sc = _shuffle(_allOthers.filter(a => a.category === article.category && a.image))
+    const _oc = _shuffle(_allOthers.filter(a => a.category !== article.category && a.image))
+    related = _shuffle([..._sc.slice(0, 2), ..._oc.slice(0, 2)])
+  }
 
   // Scrollytelling dédié pour l'article eau (carte sticky + IntersectionObserver)
   if (params.slug === 'eau') {

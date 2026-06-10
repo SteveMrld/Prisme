@@ -111,19 +111,40 @@ export default function GrandFormatLayout({
     }
   }
 
-  // Articles liés — toujours 4 articles
+  // Articles liés — 4 articles, mix 2 same-cat + 2 other-cat shuffle.
+  // Initial render (SSR + hydratation) déterministe, shuffle après mount
+  // pour varier les recommandations sans casser le SSR.
   const _allArticles = articlesData as any[]
   const _explicitSlugs: string[] = (article?.relatedSlugs as string[]) || []
-  let related: any[]
-  if (_explicitSlugs.length > 0) {
-    related = _explicitSlugs
-      .map(s => _allArticles.find(a => a.slug === s))
-      .filter((a): a is any => Boolean(a))
-  } else {
-    const _sameCat = _allArticles.filter(a => a.category === category && a.slug !== slug && a.image)
-    const _otherCat = _allArticles.filter(a => a.category !== category && a.slug !== slug && a.image)
-    related = [..._sameCat, ..._otherCat].slice(0, 4)
-  }
+  const [related, setRelated] = useState<any[]>(() => {
+    if (_explicitSlugs.length > 0) {
+      return _explicitSlugs
+        .map(s => _allArticles.find(a => a.slug === s))
+        .filter((a): a is any => Boolean(a))
+    }
+    const sc = _allArticles.filter(a => a.category === category && a.slug !== slug && a.image)
+    const oc = _allArticles.filter(a => a.category !== category && a.slug !== slug && a.image)
+    return [...sc.slice(0, 2), ...oc.slice(0, 2)]
+  })
+
+  useEffect(() => {
+    if (_explicitSlugs.length > 0) return
+    const shuffle = <T,>(arr: T[]): T[] => {
+      const a = [...arr]
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[a[i], a[j]] = [a[j], a[i]]
+      }
+      return a
+    }
+    const sc = _allArticles.filter(a => a.category === category && a.slug !== slug && a.image)
+    const oc = _allArticles.filter(a => a.category !== category && a.slug !== slug && a.image)
+    setRelated(shuffle([
+      ...shuffle(sc).slice(0, 2),
+      ...shuffle(oc).slice(0, 2)
+    ]))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug, category])
 
   useEffect(() => {
     if (!content) return
@@ -179,6 +200,10 @@ export default function GrandFormatLayout({
             }} />
         </div>
       ) : null}
+
+      {/* ── LAYOUT DESKTOP : article + sidebar ── */}
+      <div className={styles.articlePageLayout}>
+      <div className={styles.articleMainCol}>
 
       {/* ── HEADER (si pas dans le HTML) ── */}
       {!hasInternalHeader && (
@@ -279,7 +304,26 @@ export default function GrandFormatLayout({
         </div>
       </div>
 
-      {/* ── ARTICLES LIÉS ── */}
+      </div>{/* articleMainCol */}
+
+      {/* ── SIDEBAR DROITE — articles liés (desktop ≥ 1024px uniquement) ── */}
+      {related.length > 0 && !article?.hideAutoRelated && (
+        <div className={`${styles.articleSidebar} no-print`}>
+          <div className={styles.sidebarTitle}>À lire aussi</div>
+          {related.map((a: any) => (
+            <a key={a.slug} href={a.customRoute || `/articles/${a.slug}`} className={styles.sidebarItem}>
+              {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} className={styles.sidebarThumb} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />}
+              <div>
+                <div className={styles.sidebarCat}>{(a.categoryLabel || CAT_LABELS[a.category as string] || a.category || '').toUpperCase()}</div>
+                <div className={styles.sidebarItemTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+      </div>{/* articlePageLayout */}
+
+      {/* ── ARTICLES LIÉS (grille bas, mobile uniquement) ── */}
       {related.length > 0 && !article?.hideAutoRelated && (
         <div className={`${styles.related} no-print`}>
           <div className={styles.relatedHead}>

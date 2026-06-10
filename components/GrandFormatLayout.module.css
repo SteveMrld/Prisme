@@ -157,11 +157,130 @@
   margin-top: 2px;
 }
 
+/* ── LAYOUT DESKTOP : article + sidebar
+   Reprend la structure d'ArticleLayout (articlePageLayout / articleMainCol /
+   articleSidebar) pour homogénéiser l'expérience entre articles classiques et
+   grands formats. La grille s'active à ≥1024px ; en dessous c'est un flux
+   simple, la sidebar est masquée et la grille .related en bas prend le relais. */
+.articlePageLayout {
+  display: block;
+}
+
+.articleMainCol {
+  display: block;
+}
+
+.articleSidebar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .articlePageLayout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 0;
+    max-width: 1140px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .articleMainCol {
+    min-width: 0;
+    border-right: 1px solid #DDD9D2;
+    padding-right: 48px;
+  }
+
+  /* En mode 2-col, header / byline / body remplissent la colonne */
+  .articleHeader {
+    max-width: 100%;
+    margin: 0;
+    padding: 52px 0 36px;
+  }
+
+  .byline {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px 0 24px;
+  }
+
+  .articleSidebar {
+    display: block;
+    padding: 40px 0 40px 40px;
+    position: sticky;
+    top: 80px;
+  }
+
+  .sidebarTitle {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  .sidebarItem {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid #DDD9D2;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.15s ease;
+  }
+
+  .sidebarItem:hover { opacity: 0.7; }
+  .sidebarItem:last-child { border-bottom: none; }
+
+  .sidebarThumb {
+    width: 72px;
+    height: 48px;
+    object-fit: cover;
+    object-position: center 30%;
+    flex-shrink: 0;
+  }
+
+  .sidebarCat {
+    font-family: var(--font-ui);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #C8A96E;
+    margin-bottom: 4px;
+  }
+
+  .sidebarItemTitle {
+    font-family: var(--font-serif-display);
+    font-size: 13px;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.35;
+  }
+
+  /* Masquer la grille .related en bas sur desktop */
+  .related {
+    display: none;
+  }
+}
+
 /* ── BODY ── */
 .body {
   max-width: 780px;
   margin: 0 auto;
   padding: 48px 24px 80px;
+}
+
+@media (min-width: 1024px) {
+  .body {
+    max-width: 100%;
+    margin: 0;
+    padding: 48px 0 80px;
+  }
 }
 
 /* Typography override pour le contenu HTML injecté */
