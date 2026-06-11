@@ -1,5 +1,21 @@
 [
   {
+    "slug": "football-cage",
+    "title": "Certitudes et incertitude du football",
+    "description": "Un récit à l’image du foot business contemporain, bâti sur de puissantes certitudes géopolitiques, marketing et financières, mais encore ouvert à assez d’incertitude pour que ce sport reste un sport.",
+    "author": "Agathe Cagé",
+    "authorRole": "Docteure en science politique, auteure de «Classes figées» (Flammarion, 2024)",
+    "category": "soc",
+    "categoryLabel": "Société",
+    "date": "2026-06-10",
+    "readTime": "10",
+    "image": "/visuels/derniere-generation-cover.png",
+    "featured": true,
+    "premium": false,
+    "avif": false,
+    "imageCredit": "© Soara"
+  },
+  {
     "slug": "epstein",
     "title": "L’impunité comme système",
     "description": "Ce n’est pas l’histoire d’un homme. C’est l’histoire de tout ce qui a dû fonctionner pour que cet homme reste libre aussi longtemps.",
