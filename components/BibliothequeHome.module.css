@@ -1,23 +1,23 @@
-/* ── Bibliothèque · bloc d'accueil (teaser) ─────────────────
-   Bande sobre : texte d'accroche + étagère de tranches, cliquable
-   vers /bibliotheque. Tokens globaux de Soara. */
+/* ── Bibliothèque · bloc d'accueil (vitrine éditoriale) ──────
+   Trois livres en vitrine (couverture + titre + auteur + 1ère phrase
+   d'accroche), surmontés d'un en-tête de section façon Atlas/TV, et
+   suivis d'une étagère discrète qui rappelle la métaphore librairie
+   sans absorber tout le bloc. Tokens globaux de Soara. */
 
 .section {
   max-width: 1180px;
   margin: 0 auto;
   padding: 24px 7vw 8px;
 }
-.inner {
-  display: grid;
-  grid-template-columns: 0.85fr 1.3fr;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
+
+/* En-tête : titre/intro à gauche, lien "tout voir" à droite */
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
   border-top: 1px solid var(--bord-l);
   padding-top: 44px;
-}
-
-.text {
-  max-width: 360px;
 }
 .eyebrow {
   font-family: var(--font-sans);
@@ -27,7 +27,7 @@
   text-transform: uppercase;
   color: var(--or-deep);
 }
-.text h2 {
+.title {
   font-family: var(--font-serif-display);
   font-weight: 500;
   font-size: clamp(32px, 4vw, 46px);
@@ -36,22 +36,20 @@
   margin: 14px 0 0;
   color: var(--encre);
 }
-.text h2 em {
+.title em {
   font-style: italic;
   font-weight: 400;
 }
 .intro {
   font-family: var(--font-serif-text);
   font-style: italic;
-  font-size: clamp(18px, 1.7vw, 21px);
+  font-size: clamp(17px, 1.5vw, 20px);
   line-height: 1.45;
   color: var(--gris);
-  margin: 16px 0 0;
+  margin: 14px 0 0;
+  max-width: 520px;
 }
-.cta {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 22px;
+.seeAll {
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
@@ -60,42 +58,121 @@
   text-decoration: none;
   border-bottom: 1px solid var(--or);
   padding-bottom: 3px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-/* Étagère cliquable */
+/* Vitrine : 3 cartes éditoriales avec couverture, titre, auteur, teaser */
+.vitrine {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+  margin-top: 40px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s var(--ease-out);
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+.card:hover .cover {
+  box-shadow: 0 22px 36px -18px rgba(20, 15, 8, 0.45);
+}
+.cover {
+  aspect-ratio: 2 / 3;
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+  background: var(--bord-l);
+  border-radius: 1px;
+  overflow: hidden;
+  box-shadow: 0 14px 22px -14px rgba(20, 15, 8, 0.35),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.4s var(--ease-out);
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bookTitle {
+  font-family: var(--font-serif-display);
+  font-weight: 500;
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  margin: 22px 0 0;
+  color: var(--encre);
+}
+.bookAuthor {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--gris);
+  margin-top: 4px;
+}
+.teaser {
+  font-family: var(--font-serif-text);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--encre);
+  margin: 12px 0 0;
+  /* Limite à 3 lignes pour garder les cartes de hauteur homogène */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--or-deep);
+}
+
+/* Étagère discrète : tranches courtes, rappel de la métaphore librairie */
 .shelfLink {
   display: block;
   text-decoration: none;
   color: inherit;
+  margin-top: 56px;
 }
 .shelf {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   gap: 3px;
-  min-height: 232px;
+  min-height: 140px;
   padding: 0 4px;
 }
 .board {
-  height: 7px;
+  height: 5px;
   border-radius: 1px;
   background: linear-gradient(180deg, #3d3326, #241d13);
-  box-shadow: 0 16px 24px -15px rgba(20, 15, 8, 0.5),
+  box-shadow: 0 12px 18px -14px rgba(20, 15, 8, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
-
 .spine {
   position: relative;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 11px 0 9px;
+  justify-content: center;
+  padding: 8px 0;
   border-radius: 2px 1px 1px 2px;
   box-shadow: inset -2px 0 4px -2px rgba(0, 0, 0, 0.22),
     1px 0 0 rgba(0, 0, 0, 0.05);
   transition: transform 0.45s var(--ease-out);
+  opacity: 0.85;
 }
 .spine::before {
   content: '';
@@ -109,67 +186,57 @@
     transparent 1px 3px
   );
 }
+.shelfLink:hover .spine {
+  opacity: 1;
+}
 .shelfLink:hover .spine:nth-child(odd) {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
 }
 .shelfLink:hover .spine:nth-child(even) {
-  transform: translateY(-11px);
-}
-.spineCover {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-  display: block;
-}
-.band {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  align-items: center;
-  flex: 0 0 auto;
-}
-.band i {
-  display: block;
-  width: 13px;
-  height: 1px;
-  background: var(--ac);
+  transform: translateY(-7px);
 }
 .sTitle {
-  flex: 1;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: var(--font-serif-display);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1.04;
-  padding: 6px 0;
   text-align: center;
   overflow: hidden;
-}
-.sAuthor {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  font-family: var(--font-serif-text);
-  font-style: italic;
-  font-size: 10px;
-  opacity: 0.8;
-  padding-bottom: 4px;
+  max-height: 110px;
 }
 
-@media (max-width: 860px) {
-  .inner {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
+/* Tablette : cartes en 2 col + 3e sous */
+@media (max-width: 1024px) {
+  .vitrine {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
   }
-  .text {
+  .vitrine .card:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+/* Mobile : tout en colonne, en-tête recentré, étagère scrollable */
+@media (max-width: 700px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .vitrine {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .vitrine .card:nth-child(3) {
+    grid-column: auto;
     max-width: none;
+  }
+  .cover {
+    max-width: 200px;
   }
   .shelf {
     justify-content: flex-start;
@@ -180,8 +247,11 @@
     height: 0;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .spine {
+  .spine,
+  .card,
+  .cover {
     transition: none !important;
   }
 }
