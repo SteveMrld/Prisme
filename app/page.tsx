@@ -16,10 +16,7 @@ import Link from 'next/link'
 import articlesData from '../lib/articles.json'
 import { FadeSection, PortraitsSlider } from './HomeClient'
 import Ticker from './TickerClient'
-import {
-  dailySeed, slotSeed, pickFromPool, seededShuffle,
-  parseDateOverride, applyHourOverride,
-} from '../lib/rotation'
+import { randomShuffle, pickRandom } from '../lib/rotation'
 import {
   HERO_POOL, UNDER_HERO_POOL, GF_POOL_AFTER_LEAD,
   ALSO_READ_POOL, ATLAS_POOL, POPULAR_POOL,
@@ -86,44 +83,17 @@ function SectionHead({ label, href }: { label: string; href?: string }) {
   )
 }
 
-// Bandeau discret affiché en haut de page si ?date= ou ?hour= est utilisé.
-// Permet à Steve de vérifier qu'il prévisualise bien un autre jour.
-function PreviewPin({ date, hour }: { date?: string; hour?: string }) {
-  if (!date && !hour) return null
-  return (
-    <div style={{
-      background:'#C8A96E', color:'#0A0A0A',
-      fontFamily:"'DM Mono', ui-monospace, monospace",
-      fontSize:'10px', letterSpacing:'2px', textTransform:'uppercase',
-      padding:'6px 16px', textAlign:'center',
-      borderBottom:'1px solid #0A0A0A',
-    }}>
-      Preview de rotation · seed simulé {date ? `date=${date}` : ''}{hour ? ` hour=${hour}` : ''} · rendu réel à {new Date().toISOString().slice(0,10)}
-    </div>
-  )
-}
-
 // ─────────────────────────────────────────────────────────
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams?: { date?: string; hour?: string }
-}) {
+export default async function HomePage() {
   const homeAd = await getActiveAd('home')
 
-  // ── Seeds ──────────────────────────────────────────────
-  // ?date=YYYYMMDD et ?hour=0-23 servent à prévisualiser la rotation
-  // d'autres jours sans attendre. Sans paramètre, seed = jour courant.
-  const dateOverride = parseDateOverride(searchParams?.date)
-  const baseDate = dateOverride ?? new Date()
-  const refDate = applyHourOverride(baseDate, searchParams?.hour)
-  const daily = dailySeed(refDate)
-  const slot4h = slotSeed(4, refDate)
-
-  // ── Tirages déterministes ──────────────────────────────
-  // On consomme les pools dans l'ordre éditorial. Chaque article tiré
-  // entre dans `used` pour éviter les doublons sur la home (règle
-  // historique : un article max 2 fois sur la page).
+  // ── Tirages à chaque requête ──────────────────────────
+  // Rotation aléatoire pure : la home est `force-dynamic`, donc chaque
+  // chargement déclenche un nouveau SSR avec son propre shuffle. Pas de
+  // seed quotidien : variété maximale, contre-partie SEO mineure (les
+  // crawlers verront aussi des sélections différentes mais le contenu
+  // global est le même catalogue). Un article tiré entre dans `used`
+  // pour éviter qu'il réapparaisse ailleurs sur la même page.
   const used = new Set<string>([GF_LEAD_SLUG, GF_SECONDARY_1_SLUG])
   const excludeArt = <T extends { slug: string }>(pool: readonly T[]) =>
     pool.filter(a => !used.has(a.slug))
@@ -132,156 +102,210 @@ export default async function HomePage({
     return items
   }
 
-  // ── Front-loading des nouveautés ──────────────────────
-  // Les ~3 articles les plus récents (par date) et tous les articles
-  // marqués `featured: true` dans articles.json passent automatiquement
-  // en tête du hero, puis débordent sous le hero. Conséquence : un
-  // article publié remonte de lui-même sans édition de home-pools.ts,
-  // et bascule dans la rotation classique quand de plus récents arrivent.
-  // Les dates futures (publication programmée) sont ignorées.
   const allArticles = articlesData as any[]
-  const refTs = refDate.getTime()
-  const priorityCandidates = allArticles.filter(a => {
-    if (used.has(a.slug)) return false           // sanctuaire grand format
-    if (a.interviewType) return false
-    if (a.hideFromHome === true) return false
-    if (a.category === 'portrait') return false
-    if (!a.image) return false
-    if (new Date(a.date).getTime() > refTs) return false  // publication future
-    return true
-  })
-  const RECENT_COUNT = 3
-  const recentSlugs = new Set(
-    [...priorityCandidates]
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, RECENT_COUNT)
-      .map(a => a.slug)
-  )
-  // Featured d'abord (jugement éditorial explicite), puis recents non-featured.
-  // Dans chaque groupe : date décroissante.
+  const nowTs = Date.now()
   const byDateDesc = (a: any, b: any) =>
     new Date(b.date).getTime() - new Date(a.date).getTime()
-  const priorityArticles = [
-    ...priorityCandidates.filter(a => a.featured === true).sort(byDateDesc),
-    ...priorityCandidates.filter(a => !a.featured && recentSlugs.has(a.slug)).sort(byDateDesc),
-  ]
 
-  // Helper : top-N de la priorité en tête, rotation seedée pour combler.
-  // `priority` est consommé en place : ce qui passe en tête disparaît
-  // de la queue pour les emplacements suivants.
-  let priorityQueue = [...priorityArticles]
-  function frontLoad(
-    target: number,
-    pool: readonly any[],
-    seed: string,
-    minDiversity: number,
-  ) {
-    const front = priorityQueue.slice(0, target).map(withCatLabel)
-    front.forEach(a => used.add(a.slug))
-    priorityQueue = priorityQueue.slice(front.length)
-    const fillN = Math.max(0, target - front.length)
-    const fill = consume(
-      pickFromPool(excludeArt(pool), seed, fillN, {
-        diversifyBy: (a: any) => a.category, minDiversity,
-      })
-    ).map(withCatLabel)
-    return [...front, ...fill]
+  // ── Composition du HERO ──────────────────────────────
+  // Règle : 6 slides, 2 en géopolitique + 4 dans 4 catégories distinctes
+  // tirées au sort parmi {eco, tech, env, soc, culture}. Pas de portrait
+  // dans le hero (les portraits ont leur propre section dédiée).
+  // Dans chaque créneau : priorité featured > récence > shuffle pour
+  // varier l'article qui occupe la place de sa catégorie. À chaque
+  // chargement la combinaison change.
+  const HERO_NON_GEO_CATS = ['eco', 'tech', 'env', 'soc', 'culture']
+  const HERO_GEO_TARGET = 2
+  const HERO_NON_GEO_TARGET = 4
+  const HERO_TOTAL = 6
+
+  const heroCandidates = (cat: string): any[] =>
+    (HERO_POOL as any[]).filter(a =>
+      a.category === cat
+      && !used.has(a.slug)
+      && new Date(a.date).getTime() <= nowTs   // ignore les publications futures
+    )
+
+  // Tier 1 (featured), tier 2 (top 3 récents non-featured), tier 3 (le reste).
+  // Chaque tier mélangé en aléatoire pur : la rotation tourne à chaque
+  // chargement quand plusieurs candidats existent. Si un seul candidat,
+  // il sort à chaque fois (jugement éditorial assumé).
+  const pickHeroForCat = (cat: string, n: number): any[] => {
+    const all = heroCandidates(cat)
+    if (!all.length || n <= 0) return []
+    const sorted = [...all].sort(byDateDesc)
+    const featured = sorted.filter(a => a.featured === true)
+    const nonFeat = sorted.filter(a => !a.featured)
+    const recents = nonFeat.slice(0, 3)
+    const others = nonFeat.slice(3)
+    return [
+      ...randomShuffle(featured),
+      ...randomShuffle(recents),
+      ...randomShuffle(others),
+    ].slice(0, n)
   }
 
-  // Hero rotatif (6 articles, diversifié sur 3 catégories min)
-  const HERO_ROTATION = frontLoad(6, HERO_POOL, `${daily}:hero`, 3)
+  // 4 catégories non-geo retenues à chaque chargement, en ne gardant
+  // que celles qui ont au moins un candidat éligible.
+  const chosenNonGeoCats: string[] = []
+  for (const cat of randomShuffle(HERO_NON_GEO_CATS)) {
+    if (chosenNonGeoCats.length >= HERO_NON_GEO_TARGET) break
+    if (heroCandidates(cat).length > 0) chosenNonGeoCats.push(cat)
+  }
 
-  // Sous le hero : 3 à gauche, 2 à droite (avec image)
-  const UNDER_HERO_LEFT = frontLoad(3, UNDER_HERO_POOL, `${daily}:under-left`, 3)
-  const UNDER_HERO_RIGHT = frontLoad(2, UNDER_HERO_POOL, `${daily}:under-right`, 2)
+  const geoPicks = pickHeroForCat('geo', HERO_GEO_TARGET)
+  geoPicks.forEach(a => used.add(a.slug))
 
-  // Grands formats : LEAD + SECONDARY1 figés, le reste tourne
+  const nonGeoPicks: any[] = []
+  for (const cat of chosenNonGeoCats) {
+    const [pick] = pickHeroForCat(cat, 1)
+    if (pick) {
+      nonGeoPicks.push(pick)
+      used.add(pick.slug)
+    }
+  }
+
+  // Filet de secours : si on n'a pas atteint 6 (peu de géo, catégorie
+  // vide…), on complète depuis HERO_POOL avec max-2 par catégorie pour
+  // ne pas casser la diversité. Pas de portrait dans le complément.
+  let heroPicks: any[] = [...geoPicks, ...nonGeoPicks]
+  if (heroPicks.length < HERO_TOTAL) {
+    const fillPool = excludeArt(HERO_POOL).filter((a: any) =>
+      a.category !== 'portrait' && new Date(a.date).getTime() <= nowTs
+    )
+    const fill = pickRandom(fillPool, HERO_TOTAL - heroPicks.length, {
+      diversifyBy: (a: any) => a.category, maxPerCat: 2,
+    })
+    fill.forEach(a => used.add(a.slug))
+    heroPicks = [...heroPicks, ...fill]
+  }
+
+  // Ordre des slides : featured d'abord (jugement éditorial), puis date
+  // décroissante. Le hero s'ouvre toujours sur l'article le plus mis en avant.
+  heroPicks.sort((a, b) => {
+    const af = a.featured ? 1 : 0
+    const bf = b.featured ? 1 : 0
+    if (af !== bf) return bf - af
+    return byDateDesc(a, b)
+  })
+
+  const HERO_ROTATION = heroPicks.map(withCatLabel)
+
+  // Sous le hero : 3 à gauche, 2 à droite. Aléatoire avec anti-monocat.
+  // Le bloc droite n'a que 2 cards : on cape à 1 par cat pour qu'il
+  // n'apparaisse jamais en monocatégorie.
+  const UNDER_HERO_LEFT = consume(
+    pickRandom(excludeArt(UNDER_HERO_POOL), 3, {
+      diversifyBy: (a: any) => a.category, maxPerCat: 2,
+    })
+  ).map(withCatLabel)
+  const UNDER_HERO_RIGHT = consume(
+    pickRandom(excludeArt(UNDER_HERO_POOL), 2, {
+      diversifyBy: (a: any) => a.category, maxPerCat: 1,
+    })
+  ).map(withCatLabel)
+
+  // Grands formats : LEAD + SECONDARY1 figés (sanctuaire éditorial).
+  // SEC2 vit dans le bloc visuel gfSecondaryRow aux côtés de SEC1 (geo) :
+  // on le force non-geo pour ne pas faire un bloc monocat. Les deux
+  // autres blocs visuels (gfFeatureRow 3 cards, gfMoreList 6 cards) sont
+  // calculés directement avec max-2 par catégorie, puis repliés dans
+  // GF_TERTIARY/GF_QUATERNARY pour préserver le JSX d'origine.
   const GF_LEAD = art(GF_LEAD_SLUG)
   const GF_SECONDARY_1 = art(GF_SECONDARY_1_SLUG)
-  const GF_SECONDARY_2 = consume(
-    pickFromPool(excludeArt(GF_POOL_AFTER_LEAD), `${daily}:gf-sec2`, 1)
-  ).map(withCatLabel)[0]
-  const GF_SECONDARY = [GF_SECONDARY_1, GF_SECONDARY_2]
-  const GF_TERTIARY = consume(
-    pickFromPool(excludeArt(GF_POOL_AFTER_LEAD), `${daily}:gf-tert`, 3, {
-      diversifyBy: (a: any) => a.category, minDiversity: 2,
-    })
-  ).map(withCatLabel)
-  const GF_QUATERNARY = consume(
-    pickFromPool(excludeArt(GF_POOL_AFTER_LEAD), `${daily}:gf-quat`, 6, {
-      diversifyBy: (a: any) => a.category, minDiversity: 3,
-    })
-  ).map(withCatLabel)
+  const sec2NonGeoPool = excludeArt(GF_POOL_AFTER_LEAD).filter((a: any) => a.category !== 'geo')
+  const sec2Raw = pickRandom(
+    sec2NonGeoPool.length ? sec2NonGeoPool : excludeArt(GF_POOL_AFTER_LEAD), 1
+  )[0]
+  if (sec2Raw) used.add(sec2Raw.slug)
+  const GF_SECONDARY_2 = sec2Raw ? withCatLabel(sec2Raw) : undefined
+  const GF_SECONDARY = [GF_SECONDARY_1, GF_SECONDARY_2].filter(Boolean) as any[]
 
-  // À lire aussi (zone 1 colonne gauche)
+  const gfFeatureRow = consume(pickRandom(
+    excludeArt(GF_POOL_AFTER_LEAD), 3,
+    { diversifyBy: (a: any) => a.category, maxPerCat: 2 }
+  ))
+  const gfMore = consume(pickRandom(
+    excludeArt(GF_POOL_AFTER_LEAD), 6,
+    { diversifyBy: (a: any) => a.category, maxPerCat: 2 }
+  ))
+  // Repli vers TERT (3) et QUAT (6) tels que le JSX existant produise :
+  //   gfFeatureRow = TERT[0:1] + QUAT[0:2]
+  //   gfMoreList   = TERT[1:3] + QUAT[2:6]
+  const GF_TERTIARY = [
+    gfFeatureRow[0], gfMore[0], gfMore[1],
+  ].filter(Boolean).map(withCatLabel)
+  const GF_QUATERNARY = [
+    gfFeatureRow[1], gfFeatureRow[2], ...gfMore.slice(2),
+  ].filter(Boolean).map(withCatLabel)
+
+  // À lire aussi (zone 1, colonne gauche). 3 items max-2 par cat.
   const ZONE1_ALSO_READ = consume(
-    pickFromPool(excludeArt(ALSO_READ_POOL), `${daily}:also-read`, 3, {
-      diversifyBy: (a: any) => a.category, minDiversity: 2,
+    pickRandom(excludeArt(ALSO_READ_POOL), 3, {
+      diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
   ).map(withCatLabel)
 
-  // Atlas (3 cartes, pas d'exclusion : ce ne sont pas des articles)
-  const ZONE1_ATLAS = pickFromPool(ATLAS_POOL, `${daily}:atlas`, 3)
+  // Atlas (3 cartes, indépendant : ce ne sont pas des articles).
+  const ZONE1_ATLAS = pickRandom(ATLAS_POOL, 3)
 
-  // Dernières publications : 3 plus récents par date + 2 redécouvertes seedées.
-  // Les featured et les nouveautés sont déjà front-load dans le hero, donc
-  // exclus ici pour ne pas réapparaître.
+  // Dernières publications : 3 plus récents par date + 2 redécouvertes
+  // aléatoires. Les nouveautés restent ancrées en tête, le reste se
+  // remélange à chaque chargement. Filet `used` pour la dédup.
   const recentByDate = allArticles
-    .filter(a => !a.featured && !a.interviewType && !a.hideFromHome && !used.has(a.slug))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .filter(a => !a.interviewType && !a.hideFromHome && !used.has(a.slug)
+                 && new Date(a.date).getTime() <= nowTs)
+    .sort(byDateDesc)
   const LATEST_RECENT = consume(recentByDate.slice(0, 3)).map(withCatLabel)
 
-  const thirtyDaysAgo = refDate.getTime() - 30 * 86400 * 1000
+  const thirtyDaysAgo = nowTs - 30 * 86400 * 1000
   const olderPool = allArticles.filter(a =>
-    !a.featured && !a.interviewType && !a.hideFromHome && !used.has(a.slug)
+    !a.interviewType && !a.hideFromHome && !used.has(a.slug)
     && new Date(a.date).getTime() < thirtyDaysAgo
   )
   const LATEST_REDISCOVER = consume(
-    pickFromPool(olderPool, `${daily}:latest-redisc`, 2, {
-      diversifyBy: (a: any) => a.category, minDiversity: 2,
+    pickRandom(olderPool, 2, {
+      diversifyBy: (a: any) => a.category, maxPerCat: 1,
     })
   ).map(withCatLabel)
   const LATEST = [...LATEST_RECENT, ...LATEST_REDISCOVER]
 
-  // POPULAR (tourne toutes les 4h)
-  // Les plus lus est un axe de popularité indépendant : un article peut y
-  // figurer même s'il apparaît ailleurs sur la home. On préfère les non-
-  // déjà-affichés, puis on complète depuis le pool complet pour atteindre
-  // la cible de 5. POPULAR ne consomme PAS used : la section ne se vide
-  // jamais et REDISCOVER (tiré après) garde son pool intact.
+  // POPULAR (« Les plus lus »). 5 items aléatoires avec max-2 par cat.
+  // Indépendant du reste : peut contenir des articles déjà affichés
+  // ailleurs (la popularité ne consomme pas `used`, sinon la section se
+  // viderait quand l'autre rotation a beaucoup pioché).
   const POPULAR_TARGET = 5
-  const popularPrefer = pickFromPool(excludeArt(POPULAR_POOL), `${slot4h}:popular`, POPULAR_TARGET, {
-    diversifyBy: (a: any) => a.category, minDiversity: 3,
-  })
+  const popularPrefer = pickRandom(
+    POPULAR_POOL.filter(a => !used.has(a.slug)), POPULAR_TARGET,
+    { diversifyBy: (a: any) => a.category, maxPerCat: 2 }
+  )
   let popularList: any[] = popularPrefer
   if (popularList.length < POPULAR_TARGET) {
     const have = new Set(popularList.map(a => a.slug))
-    const fill = pickFromPool(
+    const fill = pickRandom(
       POPULAR_POOL.filter(a => !have.has(a.slug)),
-      `${slot4h}:popular-fill`,
       POPULAR_TARGET - popularList.length,
-      { diversifyBy: (a: any) => a.category, minDiversity: 2 }
+      { diversifyBy: (a: any) => a.category, maxPerCat: 2 }
     )
     popularList = [...popularList, ...fill]
   }
   const POPULAR = popularList.map(withCatLabel)
 
-  // Portraits : 6 articles, simple shuffle journalier de l'ordre
-  const PORTRAITS = seededShuffle(PORTRAITS_BASE, `${daily}:portraits`)
+  // Portraits : 6 articles, ordre aléatoire à chaque chargement.
+  const PORTRAITS = randomShuffle(PORTRAITS_BASE)
 
-  // À redécouvrir (bas de home) : 3 articles >30j, diversifiés
+  // À redécouvrir : 3 articles >30j, aléatoires avec max-2 par cat.
   const rediscoverPool = allArticles.filter(a =>
     !a.interviewType && !a.hideFromHome && !used.has(a.slug)
     && new Date(a.date).getTime() < thirtyDaysAgo
   )
-  const REDISCOVER = pickFromPool(rediscoverPool, `${daily}:rediscover-zone`, 3, {
-    diversifyBy: (a: any) => a.category, minDiversity: 3,
+  const REDISCOVER = pickRandom(rediscoverPool, 3, {
+    diversifyBy: (a: any) => a.category, maxPerCat: 2,
   }).map(withCatLabel)
 
   return (
     <>
       <Header />
-      <PreviewPin date={searchParams?.date} hour={searchParams?.hour} />
       <Ticker />
 
       {/* ══════════════════════════════════════

@@ -39,9 +39,11 @@ function eligible(a: Article): boolean {
   return true
 }
 
-/* HERO : tous les articles à image, hors portraits, hors sanctuaire. */
+/* HERO : tous les articles à image hors sanctuaire. Les portraits sont
+   admis : le hero les distribue dans le créneau de leur catégorie quand
+   `portrait` fait partie des cats retenues du jour (cf. page.tsx). */
 export const HERO_POOL: Article[] = ALL.filter(a =>
-  eligible(a) && a.category !== 'portrait' && !SANCTUARY.has(a.slug)
+  eligible(a) && !SANCTUARY.has(a.slug)
 )
 
 /* UNDER_HERO : même règle que HERO (articles à image, hors portraits,

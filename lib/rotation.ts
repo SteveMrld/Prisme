@@ -103,6 +103,65 @@ export function pickFromPool<T>(
   return result
 }
 
+/* Mélange aléatoire pur (Math.random). Pour la home Soara : la rotation
+   se redéclenche à chaque requête, l'utilisateur voit donc une sélection
+   différente à chaque rechargement. La home étant `force-dynamic`,
+   chaque appel SSR produit son propre shuffle, pas de cache CDN à
+   contourner. */
+export function randomShuffle<T>(arr: readonly T[]): T[] {
+  const out = [...arr]
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[out[i], out[j]] = [out[j], out[i]]
+  }
+  return out
+}
+
+export type PickRandomOpts<T> = {
+  /* Clé de regroupement (ex : catégorie). */
+  diversifyBy?: (item: T) => string | undefined
+  /* Plafond d'items partageant la même clé dans le résultat.
+     Contrainte « pas plus de N de la même catégorie par bloc ».
+     Si le pool est trop petit pour respecter la contrainte, on
+     complète en relâchant la règle (mieux vaut un bloc complet
+     qu'un bloc tronqué). */
+  maxPerCat?: number
+}
+
+export function pickRandom<T>(
+  pool: readonly T[],
+  n: number,
+  opts: PickRandomOpts<T> = {}
+): T[] {
+  const shuffled = randomShuffle(pool)
+  const { diversifyBy, maxPerCat } = opts
+  if (!diversifyBy || !maxPerCat || maxPerCat < 1) {
+    return shuffled.slice(0, n)
+  }
+  const result: T[] = []
+  const counts = new Map<string, number>()
+  const overflow: T[] = []
+  for (const item of shuffled) {
+    if (result.length >= n) break
+    const key = diversifyBy(item)
+    if (key === undefined) { result.push(item); continue }
+    const c = counts.get(key) ?? 0
+    if (c < maxPerCat) {
+      result.push(item)
+      counts.set(key, c + 1)
+    } else {
+      overflow.push(item)
+    }
+  }
+  /* Filet : si la contrainte a tronqué le résultat, on complète depuis
+     les items mis de côté (sans relancer le shuffle, l'ordre aléatoire
+     initial est préservé). */
+  while (result.length < n && overflow.length > 0) {
+    result.push(overflow.shift()!)
+  }
+  return result
+}
+
 /* Parse un override de date depuis l'URL (?date=YYYYMMDD ou YYYY-MM-DD).
    Renvoie undefined si la valeur est invalide. Sert à prévisualiser
    d'autres jours sur la preview sans attendre. */
