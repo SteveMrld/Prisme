@@ -85,6 +85,19 @@
   margin-right: auto;
 }
 
+/* Articles signés par un contributeur extérieur : chapeau "deck" façon NYT,
+   serif display semi-gras, noir, non-italique. Plus dense que le chapeau
+   par défaut qui est volontairement discret. */
+.chapeauContributor {
+  font-family: var(--font-serif-display);
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-style: normal;
+  font-weight: 600;
+  color: var(--encre);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+}
+
 .description {
   font-family: var(--font-serif-text);
   font-size: 22px;
@@ -373,6 +386,64 @@
   font-style: italic;
   margin-top: 3px;
   letter-spacing: 0.3px;
+}
+
+/* ── Variante CONTRIBUTEUR EXTÉRIEUR ──
+   Photo plus grande, padding plus généreux, paragraphe bio sous le rôle.
+   Inspiration NYT « About the author » : filet doré au-dessus, espace
+   blanc qui isole le bloc du corps de l'article. */
+.authorSignatureContributor {
+  align-items: flex-start;
+  gap: 28px;
+  padding: 32px 0 28px;
+  margin-top: 32px;
+  border-top: 1px solid var(--or);
+  border-bottom: 1px solid var(--bord);
+}
+.authorSignatureContributor .authorSigAvatar {
+  width: 110px;
+  height: 110px;
+  font-size: 32px;
+}
+.authorSignatureContributor .authorSigLabel {
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.authorSignatureContributor .authorSigName {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+}
+.authorSignatureContributor .authorSigRole {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gris);
+  margin-top: 4px;
+  letter-spacing: 0;
+}
+.authorSigBio {
+  margin: 14px 0 0;
+  font-family: var(--font-serif-text);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--encre);
+  max-width: 540px;
+}
+.authorSigBio em { font-style: italic; }
+
+@media (max-width: 640px) {
+  .authorSignatureContributor {
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px 0 24px;
+  }
+  .authorSignatureContributor .authorSigAvatar {
+    width: 88px;
+    height: 88px;
+    font-size: 24px;
+  }
+  .authorSigBio { font-size: 14.5px; }
 }
 
 /* ── BADGES ARTICLE ── */

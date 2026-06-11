@@ -24,6 +24,7 @@ interface ArticleLayoutProps {
   content: string
   author?: string
   authorRole?: string
+  authorBio?: string
   related?: any[]
   imageCredit?: string
   imagePosition?: string
@@ -47,6 +48,7 @@ function initials(name: string) {
 // Portrait URL depuis /public/portraits/
 function portraitUrl(name: string): string | null {
   const map: Record<string, string> = {
+    'Agathe Cagé':        '/portraits/cage.jpg',
     'Léo Cottencin':      '/portraits/cottencin.jpg',
     'Jade Desroses':      '/portraits/desroses.jpg',
     'Laetitia Hélouet':   '/portraits/helouet.jpg',
@@ -67,6 +69,7 @@ export default function ArticleLayout({
   readTime, date, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, avif = false, content, slug = '',
   author = 'Steve Moradel',
   authorRole = '',
+  authorBio = '',
   related = [],
   imageCredit = '',
   imagePosition,
@@ -77,6 +80,12 @@ export default function ArticleLayout({
 }: ArticleLayoutProps) {
   const color = categoryColors[category] || '#0A0A0A'
   const minutes = parseInt(readTime) || 8
+
+  // Article signé par un contributeur extérieur : chapeau en gras serif et
+  // bloc bio enrichi en fin d'article. On exclut la rédaction "Soara" qui
+  // n'est pas un contributeur nommé. Détection automatique : tout futur
+  // contributeur ajouté à articles.json hérite du traitement sans config.
+  const isContributor = !!author && author !== 'Steve Moradel' && author !== 'Soara'
 
   // Whitelist drop cap : seul overton conserve la lettrine.
   // cygne et predateurs retirés (régression animations rapportée le 2026-05-13,
@@ -179,7 +188,7 @@ export default function ArticleLayout({
             )}
           </div>
           {description && (
-            <p className={styles.chapeau}>{description}</p>
+            <p className={`${styles.chapeau}${isContributor ? ' ' + styles.chapeauContributor : ''}`}>{description}</p>
           )}
         </div>
       )}
@@ -282,16 +291,20 @@ export default function ArticleLayout({
           </div>
         )}
 
-        {/* SIGNATURE BAS */}
-        <div className={styles.authorSignature}>
+        {/* SIGNATURE BAS — variante enrichie pour les contributeurs externes
+            (photo plus grande, paragraphe bio sous le rôle) */}
+        <div className={`${styles.authorSignature}${isContributor ? ' ' + styles.authorSignatureContributor : ''}`}>
           {portraitUrl(author)
             ? <img src={portraitUrl(author)!} alt={author} className={styles.authorSigAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
             : <div className={styles.authorSigAvatar}>{initials(author)}</div>
           }
           <div className={styles.authorSigBody}>
-            <div className={styles.authorSigLabel}>Auteur</div>
+            <div className={styles.authorSigLabel}>{isContributor ? (lang === 'en' ? 'About the author' : 'À propos') : (lang === 'en' ? 'Author' : 'Auteur')}</div>
             <div className={styles.authorSigName}>{author}</div>
-            <div className={styles.authorSigRole}>{authorRole}</div>
+            {authorRole && <div className={styles.authorSigRole}>{authorRole}</div>}
+            {isContributor && authorBio && (
+              <p className={styles.authorSigBio} dangerouslySetInnerHTML={{ __html: authorBio }} />
+            )}
           </div>
         </div>
       </div>

@@ -14,7 +14,8 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "recent": true
+    "recent": true,
+    "authorBio": "Agathe Cagé est docteure en science politique et auteure de <em>Classes figées. Comprendre la France empêchée</em> (Flammarion, 2024). Elle travaille sur les fractures sociales, les inégalités et les transformations du capitalisme contemporain."
   },
   {
     "slug": "epstein",
@@ -200,7 +201,8 @@
     "premium": false,
     "titleEn": "The books that will never come",
     "descriptionEn": "On publishing, and on what it says of a civilisation that its books become assets. By Jade Desroses.",
-    "avif": true
+    "avif": true,
+    "authorBio": "Jade Desroses est la fondatrice des <em>Pages de Jade</em>, où elle chronique les livres qui comptent. Ses lectures sont une invitation à penser autrement."
   },
   {
     "slug": "societe-du-consentement",
@@ -382,7 +384,8 @@
     "titleEn": "Élisabeth Moreno",
     "descriptionEn": "Former Minister. The trajectory of a woman who chose not to smooth anything over.",
     "avif": true,
-    "recent": true
+    "recent": true,
+    "authorBio": "Élisabeth Moreno est ancienne ministre déléguée chargée de l'Égalité entre les femmes et les hommes. Directrice du conseil d'administration de Ring Capital, elle intervient sur les questions de leadership, de diversité et de transformation des organisations."
   },
   {
     "slug": "dette-souveraine",
@@ -643,7 +646,8 @@
     "imageCredit": "© SOARA",
     "titleEn": "What Books Do to Those Who Open Them",
     "descriptionEn": "Reading is not a leisure activity like any other. It is a technology of the human.",
-    "avif": true
+    "avif": true,
+    "authorBio": "Jade Desroses est la fondatrice des <em>Pages de Jade</em>, où elle chronique les livres qui comptent. Ses lectures sont une invitation à penser autrement."
   },
   {
     "slug": "medias",
@@ -1053,7 +1057,8 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "recent": true
+    "recent": true,
+    "authorBio": "Abad Boumsong est essayiste et poète. Ses textes explorent la langue, l'identité et ce que la littérature peut encore dire du monde contemporain."
   },
   {
     "slug": "sens-au-travail",
@@ -1069,6 +1074,7 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "recent": true
+    "recent": true,
+    "authorBio": "Majda Vincent est Directrice des ressources humaines du groupe Adecco. Elle écrit sur les transformations du travail, la santé organisationnelle et le rôle des entreprises face aux mutations contemporaines."
   }
 ]
