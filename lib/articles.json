@@ -13,7 +13,8 @@
     "featured": true,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara"
+    "imageCredit": "© Soara",
+    "recent": true
   },
   {
     "slug": "epstein",
@@ -380,7 +381,8 @@
     "imageCredit": "© SOARA",
     "titleEn": "Élisabeth Moreno",
     "descriptionEn": "Former Minister. The trajectory of a woman who chose not to smooth anything over.",
-    "avif": true
+    "avif": true,
+    "recent": true
   },
   {
     "slug": "dette-souveraine",
@@ -722,7 +724,8 @@
     "premium": false,
     "imageCredit": "Justin Pacheco / U.S. Air Force, Domaine public, modifiée par SOARA",
     "titleEn": "Elon Musk",
-    "descriptionEn": "The man who wants to redesign the world. A portrait between genius and destabilization."
+    "descriptionEn": "The man who wants to redesign the world. A portrait between genius and destabilization.",
+    "featured": false
   },
   {
     "slug": "nooyi",
@@ -1049,7 +1052,8 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara"
+    "imageCredit": "© Soara",
+    "recent": true
   },
   {
     "slug": "sens-au-travail",
@@ -1064,6 +1068,7 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara"
+    "imageCredit": "© Soara",
+    "recent": true
   }
 ]
