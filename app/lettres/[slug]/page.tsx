@@ -60,6 +60,12 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
   const lettre = (lettres as any[]).find(l => l.slug === params.slug)
   if (!lettre) notFound()
 
+  // Les autres lettres, pour le bloc "À lire aussi" en fin de page.
+  const autres = (lettres as any[])
+    .filter(l => l.slug !== params.slug)
+    .sort((a, b) => new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime())
+    .slice(0, 3)
+
   const contentPath = path.join(process.cwd(), 'lib', 'content', 'lettres', `${lettre.content}.html`)
   let body = ''
   try {
@@ -101,6 +107,7 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
       <Header />
       <main className={styles.main}>
         <article className={styles.article}>
+          <span className={styles.marginLabel} aria-hidden="true">La lettre du mardi</span>
           <header className={styles.head}>
             {/* Cartouche réduit : picto + label "La lettre du mardi",
                 déclinaison de l'en-tête de /lettres, au-dessus du bandeau N°. */}
@@ -163,6 +170,21 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
                   </li>
                 ))}
               </ul>
+            </aside>
+          )}
+
+          {autres.length > 0 && (
+            <aside className={styles.lireAussi}>
+              <h2 className={styles.lireAussiTitle}>À lire aussi</h2>
+              <div className={styles.lireAussiGrid}>
+                {autres.map(l => (
+                  <Link key={l.slug} href={`/lettres/${l.slug}`} className={styles.lireAussiCard}>
+                    <span className={styles.lireAussiNum}>N° {String(l.numero).padStart(2, '0')} · {l.date}</span>
+                    <span className={styles.lireAussiCardTitle}>{l.title}</span>
+                    {l.teaser && <span className={styles.lireAussiCardTeaser}>{l.teaser}</span>}
+                  </Link>
+                ))}
+              </div>
             </aside>
           )}
 

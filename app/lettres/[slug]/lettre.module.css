@@ -7,15 +7,19 @@
 
 .main {
   min-height: 100vh;
-  background: var(--bg);
+  background: var(--papier);
   color: var(--encre);
-  padding-bottom: 100px;
+  padding: 28px 16px 100px;
 }
 
 .article {
-  max-width: 720px;
+  position: relative;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 56px 24px 0;
+  padding: 40px 22px 40px;
+  background: var(--blanc);
+  border: 1px solid var(--bord-l);
+  box-shadow: 0 1px 40px rgba(10, 10, 10, 0.05);
 }
 
 .head {
@@ -38,7 +42,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--gris-m);
+  color: var(--or);
 }
 .miniCartoucheLabel {
   font-family: var(--font-serif-text);
@@ -114,7 +118,7 @@
   align-items: center;
   justify-content: center;
   margin: 36px 0 32px;
-  color: var(--gris-l);
+  color: var(--or);
 }
 .bodyDivider svg {
   display: block;
@@ -231,11 +235,100 @@
 }
 .ctaBack:hover { opacity: 0.6; }
 .ctaSubscribe {
-  border-bottom: 1px solid var(--encre);
+  border-bottom: 1px solid var(--or);
   padding-bottom: 2px;
 }
 .ctaSubscribe:hover { opacity: 0.6; }
 
 @media (min-width: 700px) {
-  .article { padding: 80px 24px 0; }
+  .article { padding: 80px 90px 56px; }
+}
+
+/* ── À lire aussi : les autres lettres ───────────────── */
+.lireAussi {
+  margin: 48px 0 0;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--bord);
+}
+.lireAussiTitle {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  margin: 0 0 20px;
+}
+.lireAussiGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.lireAussiCard {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 20px;
+  background: var(--blanc);
+  border: 1px solid var(--bord-l);
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+.lireAussiCard:hover {
+  border-color: var(--or);
+  background: var(--papier);
+}
+.lireAussiNum {
+  font-family: var(--font-ui);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--or-deep);
+  margin: 0 0 10px;
+}
+.lireAussiCardTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(18px, 2.4vw, 22px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--encre);
+  margin: 0 0 8px;
+}
+.lireAussiCardTeaser {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--gris);
+  margin: 0;
+}
+
+/* ── Libellé de marge, desktop large seulement ───────── */
+.marginLabel {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .lireAussiGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .marginLabel {
+    display: block;
+    position: absolute;
+    top: 80px;
+    left: -30px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-ui);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gris-l);
+  }
 }
