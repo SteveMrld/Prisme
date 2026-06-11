@@ -88,6 +88,11 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
       { kind: 'book', auteur: 'Albert Camus', titre: 'La Peste' },
       { kind: 'book', auteur: 'François Sureau', titre: 'Pour la liberté' },
     ],
+    'l-autre-france': [
+      { kind: 'book', auteur: 'Aimé Césaire', titre: 'Discours sur le colonialisme' },
+      { kind: 'book', auteur: 'Édouard Glissant', titre: 'Le Discours antillais' },
+      { kind: 'book', auteur: 'Malcom Ferdinand', titre: 'Une écologie décoloniale', context: 'sur écologie et héritage colonial' },
+    ],
   }
   const prolonger: ProlongerItem[] | null = PROLONGER[params.slug] || null
 

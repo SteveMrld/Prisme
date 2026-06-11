@@ -1,7 +1,7 @@
 [
   {
     "slug": "ce-que-letat-doit-a-un-enfant",
-    "numero": 2,
+    "numero": 3,
     "title": "Ce que l'État doit à un enfant",
     "date": "16 juin 2026",
     "dateISO": "2026-06-16",
@@ -12,7 +12,7 @@
   },
   {
     "slug": "a-qui-appartient-l-orbite",
-    "numero": 1,
+    "numero": 2,
     "title": "À qui appartient l'orbite",
     "date": "9 juin 2026",
     "dateISO": "2026-06-09",
@@ -20,5 +20,16 @@
     "auteur": "Steve Moradel",
     "auteurRole": "Directeur de la rédaction",
     "content": "a-qui-appartient-l-orbite"
+  },
+  {
+    "slug": "l-autre-france",
+    "numero": 1,
+    "title": "L'autre France",
+    "date": "2 juin 2026",
+    "dateISO": "2026-06-02",
+    "teaser": "Sur le chlordécone, et ce qu'une dérogation accordée à une terre française révèle du prix qu'on met à certaines vies.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "l-autre-france"
   }
 ]
