@@ -605,7 +605,7 @@ export default async function HomePage() {
                 <div className={styles.latestItem2Top}>
                   <span className={styles.cat}>{a.catLabel}</span>
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
-                    {i === 0 && <span className={styles.recentTag}>Récent</span>}
+                    {a.recent === true && <span className={styles.recentTag}>RÉCENT</span>}
                     <span className={styles.latestItem2Date}>
                       {new Date(a.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})}
                     </span>

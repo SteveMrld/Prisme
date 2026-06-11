@@ -1663,14 +1663,16 @@
 }
 
 .recentTag {
+  display: inline-block;
   font-family: var(--font-ui);
-  font-size: 7px;
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #fff;
-  background: #C8A96E;
-  padding: 2px 5px;
+  background: #1A5C3A;
+  padding: 3px 8px;
+  border-radius: 2px;
   flex-shrink: 0;
 }
 
@@ -1804,7 +1806,7 @@
   margin-bottom: 14px;
   color: #0A0A0A;
 }
-.rediscoverTitle em { font-style: italic; color: #6A6A6A; font-weight: 600; }
+.rediscoverTitle em { font-style: italic; color: #6A6A6A; }
 .rediscoverIntro {
   font-family: var(--font-serif-text);
   font-style: italic;
@@ -1842,6 +1844,9 @@
   filter: grayscale(.15);
   transition: filter var(--dur-base, 250ms) var(--ease-out, ease);
 }
+/* Portraits : visage en haut du cadrage pour ne pas couper la tête
+   quand le crop 16/10 mange une photo originellement plus carrée. */
+.rediscoverCard[data-cat="portrait"] .rediscoverImg img { object-position: center top; }
 .rediscoverCard:hover .rediscoverImg img { filter: grayscale(0); }
 .rediscoverBody { display: flex; flex-direction: column; gap: 10px; }
 .rediscoverCardTitle {
