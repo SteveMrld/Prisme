@@ -164,4 +164,46 @@ export async function consumeQuota(userId: string, isAdmin: boolean): Promise<Qu
   }
 }
 
+/**
+ * Tente d'acquérir le verrou "une requête Recoupement en cours" sur
+ * l'utilisateur. Atomique côté DB (UPDATE ... WHERE inflight IS NULL OR
+ * expired RETURNING). Empêche qu'un même user lance plusieurs appels
+ * Anthropic en parallèle (cf. RAPPORT_AUDIT §5.2).
+ * Renvoie true si le verrou est acquis, false sinon.
+ * L'admin est exempté : aucune contention possible côté Steve.
+ */
+export async function tryAcquireRecoupementLock(
+  userId: string,
+  isAdmin: boolean,
+): Promise<boolean> {
+  if (isAdmin) return true
+  const admin = supabaseAdmin()
+  const { data, error } = await admin.rpc('try_lock_recoupement', {
+    p_user_id: userId,
+    p_timeout_seconds: 120,
+  })
+  if (error) {
+    // En cas d'erreur RPC on refuse plutôt que de laisser passer : mieux
+    // vaut un 503 occasionnel qu'un dépassement de quota Anthropic.
+    console.error('[recoupement] try_lock_recoupement RPC error', error)
+    return false
+  }
+  return data === true
+}
+
+/**
+ * Libère le verrou. À appeler en finally après l'appel Anthropic, succès
+ * ou échec. Best-effort : si l'unlock plante, le timeout DB (120 s) finit
+ * par auto-libérer.
+ */
+export async function releaseRecoupementLock(
+  userId: string,
+  isAdmin: boolean,
+): Promise<void> {
+  if (isAdmin) return
+  const admin = supabaseAdmin()
+  const { error } = await admin.rpc('unlock_recoupement', { p_user_id: userId })
+  if (error) console.error('[recoupement] unlock_recoupement RPC error', error)
+}
+
 export { MONTHLY_LIMIT }

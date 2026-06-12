@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { requireActiveSubscriber, consumeQuota, peekQuota } from '../../../lib/recoupement-auth'
+import {
+  requireActiveSubscriber,
+  consumeQuota,
+  peekQuota,
+  tryAcquireRecoupementLock,
+  releaseRecoupementLock,
+} from '../../../lib/recoupement-auth'
 import { SOURCES, formatSourcesForPrompt } from '../../../lib/recoupement-sources'
 
 export const maxDuration = 60 // Vercel max for hobby plan
@@ -38,6 +44,23 @@ export async function POST(req: NextRequest) {
       quota: { used: peek.used, limit: peek.limit, remaining: 0 },
     }, { status: peek.status })
   }
+
+  // 2bis. Verrou anti-course AVANT l'appel Anthropic. Empêche qu'un user
+  //       en parallèle lance N requêtes payantes simultanées alors qu'il
+  //       n'a qu'1 crédit restant. cf. RAPPORT_AUDIT §5.2.
+  const locked = await tryAcquireRecoupementLock(auth.userId, auth.isAdmin)
+  if (!locked) {
+    return NextResponse.json({
+      error: 'Une requête est déjà en cours, patientez.',
+      code: 'inflight',
+      quota: { used: peek.used, limit: peek.limit, remaining: peek.remaining },
+      not_charged: true,
+    }, { status: 429 })
+  }
+
+  // Tout ce qui suit doit relâcher le verrou en finally, quoi qu'il
+  // arrive (succès, échec Anthropic, erreur parse, exception).
+  try {
 
   // AbortController pour couper proprement avant le timeout Vercel (60s)
   const controller = new AbortController()
@@ -192,4 +215,8 @@ Schéma exact :
     ...data,
     quota: { used: quota.used, limit: quota.limit, remaining: quota.remaining },
   })
+
+  } finally {
+    await releaseRecoupementLock(auth.userId, auth.isAdmin)
+  }
 }
