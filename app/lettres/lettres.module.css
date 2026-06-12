@@ -67,6 +67,11 @@
 }
 .cartoucheCta:hover { opacity: 0.6; }
 
+.cartoucheForm {
+  max-width: 460px;
+  margin: 8px auto 0;
+}
+
 @media (min-width: 700px) {
   .cartoucheBody { padding: 80px 24px 64px; }
 }

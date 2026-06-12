@@ -75,8 +75,8 @@ export default function Footer() {
 
           <div className={styles.col}>
             <div className={styles.colTitle}>Suivre</div>
-            <Link href="/abonnement" className={styles.linkHi}>
-              S&apos;abonner à la lettre du mardi
+            <Link href="/lettres" className={styles.linkHi}>
+              S&apos;inscrire à la lettre du mardi
             </Link>
             <Link href="/rss" className={styles.link}>RSS</Link>
             <a

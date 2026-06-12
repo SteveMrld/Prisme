@@ -190,7 +190,7 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
 
           <div className={styles.cta}>
             <Link href="/lettres" className={styles.ctaBack}>← Toutes les lettres</Link>
-            <Link href="/abonnement" className={styles.ctaSubscribe}>
+            <Link href="/lettres" className={styles.ctaSubscribe}>
               Recevoir la lettre chaque mardi →
             </Link>
           </div>

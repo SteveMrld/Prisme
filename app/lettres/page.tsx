@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Header from '../../components/Header'
 import { FleuronIcon } from '../../components/LettresIcons'
+import NewsletterForm from '../../components/NewsletterForm'
 import lettres from '../../lib/lettres.json'
 import styles from './lettres.module.css'
 
@@ -41,9 +42,9 @@ export default function LettresIndex() {
             <p className={styles.cartoucheLede}>
               Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.
             </p>
-            <Link href="/abonnement" className={styles.cartoucheCta}>
-              S'abonner gratuitement →
-            </Link>
+            <div className={styles.cartoucheForm}>
+              <NewsletterForm />
+            </div>
           </div>
         </header>
 

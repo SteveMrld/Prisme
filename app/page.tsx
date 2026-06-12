@@ -349,8 +349,8 @@ export default async function HomePage() {
             <p className={styles.zone1NewsletterTeaser}>
               Une lecture longue chaque mardi matin. Sans algorithme, sans bruit.
             </p>
-            <Link href="/abonnement" className={styles.zone1NewsletterCta}>
-              S'abonner gratuitement →
+            <Link href="/lettres" className={styles.zone1NewsletterCta}>
+              S'inscrire gratuitement →
             </Link>
             <Link href="/lettres" className={styles.zone1NewsletterArchive}>
               <FleuronIcon width={14} height={14} />
