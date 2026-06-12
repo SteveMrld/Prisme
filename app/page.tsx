@@ -294,14 +294,20 @@ export default async function HomePage() {
   // Portraits : 6 articles, ordre aléatoire à chaque chargement.
   const PORTRAITS = randomShuffle(PORTRAITS_BASE)
 
-  // À redécouvrir : 3 articles >30j, aléatoires avec max-2 par cat.
+  // À redécouvrir : 3 articles >30j. Au plus 1 portrait, et les 3 cartes
+  // doivent couvrir 3 catégories distinctes (sinon deux portraits ou
+  // deux mêmes rubriques tombaient parfois côte à côte).
   const rediscoverPool = allArticles.filter(a =>
     !a.interviewType && !a.hideFromHome && !used.has(a.slug)
     && new Date(a.date).getTime() < thirtyDaysAgo
   )
-  const REDISCOVER = pickRandom(rediscoverPool, 3, {
-    diversifyBy: (a: any) => a.category, maxPerCat: 2,
-  }).map(withCatLabel)
+  const rediscoverPortraits = rediscoverPool.filter(a => a.category === 'portrait')
+  const rediscoverRest = rediscoverPool.filter(a => a.category !== 'portrait')
+  const pickedPortrait = pickRandom(rediscoverPortraits, 1)
+  const pickedRest = pickRandom(rediscoverRest, 3 - pickedPortrait.length, {
+    diversifyBy: (a: any) => a.category, maxPerCat: 1,
+  })
+  const REDISCOVER = randomShuffle([...pickedPortrait, ...pickedRest]).map(withCatLabel)
 
   return (
     <>
@@ -654,7 +660,12 @@ export default async function HomePage() {
               <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.rediscoverCard} data-cat={a.category}>
                 {a.image && (
                   <div className={styles.rediscoverImg}>
-                    <img src={a.image} alt={a.title} loading="lazy" />
+                    <img
+                      src={a.image}
+                      alt={a.title}
+                      loading="lazy"
+                      style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined}
+                    />
                   </div>
                 )}
                 <div className={styles.rediscoverBody}>
