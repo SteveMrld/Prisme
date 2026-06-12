@@ -191,17 +191,17 @@ export default async function HomePage() {
 
   const HERO_ROTATION = heroPicks.map(withCatLabel)
 
-  // Sous le hero : 3 à gauche, 2 à droite. Aléatoire avec anti-monocat.
-  // Le bloc droite n'a que 2 cards : on cape à 1 par cat pour qu'il
-  // n'apparaisse jamais en monocatégorie.
+  // Sous le hero : 3 à gauche, 3 à droite. Aléatoire avec anti-monocat.
+  // Le bloc droite a 3 cards : on cape à 2 par cat pour préserver la
+  // diversité catégorielle sans bloquer le pool.
   const UNDER_HERO_LEFT = consume(
     pickRandom(excludeArt(UNDER_HERO_POOL), 3, {
       diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
   ).map(withCatLabel)
   const UNDER_HERO_RIGHT = consume(
-    pickRandom(excludeArt(UNDER_HERO_POOL), 2, {
-      diversifyBy: (a: any) => a.category, maxPerCat: 1,
+    pickRandom(excludeArt(UNDER_HERO_POOL), 3, {
+      diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
   ).map(withCatLabel)
 
