@@ -312,6 +312,7 @@ export default async function HomePage() {
   return (
     <>
       <Header />
+      <h1 className="sr-only">Soara, comprendre le monde, éclairer l'avenir</h1>
       <Ticker />
 
       {/* ══════════════════════════════════════

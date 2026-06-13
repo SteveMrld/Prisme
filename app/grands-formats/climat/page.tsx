@@ -2,8 +2,9 @@ import ClimateClient from "./ClimateClient"
 import BookmarkButton from "../../../components/BookmarkButton"
 
 export const metadata = {
-  title: "Cinq siècles de fièvre · Soara",
+  title: "Cinq siècles de fièvre",
   description: "La Terre a toujours changé de température. Ce qui est sans précédent, c'est la vitesse. 500 millions d'années de données paléoclimatiques.",
+  alternates: { canonical: 'https://soara.fr/grands-formats/climat' },
 }
 
 export default function ClimatPage() {

@@ -2,8 +2,9 @@ import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 
 export const metadata = {
-  title: "L'architecture du désordre, Soara",
+  title: "L'architecture du désordre",
   description: "Pourquoi le droit international ne fonctionne que quand les grandes puissances veulent bien qu'il fonctionne.",
+  alternates: { canonical: 'https://soara.fr/grands-formats/architecture-desordre' },
 };
 
 export default async function ArchitectureDesordre() {

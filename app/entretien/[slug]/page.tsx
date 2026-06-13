@@ -20,7 +20,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 
   const label = i.interviewType === 'grand' ? 'Le Grand Entretien' : 'Interview'
   const subject = i.interviewSubject || i.title.replace(/<[^>]+>/g, '')
-  const title = `${subject}, ${label} · Soara`
+  const title = `${subject}, ${label}`
   const url = `${BASE_URL}/entretien/${i.slug}`
   const ogImage = i.image || `${BASE_URL}/og-default.jpg`
 

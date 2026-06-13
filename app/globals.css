@@ -290,3 +290,18 @@ main, article, section:first-of-type {
 @media (max-width: 768px) {
   body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
 }
+
+/* Utilitaire d'accessibilite/SEO : retire visuellement un element tout en
+   le laissant lisible par les lecteurs d'ecran et les bots. Pattern standard
+   sr-only (clip + position absolue). Utilise pour le h1 semantique de la home. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

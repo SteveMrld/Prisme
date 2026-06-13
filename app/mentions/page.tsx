@@ -2,8 +2,9 @@ import Header from '../../components/Header'
 import styles from './mentions.module.css'
 
 export const metadata = {
-  title: 'Mentions légales · Soara',
+  title: 'Mentions légales',
   description: 'Mentions légales, politique de confidentialité et informations légales de Soara.',
+  alternates: { canonical: 'https://soara.fr/mentions' },
 }
 
 export default function MentionsPage() {

@@ -3,9 +3,10 @@ import BibliothequeClient from './BibliothequeClient'
 import livres from '../../lib/bibliotheque.json'
 
 export const metadata = {
-  title: 'Bibliothèque · Soara',
+  title: 'Bibliothèque',
   description:
     "Une page de Jade Desroses. Une lecture, un parti pris, la raison pour laquelle un livre compte. Les coups de cœur de la rédaction de Soara.",
+  alternates: { canonical: 'https://soara.fr/bibliotheque' },
   openGraph: {
     title: 'Bibliothèque · Soara',
     description:

@@ -4,8 +4,9 @@ import PictureImg from '../../components/PictureImg'
 import styles from './contributeurs.module.css'
 
 export const metadata = {
-  title: 'Contributeurs · Soara',
+  title: 'Contributeurs',
   description: 'Les auteurs qui écrivent pour Soara.',
+  alternates: { canonical: 'https://soara.fr/contributeurs' },
 }
 
 const contributeurs = [

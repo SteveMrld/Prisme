@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import articlesData from '../lib/articles.json'
+import lettresData from '../lib/lettres.json'
 import { getAllInterviews } from '../lib/interviews'
 
 const BASE_URL = 'https://soara.fr'
@@ -14,16 +15,29 @@ const URL_TO_CAT: Record<string, string> = {
 }
 
 // lastModified par page statique. Les pages réellement live (/, /signal,
-// /revue) gardent la date du jour, c'est ce qui correspond à leur réalité.
-// Les autres ont une date fixe, mise à jour manuellement quand la page bouge.
-// Cohérent avec la dernière vague de chantiers (audit pré-launch).
+// /revue, /indicateurs) gardent la date du jour, c'est ce qui correspond
+// à leur réalité. Les autres ont une date fixe, mise à jour manuellement
+// quand la page bouge. /lettres prend la date de la dernière lettre publiée.
 const STATIC_REVISED = new Date('2026-05-15')
+
+const LETTRES_LATEST = lettresData.length > 0
+  ? new Date(Math.max(...(lettresData as any[]).map(l => new Date(l.dateISO).getTime())))
+  : STATIC_REVISED
 
 const STATIC_PAGES = [
   { url: '/',              priority: 1.0,  changeFrequency: 'daily',   lastModified: new Date()   },
   { url: '/signal',        priority: 0.9,  changeFrequency: 'daily',   lastModified: new Date()   },
+  { url: '/revue',         priority: 0.8,  changeFrequency: 'daily',   lastModified: new Date()   },
+  { url: '/indicateurs',   priority: 0.7,  changeFrequency: 'daily',   lastModified: new Date()   },
+  { url: '/lettres',       priority: 0.9,  changeFrequency: 'weekly',  lastModified: LETTRES_LATEST },
   { url: '/visuels',       priority: 0.8,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
   { url: '/grands-formats',priority: 0.8,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
+  { url: '/signal-map',    priority: 0.7,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
+  { url: '/tv',            priority: 0.7,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
+  { url: '/bibliotheque',  priority: 0.6,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
+  { url: '/solutions',     priority: 0.7,  changeFrequency: 'monthly', lastModified: STATIC_REVISED },
+  { url: '/explorer',      priority: 0.6,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
+  { url: '/retrospective', priority: 0.6,  changeFrequency: 'yearly',  lastModified: STATIC_REVISED },
   { url: '/apropos',       priority: 0.5,  changeFrequency: 'monthly', lastModified: STATIC_REVISED },
   { url: '/contributeurs', priority: 0.5,  changeFrequency: 'monthly', lastModified: STATIC_REVISED },
   { url: '/mentions',      priority: 0.3,  changeFrequency: 'yearly',  lastModified: STATIC_REVISED },
@@ -106,5 +120,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...statics, ...categories, ...grandsFormats, ...articles, ...interviews]
+  const lettres = (lettresData as any[]).map(l => {
+    const parsed = new Date(l.dateISO)
+    return {
+      url: `${BASE_URL}/lettres/${l.slug}`,
+      lastModified: isNaN(parsed.getTime()) ? STATIC_REVISED : parsed,
+      changeFrequency: 'yearly' as const,
+      priority: 0.7,
+    }
+  })
+
+  return [...statics, ...categories, ...grandsFormats, ...articles, ...interviews, ...lettres]
 }

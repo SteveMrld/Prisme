@@ -7,8 +7,9 @@ import { Reveal } from './Reveal'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Atlas · Soara',
+  title: 'Atlas',
   description: 'Cartes interactives, animations, visualisations de données géopolitiques. Atlas Soara.',
+  alternates: { canonical: 'https://soara.fr/visuels' },
 }
 
 type AtlasCard = {

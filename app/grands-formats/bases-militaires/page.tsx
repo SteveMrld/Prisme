@@ -2,8 +2,9 @@ import GrandFormatLayout from "../../../components/GrandFormatLayout";
 import BasesClient from "./BasesClient";
 
 export const metadata = {
-  title: "L'Empire invisible, Les 800 bases militaires américaines dans le monde",
+  title: "L'Empire invisible, 800 bases militaires américaines",
   description: "Comment les États-Unis projettent leur puissance depuis 80 pays. Une carte interactive de l'empreinte militaire américaine mondiale.",
+  alternates: { canonical: 'https://soara.fr/grands-formats/bases-militaires' },
 };
 
 export default function BasesMilitairesPage() {

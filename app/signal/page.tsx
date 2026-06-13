@@ -6,8 +6,9 @@ import filSignal from '@/lib/fil-signal.json'
 const signals = filSignal.breves
 
 export const metadata = {
-  title: 'Signal · Soara',
+  title: 'Signal',
   description: 'L\'actualité qui compte. Les faits bruts, sans bruit.',
+  alternates: { canonical: 'https://soara.fr/signal' },
 }
 
 export default function SignalPage() {

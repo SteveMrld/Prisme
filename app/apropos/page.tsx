@@ -3,8 +3,9 @@ import Link from 'next/link'
 import styles from './apropos.module.css'
 
 export const metadata = {
-  title: 'À propos · Soara',
+  title: 'À propos',
   description: 'Ce que Soara est, ce qu\'il n\'est pas, et pourquoi.',
+  alternates: { canonical: 'https://soara.fr/apropos' },
 }
 
 export default function AProposPage() {
