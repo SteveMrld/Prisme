@@ -99,6 +99,11 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
       { kind: 'book', auteur: 'Édouard Glissant', titre: 'Le Discours antillais' },
       { kind: 'book', auteur: 'Malcom Ferdinand', titre: 'Une écologie décoloniale', context: 'sur écologie et héritage colonial' },
     ],
+    'tenir-debout-en-plein-jour': [
+      { kind: 'book', auteur: 'Albert Camus', titre: 'Le Mythe de Sisyphe' },
+      { kind: 'book', auteur: 'Alain Ehrenberg', titre: "La Fatigue d'être soi", context: 'dépression et société' },
+      { kind: 'book', auteur: 'Émile Durkheim', titre: 'Le Suicide' },
+    ],
   }
   const prolonger: ProlongerItem[] | null = PROLONGER[params.slug] || null
 

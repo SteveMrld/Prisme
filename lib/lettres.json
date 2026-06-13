@@ -1,7 +1,7 @@
 [
   {
     "slug": "ce-que-letat-doit-a-un-enfant",
-    "numero": 3,
+    "numero": 4,
     "title": "Ce que l'État doit à un enfant",
     "date": "16 juin 2026",
     "dateISO": "2026-06-16",
@@ -12,7 +12,7 @@
   },
   {
     "slug": "a-qui-appartient-l-orbite",
-    "numero": 2,
+    "numero": 3,
     "title": "À qui appartient l'orbite",
     "date": "9 juin 2026",
     "dateISO": "2026-06-09",
@@ -23,7 +23,7 @@
   },
   {
     "slug": "l-autre-france",
-    "numero": 1,
+    "numero": 2,
     "title": "L'autre France",
     "date": "2 juin 2026",
     "dateISO": "2026-06-02",
@@ -31,5 +31,16 @@
     "auteur": "Steve Moradel",
     "auteurRole": "Directeur de la rédaction",
     "content": "l-autre-france"
+  },
+  {
+    "slug": "tenir-debout-en-plein-jour",
+    "numero": 1,
+    "title": "Tenir debout en plein jour",
+    "date": "26 mai 2026",
+    "dateISO": "2026-05-26",
+    "teaser": "Sur la détresse qui ne se voit pas, et ce que notre estime pour la force visible nous fait manquer de ceux qui la portent en silence.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "tenir-debout-en-plein-jour"
   }
 ]
