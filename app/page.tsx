@@ -249,18 +249,26 @@ export default async function HomePage() {
   // Atlas (3 cartes, indépendant : ce ne sont pas des articles).
   const ZONE1_ATLAS = pickRandom(ATLAS_POOL, 3)
 
-  // Dernières publications : 3 plus récents par date + 2 redécouvertes
-  // aléatoires. Les nouveautés restent ancrées en tête, le reste se
-  // remélange à chaque chargement. Filet `used` pour la dédup.
+  // Dernières publications : 3 plus récents par date (canonique, ignore
+  // `used` exprès : un article peut être à la fois dans le Hero et dans
+  // "Dernières publications", c'est même attendu) + 2 redécouvertes
+  // aléatoires (>30j, hors articles déjà au top). Tri secondaire par slug
+  // pour stabilité quand deux articles partagent la même date.
+  const byDateDescStable = (a: any, b: any) => {
+    const d = new Date(b.date).getTime() - new Date(a.date).getTime()
+    return d !== 0 ? d : (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0)
+  }
   const recentByDate = allArticles
-    .filter(a => !a.interviewType && !a.hideFromHome && !used.has(a.slug)
+    .filter(a => !a.interviewType && !a.hideFromHome
                  && new Date(a.date).getTime() <= nowTs)
-    .sort(byDateDesc)
-  const LATEST_RECENT = consume(recentByDate.slice(0, 3)).map(withCatLabel)
+    .sort(byDateDescStable)
+  const LATEST_RECENT = recentByDate.slice(0, 3).map(withCatLabel)
+  LATEST_RECENT.forEach((a: any) => used.add(a.slug))
 
   const thirtyDaysAgo = nowTs - 30 * 86400 * 1000
+  const latestRecentSlugs = new Set(LATEST_RECENT.map((a: any) => a.slug))
   const olderPool = allArticles.filter(a =>
-    !a.interviewType && !a.hideFromHome && !used.has(a.slug)
+    !a.interviewType && !a.hideFromHome && !latestRecentSlugs.has(a.slug)
     && new Date(a.date).getTime() < thirtyDaysAgo
   )
   const LATEST_REDISCOVER = consume(
