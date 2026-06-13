@@ -14,6 +14,7 @@ import { getActiveAd } from '../lib/ads'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
+import { isRecent } from '../lib/recency'
 import { FadeSection, PortraitsSlider } from './HomeClient'
 import Ticker from './TickerClient'
 import { randomShuffle, pickRandom } from '../lib/rotation'
@@ -33,8 +34,12 @@ function art(slug: string) {
   const a = (articlesData as any[]).find(x => x.slug === slug)!
   return { ...a, catLabel: CAT[a.category] || a.category }
 }
-function withCatLabel<T extends { category: string }>(a: T) {
-  return { ...a, catLabel: CAT[a.category] || a.category }
+function withCatLabel(nowTs: number) {
+  return <T extends { category: string; date: string }>(a: T) => ({
+    ...a,
+    catLabel: CAT[a.category] || a.category,
+    isRecent: isRecent(a.date, nowTs),
+  })
 }
 
 // LEAD et 1er SECONDAIRE des grands formats : jugement éditorial figé,
@@ -189,7 +194,7 @@ export default async function HomePage() {
     return byDateDesc(a, b)
   })
 
-  const HERO_ROTATION = heroPicks.map(withCatLabel)
+  const HERO_ROTATION = heroPicks.map(withCatLabel(nowTs))
 
   // Sous le hero : 3 à gauche, 3 à droite. Aléatoire avec anti-monocat.
   // Le bloc droite a 3 cards : on cape à 2 par cat pour préserver la
@@ -198,12 +203,12 @@ export default async function HomePage() {
     pickRandom(excludeArt(UNDER_HERO_POOL), 3, {
       diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
-  ).map(withCatLabel)
+  ).map(withCatLabel(nowTs))
   const UNDER_HERO_RIGHT = consume(
     pickRandom(excludeArt(UNDER_HERO_POOL), 3, {
       diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
-  ).map(withCatLabel)
+  ).map(withCatLabel(nowTs))
 
   // Grands formats : LEAD + SECONDARY1 figés (sanctuaire éditorial).
   // SEC2 vit dans le bloc visuel gfSecondaryRow aux côtés de SEC1 (geo) :
@@ -218,7 +223,7 @@ export default async function HomePage() {
     sec2NonGeoPool.length ? sec2NonGeoPool : excludeArt(GF_POOL_AFTER_LEAD), 1
   )[0]
   if (sec2Raw) used.add(sec2Raw.slug)
-  const GF_SECONDARY_2 = sec2Raw ? withCatLabel(sec2Raw) : undefined
+  const GF_SECONDARY_2 = sec2Raw ? withCatLabel(nowTs)(sec2Raw) : undefined
   const GF_SECONDARY = [GF_SECONDARY_1, GF_SECONDARY_2].filter(Boolean) as any[]
 
   const gfFeatureRow = consume(pickRandom(
@@ -234,17 +239,17 @@ export default async function HomePage() {
   //   gfMoreList   = TERT[1:3] + QUAT[2:6]
   const GF_TERTIARY = [
     gfFeatureRow[0], gfMore[0], gfMore[1],
-  ].filter(Boolean).map(withCatLabel)
+  ].filter(Boolean).map(withCatLabel(nowTs))
   const GF_QUATERNARY = [
     gfFeatureRow[1], gfFeatureRow[2], ...gfMore.slice(2),
-  ].filter(Boolean).map(withCatLabel)
+  ].filter(Boolean).map(withCatLabel(nowTs))
 
   // À lire aussi (zone 1, colonne gauche). 3 items max-2 par cat.
   const ZONE1_ALSO_READ = consume(
     pickRandom(excludeArt(ALSO_READ_POOL), 3, {
       diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
-  ).map(withCatLabel)
+  ).map(withCatLabel(nowTs))
 
   // Atlas (3 cartes, indépendant : ce ne sont pas des articles).
   const ZONE1_ATLAS = pickRandom(ATLAS_POOL, 3)
@@ -262,7 +267,7 @@ export default async function HomePage() {
     .filter(a => !a.interviewType && !a.hideFromHome
                  && new Date(a.date).getTime() <= nowTs)
     .sort(byDateDescStable)
-  const LATEST_RECENT = recentByDate.slice(0, 3).map(withCatLabel)
+  const LATEST_RECENT = recentByDate.slice(0, 3).map(withCatLabel(nowTs))
   LATEST_RECENT.forEach((a: any) => used.add(a.slug))
 
   const thirtyDaysAgo = nowTs - 30 * 86400 * 1000
@@ -275,7 +280,7 @@ export default async function HomePage() {
     pickRandom(olderPool, 2, {
       diversifyBy: (a: any) => a.category, maxPerCat: 1,
     })
-  ).map(withCatLabel)
+  ).map(withCatLabel(nowTs))
   const LATEST = [...LATEST_RECENT, ...LATEST_REDISCOVER]
 
   // POPULAR (« Les plus lus »). 5 items aléatoires avec max-2 par cat.
@@ -297,7 +302,7 @@ export default async function HomePage() {
     )
     popularList = [...popularList, ...fill]
   }
-  const POPULAR = popularList.map(withCatLabel)
+  const POPULAR = popularList.map(withCatLabel(nowTs))
 
   // Portraits : 6 articles, ordre aléatoire à chaque chargement.
   const PORTRAITS = randomShuffle(PORTRAITS_BASE)
@@ -315,7 +320,7 @@ export default async function HomePage() {
   const pickedRest = pickRandom(rediscoverRest, 3 - pickedPortrait.length, {
     diversifyBy: (a: any) => a.category, maxPerCat: 1,
   })
-  const REDISCOVER = randomShuffle([...pickedPortrait, ...pickedRest]).map(withCatLabel)
+  const REDISCOVER = randomShuffle([...pickedPortrait, ...pickedRest]).map(withCatLabel(nowTs))
 
   return (
     <>
@@ -620,7 +625,7 @@ export default async function HomePage() {
                 <div className={styles.latestItem2Top}>
                   <span className={styles.cat}>{a.catLabel}</span>
                   <div style={{display:'flex',alignItems:'center',gap:'6px'}}>
-                    {a.recent === true && <span className={styles.recentTag}>RÉCENT</span>}
+                    {a.isRecent && <span className={styles.recentTag}>RÉCENT</span>}
                     <span className={styles.latestItem2Date}>
                       {new Date(a.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})}
                     </span>

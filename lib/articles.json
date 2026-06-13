@@ -14,7 +14,6 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "recent": true,
     "authorBio": "Agathe Cagé est docteure en science politique et auteure de <em>Classes figées. Comprendre la France empêchée</em>. Elle travaille sur les fractures sociales, les inégalités et les transformations du capitalisme contemporain."
   },
   {
@@ -384,7 +383,6 @@
     "titleEn": "Élisabeth Moreno",
     "descriptionEn": "Former Minister. The trajectory of a woman who chose not to smooth anything over.",
     "avif": true,
-    "recent": true,
     "authorBio": "Élisabeth Moreno est ancienne ministre déléguée chargée de l'Égalité entre les femmes et les hommes. Présidente de la Puissance du Lien et du conseil d'administration de Ring Capital, elle intervient sur les questions de leadership, de diversité et de transformation des organisations."
   },
   {
@@ -1057,7 +1055,6 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "recent": true,
     "authorBio": "Abad Boumsong est essayiste et poète. Ses textes explorent la langue, l'identité et ce que la littérature peut encore dire du monde contemporain."
   },
   {
@@ -1074,7 +1071,6 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "recent": true,
     "authorBio": "Majda Vincent est Directrice des ressources humaines du groupe Adecco. Elle écrit sur les transformations du travail, la santé organisationnelle et le rôle des entreprises face aux mutations contemporaines."
   },
   {
@@ -1091,7 +1087,6 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "recent": true,
     "authorBio": "Fatemeh Jailani est co-fondatrice de Starting New, la Coalition politique pour l'entrepreneuriat des nouveaux arrivants, qui a soumis une réponse formelle à la proposition EU Inc. (COM(2026)). Les organisations membres de Starting New incluent Startup Migrants, Forward·Inc, SINGA, Migration Policy Group, et NyföretagarCentrum. Fatemeh siège également au Bureau du Forum européen sur la migration."
   }
 ]
