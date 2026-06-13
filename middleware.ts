@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { computeMaintenanceToken, timingSafeEqualStr } from './lib/maintenance-token'
 
 export async function middleware(request: NextRequest) {
   // Maintenance mode — redirige tout vers /bientot sauf la page elle-même
@@ -8,9 +9,18 @@ export async function middleware(request: NextRequest) {
   // prisme-peach.vercel.app reste accessible (VERCEL_ENV !== 'production')
   const isProd = process.env.VERCEL_ENV === 'production'
 
-  const previewCookie = request.cookies.get('soara_preview')?.value === 'true'
+  // Laissez-passer : cookie httpOnly signé. Le serveur a posé un HMAC du payload
+  // fixe "preview-ok" avec MAINTENANCE_COOKIE_SECRET. On recalcule l'HMAC attendu
+  // et on compare en constant-time. Tout cookie en clair ("true", etc.) échoue.
+  const rawToken = request.cookies.get('soara_preview')?.value || ''
+  const secret = process.env.MAINTENANCE_COOKIE_SECRET || ''
+  let previewOk = false
+  if (secret && rawToken) {
+    const expected = await computeMaintenanceToken(secret)
+    previewOk = timingSafeEqualStr(rawToken, expected)
+  }
 
-  if (process.env.MAINTENANCE_MODE === 'true' && isProd && !previewCookie) {
+  if (process.env.MAINTENANCE_MODE === 'true' && isProd && !previewOk) {
     const { pathname } = request.nextUrl
     const isStaticAsset = /\.(jpg|jpeg|png|gif|webp|avif|svg|ico|mp4|webm|woff|woff2|ttf|otf|css|js|json|txt|xml|pdf)$/i.test(pathname)
     const allowedApiPaths = new Set([
@@ -20,6 +30,7 @@ export async function middleware(request: NextRequest) {
       '/api/newsletter',
       '/api/briefing',
       '/api/ads/click',
+      '/api/preview-unlock',
     ])
     const isAllowedApi =
       pathname.startsWith('/api/auth/') ||

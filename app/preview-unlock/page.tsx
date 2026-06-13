@@ -1,19 +1,31 @@
 'use client'
 import { useState } from 'react'
 
-const CODE = 'SOARA2026'
-
 export default function PreviewUnlock() {
   const [input, setInput] = useState('')
   const [error, setError] = useState(false)
+  const [pending, setPending] = useState(false)
 
-  const handleSubmit = () => {
-    if (input.trim().toUpperCase() === CODE) {
-      document.cookie = 'soara_preview=true; path=/; max-age=31536000'
-      window.location.href = '/'
-    } else {
+  const handleSubmit = async () => {
+    if (pending) return
+    setPending(true)
+    try {
+      const res = await fetch('/api/preview-unlock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: input.trim() }),
+      })
+      if (res.ok) {
+        window.location.href = '/'
+        return
+      }
       setError(true)
       setTimeout(() => setError(false), 1500)
+    } catch {
+      setError(true)
+      setTimeout(() => setError(false), 1500)
+    } finally {
+      setPending(false)
     }
   }
 
