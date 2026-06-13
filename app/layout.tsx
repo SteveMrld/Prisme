@@ -22,6 +22,18 @@ const sourceSerif = Source_Serif_4({
 
 const BASE_URL = 'https://soara.fr'
 
+// JSON-LD Organization, niveau site. sameAs (réseaux sociaux) volontairement
+// absent pour l'instant : on ajoutera les comptes X et LinkedIn quand ils
+// existeront. Le logo pointe sur l'icône 512 (favicon SVG non utilisé par
+// Schema.org qui veut un raster).
+const ORGANIZATION_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Soara',
+  url: BASE_URL,
+  logo: `${BASE_URL}/icon-512.png`,
+}
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -131,6 +143,10 @@ export default function RootLayout({
         <Script id="plausible-init" strategy="afterInteractive">
           {`window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
+        />
       </head>
       <body>
         <PageTransition>{children}</PageTransition>

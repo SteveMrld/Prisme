@@ -24,10 +24,25 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   const url = `${BASE_URL}/entretien/${i.slug}`
   const ogImage = i.image || `${BASE_URL}/og-default.jpg`
 
+  // Présence d'une version EN (fichier `<slug>-en.html`). Sert à émettre
+  // hreflang fr/en/x-default. Routage EN : ?lang=en.
+  const enPath = path.join(process.cwd(), 'lib', 'content', `${params.slug}-en.html`)
+  let hasEnglishMeta = false
+  try { hasEnglishMeta = fs.existsSync(enPath) } catch {}
+
   return {
     title,
     description: i.description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(hasEnglishMeta ? {
+        languages: {
+          'fr-FR': url,
+          'en-US': `${url}?lang=en`,
+          'x-default': url,
+        },
+      } : {}),
+    },
     openGraph: {
       type: 'article',
       url,
@@ -43,6 +58,46 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       description: i.description,
       images: [ogImage],
     },
+  }
+}
+
+// JSON-LD NewsArticle pour l'entretien. headline = "Sujet, Le Grand Entretien"
+// ou "Sujet, Interview" selon le type, pour rester cohérent avec l'OG.
+// Normalise YYYY-MM-DD → ISO 8601 complet pour Google Rich Results.
+function toIsoDateTime(raw?: string): string {
+  if (!raw) return ''
+  const d = new Date(raw)
+  return isNaN(d.getTime()) ? raw : d.toISOString()
+}
+
+function buildInterviewJsonLd(i: ReturnType<typeof getInterview>, slug: string) {
+  if (!i) return null
+  const label = i.interviewType === 'grand' ? 'Le Grand Entretien' : 'Interview'
+  const subject = i.interviewSubject || i.title.replace(/<[^>]+>/g, '')
+  const headline = `${subject}, ${label}`
+  const url = `${BASE_URL}/entretien/${slug}`
+  const imageRaw: string = i.image || '/og-default.jpg'
+  const imageAbs = imageRaw.startsWith('http') ? imageRaw : `${BASE_URL}${imageRaw}`
+  const author = i.author || 'Steve Moradel'
+  const authorEntry: Record<string, any> = { '@type': 'Person', name: author }
+  if (i.authorRole) authorEntry.jobTitle = i.authorRole
+  const datePublished = toIsoDateTime(i.date)
+  const dateModified = toIsoDateTime((i as any).dateModified || i.date)
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline,
+    description: i.description || '',
+    image: [imageAbs],
+    datePublished,
+    dateModified,
+    author: [authorEntry],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Soara',
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/icon-512.png` },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   }
 }
 
@@ -93,9 +148,16 @@ export default function EntretienPage({
 
   const displayTitle = lang === 'en' && i.titleEn ? i.titleEn : i.title
   const displayDeck = i.interviewDeck
+  const interviewJsonLd = buildInterviewJsonLd(i, params.slug)
 
   return (
     <>
+      {interviewJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(interviewJsonLd) }}
+        />
+      )}
       <Header />
 
       <article className={styles.article} data-interview-type={i.interviewType}>

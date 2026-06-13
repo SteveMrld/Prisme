@@ -45,10 +45,25 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const url = `${BASE_URL}/articles/${params.slug}`
   const ogImage = article.image || `${BASE_URL}/og-default.jpg`
 
+  // Présence d'une version EN, détectée par l'existence du fichier `<slug>-en.html`.
+  // Sert à émettre hreflang fr/en/x-default. Le routage EN est ?lang=en.
+  const enPath = path.join(process.cwd(), 'lib', 'content', `${params.slug}-en.html`)
+  let hasEnglishMeta = false
+  try { hasEnglishMeta = fs.existsSync(enPath) } catch {}
+
   return {
     title: cleanTitle,
     description: article.description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(hasEnglishMeta ? {
+        languages: {
+          'fr-FR': url,
+          'en-US': `${url}?lang=en`,
+          'x-default': url,
+        },
+      } : {}),
+    },
     openGraph: {
       type: 'article',
       url,
@@ -71,6 +86,48 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: article.description,
       images: [ogImage],
     },
+  }
+}
+
+// JSON-LD NewsArticle pour chaque article du site. Émis dans <body>, Google
+// le lit où qu'il soit. Image et mainEntityOfPage sont absolus en soara.fr
+// (cohérent avec metadataBase et OG). Pas de dateModified réel dans le schéma
+// articles : on retombe sur datePublished. Le jour où on ajoutera ce champ
+// dans articles.json, il sera utilisé automatiquement.
+// Normalise une date "YYYY-MM-DD" (format articles.json) en ISO 8601 complet
+// "YYYY-MM-DDTHH:MM:SSZ" attendu par Google Rich Results pour NewsArticle.
+// Si la valeur est déjà complète ou invalide, on la laisse passer.
+function toIsoDateTime(raw?: string): string {
+  if (!raw) return ''
+  const d = new Date(raw)
+  return isNaN(d.getTime()) ? raw : d.toISOString()
+}
+
+function buildArticleJsonLd(article: any, slug: string) {
+  const cleanTitle = String(article.title || '').replace(/<[^>]+>/g, '').replace(/\n/g, ' ').trim()
+  const url = `${BASE_URL}/articles/${slug}`
+  const imageRaw: string = article.image || '/og-default.jpg'
+  const imageAbs = imageRaw.startsWith('http') ? imageRaw : `${BASE_URL}${imageRaw}`
+  const author = article.author || 'Steve Moradel'
+  const authorEntry: Record<string, any> = { '@type': 'Person', name: author }
+  if (article.authorRole) authorEntry.jobTitle = article.authorRole
+  const datePublished = toIsoDateTime(article.date)
+  const dateModified = toIsoDateTime(article.dateModified || article.date)
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: cleanTitle,
+    description: article.description || '',
+    image: [imageAbs],
+    datePublished,
+    dateModified,
+    author: [authorEntry],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Soara',
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/icon-512.png` },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   }
 }
 
@@ -168,26 +225,42 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     related = _shuffle([..._sc.slice(0, 2), ..._oc.slice(0, 2)])
   }
 
+  const articleJsonLd = buildArticleJsonLd(article, params.slug)
+  const jsonLdScript = (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+    />
+  )
+
   // Scrollytelling dédié pour l'article eau (carte sticky + IntersectionObserver)
   if (params.slug === 'eau') {
     return (
-      <EauScrollytellingLayout
-        article={article as any}
-        showPaywall={showPaywall}
-        lang={lang}
-        hasEnglish={hasEnglish}
-      />
+      <>
+        {jsonLdScript}
+        <EauScrollytellingLayout
+          article={article as any}
+          showPaywall={showPaywall}
+          lang={lang}
+          hasEnglish={hasEnglish}
+        />
+      </>
     )
   }
 
   // Grand format → layout dédié
   if (GRAND_FORMAT_SLUGS.includes(params.slug)) {
     return (
-      <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} lang={lang} hasEnglish={hasEnglish} />
+      <>
+        {jsonLdScript}
+        <GrandFormatLayout slug={params.slug} content={content} showPaywall={showPaywall} lang={lang} hasEnglish={hasEnglish} />
+      </>
     )
   }
 
   return (
+    <>
+    {jsonLdScript}
     <ArticleLayout
       title={lang === 'en' && (article as any).titleEn ? (article as any).titleEn : article.title}
       description={lang === 'en' && (article as any).descriptionEn ? (article as any).descriptionEn : article.description}
@@ -215,6 +288,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
         <AdSlot slotId="article" variant="inline" />
       }
     />
+    </>
   )
 }
 // Sat Apr  4 09:37:33 UTC 2026
