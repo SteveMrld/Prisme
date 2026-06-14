@@ -1845,7 +1845,10 @@
   transition: filter var(--dur-base, 250ms) var(--ease-out, ease);
 }
 /* Portraits : visage entier toujours visible, jamais coupé.
-   Le fond #F0EBE0 du conteneur fait les bandes autour. */
+   Bandes blanches autour (et non beige) pour ne pas créer un cadre
+   coloré autour du visage. Le beige reste sur les cartes paysage
+   comme placeholder de chargement, invisible une fois la photo en cover. */
+.rediscoverCard[data-cat="portrait"] .rediscoverImg { background: #fff; }
 .rediscoverCard[data-cat="portrait"] .rediscoverImg img {
   object-fit: contain;
   object-position: center;
