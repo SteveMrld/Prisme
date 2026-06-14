@@ -176,8 +176,9 @@ export default function Header({ activeNav }: { activeNav?: string }) {
 
   const matchesQuery = (hit: SearchHit, q: string) => {
     const needle = q.toLowerCase()
+    const title = hit.title.replace(/<[^>]+>/g, '').toLowerCase()
     return (
-      hit.title.toLowerCase().includes(needle) ||
+      title.includes(needle) ||
       hit.description.toLowerCase().includes(needle) ||
       hit.category.toLowerCase().includes(needle)
     )

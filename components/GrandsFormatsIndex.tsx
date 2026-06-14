@@ -42,11 +42,11 @@ export default function GrandsFormatsIndex() {
           <Link href={`/grands-formats/${lead.slug}`} className={styles.openLink} data-cat={lead.cat}>
             <article className={styles.open}>
               <div className={styles.openImg}>
-                {lead.image && <img src={lead.image} alt={lead.title} />}
+                {lead.image && <img src={lead.image} alt={lead.title.replace(/<[^>]+>/g, '')} />}
               </div>
               <div className={styles.openBody}>
                 <div className={styles.category}>{lead.category}</div>
-                <h2 className={styles.openTitle}>{lead.title}</h2>
+                <h2 className={styles.openTitle} dangerouslySetInnerHTML={{ __html: lead.title }} />
                 <p className={styles.openDesc}>{lead.desc}</p>
                 <span className={styles.openCta}>Lire l'enquête →</span>
               </div>
@@ -61,11 +61,11 @@ export default function GrandsFormatsIndex() {
                 <div className={styles.num}>{String(i + 1).padStart(2, '0')}</div>
                 <div className={styles.body}>
                   <div className={styles.category}>{f.category}</div>
-                  <h2 className={styles.itemTitle}>{f.title}</h2>
+                  <h2 className={styles.itemTitle} dangerouslySetInnerHTML={{ __html: f.title }} />
                   <p className={styles.desc}>{f.desc}</p>
                 </div>
                 <div className={styles.thumb}>
-                  {f.image && <img src={f.image} alt={f.title} />}
+                  {f.image && <img src={f.image} alt={f.title.replace(/<[^>]+>/g, '')} />}
                 </div>
                 <div className={styles.arrow}>→</div>
               </div>
