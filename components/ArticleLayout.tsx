@@ -64,6 +64,37 @@ function portraitUrl(name: string): string | null {
   return map[name] || null
 }
 
+// Lien d'auteur (site perso ou page Wikipédia) affiché dans le bloc
+// signature de fin d'article, avec picto. Clés strictement identiques
+// à portraitUrl (accents compris) pour qu'aucun mismatch silencieux.
+function authorLink(name: string): { url: string; type: 'website' | 'wikipedia' } | null {
+  const map: Record<string, { url: string; type: 'website' | 'wikipedia' }> = {
+    'Majda Vincent':    { url: 'https://majdavincent.com/',                       type: 'website' },
+    'Steve Moradel':    { url: 'https://stevemoradel.com/',                       type: 'website' },
+    'Abad Boumsong':    { url: 'https://leprincedespoetes.fr/',                   type: 'website' },
+    'Jade Desroses':    { url: 'https://lespagesdejade.com/',                     type: 'website' },
+    'Agathe Cagé':      { url: 'https://fr.wikipedia.org/wiki/Agathe_Cagé',       type: 'wikipedia' },
+    'Élisabeth Moreno': { url: 'https://fr.wikipedia.org/wiki/Élisabeth_Moreno',  type: 'wikipedia' },
+  }
+  return map[name] || null
+}
+
+const WebsiteIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="9.5" />
+    <line x1="12" y1="2.5" x2="12" y2="21.5" />
+    <path d="M2.5 12 H 21.5" />
+    <path d="M2.5 8 H 21.5" />
+    <path d="M2.5 16 H 21.5" />
+  </svg>
+)
+
+const WikipediaIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+    <text x="12" y="18" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="18" fontWeight="400">W</text>
+  </svg>
+)
+
 export default function ArticleLayout({
   title, description, image, category, categoryLabel,
   readTime, date, hasInternalHeader = false, hasHeroInContent = false, premium: isPremiumContent = false, avif = false, content, slug = '',
@@ -305,6 +336,24 @@ export default function ArticleLayout({
             {isContributor && authorBio && (
               <p className={styles.authorSigBio} dangerouslySetInnerHTML={{ __html: authorBio }} />
             )}
+            {(() => {
+              const link = authorLink(author)
+              if (!link) return null
+              const isWiki = link.type === 'wikipedia'
+              const aria = isWiki ? `Page Wikipédia de ${author}` : `Site de ${author}`
+              return (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={aria}
+                  className={styles.authorSigLink}
+                >
+                  {isWiki ? <WikipediaIcon /> : <WebsiteIcon />}
+                  <span>{isWiki ? 'Wikipédia' : 'Site personnel'}</span>
+                </a>
+              )
+            })()}
           </div>
         </div>
       </div>

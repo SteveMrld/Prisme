@@ -432,6 +432,24 @@
 }
 .authorSigBio em { font-style: italic; }
 
+/* Lien optionnel (site perso ou Wikipédia) sous la signature.
+   Picto inline en currentColor, registre éditorial sobre. */
+.authorSigLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--gris);
+  text-decoration: none;
+  transition: color var(--dur-fast, 150ms) var(--ease-out, ease);
+}
+.authorSigLink:hover { color: var(--or); }
+.authorSigLink svg { flex-shrink: 0; }
+
 @media (max-width: 640px) {
   .authorSignatureContributor {
     flex-direction: column;
