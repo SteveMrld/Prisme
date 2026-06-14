@@ -35,14 +35,6 @@ const contributeurs = [
     linkedin: 'https://www.linkedin.com/in/fatemeh-jailani-37814127/',
   },
   {
-    name: 'Élodie Mielczareck',
-    role: 'Contributrice · Langage & Communication',
-    bio: 'Sémiologue diplômée en Lettres et Linguistique (Sorbonne), autrice de plusieurs ouvrages sur le langage et le pouvoir. Elle décrypte les stratégies discursives des organisations et des acteurs politiques.',
-    domaines: ['Société', 'Médias', 'Politique'],
-    portrait: '/portraits/mielczareck.jpg',
-    linkedin: 'https://www.linkedin.com/in/elodie-mielczareck-semiologue/',
-  },
-  {
     name: 'Élisabeth Moreno',
     role: 'Contributrice · Leadership & Égalité',
     bio: 'Née au Cap-Vert, ancienne PDG de Lenovo France et DG Afrique de Hewlett-Packard, Ministre déléguée à l\'Égalité femmes-hommes (2020–2022). Fondatrice de LEIA Partners et présidente de Ring Capital.',
