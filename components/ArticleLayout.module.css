@@ -67,7 +67,6 @@
 }
 
 .title em {
-  color: #7B5380;
   font-style: italic;
 }
 
@@ -83,19 +82,6 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* Articles signés par un contributeur extérieur : chapeau "deck" façon NYT,
-   serif display semi-gras, noir, non-italique. Plus dense que le chapeau
-   par défaut qui est volontairement discret. */
-.chapeauContributor {
-  font-family: var(--font-serif-display);
-  font-size: clamp(20px, 2.2vw, 24px);
-  font-style: normal;
-  font-weight: 600;
-  color: var(--encre);
-  line-height: 1.32;
-  letter-spacing: -0.01em;
 }
 
 .description {

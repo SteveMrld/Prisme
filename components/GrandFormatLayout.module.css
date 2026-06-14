@@ -101,7 +101,7 @@
 .chapeau {
   font-family: var(--font-serif-text);
   font-size: var(--type-lg);
-  font-style: normal;
+  font-style: italic;
   font-weight: var(--weight-regular);
   color: var(--gris);
   line-height: var(--lh-reading);

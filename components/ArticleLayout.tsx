@@ -219,7 +219,7 @@ export default function ArticleLayout({
             )}
           </div>
           {description && (
-            <p className={`${styles.chapeau}${isContributor ? ' ' + styles.chapeauContributor : ''}`}>{description}</p>
+            <p className={styles.chapeau}>{description}</p>
           )}
         </div>
       )}
