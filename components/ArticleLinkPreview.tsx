@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { createPortal } from 'react-dom'
 import articlesData from '../lib/articles.json'
 import visuelsData, { type Visuel } from '../lib/visuels'
@@ -125,6 +126,22 @@ export default function ArticleLinkPreview() {
   const timerRef = useRef<number | null>(null)
   const currentTargetRef = useRef<HTMLAnchorElement | null>(null)
   const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
+
+  const closePreview = () => {
+    if (timerRef.current !== null) {
+      window.clearTimeout(timerRef.current)
+      timerRef.current = null
+    }
+    currentTargetRef.current = null
+    setState(null)
+  }
+
+  // Disparition après navigation client-side : sans ça, la vignette
+  // continue de planer après un clic sur le lien qu'elle prévisualise.
+  useEffect(() => {
+    closePreview()
+  }, [pathname])
 
   useEffect(() => {
     setMounted(true)
@@ -178,13 +195,21 @@ export default function ArticleLinkPreview() {
       }
     }
 
+    const handleClick = () => {
+      currentTargetRef.current = null
+      clearTimer()
+      setState(null)
+    }
+
     document.addEventListener('mouseover', handleOver)
     document.addEventListener('mouseout', handleOut)
+    document.addEventListener('click', handleClick)
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
       document.removeEventListener('mouseover', handleOver)
       document.removeEventListener('mouseout', handleOut)
+      document.removeEventListener('click', handleClick)
       window.removeEventListener('scroll', handleScroll)
       clearTimer()
     }
@@ -212,7 +237,7 @@ export default function ArticleLinkPreview() {
       )}
       <div className={styles.body}>
         {p.eyebrow && <div className={styles.eyebrow}>{p.eyebrow}</div>}
-        <div className={styles.title}>{p.title}</div>
+        <div className={styles.title} dangerouslySetInnerHTML={{ __html: p.title }} />
         {p.meta && <div className={styles.meta}>{p.meta}</div>}
       </div>
     </div>
