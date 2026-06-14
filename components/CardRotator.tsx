@@ -37,7 +37,7 @@ export default function CardRotator({ articles }: { articles: Article[] }) {
       <Link href={href} className={`${styles.content} ${fading ? styles.fading : ''}`}>
         {a.image && (
           <div className={styles.imgWrap}>
-            <img src={a.image} alt={a.title} />
+            <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} />
           </div>
         )}
         <div className={styles.body}>

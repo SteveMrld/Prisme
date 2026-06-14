@@ -95,7 +95,7 @@ export default function ExplorerClient({ articles }: { articles: any[] }) {
       <div className={styles.card}>
         {/* Image de fond */}
         <div className={styles.imgWrap}>
-          <img src={article.image} alt={article.title} className={styles.img} />
+          <img src={article.image} alt={article.title.replace(/<[^>]+>/g, '')} className={styles.img} />
           <div className={styles.overlay} />
         </div>
 
