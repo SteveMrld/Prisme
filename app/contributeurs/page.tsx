@@ -19,14 +19,6 @@ const contributeurs = [
     linkedin: 'https://www.linkedin.com/in/cag%C3%A9-agathe-2b1bb344/',
   },
   {
-    name: 'Léo Cottencin',
-    role: 'Contributeur · Finance & Stratégie',
-    bio: 'Associé fondateur chez & Co., ancien chez Eurazeo et Messier & Associés. Diplômé de l\'ESSEC et de l\'IESEG, il analyse les dynamiques du capital privé et les stratégies de création de valeur.',
-    domaines: ['Économie', 'Finance', 'Stratégie'],
-    portrait: '/portraits/cottencin.jpg',
-    linkedin: 'https://www.linkedin.com/in/l%C3%A9o-cottencin-11617474/',
-  },
-  {
     name: 'Jade Desroses',
     role: 'Contributrice · Culture & Société',
     bio: 'Professeure de lettres et essayiste. Elle explore les liens entre littérature, mémoire et politique, avec une attention particulière aux voix longtemps marginalisées du canon occidental.',
@@ -35,28 +27,12 @@ const contributeurs = [
     linkedin: 'https://www.linkedin.com/in/jade-desroses-0670b1336/',
   },
   {
-    name: 'Laetitia Hélouet',
-    role: 'Contributrice · Politiques publiques & Territoire',
-    bio: 'Haute fonctionnaire, diplômée de Sciences Po Rennes et de l\'INET. Présidente de l\'Observatoire national de la politique de la Ville, ancienne rapporteure à la Cour des comptes.',
-    domaines: ['Politique publique', 'Territoire', 'Société'],
-    portrait: '/portraits/helouet.jpg',
-    linkedin: 'https://www.linkedin.com/in/laetitia-helouet-5b3a92168/',
-  },
-  {
     name: 'Fatemeh Jailani',
     role: 'Contributrice · Europe & Politiques publiques',
     bio: 'Née en Californie de parents afghans, diplômée de Sciences Po. Ses analyses portent sur les politiques européennes, les migrations et les recompositions identitaires dans les démocraties libérales.',
     domaines: ['Europe', 'Politique', 'Société'],
     portrait: '/portraits/jailani.jpg',
     linkedin: 'https://www.linkedin.com/in/fatemeh-jailani-37814127/',
-  },
-  {
-    name: 'Claire Le Flécher',
-    role: 'Contributrice · Diplomatie & Relations internationales',
-    bio: 'Ambassadrice de France, ancienne première conseillère en Arménie, diplômée de l\'ENA. Ses analyses portent sur la diplomatie contemporaine et les recompositions géopolitiques au Moyen-Orient.',
-    domaines: ['Géopolitique', 'Diplomatie', 'Relations internationales'],
-    portrait: '/portraits/leflecher.jpg',
-    linkedin: 'https://www.linkedin.com/in/claire-le-fl%C3%A9cher-3199b442/',
   },
   {
     name: 'Élodie Mielczareck',
@@ -81,14 +57,6 @@ const contributeurs = [
     domaines: ['Culture', 'Médias', 'Technologie'],
     portrait: '/portraits/ouzounian.jpg',
     linkedin: null,
-  },
-  {
-    name: 'Pierre Sonigo',
-    role: 'Contributeur · Sciences & Épistémologie',
-    bio: 'Biologiste, directeur de recherche à l\'INSERM, il a participé en 1985 au séquençage du VIH à l\'Institut Pasteur. Auteur de travaux fondamentaux sur la génétique des virus et l\'évolution moléculaire.',
-    domaines: ['Sciences', 'Épistémologie', 'Santé'],
-    portrait: '/portraits/sonigo.jpg',
-    linkedin: 'https://www.linkedin.com/in/pierre-sonigo-300800a9/',
   },
   {
     name: 'Majda Vincent',
