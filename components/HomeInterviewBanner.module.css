@@ -1,8 +1,11 @@
-.root {
-  --accent: #7A1A2E;
+.wrap {
   margin-top: 24px;
   padding-top: 24px;
   border-top: 2px solid #0A0A0A;
+}
+
+.root {
+  --accent: #7A1A2E;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -127,3 +130,85 @@
 }
 
 .root:hover .cta { opacity: 0.6; }
+
+/* ── Pastilles "Aussi à lire" : autres entretiens en rang horizontal,
+   chacun avec une photo ronde + libellé de type + nom. ── */
+.others {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #E5E5E5;
+}
+
+.othersLabel {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.othersList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.otherItem {
+  --pill-accent: #7A1A2E;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+
+.otherItem[data-interview-type="classique"] {
+  --pill-accent: #0A0A0A;
+}
+
+.otherItem:hover { opacity: 0.65; }
+
+.otherDot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #FFFFFF;
+  flex-shrink: 0;
+  border: 1px solid #EAEAEA;
+}
+
+.otherDot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.otherText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.otherKind {
+  font-family: var(--font-ui);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pill-accent);
+}
+
+.otherName {
+  font-family: var(--font-serif-display);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0A0A0A;
+}

@@ -21,13 +21,13 @@
   background: #fff;
   display: flex;
   justify-content: center;
-  padding: 40px 24px 0;
+  padding: 16px 8px 0;
 }
 
 .portrait {
   display: block;
   width: 100%;
-  max-width: 520px;
+  max-width: 620px;
   height: auto;
   object-fit: contain;
 }
