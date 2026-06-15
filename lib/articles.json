@@ -1,5 +1,23 @@
 [
   {
+    "slug": "bousardo",
+    "title": "Vanessa Bousardo : «Il ne faut jamais rien s’interdire»",
+    "description": "Avocate pénaliste, ancienne Vice-bâtonnière du Barreau de Paris, première avocate antillaise à accéder à la tête de la plus grande institution judiciaire française. Vanessa Bousardo parle de justice, de protection de l’enfance, d’Epstein, et de ce qu’elle veut encore construire.",
+    "author": "Steve Moradel",
+    "authorRole": "Fondateur de Soara",
+    "category": "soc",
+    "format": "grand-entretien",
+    "date": "2026-06-20",
+    "readTime": "15",
+    "image": "/portraits/bousardo.jpg",
+    "featured": false,
+    "premium": true,
+    "avif": false,
+    "imageCredit": "© Soara",
+    "interviewee": "Maître Vanessa Bousardo",
+    "intervieweeRole": "Avocate pénaliste · Ancienne Vice-bâtonnière du Barreau de Paris"
+  },
+  {
     "slug": "football-cage",
     "title": "Certitudes et incertitude du football",
     "description": "Un récit à l’image du foot business contemporain, bâti sur de puissantes certitudes géopolitiques, marketing et financières, mais encore ouvert à assez d’incertitude pour que ce sport reste un sport.",
