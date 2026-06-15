@@ -40,11 +40,7 @@ export default function HomeInterviewBanner() {
     >
       <div className={styles.banner}>
         <span className={styles.bannerLabel}>
-          {isGrand ? (
-            <>Grand <em>Entretien</em></>
-          ) : (
-            <em>Interview</em>
-          )}
+          {isGrand ? 'Grand Entretien' : 'Interview'}
         </span>
         <span className={styles.bannerDate}>{eyebrowRight}</span>
       </div>

@@ -1,15 +1,18 @@
-/* ── Variables par type ── */
+/* ── Variables par type ──
+   Deux niveaux éditoriaux. Grand Entretien : pourpre #7A1A2E.
+   Interview (classique) : noir #0A0A0A. Le type pilote le badge
+   pill, le filet de la bio box, et la barre verticale du rôle. */
 .article {
-  --accent: var(--or);
-  --accent-em: #8B1A1A;
+  --accent: #7A1A2E;
+  --accent-em: #7A1A2E;
   max-width: 780px;
   margin: 0 auto;
   padding: 0 24px 80px;
 }
 
 .article[data-interview-type="classique"] {
-  --accent: #1B2D45;
-  --accent-em: #1B2D45;
+  --accent: #0A0A0A;
+  --accent-em: #0A0A0A;
 }
 
 /* ── Portrait ── */
@@ -27,7 +30,6 @@
   max-width: 520px;
   height: auto;
   object-fit: contain;
-  mix-blend-mode: multiply;
 }
 
 /* ── Texte ── */
@@ -48,9 +50,9 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 5px 14px;
+  color: #fff;
+  background: var(--accent);
+  padding: 6px 14px;
 }
 
 .num {
@@ -107,10 +109,13 @@
 
 .deck {
   font-family: var(--font-serif-text);
-  font-size: 20px;
+  font-size: 17px;
   font-style: italic;
-  color: var(--gris);
-  line-height: 1.75;
+  color: var(--encre);
+  line-height: 1.7;
+  background: #F8F6F1;
+  border-left: 4px solid var(--accent);
+  padding: 28px 32px;
   margin: 0 0 48px;
 }
 
@@ -152,11 +157,12 @@
 }
 
 .questionText {
-  font-family: var(--font-serif-text);
-  font-size: 20px;
+  font-family: var(--font-serif-display);
+  font-size: 19px;
+  font-weight: 700;
   font-style: italic;
   color: var(--encre);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* ── Mode coming : CTA ── */
@@ -233,15 +239,30 @@
   padding-top: 8px;
 }
 
+/* Bio box pour les paragraphes d'intro (Longo, mode published).
+   Visuellement identique à la .deck du mode coming : fond #F8F6F1,
+   filet vertical accent. Le premier intro porte le padding top,
+   le dernier (détecté via :has) porte le padding bottom + marge. */
 .body :global(p.interview-intro) {
   font-family: var(--font-serif-text);
-  font-size: 19px;
+  font-size: 17px;
   font-style: italic;
-  color: var(--gris);
+  color: var(--encre);
   line-height: 1.7;
-  margin: 0 0 40px;
+  background: #F8F6F1;
+  border-left: 4px solid var(--accent);
+  border-bottom: none;
+  padding: 14px 32px;
+  margin: 0;
+}
+
+.body :global(p.interview-intro:first-of-type) {
+  padding-top: 28px;
+}
+
+.body :global(p.interview-intro:not(:has(+ p.interview-intro))) {
   padding-bottom: 28px;
-  border-bottom: 1px solid var(--bord);
+  margin-bottom: 40px;
 }
 
 .body :global(p.interview-question) {
@@ -249,7 +270,7 @@
   font-size: 19px;
   font-weight: 700;
   font-style: italic;
-  color: var(--accent);
+  color: var(--encre);
   line-height: 1.45;
   margin: 40px 0 14px;
 }
@@ -323,7 +344,7 @@
 }
 
 .otherCard {
-  --card-accent: var(--or);
+  --card-accent: #7A1A2E;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -332,7 +353,7 @@
 }
 
 .otherCard[data-interview-type="classique"] {
-  --card-accent: #1B2D45;
+  --card-accent: #0A0A0A;
 }
 
 .otherCard:hover { opacity: 0.85; }
@@ -352,16 +373,19 @@
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  mix-blend-mode: multiply;
 }
 
 .otherEyebrow {
+  display: inline-block;
+  background: var(--card-accent);
+  color: #fff;
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--card-accent);
-  margin-bottom: 8px;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  align-self: flex-start;
 }
 
 .otherName {

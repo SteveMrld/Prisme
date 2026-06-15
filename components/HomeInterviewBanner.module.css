@@ -1,5 +1,5 @@
 .root {
-  --accent: #8B1A1A;
+  --accent: #7A1A2E;
   margin-top: 24px;
   padding-top: 24px;
   border-top: 2px solid #0A0A0A;
@@ -12,7 +12,7 @@
 }
 
 .root[data-interview-type="classique"] {
-  --accent: #1B2D45;
+  --accent: #0A0A0A;
 }
 
 .root:hover { opacity: 0.92; }
@@ -28,17 +28,16 @@
 }
 
 .bannerLabel {
-  font-family: var(--font-serif-display);
-  font-size: clamp(18px, 2.2vw, 22px);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 10px;
   font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 6px 12px;
   line-height: 1;
-  color: #0A0A0A;
-  letter-spacing: -0.3px;
-}
-
-.bannerLabel em {
-  font-style: italic;
-  color: var(--accent);
 }
 
 .bannerDate {
