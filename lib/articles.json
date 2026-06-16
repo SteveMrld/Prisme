@@ -10,6 +10,7 @@
     "date": "2026-06-20",
     "readTime": "15",
     "image": "/portraits/bousardo.jpg",
+    "imagePosition": "center top",
     "featured": false,
     "premium": true,
     "avif": false,
