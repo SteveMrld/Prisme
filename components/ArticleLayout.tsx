@@ -29,6 +29,7 @@ interface ArticleLayoutProps {
   imageCredit?: string
   imagePosition?: string
   imageFit?: string
+  imageHeight?: string
   format?: string
   lang?: string
   hasEnglish?: boolean
@@ -114,6 +115,7 @@ export default function ArticleLayout({
   imageCredit = '',
   imagePosition,
   imageFit,
+  imageHeight,
   format,
   lang = 'fr',
   hasEnglish = false,
@@ -248,6 +250,7 @@ export default function ArticleLayout({
               : {
                   ...(imagePosition ? {objectPosition: imagePosition} : {}),
                   ...(imageFit ? {objectFit: imageFit as any} : {}),
+                  ...(imageHeight ? {height: imageHeight} : {}),
                   ...(imageFit === 'contain' ? {background:'#F8F4EE'} : {})
                 }} />
           {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
