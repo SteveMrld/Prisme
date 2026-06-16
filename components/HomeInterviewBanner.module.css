@@ -131,84 +131,151 @@
 
 .root:hover .cta { opacity: 0.6; }
 
-/* ── Pastilles "Aussi à lire" : autres entretiens en rang horizontal,
-   chacun avec une photo ronde + libellé de type + nom. ── */
-.others {
-  margin-top: 20px;
-  padding-top: 16px;
+/* ── Carousel "Les entretiens Soara" : cartes portrait 2:3,
+   photo N&B + dégradé sombre, badge pill en haut, nom serif en bas.
+   Scroll horizontal natif avec snap. Inspiration NYT Magazine / Atlantic. */
+.carousel {
+  margin-top: 24px;
+  padding-top: 18px;
   border-top: 1px solid #E5E5E5;
 }
 
-.othersLabel {
+.carouselTitle {
   font-family: var(--font-ui);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: #888;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
-.othersList {
+.carouselTrack {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 0 8px;
 }
 
-.otherItem {
-  --pill-accent: #7A1A2E;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.carouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.cardLink {
   text-decoration: none;
   color: inherit;
-  transition: opacity 200ms ease;
-}
-
-.otherItem[data-interview-type="classique"] {
-  --pill-accent: #0A0A0A;
-}
-
-.otherItem:hover { opacity: 0.65; }
-
-.otherDot {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #FFFFFF;
   flex-shrink: 0;
-  border: 1px solid #EAEAEA;
+  scroll-snap-align: start;
+  border-radius: 2px;
 }
 
-.otherDot img {
+.card {
+  --card-accent: #7A1A2E;
+  position: relative;
+  background: #0A0A0A;
+  width: 70vw;
+  max-width: 280px;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.card[data-interview-type="classique"] {
+  --card-accent: #0A0A0A;
+}
+
+@media (min-width: 720px) {
+  .card {
+    width: 280px;
+  }
+}
+
+.cardImg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cardImg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 18%;
+  filter: grayscale(1) contrast(1.04);
   display: block;
 }
 
-.otherText {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+/* Dégradé sombre en bas pour que le nom blanc se détache toujours */
+.cardImg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.55) 30%,
+    rgba(10, 10, 10, 0) 60%
+  );
+  pointer-events: none;
 }
 
-.otherKind {
+.cardBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  background: var(--card-accent);
+  color: #fff;
   font-family: var(--font-ui);
   font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--pill-accent);
+  padding: 5px 10px;
+  line-height: 1;
 }
 
-.otherName {
+.cardText {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cardName {
   font-family: var(--font-serif-display);
-  font-size: 15px;
+  font-size: 22px;
   font-weight: 700;
-  line-height: 1.2;
-  color: #0A0A0A;
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+  color: #fff;
+  margin: 0;
+}
+
+.cardRole {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 11px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hover desktop : légère élévation + ombre douce */
+@media (hover: hover) and (pointer: fine) {
+  .cardLink:hover .card {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px -10px rgba(10, 10, 10, 0.35);
+  }
 }
