@@ -281,6 +281,7 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
       imageCredit={(article as any).imageCredit || ''}
       imagePosition={(article as any).imagePosition}
       imageFit={(article as any).imageFit}
+      format={(article as any).format}
       related={related}
       lang={lang}
       hasEnglish={hasEnglish}

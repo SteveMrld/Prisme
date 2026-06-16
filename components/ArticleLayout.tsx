@@ -29,9 +29,18 @@ interface ArticleLayoutProps {
   imageCredit?: string
   imagePosition?: string
   imageFit?: string
+  format?: string
   lang?: string
   hasEnglish?: boolean
   adSlot?: React.ReactNode
+}
+
+const formatLabels: Record<string, string> = {
+  'grand-entretien': 'Grand Entretien',
+  'enquete': 'Enquête',
+  'reportage': 'Reportage',
+  'analyse': 'Analyse',
+  'tribune': 'Tribune',
 }
 
 const categoryColors: Record<string, string> = {
@@ -105,6 +114,7 @@ export default function ArticleLayout({
   imageCredit = '',
   imagePosition,
   imageFit,
+  format,
   lang = 'fr',
   hasEnglish = false,
   adSlot = null
@@ -204,6 +214,11 @@ export default function ArticleLayout({
       {/* TOUS SAUF PORTRAIT : titre + chapeau d'abord */}
       {!hasInternalHeader && (
         <div className={styles.articleHeader} style={{ borderLeftColor: color }}>
+          {format && formatLabels[format] && (
+            <div style={{display:'flex',justifyContent:'center',marginBottom:'18px'}}>
+              <span style={{display:'inline-block',background:'#0A0A0A',color:'#C8A96E',fontFamily:"'DM Sans',sans-serif",fontSize:'10px',fontWeight:700,letterSpacing:'3px',textTransform:'uppercase',padding:'6px 14px',border:'1px solid #C8A96E',borderRadius:'2px'}}>{formatLabels[format]}</span>
+            </div>
+          )}
           <div className={styles.eyebrow}>
             <span className={styles.tag} style={{ background: color }}>{categoryLabel}</span>
             <span className={styles.readTime}>{isNaN(parseInt(readTime)) ? readTime : `${readTime} min de lecture`}</span>
