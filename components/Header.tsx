@@ -53,7 +53,7 @@ const rubriques = [
 const formats = [
   { label: 'Soara TV', href: '/tv', desc: 'Analyses en mouvement' },
   { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions en temps réel' },
-  { label: 'Grand Entretien', href: '/entretien/diarra', desc: 'Cheick Modibo Diarra · À venir' },
+  { label: 'Grand Entretien', href: '/entretien/bousardo', desc: 'Vanessa Bousardo · À paraître' },
   { label: 'Bibliothèque', href: '/bibliotheque', desc: 'Les coups de cœur de Jade Desroses' },
   { label: 'Recoupement', href: '/recoupement', desc: 'Vérification par IA' },
   { label: 'Changer le monde', href: '/solutions', desc: '166 solutions ChangeNow 2026' },
@@ -516,7 +516,7 @@ export default function Header({ activeNav }: { activeNav?: string }) {
             <div className={styles.mobilePanelSection}>Formats</div>
             <Link href="/signal-map" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Signal Map</Link>
             <Link href="/tv" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Soara TV</Link>
-            <Link href="/entretien/diarra" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grand Entretien</Link>
+            <Link href="/entretien/bousardo" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Grand Entretien</Link>
             <Link href="/solutions" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Changer le monde</Link>
             <Link href="/retrospective" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Rétrospective</Link>
             <Link href="/visuels" className={styles.mobilePanelLink} onClick={() => setMobilePanelOpen(false)}>Atlas</Link>
