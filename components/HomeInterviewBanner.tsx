@@ -76,30 +76,37 @@ export default function HomeInterviewBanner() {
       </Link>
 
       {others.length > 0 && (
-        <div className={styles.others}>
-          <div className={styles.othersLabel}>Aussi à lire</div>
-          <div className={styles.othersList}>
+        <section className={styles.carousel} aria-label="Les entretiens Soara">
+          <div className={styles.carouselTitle}>Les entretiens Soara</div>
+          <div className={styles.carouselTrack}>
             {others.map(o => {
               const kind = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
               return (
                 <Link
                   key={o.slug}
                   href={`/entretien/${o.slug}`}
-                  className={styles.otherItem}
-                  data-interview-type={o.interviewType}
+                  className={styles.cardLink}
                 >
-                  <span className={styles.otherDot}>
-                    <img src={o.image} alt={o.interviewSubject} />
-                  </span>
-                  <span className={styles.otherText}>
-                    <span className={styles.otherKind}>{kind}</span>
-                    <span className={styles.otherName}>{o.interviewSubject}</span>
-                  </span>
+                  <article
+                    className={styles.card}
+                    data-interview-type={o.interviewType}
+                  >
+                    <div className={styles.cardImg}>
+                      <img src={o.image} alt={o.interviewSubject} />
+                    </div>
+                    <span className={styles.cardBadge}>{kind}</span>
+                    <div className={styles.cardText}>
+                      <h4 className={styles.cardName}>{o.interviewSubject}</h4>
+                      {o.interviewRole && (
+                        <p className={styles.cardRole}>{o.interviewRole}</p>
+                      )}
+                    </div>
+                  </article>
                 </Link>
               )
             })}
           </div>
-        </div>
+        </section>
       )}
     </div>
   )
