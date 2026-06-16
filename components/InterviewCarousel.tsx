@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect, useCallback } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import type { Interview } from '../lib/interviews'
 import styles from './HomeInterviewBanner.module.css'
@@ -12,6 +12,8 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [canLeft, setCanLeft] = useState(false)
   const [canRight, setCanRight] = useState(false)
+  const touchStartX = useRef(0)
+  const touchStartScroll = useRef(0)
 
   const update = useCallback(() => {
     const el = trackRef.current
@@ -38,11 +40,31 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
     el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' })
   }
 
+  // Repli manuel : sur les navigateurs où le scroll tactile natif est avalé
+  // (root overflow, etc.), on détecte le swipe et on défile par programme.
+  // On ne le déclenche que si le scroll natif n'a pas bougé, pour ne pas
+  // doubler le geste là où il fonctionne déjà.
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+    touchStartScroll.current = trackRef.current?.scrollLeft ?? 0
+  }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const el = trackRef.current
+    if (!el) return
+    const dx = touchStartX.current - e.changedTouches[0].clientX
+    const movedNatively = Math.abs(el.scrollLeft - touchStartScroll.current) > 8
+    if (!movedNatively && Math.abs(dx) > 40) {
+      scrollByDir(dx > 0 ? 1 : -1)
+    }
+  }
+
   return (
     <div
       className={styles.carouselViewport}
       data-can-left={canLeft}
       data-can-right={canRight}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
     >
       <button
         type="button"
