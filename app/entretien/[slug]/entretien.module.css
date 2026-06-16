@@ -62,6 +62,27 @@
   color: var(--gris-l);
 }
 
+/* Vignette catégorie : kicker discret à côté du N°, en retrait du badge
+   format. Le dot prend la couleur catégorie via --catColor (data-cat). */
+.cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+
+.cat::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--catColor, var(--gris-l));
+}
+
 .langLink {
   margin-left: auto;
   font-size: 10px;

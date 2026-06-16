@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import Header from '../../../components/Header'
 import { getAllInterviews, getInterview } from '../../../lib/interviews'
+import { categoryLabel } from '../../../lib/categories'
 import styles from './entretien.module.css'
 
 const BASE_URL = 'https://soara.fr'
@@ -128,6 +129,7 @@ export default function EntretienPage({
 
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
   const label = i.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
+  const catLabel = categoryLabel(i.category, (i as any).categoryLabel)
   const isComing = i.interviewStatus === 'coming'
 
   let content = ''
@@ -171,6 +173,11 @@ export default function EntretienPage({
           <div className={styles.eyebrow}>
             <span className={styles.tag}>{label}</span>
             <span className={styles.num}>N° {i.interviewIssue}</span>
+            {catLabel && (
+              <span className={styles.cat} data-cat={i.category}>
+                {catLabel}
+              </span>
+            )}
             {hasEnglish && (
               <Link
                 href={`/entretien/${i.slug}?lang=${lang === 'en' ? 'fr' : 'en'}`}
