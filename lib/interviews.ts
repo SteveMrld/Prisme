@@ -26,6 +26,7 @@ export type Interview = {
   interviewDeck: string
   interviewQuote?: string
   interviewQuestions?: string[]
+  featuredOnHome?: boolean
 }
 
 const all: Interview[] = (articlesData as any[]).filter(
@@ -41,6 +42,10 @@ export function getInterview(slug: string): Interview | undefined {
 }
 
 export function getNextInterviewForHome(): Interview | undefined {
+  // Override éditorial : si un entretien porte featuredOnHome=true, il prime.
+  const pinned = all.find((i) => i.featuredOnHome === true)
+  if (pinned) return pinned
+
   const published = all
     .filter((i) => i.interviewStatus === 'published')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
