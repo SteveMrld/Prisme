@@ -204,20 +204,23 @@
   height: 100%;
   object-fit: cover;
   object-position: center 18%;
-  filter: grayscale(1) contrast(1.04);
+  filter: grayscale(1) contrast(1.08) brightness(0.82);
   display: block;
 }
 
-/* Dégradé sombre en bas pour que le nom blanc se détache toujours */
+/* Dégradé sombre couvrant toute la carte : fort en bas pour le texte,
+   tenue moyenne en haut pour neutraliser les fonds clairs (Longo) et
+   homogénéiser avec les fonds déjà sombres (Diarra). */
 .cardImg::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(10, 10, 10, 0.92) 0%,
-    rgba(10, 10, 10, 0.55) 30%,
-    rgba(10, 10, 10, 0) 60%
+    rgba(10, 10, 10, 0.94) 0%,
+    rgba(10, 10, 10, 0.6) 28%,
+    rgba(10, 10, 10, 0.34) 65%,
+    rgba(10, 10, 10, 0.4) 100%
   );
   pointer-events: none;
 }
