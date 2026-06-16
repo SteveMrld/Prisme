@@ -164,6 +164,88 @@
   display: none;
 }
 
+/* Viewport qui enveloppe la rangée pour positionner flèches et fondus. */
+.carouselViewport {
+  position: relative;
+}
+
+/* Fondus de bord : n'apparaissent que s'il reste à défiler de ce côté. */
+.carouselViewport::before,
+.carouselViewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 8px;
+  width: 40px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.carouselViewport::before {
+  left: 0;
+  background: linear-gradient(to right, #FFFFFF, rgba(255, 255, 255, 0));
+}
+
+.carouselViewport::after {
+  right: 0;
+  background: linear-gradient(to left, #FFFFFF, rgba(255, 255, 255, 0));
+}
+
+.carouselViewport[data-can-left='true']::before {
+  opacity: 1;
+}
+
+.carouselViewport[data-can-right='true']::after {
+  opacity: 1;
+}
+
+/* Flèches : masquées sur mobile (swipe natif), visibles au desktop quand
+   il reste à défiler. */
+.carArrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #E5E5E5;
+  background: #FFFFFF;
+  color: #1A1A1A;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px -5px rgba(0, 0, 0, 0.3);
+  transition: background 0.15s ease;
+}
+
+.carArrow:hover {
+  background: #F4F2ED;
+}
+
+.carArrowLeft {
+  left: 6px;
+}
+
+.carArrowRight {
+  right: 6px;
+}
+
+@media (min-width: 720px) {
+  .carouselViewport[data-can-left='true'] .carArrowLeft {
+    display: flex;
+  }
+  .carouselViewport[data-can-right='true'] .carArrowRight {
+    display: flex;
+  }
+}
+
 .cardLink {
   text-decoration: none;
   color: inherit;

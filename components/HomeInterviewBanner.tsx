@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import PictureImg from './PictureImg'
 import { getNextInterviewForHome, getAllInterviews } from '../lib/interviews'
+import InterviewCarousel from './InterviewCarousel'
 import styles from './HomeInterviewBanner.module.css'
 
 function formatFrDate(iso: string): string {
@@ -35,7 +36,7 @@ export default function HomeInterviewBanner() {
   const others = getAllInterviews()
     .filter(o => o.slug !== interview.slug)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3)
+    .slice(0, 12)
 
   return (
     <div className={styles.wrap}>
@@ -78,38 +79,7 @@ export default function HomeInterviewBanner() {
       {others.length > 0 && (
         <section className={styles.carousel} aria-label="Les entretiens Soara">
           <div className={styles.carouselTitle}>Les entretiens Soara</div>
-          <div className={styles.carouselTrack}>
-            {others.map(o => {
-              const kind = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
-              return (
-                <Link
-                  key={o.slug}
-                  href={`/entretien/${o.slug}`}
-                  className={styles.cardLink}
-                >
-                  <article
-                    className={styles.card}
-                    data-interview-type={o.interviewType}
-                  >
-                    <div className={styles.cardImg}>
-                      <img
-                        src={o.image}
-                        alt={o.interviewSubject}
-                        style={o.cardFocus ? { objectPosition: o.cardFocus } : undefined}
-                      />
-                    </div>
-                    <span className={styles.cardBadge}>{kind}</span>
-                    <div className={styles.cardText}>
-                      <h4 className={styles.cardName}>{o.interviewSubject}</h4>
-                      {o.interviewRole && (
-                        <p className={styles.cardRole}>{o.interviewRole}</p>
-                      )}
-                    </div>
-                  </article>
-                </Link>
-              )
-            })}
-          </div>
+          <InterviewCarousel items={others} />
         </section>
       )}
     </div>
