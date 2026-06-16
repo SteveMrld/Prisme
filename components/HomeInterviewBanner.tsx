@@ -92,7 +92,11 @@ export default function HomeInterviewBanner() {
                     data-interview-type={o.interviewType}
                   >
                     <div className={styles.cardImg}>
-                      <img src={o.image} alt={o.interviewSubject} />
+                      <img
+                        src={o.image}
+                        alt={o.interviewSubject}
+                        style={o.cardFocus ? { objectPosition: o.cardFocus } : undefined}
+                      />
                     </div>
                     <span className={styles.cardBadge}>{kind}</span>
                     <div className={styles.cardText}>

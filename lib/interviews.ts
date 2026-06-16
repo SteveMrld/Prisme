@@ -27,6 +27,10 @@ export type Interview = {
   interviewQuote?: string
   interviewQuestions?: string[]
   featuredOnHome?: boolean
+  // Point de cadrage object-position pour la carte du carousel home.
+  // Défaut CSS : center 18%. À surcharger pour les portraits au ratio
+  // atypique (ex. Diarra, source 1080x2372) qui se recadrent mal.
+  cardFocus?: string
 }
 
 const all: Interview[] = (articlesData as any[]).filter(
