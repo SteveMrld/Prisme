@@ -4,6 +4,45 @@
   border-top: 2px solid #0A0A0A;
 }
 
+/* Rotator : conteneur global (viewport + dots).
+   Permet la mise en pause au survol via cibles parent. */
+.rotator {
+  position: relative;
+}
+
+/* Viewport : conteneur à hauteur naturelle. Le premier slide tient la
+   hauteur via flow normal ; les suivants sont en position:absolute par
+   dessus pour permettre le fondu sans saut de mise en page. */
+.rotatorViewport {
+  position: relative;
+}
+
+/* Dots cliquables sous le bandeau */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #0A0A0A;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.dot:hover { background: rgba(10, 10, 10, 0.35); }
+
+.dotActive {
+  background: #0A0A0A;
+  transform: scale(1.15);
+}
+
 .root {
   --accent: #7A1A2E;
   display: flex;
@@ -11,7 +50,7 @@
   gap: 0;
   text-decoration: none;
   color: inherit;
-  transition: opacity 200ms ease;
+  transition: opacity 600ms ease;
 }
 
 .root[data-interview-type="classique"] {
@@ -19,6 +58,26 @@
 }
 
 .root:hover { opacity: 0.92; }
+
+/* Empile les slides : le 1er reste en flow et fixe la hauteur, les autres
+   se superposent en absolute. Visibilité contrôlée par data-active. */
+.rotatorViewport > .root:not(:first-child) {
+  position: absolute;
+  inset: 0;
+}
+
+.rotatorViewport > .root[data-active="false"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rotatorViewport > .root[data-active="true"] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root { transition: none; }
+}
 
 .banner {
   display: flex;
