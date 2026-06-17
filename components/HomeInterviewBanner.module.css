@@ -4,43 +4,21 @@
   border-top: 2px solid #0A0A0A;
 }
 
-/* Rotator : conteneur global (viewport + dots).
-   Permet la mise en pause au survol via cibles parent. */
-.rotator {
-  position: relative;
+/* Zone vedette entretiens : statique, côte à côte sur desktop quand il
+   y a 2 grands entretiens publiés, empilée sur mobile. Aucune hauteur
+   imposée : les hauteurs sont stables grâce à l'aspect-ratio sur .img. */
+.featured {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: start;
 }
 
-/* Viewport : conteneur à hauteur naturelle. Le premier slide tient la
-   hauteur via flow normal ; les suivants sont en position:absolute par
-   dessus pour permettre le fondu sans saut de mise en page. */
-.rotatorViewport {
-  position: relative;
-}
-
-/* Dots cliquables sous le bandeau */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: 1px solid #0A0A0A;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  transition: background 200ms ease, transform 200ms ease;
-}
-
-.dot:hover { background: rgba(10, 10, 10, 0.35); }
-
-.dotActive {
-  background: #0A0A0A;
-  transform: scale(1.15);
+@media (min-width: 720px) {
+  .featured[data-count="2"] {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
 }
 
 .root {
@@ -50,7 +28,7 @@
   gap: 0;
   text-decoration: none;
   color: inherit;
-  transition: opacity 600ms ease;
+  transition: opacity 200ms ease;
 }
 
 .root[data-interview-type="classique"] {
@@ -58,26 +36,6 @@
 }
 
 .root:hover { opacity: 0.92; }
-
-/* Empile les slides : le 1er reste en flow et fixe la hauteur, les autres
-   se superposent en absolute. Visibilité contrôlée par data-active. */
-.rotatorViewport > .root:not(:first-child) {
-  position: absolute;
-  inset: 0;
-}
-
-.rotatorViewport > .root[data-active="false"] {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.rotatorViewport > .root[data-active="true"] {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .root { transition: none; }
-}
 
 .banner {
   display: flex;
@@ -113,8 +71,7 @@
 }
 
 .img {
-  width: 65%;
-  max-width: 380px;
+  width: 100%;
   margin: 0 auto;
   aspect-ratio: 1/1;
   overflow: hidden;
@@ -380,6 +337,30 @@
   text-transform: uppercase;
   padding: 4px 8px;
   line-height: 1;
+}
+
+/* Badge teaser sur les cartes du carrousel : « Disponible le X » si la
+   date est dans le futur, sinon « À venir ». Posé en haut à droite,
+   échappe au dégradé sombre du bas (gradient ::after de cardImg). */
+.cardComing {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0A0A0A;
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  line-height: 1;
+  max-width: calc(100% - 100px);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cardText {

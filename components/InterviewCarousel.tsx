@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import type { Interview } from '../lib/interviews'
+import { formatFrDate, isFutureDay } from '../lib/dates'
 import styles from './HomeInterviewBanner.module.css'
 
 // Rangée défilante des entretiens. Sur mobile, swipe natif. Sur desktop, la
@@ -78,9 +79,16 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
       <div className={styles.carouselTrack} ref={trackRef}>
         {items.map(o => {
           const kind = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
+          const dateFuture = isFutureDay(o.date)
+          const isComing = o.interviewStatus === 'coming' || dateFuture
+          const comingLabel = dateFuture ? `Disponible le ${formatFrDate(o.date)}` : 'À venir'
           return (
             <Link key={o.slug} href={`/entretien/${o.slug}`} className={styles.cardLink}>
-              <article className={styles.card} data-interview-type={o.interviewType}>
+              <article
+                className={styles.card}
+                data-interview-type={o.interviewType}
+                data-coming={isComing ? 'true' : undefined}
+              >
                 <div className={styles.cardImg}>
                   <img
                     src={o.image}
@@ -89,6 +97,9 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
                   />
                 </div>
                 <span className={styles.cardBadge}>{kind}</span>
+                {isComing && (
+                  <span className={styles.cardComing}>{comingLabel}</span>
+                )}
                 <div className={styles.cardText}>
                   <h4 className={styles.cardName}>{o.interviewSubject}</h4>
                   {o.interviewRole && (

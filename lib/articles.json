@@ -69,7 +69,7 @@
     "author": "Steve Moradel",
     "authorRole": "Fondateur de Soara",
     "category": "soc",
-    "date": "2026-06-20",
+    "date": "2026-06-29",
     "readTime": "15",
     "image": "/portraits/bousardo.jpg",
     "featured": true,
@@ -98,8 +98,7 @@
       "Défendre quelqu’un que tout le monde a déjà condamné, assister une victime dont personne ne veut entendre la parole. Qu’est-ce que vingt ans de prétoire font à quelqu’un intérieurement ?",
       "Vous dites que les femmes sont majoritaires dans la profession mais absentes là où les décisions se prennent. Est-ce un problème de génération qui se résoudra avec le temps, ou quelque chose de structurel qui résiste ?",
       "Dans quel monde voulez-vous plaider dans vingt ans ?"
-    ],
-    "featuredOnHome": true
+    ]
   },
   {
     "slug": "football-cage",
