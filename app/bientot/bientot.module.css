@@ -6,11 +6,14 @@
   background: #0A0A0A;
   color: #FAFAF8;
   font-family: Georgia, serif;
+  padding: 32px 16px;
 }
 
 .inner {
   text-align: center;
-  padding: 40px 24px;
+  width: 100%;
+  max-width: 460px;
+  padding: 24px;
 }
 
 .logo {
@@ -44,4 +47,212 @@
   font-family: -apple-system, sans-serif;
   letter-spacing: 1px;
   margin: 0;
+}
+
+/* ── Bloc capture email : action principale ── */
+.captureForm {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.captureLead {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  line-height: 1.45;
+  color: #E8E5DF;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.captureRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+}
+
+@media (min-width: 520px) {
+  .captureRow {
+    flex-direction: row;
+    gap: 8px;
+    max-width: 400px;
+  }
+}
+
+.captureInput {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FAFAF8;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-family: -apple-system, sans-serif;
+  outline: none;
+  text-align: left;
+  border-radius: 2px;
+  transition: border-color 180ms ease;
+}
+
+.captureInput::placeholder {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.captureInput:focus {
+  border-color: #C9A84C;
+}
+
+.captureInput:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.captureInputError {
+  border-color: #C85840;
+}
+
+.captureBtn {
+  background: #C9A84C;
+  color: #0A0A0A;
+  border: 1px solid #C9A84C;
+  font-family: -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  cursor: pointer;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background 180ms ease, opacity 180ms ease;
+}
+
+.captureBtn:hover:not(:disabled) {
+  background: #D6B764;
+  border-color: #D6B764;
+}
+
+.captureBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.captureSuccess {
+  margin: 6px 0 0;
+  font-family: -apple-system, sans-serif;
+  font-size: 13px;
+  color: #C9A84C;
+  letter-spacing: 0.3px;
+  line-height: 1.45;
+  max-width: 360px;
+}
+
+.captureError {
+  margin: 6px 0 0;
+  font-family: -apple-system, sans-serif;
+  font-size: 13px;
+  color: #C85840;
+  letter-spacing: 0.3px;
+  line-height: 1.45;
+  max-width: 360px;
+}
+
+/* ── Bloc accès équipe : secondaire, discret ── */
+.team {
+  margin-top: 56px;
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.teamToggle {
+  background: none;
+  border: none;
+  color: #6A6A6A;
+  font-family: -apple-system, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 6px 10px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(106, 106, 106, 0.35);
+  transition: color 180ms ease;
+}
+
+.teamToggle:hover {
+  color: #9A9590;
+}
+
+.teamForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 520px) {
+  .teamForm {
+    flex-direction: row;
+  }
+}
+
+.teamInput {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cdd0d8;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-family: monospace;
+  letter-spacing: 2px;
+  width: 200px;
+  outline: none;
+  text-align: center;
+  border-radius: 2px;
+  transition: border-color 180ms ease;
+}
+
+.teamInput:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.teamInputError {
+  border-color: #c85840;
+}
+
+.teamBtn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #c9a84c;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 9px 22px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border-color 180ms ease;
+}
+
+.teamBtn:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.teamBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.teamErrorMsg {
+  width: 100%;
+  font-family: monospace;
+  font-size: 10px;
+  color: #c85840;
+  letter-spacing: 2px;
 }

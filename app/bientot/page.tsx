@@ -2,33 +2,85 @@
 import { useState } from 'react'
 import styles from './bientot.module.css'
 
-export default function BientotPage() {
-  const [input, setInput] = useState('')
-  const [error, setError] = useState(false)
-  const [pending, setPending] = useState(false)
+type EmailState =
+  | { kind: 'idle' }
+  | { kind: 'pending' }
+  | { kind: 'success'; message: string }
+  | { kind: 'error'; message: string }
 
-  const handleSubmit = async () => {
-    if (pending) return
-    setPending(true)
+export default function BientotPage() {
+  const [email, setEmail] = useState('')
+  const [state, setState] = useState<EmailState>({ kind: 'idle' })
+
+  // Accès équipe : champ mot de passe masqué par défaut, révélé par
+  // un petit lien discret en bas. La capture d'email reste l'action
+  // principale.
+  const [teamOpen, setTeamOpen] = useState(false)
+  const [pwd, setPwd] = useState('')
+  const [pwdError, setPwdError] = useState(false)
+  const [pwdPending, setPwdPending] = useState(false)
+
+  const onEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (state.kind === 'pending') return
+    const value = email.trim()
+    if (!value) {
+      setState({ kind: 'error', message: 'Adresse email invalide.' })
+      return
+    }
+    setState({ kind: 'pending' })
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: value }),
+      })
+      const data = await res.json().catch(() => ({} as any))
+      if (res.ok && data?.success) {
+        const message = data.doi === false
+          ? 'Vous êtes déjà inscrit. À très bientôt.'
+          : 'Vérifiez votre boîte mail pour confirmer votre inscription.'
+        setState({ kind: 'success', message })
+        setEmail('')
+        return
+      }
+      const fallback = res.status === 429
+        ? 'Trop de requêtes, réessayez dans une minute.'
+        : 'Une erreur est survenue. Réessayez.'
+      setState({ kind: 'error', message: data?.error || fallback })
+    } catch {
+      setState({ kind: 'error', message: 'Une erreur est survenue. Réessayez.' })
+    }
+  }
+
+  const onTeamSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (pwdPending) return
+    setPwdPending(true)
+    setPwdError(false)
     try {
       const res = await fetch('/api/preview-unlock', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: input.trim() }),
+        body: JSON.stringify({ code: pwd.trim() }),
       })
       if (res.ok) {
         window.location.href = '/'
         return
       }
-      setError(true)
-      setTimeout(() => setError(false), 1500)
+      setPwdError(true)
+      setTimeout(() => setPwdError(false), 1800)
     } catch {
-      setError(true)
-      setTimeout(() => setError(false), 1500)
+      setPwdError(true)
+      setTimeout(() => setPwdError(false), 1800)
     } finally {
-      setPending(false)
+      setPwdPending(false)
     }
   }
+
+  const isPending = state.kind === 'pending'
+  const isSuccess = state.kind === 'success'
+  const isError = state.kind === 'error'
 
   return (
     <div className={styles.wrapper}>
@@ -36,52 +88,74 @@ export default function BientotPage() {
         <div className={styles.logo}>SOARA</div>
         <p className={styles.tagline}>Comprendre le monde. Éclairer l&apos;avenir.</p>
         <div className={styles.divider} />
-        <p className={styles.date}>Lancement · 20 juin 2026</p>
+        <p className={styles.date}>Lancement&nbsp;· lundi 22 juin 2026</p>
 
-        <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && handleSubmit()}
-            style={{
-              background: 'transparent',
-              border: `1px solid ${error ? '#c85840' : 'rgba(255,255,255,0.15)'}`,
-              color: '#cdd0d8',
-              padding: '12px 20px',
-              fontSize: 14,
-              fontFamily: 'monospace',
-              letterSpacing: 2,
-              width: 240,
-              outline: 'none',
-              textAlign: 'center',
-              marginBottom: 14,
-              transition: 'border-color var(--dur-fast) var(--ease-out)',
-              borderRadius: 2,
-            }}
-          />
-          <button
-            onClick={handleSubmit}
-            style={{
-              background: 'none',
-              border: '1px solid rgba(255,255,255,0.15)',
-              color: '#c9a84c',
-              fontFamily: 'monospace',
-              fontSize: 10,
-              letterSpacing: 3,
-              textTransform: 'uppercase',
-              padding: '10px 28px',
-              cursor: 'pointer',
-              borderRadius: 2,
-            }}
-          >
-            Accéder
-          </button>
-          {error && (
-            <div style={{ marginTop: 14, fontFamily: 'monospace', fontSize: 10, color: '#c85840', letterSpacing: 2 }}>
-              Mot de passe incorrect
-            </div>
+        <form className={styles.captureForm} onSubmit={onEmailSubmit} noValidate>
+          <p className={styles.captureLead}>Soyez prévenu du lancement.</p>
+
+          <div className={styles.captureRow}>
+            <input
+              type="email"
+              required
+              autoComplete="email"
+              placeholder="vous@exemple.com"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                if (isError || isSuccess) setState({ kind: 'idle' })
+              }}
+              className={`${styles.captureInput} ${isError ? styles.captureInputError : ''}`}
+              disabled={isPending}
+              aria-label="Adresse email"
+            />
+            <button
+              type="submit"
+              className={styles.captureBtn}
+              disabled={isPending || isSuccess}
+            >
+              {isPending ? 'Envoi…' : isSuccess ? 'Merci' : 'Me prévenir'}
+            </button>
+          </div>
+
+          {isSuccess && (
+            <p className={styles.captureSuccess} role="status">{state.message}</p>
+          )}
+          {isError && (
+            <p className={styles.captureError} role="alert">{state.message}</p>
+          )}
+        </form>
+
+        <div className={styles.team}>
+          {teamOpen ? (
+            <form onSubmit={onTeamSubmit} className={styles.teamForm}>
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                value={pwd}
+                onChange={(e) => setPwd(e.target.value)}
+                className={`${styles.teamInput} ${pwdError ? styles.teamInputError : ''}`}
+                aria-label="Mot de passe équipe"
+                autoFocus
+              />
+              <button
+                type="submit"
+                className={styles.teamBtn}
+                disabled={pwdPending}
+              >
+                {pwdPending ? '…' : 'Accéder'}
+              </button>
+              {pwdError && (
+                <span className={styles.teamErrorMsg}>Mot de passe incorrect</span>
+              )}
+            </form>
+          ) : (
+            <button
+              type="button"
+              className={styles.teamToggle}
+              onClick={() => setTeamOpen(true)}
+            >
+              Accès équipe
+            </button>
           )}
         </div>
       </div>
