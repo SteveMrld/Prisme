@@ -177,7 +177,9 @@ export default function EntretienPage({
         <div className={styles.textCol}>
           <div className={styles.eyebrow}>
             <span className={styles.tag}>{label}</span>
-            <span className={styles.num}>N° {i.interviewIssue}</span>
+            {i.interviewIssue !== undefined && (
+              <span className={styles.num}>N°&nbsp;{i.interviewIssue}</span>
+            )}
             {catLabel && (
               <span className={styles.cat} data-cat={i.category}>
                 {catLabel}
@@ -211,26 +213,13 @@ export default function EntretienPage({
 
           {isComing && displayDeck && <p className={styles.deck}>{displayDeck}</p>}
 
-          {isComing && i.interviewQuestions && i.interviewQuestions.length > 0 && (
-            <div className={styles.questionsSection}>
-              <div className={styles.questionsLabel}>Les questions qui seront posées</div>
-              <div className={styles.questions}>
-                {i.interviewQuestions.map((q, idx) => (
-                  <div key={idx} className={styles.question}>
-                    <span className={styles.questionNum}>
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                    <span className={styles.questionText}>«&nbsp;{q}&nbsp;»</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* En mode teaser, aucune question n'est exposée : on cache
+              entièrement le bloc « LES QUESTIONS QUI SERONT POSÉES ». */}
 
           {isComing && (
             <div className={styles.coming}>
               <div className={styles.comingLabel}>
-                {isFutureDay(i.date) ? `Disponible le ${formatFrDate(i.date)}` : 'À paraître prochainement'}
+                {isFutureDay(i.date) ? `Disponible le ${formatFrDate(i.date)}` : 'À venir'}
               </div>
               <p className={styles.comingDesc}>Inscrivez-vous pour être notifié à la parution.</p>
               <div className={styles.comingActions}>
@@ -263,7 +252,26 @@ export default function EntretienPage({
       </article>
 
       {(() => {
-        const others = getAllInterviews().filter(o => o.slug !== i.slug).slice(0, 3)
+        // Tous les autres entretiens, y compris à venir (cartes teaser).
+        // Ordre : publiés d'abord (date desc), puis grands entretiens à
+        // paraître à date future (sooner first), puis ceux sans date
+        // précise (placeholder).
+        const otherComingPriority = (it: typeof i): number => {
+          const future = isFutureDay(it.date)
+          if (it.interviewStatus === 'published' && !future) return 0
+          if (future) return 1
+          return 2
+        }
+        const others = getAllInterviews()
+          .filter(o => o.slug !== i.slug)
+          .sort((a, b) => {
+            const pa = otherComingPriority(a)
+            const pb = otherComingPriority(b)
+            if (pa !== pb) return pa - pb
+            const da = new Date(a.date).getTime()
+            const db = new Date(b.date).getTime()
+            return pa === 1 ? da - db : db - da
+          })
         if (others.length === 0) return null
         return (
           <section className={styles.others}>
@@ -271,15 +279,22 @@ export default function EntretienPage({
             <div className={styles.othersGrid}>
               {others.map(o => {
                 const oLabel = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
+                const oFuture = isFutureDay(o.date)
+                const oComing = o.interviewStatus === 'coming' || oFuture
+                const oComingLabel = oFuture ? `Disponible le ${formatFrDate(o.date)}` : 'À venir'
                 return (
                   <Link
                     key={o.slug}
                     href={`/entretien/${o.slug}`}
                     className={styles.otherCard}
                     data-interview-type={o.interviewType}
+                    data-coming={oComing ? 'true' : undefined}
                   >
                     <div className={styles.otherPortraitWrap}>
                       <img src={o.image} alt={o.interviewSubject} className={styles.otherPortrait} />
+                      {oComing && (
+                        <span className={styles.otherComing}>{oComingLabel}</span>
+                      )}
                     </div>
                     <div className={styles.otherEyebrow}>{oLabel}</div>
                     <div className={styles.otherName}>{o.interviewSubject}</div>

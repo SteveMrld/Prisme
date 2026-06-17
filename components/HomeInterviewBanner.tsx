@@ -24,10 +24,26 @@ export default function HomeInterviewBanner() {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 2)
 
+  // Ordre de la rangée : publiés d'abord (date desc), puis grands
+  // entretiens à venir avec date future (sooner first), puis ceux sans
+  // date précise (statut coming + date passée = placeholder).
+  const comingPriority = (i: Interview): number => {
+    const future = isFutureDay(i.date)
+    if (i.interviewStatus === 'published' && !future) return 0
+    if (future) return 1
+    return 2
+  }
   const featuredSlugs = new Set(featured.map(i => i.slug))
   const others = all
     .filter(i => !featuredSlugs.has(i.slug))
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a, b) => {
+      const pa = comingPriority(a)
+      const pb = comingPriority(b)
+      if (pa !== pb) return pa - pb
+      const da = new Date(a.date).getTime()
+      const db = new Date(b.date).getTime()
+      return pa === 1 ? da - db : db - da
+    })
     .slice(0, 12)
 
   if (featured.length === 0 && others.length === 0) return null

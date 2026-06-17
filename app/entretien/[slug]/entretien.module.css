@@ -437,6 +437,7 @@
   justify-content: center;
   overflow: hidden;
   margin-bottom: 16px;
+  position: relative;
 }
 
 .otherPortrait {
@@ -444,6 +445,40 @@
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
+}
+
+/* Voile blanc léger sur les portraits des entretiens à venir, écho du
+   gating « à paraître » sur la page principale. */
+.otherCard[data-coming="true"] .otherPortraitWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.42);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Badge teaser : « Disponible le X » ou « À venir », en haut à droite
+   du portrait pour ne pas masquer le visage. */
+.otherComing {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.95);
+  color: #0A0A0A;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  line-height: 1;
+  max-width: calc(100% - 20px);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .otherEyebrow {

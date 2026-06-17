@@ -19,7 +19,9 @@ export type Interview = {
   authorRole?: string
   interviewType: InterviewType
   interviewStatus: InterviewStatus
-  interviewIssue: number
+  /* Numérotation réservée aux grands entretiens. Les interviews
+     classiques n'ont pas de N°. */
+  interviewIssue?: number
   interviewSubject: string
   interviewSubjectItalic?: string
   interviewRole?: string
