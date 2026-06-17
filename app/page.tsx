@@ -22,6 +22,7 @@ import {
   HERO_POOL, UNDER_HERO_POOL, GF_POOL_AFTER_LEAD,
   ALSO_READ_POOL, ATLAS_POOL, POPULAR_POOL,
   GF_LEAD_SLUG, GF_SECONDARY_1_SLUG,
+  sortByRecency, pickByRecency,
 } from '../lib/home-pools'
 
 // ── Helpers ───────────────────────────────────────────────
@@ -131,23 +132,13 @@ export default async function HomePage() {
       && new Date(a.date).getTime() <= nowTs   // ignore les publications futures
     )
 
-  // Tier 1 (featured), tier 2 (top 3 récents non-featured), tier 3 (le reste).
-  // Chaque tier mélangé en aléatoire pur : la rotation tourne à chaque
-  // chargement quand plusieurs candidats existent. Si un seul candidat,
-  // il sort à chaque fois (jugement éditorial assumé).
+  // Score de récence + bonus featured : un article récent passe devant,
+  // un featured ancien ne court-circuite plus la fraîcheur. À score
+  // égal (même palier d'âge), shuffle pour varier entre chargements.
   const pickHeroForCat = (cat: string, n: number): any[] => {
     const all = heroCandidates(cat)
     if (!all.length || n <= 0) return []
-    const sorted = [...all].sort(byDateDesc)
-    const featured = sorted.filter(a => a.featured === true)
-    const nonFeat = sorted.filter(a => !a.featured)
-    const recents = nonFeat.slice(0, 3)
-    const others = nonFeat.slice(3)
-    return [
-      ...randomShuffle(featured),
-      ...randomShuffle(recents),
-      ...randomShuffle(others),
-    ].slice(0, n)
+    return sortByRecency(all, nowTs).slice(0, n)
   }
 
   // 4 catégories non-geo retenues à chaque chargement, en ne gardant
@@ -185,27 +176,23 @@ export default async function HomePage() {
     heroPicks = [...heroPicks, ...fill]
   }
 
-  // Ordre des slides : featured d'abord (jugement éditorial), puis date
-  // décroissante. Le hero s'ouvre toujours sur l'article le plus mis en avant.
-  heroPicks.sort((a, b) => {
-    const af = a.featured ? 1 : 0
-    const bf = b.featured ? 1 : 0
-    if (af !== bf) return bf - af
-    return byDateDesc(a, b)
-  })
+  // Ordre des slides : par score de récence (featured = bonus, pas un
+  // bypass). Le hero s'ouvre sur l'article le plus frais ou le plus
+  // mis en avant à fraîcheur comparable.
+  heroPicks = sortByRecency(heroPicks, nowTs)
 
   const HERO_ROTATION = heroPicks.map(withCatLabel(nowTs))
 
-  // Sous le hero : 3 à gauche, 3 à droite. Aléatoire avec anti-monocat.
-  // Le bloc droite a 3 cards : on cape à 2 par cat pour préserver la
-  // diversité catégorielle sans bloquer le pool.
+  // Sous le hero : 3 à gauche, 3 à droite. Triés par score de récence
+  // (futur exclu, palier d'âge, shuffle à fraîcheur égale) avec cap
+  // catégoriel pour garder la diversité éditoriale.
   const UNDER_HERO_LEFT = consume(
-    pickRandom(excludeArt(UNDER_HERO_POOL), 3, {
+    pickByRecency(excludeArt(UNDER_HERO_POOL), 3, nowTs, {
       diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
   ).map(withCatLabel(nowTs))
   const UNDER_HERO_RIGHT = consume(
-    pickRandom(excludeArt(UNDER_HERO_POOL), 3, {
+    pickByRecency(excludeArt(UNDER_HERO_POOL), 3, nowTs, {
       diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
   ).map(withCatLabel(nowTs))

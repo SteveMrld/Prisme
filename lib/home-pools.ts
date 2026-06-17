@@ -10,9 +10,71 @@
    les pools puissent les exclure proprement. */
 
 import articlesData from './articles.json'
+import { recencyScore } from './recency'
+import { randomShuffle } from './rotation'
 
 type Article = (typeof articlesData)[number]
 const ALL = articlesData as Article[]
+
+/* Tri par score de récence : groupe les items par palier de score, puis
+   shuffle dans chaque palier pour faire varier l'article entre deux
+   chargements à fraîcheur équivalente. Les articles futurs (score -1)
+   sont écartés sauf si includeFuture=true (sert au gating « à paraître »
+   du chantier 3 pour la rangée grands formats). */
+export type RecencyItem = { date: string; featured?: boolean }
+
+export function sortByRecency<T extends RecencyItem>(
+  items: readonly T[],
+  nowTs: number,
+  opts: { includeFuture?: boolean } = {},
+): T[] {
+  const buckets = new Map<number, T[]>()
+  for (const a of items) {
+    const s = recencyScore(a.date, a.featured === true, nowTs)
+    if (s < 0 && !opts.includeFuture) continue
+    if (!buckets.has(s)) buckets.set(s, [])
+    buckets.get(s)!.push(a)
+  }
+  const keys = Array.from(buckets.keys()).sort((x, y) => y - x)
+  const out: T[] = []
+  for (const k of keys) out.push(...randomShuffle(buckets.get(k)!))
+  return out
+}
+
+/* Pick guidé par le score de récence (au lieu d'un shuffle pur).
+   Préserve maxPerCat / diversifyBy. Les articles plus frais sortent
+   en tête, le shuffle ne joue qu'à fraîcheur égale (palier de score). */
+export function pickByRecency<T extends RecencyItem>(
+  pool: readonly T[],
+  n: number,
+  nowTs: number,
+  opts: {
+    diversifyBy?: (a: T) => string | undefined
+    maxPerCat?: number
+    includeFuture?: boolean
+  } = {},
+): T[] {
+  const sorted = sortByRecency(pool, nowTs, { includeFuture: opts.includeFuture })
+  const { diversifyBy, maxPerCat } = opts
+  if (!diversifyBy || !maxPerCat || maxPerCat < 1) return sorted.slice(0, n)
+  const result: T[] = []
+  const counts = new Map<string, number>()
+  const overflow: T[] = []
+  for (const item of sorted) {
+    if (result.length >= n) break
+    const key = diversifyBy(item)
+    if (key === undefined) { result.push(item); continue }
+    const c = counts.get(key) ?? 0
+    if (c < maxPerCat) {
+      result.push(item)
+      counts.set(key, c + 1)
+    } else {
+      overflow.push(item)
+    }
+  }
+  while (result.length < n && overflow.length > 0) result.push(overflow.shift()!)
+  return result
+}
 
 /* LEAD et SECONDARY1 des grands formats : jugement éditorial figé.
    Exportés pour que app/page.tsx s'aligne sur la même source. */
