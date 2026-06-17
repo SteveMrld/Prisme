@@ -81,7 +81,10 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
           const kind = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
           const dateFuture = isFutureDay(o.date)
           const isComing = o.interviewStatus === 'coming' || dateFuture
-          const comingLabel = dateFuture ? `Disponible le ${formatFrDate(o.date)}` : 'À venir'
+          // Libellé concis pour tenir dans le coin bas-droit de la carte
+          // sans empiéter sur le nom : « Le 29 juin 2026 » plutôt que
+          // « Disponible le 29 juin 2026 ». « À venir » inchangé.
+          const comingLabel = dateFuture ? `Le ${formatFrDate(o.date)}` : 'À venir'
           return (
             <Link key={o.slug} href={`/entretien/${o.slug}`} className={styles.cardLink}>
               <article
@@ -97,10 +100,10 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
                   />
                 </div>
                 <span className={styles.cardBadge}>{kind}</span>
-                {isComing && (
-                  <span className={styles.cardComing}>{comingLabel}</span>
-                )}
                 <div className={styles.cardText}>
+                  {isComing && (
+                    <span className={styles.cardComing}>{comingLabel}</span>
+                  )}
                   <h4 className={styles.cardName}>{o.interviewSubject}</h4>
                   {o.interviewRole && (
                     <p className={styles.cardRole}>{o.interviewRole}</p>
