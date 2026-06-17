@@ -1,7 +1,7 @@
 [
   {
     "slug": "evidence-sans-auteur",
-    "title": "L'évidence n'a pas d'auteur",
+    "title": "L'évidence n'a pas d'<em>auteur</em>",
     "description": "Un et un peuvent faire dix, et l'évidence vacille. De la base deux au zéro venu d'Inde, une traversée de ce que nous tenons pour acquis sans l'avoir vérifié, et de la façon dont l'universel efface ceux qui l'ont fabriqué.",
     "image": "/articles/evidence-sans-auteur-cover.jpg",
     "category": "culture",
@@ -772,7 +772,7 @@
   },
   {
     "slug": "morrison",
-    "title": "Toni Morrison, la mémoire comme acte politique",
+    "title": "Toni Morrison, <em>la mémoire comme acte politique</em>",
     "description": "Romancière, essayiste, première femme noire Nobel de littérature. Elle a consacré une vie entière à fouiller les blessures de la mémoire afro-américaine, et à les transformer en langage.",
     "image": "/portraits/morrison.jpg",
     "category": "portrait",
@@ -817,7 +817,7 @@
   },
   {
     "slug": "musk",
-    "title": "Elon Musk, l'homme qui défie son époque",
+    "title": "Elon Musk, <em>l'homme qui défie son époque</em>",
     "description": "De l'Afrique du Sud à la Maison-Blanche, de SpaceX à X, la trajectoire d'un entrepreneur devenu acteur politique mondial, et les questions qu'elle soulève.",
     "image": "/portraits/musk.jpg",
     "category": "portrait",
@@ -833,7 +833,7 @@
   },
   {
     "slug": "nooyi",
-    "title": "Indra Nooyi, réinventer un empire depuis l'intérieur",
+    "title": "Indra Nooyi, <em>réinventer un empire depuis l'intérieur</em>",
     "description": "Douze ans à la tête de PepsiCo, une transformation stratégique radicale, et une trajectoire qui dit autant sur les possibles du capitalisme américain que sur ses limites structurelles.",
     "image": "/portraits/nooyi.jpg",
     "category": "portrait",

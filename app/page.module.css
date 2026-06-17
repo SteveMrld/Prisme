@@ -1468,7 +1468,7 @@
 ════════════════════════════════════ */
 @media (min-width: 900px) {
   .leadImg { aspect-ratio: 21/9; }
-  .leadTitle { font-size: 44px; }
+  .leadTitle { font-size: 40px; }
   .leadBody { padding: 20px 64px 32px; }
   .row2 { grid-template-columns: 1fr 1fr; }
   .rowCard { padding: 24px 32px; }
