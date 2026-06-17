@@ -8,6 +8,7 @@ import SoaraUnivers from '../components/SoaraUnivers'
 import BibliothequeHome from '../components/BibliothequeHome'
 import AdSlot from '../components/AdSlot'
 import HomeInterviewBanner from '../components/HomeInterviewBanner'
+import HomeGrandFormats from '../components/HomeGrandFormats'
 import { FleuronIcon } from '../components/LettresIcons'
 import { TV_EPISODES } from '../lib/tv-episodes'
 import { getActiveAd } from '../lib/ads'
@@ -354,6 +355,7 @@ export default async function HomePage() {
         <div className={styles.homeTopCenter}>
           <HeroInline articles={HERO_ROTATION} intervalMs={7000} />
           <HomeInterviewBanner />
+          <HomeGrandFormats />
         </div>
 
         <aside className={styles.homeTopRight}>
