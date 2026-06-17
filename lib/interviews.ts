@@ -33,6 +33,8 @@ export type Interview = {
   cardFocus?: string
   // Intervieweur (« Propos recueillis par … »). Défaut : Steve Moradel.
   interviewer?: string
+  // URL du fichier audio (« Écouter cet entretien »), si disponible.
+  audioUrl?: string
 }
 
 const all: Interview[] = (articlesData as any[]).filter(

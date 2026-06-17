@@ -5,6 +5,7 @@ import BackButton from './BackButton'
 import BookmarkButton from './BookmarkButton'
 import ArticleTOC from './ArticleTOC'
 import { ReadingProgress, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
+import AudioPlayer from './AudioPlayer'
 import styles from './GrandFormatLayout.module.css'
 import articlesData from '../lib/articles.json'
 
@@ -48,6 +49,7 @@ interface GrandFormatLayoutProps {
   date?: string
   author?: string
   authorRole?: string
+  audioUrl?: string
 }
 
 export default function GrandFormatLayout({
@@ -56,6 +58,7 @@ export default function GrandFormatLayout({
   category: catProp, categoryLabel: catLabelProp,
   readTime: rtProp, date: dateProp,
   author: authorProp, authorRole: roleProp,
+  audioUrl: audioUrlProp,
   showPaywall,
   lang = 'fr',
   hasEnglish = false,
@@ -79,6 +82,7 @@ export default function GrandFormatLayout({
   const imagePosition = article?.imagePosition || 'center 30%'
   const imageHeight = article?.imageHeight ? parseInt(article.imageHeight) : 520
   const authorRole  = roleProp     || article?.authorRole  || ''
+  const audioUrl    = audioUrlProp || (article as any)?.audioUrl || ''
 
   const color = categoryColors[category] || '#B91C1C'
   const minutes = parseInt(readTime) || 12
@@ -238,6 +242,8 @@ export default function GrandFormatLayout({
           </div>
         </div>
       )}
+
+      {audioUrl && <AudioPlayer src={audioUrl} minutes={minutes} />}
 
       {/* ── BODY ── */}
       <div className={`${styles.body} grand-format-body`}>

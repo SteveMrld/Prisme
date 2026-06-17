@@ -3,6 +3,7 @@ import Link from 'next/link'
 import fs from 'fs'
 import path from 'path'
 import Header from '../../../components/Header'
+import AudioPlayer from '../../../components/AudioPlayer'
 import { getAllInterviews, getInterview } from '../../../lib/interviews'
 import { categoryLabel } from '../../../lib/categories'
 import styles from './entretien.module.css'
@@ -195,6 +196,14 @@ export default function EntretienPage({
 
           {!isComing && (
             <div className={styles.byline}>Propos recueillis par {interviewer}</div>
+          )}
+
+          {!isComing && i.audioUrl && (
+            <AudioPlayer
+              src={i.audioUrl}
+              minutes={i.readTime ? parseInt(i.readTime) : undefined}
+              label="Écouter l'entretien"
+            />
           )}
 
           {isComing && displayDeck && <p className={styles.deck}>{displayDeck}</p>}
