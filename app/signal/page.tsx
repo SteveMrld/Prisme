@@ -2,8 +2,19 @@ import Header from '../../components/Header'
 import Link from 'next/link'
 import styles from './signal.module.css'
 import filSignal from '@/lib/fil-signal.json'
+import SignalFeed from './SignalFeed'
+import { parseSignalDate } from '../../lib/signal-dates'
 
 const signals = filSignal.breves
+
+// Date du bandeau : la brève la plus récente du fil.
+const bandDate =
+  signals
+    .slice()
+    .sort(
+      (a, b) =>
+        (parseSignalDate(b.date)?.sort ?? 0) - (parseSignalDate(a.date)?.sort ?? 0)
+    )[0]?.date ?? filSignal.date_maj
 
 export const metadata = {
   title: 'Signal',
@@ -27,22 +38,10 @@ export default function SignalPage() {
             <div className={styles.bandDesc}>L'actualité qui compte. Les faits bruts, sans bruit.</div>
           </div>
         </div>
-        <div className={styles.bandDate}>26 avril 2026</div>
+        <div className={styles.bandDate}>{bandDate}</div>
       </div>
 
-      <div className={styles.feed}>
-        {signals.map((item, i) => (
-          <div key={i} className={styles.item}>
-            <div className={styles.itemMeta}>
-              <span className={styles.itemDot} style={{ background: item.catColor }} />
-              <span className={styles.itemCat} style={{ color: item.catColor }}>{item.cat}</span>
-              <span className={styles.itemDate}>{item.date}</span>
-            </div>
-            <h2 className={styles.itemHeadline}>{item.headline}</h2>
-            <p className={styles.itemBody}>{item.body}</p>
-          </div>
-        ))}
-      </div>
+      <SignalFeed breves={signals} />
 
       <footer className={styles.footer}>
         <div className={styles.footerLogo}>So<em>ara</em></div>

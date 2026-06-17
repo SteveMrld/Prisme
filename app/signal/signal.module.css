@@ -63,6 +63,44 @@
   color: rgba(255,255,255,0.3);
 }
 
+.months {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 28px 64px 4px;
+  border-left: 1px solid var(--bord);
+  border-right: 1px solid var(--bord);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.monthTab {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+  background: transparent;
+  border: 1px solid var(--bord);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.monthTab:hover {
+  border-color: #0A0A0A;
+  color: #0A0A0A;
+}
+
+.monthTabActive,
+.monthTabActive:hover {
+  background: #0A0A0A;
+  border-color: #0A0A0A;
+  color: #FFFFFF;
+}
+
 .feed {
   max-width: 820px;
   margin: 0 auto;
@@ -167,5 +205,6 @@
 @media (max-width: 768px) {
   .band { padding: 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
   .feed { padding: 0 24px 60px; border: none; }
+  .months { padding: 20px 24px 4px; border: none; }
   .footer { padding: 40px 24px; }
 }
