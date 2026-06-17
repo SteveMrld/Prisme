@@ -362,21 +362,6 @@ export default async function HomePage() {
             </p>
             <cite className={styles.zone1QuoteCite}>Soara</cite>
           </blockquote>
-
-          <div className={styles.zone1Newsletter}>
-            <span className={styles.zone1NewsletterEyebrow}>La lettre du mardi</span>
-            <h3 className={styles.zone1NewsletterTitle}>L'analyse qui manque à votre semaine</h3>
-            <p className={styles.zone1NewsletterTeaser}>
-              Une lecture longue chaque mardi matin. Sans algorithme, sans bruit.
-            </p>
-            <Link href="/lettres" className={styles.zone1NewsletterCta}>
-              S'inscrire gratuitement →
-            </Link>
-            <Link href="/lettres" className={styles.zone1NewsletterArchive}>
-              <FleuronIcon width={14} height={14} />
-              <span>Lire les lettres</span>
-            </Link>
-          </div>
         </aside>
 
         <div className={styles.homeTopCenter}>
@@ -404,6 +389,30 @@ export default async function HomePage() {
             </div>
           )}
         </aside>
+      </section>
+
+      {/* ══════════════════════════════════════
+          1bis. LETTRE DU MARDI , bande pleine largeur
+      ══════════════════════════════════════ */}
+      <section className={styles.lettreMardi} aria-labelledby="lettre-mardi-title">
+        <div className={styles.lettreMardiText}>
+          <span className={styles.lettreMardiEyebrow}>La lettre du mardi</span>
+          <h2 id="lettre-mardi-title" className={styles.lettreMardiTitle}>
+            L'analyse qui manque à votre <em>semaine</em>
+          </h2>
+          <p className={styles.lettreMardiTeaser}>
+            Une lecture longue chaque mardi matin. Sans algorithme, sans bruit.
+          </p>
+        </div>
+        <div className={styles.lettreMardiActions}>
+          <Link href="/lettres" className={styles.lettreMardiCta}>
+            S'inscrire gratuitement →
+          </Link>
+          <Link href="/lettres" className={styles.lettreMardiArchive}>
+            <FleuronIcon width={12} height={12} />
+            <span>Lire les lettres</span>
+          </Link>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════
