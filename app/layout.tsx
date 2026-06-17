@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     description: 'Média analytique indépendant. Géopolitique, économie, technologie, société, culture.',
     images: [
       {
-        url: '/og-default.jpg',
+        url: '/og-soara.jpg',
         width: 1200,
         height: 630,
         alt: 'Soara · Comprendre le monde. Éclairer l\'avenir.',
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Soara · Comprendre le monde. Éclairer l\'avenir.',
     description: 'Média analytique indépendant. Géopolitique, économie, technologie, société, culture.',
-    images: ['/og-default.jpg'],
+    images: ['/og-soara.jpg'],
     creator: '@soaradotmedia',
   },
   icons: {
