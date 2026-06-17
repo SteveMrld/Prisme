@@ -126,6 +126,7 @@
   object-fit: cover;
   transition: transform 400ms ease-out;
 }
+.cardImg[src*="portraits"] { object-position: center top; }
 
 .cardLink:hover .cardImg {
   transform: scale(1.03);

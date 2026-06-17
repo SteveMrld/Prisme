@@ -26,6 +26,7 @@
   object-fit: cover;
   display: block;
 }
+.img[src*="portraits"] { object-position: center top; }
 
 .overlay {
   position: absolute;

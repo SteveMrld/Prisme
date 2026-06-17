@@ -53,6 +53,7 @@
   object-fit: cover;
   display: block;
 }
+.image img[src*="portraits"] { object-position: center top; }
 
 .body {
   padding: 12px 14px 14px;

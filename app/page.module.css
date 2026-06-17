@@ -1916,3 +1916,27 @@
   color: #9A9590;
 }
 .rediscoverDate { color: #C8A96E; }
+
+/* ════════════════════════════════════
+   PORTRAITS , visage entier toujours visible
+   Toute image dont le chemin contient "portraits" est calée en haut
+   pour ne jamais couper le front ou les yeux dans les vignettes.
+   Le matching couvre aussi les URLs optimisées de next/image
+   (où le chemin est encodé %2Fportraits%2F).
+   La règle .rediscoverCard[data-cat="portrait"] reste prioritaire
+   (specificity plus haute) et garde le rendu contain pour les
+   portraits catégorisés "portrait" dans la rangée À redécouvrir.
+════════════════════════════════════ */
+.leadImg img[src*="portraits"],
+.htRightImg img[src*="portraits"],
+.atlasSectionImg img[src*="portraits"],
+.gfLeadImg img[src*="portraits"],
+.gfSecondaryImg img[src*="portraits"],
+.gfFeatureImg img[src*="portraits"],
+.entretienImg[src*="portraits"],
+.underHeroThumb[src*="portraits"],
+.rowThumb[src*="portraits"],
+.latestImgWrap img[src*="portraits"],
+.rediscoverImg img[src*="portraits"] {
+  object-position: center top;
+}

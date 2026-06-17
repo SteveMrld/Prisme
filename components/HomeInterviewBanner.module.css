@@ -308,6 +308,7 @@
   mix-blend-mode: luminosity;
   display: block;
 }
+.cardImg img[src*="portraits"] { object-position: center top; }
 
 /* Dégradé sombre en bas pour que le nom blanc se détache toujours */
 .cardImg::after {

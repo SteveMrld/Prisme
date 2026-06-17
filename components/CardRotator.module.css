@@ -23,6 +23,7 @@
   object-fit: cover; display: block;
   transition: transform .5s ease;
 }
+.imgWrap img[src*="portraits"] { object-position: center top; }
 .content:hover .imgWrap img { transform: scale(1.03); }
 
 .body { padding: 10px 0 6px; }

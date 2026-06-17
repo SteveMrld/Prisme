@@ -209,7 +209,7 @@ export function PortraitsSlider({ articles }: { articles: Array<{ slug: string; 
             }}
           >
             <div style={{ background: '#f5f4f1', overflow: 'hidden', aspectRatio: '3/4', maxHeight: 'clamp(280px, 35vh, 360px)' }}>
-              <img src={article.image} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }} />
+              <img src={article.image} alt={article.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} />
             </div>
             <div style={{ padding: '12px 4px 0' }}>
               <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#C8A96E', fontFamily: "'DM Sans', sans-serif" }}>Portrait</span>

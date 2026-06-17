@@ -446,6 +446,7 @@
   object-fit: cover;
   object-position: center 20%;
 }
+.otherPortrait[src*="portraits"] { object-position: center top; }
 
 /* Voile blanc léger sur les portraits des entretiens à venir, écho du
    gating « à paraître » sur la page principale. */

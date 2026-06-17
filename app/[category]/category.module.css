@@ -134,6 +134,7 @@
   display: block;
   transition: transform var(--dur-slow) var(--ease-out);
 }
+.featuredImg[src*="portraits"] { object-position: center top; }
 
 .featuredImgPortrait {
   width: 100%;
@@ -247,6 +248,7 @@
   display: block;
   transition: transform var(--dur-slow) var(--ease-out);
 }
+.cardImg[src*="portraits"] { object-position: center top; }
 
 .cardImgPortrait {
   width: 100%;
@@ -569,6 +571,7 @@
   display: block;
   transition: transform var(--dur-slow) var(--ease-out);
 }
+.articleImg img[src*="portraits"] { object-position: center top; }
 .articleRow:hover .articleImg img { transform: scale(1.02); }
 
 .articleBody {

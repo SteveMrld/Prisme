@@ -295,6 +295,7 @@
     object-position: center 30%;
     flex-shrink: 0;
   }
+  .sidebarThumb[src*="portraits"] { object-position: center top; }
 
   .sidebarCat {
     font-family: var(--font-ui);
@@ -546,6 +547,7 @@
   object-fit: cover;
   display: block;
 }
+.relatedThumb[src*="portraits"] { object-position: center top; }
 
 .relatedCat {
   font-family: var(--font-ui);
