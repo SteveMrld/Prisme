@@ -31,6 +31,8 @@ export type Interview = {
   // Défaut CSS : center 18%. À surcharger pour les portraits au ratio
   // atypique (ex. Diarra, source 1080x2372) qui se recadrent mal.
   cardFocus?: string
+  // Intervieweur (« Propos recueillis par … »). Défaut : Steve Moradel.
+  interviewer?: string
 }
 
 const all: Interview[] = (articlesData as any[]).filter(

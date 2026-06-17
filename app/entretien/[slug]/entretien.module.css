@@ -128,6 +128,15 @@
   margin-bottom: 28px;
 }
 
+/* Signature de l'intervieweur, à la NYT (« Propos recueillis par … »). */
+.byline {
+  font-family: var(--font-serif-text);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gris-l);
+  margin: -16px 0 32px;
+}
+
 .deck {
   font-family: var(--font-serif-text);
   font-size: 17px;
@@ -330,6 +339,36 @@
   margin: 56px 0 0;
   padding: 28px 0;
   text-align: center;
+}
+
+/* Mention d'édition en fin d'entretien, comme le « edited and condensed »
+   du NYT. */
+.editNote {
+  font-family: var(--font-serif-text);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gris-l);
+  margin-top: 24px;
+}
+
+/* Phrase phare prélevée dans les réponses, mise en avant en plein corps.
+   Prend la couleur d'accent (pourpre en grand entretien, noir en interview). */
+.body :global(blockquote.pull-quote) {
+  margin: 2.6em 0;
+  padding-left: 22px;
+  border-left: 3px solid var(--accent);
+  font-family: var(--font-serif-display);
+  font-size: 27px;
+  line-height: 1.32;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .body :global(blockquote.pull-quote) {
+    font-size: 22px;
+    padding-left: 16px;
+  }
 }
 
 .empty {

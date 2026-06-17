@@ -130,6 +130,7 @@ export default function EntretienPage({
   const lang = searchParams?.lang === 'en' ? 'en' : 'fr'
   const label = i.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
   const catLabel = categoryLabel(i.category, (i as any).categoryLabel)
+  const interviewer = i.interviewer || 'Steve Moradel'
   const isComing = i.interviewStatus === 'coming'
 
   let content = ''
@@ -192,6 +193,10 @@ export default function EntretienPage({
 
           {i.interviewRole && <div className={styles.role}>{i.interviewRole}</div>}
 
+          {!isComing && (
+            <div className={styles.byline}>Propos recueillis par {interviewer}</div>
+          )}
+
           {isComing && displayDeck && <p className={styles.deck}>{displayDeck}</p>}
 
           {isComing && i.interviewQuestions && i.interviewQuestions.length > 0 && (
@@ -235,6 +240,10 @@ export default function EntretienPage({
 
           {i.interviewQuote && !isComing && (
             <blockquote className={styles.pullQuote}>«&nbsp;{i.interviewQuote}&nbsp;»</blockquote>
+          )}
+
+          {!isComing && content && (
+            <p className={styles.editNote}>Cet entretien a été édité et condensé.</p>
           )}
         </div>
       </article>
