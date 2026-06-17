@@ -4,20 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import PictureImg from './PictureImg'
 import type { Interview } from '../lib/interviews'
+import { formatFrDate, isFutureDay } from '../lib/dates'
 import styles from './HomeInterviewBanner.module.css'
 
 const ROTATION_MS = 7000
-
-function formatFrDate(iso: string): string {
-  const d = new Date(iso)
-  if (isNaN(d.getTime())) return iso
-  const day = d.getDate()
-  const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
-  const month = months[d.getMonth()]
-  const year = d.getFullYear()
-  const dayLabel = day === 1 ? '1er' : String(day)
-  return `${dayLabel} ${month} ${year}`
-}
 
 function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined' || !window.matchMedia) return false
@@ -65,7 +55,7 @@ export default function FeaturedInterviewRotator({ items }: { items: Interview[]
     >
       <div className={styles.rotatorViewport}>
         {safeItems.map((interview, i) => {
-          const isComing = interview.interviewStatus === 'coming'
+          const isComing = interview.interviewStatus === 'coming' || isFutureDay(interview.date)
           const isGrand = interview.interviewType === 'grand'
           const cta = isComing ? 'Lire dès la parution →' : 'Lire l\'entretien →'
           const eyebrowRight = isComing

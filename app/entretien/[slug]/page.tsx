@@ -6,6 +6,7 @@ import Header from '../../../components/Header'
 import AudioPlayer from '../../../components/AudioPlayer'
 import { getAllInterviews, getInterview } from '../../../lib/interviews'
 import { categoryLabel } from '../../../lib/categories'
+import { isFutureDay, formatFrDate } from '../../../lib/dates'
 import styles from './entretien.module.css'
 
 const BASE_URL = 'https://soara.fr'
@@ -132,7 +133,9 @@ export default function EntretienPage({
   const label = i.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
   const catLabel = categoryLabel(i.category, (i as any).categoryLabel)
   const interviewer = i.interviewer || 'Steve Moradel'
-  const isComing = i.interviewStatus === 'coming'
+  // Gating piloté par la date : un statut « coming » ou une date dans
+  // le futur affichent le teaser, sinon le contenu complet est libéré.
+  const isComing = i.interviewStatus === 'coming' || isFutureDay(i.date)
 
   let content = ''
   let hasEnglish = false
@@ -165,7 +168,7 @@ export default function EntretienPage({
       <Header />
 
       <article className={styles.article} data-interview-type={i.interviewType}>
-        <div className={styles.portraitBlock}>
+        <div className={styles.portraitBlock} data-coming={isComing ? 'true' : undefined}>
           <picture>
             <img src={i.image} alt={i.interviewSubject} className={styles.portrait} />
           </picture>
@@ -226,7 +229,9 @@ export default function EntretienPage({
 
           {isComing && (
             <div className={styles.coming}>
-              <div className={styles.comingLabel}>À paraître prochainement</div>
+              <div className={styles.comingLabel}>
+                {isFutureDay(i.date) ? `Disponible le ${formatFrDate(i.date)}` : 'À paraître prochainement'}
+              </div>
               <p className={styles.comingDesc}>Inscrivez-vous pour être notifié à la parution.</p>
               <div className={styles.comingActions}>
                 <Link href="/abonnement" className={styles.comingBtn}>

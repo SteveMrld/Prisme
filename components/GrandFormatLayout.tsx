@@ -8,6 +8,7 @@ import { ReadingProgress, ScrollDepth, StickyReadingHeader } from './ArticleAnim
 import AudioPlayer from './AudioPlayer'
 import styles from './GrandFormatLayout.module.css'
 import articlesData from '../lib/articles.json'
+import { isFutureDay, formatFrDate } from '../lib/dates'
 
 const CAT_LABELS: Record<string,string> = {
   geo:'Géopolitique', eco:'Économie', tech:'Technologie',
@@ -86,6 +87,13 @@ export default function GrandFormatLayout({
 
   const color = categoryColors[category] || '#B91C1C'
   const minutes = parseInt(readTime) || 12
+
+  // Gating « à paraître » : si la date résolue est dans le futur, on
+  // remplace le corps par un teaser. Le déverrouillage est automatique
+  // à la date (la comparaison se fait au jour calendaire pour rester
+  // stable entre SSR et hydration).
+  const isComingByDate = isFutureDay(date)
+  const comingDateLabel = isComingByDate ? formatFrDate(date) : ''
 
   const MONTHS_FR: Record<string, string> = {
     '01':'Janvier','02':'Février','03':'Mars','04':'Avril',
@@ -191,10 +199,14 @@ export default function GrandFormatLayout({
       </div>
 
       {/* ── HERO PLEINE LARGEUR (toujours en tête, avant le titre) ── */}
-      {extractedHero ? (
+      {extractedHero && !isComingByDate ? (
         <div dangerouslySetInnerHTML={{ __html: extractedHero }} />
       ) : image ? (
-        <div className={styles.heroWrap} style={{height: imageHeight + 'px', maxHeight: 'none'}}>
+        <div
+          className={styles.heroWrap}
+          data-coming={isComingByDate ? 'true' : undefined}
+          style={{height: imageHeight + 'px', maxHeight: 'none'}}
+        >
           <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
             style={{
               objectPosition: imagePosition,
@@ -243,71 +255,86 @@ export default function GrandFormatLayout({
         </div>
       )}
 
-      {audioUrl && <AudioPlayer src={audioUrl} minutes={minutes} />}
+      {audioUrl && !isComingByDate && <AudioPlayer src={audioUrl} minutes={minutes} />}
 
       {/* ── BODY ── */}
       <div className={`${styles.body} grand-format-body`}>
-        {bodyContent && (
-          (showPaywall ?? article?.premium) ? (
-            <div className={styles.paywallWrap}>
-              <div className={styles.paywallTeaser}>
-                <div
-                  className="soara-article"
-                  dangerouslySetInnerHTML={{ __html: bodyContent }}
-                />
-                <div className={styles.paywallFade} />
+        {isComingByDate ? (
+          <div className={styles.coming}>
+            <div className={styles.comingBanner}>Disponible le {comingDateLabel}</div>
+            <p className={styles.comingDesc}>
+              Le texte sera publié à la date indiquée. Le titre, le chapô et l'auteur sont déjà visibles ;
+              le corps de l'article se déverrouillera automatiquement.
+            </p>
+            <div className={styles.comingPlaceholder}>
+              Contenu disponible le {comingDateLabel}
+            </div>
+          </div>
+        ) : (
+          <>
+            {bodyContent && (
+              (showPaywall ?? article?.premium) ? (
+                <div className={styles.paywallWrap}>
+                  <div className={styles.paywallTeaser}>
+                    <div
+                      className="soara-article"
+                      dangerouslySetInnerHTML={{ __html: bodyContent }}
+                    />
+                    <div className={styles.paywallFade} />
+                  </div>
+                  <div className={styles.paywallBox}>
+                    <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
+                    <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
+                    <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
+                    <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
+                    <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
+                  </div>
+                </div>
+              ) : (
+                <div className="soara-article" dangerouslySetInnerHTML={{ __html: bodyContent }} />
+              )
+            )}
+            {/* Contenu React (dette-souveraine, etc.) — masqué si content EN fourni */}
+            {children && !content && (
+              (showPaywall ?? article?.premium) ? (
+                <div className={styles.paywallWrap}>
+                  <div className={`${styles.paywallTeaser} ${styles.paywallTeaserReact}`}>
+                    {children}
+                    <div className={styles.paywallFade} />
+                  </div>
+                  <div className={styles.paywallBox}>
+                    <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
+                    <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
+                    <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
+                    <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
+                    <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
+                  </div>
+                </div>
+              ) : (
+                <>{children}</>
+              )
+            )}
+
+            {/* ── BOOKMARK ── */}
+            {slug && (
+              <div className="no-print" style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px 32px', display: 'flex', justifyContent: 'center' }}>
+                <BookmarkButton slug={slug} title={title} image={image} description={description} readTime={readTime} categoryLabel={categoryLabel} />
               </div>
-              <div className={styles.paywallBox}>
-                <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
-                <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
-                <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
-                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
-                <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
+            )}
+
+            {/* Signature bas */}
+            <div className={styles.signature}>
+              <div className={styles.avatar}>
+                {portrait ? <img src={portrait} alt={author} /> : author.split(' ').map((n: string) => n[0]).join('')}
+              </div>
+              <div>
+                <div className={styles.sigLabel}>Auteur</div>
+                <div className={styles.sigName}>{author}</div>
+                <div className={styles.sigRole}>{authorRole}</div>
               </div>
             </div>
-          ) : (
-            <div className="soara-article" dangerouslySetInnerHTML={{ __html: bodyContent }} />
-          )
+          </>
         )}
-        {/* Contenu React (dette-souveraine, etc.) — masqué si content EN fourni */}
-        {children && !content && (
-          (showPaywall ?? article?.premium) ? (
-            <div className={styles.paywallWrap}>
-              <div className={`${styles.paywallTeaser} ${styles.paywallTeaserReact}`}>
-                {children}
-                <div className={styles.paywallFade} />
-              </div>
-              <div className={styles.paywallBox}>
-                <div className={styles.paywallEyebrow}>Contenu réservé aux abonnés</div>
-                <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
-                <p className={styles.paywallDesc}>Accédez à l&apos;intégralité de cet article et à tous les grands formats Soara.</p>
-                <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
-                <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
-              </div>
-            </div>
-          ) : (
-            <>{children}</>
-          )
-        )}
-
-        {/* ── BOOKMARK ── */}
-        {slug && (
-          <div className="no-print" style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px 32px', display: 'flex', justifyContent: 'center' }}>
-            <BookmarkButton slug={slug} title={title} image={image} description={description} readTime={readTime} categoryLabel={categoryLabel} />
-          </div>
-        )}
-
-        {/* Signature bas */}
-        <div className={styles.signature}>
-          <div className={styles.avatar}>
-            {portrait ? <img src={portrait} alt={author} /> : author.split(' ').map((n: string) => n[0]).join('')}
-          </div>
-          <div>
-            <div className={styles.sigLabel}>Auteur</div>
-            <div className={styles.sigName}>{author}</div>
-            <div className={styles.sigRole}>{authorRole}</div>
-          </div>
-        </div>
       </div>
 
       </div>{/* articleMainCol */}
