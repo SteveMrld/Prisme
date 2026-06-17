@@ -131,7 +131,7 @@
   grid-template-columns: 1fr;
   gap: 0;
   padding: 24px 16px 16px;
-  max-width: 1320px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
 }
 
@@ -307,7 +307,7 @@
    l'ancien teaser en pied de colonne gauche qui paraissait isolé.
    Filets haut/bas, eyebrow grenat, titre serif affirmé, actions à droite. */
 .lettreMardi {
-  max-width: 1320px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 28px 16px;
   border-top: 1px solid #0A0A0A;
@@ -590,7 +590,7 @@
 .atlasSection {
   padding: 36px 16px 32px;
   border-bottom: 1px solid #E8E2DA;
-  max-width: 1320px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
 }
 @media (min-width: 760px) {
@@ -1774,9 +1774,10 @@
 /* ════════════════════════════════════
    MARGES LATÉRALES UNIFORMES
    Toutes les sections après le Header reçoivent les mêmes gouttières
-   gauche/droite que .homeTop : max-width 1320px centré, padding latéral
-   16px / 32px / 48px selon la largeur d'écran. Placé en fin de fichier
-   pour gagner sur les media queries antérieures par ordre de cascade.
+   gauche/droite que .homeTop : max-width var(--content-max-width) centré,
+   padding latéral 16px / 32px / 48px selon la largeur d'écran. Placé
+   en fin de fichier pour gagner sur les media queries antérieures par
+   ordre de cascade.
 ════════════════════════════════════ */
 .sectionHead,
 .gfSection,
@@ -1784,7 +1785,7 @@
 .portraits,
 .row2,
 .nl {
-  max-width: 1320px;
+  max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
   padding-left: 16px;
@@ -1816,7 +1817,7 @@
 
 /* ── À REDÉCOUVRIR (bas de home, archive seedée) ─────── */
 .rediscover {
-  max-width: 1320px;
+  max-width: var(--content-max-width);
   margin: 40px auto 0;
   padding: 56px 16px 24px;
   border-top: 1px solid #E8E2DA;

@@ -76,6 +76,11 @@
   --stagger-tight: 40ms;
   --stagger-base:  80ms;
   --stagger-loose: 120ms;
+
+  /* Largeur max du contenu de site (home, footer, atlas, lectures,
+     visuels, BackButton). N'affecte pas la largeur de lecture du
+     corps des pages article, qui reste contrainte par ArticleLayout. */
+  --content-max-width: 1500px;
 }
 
 /* ── Couleur d'accent par rubrique ─────────────────────

@@ -17,7 +17,7 @@
 }
 
 .heroInner {
-  max-width: 1320px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 48px;
 }
@@ -57,7 +57,7 @@
 /* ── Container interne ──────────────────────────── */
 
 .inner {
-  max-width: 1320px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 40px 48px 0;
 }
