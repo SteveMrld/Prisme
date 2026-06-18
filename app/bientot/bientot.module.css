@@ -49,6 +49,24 @@
   margin: 0;
 }
 
+.intro {
+  max-width: 420px;
+  margin: 40px auto 8px;
+  text-align: left;
+}
+
+.introP {
+  font-family: Georgia, serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #BDB9B3;
+  margin: 0 0 16px;
+}
+
+.introP:last-child {
+  margin-bottom: 0;
+}
+
 /* ── Bloc capture email : action principale ── */
 .captureForm {
   margin-top: 56px;

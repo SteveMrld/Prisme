@@ -90,6 +90,12 @@ export default function BientotPage() {
         <div className={styles.divider} />
         <p className={styles.date}>Lancement&nbsp;· lundi 22 juin 2026</p>
 
+        <div className={styles.intro}>
+          <p className={styles.introP}>SOARA est un média d&apos;analyse indépendant. Sa raison d&apos;être n&apos;est pas de produire du contenu, mais de faire de la lumière&nbsp;: éclairer ce qu&apos;on ne voit plus.</p>
+          <p className={styles.introP}>L&apos;information abonde. La compréhension manque. Chaque jour, des milliers d&apos;articles décrivent les événements sans expliquer les structures qui les produisent. SOARA fait l&apos;inverse, et écrit sur ce qui dure.</p>
+          <p className={styles.introP}>Sans actionnaire, sans dépendance à la publicité, sans subvention. Des lecteurs qui paient pour une analyse libre, qui peut dire que la politique africaine de la France a échoué sans que personne n&apos;appelle pour demander de nuancer.</p>
+        </div>
+
         <form className={styles.captureForm} onSubmit={onEmailSubmit} noValidate>
           <p className={styles.captureLead}>Soyez prévenu du lancement.</p>
 
