@@ -38,6 +38,7 @@ export async function middleware(request: NextRequest) {
       allowedApiPaths.has(pathname)
     const isAllowed =
       pathname === '/bientot' ||
+      pathname === '/inscription-confirmee' ||
       pathname === '/preview-unlock' ||
       pathname === '/connexion' ||
       pathname === '/compte' ||
