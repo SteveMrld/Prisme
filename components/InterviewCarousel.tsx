@@ -9,10 +9,14 @@ import styles from './HomeInterviewBanner.module.css'
 // Rangée défilante des entretiens. Sur mobile, swipe natif. Sur desktop, la
 // scrollbar est masquée, donc on ajoute deux flèches discrètes et un fondu de
 // bord qui n'apparaissent que quand il reste quelque chose à faire défiler.
+// Sous la rangée, des pastilles de pagination (surtout visibles en mobile)
+// suivent la carte la plus centrée et permettent de naviguer au tap.
 export default function InterviewCarousel({ items }: { items: Interview[] }) {
   const trackRef = useRef<HTMLDivElement>(null)
+  const cardRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const [canLeft, setCanLeft] = useState(false)
   const [canRight, setCanRight] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
   const touchStartX = useRef(0)
   const touchStartScroll = useRef(0)
 
@@ -21,6 +25,24 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
     if (!el) return
     setCanLeft(el.scrollLeft > 4)
     setCanRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4)
+
+    // La pastille active suit la carte dont le centre est le plus proche
+    // du centre du viewport. Fonctionne quel que soit le mode de
+    // défilement (swipe, flèche, tap-pastille).
+    const viewportCenter = el.scrollLeft + el.clientWidth / 2
+    let nearest = 0
+    let bestDist = Infinity
+    for (let idx = 0; idx < cardRefs.current.length; idx++) {
+      const card = cardRefs.current[idx]
+      if (!card) continue
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2
+      const dist = Math.abs(cardCenter - viewportCenter)
+      if (dist < bestDist) {
+        bestDist = dist
+        nearest = idx
+      }
+    }
+    setActiveIndex(nearest)
   }, [])
 
   useEffect(() => {
@@ -39,6 +61,17 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
     const el = trackRef.current
     if (!el) return
     el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' })
+  }
+
+  const scrollToIndex = (idx: number) => {
+    const el = trackRef.current
+    const card = cardRefs.current[idx]
+    if (!el || !card) return
+    // Cible le centre de la carte au centre du viewport, sans casser
+    // le « safe center » : un scrollTo négatif est clampé à 0 par le
+    // navigateur, donc les premières cartes restent centrées.
+    const target = card.offsetLeft + card.offsetWidth / 2 - el.clientWidth / 2
+    el.scrollTo({ left: target, behavior: 'smooth' })
   }
 
   // Repli manuel : sur les navigateurs où le scroll tactile natif est avalé
@@ -77,7 +110,7 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
       </button>
 
       <div className={styles.carouselTrack} ref={trackRef}>
-        {items.map(o => {
+        {items.map((o, idx) => {
           const kind = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
           const dateFuture = isFutureDay(o.date)
           const isComing = o.interviewStatus === 'coming' || dateFuture
@@ -86,7 +119,12 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
           // « Disponible le 29 juin 2026 ». « À venir » inchangé.
           const comingLabel = dateFuture ? `Le ${formatFrDate(o.date)}` : 'À venir'
           return (
-            <Link key={o.slug} href={`/entretien/${o.slug}`} className={styles.cardLink}>
+            <Link
+              key={o.slug}
+              href={`/entretien/${o.slug}`}
+              className={styles.cardLink}
+              ref={el => { cardRefs.current[idx] = el }}
+            >
               <article
                 className={styles.card}
                 data-interview-type={o.interviewType}
@@ -123,6 +161,23 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
       >
         ›
       </button>
+
+      {items.length > 1 && (
+        <div className={styles.dots} role="tablist" aria-label="Pagination des entretiens">
+          {items.map((o, idx) => (
+            <button
+              key={o.slug}
+              type="button"
+              role="tab"
+              aria-label={`Aller à ${o.interviewSubject}`}
+              aria-selected={idx === activeIndex}
+              className={styles.dot}
+              data-active={idx === activeIndex ? 'true' : undefined}
+              onClick={() => scrollToIndex(idx)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

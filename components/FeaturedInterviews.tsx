@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import PictureImg from './PictureImg'
 import type { Interview } from '../lib/interviews'
+import { isFutureDay, formatFrDate } from '../lib/dates'
 import styles from './HomeInterviewBanner.module.css'
 
-/* Zone vedette entretiens : grands entretiens publiés uniquement (max 2).
-   Statique, pas de rotation. Côte à côte sur desktop, empilés sur mobile.
-   Hauteurs réservées via aspect-ratio sur les images pour empêcher tout
-   reflow au chargement. */
+/* Zone vedette entretiens : grands entretiens, max 2. Un entretien
+   marqué featuredOnHome peut être épinglé même à venir, et reçoit
+   alors un badge « Disponible le X » ; sa carte mène au teaser sans
+   exposer les questions. Statique, pas de rotation. Côte à côte sur
+   desktop, empilés sur mobile. */
 export default function FeaturedInterviews({ items }: { items: Interview[] }) {
   if (items.length === 0) return null
   const safeItems = items.slice(0, 2)
@@ -22,6 +24,11 @@ export default function FeaturedInterviews({ items }: { items: Interview[] }) {
         const head = italic && subject.endsWith(italic)
           ? subject.slice(0, subject.length - italic.length).trim()
           : subject
+        const dateFuture = isFutureDay(interview.date)
+        const isComing = interview.interviewStatus === 'coming' || dateFuture
+        const comingLabel = dateFuture
+          ? `Disponible le ${formatFrDate(interview.date)}`
+          : 'À venir'
 
         return (
           <Link
@@ -29,6 +36,7 @@ export default function FeaturedInterviews({ items }: { items: Interview[] }) {
             href={`/entretien/${interview.slug}`}
             className={styles.root}
             data-interview-type={interview.interviewType}
+            data-coming={isComing ? 'true' : undefined}
           >
             <div className={styles.banner}>
               <span className={styles.bannerLabel}>Grand Entretien</span>
@@ -37,6 +45,9 @@ export default function FeaturedInterviews({ items }: { items: Interview[] }) {
 
             <div className={styles.img}>
               <PictureImg src={interview.image} alt={interview.interviewSubject} />
+              {isComing && (
+                <span className={styles.featuredComing}>{comingLabel}</span>
+              )}
             </div>
 
             <div className={styles.body}>
@@ -55,7 +66,9 @@ export default function FeaturedInterviews({ items }: { items: Interview[] }) {
                   «&nbsp;{interview.interviewQuote}&nbsp;»
                 </blockquote>
               )}
-              <span className={styles.cta}>Lire l'entretien →</span>
+              <span className={styles.cta}>
+                {isComing ? 'Découvrir le teaser →' : "Lire l'entretien →"}
+              </span>
             </div>
           </Link>
         )

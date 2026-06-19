@@ -79,6 +79,27 @@
   position: relative;
 }
 
+/* Badge « Disponible le X » posé en bas-droit du portrait vedette quand
+   l'entretien est encore à venir mais épinglé en home. Même langage
+   visuel que le badge des cartes du carrousel, en plus large. */
+.featuredComing {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0A0A0A;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
 .img img {
   width: 100%;
   height: 100%;
@@ -405,5 +426,56 @@
   .cardLink:hover .card {
     transform: translateY(-2px);
     box-shadow: 0 10px 22px -10px rgba(10, 10, 10, 0.3);
+  }
+}
+
+/* Pastilles de pagination, surtout pensées mobile. La pastille active
+   suit la carte la plus centrée du viewport ; un tap fait défiler
+   jusqu'à la carte cible. Sur desktop, plus discrètes (les flèches
+   existent déjà) mais conservées pour cohérence. */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0 8px;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #D9D9D9;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+  /* Cible tactile élargie sans changer la taille visuelle. */
+  box-shadow: 0 0 0 6px transparent;
+}
+
+.dot[data-active='true'] {
+  background: #C9A84C;
+  transform: scale(1.15);
+}
+
+.dot:focus-visible {
+  outline: 2px solid #C9A84C;
+  outline-offset: 3px;
+}
+
+@media (min-width: 760px) {
+  .dots {
+    gap: 5px;
+    margin-top: 8px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    opacity: 0.7;
+  }
+  .dot[data-active='true'] {
+    opacity: 1;
   }
 }

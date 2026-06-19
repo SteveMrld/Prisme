@@ -29,6 +29,9 @@ export type Interview = {
   interviewDeck: string
   interviewQuote?: string
   interviewQuestions?: string[]
+  /* Épingle un entretien dans la zone vedette de la home, y compris
+     quand il est encore « à venir » (date future ou statut coming). Sert
+     à teaser un grand entretien à paraître depuis la home. */
   featuredOnHome?: boolean
   // Point de cadrage object-position pour la carte du carousel home.
   // Défaut CSS : center 18%. À surcharger pour les portraits au ratio
@@ -70,21 +73,27 @@ export function getNextInterviewForHome(): Interview | undefined {
 
 /* Partition home des entretiens. Source de vérité unique pour la zone
    vedette et la rangée du dessous, garantissant qu'aucun entretien ne
-   double-apparaît. featured = grands entretiens publiés et dont la date
-   est passée (plafond 2, plus récents en tête). others = tout le reste,
-   trié par priorité de publication : publiés > coming-future > coming-
-   sans-date-précise. */
+   double-apparaît. featured = d'abord les grands entretiens marqués
+   featuredOnHome (même à venir), puis complétés par les publiés les plus
+   récents, plafond 2. others = tout le reste, trié par priorité :
+   publiés > coming-future > coming-sans-date-précise. */
 export function getHomeInterviewsPartition(): { featured: Interview[]; others: Interview[] } {
+  const isGrand = (i: Interview) => i.interviewType === 'grand'
   const isPublishedGrand = (i: Interview) =>
-    i.interviewType === 'grand'
+    isGrand(i)
     && i.interviewStatus === 'published'
     && !isFutureDay(i.date)
 
-  const featured = all
-    .filter(isPublishedGrand)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 2)
+  const pinned = all
+    .filter((i) => isGrand(i) && i.featuredOnHome === true)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
+  const pinnedSlugs = new Set(pinned.map((i) => i.slug))
+  const publishedFill = all
+    .filter((i) => isPublishedGrand(i) && !pinnedSlugs.has(i.slug))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+  const featured = [...pinned, ...publishedFill].slice(0, 2)
   const featuredSlugs = new Set(featured.map((i) => i.slug))
   const comingPriority = (i: Interview): number => {
     const future = isFutureDay(i.date)
