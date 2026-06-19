@@ -66,15 +66,15 @@ export async function POST(req: NextRequest) {
   if (!DOI_TEMPLATE_ID) {
     // Garde-fou : pas de fallback silencieux en single opt-in. Mieux vaut
     // un 500 explicite qu'une inscription par défaut sans consentement.
-    console.error('[newsletter] BREVO_DOI_TEMPLATE_ID manquant — DOI désactivé')
+    console.error('[newsletter] BREVO_DOI_TEMPLATE_ID manquant, DOI désactivé')
     return NextResponse.json({ error: 'Newsletter indisponible' }, { status: 500 })
   }
 
-  try {
-    // Double opt-in : Brevo envoie un email de confirmation. Le contact
-    // n'est ajouté à `LIST_ID` qu'après clic sur le lien. Pas d'inscription
-    // unilatérale possible avec un email de tiers.
-    const res = await fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
+  // Double opt-in : Brevo envoie un email de confirmation. Le contact
+  // n'est ajouté à `LIST_ID` qu'après clic sur le lien. Pas d'inscription
+  // unilatérale possible avec un email de tiers.
+  const callBrevo = () =>
+    fetch('https://api.brevo.com/v3/contacts/doubleOptinConfirmation', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -89,22 +89,51 @@ export async function POST(req: NextRequest) {
       }),
     })
 
-    // 201 = email DOI envoyé, 204 = contact déjà confirmé dans la liste
-    if (res.ok || res.status === 204) {
-      return NextResponse.json({ success: true, doi: true })
-    }
+  // Retries sur 5xx Brevo (incidents transitoires côté fournisseur).
+  // Pauses 300 ms puis 600 ms avant les deux re-tentatives.
+  const RETRY_DELAYS_MS = [300, 600]
+  let res: Response | null = null
+  let lastErr: unknown = null
 
-    const data = await res.json().catch(() => ({} as any))
-    // Si le contact existe déjà comme confirmé dans la liste, Brevo renvoie
-    // un `duplicate_parameter` — pas une erreur côté UX.
-    if (data?.code === 'duplicate_parameter') {
-      return NextResponse.json({ success: true, doi: false })
+  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
+    try {
+      res = await callBrevo()
+    } catch (err) {
+      lastErr = err
+      res = null
     }
-
-    console.error('[newsletter] Brevo DOI error', { status: res.status, code: data?.code })
-    return NextResponse.json({ error: 'Erreur Brevo' }, { status: 500 })
-  } catch (err) {
-    console.error('[newsletter] fetch failed', err)
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
+    if (res && res.status < 500) break
+    if (attempt < RETRY_DELAYS_MS.length) {
+      await new Promise((r) => setTimeout(r, RETRY_DELAYS_MS[attempt]))
+    }
   }
+
+  // Échec réseau ou 5xx persistant : on logue pour reprise éventuelle,
+  // jamais d'erreur technique côté UX.
+  if (!res) {
+    console.error('[newsletter] Brevo fetch failed', { email, err: String(lastErr) })
+    return NextResponse.json({ success: true, doi: true })
+  }
+
+  // 201 = email DOI envoyé, 204 = contact déjà confirmé dans la liste
+  if (res.ok || res.status === 204) {
+    return NextResponse.json({ success: true, doi: true })
+  }
+
+  const data = await res.json().catch(() => ({} as Record<string, unknown>))
+
+  // Si le contact existe déjà comme confirmé dans la liste, Brevo renvoie
+  // un `duplicate_parameter` : succès côté UX.
+  if ((data as { code?: string })?.code === 'duplicate_parameter') {
+    return NextResponse.json({ success: true, doi: false })
+  }
+
+  // 5xx persistant ou 4xx non-duplicate : on logue (email + statut + code),
+  // mais on renvoie le message rassurant pour ne pas exposer la panne.
+  console.error('[newsletter] Brevo DOI error', {
+    email,
+    status: res.status,
+    code: (data as { code?: string })?.code,
+  })
+  return NextResponse.json({ success: true, doi: true })
 }
