@@ -9,18 +9,22 @@ import styles from './abonnement.module.css'
 const PREVIEWS = [
   { cat: 'Grand format', title: 'La chambre de ratification', desc: 'Comment Netanyahu a décidé une guerre américaine.', img: '/grands-formats/chambre-hero.jpg' },
   { cat: 'Grand format', title: "L'eau : la prochaine grande fracture", desc: "Des glaciers himalayens aux barrages africains. La géopolitique de l'eau.", img: '/articles/img-eau.png' },
-  { cat: 'Atlas', title: 'La bataille pour le sous-sol numérique', desc: "Des mines de terres rares aux fabs de Taïwan : la guerre souterraine.", img: '/articles/img-techgeo.jpg' },
+  { cat: 'Dossier', title: "Palantir. L'ontologie de l'ennemi", desc: "Comment une entreprise de la Silicon Valley est devenue l'infrastructure cognitive des États.", img: '/grands-formats/palantir/palantir-reseau.jpg' },
 ]
 
-// Ordre : differenciants en premier, communs ensuite.
-const FEATURES = [
-  "Accès illimité aux grands formats et dossiers",
-  "Recoupement de sources, 10 analyses IA par mois",
-  "Atlas · cartes et visualisations interactives",
-  "Grand Entretien en avant-première",
-  "Signal quotidien · l'actualité qui compte",
-  "Soara TV · 6 épisodes documentaires",
+const FREE_FEATURES = [
+  "Signal quotidien, le fil d'actualité",
+  "Une sélection d'articles et de portraits en accès libre",
+  "Soara TV, les épisodes documentaires",
+  "Atlas, cartes et visualisations",
   'Sans publicité, sans traceur tiers',
+]
+
+const PAID_FEATURES = [
+  "Accès illimité aux grands formats et dossiers",
+  "Grand Entretien en avant-première",
+  "Recoupement de sources, 10 analyses par mois (packs de 10 à 3,99 €, réservés aux abonnés)",
+  "Avec l'offre annuelle, 2 mois offerts",
 ]
 
 interface Plans {
@@ -92,10 +96,6 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
                   <span className={styles.planCurrency}>€ / an</span>
                 </div>
                 <div className={styles.planSub}>Soit 8,25 € / mois</div>
-                <div className={styles.planPerk}>
-                  <span className={styles.planPerkDot} aria-hidden>✦</span>
-                  Inclut l&apos;édition imprimée
-                </div>
                 <button className={`${styles.planBtn} ${styles.planBtnPrimary}`}
                   onClick={() => subscribe('yearly')} disabled={loading !== null}>
                   {loading === 'yearly' ? 'Chargement…' : "S'abonner, offre recommandée"}
@@ -141,36 +141,30 @@ export default function AbonnementClient({ plans, canceled }: { plans: Plans; ca
         </div>
       </div>
 
-      {/* ── CE QUE VOUS OBTENEZ ── */}
-      <div className={styles.featuresSection}>
-        <div className={styles.featuresLabel}>Ce que vous obtenez</div>
-        <div className={styles.featuresGrid}>
-          {FEATURES.map(f => (
-            <div key={f} className={styles.featureItem}>
-              <span className={styles.featureCheck}>✓</span>
-              <span>{f}</span>
+      {/* ── GRATUIT / ABONNEMENT : comparatif clair ── */}
+      <div className={styles.compareSection}>
+        <div className={styles.compareGrid}>
+          <div className={styles.compareCol}>
+            <div className={styles.compareLabel}>Gratuit, pour tous</div>
+            <div className={styles.compareList}>
+              {FREE_FEATURES.map(f => (
+                <div key={f} className={styles.featureItem}>
+                  <span className={styles.featureCheckFree} aria-hidden>✓</span>
+                  <span>{f}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── ÉDITION IMPRIMÉE (bonus annuel) ── */}
-      <div className={styles.printSection}>
-        <div className={styles.printInner}>
-          <div className={styles.printMock} aria-hidden>
-            <div className={styles.printMockEyebrow}>Soara · Édition n°1</div>
-            <div className={styles.printMockSep} />
-            <div className={styles.printMockTitle}>L&apos;ordre<br/><em>qui vient</em></div>
-            <div className={styles.printMockFooter}>Automne 2026 · 80 pages</div>
           </div>
-          <div className={styles.printBody}>
-            <div className={styles.printEyebrow}>L&apos;édition imprimée</div>
-            <h2 className={styles.printTitle}>L&apos;ordre <em>qui vient</em></h2>
-            <p className={styles.printDesc}>
-              Tous les six mois, une édition papier de 80 pages qui réunit les grands formats,
-              les portraits, et les essais de la saison. Imprimée en France, envoyée chez vous.
-            </p>
-            <div className={styles.printNote}>Incluse dans l&apos;abonnement annuel · premier numéro à l&apos;automne 2026</div>
+          <div className={`${styles.compareCol} ${styles.compareColPaid}`}>
+            <div className={styles.compareLabel}>Avec l&apos;abonnement</div>
+            <div className={styles.compareList}>
+              {PAID_FEATURES.map(f => (
+                <div key={f} className={styles.featureItem}>
+                  <span className={styles.featureCheck} aria-hidden>✓</span>
+                  <span>{f}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
