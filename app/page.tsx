@@ -326,24 +326,6 @@ export default async function HomePage() {
       <Ticker />
 
       {/* ══════════════════════════════════════
-          0bis. MÉTAPHORE DU SAMEDI , bande hero pleine largeur
-          Illustration de la dernière édition en surimpression.
-          Ne touche pas à la logique HERO_ROTATION du bloc 1.
-      ══════════════════════════════════════ */}
-      {METAPHORE_LATEST && (
-        <Link href={`/metaphore/${METAPHORE_LATEST.slug}`} className={styles.metaphoreHeroBand} aria-label={`La Métaphore du Samedi : ${METAPHORE_LATEST.title}`}>
-          <div className={styles.metaphoreHeroImg}>
-            <img src={METAPHORE_LATEST.image} alt={METAPHORE_LATEST.imageAlt} />
-          </div>
-          <div className={styles.metaphoreHeroOverlay}>
-            <span className={styles.metaphoreHeroEyebrow}>La Métaphore du Samedi</span>
-            <h2 className={styles.metaphoreHeroTitle}>{METAPHORE_LATEST.title}</h2>
-            <span className={styles.metaphoreHeroCta}>Voir la métaphore →</span>
-          </div>
-        </Link>
-      )}
-
-      {/* ══════════════════════════════════════
           1. HOME TOP , Grille NYT 3 colonnes
       ══════════════════════════════════════ */}
       <section className={styles.homeTop}>
@@ -640,7 +622,7 @@ export default async function HomePage() {
               <span className={styles.metaphoreSectionEyebrow}>La Métaphore du Samedi</span>
               <h2 className={styles.metaphoreSectionTitle}>L'image de la <em>semaine</em></h2>
               <p className={styles.metaphoreSectionIntro}>
-                Une illustration conceptuelle, chaque samedi, pour comprendre ce que le monde révèle.
+                Chaque samedi, une illustration transforme un fait du monde en une seule idée.
               </p>
             </div>
             <Link href="/metaphore" className={styles.metaphoreSectionAll}>Toutes les métaphores →</Link>

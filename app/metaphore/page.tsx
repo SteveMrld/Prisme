@@ -50,7 +50,7 @@ export default function MetaphoreIndex() {
               La Métaphore du <em>Samedi</em>
             </h1>
             <p className={styles.cartoucheLede}>
-              Chaque samedi, une illustration conceptuelle pour comprendre ce que le monde révèle. Une image, une thèse, un texte court.
+              Chaque samedi, Soara confie un fait du monde à une image. Un événement important devient une seule métaphore visuelle, pensée pour donner à voir ce qu'il révèle du monde qui vient. L'illustration vise la dynamique profonde qui traverse l'actualité, celle qui restera lisible bien après que la nouvelle aura disparu des fils. Le format tient en une règle simple&#160;: une image porte une idée, et cette idée doit pouvoir s'énoncer en une phrase.
             </p>
           </div>
         </header>
@@ -97,6 +97,32 @@ export default function MetaphoreIndex() {
               ))}
             </nav>
           )}
+        </section>
+
+        {/* À propos de l'illustratrice */}
+        <section className={styles.illustratrice} aria-labelledby="illustratrice-titre">
+          <div className={styles.illustratriceBody}>
+            <img
+              src="/metaphore/allison-moradel.jpg"
+              alt="Portrait d'Allison Moradel"
+              className={styles.illustratricePortrait}
+            />
+            <span className={styles.illustratriceKicker}>À propos de l'illustratrice</span>
+            <h2 id="illustratrice-titre" className={styles.illustratriceNom}>
+              Allison Moradel <span className={styles.illustratriceSurnom}>(Lily)</span>
+            </h2>
+            <p className={styles.illustratriceTexte}>
+              Allison Moradel est illustratrice, directrice artistique et designer. Elle aborde le dessin comme une langue, celle qui formule ce que les mots laissent de côté. Le moindre détail visuel devient chez elle un moyen de rendre lisible ce qui relève d'abord du ressenti. Son travail vise l'émotion juste, la forme qui donne à éprouver une idée. Elle met cette sensibilité au service de la Métaphore du Samedi, où chaque image porte une idée et lui donne corps.
+            </p>
+            <a
+              href="https://www.instagram.com/alyson.m_illustrations/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.illustratriceLien}
+            >
+              Son travail sur Instagram →
+            </a>
+          </div>
         </section>
       </main>
     </>

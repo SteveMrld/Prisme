@@ -80,7 +80,7 @@ export default function Footer() {
             </Link>
             <Link href="/rss" className={styles.link}>RSS</Link>
             <a
-              href="https://x.com/soaradotmedia"
+              href="https://x.com/soaramedia"
               className={styles.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -88,7 +88,7 @@ export default function Footer() {
               X / Twitter
             </a>
             <a
-              href="https://www.linkedin.com/company/soara"
+              href="https://www.linkedin.com/company/soaramedia/"
               className={styles.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -96,7 +96,7 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
-              href="https://www.instagram.com/soaradotmedia"
+              href="https://www.instagram.com/soara_media"
               className={styles.link}
               target="_blank"
               rel="noopener noreferrer"

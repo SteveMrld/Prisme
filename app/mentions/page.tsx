@@ -20,9 +20,13 @@ export default function MentionsPage() {
             <h2>Éditeur</h2>
             <p><strong>Soara</strong> est une publication éditée par :</p>
             <p>
-              Steve Moradel<br />
-              Directeur de la publication<br />
+              <strong>Jabrilia</strong>, société par actions simplifiée à associé unique (SASU) au capital de 1 000 euros<br />
+              Siège social : 200 rue de la Croix Nivert, 75015 Paris<br />
+              RCS Paris 945 399 228<br />
               Contact : <a href="mailto:contact@soara.fr">contact@soara.fr</a>
+            </p>
+            <p>
+              Directeur de la publication : Stève Moradel
             </p>
           </section>
 

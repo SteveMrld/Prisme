@@ -4,13 +4,14 @@
     "numero": 1,
     "title": "L'encre et le monde",
     "these": "Les accords internationaux redessinent les flux du monde.",
-    "evenement": "TEMP. Saison des sommets diplomatiques de juin 2026 et signatures attendues sur les chaînes logistiques.",
-    "image": "https://placehold.co/1600x900/14110d/c8a96e/png?text=L%27encre+et+le+monde",
-    "imageAlt": "Illustration conceptuelle d'une plume qui trace, au lieu d'une ligne, une nouvelle carte du monde.",
-    "texte": "Quand un traité est signé, une ligne d'encre tracée sur du papier officiel modifie le tracé des câbles sous-marins, la route d'un cargo, la fiscalité d'une mine, le visa d'une famille. L'écriture diplomatique n'est jamais ornementale : elle réordonne le monde en silence, à l'échelle des décennies. C'est dans cette discrétion qu'elle agit le plus fortement. Les sommets captent les caméras, mais ce sont les annexes techniques, les notes en bas de page, les paragraphes ajoutés à la dernière heure qui redessinent les chemins de la circulation, des matières premières, des flux financiers. La géographie réelle du siècle ne se lit pas dans les manuels, elle se déchiffre dans les marges où l'on signe.",
-    "artiste": "TEMP. Illustratrice à créditer.",
-    "date": "20 juin 2026",
-    "dateISO": "2026-06-20"
+    "evenement": "Signature d'accords internationaux.",
+    "image": "/metaphore/l-encre-et-le-monde.jpg",
+    "imageAlt": "Sur le sol de marbre d'une galerie dorée, une plume répand son encre, qui se transforme en une carte du monde parcourue de routes maritimes et de navires.",
+    "texte": "Une signature dure le temps d'un geste, et ce geste engage bien au-delà de la cérémonie qui l'entoure. Pendant des années, ce qui a été consenti dans une salle agit sur le monde réel : la circulation des marchandises et de l'énergie s'en trouve modifiée, et des pays se découvrent plus dépendants qu'ils ne le pensaient. Longtemps après que l'encre a séché, le monde continue de se réorganiser autour d'une décision prise en une matinée. Les traités s'écrivent sur quelques pages. Leur portée réelle s'inscrit dans la géographie.",
+    "artiste": "Allison Moradel (Lily)",
+    "date": "Samedi 20 juin 2026",
+    "dateISO": "2026-06-20",
+    "artisteUrl": "https://www.instagram.com/alyson.m_illustrations/"
   },
   {
     "slug": "metaphore-temp-2",
