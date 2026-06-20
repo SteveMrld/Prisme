@@ -1,5 +1,18 @@
 [
   {
+    "slug": "ia-abondance-avance",
+    "title": "Intelligence artificielle&#8239;: l'abondance était une <em>avance</em>",
+    "description": "La gratuité de l'intelligence était une avance que les marchés rappellent. Derrière la flambée des factures, la loi de l'abondance numérique se fissure, et la puissance se déplace vers l'énergie et le calcul les moins chers.",
+    "image": "/articles/ia-abondance-avance-cover.jpg",
+    "category": "tech",
+    "readTime": "6",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "date": "2026-06-20",
+    "premium": false,
+    "imageCredit": "Illustration Soara"
+  },
+  {
     "slug": "evidence-sans-auteur",
     "title": "L'évidence n'a pas d'<em>auteur</em>",
     "description": "Un et un peuvent faire dix, et l'évidence vacille. De la base deux au zéro venu d'Inde, une traversée de ce que nous tenons pour acquis sans l'avoir vérifié, et de la façon dont l'universel efface ceux qui l'ont fabriqué.",
