@@ -234,3 +234,58 @@
     background: var(--encre);
   }
 }
+
+/* ── À propos de l'illustratrice ───────────────────── */
+.illustratrice {
+  border-top: 1px solid var(--bord);
+  margin-top: 56px;
+  background: var(--bg);
+}
+.illustratriceBody {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 24px 8px;
+  text-align: center;
+}
+.illustratriceKicker {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--or-deep, #8B1A1A);
+  margin-bottom: 14px;
+}
+.illustratriceNom {
+  font-family: var(--font-serif-display);
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 400;
+  color: var(--encre);
+  margin: 0 0 16px;
+}
+.illustratriceSurnom {
+  font-style: italic;
+  color: var(--gris-m);
+}
+.illustratriceTexte {
+  font-family: var(--font-serif-text);
+  font-size: clamp(15px, 1.9vw, 17px);
+  line-height: 1.65;
+  color: var(--gris);
+  margin: 0 auto 20px;
+}
+.illustratriceLien {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--encre);
+  text-decoration: none;
+  border-bottom: 1px solid var(--or, #C8A96E);
+  padding-bottom: 2px;
+  transition: opacity 200ms ease;
+}
+.illustratriceLien:hover { opacity: 0.65; }
