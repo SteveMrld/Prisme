@@ -50,7 +50,7 @@ export default function MetaphoreIndex() {
               La Métaphore du <em>Samedi</em>
             </h1>
             <p className={styles.cartoucheLede}>
-              Chaque samedi, une illustration conceptuelle pour comprendre ce que le monde révèle. Une image, une thèse, un texte court.
+              Chaque samedi, Soara confie un fait du monde à une image. Un événement important devient une seule métaphore visuelle, pensée pour donner à voir ce qu'il révèle du monde qui vient. L'illustration vise la dynamique profonde qui traverse l'actualité, celle qui restera lisible bien après que la nouvelle aura disparu des fils. Le format tient en une règle simple&#160;: une image porte une idée, et cette idée doit pouvoir s'énoncer en une phrase.
             </p>
           </div>
         </header>

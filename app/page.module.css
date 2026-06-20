@@ -1960,7 +1960,7 @@
 .metaphoreHeroImg {
   position: relative;
   width: 100%;
-  height: clamp(220px, 36vw, 480px);
+  height: clamp(240px, 34vw, 460px);
   overflow: hidden;
 }
 .metaphoreHeroImg img {
@@ -1969,11 +1969,11 @@
   object-fit: cover;
   display: block;
   transition: transform 800ms ease, filter 400ms ease;
-  filter: brightness(.72) contrast(1.05);
+  filter: brightness(.86) contrast(1.03);
 }
 .metaphoreHeroBand:hover .metaphoreHeroImg img {
   transform: scale(1.02);
-  filter: brightness(.82) contrast(1.05);
+  filter: brightness(.94) contrast(1.03);
 }
 .metaphoreHeroOverlay {
   position: absolute;

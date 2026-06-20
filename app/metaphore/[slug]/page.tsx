@@ -16,6 +16,7 @@ type Metaphore = {
   imageAlt: string
   texte: string
   artiste: string
+  artisteUrl?: string
   date: string
   dateISO: string
 }
@@ -93,7 +94,11 @@ export default function MetaphorePage({ params }: { params: { slug: string } }) 
           <footer className={styles.foot}>
             <p className={styles.credit}>
               <span className={styles.creditLabel}>Illustration</span>
-              <span className={styles.creditName}>{m.artiste}</span>
+              <span className={styles.creditName}>
+                {m.artisteUrl ? (
+                  <a href={m.artisteUrl} target="_blank" rel="noopener noreferrer">{m.artiste}</a>
+                ) : m.artiste}
+              </span>
             </p>
           </footer>
 
