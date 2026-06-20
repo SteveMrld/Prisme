@@ -96,7 +96,7 @@ export default function Footer() {
               LinkedIn
             </a>
             <a
-              href="https://www.instagram.com/soaramedia"
+              href="https://www.instagram.com/soara_media"
               className={styles.link}
               target="_blank"
               rel="noopener noreferrer"
