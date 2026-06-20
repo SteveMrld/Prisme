@@ -1,0 +1,236 @@
+/* ═══════════════════════════════════════════════════════
+   /metaphore : index de La Métaphore du Samedi
+   Galerie image-forward numérotée. Fond clair, esprit sobre
+   du cartouche des Lettres pour l'en-tête.
+═══════════════════════════════════════════════════════ */
+
+.main {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--encre);
+  padding-bottom: 80px;
+}
+
+/* ── Cartouche éditorial ───────────────────────────── */
+.cartouche {
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  background: var(--bg);
+}
+.cartoucheBody {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.cartoucheKicker {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--or-deep, #8B1A1A);
+  margin-bottom: 16px;
+}
+.cartoucheTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(38px, 6.5vw, 56px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.5px;
+  color: var(--encre);
+  margin: 0 0 18px;
+}
+.cartoucheTitle em {
+  font-style: italic;
+  font-weight: 600;
+}
+.cartoucheLede {
+  font-family: var(--font-serif-text);
+  font-size: clamp(16px, 2vw, 19px);
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.55;
+  max-width: 560px;
+  margin: 0 auto;
+}
+@media (min-width: 700px) {
+  .cartoucheBody { padding: 80px 24px 64px; }
+}
+
+/* ── Galerie image-forward ───────────────────────────
+   Desktop : liste verticale, alternance image/texte façon
+   numérotée du Grand Entretien. Mobile : file horizontale
+   scroll-snap avec dots d'ancre en pied de section. */
+.gallery {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 16px 0;
+}
+@media (min-width: 900px) {
+  .gallery { padding: 64px 32px 0; }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.item {
+  scroll-snap-align: start;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.card:hover { opacity: 0.85; }
+
+.cardImg {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #14110d;
+}
+.cardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 700ms ease;
+}
+.card:hover .cardImg img { transform: scale(1.02); }
+.cardNum {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: #F5E6D0;
+  background: rgba(10, 10, 10, 0.55);
+  padding: 6px 10px;
+  backdrop-filter: blur(4px);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 2px;
+}
+.cardDate {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
+.cardTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(24px, 3.6vw, 34px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.4px;
+  color: var(--encre);
+  margin: 0;
+}
+.cardTitle em { font-style: italic; }
+.cardThese {
+  font-family: var(--font-serif-text);
+  font-size: clamp(15px, 1.9vw, 17px);
+  font-style: italic;
+  color: var(--gris);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 620px;
+}
+.cardCta {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--encre);
+  margin-top: 4px;
+}
+
+@media (min-width: 900px) {
+  .card {
+    grid-template-columns: 1.15fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .cardBody { padding: 0; }
+  /* Alternance : items pairs inversent l'ordre des colonnes pour
+     casser la monotonie verticale du défilé. */
+  .item:nth-child(even) .card {
+    grid-template-columns: 1fr 1.15fr;
+  }
+  .item:nth-child(even) .cardImg { order: 2; }
+  .item:nth-child(even) .cardBody { order: 1; }
+}
+
+/* ── Pagination par points (mobile uniquement) ──────── */
+.dots {
+  display: none;
+}
+@media (max-width: 899px) {
+  .gallery { padding: 32px 0 0; }
+  .list {
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 16px;
+  }
+  .list::-webkit-scrollbar { display: none; }
+  .item {
+    flex: 0 0 88%;
+    scroll-snap-align: center;
+    margin-right: 16px;
+  }
+  .item:last-child { margin-right: 16px; }
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 28px 16px 8px;
+  }
+  .dot {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  .dot span {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--bord);
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .dot:hover span,
+  .dot:focus span {
+    background: var(--encre);
+  }
+}

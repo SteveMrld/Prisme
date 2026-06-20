@@ -1940,3 +1940,241 @@
 .rediscoverImg img[src*="portraits"] {
   object-position: center top;
 }
+
+/* ════════════════════════════════════
+   MÉTAPHORE DU SAMEDI , bande hero sous Ticker
+   Bande pleine largeur, illustration cinémascope, titre en
+   surimpression. Cliquable, mène à la dernière édition.
+════════════════════════════════════ */
+.metaphoreHeroBand {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #14110d;
+  color: #F5E6D0;
+  text-decoration: none;
+  overflow: hidden;
+  border-top: 1px solid #0A0A0A;
+  border-bottom: 1px solid #0A0A0A;
+}
+.metaphoreHeroImg {
+  position: relative;
+  width: 100%;
+  height: clamp(220px, 36vw, 480px);
+  overflow: hidden;
+}
+.metaphoreHeroImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 800ms ease, filter 400ms ease;
+  filter: brightness(.72) contrast(1.05);
+}
+.metaphoreHeroBand:hover .metaphoreHeroImg img {
+  transform: scale(1.02);
+  filter: brightness(.82) contrast(1.05);
+}
+.metaphoreHeroOverlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 20px 22px;
+  background: linear-gradient(to top, rgba(10,10,10,.72) 0%, rgba(10,10,10,.35) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.metaphoreHeroEyebrow {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: #C8A96E;
+}
+.metaphoreHeroTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(22px, 3.8vw, 36px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.4px;
+  color: #F5E6D0;
+  margin: 0;
+}
+.metaphoreHeroCta {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(245,230,208,.85);
+  margin-top: 4px;
+}
+@media (min-width: 900px) {
+  .metaphoreHeroOverlay {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    left: 0; right: 0;
+    padding: 28px 48px 32px;
+  }
+}
+
+/* ════════════════════════════════════
+   MÉTAPHORE DU SAMEDI , section dédiée
+   En-tête éditorial (eyebrow + titre + intro + lien archive) puis
+   carte feature avec illustration grand format et thèse.
+   Cohérent avec atlasSection.
+════════════════════════════════════ */
+.metaphoreSection {
+  padding: 36px 16px 40px;
+  border-top: 1px solid #E8E2DA;
+  border-bottom: 1px solid #E8E2DA;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  background: var(--bg);
+}
+@media (min-width: 760px) {
+  .metaphoreSection { padding: 48px 32px 48px; }
+}
+@media (min-width: 1200px) {
+  .metaphoreSection { padding: 56px 48px 56px; }
+}
+.metaphoreSectionHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.metaphoreSectionEyebrow {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #8B1A1A;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.metaphoreSectionTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: #0A0A0A;
+  margin: 0 0 10px;
+}
+.metaphoreSectionTitle em { font-style: italic; color: #8B1A1A; }
+.metaphoreSectionIntro {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.5;
+  color: #555;
+  max-width: 520px;
+  margin: 0;
+}
+.metaphoreSectionAll {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+  border-bottom: 1px solid #0A0A0A;
+  padding-bottom: 1px;
+  margin-top: 8px;
+  transition: opacity 200ms ease;
+}
+.metaphoreSectionAll:hover { opacity: 0.55; }
+
+.metaphoreFeature {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 200ms ease;
+}
+.metaphoreFeature:hover { opacity: 0.92; }
+@media (min-width: 900px) {
+  .metaphoreFeature {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+}
+.metaphoreFeatureImg {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #14110d;
+}
+.metaphoreFeatureImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms ease;
+}
+.metaphoreFeature:hover .metaphoreFeatureImg img { transform: scale(1.03); }
+.metaphoreFeatureNum {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: #F5E6D0;
+  background: rgba(10,10,10,.55);
+  padding: 6px 10px;
+  backdrop-filter: blur(4px);
+}
+.metaphoreFeatureBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.metaphoreFeatureDate {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gris-l, #888);
+}
+.metaphoreFeatureTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.4px;
+  color: #0A0A0A;
+  margin: 0;
+}
+.metaphoreFeatureThese {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: clamp(15px, 1.9vw, 17px);
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+  max-width: 560px;
+  padding-left: 14px;
+  border-left: 2px solid #C8A96E;
+}
+.metaphoreFeatureCta {
+  font-family: var(--font-ui);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  margin-top: 4px;
+}

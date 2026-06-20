@@ -16,6 +16,7 @@ import { getActiveAd } from '../lib/ads'
 import styles from './page.module.css'
 import Link from 'next/link'
 import articlesData from '../lib/articles.json'
+import metaphoresData from '../lib/metaphores.json'
 import { isRecent } from '../lib/recency'
 import { FadeSection, PortraitsSlider } from './HomeClient'
 import Ticker from './TickerClient'
@@ -311,11 +312,36 @@ export default async function HomePage() {
   })
   const REDISCOVER = randomShuffle([...pickedPortrait, ...pickedRest]).map(withCatLabel(nowTs))
 
+  // ── La Métaphore du Samedi : dernière édition ─────────
+  // Indépendant du moteur d'articles : la rubrique vit dans son propre
+  // JSON. On prend l'entrée la plus récente par dateISO.
+  const METAPHORE_LATEST = (metaphoresData as any[]).slice().sort((a, b) =>
+    new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
+  )[0] || null
+
   return (
     <>
       <Header />
       <h1 className="sr-only">Soara, comprendre le monde, éclairer l'avenir</h1>
       <Ticker />
+
+      {/* ══════════════════════════════════════
+          0bis. MÉTAPHORE DU SAMEDI , bande hero pleine largeur
+          Illustration de la dernière édition en surimpression.
+          Ne touche pas à la logique HERO_ROTATION du bloc 1.
+      ══════════════════════════════════════ */}
+      {METAPHORE_LATEST && (
+        <Link href={`/metaphore/${METAPHORE_LATEST.slug}`} className={styles.metaphoreHeroBand} aria-label={`La Métaphore du Samedi : ${METAPHORE_LATEST.title}`}>
+          <div className={styles.metaphoreHeroImg}>
+            <img src={METAPHORE_LATEST.image} alt={METAPHORE_LATEST.imageAlt} />
+          </div>
+          <div className={styles.metaphoreHeroOverlay}>
+            <span className={styles.metaphoreHeroEyebrow}>La Métaphore du Samedi</span>
+            <h2 className={styles.metaphoreHeroTitle}>{METAPHORE_LATEST.title}</h2>
+            <span className={styles.metaphoreHeroCta}>Voir la métaphore →</span>
+          </div>
+        </Link>
+      )}
 
       {/* ══════════════════════════════════════
           1. HOME TOP , Grille NYT 3 colonnes
@@ -600,6 +626,42 @@ export default async function HomePage() {
         </div>
       </section>
       </FadeSection>
+
+      {/* ══════════════════════════════════════
+          4a. LA MÉTAPHORE DU SAMEDI , section dédiée
+          Met en avant la dernière édition : eyebrow, titre, thèse,
+          illustration cliquable. Cohérent avec atlasSection / tvSection.
+      ══════════════════════════════════════ */}
+      {METAPHORE_LATEST && (
+        <FadeSection>
+        <section className={styles.metaphoreSection}>
+          <div className={styles.metaphoreSectionHead}>
+            <div>
+              <span className={styles.metaphoreSectionEyebrow}>La Métaphore du Samedi</span>
+              <h2 className={styles.metaphoreSectionTitle}>L'image de la <em>semaine</em></h2>
+              <p className={styles.metaphoreSectionIntro}>
+                Une illustration conceptuelle, chaque samedi, pour comprendre ce que le monde révèle.
+              </p>
+            </div>
+            <Link href="/metaphore" className={styles.metaphoreSectionAll}>Toutes les métaphores →</Link>
+          </div>
+          <Link href={`/metaphore/${METAPHORE_LATEST.slug}`} className={styles.metaphoreFeature}>
+            <div className={styles.metaphoreFeatureImg}>
+              <img src={METAPHORE_LATEST.image} alt={METAPHORE_LATEST.imageAlt} />
+              <span className={styles.metaphoreFeatureNum}>
+                N° {String(METAPHORE_LATEST.numero).padStart(2, '0')}
+              </span>
+            </div>
+            <div className={styles.metaphoreFeatureBody}>
+              <span className={styles.metaphoreFeatureDate}>{METAPHORE_LATEST.date}</span>
+              <h3 className={styles.metaphoreFeatureTitle}>{METAPHORE_LATEST.title}</h3>
+              <p className={styles.metaphoreFeatureThese}>{METAPHORE_LATEST.these}</p>
+              <span className={styles.metaphoreFeatureCta}>Voir la métaphore →</span>
+            </div>
+          </Link>
+        </section>
+        </FadeSection>
+      )}
 
       {/* ══════════════════════════════════════
           4b. BIBLIOTHÈQUE

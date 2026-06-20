@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "l-encre-et-le-monde",
+    "numero": 1,
+    "title": "L'encre et le monde",
+    "these": "Les accords internationaux redessinent les flux du monde.",
+    "evenement": "TEMP. Saison des sommets diplomatiques de juin 2026 et signatures attendues sur les chaînes logistiques.",
+    "image": "https://placehold.co/1600x900/14110d/c8a96e/png?text=L%27encre+et+le+monde",
+    "imageAlt": "Illustration conceptuelle d'une plume qui trace, au lieu d'une ligne, une nouvelle carte du monde.",
+    "texte": "Quand un traité est signé, une ligne d'encre tracée sur du papier officiel modifie le tracé des câbles sous-marins, la route d'un cargo, la fiscalité d'une mine, le visa d'une famille. L'écriture diplomatique n'est jamais ornementale : elle réordonne le monde en silence, à l'échelle des décennies. C'est dans cette discrétion qu'elle agit le plus fortement. Les sommets captent les caméras, mais ce sont les annexes techniques, les notes en bas de page, les paragraphes ajoutés à la dernière heure qui redessinent les chemins de la circulation, des matières premières, des flux financiers. La géographie réelle du siècle ne se lit pas dans les manuels, elle se déchiffre dans les marges où l'on signe.",
+    "artiste": "TEMP. Illustratrice à créditer.",
+    "date": "20 juin 2026",
+    "dateISO": "2026-06-20"
+  },
+  {
+    "slug": "metaphore-temp-2",
+    "numero": 2,
+    "title": "TEMP. Métaphore à venir",
+    "these": "TEMP. Une phrase de thèse à rédiger, claire et tenue.",
+    "evenement": "TEMP. Fait d'actualité à archiver ici, pour mémoire interne.",
+    "image": "https://placehold.co/1600x900/1f1a14/8b8b8b/png?text=TEMP+N%C2%B02",
+    "imageAlt": "TEMP. Description sobre de l'illustration, à rédiger.",
+    "texte": "Édition de seed temporaire, à remplacer une fois l'illustration commandée et le texte rédigé. Ce paragraphe sert uniquement à occuper la place du futur texte court, entre quatre-vingts et cent cinquante mots, qui prolongera la thèse sans paraphraser l'image. Une fois la métaphore réelle prête, ce contenu sera retiré et un nouveau slug, un nouveau numéro, une nouvelle date, une nouvelle thèse et une nouvelle illustration prendront sa place. Aucune information utile n'est diffusée par cette entrée. Merci de votre patience.",
+    "artiste": "TEMP. Illustratrice à créditer.",
+    "date": "13 juin 2026",
+    "dateISO": "2026-06-13"
+  },
+  {
+    "slug": "metaphore-temp-3",
+    "numero": 3,
+    "title": "TEMP. Métaphore à venir",
+    "these": "TEMP. Une phrase de thèse à rédiger, claire et tenue.",
+    "evenement": "TEMP. Fait d'actualité à archiver ici, pour mémoire interne.",
+    "image": "https://placehold.co/1600x900/1f1a14/8b8b8b/png?text=TEMP+N%C2%B03",
+    "imageAlt": "TEMP. Description sobre de l'illustration, à rédiger.",
+    "texte": "Édition de seed temporaire, à remplacer une fois l'illustration commandée et le texte rédigé. Ce paragraphe sert uniquement à occuper la place du futur texte court, entre quatre-vingts et cent cinquante mots, qui prolongera la thèse sans paraphraser l'image. Une fois la métaphore réelle prête, ce contenu sera retiré et un nouveau slug, un nouveau numéro, une nouvelle date, une nouvelle thèse et une nouvelle illustration prendront sa place. Aucune information utile n'est diffusée par cette entrée. Merci de votre patience.",
+    "artiste": "TEMP. Illustratrice à créditer.",
+    "date": "6 juin 2026",
+    "dateISO": "2026-06-06"
+  }
+]

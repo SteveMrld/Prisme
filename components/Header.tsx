@@ -54,6 +54,7 @@ const formats = [
   { label: 'Soara TV', href: '/tv', desc: 'Analyses en mouvement' },
   { label: 'Signal Map', href: '/signal-map', desc: 'Carte des tensions en temps réel' },
   { label: 'Grand Entretien', href: '/entretien/bousardo', desc: 'Vanessa Bousardo · À paraître' },
+  { label: 'La Métaphore du Samedi', href: '/metaphore', desc: 'Une image pour comprendre ce que le monde révèle' },
   { label: 'Bibliothèque', href: '/bibliotheque', desc: 'Les coups de cœur de Jade Desroses' },
   { label: 'Recoupement', href: '/recoupement', desc: 'Vérification par IA' },
   { label: 'Changer le monde', href: '/solutions', desc: '166 solutions ChangeNow 2026' },
