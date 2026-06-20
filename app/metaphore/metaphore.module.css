@@ -247,6 +247,15 @@
   padding: 56px 24px 8px;
   text-align: center;
 }
+.illustratricePortrait {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 20px;
+  border: 1px solid var(--bord);
+}
 .illustratriceKicker {
   display: inline-block;
   font-family: var(--font-ui);

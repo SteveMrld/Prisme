@@ -102,12 +102,17 @@ export default function MetaphoreIndex() {
         {/* À propos de l'illustratrice */}
         <section className={styles.illustratrice} aria-labelledby="illustratrice-titre">
           <div className={styles.illustratriceBody}>
+            <img
+              src="/metaphore/allison-moradel.jpg"
+              alt="Portrait d'Allison Moradel"
+              className={styles.illustratricePortrait}
+            />
             <span className={styles.illustratriceKicker}>À propos de l'illustratrice</span>
             <h2 id="illustratrice-titre" className={styles.illustratriceNom}>
-              Alyson <span className={styles.illustratriceSurnom}>(Lily)</span>
+              Allison Moradel <span className={styles.illustratriceSurnom}>(Lily)</span>
             </h2>
             <p className={styles.illustratriceTexte}>
-              Alyson est illustratrice, directrice artistique et designer. Elle aborde le dessin comme une langue, celle qui formule ce que les mots laissent de côté. Le moindre détail visuel devient chez elle un moyen de rendre lisible ce qui relève d'abord du ressenti. Son travail vise l'émotion juste, la forme qui donne à éprouver une idée. Elle met cette sensibilité au service de la Métaphore du Samedi, où chaque image porte une idée et lui donne corps.
+              Allison Moradel est illustratrice, directrice artistique et designer. Elle aborde le dessin comme une langue, celle qui formule ce que les mots laissent de côté. Le moindre détail visuel devient chez elle un moyen de rendre lisible ce qui relève d'abord du ressenti. Son travail vise l'émotion juste, la forme qui donne à éprouver une idée. Elle met cette sensibilité au service de la Métaphore du Samedi, où chaque image porte une idée et lui donne corps.
             </p>
             <a
               href="https://www.instagram.com/alyson.m_illustrations/"
