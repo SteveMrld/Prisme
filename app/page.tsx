@@ -8,7 +8,7 @@ import SoaraUnivers from '../components/SoaraUnivers'
 import BibliothequeHome from '../components/BibliothequeHome'
 import AdSlot from '../components/AdSlot'
 import HomeFeaturedInterviews from '../components/HomeFeaturedInterviews'
-import HomeInterviewsRow from '../components/HomeInterviewsRow'
+// import HomeInterviewsRow from '../components/HomeInterviewsRow' // retiré pour le lancement (réactiver dès 4+ entretiens)
 import HomeGrandFormats from '../components/HomeGrandFormats'
 import { FleuronIcon } from '../components/LettresIcons'
 import { TV_EPISODES } from '../lib/tv-episodes'
@@ -390,9 +390,10 @@ export default async function HomePage() {
 
       {/* ══════════════════════════════════════
           1ter. LES ENTRETIENS SOARA, bande pleine largeur
-          (rangée carousel : interviews classiques + grands entretiens à venir)
+          Retiré pour le lancement : seulement 2 entretiens hors vedette, la
+          bande paraissait clairsemée. À réactiver dès qu'il y en a 4+.
       ══════════════════════════════════════ */}
-      <HomeInterviewsRow />
+      {/* <HomeInterviewsRow /> */}
 
       {/* ══════════════════════════════════════
           1quater. LES GRANDS FORMATS, bande pleine largeur
