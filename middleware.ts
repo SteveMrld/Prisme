@@ -20,7 +20,15 @@ export async function middleware(request: NextRequest) {
     previewOk = timingSafeEqualStr(rawToken, expected)
   }
 
-  if (process.env.MAINTENANCE_MODE === 'true' && isProd && !previewOk) {
+  // Lancement programmé : si LAUNCH_AT est défini (ISO 8601 avec fuseau, ex.
+  // 2026-06-22T12:22:00+02:00), la maintenance se lève automatiquement à cette
+  // date/heure, sans redéploiement. Avant l'heure le site reste fermé ; à
+  // l'heure pile, la requête suivante passe. LAUNCH_AT absent => comportement
+  // inchangé (la maintenance reste pilotée par MAINTENANCE_MODE).
+  const launchAt = process.env.LAUNCH_AT ? Date.parse(process.env.LAUNCH_AT) : NaN
+  const beforeLaunch = Number.isNaN(launchAt) ? true : Date.now() < launchAt
+
+  if (process.env.MAINTENANCE_MODE === 'true' && isProd && beforeLaunch && !previewOk) {
     const { pathname } = request.nextUrl
     const isStaticAsset = /\.(jpg|jpeg|png|gif|webp|avif|svg|ico|mp4|webm|woff|woff2|ttf|otf|css|js|json|txt|xml|pdf)$/i.test(pathname)
     const allowedApiPaths = new Set([
