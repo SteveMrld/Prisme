@@ -1,12 +1,9 @@
-import Link from 'next/link'
 import { getHomeInterviewsPartition } from '../lib/interviews'
 import InterviewCarousel from './InterviewCarousel'
 import styles from './HomeInterviewsRow.module.css'
 
-/* Rangée pleine largeur « Les entretiens Soara », à placer hors de
-   .homeTop (à côté de .lettreMardi / .atlasSection). Liste tous les
-   entretiens hors zone vedette : interviews classiques publiées,
-   grands entretiens à venir en cartes teaser. */
+/* Rangée « Les entretiens Soara », hors zone vedette. Présentation centrée :
+   intitulé + intro au-dessus, cartes des entretiens dessous. */
 export default function HomeInterviewsRow() {
   const { others } = getHomeInterviewsPartition()
   if (others.length === 0) return null
@@ -21,10 +18,6 @@ export default function HomeInterviewsRow() {
         <div className={styles.carouselWrap}>
           <InterviewCarousel items={others} />
         </div>
-        <Link href="/explorer" className={styles.cta}>
-          <span className={styles.ctaText}>Tous les entretiens</span>
-          <span className={styles.ctaArrow} aria-hidden="true">→</span>
-        </Link>
       </div>
     </section>
   )

@@ -15,12 +15,21 @@
   .section { padding: 48px 48px 40px; }
 }
 
-.head {
+/* Présentation centrée : intitulé + intro au-dessus, cartes centrées dessous. */
+.grid {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 22px;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  max-width: 620px;
 }
 
 .eyebrow {
@@ -30,21 +39,6 @@
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: #0A0A0A;
-}
-
-/* Mise en page deux colonnes : bloc d'intro à gauche, carousel à droite.
-   Remplit la bande pleine largeur quand il y a peu d'entretiens, au lieu
-   de laisser les cartes flotter au centre. */
-.grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.intro {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 
 .title {
@@ -63,57 +57,9 @@
   line-height: 1.5;
   color: var(--gris-m);
   margin: 0;
-  max-width: 34ch;
+  max-width: 46ch;
 }
 
-@media (min-width: 900px) {
-  .grid {
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-  }
-  .intro {
-    flex: 0 0 auto;
-    max-width: 320px;
-  }
-  .carouselWrap {
-    flex: 0 1 auto;
-    max-width: 760px;
-    min-width: 0;
-  }
-  .cta {
-    flex: 1 1 auto;
-    min-width: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 16px;
-    align-self: stretch;
-    padding-left: 40px;
-    border-left: 1px solid #E2DCD1;
-  }
-  .ctaText { font-size: clamp(1.2rem, 1.5vw, 1.5rem); max-width: 9ch; }
-  .ctaArrow { font-size: 1.5rem; }
+.carouselWrap {
+  width: 100%;
 }
-
-/* Lien « Tous les entretiens » : meuble la droite de la rangée quand il y a
-   peu de cartes, et donne un accès vers l'ensemble des entretiens. */
-.cta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--encre);
-}
-.ctaText {
-  font-family: var(--font-serif-display);
-  font-size: 1.2rem;
-  line-height: 1.15;
-  color: var(--encre);
-}
-.ctaArrow {
-  font-size: 1.2rem;
-  color: var(--encre);
-  transition: transform 160ms ease;
-}
-.cta:hover .ctaArrow { transform: translateX(4px); }
