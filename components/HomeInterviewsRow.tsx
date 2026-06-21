@@ -11,10 +11,16 @@ export default function HomeInterviewsRow() {
   if (others.length === 0) return null
   return (
     <section className={styles.section} aria-label="Les entretiens Soara">
-      <div className={styles.head}>
-        <span className={styles.eyebrow}>Les entretiens Soara</span>
+      <div className={styles.grid}>
+        <div className={styles.intro}>
+          <span className={styles.eyebrow}>Les entretiens Soara</span>
+          <h2 className={styles.title}>Conversations au long cours</h2>
+          <p className={styles.lede}>Des grands entretiens avec celles et ceux qui pensent le monde, à distance de l'actualité immédiate.</p>
+        </div>
+        <div className={styles.carouselWrap}>
+          <InterviewCarousel items={others} />
+        </div>
       </div>
-      <InterviewCarousel items={others} />
     </section>
   )
 }

@@ -31,3 +31,53 @@
   text-transform: uppercase;
   color: #0A0A0A;
 }
+
+/* Mise en page deux colonnes : bloc d'intro à gauche, carousel à droite.
+   Remplit la bande pleine largeur quand il y a peu d'entretiens, au lieu
+   de laisser les cartes flotter au centre. */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(22px, 2.8vw, 28px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--encre);
+  margin: 0;
+}
+
+.lede {
+  font-family: var(--font-serif-text);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gris-m);
+  margin: 0;
+  max-width: 34ch;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    flex-direction: row;
+    align-items: center;
+    gap: 48px;
+  }
+  .intro {
+    flex: 0 0 36%;
+    max-width: 380px;
+  }
+  .carouselWrap {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
