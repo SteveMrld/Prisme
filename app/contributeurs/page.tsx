@@ -58,6 +58,14 @@ const contributeurs = [
     portrait: '/portraits/vincent.jpg',
     linkedin: 'https://www.linkedin.com/in/majda-vincent-59641442/',
   },
+  {
+    name: 'Marilyn Séphocle',
+    role: 'Contributrice · Diaspora & Géopolitique',
+    bio: 'Martiniquaise installée à Washington, professeure à Howard University et fondatrice de la Women Ambassadors Foundation. Elle observe la diaspora noire des Amériques, les présidences américaines et le réflexe colonial français.',
+    domaines: ['Géopolitique', 'Société', 'Diaspora'],
+    portrait: '/portraits/sephocle.jpg',
+    linkedin: null,
+  },
 ]
 
 function initials(name: string) {
