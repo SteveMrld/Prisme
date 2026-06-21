@@ -1125,6 +1125,7 @@
   },
   {
     "slug": "diarra",
+    "hidden": true,
     "cardFocus": "center 40%",
     "title": "Cheick Modibo <em>Diarra</em>",
     "titleEn": "Cheick Modibo <em>Diarra</em>",

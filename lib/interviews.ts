@@ -33,6 +33,9 @@ export type Interview = {
      quand il est encore « à venir » (date future ou statut coming). Sert
      à teaser un grand entretien à paraître depuis la home. */
   featuredOnHome?: boolean
+  // Dépublie l'entretien : conservé dans le repo mais retiré de tous les
+  // affichages (vedette, rangée home, explorer, page détail). Réversible.
+  hidden?: boolean
   // Point de cadrage object-position pour la carte du carousel home.
   // Défaut CSS : center 18%. À surcharger pour les portraits au ratio
   // atypique (ex. Diarra, source 1080x2372) qui se recadrent mal.
@@ -44,7 +47,7 @@ export type Interview = {
 }
 
 const all: Interview[] = (articlesData as any[]).filter(
-  (a) => a.interviewType === 'grand' || a.interviewType === 'classique'
+  (a) => (a.interviewType === 'grand' || a.interviewType === 'classique') && !a.hidden
 ) as Interview[]
 
 export function getAllInterviews(): Interview[] {

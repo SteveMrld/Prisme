@@ -141,17 +141,6 @@ export default function AccountClient({ user, profile, isActive, isPastDue, succ
           </div>
         </div>
 
-        {/* Entretien */}
-        <div className={styles.section}>
-          <div className={styles.sectionTitle}>Grand Entretien</div>
-          <Link href="/entretien/diarra" className={styles.entretienCard}>
-            <div className={styles.entretienEyebrow}>N°1 · À venir</div>
-            <div className={styles.entretienName}>Cheick Modibo <em>Diarra</em></div>
-            <div className={styles.entretienRole}>Astrophysicien NASA · Microsoft Afrique · Premier ministre du Mali</div>
-            <span className={styles.entretienCta}>Lire en avant-première →</span>
-          </Link>
-        </div>
-
       </div>
     </div>
   )
