@@ -274,3 +274,43 @@
   color: #c85840;
   letter-spacing: 2px;
 }
+
+/* Compte à rebours avant le lancement */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 22px 0 4px;
+}
+.countUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 46px;
+}
+.countNum {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+  color: #FAFAF8;
+  font-variant-numeric: tabular-nums;
+}
+.countLabel {
+  font-family: -apple-system, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6A6A6A;
+  margin-top: 8px;
+}
+.countLive {
+  margin: 20px 0 4px;
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+.countLink {
+  color: #C9A84C;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+.countLink:hover { color: #D6B764; }

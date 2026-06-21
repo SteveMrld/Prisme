@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './bientot.module.css'
 
 type EmailState =
@@ -19,6 +19,25 @@ export default function BientotPage() {
   const [pwd, setPwd] = useState('')
   const [pwdError, setPwdError] = useState(false)
   const [pwdPending, setPwdPending] = useState(false)
+
+  // Compte à rebours jusqu'au lancement. La date doit correspondre à la
+  // variable LAUNCH_AT définie côté Vercel.
+  const LAUNCH_TS = new Date('2026-06-22T12:22:00+02:00').getTime()
+  const [now, setNow] = useState<number | null>(null)
+  useEffect(() => {
+    setNow(Date.now())
+    const id = setInterval(() => setNow(Date.now()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  const remaining = now === null ? null : Math.max(0, LAUNCH_TS - now)
+  const totalSec = remaining === null ? 0 : Math.floor(remaining / 1000)
+  const cd = {
+    d: Math.floor(totalSec / 86400),
+    h: Math.floor((totalSec % 86400) / 3600),
+    m: Math.floor((totalSec % 3600) / 60),
+    s: totalSec % 60,
+  }
+  const pad2 = (n: number) => String(n).padStart(2, '0')
 
   const onEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -88,7 +107,21 @@ export default function BientotPage() {
         <div className={styles.logo}>SOARA</div>
         <p className={styles.tagline}>Comprendre le monde. Éclairer l&apos;avenir.</p>
         <div className={styles.divider} />
-        <p className={styles.date}>Lancement&nbsp;· lundi 22 juin 2026</p>
+        <p className={styles.date}>Lancement&nbsp;· lundi 22 juin 2026, 12h22</p>
+
+        {remaining !== null && remaining > 0 && (
+          <div className={styles.countdown} aria-label="Compte à rebours avant le lancement">
+            <div className={styles.countUnit}><span className={styles.countNum}>{cd.d}</span><span className={styles.countLabel}>jours</span></div>
+            <div className={styles.countUnit}><span className={styles.countNum}>{pad2(cd.h)}</span><span className={styles.countLabel}>heures</span></div>
+            <div className={styles.countUnit}><span className={styles.countNum}>{pad2(cd.m)}</span><span className={styles.countLabel}>min</span></div>
+            <div className={styles.countUnit}><span className={styles.countNum}>{pad2(cd.s)}</span><span className={styles.countLabel}>sec</span></div>
+          </div>
+        )}
+        {remaining !== null && remaining <= 0 && (
+          <p className={styles.countLive}>
+            <a href="/" className={styles.countLink}>Le site est en ligne — entrer&nbsp;→</a>
+          </p>
+        )}
 
         <div className={styles.intro}>
           <p className={styles.introP}>SOARA est un média d&apos;analyse indépendant. Sa raison d&apos;être n&apos;est pas de produire du contenu, mais de faire de la lumière&nbsp;: éclairer ce qu&apos;on ne voit plus.</p>
