@@ -70,14 +70,50 @@
   .grid {
     flex-direction: row;
     align-items: center;
-    gap: 48px;
+    gap: 40px;
   }
   .intro {
-    flex: 0 0 36%;
-    max-width: 380px;
+    flex: 0 0 auto;
+    max-width: 320px;
   }
   .carouselWrap {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
+    max-width: 760px;
     min-width: 0;
   }
+  .cta {
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    align-self: stretch;
+    padding-left: 40px;
+    border-left: 1px solid #E2DCD1;
+  }
+  .ctaText { font-size: clamp(1.2rem, 1.5vw, 1.5rem); max-width: 9ch; }
+  .ctaArrow { font-size: 1.5rem; }
 }
+
+/* Lien « Tous les entretiens » : meuble la droite de la rangée quand il y a
+   peu de cartes, et donne un accès vers l'ensemble des entretiens. */
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--encre);
+}
+.ctaText {
+  font-family: var(--font-serif-display);
+  font-size: 1.2rem;
+  line-height: 1.15;
+  color: var(--encre);
+}
+.ctaArrow {
+  font-size: 1.2rem;
+  color: var(--encre);
+  transition: transform 160ms ease;
+}
+.cta:hover .ctaArrow { transform: translateX(4px); }

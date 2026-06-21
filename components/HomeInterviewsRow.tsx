@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getHomeInterviewsPartition } from '../lib/interviews'
 import InterviewCarousel from './InterviewCarousel'
 import styles from './HomeInterviewsRow.module.css'
@@ -20,6 +21,10 @@ export default function HomeInterviewsRow() {
         <div className={styles.carouselWrap}>
           <InterviewCarousel items={others} />
         </div>
+        <Link href="/explorer" className={styles.cta}>
+          <span className={styles.ctaText}>Tous les entretiens</span>
+          <span className={styles.ctaArrow} aria-hidden="true">→</span>
+        </Link>
       </div>
     </section>
   )

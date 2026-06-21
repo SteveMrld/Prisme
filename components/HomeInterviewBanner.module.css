@@ -190,7 +190,7 @@
 .carouselTrack {
   display: flex;
   gap: 14px;
-  justify-content: safe center;
+  justify-content: flex-start;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
