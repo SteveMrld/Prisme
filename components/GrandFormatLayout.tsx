@@ -3,6 +3,7 @@ import { useEffect, useState, ReactNode } from 'react'
 import Header from './Header'
 import BackButton from './BackButton'
 import BookmarkButton from './BookmarkButton'
+import ShareButton from './ShareButton'
 import ArticleTOC from './ArticleTOC'
 import { ReadingProgress, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 import AudioPlayer from './AudioPlayer'
@@ -355,6 +356,10 @@ export default function GrandFormatLayout({
         </div>
       )}
       </div>{/* articlePageLayout */}
+
+      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', margin: '4px 0 44px' }}>
+        <ShareButton title={`${title.replace(/<[^>]+>/g, '')} · Soara`} label="Partager l'analyse" />
+      </div>
 
       {/* ── ARTICLES LIÉS (grille bas, mobile uniquement) ── */}
       {related.length > 0 && !article?.hideAutoRelated && (

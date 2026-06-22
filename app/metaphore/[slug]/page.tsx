@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Header from '../../../components/Header'
+import ShareButton from '../../../components/ShareButton'
 import metaphores from '../../../lib/metaphores.json'
 import styles from './metaphore-detail.module.css'
 
@@ -113,6 +114,10 @@ export default function MetaphorePage({ params }: { params: { slug: string } }) 
 
           <div className={styles.body}>
             <p className={styles.texte}>{m.texte}</p>
+          </div>
+
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'center', margin: '4px 0 36px' }}>
+            <ShareButton title={`${m.title} · Soara`} label="Partager la métaphore" />
           </div>
 
           {all.length > 1 && (

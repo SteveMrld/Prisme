@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import Header from '../../../components/Header'
 import { FleuronIcon } from '../../../components/LettresIcons'
+import ShareButton from '../../../components/ShareButton'
 import lettres from '../../../lib/lettres.json'
 import articlesData from '../../../lib/articles.json'
 import styles from './lettre.module.css'
@@ -154,6 +155,10 @@ export default function LettrePage({ params }: { params: { slug: string } }) {
               <p className={styles.signatureRole}>{lettre.auteurRole}</p>
             )}
           </footer>
+
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'center', margin: '8px 0 32px' }}>
+            <ShareButton title={`${lettre.title} · Soara`} label="Partager la lettre" />
+          </div>
 
           {prolonger && prolonger.length > 0 && (
             <aside className={styles.prolonger}>
