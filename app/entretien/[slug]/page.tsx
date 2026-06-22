@@ -247,9 +247,6 @@ export default function EntretienPage({
             <blockquote className={styles.pullQuote}>«&nbsp;{i.interviewQuote}&nbsp;»</blockquote>
           )}
 
-          {!isComing && content && (
-            <p className={styles.editNote}>Cet entretien a été édité et condensé.</p>
-          )}
         </div>
       </article>
 
