@@ -106,6 +106,19 @@
   gap: 4px;
   margin: 0;
 }
+.creditRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.creditPortrait {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+  border: 1px solid var(--bord);
+}
 .creditLabel {
   font-family: var(--font-ui);
   font-size: 9.5px;

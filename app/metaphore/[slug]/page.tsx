@@ -99,14 +99,21 @@ export default function MetaphorePage({ params }: { params: { slug: string } }) 
           </div>
 
           <footer className={styles.foot}>
-            <p className={styles.credit}>
-              <span className={styles.creditLabel}>Illustration</span>
-              <span className={styles.creditName}>
-                {m.artisteUrl ? (
-                  <a href={m.artisteUrl} target="_blank" rel="noopener noreferrer">{m.artiste}</a>
-                ) : m.artiste}
-              </span>
-            </p>
+            <div className={styles.creditRow}>
+              <img
+                src="/metaphore/allison-moradel.jpg"
+                alt="Portrait d'Allison Moradel"
+                className={styles.creditPortrait}
+              />
+              <p className={styles.credit}>
+                <span className={styles.creditLabel}>Illustration</span>
+                <span className={styles.creditName}>
+                  {m.artisteUrl ? (
+                    <a href={m.artisteUrl} target="_blank" rel="noopener noreferrer">{m.artiste}</a>
+                  ) : m.artiste}
+                </span>
+              </p>
+            </div>
           </footer>
 
           <nav className={styles.nav} aria-label="Navigation entre éditions">
