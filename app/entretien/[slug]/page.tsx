@@ -286,7 +286,7 @@ export default function EntretienPage({
                 const oLabel = o.interviewType === 'grand' ? 'Grand Entretien' : 'Interview'
                 const oFuture = isFutureDay(o.date)
                 const oComing = o.interviewStatus === 'coming' || oFuture
-                const oComingLabel = oFuture ? `Disponible le ${formatFrDate(o.date)}` : 'À venir'
+                const oComingLabel = 'À venir'
                 return (
                   <Link
                     key={o.slug}
