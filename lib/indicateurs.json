@@ -1,5 +1,5 @@
 {
-  "date_maj": "2026-05-13",
+  "date_maj": "2026-06-22",
   "indicateurs": [
     {
       "id": "brent",
@@ -8,10 +8,18 @@
       "unit": "$",
       "cat": "Énergie",
       "catColor": "#C4793A",
-      "context": "Demande chinoise atone, OPEP+ en discussion sur quotas",
-      "value": 78.40,
-      "prev": 78.92,
-      "history": [81.2, 80.4, 79.6, 79.8, 79.1, 78.9, 78.40]
+      "context": "Détroit d'Ormuz rouvert, accord Iran/US fragile en Suisse",
+      "value": 78.78,
+      "prev": 80.06,
+      "history": [
+        94.4,
+        91.0,
+        88.2,
+        84.5,
+        81.3,
+        80.06,
+        78.78
+      ]
     },
     {
       "id": "gold",
@@ -20,10 +28,18 @@
       "unit": "$",
       "cat": "Refuge",
       "catColor": "#C8A96E",
-      "context": "Achats massifs des banques centrales émergentes",
-      "value": 3412,
-      "prev": 3398,
-      "history": [3340, 3358, 3372, 3380, 3388, 3398, 3412]
+      "context": "Rebond après correction de 22% depuis le record de 5589$ en janvier",
+      "value": 4186,
+      "prev": 4140,
+      "history": [
+        5589,
+        4800,
+        4290,
+        4120,
+        4140,
+        4140,
+        4186
+      ]
     },
     {
       "id": "wheat",
@@ -32,10 +48,18 @@
       "unit": "$",
       "cat": "Alimentaire",
       "catColor": "#7A9A3A",
-      "context": "Sécheresses sur le bassin de la mer Noire",
-      "value": 5.71,
-      "prev": 5.68,
-      "history": [5.42, 5.50, 5.58, 5.61, 5.65, 5.68, 5.71]
+      "context": "Perturbations logistiques liées au conflit au Moyen-Orient",
+      "value": 6.12,
+      "prev": 5.98,
+      "history": [
+        5.42,
+        5.58,
+        5.71,
+        5.85,
+        5.95,
+        5.98,
+        6.12
+      ]
     },
     {
       "id": "copper",
@@ -47,7 +71,15 @@
       "context": "Transition électrique, tension sur l'offre mondiale",
       "value": 4.46,
       "prev": 4.41,
-      "history": [4.21, 4.28, 4.34, 4.38, 4.40, 4.41, 4.46]
+      "history": [
+        4.21,
+        4.28,
+        4.34,
+        4.38,
+        4.4,
+        4.41,
+        4.46
+      ]
     },
     {
       "id": "eurusd",
@@ -56,10 +88,18 @@
       "unit": "",
       "cat": "Change",
       "catColor": "#2D6B4A",
-      "context": "BCE attentiste, dollar affaibli par la stagflation US",
-      "value": 1.1024,
-      "prev": 1.0998,
-      "history": [1.082, 1.087, 1.091, 1.094, 1.097, 1.0998, 1.1024]
+      "context": "Dollar affaibli par les incertitudes sur l'accord Iran/US et la Fed",
+      "value": 1.142,
+      "prev": 1.138,
+      "history": [
+        1.082,
+        1.095,
+        1.108,
+        1.122,
+        1.135,
+        1.138,
+        1.142
+      ]
     },
     {
       "id": "usdcny",
@@ -69,9 +109,17 @@
       "cat": "Géopolitique",
       "catColor": "#1A3E6B",
       "context": "Stabilisation pilotée par la PBoC, internationalisation lente du yuan",
-      "value": 7.1980,
+      "value": 7.198,
       "prev": 7.2105,
-      "history": [7.265, 7.250, 7.235, 7.220, 7.215, 7.2105, 7.1980]
+      "history": [
+        7.265,
+        7.25,
+        7.235,
+        7.22,
+        7.215,
+        7.2105,
+        7.198
+      ]
     }
   ]
 }
