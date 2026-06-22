@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import BookmarkButton from './BookmarkButton'
+import ShareButton from './ShareButton'
 import BackButton from './BackButton'
 import Header from './Header'
 import NewsletterForm from './NewsletterForm'
@@ -456,17 +457,7 @@ export default function ArticleLayout({
             <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
           </svg>
         </button>
-        <button className={styles.actionBtn} title="Partager" onClick={() => {
-          if (typeof navigator !== 'undefined' && navigator.share) {
-            navigator.share({ title: typeof document !== 'undefined' ? document.title : '', url: typeof window !== 'undefined' ? window.location.href : '' })
-          }
-        }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-            <polyline points="16 6 12 2 8 6"/>
-            <line x1="12" y1="2" x2="12" y2="15"/>
-          </svg>
-        </button>
+        <ShareButton iconOnly className={styles.actionBtn} title={title} />
         {slug && <BookmarkButton slug={slug} title={title} image={image} description={description} readTime={readTime} categoryLabel={categoryLabel} iconOnly />}
       </div>
 

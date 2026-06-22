@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import Header from '../../../components/Header'
 import AudioPlayer from '../../../components/AudioPlayer'
+import ShareButton from '../../../components/ShareButton'
 import { getAllInterviews, getInterview } from '../../../lib/interviews'
 import { categoryLabel } from '../../../lib/categories'
 import { isFutureDay } from '../../../lib/dates'
@@ -198,6 +199,10 @@ export default function EntretienPage({
           <h1 className={styles.name}>{renderSubjectName(i)}</h1>
 
           {i.interviewRole && <div className={styles.role}>{i.interviewRole}</div>}
+
+          <div className="no-print" style={{ margin: '16px 0 4px' }}>
+            <ShareButton title={`${i.interviewSubject} · Soara`} />
+          </div>
 
           {!isComing && (
             <div className={styles.byline}>Propos recueillis par {interviewer}</div>
