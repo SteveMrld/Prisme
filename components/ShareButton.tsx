@@ -34,7 +34,12 @@ export default function ShareButton({ title = '', iconOnly = false, className, l
     return () => document.removeEventListener('mousedown', onDoc)
   }, [open])
 
-  const getUrl = () => (typeof window !== 'undefined' ? window.location.href : '')
+  // On partage toujours l'adresse publique canonique (soara.fr), jamais le
+  // domaine de preview ni localhost : seul le chemin de la page change.
+  const getUrl = () =>
+    typeof window !== 'undefined'
+      ? `https://soara.fr${window.location.pathname}${window.location.search}`
+      : 'https://soara.fr'
   const getTitle = () => title || (typeof document !== 'undefined' ? document.title : '')
 
   const onTrigger = async () => {
