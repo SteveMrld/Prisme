@@ -12,31 +12,5 @@
     "date": "Samedi 20 juin 2026",
     "dateISO": "2026-06-20",
     "artisteUrl": "https://www.instagram.com/alyson.m_illustrations/"
-  },
-  {
-    "slug": "metaphore-temp-2",
-    "numero": 2,
-    "title": "TEMP. Métaphore à venir",
-    "these": "TEMP. Une phrase de thèse à rédiger, claire et tenue.",
-    "evenement": "TEMP. Fait d'actualité à archiver ici, pour mémoire interne.",
-    "image": "https://placehold.co/1600x900/1f1a14/8b8b8b/png?text=TEMP+N%C2%B02",
-    "imageAlt": "TEMP. Description sobre de l'illustration, à rédiger.",
-    "texte": "Édition de seed temporaire, à remplacer une fois l'illustration commandée et le texte rédigé. Ce paragraphe sert uniquement à occuper la place du futur texte court, entre quatre-vingts et cent cinquante mots, qui prolongera la thèse sans paraphraser l'image. Une fois la métaphore réelle prête, ce contenu sera retiré et un nouveau slug, un nouveau numéro, une nouvelle date, une nouvelle thèse et une nouvelle illustration prendront sa place. Aucune information utile n'est diffusée par cette entrée. Merci de votre patience.",
-    "artiste": "TEMP. Illustratrice à créditer.",
-    "date": "13 juin 2026",
-    "dateISO": "2026-06-13"
-  },
-  {
-    "slug": "metaphore-temp-3",
-    "numero": 3,
-    "title": "TEMP. Métaphore à venir",
-    "these": "TEMP. Une phrase de thèse à rédiger, claire et tenue.",
-    "evenement": "TEMP. Fait d'actualité à archiver ici, pour mémoire interne.",
-    "image": "https://placehold.co/1600x900/1f1a14/8b8b8b/png?text=TEMP+N%C2%B03",
-    "imageAlt": "TEMP. Description sobre de l'illustration, à rédiger.",
-    "texte": "Édition de seed temporaire, à remplacer une fois l'illustration commandée et le texte rédigé. Ce paragraphe sert uniquement à occuper la place du futur texte court, entre quatre-vingts et cent cinquante mots, qui prolongera la thèse sans paraphraser l'image. Une fois la métaphore réelle prête, ce contenu sera retiré et un nouveau slug, un nouveau numéro, une nouvelle date, une nouvelle thèse et une nouvelle illustration prendront sa place. Aucune information utile n'est diffusée par cette entrée. Merci de votre patience.",
-    "artiste": "TEMP. Illustratrice à créditer.",
-    "date": "6 juin 2026",
-    "dateISO": "2026-06-06"
   }
 ]

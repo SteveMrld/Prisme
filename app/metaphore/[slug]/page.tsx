@@ -116,6 +116,8 @@ export default function MetaphorePage({ params }: { params: { slug: string } }) 
             </div>
           </footer>
 
+          {all.length > 1 && (
+          <>
           <nav className={styles.nav} aria-label="Navigation entre éditions">
             {older ? (
               <Link href={`/metaphore/${older.slug}`} className={`${styles.navLink} ${styles.navPrev}`}>
@@ -136,6 +138,8 @@ export default function MetaphorePage({ params }: { params: { slug: string } }) 
           <div className={styles.cta}>
             <Link href="/metaphore" className={styles.ctaBack}>← Toutes les métaphores</Link>
           </div>
+          </>
+          )}
         </article>
       </main>
     </>
