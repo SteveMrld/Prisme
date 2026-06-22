@@ -615,7 +615,9 @@ export default async function HomePage() {
           Met en avant la dernière édition : eyebrow, titre, thèse,
           illustration cliquable. Cohérent avec atlasSection / tvSection.
       ══════════════════════════════════════ */}
-      {METAPHORE_LATEST && (
+      {/* Rubrique La Métaphore du Samedi masquée temporairement, en attente de
+          la validation d'Allison. Réactiver en retirant le `false &&`. */}
+      {false && METAPHORE_LATEST && (
         <FadeSection>
         <section className={styles.metaphoreSection}>
           <div className={styles.metaphoreSectionHead}>
