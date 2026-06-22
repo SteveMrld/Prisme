@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import type { Interview } from '../lib/interviews'
-import { formatFrDate, isFutureDay } from '../lib/dates'
+import { isFutureDay } from '../lib/dates'
 import styles from './HomeInterviewBanner.module.css'
 
 // Rangée défilante des entretiens. Sur mobile, swipe natif. Sur desktop, la
@@ -117,7 +117,7 @@ export default function InterviewCarousel({ items }: { items: Interview[] }) {
           // Libellé concis pour tenir dans le coin bas-droit de la carte
           // sans empiéter sur le nom : « Le 29 juin 2026 » plutôt que
           // « Disponible le 29 juin 2026 ». « À venir » inchangé.
-          const comingLabel = dateFuture ? `Le ${formatFrDate(o.date)}` : 'À venir'
+          const comingLabel = 'À venir'
           return (
             <Link
               key={o.slug}

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import PictureImg from './PictureImg'
 import type { Interview } from '../lib/interviews'
-import { isFutureDay, formatFrDate } from '../lib/dates'
+import { isFutureDay } from '../lib/dates'
 import styles from './HomeInterviewBanner.module.css'
 
 /* Zone vedette entretiens : grands entretiens, max 2. Un entretien
@@ -26,9 +26,7 @@ export default function FeaturedInterviews({ items }: { items: Interview[] }) {
           : subject
         const dateFuture = isFutureDay(interview.date)
         const isComing = interview.interviewStatus === 'coming' || dateFuture
-        const comingLabel = dateFuture
-          ? `Disponible le ${formatFrDate(interview.date)}`
-          : 'À venir'
+        const comingLabel = 'À venir'
 
         return (
           <Link

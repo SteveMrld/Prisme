@@ -6,7 +6,7 @@ import Header from '../../../components/Header'
 import AudioPlayer from '../../../components/AudioPlayer'
 import { getAllInterviews, getInterview } from '../../../lib/interviews'
 import { categoryLabel } from '../../../lib/categories'
-import { isFutureDay, formatFrDate } from '../../../lib/dates'
+import { isFutureDay } from '../../../lib/dates'
 import styles from './entretien.module.css'
 
 const BASE_URL = 'https://soara.fr'
@@ -219,7 +219,7 @@ export default function EntretienPage({
           {isComing && (
             <div className={styles.coming}>
               <div className={styles.comingLabel}>
-                {isFutureDay(i.date) ? `Disponible le ${formatFrDate(i.date)}` : 'À venir'}
+                À venir
               </div>
               <p className={styles.comingDesc}>Inscrivez-vous pour être notifié à la parution.</p>
               <div className={styles.comingActions}>
