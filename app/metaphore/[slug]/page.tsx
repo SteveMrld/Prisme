@@ -70,11 +70,6 @@ export default function MetaphorePage({ params }: { params: { slug: string } }) 
       <main className={styles.main}>
         <article className={styles.article}>
 
-          {/* Illustration plein cadre 16:9 en tête, sans rognage agressif. */}
-          <figure className={styles.hero}>
-            <img src={m.image} alt={m.imageAlt} />
-          </figure>
-
           <header className={styles.head}>
             <div className={styles.metaTop}>
               <span className={styles.label}>La Métaphore du Samedi</span>
@@ -94,27 +89,31 @@ export default function MetaphorePage({ params }: { params: { slug: string } }) 
             )}
           </header>
 
-          <div className={styles.body}>
-            <p className={styles.texte}>{m.texte}</p>
-          </div>
-
-          <footer className={styles.foot}>
-            <div className={styles.creditRow}>
-              <img
-                src="/metaphore/allison-moradel.jpg"
-                alt="Portrait d'Allison Moradel"
-                className={styles.creditPortrait}
-              />
-              <p className={styles.credit}>
-                <span className={styles.creditLabel}>Illustration</span>
-                <span className={styles.creditName}>
+          {/* La métaphore est l'œuvre elle-même : planche centrée et légendée,
+              numérotée et signée, pour qu'on ne la prenne pas pour un bandeau. */}
+          <figure className={styles.plate}>
+            <img src={m.image} alt={m.imageAlt} />
+            <figcaption className={styles.plateCaption}>
+              <span className={styles.plateNum}>Métaphore N° {String(m.numero).padStart(2, '0')}</span>
+              <span className={styles.plateCredit}>
+                <img
+                  src="/metaphore/allison-moradel.jpg"
+                  alt="Portrait d'Allison Moradel"
+                  className={styles.platePortrait}
+                />
+                <span>
+                  Illustration ·{' '}
                   {m.artisteUrl ? (
                     <a href={m.artisteUrl} target="_blank" rel="noopener noreferrer">{m.artiste}</a>
                   ) : m.artiste}
                 </span>
-              </p>
-            </div>
-          </footer>
+              </span>
+            </figcaption>
+          </figure>
+
+          <div className={styles.body}>
+            <p className={styles.texte}>{m.texte}</p>
+          </div>
 
           {all.length > 1 && (
           <>
