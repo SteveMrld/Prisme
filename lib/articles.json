@@ -35,20 +35,20 @@
     "categoryLabel": "Géopolitique",
     "secondaryCategory": "",
     "secondaryCategoryLabel": "",
-    "date": "2026-06-15",
     "readTime": "30",
     "image": "/portraits/sephocle.jpg",
     "featured": false,
     "premium": false,
     "imageCredit": "© Soara",
     "interviewType": "grand",
-    "interviewStatus": "published",
+    "interviewStatus": "coming",
     "interviewIssue": 2,
     "interviewSubject": "Marilyn Séphocle",
     "interviewSubjectItalic": "Séphocle",
     "interviewRole": "Fondatrice de la Women Ambassadors Foundation · Présidente d’IDEAS Inc.",
     "interviewDeck": "Née en Martinique, docteure en études germaniques, elle enseigne à Howard depuis les années 1980 et a formé des générations de diplomates. Fondatrice de la Women Ambassadors Foundation, présidente d’IDEAS Inc., elle a connu les Clinton dès 1991 et eu Kamala Harris pour étudiante. Elle observe l’Amérique avec la lucidité de celle qui la connaît de l’intérieur depuis quarante-huit ans.",
-    "interviewQuote": "Nous sommes les héritiers d’une chaîne de survivances improbables."
+    "interviewQuote": "Nous sommes les héritiers d’une chaîne de survivances improbables.",
+    "featuredOnHome": false
   },
   {
     "slug": "descollonges",
@@ -82,14 +82,14 @@
     "author": "Steve Moradel",
     "authorRole": "Fondateur de Soara",
     "category": "soc",
-    "date": "2026-06-29",
+    "date": "2026-06-22",
     "readTime": "15",
     "image": "/portraits/bousardo.jpg",
     "featured": true,
     "imageCredit": "© Ordre des avocats de Paris",
     "titleEn": "Vanessa <em>Bousardo</em>",
     "interviewType": "grand",
-    "interviewStatus": "coming",
+    "interviewStatus": "published",
     "interviewIssue": 3,
     "interviewSubject": "Vanessa Bousardo",
     "interviewSubjectItalic": "Bousardo",
@@ -111,7 +111,8 @@
       "Défendre quelqu’un que tout le monde a déjà condamné, assister une victime dont personne ne veut entendre la parole. Qu’est-ce que vingt ans de prétoire font à quelqu’un intérieurement ?",
       "Vous dites que les femmes sont majoritaires dans la profession mais absentes là où les décisions se prennent. Est-ce un problème de génération qui se résoudra avec le temps, ou quelque chose de structurel qui résiste ?",
       "Dans quel monde voulez-vous plaider dans vingt ans ?"
-    ]
+    ],
+    "featuredOnHome": true
   },
   {
     "slug": "football-cage",
