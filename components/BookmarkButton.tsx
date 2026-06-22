@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import styles from './BookmarkButton.module.css'
 
-export default function BookmarkButton({ slug, title, iconOnly, image, description, readTime, categoryLabel }: { slug: string; title: string; iconOnly?: boolean; image?: string; description?: string; readTime?: string; categoryLabel?: string }) {
+export default function BookmarkButton({ slug, title, iconOnly, image, description, readTime, categoryLabel, route }: { slug: string; title: string; iconOnly?: boolean; image?: string; description?: string; readTime?: string; categoryLabel?: string; route?: string }) {
   const [saved, setSaved] = useState(false)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function BookmarkButton({ slug, title, iconOnly, image, descripti
       if (saved) {
         updated = bookmarks.filter((b: any) => b.slug !== slug)
       } else {
-        updated = [...bookmarks, { slug, title, savedAt: Date.now(), image: image || '', description: description || '', categoryLabel: categoryLabel || '', readTime: readTime || '' }]
+        updated = [...bookmarks, { slug, title, savedAt: Date.now(), image: image || '', description: description || '', categoryLabel: categoryLabel || '', readTime: readTime || '', route: route || '' }]
       }
       localStorage.setItem('soara_bookmarks', JSON.stringify(updated))
       setSaved(!saved)

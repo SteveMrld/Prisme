@@ -5,6 +5,7 @@ import path from 'path'
 import Header from '../../../components/Header'
 import AudioPlayer from '../../../components/AudioPlayer'
 import ShareButton from '../../../components/ShareButton'
+import BookmarkButton from '../../../components/BookmarkButton'
 import { getAllInterviews, getInterview } from '../../../lib/interviews'
 import { categoryLabel } from '../../../lib/categories'
 import { isFutureDay } from '../../../lib/dates'
@@ -200,10 +201,6 @@ export default function EntretienPage({
 
           {i.interviewRole && <div className={styles.role}>{i.interviewRole}</div>}
 
-          <div className="no-print" style={{ margin: '16px 0 4px' }}>
-            <ShareButton title={`${i.interviewSubject} · Soara`} />
-          </div>
-
           {!isComing && (
             <div className={styles.byline}>Propos recueillis par {interviewer}</div>
           )}
@@ -255,6 +252,20 @@ export default function EntretienPage({
           )}
         </div>
       </article>
+
+      {!isComing && (
+        <div className={`${styles.actionBar} no-print`}>
+          <button className={styles.actionBtn} title="Écouter">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/>
+              <path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+            </svg>
+          </button>
+          <ShareButton iconOnly className={styles.actionBtn} title={`${i.interviewSubject} · Soara`} />
+          <BookmarkButton slug={i.slug} title={i.interviewSubject} image={i.image} categoryLabel={catLabel} route={`/entretien/${i.slug}`} iconOnly />
+        </div>
+      )}
 
       {(() => {
         // Tous les autres entretiens, y compris à venir (cartes teaser).

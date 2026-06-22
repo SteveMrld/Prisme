@@ -564,3 +564,26 @@
   .body :global(p.interview-question) { font-size: 17px; }
   .body :global(p.interview-answer) { font-size: 16px; }
 }
+
+/* ── BARRE D'ACTION (écouter · partager · sauvegarder) — alignée sur les articles ── */
+.actionBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  max-width: 720px;
+  margin: 8px auto 8px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--bord, #e2dcd1);
+}
+.actionBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9BA4AE;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+.actionBtn:hover { color: var(--encre, #0A0A0A); }

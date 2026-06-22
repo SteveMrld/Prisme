@@ -14,6 +14,7 @@ type Bookmark = {
   description?: string
   categoryLabel?: string
   readTime?: string
+  route?: string
 }
 
 type Article = {
@@ -131,7 +132,7 @@ export default function LecturesClient() {
                 return (
                   <article key={b.slug} className={styles.card}>
                     <Link
-                      href={`/articles/${b.slug}`}
+                      href={b.route || `/articles/${b.slug}`}
                       className={styles.cardLink}
                       aria-label={`Lire : ${title.replace(/<[^>]+>/g, '')}`}
                     >
