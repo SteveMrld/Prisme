@@ -25,7 +25,7 @@
   max-width: 820px;
   padding: 28px 22px 4px;
 }
-.plate img {
+.plate > img {
   width: 100%;
   height: auto;
   display: block;
