@@ -28,7 +28,11 @@ export async function middleware(request: NextRequest) {
   const launchAt = process.env.LAUNCH_AT ? Date.parse(process.env.LAUNCH_AT) : NaN
   const beforeLaunch = Number.isNaN(launchAt) ? true : Date.now() < launchAt
 
-  if (process.env.MAINTENANCE_MODE === 'true' && isProd && beforeLaunch && !previewOk) {
+  // Site lancé le 22 juin 2026 à 12h22 : verrou de maintenance désactivé.
+  // Pour réactiver une maintenance ultérieurement, repasser LAUNCHED à false.
+  const LAUNCHED = true
+
+  if (!LAUNCHED && process.env.MAINTENANCE_MODE === 'true' && isProd && beforeLaunch && !previewOk) {
     const { pathname } = request.nextUrl
     const isStaticAsset = /\.(jpg|jpeg|png|gif|webp|avif|svg|ico|mp4|webm|woff|woff2|ttf|otf|css|js|json|txt|xml|pdf)$/i.test(pathname)
     const allowedApiPaths = new Set([
