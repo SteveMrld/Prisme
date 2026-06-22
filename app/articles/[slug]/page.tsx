@@ -43,7 +43,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const cleanTitle = article.title.replace(/<[^>]+>/g, '').replace(/\n/g, ' ').trim()
   const url = `${BASE_URL}/articles/${params.slug}`
-  const ogImage = article.image || `${BASE_URL}/og-default.jpg`
+  const ogCard = path.join(process.cwd(), 'public', 'og', `${params.slug}.jpg`)
+  let hasOgCard = false
+  try { hasOgCard = fs.existsSync(ogCard) } catch {}
+  const rawImg = article.image || '/og-default.jpg'
+  const ogImage = hasOgCard
+    ? `${BASE_URL}/og/${params.slug}.jpg`
+    : (rawImg.startsWith('http') ? rawImg : `${BASE_URL}${rawImg}`)
 
   // Présence d'une version EN, détectée par l'existence du fichier `<slug>-en.html`.
   // Sert à émettre hreflang fr/en/x-default. Le routage EN est ?lang=en.

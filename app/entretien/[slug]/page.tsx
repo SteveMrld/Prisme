@@ -27,7 +27,13 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   const subject = i.interviewSubject || i.title.replace(/<[^>]+>/g, '')
   const title = `${subject}, ${label}`
   const url = `${BASE_URL}/entretien/${i.slug}`
-  const ogImage = i.image || `${BASE_URL}/og-default.jpg`
+  const ogCard = path.join(process.cwd(), 'public', 'og', `${i.slug}.jpg`)
+  let hasOgCard = false
+  try { hasOgCard = fs.existsSync(ogCard) } catch {}
+  const rawImg = i.image || '/og-default.jpg'
+  const ogImage = hasOgCard
+    ? `${BASE_URL}/og/${i.slug}.jpg`
+    : (rawImg.startsWith('http') ? rawImg : `${BASE_URL}${rawImg}`)
 
   // Présence d'une version EN (fichier `<slug>-en.html`). Sert à émettre
   // hreflang fr/en/x-default. Routage EN : ?lang=en.
