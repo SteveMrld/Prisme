@@ -12,6 +12,7 @@ import PWARegister from '../components/PWARegister'
 import ArticleLinkPreview from '../components/ArticleLinkPreview'
 import PageTransition from '../components/PageTransition'
 import SubscribeBar from '../components/SubscribeBar'
+import AbonnementPopup from '../components/AbonnementPopup'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -168,6 +169,7 @@ export default function RootLayout({
         <div className="no-print"><Footer /></div>
         <div className="no-print"><BottomNav /></div>
         <SubscribeBar />
+        <AbonnementPopup />
         <PWARegister />
         <ArticleLinkPreview />
       </body>
