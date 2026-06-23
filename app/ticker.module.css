@@ -80,7 +80,7 @@
 
 .track {
   display: flex;
-  animation: tickerScroll 120s linear infinite;
+  animation: tickerScroll 220s linear infinite;
   white-space: nowrap;
   will-change: transform;
 }

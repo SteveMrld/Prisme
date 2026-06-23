@@ -2,6 +2,42 @@
   "date_maj": "2026-06-09",
   "breves": [
     {
+      "date": "23 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Royaume-Uni : Keir Starmer démissionne de son poste de Premier ministre",
+      "body": "Le Premier ministre britannique Keir Starmer a annoncé ce lundi sa démission, après des mois de chute dans les sondages et une implosion de son gouvernement travailliste.",
+      "tickerCat": "GÉO",
+      "tickerText": "Starmer démissionne — Royaume-Uni sans Premier ministre"
+    },
+    {
+      "date": "23 juin 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Canicule : la France connaît sa nuit la plus chaude depuis 1945",
+      "body": "La nuit du 22 au 23 juin 2026 est la plus chaude jamais enregistrée en France depuis au moins 1945. Des températures dépassant 40 degrés sont relevées dans plusieurs villes, dont 43°C à Nantes. La canicule devrait se prolonger plusieurs jours.",
+      "tickerCat": "ENV",
+      "tickerText": "Canicule record — nuit la plus chaude en France depuis 1945"
+    },
+    {
+      "date": "23 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Iran/États-Unis : les négociations à Genève marquent le pas",
+      "body": "Les pourparlers entre l'Iran et les États-Unis se poursuivent en Suisse mais avancent en demi-teintes. Le trafic maritime dans le détroit d'Ormuz atteint un niveau record depuis le début du conflit, signe que la pression commerciale pousse vers un accord.",
+      "tickerCat": "GÉO",
+      "tickerText": "Iran/US — négociations en demi-teintes à Genève"
+    },
+    {
+      "date": "23 juin 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Coupe du monde 2026 : France décisive contre la Norvège, Angleterre-Ghana ce soir",
+      "body": "Les Bleus jouent leur qualification ce soir contre la Norvège. Angleterre et Ghana s'affrontent à Boston à 22h pour la tête du groupe L.",
+      "tickerCat": "SPORT",
+      "tickerText": "Mondial 2026 — France-Norvège ce soir, qualification en jeu"
+    },
+    {
       "date": "22 juin 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
