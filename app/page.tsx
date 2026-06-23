@@ -466,7 +466,7 @@ export default async function HomePage() {
         <Link href={GF_LEAD.grandFormatUrl || `/articles/${GF_LEAD.slug}`} className={styles.gfLead}>
           {GF_LEAD.image && (
             <div className={styles.gfLeadImg}>
-              <img src={GF_LEAD.image} alt={GF_LEAD.title} />
+              <img src={GF_LEAD.image} alt={GF_LEAD.title} loading="lazy" />
             </div>
           )}
           <div className={styles.gfLeadBody}>
@@ -490,7 +490,7 @@ export default async function HomePage() {
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfSecondary} data-cat={a.category}>
               {a.image && (
                 <div className={styles.gfSecondaryImg}>
-                  <img src={a.image} alt={a.title} />
+                  <img src={a.image} alt={a.title} loading="lazy" />
                 </div>
               )}
               <div className={styles.gfSecondaryBody}>
@@ -515,7 +515,7 @@ export default async function HomePage() {
             <Link key={a.slug} href={a.grandFormatUrl || `/articles/${a.slug}`} className={styles.gfFeature} data-cat={a.category}>
               {a.image && (
                 <div className={styles.gfFeatureImg}>
-                  <img src={a.image} alt={a.title} />
+                  <img src={a.image} alt={a.title} loading="lazy" />
                 </div>
               )}
               <div className={styles.gfFeatureBody}>
@@ -574,7 +574,7 @@ export default async function HomePage() {
             return (
               <Link href={featured.href} className={styles.tvFeatured}>
                 <div className={styles.tvFeaturedImg}>
-                  <img src={featured.thumb} alt={featured.title} />
+                  <img src={featured.thumb} alt={featured.title} loading="lazy" />
                   <div className={styles.tvFeaturedPlay}>
                     <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
                       <circle cx="28" cy="28" r="27" stroke="rgba(255,255,255,.6)" strokeWidth="1.5"/>
@@ -595,7 +595,7 @@ export default async function HomePage() {
               <li key={ep.id}>
                 <Link href={ep.href} className={styles.tvSideItem}>
                   <div className={styles.tvSideThumb}>
-                    <img src={ep.thumb} alt={ep.title} />
+                    <img src={ep.thumb} alt={ep.title} loading="lazy" />
                   </div>
                   <div className={styles.tvSideBody}>
                     <span className={styles.tvSideNum}>Ép. {ep.id}</span>
@@ -690,7 +690,7 @@ export default async function HomePage() {
                 <h3 className={styles.rowTitle}><SBadge /><span dangerouslySetInnerHTML={{__html: a.title}} /></h3>
                 <span style={{display:'inline-flex',alignItems:'center'}}><ReadTime t={a.readTime || '7'} />{EN_SLUGS.has(a.slug) && <EnBadge />}</span>
               </div>
-              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} />}
+              {a.image && <img src={a.image} alt={a.title} className={styles.rowThumb} loading="lazy" />}
             </Link>
           ))}
         </div>
