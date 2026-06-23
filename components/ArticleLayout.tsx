@@ -8,6 +8,7 @@ import NewsletterForm from './NewsletterForm'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 import { formatReadTime } from '../lib/format'
+import { authorLink } from '../lib/authorLinks'
 
 interface ArticleLayoutProps {
   title: string
@@ -76,19 +77,8 @@ function portraitUrl(name: string): string | null {
 }
 
 // Lien d'auteur (site perso ou page Wikipédia) affiché dans le bloc
-// signature de fin d'article, avec picto. Clés strictement identiques
-// à portraitUrl (accents compris) pour qu'aucun mismatch silencieux.
-function authorLink(name: string): { url: string; type: 'website' | 'wikipedia' } | null {
-  const map: Record<string, { url: string; type: 'website' | 'wikipedia' }> = {
-    'Majda Vincent':    { url: 'https://majdavincent.com/',                       type: 'website' },
-    'Steve Moradel':    { url: 'https://stevemoradel.com/',                       type: 'website' },
-    'Abad Boumsong':    { url: 'https://leprincedespoetes.fr/',                   type: 'website' },
-    'Jade Desroses':    { url: 'https://lespagesdejade.com/',                     type: 'website' },
-    'Agathe Cagé':      { url: 'https://fr.wikipedia.org/wiki/Agathe_Cagé',       type: 'wikipedia' },
-    'Élisabeth Moreno': { url: 'https://fr.wikipedia.org/wiki/Élisabeth_Moreno',  type: 'wikipedia' },
-  }
-  return map[name] || null
-}
+// signature de fin d'article. Carte centralisée dans lib/authorLinks
+// (même source que le sameAs des données structurées).
 
 const WebsiteIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">

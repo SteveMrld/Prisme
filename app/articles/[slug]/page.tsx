@@ -4,6 +4,7 @@ import GrandFormatLayout from '../../../components/GrandFormatLayout'
 import EauScrollytellingLayout from '../../../components/EauScrollytellingLayout'
 import AdSlot from '../../../components/AdSlot'
 import articlesData from '../../../lib/articles.json'
+import { authorLink } from '../../../lib/authorLinks'
 import { createClient } from '../../../lib/supabase-server'
 import fs from 'fs'
 import path from 'path'
@@ -117,6 +118,8 @@ function buildArticleJsonLd(article: any, slug: string) {
   const author = article.author || 'Steve Moradel'
   const authorEntry: Record<string, any> = { '@type': 'Person', name: author }
   if (article.authorRole) authorEntry.jobTitle = article.authorRole
+  const aLink = authorLink(author)
+  if (aLink) { authorEntry.url = aLink.url; authorEntry.sameAs = [aLink.url] }
   const datePublished = toIsoDateTime(article.date)
   const dateModified = toIsoDateTime(article.dateModified || article.date)
   return {
@@ -135,6 +138,33 @@ function buildArticleJsonLd(article: any, slug: string) {
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   }
+}
+
+// URL publique d'une catégorie à partir de sa clé articles.json. Seul
+// le cas "portrait" diffère (route /portraits au pluriel).
+function categoryUrlSlug(key: string): string {
+  return key === 'portrait' ? 'portraits' : key
+}
+
+// Fil d'Ariane structuré : Accueil > Catégorie > Article. Aide Google à
+// comprendre l'arborescence et autorise l'affichage du chemin en SERP.
+function buildBreadcrumbJsonLd(article: any, slug: string) {
+  const url = `${BASE_URL}/articles/${slug}`
+  const cleanTitle = String(article.title || '').replace(/<[^>]+>/g, '').replace(/\n/g, ' ').trim()
+  const items: any[] = [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: BASE_URL },
+  ]
+  const catLabel = categoryLabels[article.category]
+  if (catLabel) {
+    items.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: catLabel,
+      item: `${BASE_URL}/${categoryUrlSlug(article.category)}`,
+    })
+  }
+  items.push({ '@type': 'ListItem', position: items.length + 1, name: cleanTitle, item: url })
+  return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items }
 }
 
 export default async function ArticlePage({ params, searchParams }: { params: { slug: string }, searchParams?: { lang?: string } }) {
@@ -232,10 +262,11 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
   }
 
   const articleJsonLd = buildArticleJsonLd(article, params.slug)
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(article, params.slug)
   const jsonLdScript = (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify([articleJsonLd, breadcrumbJsonLd]) }}
     />
   )
 

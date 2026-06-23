@@ -8,6 +8,7 @@ import ShareButton from '../../../components/ShareButton'
 import BookmarkButton from '../../../components/BookmarkButton'
 import { getAllInterviews, getInterview } from '../../../lib/interviews'
 import { categoryLabel } from '../../../lib/categories'
+import { authorLink } from '../../../lib/authorLinks'
 import { isFutureDay } from '../../../lib/dates'
 import styles from './entretien.module.css'
 
@@ -92,6 +93,8 @@ function buildInterviewJsonLd(i: ReturnType<typeof getInterview>, slug: string) 
   const author = i.author || 'Steve Moradel'
   const authorEntry: Record<string, any> = { '@type': 'Person', name: author }
   if (i.authorRole) authorEntry.jobTitle = i.authorRole
+  const aLink = authorLink(author)
+  if (aLink) { authorEntry.url = aLink.url; authorEntry.sameAs = [aLink.url] }
   const datePublished = toIsoDateTime(i.date)
   const dateModified = toIsoDateTime((i as any).dateModified || i.date)
   return {
@@ -110,6 +113,34 @@ function buildInterviewJsonLd(i: ReturnType<typeof getInterview>, slug: string) 
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   }
+}
+
+// URL publique d'une catégorie à partir de sa clé (route /portraits au pluriel).
+function entretienCategoryUrlSlug(key: string): string {
+  return key === 'portrait' ? 'portraits' : key
+}
+
+// Fil d'Ariane structuré : Accueil > Catégorie > Entretien.
+function buildInterviewBreadcrumbJsonLd(i: ReturnType<typeof getInterview>, slug: string) {
+  if (!i) return null
+  const label = i.interviewType === 'grand' ? 'Le Grand Entretien' : 'Interview'
+  const subject = i.interviewSubject || i.title.replace(/<[^>]+>/g, '')
+  const headline = `${subject}, ${label}`
+  const url = `${BASE_URL}/entretien/${slug}`
+  const items: any[] = [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: BASE_URL },
+  ]
+  const catLabel = i.category ? categoryLabel(i.category, (i as any).categoryLabel) : null
+  if (catLabel && i.category) {
+    items.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: catLabel,
+      item: `${BASE_URL}/${entretienCategoryUrlSlug(i.category)}`,
+    })
+  }
+  items.push({ '@type': 'ListItem', position: items.length + 1, name: headline, item: url })
+  return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items }
 }
 
 function renderSubjectName(i: ReturnType<typeof getInterview>) {
@@ -164,13 +195,14 @@ export default function EntretienPage({
   const displayTitle = lang === 'en' && i.titleEn ? i.titleEn : i.title
   const displayDeck = i.interviewDeck
   const interviewJsonLd = buildInterviewJsonLd(i, params.slug)
+  const breadcrumbJsonLd = buildInterviewBreadcrumbJsonLd(i, params.slug)
 
   return (
     <>
       {interviewJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(interviewJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([interviewJsonLd, breadcrumbJsonLd].filter(Boolean)) }}
         />
       )}
       <Header />
