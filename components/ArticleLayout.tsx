@@ -335,7 +335,7 @@ export default function ArticleLayout({
             (photo plus grande, paragraphe bio sous le rôle) */}
         <div className={`${styles.authorSignature}${isContributor ? ' ' + styles.authorSignatureContributor : ''}`}>
           {portraitUrl(author)
-            ? <img src={portraitUrl(author)!} alt={author} className={styles.authorSigAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
+            ? <img src={portraitUrl(author)!} alt={author} loading="lazy" decoding="async" className={styles.authorSigAvatar} style={{objectFit:'cover',objectPosition:'top center'}} />
             : <div className={styles.authorSigAvatar}>{initials(author)}</div>
           }
           <div className={styles.authorSigBody}>
@@ -375,7 +375,7 @@ export default function ArticleLayout({
           <div className={styles.sidebarTitle}>À lire aussi</div>
           {related.map((a: any) => (
             <a key={a.slug} href={`/articles/${a.slug}`} className={styles.sidebarItem}>
-              {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} className={styles.sidebarThumb} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />}
+              {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} loading="lazy" decoding="async" className={styles.sidebarThumb} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />}
               <div>
                 <div className={styles.sidebarCat}>{a.categoryLabel || a.category?.toUpperCase()}</div>
                 <div className={styles.sidebarItemTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
@@ -411,7 +411,7 @@ export default function ArticleLayout({
                 <a key={a.slug} href={`/articles/${a.slug}`} style={{display:'flex',alignItems:'center',gap:'16px',padding:'14px 0',borderBottom:'1px solid #eee',textDecoration:'none',color:'inherit'}}>
                   {a.image && (
                     <div style={{width:'72px',height:'72px',flexShrink:0,borderRadius:'4px',overflow:'hidden',background:'#f5f5f5'}}>
-                      <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} style={{width:'100%',height:'100%',objectFit:'contain',objectPosition:'center top',display:'block'}} />
+                      <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'contain',objectPosition:'center top',display:'block'}} />
                     </div>
                   )}
                   <div style={{flex:1,minWidth:0}}>
@@ -427,7 +427,7 @@ export default function ArticleLayout({
               <a key={a.slug} href={`/articles/${a.slug}`} className={styles.relatedCard}>
                 {a.image && (
                   <div className={styles.relatedImgWrap}>
-                    <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} className={styles.relatedImg} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />
+                    <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} loading="lazy" decoding="async" className={styles.relatedImg} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />
                     <div className={styles.relatedImgOverlay} />
                   </div>
                 )}

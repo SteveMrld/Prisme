@@ -346,7 +346,7 @@ export default function GrandFormatLayout({
           <div className={styles.sidebarTitle}>À lire aussi</div>
           {related.map((a: any) => (
             <a key={a.slug} href={a.customRoute || `/articles/${a.slug}`} className={styles.sidebarItem}>
-              {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} className={styles.sidebarThumb} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />}
+              {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} loading="lazy" decoding="async" className={styles.sidebarThumb} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />}
               <div>
                 <div className={styles.sidebarCat}>{(a.categoryLabel || CAT_LABELS[a.category as string] || a.category || '').toUpperCase()}</div>
                 <div className={styles.sidebarItemTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
@@ -371,7 +371,7 @@ export default function GrandFormatLayout({
           <div className={styles.relatedGrid}>
             {related.map((a: any) => (
               <a key={a.slug} href={a.customRoute || `/articles/${a.slug}`} className={styles.relatedCard}>
-                {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} className={styles.relatedThumb} style={a.imagePosition ? {objectPosition: a.imagePosition} : undefined} />}
+                {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g,'')} loading="lazy" decoding="async" className={styles.relatedThumb} style={a.imagePosition ? {objectPosition: a.imagePosition} : undefined} />}
                 <div className={styles.relatedCat}>{(a.categoryLabel || CAT_LABELS[a.category as string] || a.category || '').toUpperCase()}</div>
                 <div className={styles.relatedTitle}>{a.title.replace(/<[^>]+>/g, '')}</div>
                 <span className={styles.relatedCta}>Lire l'analyse →</span>
