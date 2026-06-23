@@ -1,5 +1,16 @@
 [
   {
+    "slug": "le-regne-des-semblables",
+    "numero": 5,
+    "title": "Le règne des semblables",
+    "date": "23 juin 2026",
+    "dateISO": "2026-06-23",
+    "teaser": "Sur Robert McNamara et le principe de Peter, et ce qu'une sélection silencieuse révèle d'un pouvoir qui préfère paraître compétent à l'être.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "le-regne-des-semblables"
+  },
+  {
     "slug": "ce-que-letat-doit-a-un-enfant",
     "numero": 4,
     "title": "Ce que l'État doit à un enfant",
