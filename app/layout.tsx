@@ -11,6 +11,7 @@ import Footer from '../components/Footer'
 import PWARegister from '../components/PWARegister'
 import ArticleLinkPreview from '../components/ArticleLinkPreview'
 import PageTransition from '../components/PageTransition'
+import SubscribeBar from '../components/SubscribeBar'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
@@ -166,6 +167,7 @@ export default function RootLayout({
         <PageTransition>{children}</PageTransition>
         <div className="no-print"><Footer /></div>
         <div className="no-print"><BottomNav /></div>
+        <SubscribeBar />
         <PWARegister />
         <ArticleLinkPreview />
       </body>
