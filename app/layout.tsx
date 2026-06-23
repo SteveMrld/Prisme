@@ -34,6 +34,17 @@ const ORGANIZATION_JSON_LD = {
   logo: `${BASE_URL}/icon-512.png`,
 }
 
+// JSON-LD WebSite, niveau site. Aide Google à rattacher toutes les pages à
+// une même entité « site » et à en connaître la langue et l'éditeur.
+const WEBSITE_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Soara',
+  url: BASE_URL,
+  inLanguage: 'fr-FR',
+  publisher: { '@type': 'Organization', name: 'Soara', url: BASE_URL },
+}
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -107,6 +118,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: BASE_URL,
+    types: {
+      'application/rss+xml': `${BASE_URL}/rss`,
+    },
   },
 }
 
@@ -145,7 +159,7 @@ export default function RootLayout({
         </Script>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([ORGANIZATION_JSON_LD, WEBSITE_JSON_LD]) }}
         />
       </head>
       <body>
