@@ -5,6 +5,7 @@ import ShareButton from './ShareButton'
 import BackButton from './BackButton'
 import Header from './Header'
 import NewsletterForm from './NewsletterForm'
+import AbonnementCard from './AbonnementCard'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 import { formatReadTime } from '../lib/format'
@@ -369,10 +370,11 @@ export default function ArticleLayout({
 
       </div>{/* articleMainCol */}
 
-      {/* ── SIDEBAR DROITE — articles liés (desktop uniquement) ── */}
-      {related.length > 0 && (
+      {/* ── SIDEBAR DROITE — abonnement + articles liés (desktop uniquement) ── */}
+      {(!isPremiumContent || related.length > 0) && (
         <div className={`${styles.articleSidebar} no-print`}>
-          <div className={styles.sidebarTitle}>À lire aussi</div>
+          {!isPremiumContent && <AbonnementCard />}
+          {related.length > 0 && <div className={styles.sidebarTitle}>À lire aussi</div>}
           {related.map((a: any) => (
             <a key={a.slug} href={`/articles/${a.slug}`} className={styles.sidebarItem}>
               {a.image && <img src={a.image} alt={a.title.replace(/<[^>]+>/g, '')} loading="lazy" decoding="async" className={styles.sidebarThumb} style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined} />}
