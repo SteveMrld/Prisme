@@ -1,5 +1,5 @@
 {
-  "date_maj": "2026-06-09",
+  "date_maj": "2026-06-24",
   "breves": [
     {
       "date": "23 juin 2026",
@@ -8,7 +8,7 @@
       "headline": "Royaume-Uni : Keir Starmer démissionne de son poste de Premier ministre",
       "body": "Le Premier ministre britannique Keir Starmer a annoncé ce lundi sa démission, après des mois de chute dans les sondages et une implosion de son gouvernement travailliste.",
       "tickerCat": "GÉO",
-      "tickerText": "Starmer démissionne — Royaume-Uni sans Premier ministre"
+      "tickerText": "Starmer démissionne, le Royaume-Uni sans Premier ministre"
     },
     {
       "date": "23 juin 2026",
@@ -17,7 +17,7 @@
       "headline": "Canicule : la France connaît sa nuit la plus chaude depuis 1945",
       "body": "La nuit du 22 au 23 juin 2026 est la plus chaude jamais enregistrée en France depuis au moins 1945. Des températures dépassant 40 degrés sont relevées dans plusieurs villes, dont 43°C à Nantes. La canicule devrait se prolonger plusieurs jours.",
       "tickerCat": "ENV",
-      "tickerText": "Canicule record — nuit la plus chaude en France depuis 1945"
+      "tickerText": "Canicule record, nuit la plus chaude en France depuis 1945"
     },
     {
       "date": "23 juin 2026",
@@ -26,16 +26,16 @@
       "headline": "Iran/États-Unis : les négociations à Genève marquent le pas",
       "body": "Les pourparlers entre l'Iran et les États-Unis se poursuivent en Suisse mais avancent en demi-teintes. Le trafic maritime dans le détroit d'Ormuz atteint un niveau record depuis le début du conflit, signe que la pression commerciale pousse vers un accord.",
       "tickerCat": "GÉO",
-      "tickerText": "Iran/US — négociations en demi-teintes à Genève"
+      "tickerText": "Iran/US : négociations en demi-teintes à Genève"
     },
     {
-      "date": "23 juin 2026",
+      "date": "26 juin 2026",
       "cat": "Société",
       "catColor": "var(--soc)",
-      "headline": "Coupe du monde 2026 : France décisive contre la Norvège, Angleterre-Ghana ce soir",
-      "body": "Les Bleus jouent leur qualification ce soir contre la Norvège. Angleterre et Ghana s'affrontent à Boston à 22h pour la tête du groupe L.",
+      "headline": "Coupe du monde 2026 : Norvège-France, la première place du groupe I en jeu",
+      "body": "Déjà qualifiés pour les seizièmes de finale, les Bleus affrontent la Norvège ce vendredi 26 juin à Boston, à 21h heure de Paris, pour la tête du groupe I. Les deux sélections comptent six points après deux journées. La veille, l'Angleterre et le Ghana se sont neutralisés 0-0 dans le groupe L.",
       "tickerCat": "SPORT",
-      "tickerText": "Mondial 2026 — France-Norvège ce soir, qualification en jeu"
+      "tickerText": "Mondial 2026 : Norvège-France vendredi, première place du groupe I en jeu"
     },
     {
       "date": "22 juin 2026",
@@ -53,7 +53,7 @@
       "headline": "Pétrole : le Brent retombe à 78,78 dollars après la réouverture partielle d'Ormuz",
       "body": "Le Brent recule de 1,59% ce lundi à 78,78 dollars le baril, après avoir dépassé 94 dollars début juin lors du pic de tension autour du détroit d'Ormuz. La réouverture partielle de la voie maritime et les espoirs d'un accord Iran/US pèsent sur les cours, en baisse de plus de 21% sur un mois.",
       "tickerCat": "ÉCO",
-      "tickerText": "Brent 78,78 $ — baisse de 21% en un mois"
+      "tickerText": "Brent 78,78 $, baisse de 21% en un mois"
     },
     {
       "date": "19 juin 2026",
@@ -62,7 +62,7 @@
       "headline": "Or : rebond de 240 dollars en quelques séances après une correction de 22%",
       "body": "Après avoir atteint un record historique de 5 589 dollars l'once le 29 janvier 2026, l'or avait corrigé de 22% jusqu'à 4 120 dollars. Le métal jaune rebondit à 4 186 dollars ce lundi, porté par des achats des banques centrales et l'incertitude persistante autour des négociations Iran/US.",
       "tickerCat": "ÉCO",
-      "tickerText": "Or 4 186 $ — rebond après correction"
+      "tickerText": "Or 4 186 $, rebond après correction"
     },
     {
       "date": "12 juin 2026",
@@ -71,7 +71,7 @@
       "headline": "SpaceX entre au Nasdaq : la plus grande introduction en bourse de l'histoire",
       "body": "Le 12 juin, SpaceX fait son entrée au Nasdaq sous le sigle SPCX. L'action ouvre à 150 dollars, clôture à 160,95 dollars (+19%), portant la valorisation de l'entreprise à 2 100 milliards de dollars. C'est la plus grande introduction en bourse de l'histoire, devant Saudi Aramco en 2019. Elon Musk conserve les actions de catégorie B à dix voix contre une.",
       "tickerCat": "TECH",
-      "tickerText": "SpaceX SPCX +19% le premier jour — 2 100 Md$"
+      "tickerText": "SpaceX SPCX +19% le premier jour, 2 100 Md$"
     },
     {
       "date": "5 juin 2026",
