@@ -1,17 +1,9 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="#0A0A0A"/>
-  <rect x="0" y="0" width="1200" height="4" fill="#C4A265"/>
-  
-  <!-- Logo -->
-  <text x="600" y="260" font-family="Georgia, serif" font-size="96" font-weight="700" fill="#ECE7DD" text-anchor="middle" letter-spacing="-3">Con</text>
-  <text x="600" y="260" font-family="Georgia, serif" font-size="96" font-weight="300" font-style="italic" fill="#C4A265" text-anchor="middle" letter-spacing="-3" dx="132">fins</text>
-
-  <!-- Ligne dorée -->
-  <rect x="480" y="300" width="240" height="1" fill="#C4A265" opacity="0.5"/>
-  
-  <!-- Tagline -->
-  <text x="600" y="350" font-family="Georgia, serif" font-size="22" font-style="italic" fill="#ECE7DD" text-anchor="middle" opacity="0.6">Voir autrement</text>
-  
-  <!-- Description -->
-  <text x="600" y="410" font-family="Arial, sans-serif" font-size="14" fill="#ECE7DD" text-anchor="middle" opacity="0.35" letter-spacing="3">GÉOPOLITIQUE · ÉCONOMIE · TECHNOLOGIE · SOCIÉTÉ</text>
+  <rect x="0" y="0" width="1200" height="4" fill="#C9A84C"/>
+  <text x="600" y="300" font-family="Georgia, 'DejaVu Serif', serif" font-size="120" font-weight="700" fill="#ECE7DD" text-anchor="middle" letter-spacing="-2">So<tspan font-style="italic" font-weight="400" fill="#C9A84C">ara</tspan></text>
+  <rect x="500" y="350" width="200" height="1" fill="#C9A84C" opacity="0.6"/>
+  <text x="600" y="408" font-family="Georgia, 'DejaVu Serif', serif" font-size="27" font-style="italic" fill="#ECE7DD" text-anchor="middle" opacity="0.8">Comprendre le monde. Éclairer l'avenir.</text>
+  <text x="600" y="470" font-family="Arial, 'DejaVu Sans', sans-serif" font-size="15" fill="#ECE7DD" text-anchor="middle" opacity="0.4" letter-spacing="4">GÉOPOLITIQUE · ÉCONOMIE · TECHNOLOGIE · SOCIÉTÉ · CULTURE</text>
+  <text x="600" y="558" font-family="Arial, 'DejaVu Sans', sans-serif" font-size="15" fill="#C9A84C" text-anchor="middle" opacity="0.75" letter-spacing="3">soara.fr</text>
 </svg>
