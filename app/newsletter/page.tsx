@@ -15,6 +15,13 @@ export const metadata = {
     description: 'Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.',
     siteName: 'Soara',
     locale: 'fr_FR',
+    images: [{ url: '/og-soara.jpg', width: 1200, height: 630, alt: 'Soara' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'La newsletter de Soara',
+    description: 'Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.',
+    images: ['/og-soara.jpg'],
   },
 }
 
