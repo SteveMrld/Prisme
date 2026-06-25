@@ -1,6 +1,33 @@
 {
-  "date_maj": "2026-06-24",
+  "date_maj": "2026-06-25",
   "breves": [
+    {
+      "date": "25 juin 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Canicule : alerte rouge sur un large couloir central et l'ouest du pays",
+      "body": "La vague de chaleur s'installe dans la durée. Météo-France maintient une vigilance rouge sur un large couloir central et l'ouest du pays, avec jusqu'à 40 degrés attendus à Moulins et 37 à Strasbourg. Le président du GIEC prévient que l'Europe connaîtra inévitablement des épisodes de chaleur extrême de plus en plus fréquents.",
+      "tickerCat": "Climat",
+      "tickerText": "Canicule : alerte rouge sur un large couloir central et l'ouest, jusqu'à 40°C"
+    },
+    {
+      "date": "24 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "La Corée du Nord annonce équiper sa marine d'armes nucléaires",
+      "body": "Lors de la mise en service du destroyer Choe Hyon à Nampo, Kim Jong-un a affirmé que la Corée du Nord équipe désormais sa marine d'armes nucléaires. Pyongyang annonce vouloir lancer des navires de guerre de 10 000 tonnes, marquant l'ambition d'une flotte capable de dépasser la simple défense de ses côtes.",
+      "tickerCat": "Corée du Nord",
+      "tickerText": "Pyongyang dit équiper sa marine d'armes nucléaires, navires de 10 000 tonnes annoncés"
+    },
+    {
+      "date": "24 juin 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Ebola : premier cas diagnostiqué sur le sol français",
+      "body": "Le ministère de la Santé a confirmé le premier cas de maladie à virus Ebola jamais diagnostiqué en France, chez un médecin humanitaire de l'ONG Alima de retour de République démocratique du Congo. Le patient, à la charge virale très faible, a été isolé dès son arrivée. Cinq passagers de son vol sont suivis comme cas contacts.",
+      "tickerCat": "Santé",
+      "tickerText": "Ebola : premier cas diagnostiqué en France, un médecin de retour de RDC isolé"
+    },
     {
       "date": "23 juin 2026",
       "cat": "Géopolitique",
