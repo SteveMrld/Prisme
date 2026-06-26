@@ -1,14 +1,23 @@
 {
-  "date_maj": "2026-06-25",
+  "date_maj": "2026-06-26",
   "breves": [
     {
-      "date": "25 juin 2026",
+      "date": "26 juin 2026",
       "cat": "Environnement",
       "catColor": "var(--env)",
-      "headline": "Canicule : alerte rouge sur un large couloir central et l'ouest du pays",
-      "body": "La vague de chaleur s'installe dans la durée. Météo-France maintient une vigilance rouge sur un large couloir central et l'ouest du pays, avec jusqu'à 40 degrés attendus à Moulins et 37 à Strasbourg. Le président du GIEC prévient que l'Europe connaîtra inévitablement des épisodes de chaleur extrême de plus en plus fréquents.",
+      "headline": "Canicule : vigilance rouge maintenue sur la moitié nord, premier répit par l'ouest",
+      "body": "La canicule se prolonge au lendemain de l'une des journées les plus chaudes jamais mesurées en France. Météo-France maintient une vigilance rouge sur la moitié nord du pays, avec des pointes jusqu'à 42 degrés dans le centre. Une première baisse des températures s'amorce le long de la façade atlantique, tandis qu'un épisode de pollution à l'ozone touche l'Île-de-France.",
       "tickerCat": "Climat",
-      "tickerText": "Canicule : alerte rouge sur un large couloir central et l'ouest, jusqu'à 40°C"
+      "tickerText": "Canicule : vigilance rouge maintenue sur la moitié nord, jusqu'à 42°C dans le centre"
+    },
+    {
+      "date": "26 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Détroit d'Ormuz : un navire de commerce frappé, le bras de fer sur les péages persiste",
+      "body": "Un cargo a été frappé jeudi soir près des côtes omanaises, peu après avoir traversé le détroit d'Ormuz, sans faire de blessé. Un responsable américain attribue le tir aux Gardiens de la révolution iraniens. L'incident fragilise le mémorandum conclu la semaine passée entre Washington et Téhéran, alors que l'Iran n'écarte pas de prélever des droits de passage à l'issue de la trêve, ce que les États-Unis et Oman jugent contraire au droit maritime.",
+      "tickerCat": "Ormuz",
+      "tickerText": "Ormuz : un cargo frappé près d'Oman, le différend sur les droits de passage persiste"
     },
     {
       "date": "24 juin 2026",
@@ -60,9 +69,9 @@
       "cat": "Société",
       "catColor": "var(--soc)",
       "headline": "Coupe du monde 2026 : Norvège-France, la première place du groupe I en jeu",
-      "body": "Déjà qualifiés pour les seizièmes de finale, les Bleus affrontent la Norvège ce vendredi 26 juin à Boston, à 21h heure de Paris, pour la tête du groupe I. Les deux sélections comptent six points après deux journées. La veille, l'Angleterre et le Ghana se sont neutralisés 0-0 dans le groupe L.",
+      "body": "Déjà qualifiés pour les seizièmes de finale, les Bleus affrontent la Norvège ce soir à Boston, à 21h heure de Paris, pour la première place du groupe I. Les deux sélections comptent six points après deux journées, la France devançant la Norvège à la différence de buts.",
       "tickerCat": "SPORT",
-      "tickerText": "Mondial 2026 : Norvège-France vendredi, première place du groupe I en jeu"
+      "tickerText": "Mondial 2026 : Norvège-France ce soir, première place du groupe I en jeu"
     },
     {
       "date": "22 juin 2026",
