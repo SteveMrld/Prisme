@@ -24,16 +24,21 @@ const sourceSerif = Source_Serif_4({
 
 const BASE_URL = 'https://soara.fr'
 
-// JSON-LD Organization, niveau site. sameAs (réseaux sociaux) volontairement
-// absent pour l'instant : on ajoutera les comptes X et LinkedIn quand ils
-// existeront. Le logo pointe sur l'icône 512 (favicon SVG non utilisé par
-// Schema.org qui veut un raster).
+// JSON-LD Organization, niveau site. sameAs liste les comptes sociaux
+// officiels pour aider Google à relier la marque à ses profils. Le logo pointe
+// sur l'icône 512 (favicon SVG non utilisé par Schema.org qui veut un raster).
 const ORGANIZATION_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Soara',
   url: BASE_URL,
   logo: `${BASE_URL}/icon-512.png`,
+  sameAs: [
+    'https://x.com/soaramedia',
+    'https://www.linkedin.com/company/soaramedia/',
+    'https://www.instagram.com/soara_media',
+    'https://www.tiktok.com/@soara.media',
+  ],
 }
 
 // JSON-LD WebSite, niveau site. Aide Google à rattacher toutes les pages à

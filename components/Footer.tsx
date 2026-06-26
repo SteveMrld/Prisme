@@ -103,6 +103,14 @@ export default function Footer() {
             >
               Instagram
             </a>
+            <a
+              href="https://www.tiktok.com/@soara.media"
+              className={styles.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TikTok
+            </a>
           </div>
         </div>
 
