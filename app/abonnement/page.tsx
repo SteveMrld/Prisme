@@ -7,6 +7,7 @@ export const metadata = {
   title: 'S\'abonner',
   description: 'Accédez à l\'intégralité des analyses Soara.',
   alternates: { canonical: 'https://soara.fr/abonnement' },
+  robots: { index: false, follow: true },
 }
 
 export default function AbonnementPage({

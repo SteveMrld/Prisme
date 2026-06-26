@@ -7,6 +7,7 @@ import AdSlot from '../../components/AdSlot'
 
 export const metadata = {
   title: 'Mon compte · Soara',
+  robots: { index: false, follow: true },
 }
 
 export default async function ComptePage({
