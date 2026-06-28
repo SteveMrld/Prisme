@@ -3,6 +3,7 @@ import GrandFormatLayout from "../../../components/GrandFormatLayout"
 import CycleClimAnim from "./anims/CycleClimAnim"
 import ParadoxeAnim from "./anims/ParadoxeAnim"
 import ParcMondialAnim from "./anims/ParcMondialAnim"
+import IlotChaleurAnim from "./anims/IlotChaleurAnim"
 import "./climatisation.css"
 
 export const dynamic = 'force-dynamic'
@@ -134,7 +135,7 @@ export default async function ClimatisationPage() {
 
         <p>Les fluides frigorigènes les plus répandus sont de puissants gaz à effet de serre en cas de fuite. Leur impact se mesure en PRG (Potentiel de Réchauffement Global) : combien de fois un kilo de fluide réchauffe le climat par rapport à un kilo de CO₂. Le règlement européen F-Gas (UE 2024/573) organise leur disparition progressive au profit de fluides à très faible PRG.</p>
 
-        <div style={animPlaceholder}>[ Animation canvas, îlot de chaleur + boucle de rétroaction, Phase 3 ]</div>
+        <IlotChaleurAnim />
 
         {/* ── PARTIE : UNE AUTRE VOIE ── */}
         <div style={partLabel}>Une autre voie</div>
