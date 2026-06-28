@@ -1,5 +1,23 @@
 [
   {
+    "slug": "climatisation",
+    "title": "La chaleur <em>déplacée</em>.",
+    "description": "La climatisation ne fabrique pas de froid : elle déplace de la chaleur, d'une pièce vers la rue, en consommant de l'électricité pour le faire. Anodin dans un salon, ce geste devient un fait énergétique majeur quand des milliards d'appareils s'y mettent en même temps.",
+    "image": "/og-default.jpg",
+    "category": "env",
+    "categoryLabel": "Environnement",
+    "date": "2026-06-28",
+    "readTime": "12",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "featured": true,
+    "premium": false,
+    "grandFormat": true,
+    "grandFormatUrl": "/grands-formats/climatisation",
+    "customRoute": "/grands-formats/climatisation",
+    "imageCredit": "© SOARA"
+  },
+  {
     "slug": "ia-abondance-avance",
     "title": "Intelligence artificielle&#8239;: l'abondance était une <em>avance</em>",
     "description": "La gratuité de l'intelligence était une avance que les marchés rappellent. Derrière la flambée des factures, la loi de l'abondance numérique se fissure, et la puissance se déplace vers l'énergie et le calcul les moins chers.",
