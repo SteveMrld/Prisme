@@ -35,44 +35,15 @@ export default function ClimatisationAtlasPage() {
 
       <div className={styles.page}>
 
-        {/* ═══ INTRO ═══ */}
-        <section style={{ maxWidth: 760, margin: '0 auto', padding: '8px 24px 12px' }}>
-          <Reveal>
-            <p style={{
-              fontFamily: "var(--font-serif-text, 'Cormorant Garamond'), Georgia, serif",
-              fontSize: 'clamp(17px, 1.4vw, 19px)',
-              fontStyle: 'italic',
-              color: '#3D3D3D',
-              lineHeight: 1.55,
-              margin: 0,
-            }}>
-              La climatisation ne fabrique pas de froid : elle déplace de la chaleur, d'une pièce vers la rue, en consommant de l'électricité pour le faire. Pour chaque 100 unités retirées du salon, le bloc extérieur en rejette 130. Le grand format est en accès libre,{' '}
-              <Link href="/grands-formats/climatisation" style={{ borderBottom: '1px solid #C8A96E', color: '#C8A96E' }}>
-                à lire ici
-              </Link>.
-            </p>
-          </Reveal>
-        </section>
-
-        {/* ═══ VIDEOS COTE A COTE ═══ */}
-        <section style={{
-          maxWidth: 1200,
-          margin: '40px auto 0',
-          padding: '0 24px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '32px',
-        }}>
-
-          {/* CARRE 1:1 */}
+        {/* ═══ VIDEO PRINCIPALE, carre 1:1 pleine largeur du conteneur Atlas ═══ */}
+        <section>
           <Reveal>
             <figure style={{ margin: 0 }}>
               <div style={{
-                background: '#0d0c0b',
-                borderRadius: '4px',
-                overflow: 'hidden',
+                background: '#07080B',
                 aspectRatio: '1 / 1',
-                position: 'relative',
+                overflow: 'hidden',
+                borderRadius: 4,
               }}>
                 <video
                   src="/soara_clim_nyt_s.mp4"
@@ -88,82 +59,54 @@ export default function ClimatisationAtlasPage() {
                   }}
                 />
               </div>
-              <figcaption style={{
-                marginTop: '14px',
-                fontFamily: "'DM Mono', ui-monospace, monospace",
-                fontSize: '11px',
-                letterSpacing: '0.08em',
-                color: '#8a7f72',
-              }}>
-                <strong style={{ color: '#0A0A0A', letterSpacing: '0.18em', textTransform: 'uppercase' }}>Format carré · 1:1</strong>
-                <br />Pour Instagram, LinkedIn, X. Téléchargement direct :{' '}
-                <a
-                  href="/soara_clim_nyt_s.mp4"
-                  download
-                  style={{ color: '#C8A96E', borderBottom: '1px solid #C8A96E' }}
-                >
-                  soara_clim_nyt_s.mp4
-                </a>.
-              </figcaption>
-            </figure>
-          </Reveal>
-
-          {/* VERTICAL 9:16 */}
-          <Reveal delay={120}>
-            <figure style={{ margin: 0 }}>
-              <div style={{
-                background: '#0d0c0b',
-                borderRadius: '4px',
-                overflow: 'hidden',
-                aspectRatio: '9 / 16',
-                position: 'relative',
-                maxWidth: 'min(100%, 380px)',
-                marginInline: 'auto',
-              }}>
-                <video
-                  src="/soara_clim_nyt_v.mp4"
-                  controls
-                  preload="metadata"
-                  playsInline
-                  poster="/articles/atlas/16_climatisation-chaleur-deplacee.jpg"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block',
-                  }}
-                />
-              </div>
-              <figcaption style={{
-                marginTop: '14px',
-                fontFamily: "'DM Mono', ui-monospace, monospace",
-                fontSize: '11px',
-                letterSpacing: '0.08em',
-                color: '#8a7f72',
-              }}>
-                <strong style={{ color: '#0A0A0A', letterSpacing: '0.18em', textTransform: 'uppercase' }}>Format vertical · 9:16</strong>
-                <br />Pour TikTok, Instagram Reels, YouTube Shorts. Filigrane anti-recadrage. Téléchargement :{' '}
-                <a
-                  href="/soara_clim_nyt_v.mp4"
-                  download
-                  style={{ color: '#C8A96E', borderBottom: '1px solid #C8A96E' }}
-                >
-                  soara_clim_nyt_v.mp4
-                </a>.
-              </figcaption>
             </figure>
           </Reveal>
         </section>
 
-        {/* ═══ CTA RETOUR GRAND FORMAT ═══ */}
-        <section style={{ maxWidth: 760, margin: '64px auto 24px', padding: '0 24px', textAlign: 'center' }}>
+        {/* ═══ TEXTE EXPLICATIF, style sectionDesc des autres pages Atlas ═══ */}
+        <section style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px' }}>
+          <Reveal>
+            <p style={{
+              fontFamily: "var(--font-serif-text), 'Cormorant Garamond', Georgia, serif",
+              fontSize: 17,
+              fontStyle: 'italic',
+              lineHeight: 1.6,
+              color: 'var(--gris-m)',
+              margin: 0,
+            }}>
+              L'animation reprend le cycle frigorifique en quatre étapes : évaporation, compression, condensation, détente. Un climatiseur ne fabrique pas de froid, il déplace de la chaleur, d'une pièce vers la rue. Pour chaque 100 unités retirées du salon, le bloc extérieur en rejette environ 130, parce que l'électricité consommée par le compresseur finit elle aussi en chaleur.{' '}
+              <Link href="/grands-formats/climatisation" style={{ color: '#C8A96E', borderBottom: '1px solid #C8A96E' }}>
+                Lire le grand format →
+              </Link>
+            </p>
+          </Reveal>
+
+          {/* Lien de telechargement discret, version verticale 9:16 */}
+          <Reveal delay={120}>
+            <div style={{
+              marginTop: 28,
+              fontFamily: "'DM Mono', ui-monospace, monospace",
+              fontSize: 11,
+              letterSpacing: '0.12em',
+              color: '#8a7f72',
+            }}>
+              Télécharger la version verticale 9:16 :{' '}
+              <a href="/soara_clim_nyt_v.mp4" download style={{ color: '#8a7f72', borderBottom: '1px solid #DDD9D2' }}>
+                soara_clim_nyt_v.mp4 ↓
+              </a>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* ═══ CTA RETOUR GRAND FORMAT, double affordance ═══ */}
+        <section style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
           <Reveal>
             <Link
               href="/grands-formats/climatisation"
               style={{
                 display: 'inline-block',
                 fontFamily: "'DM Mono', ui-monospace, monospace",
-                fontSize: '12px',
+                fontSize: 12,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 color: '#0A0A0A',
