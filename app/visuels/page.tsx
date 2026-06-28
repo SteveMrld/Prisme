@@ -150,6 +150,17 @@ const ATLAS_CARDS: AtlasCard[] = [
     image: '/articles/atlas/14_bataille-sous-sol-numerique.jpg',
     alt: "Excavatrice minière, extraction de matières premières",
   },
+  {
+    href: '/visuels/climatisation', external: false,
+    tag: 'Environnement · Animation', tagColor: 'var(--env)',
+    format: 'Animation',
+    title: 'La chaleur déplacée',
+    sub: 'Cycle du climatiseur · Bilan 100 + 30 = 130',
+    desc: "Le cycle frigorifique et le paradoxe énergétique en animation. Deux formats prêts pour les réseaux : carré 1:1 et vertical 9:16 avec filigrane anti-recadrage.",
+    cta: "Voir l'animation",
+    image: '/articles/atlas/16_climatisation-chaleur-deplacee.jpg',
+    alt: "Cycle d'un climatiseur, fluide qui circule de l'intérieur frais vers la rue chaude",
+  },
 ]
 
 const DATAVIZ_CARDS: AtlasCard[] = [
