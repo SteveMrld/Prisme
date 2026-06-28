@@ -1,6 +1,42 @@
 {
-  "date_maj": "2026-06-26",
+  "date_maj": "2026-06-28",
   "breves": [
+    {
+      "date": "28 juin 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Canicule : la chaleur reflue, l'Alsace seule en vigilance rouge",
+      "body": "La chaleur reflue par l'ouest ce dimanche, au terme de l'une des semaines les plus chaudes jamais mesurées en France. Paris et l'Île-de-France repassent du rouge à l'orange, tandis que le Bas-Rhin et le Haut-Rhin restent les seuls départements en vigilance rouge. Les températures redeviennent plus respirables, mais demeurent au-dessus des normales de saison.",
+      "tickerCat": "Climat",
+      "tickerText": "Canicule en net repli, l'Alsace seule maintenue en vigilance rouge"
+    },
+    {
+      "date": "28 juin 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "La canicule fait annuler la Marche des fiertés et Solidays",
+      "body": "La vague de chaleur a désorganisé le week-end en Île-de-France. Sous la pression de la préfecture de police, la Marche des fiertés de Paris et le festival Solidays, à l'hippodrome de Longchamp, ont été annulés. Les organisateurs ont dû renoncer à maintenir des rassemblements de grande ampleur en pleine alerte sanitaire.",
+      "tickerCat": "France",
+      "tickerText": "Canicule : la Marche des fiertés et Solidays annulés en Île-de-France"
+    },
+    {
+      "date": "27 juin 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Liban : un cessez-le-feu Israël-Hezbollah s'installe sous l'égide de Washington",
+      "body": "Un accord-cadre conclu vendredi entre Israël et le Liban, négocié sous l'égide des États-Unis, prévoit l'arrêt des opérations militaires sur tous les fronts. Benjamin Netanyahou y a vu samedi un coup porté à l'Iran et au Hezbollah. L'accalmie tient depuis samedi soir, mais le Hezbollah accuse l'armée israélienne de frappes près de Kfar Rumman et dénonce des violations.",
+      "tickerCat": "Liban",
+      "tickerText": "Cessez-le-feu Israël-Hezbollah sous égide américaine, des violations déjà dénoncées"
+    },
+    {
+      "date": "27 juin 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Canicule à son pic : violents orages sur la moitié nord",
+      "body": "Au plus fort d'une canicule historique, de violents orages ont traversé samedi soir le pays, du Centre-Val de Loire à la Normandie, au bassin parisien et aux Hauts-de-France, avec près de onze mille impacts de foudre. La nuit du 27 au 28 juin a été, dans plusieurs stations du Nord-Est, la plus chaude jamais mesurée selon des valeurs provisoires.",
+      "tickerCat": "Climat",
+      "tickerText": "Pic de canicule : violents orages et nuit la plus chaude jamais mesurée au Nord-Est"
+    },
     {
       "date": "26 juin 2026",
       "cat": "Environnement",
