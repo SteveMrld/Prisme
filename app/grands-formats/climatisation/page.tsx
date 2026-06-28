@@ -4,6 +4,7 @@ import CycleClimAnim from "./anims/CycleClimAnim"
 import ParadoxeAnim from "./anims/ParadoxeAnim"
 import ParcMondialAnim from "./anims/ParcMondialAnim"
 import IlotChaleurAnim from "./anims/IlotChaleurAnim"
+import BadgirAnim from "./anims/BadgirAnim"
 import "./climatisation.css"
 
 export const dynamic = 'force-dynamic'
@@ -59,20 +60,6 @@ const chapoOpener: React.CSSProperties = {
   margin: '0 0 44px',
   paddingBottom: '32px',
   borderBottom: '1px solid #DDD9D2',
-}
-
-const animPlaceholder: React.CSSProperties = {
-  margin: '40px 0',
-  padding: '28px 24px',
-  background: '#F7F4EF',
-  border: '1px dashed #C8A96E',
-  borderRadius: '4px',
-  fontFamily: "'DM Mono', ui-monospace, monospace",
-  fontSize: '12px',
-  letterSpacing: '0.08em',
-  textTransform: 'uppercase',
-  color: '#8a7f72',
-  textAlign: 'center',
 }
 
 export default async function ClimatisationPage() {
@@ -156,7 +143,7 @@ export default async function ClimatisationPage() {
 
         <p>D'où une question simple. Le réflexe dominant est d'équiper un à un les logements, les bureaux, les écoles, ce qui revient à pousser la chaleur dehors et à réchauffer la ville. Une autre voie consisterait à repenser et à rénover le bâti lui-même pour qu'il reste frais par sa forme, avant d'allumer un appareil. Cette voie a ses limites : sous une chaleur humide ou lors des pics extrêmes, la climatisation reste parfois nécessaire, en particulier pour les plus fragiles. Ce n'est donc pas l'un contre l'autre. Mais à l'heure où l'on parle de villes intelligentes et d'intelligence artificielle, la première intelligence est peut-être la plus ancienne : celle d'un bâtiment qui sait, par lui-même, tenir la chaleur à distance.</p>
 
-        <div style={animPlaceholder}>[ Illustration canvas, tour à vent (bâdgir), Phase 3 ]</div>
+        <BadgirAnim />
 
         {/* ── PARTIE : CE QU'IL FAUT RETENIR ── */}
         <div style={partLabel}>Ce qu'il faut retenir</div>
