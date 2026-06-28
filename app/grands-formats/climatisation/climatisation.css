@@ -1,0 +1,36 @@
+/* ============================================================
+   Grand format Climatisation : styles locaux
+   - Section sombre du chapitre II "Le paradoxe" (override des
+     couleurs de .soara-article h2 et p qui forcent #111/#1a1a1a)
+   ============================================================ */
+
+.soara-article .clim-dark {
+  position: relative;
+  background: #0d0c0b;
+  color: #e9e3d6;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 72px max(24px, calc(50vw - 380px)) 56px;
+  margin-top: 56px;
+  margin-bottom: 56px;
+}
+
+.soara-article .clim-dark h2 {
+  color: #fafafa !important;
+  margin: 0 0 24px !important;
+}
+
+.soara-article .clim-dark p {
+  color: #c9c3b6 !important;
+}
+
+.soara-article .clim-dark .clim-dark-eyebrow {
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #f0ad53;
+  display: block;
+  margin-bottom: 14px;
+}

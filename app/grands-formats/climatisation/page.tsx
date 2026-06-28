@@ -1,6 +1,8 @@
 import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout"
 import CycleClimAnim from "./anims/CycleClimAnim"
+import ParadoxeAnim from "./anims/ParadoxeAnim"
+import "./climatisation.css"
 
 export const dynamic = 'force-dynamic'
 
@@ -100,13 +102,15 @@ export default async function ClimatisationPage() {
 
         <CycleClimAnim />
 
-        {/* ── CHAPITRE II · LE PARADOXE ── */}
-        <span style={eyebrow}>Chapitre II</span>
-        <h2>Dehors, on rejette plus de chaleur qu'on n'en a retiré dedans.</h2>
+        {/* ── CHAPITRE II · LE PARADOXE (section sombre full-bleed) ── */}
+        <section className="clim-dark">
+          <span className="clim-dark-eyebrow">Chapitre II</span>
+          <h2>Dehors, on rejette plus de chaleur qu'on n'en a retiré dedans.</h2>
 
-        <p>L'électricité consommée par le compresseur ne disparaît pas : elle finit elle aussi en chaleur, ajoutée à celle de la pièce. Le bloc extérieur évacue donc la somme des deux. C'est une loi de conservation, pas une opinion. À l'échelle d'une ville entière qui climatise, cette chaleur supplémentaire s'accumule dans la rue.</p>
+          <p>L'électricité consommée par le compresseur ne disparaît pas : elle finit elle aussi en chaleur, ajoutée à celle de la pièce. Le bloc extérieur évacue donc la somme des deux. C'est une loi de conservation, pas une opinion. À l'échelle d'une ville entière qui climatise, cette chaleur supplémentaire s'accumule dans la rue.</p>
 
-        <div style={animPlaceholder}>[ Animation canvas, bilan 100 + 30 = 130, fond sombre, Phase 3 ]</div>
+          <ParadoxeAnim />
+        </section>
 
         {/* ── PARTIE : LES ENJEUX ── */}
         <div style={partLabel}>Les enjeux</div>
