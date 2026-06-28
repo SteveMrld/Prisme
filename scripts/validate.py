@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CONFINS — Script de validation pré-push
+SOARA. Script de validation pré-push
 Usage: python3 scripts/validate.py (depuis la racine du repo)
 """
 import os, re, json, sys
