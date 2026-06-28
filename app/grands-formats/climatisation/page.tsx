@@ -2,6 +2,7 @@ import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout"
 import CycleClimAnim from "./anims/CycleClimAnim"
 import ParadoxeAnim from "./anims/ParadoxeAnim"
+import ParcMondialAnim from "./anims/ParcMondialAnim"
 import "./climatisation.css"
 
 export const dynamic = 'force-dynamic'
@@ -123,7 +124,7 @@ export default async function ClimatisationPage() {
 
         <p>Le parc mondial de climatiseurs passerait de 1,6 milliard d'unités aujourd'hui à 5,6 milliards en 2050, soit l'équivalent de dix appareils vendus chaque seconde pendant trente ans. La demande d'énergie pour le refroidissement pourrait tripler. Plus de 80 % de cette croissance viendra des pays émergents, là où la chaleur est la plus dure et l'accès encore rare.</p>
 
-        <div style={animPlaceholder}>[ Animation canvas, prolifération du parc mondial, Phase 3 ]</div>
+        <ParcMondialAnim />
 
         {/* ── CHAPITRE IV · LA VILLE QUI CHAUFFE ── */}
         <span style={eyebrow}>Chapitre IV</span>
