@@ -24,7 +24,7 @@ import { randomShuffle, pickRandom } from '../lib/rotation'
 import {
   HERO_POOL, UNDER_HERO_POOL, GF_POOL_AFTER_LEAD,
   ALSO_READ_POOL, ATLAS_POOL, POPULAR_POOL,
-  GF_LEAD_SLUG, GF_SECONDARY_1_SLUG,
+  GF_LEAD_SLUG, GF_SECONDARY_1_SLUG, HERO_LEAD_SLUG,
   sortByRecency, pickByRecency,
 } from '../lib/home-pools'
 
@@ -117,16 +117,35 @@ export default async function HomePage() {
     new Date(b.date).getTime() - new Date(a.date).getTime()
 
   // ── Composition du HERO ──────────────────────────────
-  // Règle : 6 slides, 2 en géopolitique + 4 dans 4 catégories distinctes
-  // tirées au sort parmi {eco, tech, env, soc, culture}. Pas de portrait
-  // dans le hero (les portraits ont leur propre section dédiée).
+  // Règle : 6 slides. Si HERO_LEAD_SLUG est défini (cf. home-pools.ts),
+  // l'article correspondant est épinglé en position 0 et sa catégorie
+  // est retirée des cats non-geo tirées au sort, pour éviter qu'un
+  // deuxième article de la même rubrique apparaisse juste derrière.
+  // Les 5 (ou 6 si pas de lead) slides restantes : 2 en géopolitique
+  // + 3-4 dans des catégories distinctes parmi {eco, tech, env, soc,
+  // culture}. Pas de portrait dans le hero (les portraits ont leur
+  // propre section dédiée).
   // Dans chaque créneau : priorité featured > récence > shuffle pour
   // varier l'article qui occupe la place de sa catégorie. À chaque
-  // chargement la combinaison change.
+  // chargement la combinaison change, sauf le slide épinglé.
   const HERO_NON_GEO_CATS = ['eco', 'tech', 'env', 'soc', 'culture']
   const HERO_GEO_TARGET = 2
-  const HERO_NON_GEO_TARGET = 4
   const HERO_TOTAL = 6
+
+  // Article épinglé (peut être null) : on le récupère du JSON et on le
+  // garde seulement s'il existe, n'est pas futur, et passe l'éligibilité.
+  // Tout le reste du tirage se fait sur HERO_POOL qui l'exclut déjà.
+  const heroLeadArticle: any | null = (() => {
+    if (!HERO_LEAD_SLUG) return null
+    const a = (articlesData as any[]).find(x => x.slug === HERO_LEAD_SLUG)
+    if (!a) return null
+    if (!(a as any).image) return null
+    if (new Date(a.date).getTime() > nowTs) return null
+    return a
+  })()
+
+  const HERO_NON_GEO_TARGET = heroLeadArticle ? 3 : 4
+  const heroLeadCat: string | undefined = heroLeadArticle?.category
 
   const heroCandidates = (cat: string): any[] =>
     (HERO_POOL as any[]).filter(a =>
@@ -144,10 +163,12 @@ export default async function HomePage() {
     return sortByRecency(all, nowTs).slice(0, n)
   }
 
-  // 4 catégories non-geo retenues à chaque chargement, en ne gardant
-  // que celles qui ont au moins un candidat éligible.
+  // Cats non-geo retenues à chaque chargement, en ne gardant que celles
+  // qui ont au moins un candidat éligible. La cat du lead (si non-geo)
+  // est explicitement écartée pour ne pas dupliquer la rubrique.
   const chosenNonGeoCats: string[] = []
   for (const cat of randomShuffle(HERO_NON_GEO_CATS)) {
+    if (cat === heroLeadCat) continue
     if (chosenNonGeoCats.length >= HERO_NON_GEO_TARGET) break
     if (heroCandidates(cat).length > 0) chosenNonGeoCats.push(cat)
   }
@@ -164,15 +185,16 @@ export default async function HomePage() {
     }
   }
 
-  // Filet de secours : si on n'a pas atteint 6 (peu de géo, catégorie
-  // vide…), on complète depuis HERO_POOL avec max-2 par catégorie pour
-  // ne pas casser la diversité. Pas de portrait dans le complément.
+  // Filet de secours : si on n'a pas atteint la cible (HERO_TOTAL moins
+  // le lead s'il existe), on complète depuis HERO_POOL avec max-2 par
+  // catégorie pour ne pas casser la diversité. Pas de portrait.
+  const heroRotationTarget = heroLeadArticle ? HERO_TOTAL - 1 : HERO_TOTAL
   let heroPicks: any[] = [...geoPicks, ...nonGeoPicks]
-  if (heroPicks.length < HERO_TOTAL) {
+  if (heroPicks.length < heroRotationTarget) {
     const fillPool = excludeArt(HERO_POOL).filter((a: any) =>
       a.category !== 'portrait' && new Date(a.date).getTime() <= nowTs
     )
-    const fill = pickRandom(fillPool, HERO_TOTAL - heroPicks.length, {
+    const fill = pickRandom(fillPool, heroRotationTarget - heroPicks.length, {
       diversifyBy: (a: any) => a.category, maxPerCat: 2,
     })
     fill.forEach(a => used.add(a.slug))
@@ -180,9 +202,13 @@ export default async function HomePage() {
   }
 
   // Ordre des slides : par score de récence (featured = bonus, pas un
-  // bypass). Le hero s'ouvre sur l'article le plus frais ou le plus
-  // mis en avant à fraîcheur comparable.
+  // bypass). Le hero s'ouvre normalement sur l'article le plus frais,
+  // mais si un lead est épinglé il prend la position 0 quoi qu'il arrive.
   heroPicks = sortByRecency(heroPicks, nowTs)
+  if (heroLeadArticle) {
+    used.add(heroLeadArticle.slug)
+    heroPicks = [heroLeadArticle, ...heroPicks].slice(0, HERO_TOTAL)
+  }
 
   const HERO_ROTATION = heroPicks.map(withCatLabel(nowTs))
 

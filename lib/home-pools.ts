@@ -81,7 +81,15 @@ export function pickByRecency<T extends RecencyItem>(
 export const GF_LEAD_SLUG = 'chambre-ratification'
 export const GF_SECONDARY_1_SLUG = 'terres-rares'
 
+/* HERO_LEAD_SLUG : article epinglé en première position du carrousel
+   hero, hors tirage aléatoire. Mettre à null pour repasser la rotation
+   en mode entièrement automatique. Sa catégorie est retirée des cats
+   non-geo tirées au sort dans app/page.tsx pour éviter qu'un autre
+   article de la même cat apparaisse juste après. */
+export const HERO_LEAD_SLUG: string | null = 'climatisation'
+
 const SANCTUARY = new Set<string>([GF_LEAD_SLUG, GF_SECONDARY_1_SLUG])
+const HERO_PIN = new Set<string>(HERO_LEAD_SLUG ? [HERO_LEAD_SLUG] : [])
 
 /* Liste des grands formats. Doit rester alignée avec GRAND_FORMAT_SLUGS
    dans app/articles/[slug]/page.tsx. */
@@ -101,18 +109,19 @@ function eligible(a: Article): boolean {
   return true
 }
 
-/* HERO : tous les articles à image hors sanctuaire. Les portraits sont
-   admis : le hero les distribue dans le créneau de leur catégorie quand
-   `portrait` fait partie des cats retenues du jour (cf. page.tsx). */
+/* HERO : tous les articles à image hors sanctuaire ET hors HERO_LEAD_SLUG
+   (qui est injecté à part en position 0 dans app/page.tsx). Les portraits
+   sont admis ici mais la sélection dans page.tsx ne les retient pas pour
+   le hero (cf. HERO_NON_GEO_CATS). */
 export const HERO_POOL: Article[] = ALL.filter(a =>
-  eligible(a) && !SANCTUARY.has(a.slug)
+  eligible(a) && !SANCTUARY.has(a.slug) && !HERO_PIN.has(a.slug)
 )
 
 /* UNDER_HERO : même règle que HERO (articles à image, hors portraits,
-   hors sanctuaire). Le pool est partagé entre colonne gauche et droite ;
-   pickFromPool diversifie. */
+   hors sanctuaire). Exclut aussi HERO_PIN pour éviter qu'un article
+   épinglé en tête du hero apparaisse aussi dans la rangée sous-hero. */
 export const UNDER_HERO_POOL: Article[] = ALL.filter(a =>
-  eligible(a) && a.category !== 'portrait' && !SANCTUARY.has(a.slug)
+  eligible(a) && a.category !== 'portrait' && !SANCTUARY.has(a.slug) && !HERO_PIN.has(a.slug)
 )
 
 /* Grands formats après le LEAD et son SECONDARY1 (figés en page.tsx).
