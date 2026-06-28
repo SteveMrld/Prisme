@@ -1,5 +1,6 @@
 import { createClient } from "../../../lib/supabase-server"
 import GrandFormatLayout from "../../../components/GrandFormatLayout"
+import CycleClimAnim from "./anims/CycleClimAnim"
 
 export const dynamic = 'force-dynamic'
 
@@ -97,7 +98,7 @@ export default async function ClimatisationPage() {
           La climatisation ne fabrique pas de froid : elle déplace de la chaleur, d'une pièce vers la rue, en consommant de l'électricité pour le faire. Anodin dans un salon, ce geste devient un fait énergétique majeur quand des milliards d'appareils s'y mettent en même temps. Avant d'en mesurer le prix, voici comment la machine s'y prend.
         </p>
 
-        <div style={animPlaceholder}>[ Animation canvas, cycle du climatiseur, Phase 3 ]</div>
+        <CycleClimAnim />
 
         {/* ── CHAPITRE II · LE PARADOXE ── */}
         <span style={eyebrow}>Chapitre II</span>
