@@ -1,0 +1,97 @@
+/* ════════════════════════════════════════════════════════════════
+   URANIUM : animations et media queries
+   Charge globalement quand UraniumClient est monte.
+   ════════════════════════════════════════════════════════════════ */
+
+body { background: #0b0a08; }
+
+/* ── animations des centrifugeuses ── */
+@keyframes cfStripes {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
+}
+@keyframes cfParticle {
+  0% { bottom: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { bottom: 100%; opacity: 0; }
+}
+
+/* ── autres animations ── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.04); filter: brightness(1.15); }
+}
+@keyframes sweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes flowRight {
+  0% { left: -4px; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: calc(100% + 4px); opacity: 0; }
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+@keyframes pulseRed {
+  0%, 100% { box-shadow: 0 0 0 0 #8e3a2b; }
+  50% { box-shadow: 0 0 0 14px rgba(142, 58, 43, 0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes barGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes particleFloat {
+  0%, 100% { transform: translate(0, 0); opacity: 0.25; }
+  50% { transform: translate(18px, -22px); opacity: 0.9; }
+}
+
+/* ── animations anatomiques ── */
+@keyframes u235Rise {
+  0% { bottom: 0%; opacity: 0; transform: translateX(0); }
+  10% { opacity: 1; }
+  50% { transform: translateX(-2px); }
+  90% { opacity: 1; }
+  100% { bottom: 100%; opacity: 0; transform: translateX(0); }
+}
+@keyframes u238Fall {
+  0% { top: 0%; opacity: 0; }
+  12% { opacity: 0.8; }
+  88% { opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes feedPulse {
+  0%, 100% { opacity: 0.5; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(-4px); }
+}
+@keyframes arrowPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ── responsive mobile ── */
+@media (max-width: 800px) {
+  .uranium-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .uranium-hero-cf {
+    opacity: 0.22 !important;
+    padding-right: 0 !important;
+    justify-content: center !important;
+  }
+  .uranium-hero-veil {
+    background: linear-gradient(to bottom, rgba(11, 10, 8, 0.3) 0%, rgba(11, 10, 8, 0.8) 100%) !important;
+  }
+}
