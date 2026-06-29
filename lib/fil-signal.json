@@ -1,468 +1,95 @@
 {
-  "date_maj": "2026-06-28",
+  "date_maj": "2026-06-29",
   "breves": [
     {
-      "date": "28 juin 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Canicule : la chaleur reflue, l'Alsace seule en vigilance rouge",
-      "body": "La chaleur reflue par l'ouest ce dimanche, au terme de l'une des semaines les plus chaudes jamais mesurées en France. Paris et l'Île-de-France repassent du rouge à l'orange, tandis que le Bas-Rhin et le Haut-Rhin restent les seuls départements en vigilance rouge. Les températures redeviennent plus respirables, mais demeurent au-dessus des normales de saison.",
-      "tickerCat": "Climat",
-      "tickerText": "Canicule en net repli, l'Alsace seule maintenue en vigilance rouge"
-    },
-    {
-      "date": "28 juin 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "La canicule fait annuler la Marche des fiertés et Solidays",
-      "body": "La vague de chaleur a désorganisé le week-end en Île-de-France. Sous la pression de la préfecture de police, la Marche des fiertés de Paris et le festival Solidays, à l'hippodrome de Longchamp, ont été annulés. Les organisateurs ont dû renoncer à maintenir des rassemblements de grande ampleur en pleine alerte sanitaire.",
-      "tickerCat": "France",
-      "tickerText": "Canicule : la Marche des fiertés et Solidays annulés en Île-de-France"
-    },
-    {
-      "date": "27 juin 2026",
+      "date": "29 juin 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
-      "headline": "Liban : un cessez-le-feu Israël-Hezbollah s'installe sous l'égide de Washington",
-      "body": "Un accord-cadre conclu vendredi entre Israël et le Liban, négocié sous l'égide des États-Unis, prévoit l'arrêt des opérations militaires sur tous les fronts. Benjamin Netanyahou y a vu samedi un coup porté à l'Iran et au Hezbollah. L'accalmie tient depuis samedi soir, mais le Hezbollah accuse l'armée israélienne de frappes près de Kfar Rumman et dénonce des violations.",
-      "tickerCat": "Liban",
-      "tickerText": "Cessez-le-feu Israël-Hezbollah sous égide américaine, des violations déjà dénoncées"
+      "headline": "Détroit d'Ormuz : Washington et Téhéran suspendent leurs attaques, la circulation reprend",
+      "body": "Washington et Téhéran suspendent leurs attaques dans le détroit d'Ormuz, et les navires y circulent de nouveau librement. Environ 20 % des hydrocarbures mondiaux transitent par ce passage qui relie le golfe Persique à l'océan Indien.",
+      "tickerCat": "Maritime",
+      "tickerText": "Détroit d'Ormuz : Washington et Téhéran suspendent leurs attaques, les navires circulent de nouveau, environ 20 % des hydrocarbures mondiaux transitent par ce passage"
     },
     {
-      "date": "27 juin 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Canicule à son pic : violents orages sur la moitié nord",
-      "body": "Au plus fort d'une canicule historique, de violents orages ont traversé samedi soir le pays, du Centre-Val de Loire à la Normandie, au bassin parisien et aux Hauts-de-France, avec près de onze mille impacts de foudre. La nuit du 27 au 28 juin a été, dans plusieurs stations du Nord-Est, la plus chaude jamais mesurée selon des valeurs provisoires.",
-      "tickerCat": "Climat",
-      "tickerText": "Pic de canicule : violents orages et nuit la plus chaude jamais mesurée au Nord-Est"
-    },
-    {
-      "date": "26 juin 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Canicule : vigilance rouge maintenue sur la moitié nord, premier répit par l'ouest",
-      "body": "La canicule se prolonge au lendemain de l'une des journées les plus chaudes jamais mesurées en France. Météo-France maintient une vigilance rouge sur la moitié nord du pays, avec des pointes jusqu'à 42 degrés dans le centre. Une première baisse des températures s'amorce le long de la façade atlantique, tandis qu'un épisode de pollution à l'ozone touche l'Île-de-France.",
-      "tickerCat": "Climat",
-      "tickerText": "Canicule : vigilance rouge maintenue sur la moitié nord, jusqu'à 42°C dans le centre"
-    },
-    {
-      "date": "26 juin 2026",
+      "date": "29 juin 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
-      "headline": "Détroit d'Ormuz : un navire de commerce frappé, le bras de fer sur les péages persiste",
-      "body": "Un cargo a été frappé jeudi soir près des côtes omanaises, peu après avoir traversé le détroit d'Ormuz, sans faire de blessé. Un responsable américain attribue le tir aux Gardiens de la révolution iraniens. L'incident fragilise le mémorandum conclu la semaine passée entre Washington et Téhéran, alors que l'Iran n'écarte pas de prélever des droits de passage à l'issue de la trêve, ce que les États-Unis et Oman jugent contraire au droit maritime.",
-      "tickerCat": "Ormuz",
-      "tickerText": "Ormuz : un cargo frappé près d'Oman, le différend sur les droits de passage persiste"
+      "headline": "Liban : Israël mène de nouvelles frappes, l'accord-cadre enterré par Beyrouth",
+      "body": "Israël a mené de nouvelles frappes au Liban. Le chef du Parlement libanais enterre l'accord-cadre conclu sous l'égide américaine la semaine passée, signant l'échec d'une trêve qui peinait à tenir.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "Israël mène de nouvelles frappes au Liban, le chef du Parlement libanais enterre l'accord-cadre"
     },
     {
-      "date": "24 juin 2026",
+      "date": "29 juin 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
-      "headline": "La Corée du Nord annonce équiper sa marine d'armes nucléaires",
-      "body": "Lors de la mise en service du destroyer Choe Hyon à Nampo, Kim Jong-un a affirmé que la Corée du Nord équipe désormais sa marine d'armes nucléaires. Pyongyang annonce vouloir lancer des navires de guerre de 10 000 tonnes, marquant l'ambition d'une flotte capable de dépasser la simple défense de ses côtes.",
-      "tickerCat": "Corée du Nord",
-      "tickerText": "Pyongyang dit équiper sa marine d'armes nucléaires, navires de 10 000 tonnes annoncés"
+      "headline": "Israël reconnaît le génocide arménien, la Turquie rejette la décision",
+      "body": "Israël reconnaît officiellement le génocide arménien. La Turquie rejette la décision et marque une nouvelle rupture diplomatique entre Jérusalem et Ankara.",
+      "tickerCat": "Diplomatie",
+      "tickerText": "Israël reconnaît le génocide arménien, la Turquie rejette la décision"
     },
     {
-      "date": "24 juin 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "Ebola : premier cas diagnostiqué sur le sol français",
-      "body": "Le ministère de la Santé a confirmé le premier cas de maladie à virus Ebola jamais diagnostiqué en France, chez un médecin humanitaire de l'ONG Alima de retour de République démocratique du Congo. Le patient, à la charge virale très faible, a été isolé dès son arrivée. Cinq passagers de son vol sont suivis comme cas contacts.",
-      "tickerCat": "Santé",
-      "tickerText": "Ebola : premier cas diagnostiqué en France, un médecin de retour de RDC isolé"
-    },
-    {
-      "date": "23 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Royaume-Uni : Keir Starmer démissionne de son poste de Premier ministre",
-      "body": "Le Premier ministre britannique Keir Starmer a annoncé ce lundi sa démission, après des mois de chute dans les sondages et une implosion de son gouvernement travailliste.",
-      "tickerCat": "GÉO",
-      "tickerText": "Starmer démissionne, le Royaume-Uni sans Premier ministre"
-    },
-    {
-      "date": "23 juin 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Canicule : la France connaît sa nuit la plus chaude depuis 1945",
-      "body": "La nuit du 22 au 23 juin 2026 est la plus chaude jamais enregistrée en France depuis au moins 1945. Des températures dépassant 40 degrés sont relevées dans plusieurs villes, dont 43°C à Nantes. La canicule devrait se prolonger plusieurs jours.",
-      "tickerCat": "ENV",
-      "tickerText": "Canicule record, nuit la plus chaude en France depuis 1945"
-    },
-    {
-      "date": "23 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Iran/États-Unis : les négociations à Genève marquent le pas",
-      "body": "Les pourparlers entre l'Iran et les États-Unis se poursuivent en Suisse mais avancent en demi-teintes. Le trafic maritime dans le détroit d'Ormuz atteint un niveau record depuis le début du conflit, signe que la pression commerciale pousse vers un accord.",
-      "tickerCat": "GÉO",
-      "tickerText": "Iran/US : négociations en demi-teintes à Genève"
-    },
-    {
-      "date": "26 juin 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "Coupe du monde 2026 : Norvège-France, la première place du groupe I en jeu",
-      "body": "Déjà qualifiés pour les seizièmes de finale, les Bleus affrontent la Norvège ce soir à Boston, à 21h heure de Paris, pour la première place du groupe I. Les deux sélections comptent six points après deux journées, la France devançant la Norvège à la différence de buts.",
-      "tickerCat": "SPORT",
-      "tickerText": "Mondial 2026 : Norvège-France ce soir, première place du groupe I en jeu"
-    },
-    {
-      "date": "22 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Iran/États-Unis : feuille de route signée en Suisse, accord final attendu sous 60 jours",
-      "body": "Le Qatar et le Pakistan, facilitateurs des négociations, ont annoncé une feuille de route visant un accord définitif entre Téhéran et Washington dans les soixante jours. L'Iran a entre-temps menacé de refermer le détroit d'Ormuz et suspendu brièvement les pourparlers après des déclarations de Trump, avant de reprendre les discussions. Le détroit reste ouvert.",
-      "tickerCat": "GÉO",
-      "tickerText": "Iran/US : feuille de route 60 jours en Suisse"
-    },
-    {
-      "date": "22 juin 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "Pétrole : le Brent retombe à 78,78 dollars après la réouverture partielle d'Ormuz",
-      "body": "Le Brent recule de 1,59% ce lundi à 78,78 dollars le baril, après avoir dépassé 94 dollars début juin lors du pic de tension autour du détroit d'Ormuz. La réouverture partielle de la voie maritime et les espoirs d'un accord Iran/US pèsent sur les cours, en baisse de plus de 21% sur un mois.",
-      "tickerCat": "ÉCO",
-      "tickerText": "Brent 78,78 $, baisse de 21% en un mois"
-    },
-    {
-      "date": "19 juin 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "Or : rebond de 240 dollars en quelques séances après une correction de 22%",
-      "body": "Après avoir atteint un record historique de 5 589 dollars l'once le 29 janvier 2026, l'or avait corrigé de 22% jusqu'à 4 120 dollars. Le métal jaune rebondit à 4 186 dollars ce lundi, porté par des achats des banques centrales et l'incertitude persistante autour des négociations Iran/US.",
-      "tickerCat": "ÉCO",
-      "tickerText": "Or 4 186 $, rebond après correction"
-    },
-    {
-      "date": "12 juin 2026",
-      "cat": "Tech",
-      "catColor": "var(--tech)",
-      "headline": "SpaceX entre au Nasdaq : la plus grande introduction en bourse de l'histoire",
-      "body": "Le 12 juin, SpaceX fait son entrée au Nasdaq sous le sigle SPCX. L'action ouvre à 150 dollars, clôture à 160,95 dollars (+19%), portant la valorisation de l'entreprise à 2 100 milliards de dollars. C'est la plus grande introduction en bourse de l'histoire, devant Saudi Aramco en 2019. Elon Musk conserve les actions de catégorie B à dix voix contre une.",
-      "tickerCat": "TECH",
-      "tickerText": "SpaceX SPCX +19% le premier jour, 2 100 Md$"
-    },
-    {
-      "date": "5 juin 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "Pétrole : le Brent reflue autour de 93 dollars sur les espoirs d'un accord avec Téhéran",
-      "body": "Le marché pétrolier reste d'une instabilité chronique en ce début juin. Le Brent évolue autour de 93 dollars le baril et reflue en fin de semaine, les opérateurs misant sur un compromis américano-iranien après l'établissement d'un cadre qui permettrait la réouverture du détroit d'Ormuz. Le FMI et la Banque mondiale alertent conjointement sur des stocks mondiaux au plus bas à l'approche du pic de demande estivale. En France, le gouvernement de Sébastien Lecornu détaille de nouvelles aides face à la facture à la pompe.",
-      "tickerCat": "Pétrole",
-      "tickerText": "Le Brent reflue autour de 93 dollars sur les espoirs d'un accord avec Téhéran, le FMI et la Banque mondiale alertent sur des stocks au plus bas"
-    },
-    {
-      "date": "5 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Élargissement de l'UE : Merz et Macron plaident pour une approche par étapes",
-      "body": "Le chancelier allemand Friedrich Merz et Emmanuel Macron proposent une approche par étapes de l'élargissement de l'Union européenne, afin de relancer des négociations d'adhésion enlisées. La proposition intervient en amont d'un sommet consacré aux Balkans occidentaux. L'idée est d'offrir aux pays candidats des étapes intermédiaires d'intégration sans attendre une adhésion pleine et entière.",
-      "tickerCat": "Union européenne",
-      "tickerText": "Merz et Macron proposent un élargissement de l'UE par étapes pour relancer les adhésions, avant le sommet sur les Balkans occidentaux"
-    },
-    {
-      "date": "4 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Liban : le Hezbollah rejette le cessez-le-feu annoncé la veille",
-      "body": "Un cessez-le-feu entre Israël et le gouvernement libanais est annoncé le 3 juin, à l'issue d'une quatrième session de négociations. Dès le lendemain, le chef du Hezbollah Naïm Qassem le rejette, exige un retrait total des forces israéliennes et menace le nord d'Israël de nouvelles attaques, qualifiant les pourparlers d'absurdes et d'humiliants. L'accord conditionnait la trêve à l'arrêt des tirs et au repli des combattants au nord du Litani. Depuis le début de la guerre, le bilan dépasse 3 500 morts au Liban et plus d'un million de déplacés.",
-      "tickerCat": "Liban",
-      "tickerText": "Le Hezbollah rejette le cessez-le-feu annoncé le 3 juin et exige un retrait total israélien, plus de 3 500 morts depuis le début de la guerre"
-    },
-    {
-      "date": "4 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Iran : le pouvoir prépare la population à un accord de paix",
-      "body": "Le guide suprême iranien Mojtaba Khamenei prépare la population à un possible accord de paix et appelle à l'unité nationale, selon plusieurs médias internationaux. La déclaration intervient après l'établissement, fin mai, d'un accord-cadre provisoire prolongeant de soixante jours le cessez-le-feu et ouvrant des négociations sur le programme nucléaire, en attente de validation par Donald Trump. Le texte prévoirait la réouverture du détroit d'Ormuz. Téhéran continue d'affirmer que l'enrichissement de l'uranium relève d'un droit souverain.",
-      "tickerCat": "Iran",
-      "tickerText": "Le guide suprême Mojtaba Khamenei prépare la population iranienne à un accord de paix, un cadre provisoire de soixante jours attend le feu vert de Trump"
-    },
-    {
-      "date": "4 juin 2026",
-      "cat": "Culture",
-      "catColor": "var(--culture)",
-      "headline": "Mort de Marjane Satrapi à Paris, à 56 ans",
-      "body": "L'autrice et réalisatrice franco-iranienne Marjane Satrapi est décédée le 4 juin à Paris, à l'âge de 56 ans. Révélée par la bande dessinée Persepolis, récit de son enfance à Téhéran sous la République islamique, adaptée au cinéma et primée à Cannes, elle était l'une des voix les plus reconnues de la diaspora iranienne. Sa disparition survient alors que l'Iran occupe le centre de l'actualité internationale.",
-      "tickerCat": "Disparition",
-      "tickerText": "L'autrice et réalisatrice franco-iranienne Marjane Satrapi, révélée par Persepolis, est morte à Paris à 56 ans"
-    },
-    {
-      "date": "3 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Conseil de sécurité : l'Allemagne échoue, le Portugal et l'Autriche élus",
-      "body": "L'Assemblée générale des Nations unies élit le Portugal et l'Autriche comme membres non permanents du Conseil de sécurité pour la période 2027-2028. L'Allemagne échoue pour la première fois, ne recueillant que 104 voix, alors qu'elle avait déjà siégé six fois depuis sa réunification. Berlin paie une candidature officialisée tardivement face à deux pays en campagne de longue date, et les polémiques nées de son repositionnement sur le droit international depuis le dossier de Gaza.",
-      "tickerCat": "ONU",
-      "tickerText": "L'Allemagne échoue pour la première fois à entrer au Conseil de sécurité, le Portugal et l'Autriche élus pour 2027-2028"
-    },
-    {
-      "date": "22 mai 2026",
-      "cat": "Technologie",
-      "catColor": "var(--tech)",
-      "headline": "OpenAI durcit ses protocoles de signalement après une attaque au Canada",
-      "body": "Suite à une attaque dont l'auteur utilisait ChatGPT, OpenAI annonce aux autorités canadiennes des ajustements de ses critères de signalement internes : seuil abaissé pour alerter les forces de l'ordre, recours à des experts en santé mentale, et création d'un point de contact direct avec la police canadienne. Le ministre canadien de l'IA réclame un plan détaillé et évoque une réponse législative si les engagements tardent.",
-      "tickerCat": "IA",
-      "tickerText": "OpenAI abaisse son seuil de signalement aux forces de l'ordre après une attaque liée à ChatGPT au Canada"
-    },
-    {
-      "date": "24 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Trump devant le Congrès : le discours le plus long de l'histoire présidentielle américaine",
-      "body": "Donald Trump prononce devant le Congrès ce que les médias américains décrivent comme le discours présidentiel le plus long jamais réalisé. Il revendique une économie «plus forte que jamais», vante ses résultats sur les frontières et présente l'Amérique comme redevenue la «nation la plus en vue». L'hémicycle est profondément polarisé : des élus démocrates boycottent, d'autres interrompent le président, un député est escorté hors de la salle. Sur l'international, Trump réitère ses avertissements à l'Iran sur le nucléaire.",
-      "tickerCat": "États-Unis",
-      "tickerText": "Trump prononce le discours présidentiel le plus long de l'histoire américaine devant un Congrès divisé"
-    },
-    {
-      "date": "27 mai 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Mai de chaleur record en France : 33°C à Paris",
-      "body": "Une chaleur exceptionnelle frappe la France en ce mois de mai, avec des températures avoisinant 33°C à Paris le 27 mai. Météo-France qualifie cet épisode d'anomalie thermique significative pour la saison. Les autorités sanitaires rappellent les consignes de prévention, notamment pour les personnes vulnérables. Cet épisode s'inscrit dans une tendance de fond : les mois de mai anormalement chauds se multiplient en Europe depuis dix ans.",
-      "tickerCat": "Climat",
-      "tickerText": "33°C à Paris le 27 mai, épisode de chaleur qualifié d'anomalie thermique significative pour la saison"
-    },
-    {
-      "date": "28 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Détroit d'Ormuz : le commandement américain frappe des drones iraniens",
-      "body": "Le commandement central américain annonce avoir détruit quatre drones kamikazes iraniens près du détroit d'Ormuz ainsi qu'une station de contrôle à Bandar Abbas. Washington affirme avoir neutralisé un cinquième appareil prêt au décollage. L'incident survient alors que les négociations sur le nucléaire iranien se poursuivent. Donald Trump affirme que l'Iran a accepté de renoncer au développement d'une arme nucléaire, une affirmation que Téhéran dément partiellement. Le négociateur en chef iranien Mohammad Bagher Ghalibaf déclare ne croire «ni aux paroles ni aux promesses» américaines.",
-      "tickerCat": "Iran",
-      "tickerText": "Le commandement américain détruit quatre drones iraniens près du détroit d'Ormuz, Téhéran dément avoir renoncé au nucléaire"
-    },
-    {
-      "date": "28 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Gaza : le fonds de reconstruction du Board of Peace est vide",
-      "body": "Le fonds officiel de reconstruction de Gaza créé par le Board of Peace de Donald Trump ne contient aucun dollar américain, malgré des promesses de milliards formulées par plusieurs pays membres, selon une source proche du dossier citée par l'AFP. Le Financial Times révèle que les donations transitent par un compte JPMorgan sans exigences indépendantes de transparence. Les principales puissances européennes ont refusé de rejoindre le board. Israël contrôle toujours plus de 60% du territoire de Gaza, dont l'intégralité des points d'entrée et de sortie.",
-      "tickerCat": "Gaza",
-      "tickerText": "Le fonds de reconstruction Gaza du Board of Peace est vide malgré des milliards promis, selon l'AFP"
-    },
-    {
-      "date": "29 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Ukraine : record de drones russes en mai, un navire turc touché en mer Noire",
-      "body": "Selon Kiev, la Russie a tiré plus de 8 000 drones contre l'Ukraine au cours du mois de mai, un record depuis le début de la guerre. Dans la nuit du 28 au 29 mai, une attaque massive touche plusieurs zones résidentielles et des infrastructures. La marine ukrainienne annonce qu'un drone russe a frappé un navire commercial turc en mer Noire, blessant deux marins. L'incident provoque une vive réaction d'Ankara.",
-      "tickerCat": "Ukraine",
-      "tickerText": "Plus de 8 000 drones russes en mai contre l'Ukraine, record depuis le début de la guerre, un navire turc touché en mer Noire"
-    },
-    {
-      "date": "1er juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Liban : l'armée israélienne reprend ses opérations terrestres et avance vers le nord",
-      "body": "L'armée israélienne a repris ses opérations terrestres au Liban et progresse vers le nord du pays à une profondeur inédite depuis le début du conflit. Les hôpitaux du sud du Liban font face à une saturation selon les correspondants sur place, qui décrivent des «combats sans interruption». La progression israélienne soulève de vives inquiétudes à Beyrouth et dans les capitales européennes.",
-      "tickerCat": "Liban",
-      "tickerText": "Israël reprend ses opérations terrestres au Liban et progresse vers le nord à une profondeur inédite"
-    },
-    {
-      "date": "1er juin 2026",
+      "date": "29 juin 2026",
       "cat": "Politique",
       "catColor": "var(--geo)",
-      "headline": "Malte : le Parti travailliste remporte un quatrième mandat consécutif, une première",
-      "body": "Le Premier ministre maltais Robert Abela, 48 ans, remporte les élections législatives avec une nette victoire pour le Parti travailliste, qui décroche un quatrième mandat consécutif, une première dans l'histoire du pays. La participation atteint 87,4%, en légère hausse. Son adversaire nationaliste Alex Borg, avocat de 30 ans qui appelait au changement, reconnaît sa défaite dès dimanche soir.",
-      "tickerCat": "Malte",
-      "tickerText": "Le Parti travailliste remporte un quatrième mandat consécutif à Malte, une première dans l'histoire du pays"
+      "headline": "Nouvelle-Calédonie : les loyalistes progressent aux provinciales sans majorité au Congrès",
+      "body": "En Nouvelle-Calédonie, les élections provinciales voient les loyalistes progresser sans obtenir la majorité au Congrès du territoire. Le scrutin se tient dans un contexte politique encore tendu après les troubles de 2024.",
+      "tickerCat": "Outre-mer",
+      "tickerText": "En Nouvelle-Calédonie, les loyalistes progressent aux élections provinciales sans obtenir la majorité au Congrès"
     },
     {
-      "date": "2 juin 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "Allemagne : les ventes de voitures électriques bondissent de 41% en un an",
-      "body": "Les ventes de véhicules 100% électriques ont augmenté de 41% en Allemagne en un an, portées par une prime gouvernementale de 1 500 à 6 000 euros versée aux ménages dont le revenu imposable annuel ne dépasse pas 80 000 euros. En mai 2026, une voiture sur quatre vendue en Allemagne était entièrement électrique. Cette dynamique contraste avec le ralentissement observé dans d'autres pays européens et relance le débat sur l'efficacité des aides à l'achat.",
-      "tickerCat": "Automobile",
-      "tickerText": "Les ventes de voitures électriques bondissent de 41% en Allemagne, une sur quatre vendue en mai était 100% électrique"
+      "date": "29 juin 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Justice : avocats et magistrats mobilisés contre la réforme de la justice criminelle",
+      "body": "Avocats et magistrats se mobilisent contre la dégradation de leurs conditions de travail et la réforme de la justice criminelle portée par le gouvernement. Les organisations professionnelles dénoncent un texte adopté sans concertation suffisante.",
+      "tickerCat": "France",
+      "tickerText": "Avocats et magistrats mobilisés contre les conditions de travail et la réforme de la justice criminelle"
     },
     {
-      "date": "2 juin 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Trump et Netanyahou : un recadrage rare qui dévoile des tensions profondes",
-      "body": "Selon plusieurs sources diplomatiques, Donald Trump a directement recadré Benjamin Netanyahou lors d'un entretien privé, marquant un moment de friction inhabituel entre les deux dirigeants. Sans en dévoiler la teneur précise, des officiels américains confirment que Washington exerce une pression croissante sur Tel Aviv sur la gestion du dossier gazaoui et les conditions humanitaires sur le territoire. Cette tension intervient alors que l'opération militaire israélienne au Liban s'intensifie.",
-      "tickerCat": "États-Unis",
-      "tickerText": "Trump recadre Netanyahou lors d'un entretien privé, signe de tensions croissantes entre Washington et Tel Aviv"
-    },
-    {
-      "date": "20 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Flottille pour Gaza : la vidéo qui embarrasse Israël",
-      "body": "Le ministre israélien de la Sécurité nationale Itamar Ben Gvir diffuse une vidéo de militants de la flottille pour Gaza agenouillés et mains liées, filmés à Ashdod après l'interception de leurs bateaux au large de Chypre le 18 mai. Quatre cent trente militants ont été transférés vers Israël. La scène provoque un tollé international. Fait rare, Benjamin Netanyahou désavoue son ministre, jugeant ces images non conformes aux valeurs d'Israël, tandis que le chef de la diplomatie Gideon Saar l'accuse d'avoir sciemment nui à l'image du pays. Paris, Ottawa et Madrid dénoncent des agissements inadmissibles et convoquent l'ambassadeur israélien.",
-      "tickerCat": "Gaza",
-      "tickerText": "Ben Gvir diffuse une vidéo de militants de la flottille mains liées, tollé international, Netanyahou désavoue son ministre"
-    },
-    {
-      "date": "20 mai 2026",
+      "date": "29 juin 2026",
       "cat": "Environnement",
       "catColor": "var(--env)",
-      "headline": "Chine : pluies record, au moins 22 morts",
-      "body": "Le bilan des pluies diluviennes qui frappent le centre et le sud de la Chine depuis plusieurs jours s'alourdit à 22 morts et une vingtaine de disparus, selon les médias officiels. Cinq provinces sont touchées, Hunan, Guizhou, Hubei, Guangxi et Jiangxi, avec des précipitations qualifiées de records historiques. Près de 24 000 personnes ont été évacuées, écoles fermées et activités suspendues. Pékin a débloqué une aide d'urgence de 120 millions de yuans. Ces épisodes extrêmes, de plus en plus fréquents à l'approche de l'été, illustrent la vulnérabilité croissante du pays face au dérèglement climatique.",
-      "tickerCat": "Chine",
-      "tickerText": "Pluies diluviennes dans le centre et le sud, 22 morts, près de 24 000 évacués, aide d'urgence de 120 millions de yuans"
+      "headline": "Canicule : annulations en cascade, Solidays, Ironman de Nice, Nuit des étoiles à Marseille",
+      "body": "Au lendemain de la canicule, les annulations s'enchaînent. Solidays, l'Ironman de Nice et la Nuit des étoiles à Marseille figurent parmi les rendez-vous estivaux supprimés ou reportés, organisateurs et collectivités invoquant la sécurité du public et des participants.",
+      "tickerCat": "Climat",
+      "tickerText": "Après la canicule, annulations en cascade : Solidays, Ironman de Nice, Nuit des étoiles à Marseille"
     },
     {
-      "date": "8 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Ormuz : un pétrolier attaqué, équipage chinois à bord",
-      "body": "La diplomatie chinoise confirme qu'un pétrolier battant pavillon des Îles Marshall, avec des membres d'équipage chinois à bord, a été attaqué dans le détroit d'Ormuz. Aucune victime signalée. Pékin se dit profondément préoccupé par le nombre de navires civils bloqués dans le détroit et appelle au rétablissement de la libre circulation. Le Golfe reste à un tournant entre guerre et paix, la Chine affirmant maintenir le dialogue avec toutes les parties, y compris l'Iran, pour favoriser une désescalade.",
-      "tickerCat": "Ormuz",
-      "tickerText": "Un pétrolier des Îles Marshall attaqué, équipage chinois à bord, Pékin appelle à la libre circulation des navires civils"
+      "date": "29 juin 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Salles de cinéma : la canicule fait grimper la fréquentation",
+      "body": "La canicule a fait grimper la fréquentation des salles de cinéma. Les exploitants enregistrent une hausse marquée des entrées sur la période, le public cherchant refuge dans les salles climatisées.",
+      "tickerCat": "Culture",
+      "tickerText": "La canicule fait grimper la fréquentation des salles de cinéma"
     },
     {
-      "date": "7 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Taïwan : Pékin hausse le ton face à Tokyo",
-      "body": "Le porte-parole du ministère chinois des Affaires étrangères Lin Jian réaffirme que toute tentative liée à l'indépendance de Taïwan et la paix dans le détroit sont aussi incompatibles que le feu et l'eau. Pékin réagit aux propos de la Première ministre japonaise Sanae Takaichi, qui avait évoqué devant la Diète une possible réponse militaire japonaise à une intervention chinoise contre Taïwan. La Chine invoque le principe d'une seule Chine et les trois communiqués conjoints sino-américains comme socle de relations stables avec Washington.",
-      "tickerCat": "Taïwan",
-      "tickerText": "Pékin réaffirme sa ligne rouge après les déclarations japonaises sur une intervention possible en cas de force chinoise"
+      "date": "29 juin 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Sotheby's Londres : un Modigliani adjugé 56 millions d'euros, record européen",
+      "body": "Un tableau de Modigliani a été adjugé 56 millions d'euros chez Sotheby's à Londres, établissant un record européen pour l'artiste. La vente confirme la solidité du marché haut de gamme malgré une conjoncture incertaine.",
+      "tickerCat": "Marché de l'art",
+      "tickerText": "Un Modigliani adjugé 56 millions d'euros chez Sotheby's à Londres, record européen"
     },
     {
-      "date": "12 mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Africa Forward, le pari kényan",
-      "body": "Le sommet Afrique-France s'ouvre à Nairobi pour deux jours. Pour la première fois depuis sa création en 1973, l'événement quitte l'espace francophone. Emmanuel Macron annonce 23 milliards d'euros d'investissements, dont 14 milliards français publics et privés, répartis entre transition énergétique, numérique, économie bleue, agriculture et santé. Après les retraits militaires du Mali, du Burkina Faso, du Niger et du Tchad, Paris cherche un nouveau point d'appui en Afrique de l'Est anglophone.",
-      "tickerCat": "Afrique",
-      "tickerText": "Sommet Africa Forward à Nairobi, Macron annonce 23 milliards d'euros d'investissements pour le continent"
+      "date": "29 juin 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Musée d'Orsay : l'héritier d'un collectionneur juif spolié réclame la restitution d'un Van Gogh",
+      "body": "L'héritier d'un collectionneur juif spolié pendant la Seconde Guerre mondiale réclame au musée d'Orsay la restitution d'un tableau de Van Gogh issu de la collection familiale. La demande s'inscrit dans le mouvement de restitutions des biens spoliés engagé par les musées français.",
+      "tickerCat": "Patrimoine",
+      "tickerText": "Au musée d'Orsay, l'héritier d'un collectionneur juif spolié réclame la restitution d'un tableau de Van Gogh"
     },
     {
-      "date": "10 mai 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "Restitutions, la loi-cadre adoptée à l'unanimité",
-      "body": "Le Parlement français adopte à l'unanimité la loi facilitant la restitution des œuvres pillées durant la colonisation. Jusque-là, le principe d'inaliénabilité des collections publiques imposait un vote loi par loi. Un simple décret gouvernemental suffira désormais pour les biens acquis entre 1815 et 1972. Les musées se voient confier une nouvelle mission, rechercher activement la provenance de leurs collections. Vingt-six trésors béninois, un sabre sénégalais et un tambour ivoirien ont été restitués depuis 2020.",
-      "tickerCat": "Restitutions",
-      "tickerText": "La France adopte à l'unanimité la loi-cadre des restitutions coloniales, simple décret désormais suffisant"
-    },
-    {
-      "date": "6 mai 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "Une note manuscrite d'Epstein sort des scellés",
-      "body": "Sept ans après sa mort, un juge fédéral américain rend publique une note manuscrite de Jeffrey Epstein conservée sous scellés à New York. Le document, dont la teneur n'a pas encore été commentée par le département de la Justice, ravive les questions sur l'écosystème d'influence du financier et sur les noms restés dans l'ombre des enquêtes successives."
-    },
-    {
-      "date": "6 mai 2026",
-      "cat": "Technologie",
+      "date": "29 juin 2026",
+      "cat": "Tech",
       "catColor": "var(--tech)",
-      "headline": "L'Union européenne interdit les IA de nudification",
-      "body": "Adoptée par 569 voix contre 45, la révision de l'AI Act interdit tout système d'intelligence artificielle générant des contenus à caractère sexuel représentant une personne identifiable sans son consentement. L'entrée en vigueur est fixée au 2 décembre 2026. La décision a été accélérée par les dérives de Grok fin 2025, l'IA d'Elon Musk, massivement utilisée pour produire des deepfakes de femmes et d'enfants à partir de photos réelles.",
-      "tickerCat": "UE-IA",
-      "tickerText": "L'Union européenne interdit les IA de nudification non consentie, 569 voix pour, entrée en vigueur le 2 décembre 2026"
-    },
-    {
-      "date": "1er mai 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Cuba, le tour de vis Trump",
-      "body": "Donald Trump signe un décret imposant des sanctions massives contre les secteurs cubains de l'énergie, des mines, de la défense et des services financiers. Nouveauté décisive, les sanctions secondaires, qui exposent toute banque étrangère en relation avec le gouvernement cubain à la liste noire américaine. Le porte-avions USS Abraham Lincoln est déployé à quelques milles des côtes de l'île. La Havane répond par une manifestation d'un demi-million de personnes devant l'ambassade américaine."
-    },
-    {
-      "date": "26 avril 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Tchernobyl, quarante ans",
-      "body": "Le 26 avril 1986, le réacteur n°4 explosait. Quatre décennies plus tard, la zone d'exclusion reste sous contrôle militaire ukrainien. Les liquidateurs survivants, dont l'âge moyen dépasse soixante-dix ans, parlent désormais de \"deux guerres\" : celle du nucléaire civil et celle qui se prolonge sur leur sol depuis 2022."
-    },
-    {
-      "date": "25 avril 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Bamako : le JNIM frappe la capitale malienne",
-      "body": "Attaques coordonnées sur Bamako, Kati, Gao, Kidal et Sévaré dès l'aube. La résidence du ministre de la Défense Sadio Camara est détruite. Un hélicoptère de l'armée est abattu à Gao. Le Front de libération de l'Azawad annonce la prise de Kidal. La junte affirme que la situation est \"sous contrôle\". Tournant majeur dans le conflit sahélien."
-    },
-    {
-      "date": "25 avril 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "Détroit d'Ormuz : premier marin tué",
-      "body": "Dalip Singh, vingt-quatre ans, marin originaire du Pendjab, devient la première victime civile reconnue des tirs iraniens dans le détroit. Sa famille n'a toujours pas reçu son corps. L'incident relance le débat sur la condition des marins du Sud global qui assurent près de la moitié du fret mondial sans protection consulaire effective."
-    },
-    {
-      "date": "24 avril 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Hegseth annonce un blocus mondial de l'Iran",
-      "body": "Le secrétaire à la Défense Pete Hegseth déclare que \"personne ne passe par Ormuz sans l'autorisation de la marine américaine\". Trente-quatre navires sont déployés. L'ordre Trump prévoit une riposte létale contre tout bâtiment iranien hostile. Des négociations indirectes pourraient toutefois reprendre à Islamabad sous médiation pakistanaise et émirienne."
-    },
-    {
-      "date": "24 avril 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "L'or franchit 4 688 dollars l'once, fuite vers la sécurité",
-      "body": "Brent à 104,78 dollars, WTI à 94,83 dollars, deuxième semaine consécutive de hausse depuis le début du conflit. Le dollar progresse face à l'euro et au yen, qui retrouve les 160. La grève dans l'usine de GNL d'Ichthys en Australie menace l'approvisionnement asiatique. Les banques centrales du Golfe et d'Asie discutent de lignes de liquidité avec Washington."
-    },
-    {
-      "date": "24 avril 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Jour du dépassement : la France atteint sa limite annuelle",
-      "body": "Selon le Global Footprint Network et le WWF, si l'humanité vivait au rythme de consommation française, les ressources que la planète peut régénérer en un an seraient déjà épuisées au 24 avril. La France figure parmi les pays au déficit écologique le plus précoce, derrière les États-Unis et le Qatar. La date avance d'une semaine par rapport à 2024."
-    },
-    {
-      "date": "23 avril 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Pékin annonce la militarisation de onze mille îles",
-      "body": "La Chine bloque physiquement le récif de Scarborough et déclare la mer de Chine méridionale fermée à la navigation non autorisée. Manille hésite entre invocation du traité de défense mutuelle avec Washington, protestation diplomatique formelle et saisine internationale. La présence japonaise aux exercices Balikatan 2026 marque un précédent historique."
-    },
-    {
-      "date": "17 mars 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Israël frappe Téhéran et Beyrouth",
-      "body": "Dix-huitième jour de l'opération. Les frappes visent les infrastructures de commandement du Hezbollah et deux sites supposés du programme nucléaire iranien. La Russie convoque le Conseil de sécurité. Washington maintient son soutien tout en appelant à la désescalade."
-    },
-    {
-      "date": "17 mars 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "La Fed se réunit, stagflation en ligne de mire",
-      "body": "Le pétrole à 103$ complique la décision de Jerome Powell. Une hausse des taux aggraverait le ralentissement ; un statu quo valide l'inflation. Les marchés anticipent une pause assortie d'un discours hawkish. Le dollar s'apprécie face à l'euro et au yen."
-    },
-    {
-      "date": "17 mars 2026",
-      "cat": "Technologie",
-      "catColor": "var(--tech)",
-      "headline": "Nvidia H200 : rupture de stock mondiale",
-      "body": "TSMC a confirmé ne pas pouvoir satisfaire la demande au-delà du troisième trimestre. Les hyperscalers (Microsoft, Google, Amazon) ont absorbé l'essentiel de l'allocation 2026. Les startups européennes d'IA signalent des délais de livraison allant jusqu'à 18 mois."
-    },
-    {
-      "date": "16 mars 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Trump face au mur : alliés absents",
-      "body": "Le sommet de l'OTAN s'est conclu sans communiqué commun pour la deuxième fois consécutive. Les délégations européennes ont refusé d'entériner la formulation américaine sur Taïwan. Le secrétaire général a évoqué une \"période de recalibrage stratégique\"."
-    },
-    {
-      "date": "16 mars 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Sécheresse record en Europe du Sud, 4e année consécutive",
-      "body": "L'Espagne, le Portugal et l'Italie du Sud affichent des réserves hydriques à 34% de leur capacité moyenne pour mars. L'Union européenne a activé le mécanisme de solidarité hydrique pour la troisième fois depuis sa création. Les négociations agricoles sur la PAC sont suspendues."
-    },
-    {
-      "date": "15 mars 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "France : mobilisation nationale jeudi",
-      "body": "Les syndicats appellent à une journée interprofessionnelle contre la réforme des retraites portée à 67 ans. La CFDT, habituellement réformiste, a rejoint le front commun. Le gouvernement refuse toute négociation avant le vote en commission, prévu le 24 mars."
-    },
-    {
-      "date": "15 mars 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "Bitcoin dépasse 94 000$, institutionnels en retrait",
-      "body": "Le mouvement est porté par des flux de retail asiatique et des ETF spot lancés à Singapour et à Dubaï. BlackRock et Fidelity ont réduit leurs expositions de 12% depuis janvier. Les analystes divergent entre un test des 100 000$ et une correction liée à la liquidité globale."
+      "headline": "James-Webb : une signature inconnue détectée sur Titan et Pluton",
+      "body": "Le télescope spatial James-Webb a détecté sur Titan, lune de Saturne, et sur Pluton une signature spectrale qui ne correspond à aucune molécule connue à ce jour. Les équipes scientifiques poursuivent l'analyse des données pour identifier la nature exacte du composé.",
+      "tickerCat": "Science",
+      "tickerText": "Le télescope James-Webb détecte sur Titan et Pluton une signature qui ne correspond à aucune molécule connue"
     }
   ]
 }
