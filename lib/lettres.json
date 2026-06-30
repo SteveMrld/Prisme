@@ -1,5 +1,16 @@
 [
   {
+    "slug": "le-privilege-du-soin",
+    "numero": 6,
+    "title": "Le privilège du soin",
+    "date": "30 juin 2026",
+    "dateISO": "2026-06-30",
+    "teaser": "Sur la santé mentale, et la distance entre ce qu'une société proclame et le soin qu'elle organise vraiment.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "le-privilege-du-soin"
+  },
+  {
     "slug": "le-regne-des-semblables",
     "numero": 5,
     "title": "Le règne des semblables",
