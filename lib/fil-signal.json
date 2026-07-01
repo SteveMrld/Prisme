@@ -1,6 +1,69 @@
 {
-  "date_maj": "2026-06-29",
+  "date_maj": "2026-07-01",
   "breves": [
+    {
+      "date": "1er juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Sénégal : l'Assemblée réduit les pouvoirs du président, un référendum annoncé",
+      "body": "L'Assemblée nationale sénégalaise a adopté une révision constitutionnelle qui renforce le Parlement et le Premier ministre au détriment du chef de l'État, sur fond de rupture entre le président Bassirou Diomaye Faye et son ancien Premier ministre Ousmane Sonko, devenu président de l'Assemblée. Le vote, marqué par un boycott de l'opposition et des heurts devant le Parlement, sera soumis à référendum. Le texte crée une Cour constitutionnelle et oblige le gouvernement à informer les députés des accords sur les ressources naturelles.",
+      "tickerCat": "Sénégal",
+      "tickerText": "Sénégal : l'Assemblée réduit les pouvoirs du président, un référendum annoncé"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "L'Irlande prend la présidence du Conseil de l'Union européenne",
+      "body": "L'Irlande a pris ce 1er juillet la présidence tournante du Conseil de l'Union européenne, pour six mois, succédant à Chypre, sous le mot d'ordre « la force dans l'unité ». Dublin veut faire avancer la compétitivité, la sécurité et le prochain budget pluriannuel de l'Union, et arbitrer sur le numérique entre soutien à l'intelligence artificielle et protection des mineurs en ligne.",
+      "tickerCat": "Union européenne",
+      "tickerText": "L'Irlande prend la présidence du Conseil de l'UE pour six mois, succédant à Chypre"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Europe : une vague de chaleur record reflue, une nouvelle déjà annoncée",
+      "body": "La France sort d'un épisode caniculaire de onze jours que Météo-France classe parmi les plus sévères jamais observés, alors que l'Espagne vient de connaître son premier semestre le plus chaud jamais enregistré. Les températures baissent, mais un nouvel épisode pourrait s'installer dès le week-end. Les effets se prolongent sur la santé, l'agriculture et les forêts.",
+      "tickerCat": "Climat",
+      "tickerText": "Europe : la vague de chaleur record reflue, un nouvel épisode déjà annoncé"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Un rouleau carbonisé d'Herculanum lu en entier pour la première fois, grâce à l'IA",
+      "body": "Près de deux mille ans après l'éruption du Vésuve, un rouleau de papyrus carbonisé d'Herculanum a été déroulé virtuellement et lu intégralement sans être ouvert, à l'aide d'un synchrotron et de l'intelligence artificielle. Le texte, un traité stoïcien d'éthique, ouvre la voie au déchiffrement de centaines d'autres rouleaux de la seule bibliothèque de l'Antiquité parvenue jusqu'à nous.",
+      "tickerCat": "Culture",
+      "tickerText": "Herculanum : un rouleau carbonisé lu en entier pour la première fois grâce à l'IA"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Mars a connu un volcanisme profond comparable à celui de la Terre, révèle une étude",
+      "body": "Des chercheurs de l'université d'Oxford ont mis en évidence, dans la revue Nature Astronomy, que Mars a abrité jadis de vastes systèmes magmatiques profonds semblables à ceux de la Terre, alors que la planète est dépourvue de tectonique des plaques. La découverte éclaire les conditions qui rendent une planète rocheuse potentiellement habitable.",
+      "tickerCat": "Sciences",
+      "tickerText": "Étude : Mars a connu un volcanisme profond comparable à celui de la Terre"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Coupe du monde 2026 : la France en huitièmes, un tableau où s'invitent les Suds",
+      "body": "Les Bleus se sont imposés 3-0 face à la Suède, portés par un doublé de Kylian Mbappé, et affronteront le Paraguay samedi à Philadelphie. Dans ce Mondial élargi à quarante-huit équipes, la phase à élimination directe fait une place rare à des sélections comme la République démocratique du Congo ou le Cap-Vert.",
+      "tickerCat": "SPORT",
+      "tickerText": "Mondial 2026 : la France bat la Suède 3-0 et rejoint les huitièmes, le Paraguay samedi"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Énergie : le prix repère du gaz augmente de 7,4 % au 1er juillet",
+      "body": "En France, le prix repère de vente du gaz publié par la Commission de régulation de l'énergie progresse de 7,4 % en moyenne au 1er juillet, portant la facture annuelle type à un nouveau record proche de 1 800 euros. Le même jour, une directive européenne impose aux banques de l'Union de prévenir leurs clients de toute hausse de tarifs au moins deux mois à l'avance.",
+      "tickerCat": "ÉCO",
+      "tickerText": "Gaz : le prix repère grimpe de 7,4 % au 1er juillet en France"
+    },
     {
       "date": "29 juin 2026",
       "cat": "Géopolitique",
