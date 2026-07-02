@@ -127,7 +127,7 @@ export default function Footer() {
 
         {/* d) Ligne mentions légales + copyright */}
         <div className={styles.legal}>
-          © 2026 SOARA. Tous droits réservés. · Édition&nbsp;: Steve Moradel. · ISSN&nbsp;: à venir.
+          © 2026 SOARA. Tous droits réservés. · Édition&nbsp;: Steve Moradel. · ISSN&nbsp;: 3130-3544.
         </div>
 
         {/* e) Mini-liens bas */}
