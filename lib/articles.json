@@ -131,7 +131,7 @@
       "Vous dites que les femmes sont majoritaires dans la profession mais absentes là où les décisions se prennent. Est-ce un problème de génération qui se résoudra avec le temps, ou quelque chose de structurel qui résiste ?",
       "Dans quel monde voulez-vous plaider dans vingt ans ?"
     ],
-    "featuredOnHome": true
+    "featuredOnHome": false
   },
   {
     "slug": "football-cage",
@@ -243,7 +243,8 @@
     "interviewSubjectItalic": "Longo",
     "interviewRole": "Directeur de l’Institut de Longévité · University of Southern California, Los Angeles",
     "interviewDeck": "Valter Longo dirige l’Institut de Longévité de l’Université de Californie du Sud. Auteur du « Régime de Longévité », il est le chercheur le plus cité au monde sur le jeûne thérapeutique et la longévité. Il a fondé L-Nutra en 2009, dont il a reversé l’intégralité de ses parts à des fondations caritatives.",
-    "interviewQuote": "La médecine conventionnelle est conventionnelle et ne veut pas changer."
+    "interviewQuote": "La médecine conventionnelle est conventionnelle et ne veut pas changer.",
+    "featuredOnHome": true
   },
   {
     "slug": "maladie-sans-filet",

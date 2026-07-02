@@ -37,8 +37,12 @@ export default function FeaturedInterviews({ items }: { items: Interview[] }) {
             data-coming={isComing ? 'true' : undefined}
           >
             <div className={styles.banner}>
-              <span className={styles.bannerLabel}>Grand Entretien</span>
-              <span className={styles.bannerDate}>N°&nbsp;{interview.interviewIssue}</span>
+              <span className={styles.bannerLabel}>
+                {interview.interviewType === 'grand' ? 'Grand Entretien' : 'Entretien'}
+              </span>
+              {interview.interviewType === 'grand' && interview.interviewIssue != null && (
+                <span className={styles.bannerDate}>N°&nbsp;{interview.interviewIssue}</span>
+              )}
             </div>
 
             <div className={styles.img}>

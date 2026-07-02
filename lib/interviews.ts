@@ -88,7 +88,7 @@ export function getHomeInterviewsPartition(): { featured: Interview[]; others: I
     && !isFutureDay(i.date)
 
   const pinned = all
-    .filter((i) => isGrand(i) && i.featuredOnHome === true)
+    .filter((i) => i.featuredOnHome === true)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
   const pinnedSlugs = new Set(pinned.map((i) => i.slug))
@@ -96,7 +96,9 @@ export function getHomeInterviewsPartition(): { featured: Interview[]; others: I
     .filter((i) => isPublishedGrand(i) && !pinnedSlugs.has(i.slug))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-  const featured = [...pinned, ...publishedFill].slice(0, 2)
+  // Si un entretien est épinglé, il occupe seul la vedette. Sinon, on
+  // complète avec les grands entretiens publiés les plus récents (max 2).
+  const featured = (pinned.length > 0 ? pinned : publishedFill).slice(0, 2)
   const featuredSlugs = new Set(featured.map((i) => i.slug))
   const comingPriority = (i: Interview): number => {
     const future = isFutureDay(i.date)
