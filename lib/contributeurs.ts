@@ -55,7 +55,7 @@ export const CONTRIBUTEURS: Contributeur[] = [
     slug: 'ouzounian',
     name: 'Éric Ouzounian',
     role: 'Contributeur · Médias & Culture',
-    bio: 'Journaliste et essayiste, fondateur du magazine Immersion. Il documente les mutations culturelles et médiatiques à l\'ère numérique, avec un regard particulier sur les industries créatives.',
+    bio: 'Journaliste, auteur, réalisateur et enseignant à l\'ISCPA, Eric Ouzounian est spécialiste des questions culturelles, d\'énergie, de géopolitique et de Défense.',
     domaines: ['Culture', 'Médias', 'Technologie'],
     portrait: '/portraits/ouzounian.jpg',
     linkedin: null,
