@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import fs from 'fs'
+import path from 'path'
 import articlesData from '../lib/articles.json'
 import lettresData from '../lib/lettres.json'
 import { getAllInterviews } from '../lib/interviews'
@@ -73,6 +75,17 @@ function maxDate(dates: Date[]): Date {
   return new Date(Math.max(...dates.map(d => d.getTime())))
 }
 
+// N'annoncer à Google que les pages qui portent réellement du contenu.
+// Un article dont le fichier corps est absent rend un placeholder vide,
+// ce qui pollue le sitemap et tire la qualité perçue du site vers le bas.
+function hasBody(slug: string): boolean {
+  try {
+    return fs.existsSync(path.join(process.cwd(), 'lib', 'content', `${slug}.html`))
+  } catch {
+    return false
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const statics = STATIC_PAGES.map(p => ({
     url: `${BASE_URL}${p.url}`,
@@ -105,7 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })
 
   const articles = (articlesData as any[])
-    .filter(a => !a.interviewType)
+    .filter(a => !a.interviewType && hasBody(a.slug))
     .map(article => ({
       url: `${BASE_URL}/articles/${article.slug}`,
       lastModified: articleDate(article),
@@ -113,12 +126,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }))
 
-  const interviews = getAllInterviews().map(i => ({
-    url: `${BASE_URL}/entretien/${i.slug}`,
-    lastModified: articleDate(i),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  const interviews = getAllInterviews()
+    .filter(i => i.interviewStatus === 'published' && hasBody(i.slug))
+    .map(i => ({
+      url: `${BASE_URL}/entretien/${i.slug}`,
+      lastModified: articleDate(i),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
 
   const lettres = (lettresData as any[]).map(l => {
     const parsed = new Date(l.dateISO)
