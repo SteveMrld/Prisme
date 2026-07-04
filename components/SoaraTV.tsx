@@ -11,7 +11,7 @@ const episodes = [
     category: 'Géopolitique',
     duration: '1 min 19',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/soara_inde_final-1_hitfsr',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/soara_inde_final-1_hitfsr.jpg',
+    thumb: '/tv/ep01.jpg',
     description: "1,44 milliard d'habitants. 7% de croissance. Une puissance qui ne choisit pas son camp.",
   },
   {
@@ -21,7 +21,7 @@ const episodes = [
     category: 'Géopolitique',
     duration: '2 min 02',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/soara_afrique_ep2-1_xp6mvu',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/soara_afrique_ep2-1_xp6mvu.jpg',
+    thumb: '/tv/ep02.jpg',
     description: "54 pays. 2 000 langues. Le continent le plus riche, le plus mal compris.",
   },
   {
@@ -31,7 +31,7 @@ const episodes = [
     category: 'Science',
     duration: '2 min 07',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/soara_biologie_ep3_ouqzr4',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/soara_biologie_ep3_ouqzr4.jpg',
+    thumb: '/tv/ep03.jpg',
     description: "CRISPR, AlphaFold, Neuralink. L'IA a donné à l'humanité le pouvoir de réécrire le vivant.",
   },
   {
@@ -41,7 +41,7 @@ const episodes = [
     category: 'Géopolitique',
     duration: '2 min 25',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/soara_arme_ep4_eo7uyk',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/soara_arme_ep4_eo7uyk.jpg',
+    thumb: '/tv/ep04.jpg',
     description: "12 700 ogives. 32 accidents. L'arme censée protéger le monde a failli le détruire.",
   },
   {
@@ -51,7 +51,7 @@ const episodes = [
     category: 'Économie',
     duration: '2 min 07',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/PRISME5_v3_kauhvi',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/PRISME5_v3_kauhvi.jpg',
+    thumb: '/tv/ep05.jpg',
     description: "1% possède plus que les 99% restants. Pandora Papers, crises, IA : comment les inégalités s'accélèrent.",
   },
   {
@@ -61,7 +61,7 @@ const episodes = [
     category: 'Biodiversité',
     duration: '1 min 49',
     file: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/f_mp4,q_auto/soara_asteroide_ep6_qkipn3',
-    thumb: 'https://res.cloudinary.com/dnbyi8fw6/video/upload/so_5,w_1280,h_720,c_fill,f_jpg,q_80/soara_asteroide_ep6_qkipn3.jpg',
+    thumb: '/tv/ep06.jpg',
     description: "69% des vertébrés sauvages disparus depuis 1970. La 6e extinction est différente : c'est la première causée par une seule espèce.",
   },
 ]
