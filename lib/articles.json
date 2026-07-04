@@ -1,5 +1,21 @@
 [
   {
+    "slug": "defense-europeenne",
+    "title": "La France, <em>colonne vertébrale</em> de la défense européenne ?",
+    "description": "Réarmement européen, dépendance persistante à l'égard de Washington, dissuasion nucléaire : anatomie d'un réveil stratégique et de la place singulière qu'y occupe la France.",
+    "image": "/articles/defense-europeenne-cover.jpg",
+    "category": "geo",
+    "date": "2026-07-04",
+    "readTime": "10",
+    "author": "Éric Ouzounian",
+    "authorRole": "Journaliste, auteur et réalisateur, enseignant à l'ISCPA",
+    "featured": false,
+    "premium": false,
+    "avif": false,
+    "imageCredit": "© Soara",
+    "authorBio": "Journaliste, auteur, réalisateur et enseignant à l'ISCPA, Éric Ouzounian est spécialiste des questions culturelles, d'énergie, de géopolitique et de Défense."
+  },
+  {
     "slug": "climatisation",
     "title": "La chaleur <em>déplacée</em>.",
     "description": "La climatisation ne fabrique pas de froid : elle déplace de la chaleur, d'une pièce vers la rue, en consommant de l'électricité pour le faire. Anodin dans un salon, ce geste devient un fait énergétique majeur quand des milliards d'appareils s'y mettent en même temps.",

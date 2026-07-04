@@ -2236,3 +2236,31 @@ a.byline-li {
   font-feature-settings: "smcp", "c2sc";
   letter-spacing: 0.03em;
 }
+
+/* ── Figure : comparaison des enveloppes budgétaires (article défense) ── */
+.fig-envelopes{
+  margin:34px 0;
+  border-top:1px solid var(--encre);
+  border-bottom:1px solid var(--bord);
+  padding:22px 0 26px;
+}
+.fig-label{
+  font-family:var(--font-serif-reading);
+  font-size:11px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--or-deep);margin:0 0 22px;
+}
+.fig-row{margin:0 0 20px;}
+.fig-row:last-of-type{margin-bottom:0;}
+.fig-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 8px;}
+.fig-name{font-family:var(--font-serif-reading);font-size:15px;line-height:1.3;color:var(--encre);}
+.fig-name span{color:var(--gris-m);}
+.fig-val{font-family:var(--font-serif-display);font-size:30px;font-weight:500;letter-spacing:-.5px;color:var(--encre);line-height:1;white-space:nowrap;}
+.fig-track{height:8px;background:var(--bord);border-radius:1px;overflow:hidden;}
+.fig-fill{height:100%;background:linear-gradient(90deg,var(--or-deep) 0%,var(--or) 100%);border-radius:1px;}
+.fig-note{margin:20px 0 0;padding-top:16px;border-top:1px dotted var(--bord);font-family:var(--font-serif-reading);font-size:13px;line-height:1.6;color:var(--gris-m);}
+.fig-note strong{color:var(--encre);font-weight:600;}
+@media(max-width:640px){
+  .fig-val{font-size:26px;}
+  .fig-name{font-size:14px;}
+}
