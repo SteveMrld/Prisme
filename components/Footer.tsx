@@ -111,6 +111,14 @@ export default function Footer() {
             >
               TikTok
             </a>
+            <a
+              href="https://whatsapp.com/channel/0029VbBjqHOFXUuc9gka102k"
+              className={styles.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
 
