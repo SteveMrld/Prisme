@@ -596,7 +596,7 @@ export default async function HomePage() {
         </div>
         <div className={styles.tvLayout}>
           {(() => {
-            const featured = TV_EPISODES[TV_EPISODES.length - 1]
+            const featured = TV_EPISODES[0]
             return (
               <Link href={featured.href} className={styles.tvFeatured}>
                 <div className={styles.tvFeaturedImg}>
@@ -617,7 +617,7 @@ export default async function HomePage() {
             )
           })()}
           <ul className={styles.tvSidelist}>
-            {TV_EPISODES.slice(0, -1).reverse().map(ep => (
+            {TV_EPISODES.slice(1).map(ep => (
               <li key={ep.id}>
                 <Link href={ep.href} className={styles.tvSideItem}>
                   <div className={styles.tvSideThumb}>
