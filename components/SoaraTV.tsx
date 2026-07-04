@@ -70,6 +70,7 @@ export default function SoaraTV() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [active, setActive] = useState(0)
   const [playing, setPlaying] = useState(false)
+  const [intro, setIntro] = useState(false)
   const [error, setError] = useState(false)
   const [fading, setFading] = useState(false)
 
@@ -83,6 +84,8 @@ export default function SoaraTV() {
     } else {
       videoRef.current.play().catch(() => setError(true))
       setPlaying(true)
+      setIntro(true)
+      setTimeout(() => setIntro(false), 6500)
     }
   }
 
@@ -90,6 +93,7 @@ export default function SoaraTV() {
     if (i === active || fading) return
     setFading(true)
     setPlaying(false)
+    setIntro(false)
     setTimeout(() => {
       setActive(i)
       setError(false)
@@ -129,12 +133,13 @@ export default function SoaraTV() {
               poster={ep.thumb}
             />
 
-            {/* Thumbnail overlay — visible avant play, masqué après */}
-            {!playing && !error && (
+            {/* Thumbnail overlay — visible avant play, et maintenu pendant l'intro pour masquer l'ancien carton */}
+            {(!playing || intro) && !error && (
               <img
                 src={ep.thumb}
                 alt={ep.title}
                 className={styles.thumb}
+                style={{ pointerEvents: 'none' }}
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
             )}

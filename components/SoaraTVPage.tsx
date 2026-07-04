@@ -83,6 +83,7 @@ export default function SoaraTVPage() {
   const initialIndex = epParam ? episodes.findIndex(e => e.id === epParam) : -1
   const videoRef = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
+  const [intro, setIntro] = useState(false)
   const [active, setActive] = useState(initialIndex >= 0 ? initialIndex : 0)
   const [transitioning, setTransitioning] = useState(false)
   const [fadeIn, setFadeIn] = useState(true)
@@ -96,6 +97,8 @@ export default function SoaraTVPage() {
     } else {
       videoRef.current.play()
       setPlaying(true)
+      setIntro(true)
+      setTimeout(() => setIntro(false), 6500)
     }
   }
 
@@ -109,6 +112,7 @@ export default function SoaraTVPage() {
     setTransitioning(true)
     setFadeIn(false)
     setPlaying(false)
+    setIntro(false)
     setTimeout(() => {
       setActive(i)
       if (videoRef.current) videoRef.current.load()
@@ -169,12 +173,13 @@ export default function SoaraTVPage() {
                 poster={ep.thumb}
               />
 
-              {/* Thumbnail visible avant lecture */}
-              {!playing && (
+              {/* Thumbnail visible avant lecture, et maintenu pendant l'intro pour masquer l'ancien carton */}
+              {(!playing || intro) && (
                 <img
                   src={ep.thumb}
                   alt={ep.title}
                   className={styles.thumb}
+                  style={{ pointerEvents: 'none' }}
                   onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
                 />
               )}
