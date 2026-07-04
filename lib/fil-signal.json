@@ -1,6 +1,60 @@
 {
-  "date_maj": "2026-07-01",
+  "date_maj": "2026-07-04",
   "breves": [
+    {
+      "date": "4 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Iran : neuf jours de funérailles nationales pour l'ayatollah Ali Khamenei",
+      "body": "L'Iran a ouvert le 4 juillet des funérailles s'étendant sur neuf jours et cinq villes, en Iran et en Irak, pour l'ayatollah Ali Khamenei, tué il y a quatre mois pendant la guerre qui a opposé le pays aux États-Unis et à Israël. Des millions de fidèles sont attendus, et des délégations du Pakistan, de Chine et d'Inde participent aux cérémonies. Son fils, Mojtaba Khamenei, lui a succédé comme guide suprême.",
+      "tickerCat": "Iran",
+      "tickerText": "Iran : neuf jours de funérailles nationales pour l'ayatollah Ali Khamenei"
+    },
+    {
+      "date": "3 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Venezuela : un survivant tiré des décombres huit jours après le séisme",
+      "body": "Au Venezuela, un vigile de 43 ans a été extrait vivant des décombres d'un centre commercial effondré, huit jours après les deux séismes qui ont frappé le pays le 24 juin. Selon les autorités, le bilan approche 2 300 morts et plus de 11 000 blessés, et près de 50 000 personnes restent portées disparues. La présidente par intérim, Delcy Rodríguez, est critiquée pour la lenteur des secours, alors que l'aide internationale afflue.",
+      "tickerCat": "Venezuela",
+      "tickerText": "Venezuela : un survivant tiré des décombres huit jours après le séisme, bilan proche de 2 300 morts"
+    },
+    {
+      "date": "2 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "L'Inde et le Japon nouent un pacte de défense et un cadre de partenariat économique",
+      "body": "À New Delhi, Narendra Modi et la Première ministre japonaise Sanae Takaichi ont signé une série d'accords couvrant la sécurité économique, l'intelligence artificielle et les technologies critiques, ainsi que leur tout premier projet commun d'équipement de défense. Les deux puissances asiatiques resserrent leurs liens dans un Indo-Pacifique incertain, associant la précision industrielle japonaise et le logiciel indien.",
+      "tickerCat": "Inde-Japon",
+      "tickerText": "L'Inde et le Japon signent un pacte de défense et un cadre de partenariat économique"
+    },
+    {
+      "date": "2 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Sud de la France : un incendie ravage 900 hectares entre l'Aude et l'Hérault",
+      "body": "Un feu parti d'Oupia, dans l'Hérault, a parcouru près de 900 hectares en gagnant l'Aude, mobilisant jusqu'à 800 pompiers et contraignant environ 250 habitants à évacuer. Aucune victime civile n'est à déplorer. L'incendie, attisé par la sécheresse et le vent, survient au lendemain d'une canicule record, dans des départements placés en vigilance rouge pour les feux de forêt.",
+      "tickerCat": "Climat",
+      "tickerText": "Sud de la France : un incendie parcourt 900 hectares entre l'Aude et l'Hérault"
+    },
+    {
+      "date": "4 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Coupe du monde 2026 : la France défie le Paraguay en huitièmes, les Suds ont marqué le tournoi",
+      "body": "Les Bleus affrontent le Paraguay ce soir à Philadelphie, à 23h heure de Paris, pour une place en quarts de finale. Ce Mondial élargi à quarante-huit équipes aura vu les sélections des Suds bousculer la hiérarchie, du Cap-Vert, éliminé par l'Argentine après des débuts remarqués, à des nations africaines et asiatiques rares à ce stade.",
+      "tickerCat": "SPORT",
+      "tickerText": "Mondial 2026 : France-Paraguay ce soir en huitièmes, à 23h heure de Paris"
+    },
+    {
+      "date": "3 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Chine : les ventes de voitures électriques bondissent de 22 % en juin",
+      "body": "Selon l'association chinoise du secteur automobile, les ventes de voitures électriques ont atteint 1,51 million d'unités en juin, en hausse de 22 % sur un an. Les analystes lient cette accélération à la flambée des prix du pétrole provoquée par la guerre au Moyen-Orient, qui pousse un peu plus les ménages chinois vers l'électrique.",
+      "tickerCat": "Chine",
+      "tickerText": "Chine : les ventes de voitures électriques bondissent de 22 % sur un an en juin"
+    },
     {
       "date": "1er juillet 2026",
       "cat": "Géopolitique",
