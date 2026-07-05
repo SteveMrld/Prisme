@@ -1,6 +1,33 @@
 {
-  "date_maj": "2026-07-04",
+  "date_maj": "2026-07-05",
   "breves": [
+    {
+      "date": "4 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Coupe du monde : la France élimine le Paraguay, le Maroc rejoint les quarts",
+      "body": "En huitièmes de finale, l'équipe de France s'est imposée 1-0 face au Paraguay grâce à un penalty de Kylian Mbappé, au terme d'un match fermé, et affrontera le Maroc en quarts, jeudi 9 juillet à Boston. Plus tôt dans la journée, les Lions de l'Atlas avaient écarté le Canada 3-0, portés par un doublé d'Azzedine Ounahi. L'Argentine et la Colombie ont également validé leur billet, confirmant le poids des sélections du Sud dans le tournoi.",
+      "tickerCat": "Mondial",
+      "tickerText": "Coupe du monde : la France élimine le Paraguay (1-0), le Maroc écarte le Canada (3-0), quarts jeudi"
+    },
+    {
+      "date": "4 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Tour de France : Jonas Vingegaard premier maillot jaune à Barcelone",
+      "body": "La 113e édition du Tour de France s'est élancée de Barcelone par un contre-la-montre par équipes de 19,6 kilomètres, un format inédit pour un Grand Départ depuis plus d'un demi-siècle. Le Danois Jonas Vingegaard, porté par sa formation Visma-Lease a Bike, a endossé son premier maillot jaune depuis son sacre de 2023, devançant l'Italien Filippo Ganna de huit secondes et le Slovène Tadej Pogacar de douze.",
+      "tickerCat": "Cyclisme",
+      "tickerText": "Tour de France : Jonas Vingegaard premier maillot jaune après le contre-la-montre par équipes de Barcelone"
+    },
+    {
+      "date": "4 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Canicule : Météo-France étend la vigilance orange à sept départements du Sud",
+      "body": "Une nouvelle vague de chaleur s'installe sur l'Hexagone. Météo-France a étendu sa vigilance orange canicule : l'Ardèche, l'Aude, la Drôme, le Gard et le Vaucluse rejoignent les Pyrénées-Orientales et l'Hérault, déjà en alerte. Les températures doivent culminer dans les prochains jours, ravivant le risque d'incendies dans un Sud déjà éprouvé, où un feu a parcouru 900 hectares entre l'Aude et l'Hérault début juillet.",
+      "tickerCat": "Canicule",
+      "tickerText": "Canicule : Météo-France étend la vigilance orange à sept départements du Sud"
+    },
     {
       "date": "4 juillet 2026",
       "cat": "Géopolitique",
@@ -36,15 +63,6 @@
       "body": "Un feu parti d'Oupia, dans l'Hérault, a parcouru près de 900 hectares en gagnant l'Aude, mobilisant jusqu'à 800 pompiers et contraignant environ 250 habitants à évacuer. Aucune victime civile n'est à déplorer. L'incendie, attisé par la sécheresse et le vent, survient au lendemain d'une canicule record, dans des départements placés en vigilance rouge pour les feux de forêt.",
       "tickerCat": "Climat",
       "tickerText": "Sud de la France : un incendie parcourt 900 hectares entre l'Aude et l'Hérault"
-    },
-    {
-      "date": "4 juillet 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "Coupe du monde 2026 : la France défie le Paraguay en huitièmes, les Suds ont marqué le tournoi",
-      "body": "Les Bleus affrontent le Paraguay ce soir à Philadelphie, à 23h heure de Paris, pour une place en quarts de finale. Ce Mondial élargi à quarante-huit équipes aura vu les sélections des Suds bousculer la hiérarchie, du Cap-Vert, éliminé par l'Argentine après des débuts remarqués, à des nations africaines et asiatiques rares à ce stade.",
-      "tickerCat": "SPORT",
-      "tickerText": "Mondial 2026 : France-Paraguay ce soir en huitièmes, à 23h heure de Paris"
     },
     {
       "date": "3 juillet 2026",
@@ -99,15 +117,6 @@
       "body": "Des chercheurs de l'université d'Oxford ont mis en évidence, dans la revue Nature Astronomy, que Mars a abrité jadis de vastes systèmes magmatiques profonds semblables à ceux de la Terre, alors que la planète est dépourvue de tectonique des plaques. La découverte éclaire les conditions qui rendent une planète rocheuse potentiellement habitable.",
       "tickerCat": "Sciences",
       "tickerText": "Étude : Mars a connu un volcanisme profond comparable à celui de la Terre"
-    },
-    {
-      "date": "1er juillet 2026",
-      "cat": "Société",
-      "catColor": "var(--soc)",
-      "headline": "Coupe du monde 2026 : la France en huitièmes, un tableau où s'invitent les Suds",
-      "body": "Les Bleus se sont imposés 3-0 face à la Suède, portés par un doublé de Kylian Mbappé, et affronteront le Paraguay samedi à Philadelphie. Dans ce Mondial élargi à quarante-huit équipes, la phase à élimination directe fait une place rare à des sélections comme la République démocratique du Congo ou le Cap-Vert.",
-      "tickerCat": "SPORT",
-      "tickerText": "Mondial 2026 : la France bat la Suède 3-0 et rejoint les huitièmes, le Paraguay samedi"
     },
     {
       "date": "1er juillet 2026",
