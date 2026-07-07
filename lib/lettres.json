@@ -1,5 +1,16 @@
 [
   {
+    "slug": "le-mot-vole",
+    "numero": 7,
+    "title": "Le mot volé",
+    "date": "7 juillet 2026",
+    "dateISO": "2026-07-07",
+    "teaser": "Sur l'injure d'une sénatrice paraguayenne à Kylian Mbappé, et ce qu'un mot retourné en arme révèle d'une hiérarchie raciale que la colonisation a léguée au monde entier.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "le-mot-vole"
+  },
+  {
     "slug": "le-privilege-du-soin",
     "numero": 6,
     "title": "Le privilège du soin",
