@@ -1,6 +1,78 @@
 {
-  "date_maj": "2026-07-05",
+  "date_maj": "2026-07-08",
   "breves": [
+    {
+      "date": "7 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Syrie : Macron en visite historique à Damas, deux explosions près de son hôtel",
+      "body": "Emmanuel Macron s'est rendu à Damas le 7 juillet, première visite d'un chef d'État occidental depuis la chute de Bachar al-Assad et l'arrivée au pouvoir d'Ahmed al-Charaa fin 2024. En pleine matinée, deux engins artisanaux ont explosé près de l'hôtel où il avait passé la nuit, faisant dix-huit blessés dont quatre policiers, sans que le président, alors au palais présidentiel, soit visé directement. Aucune revendication n'a suivi, dans un pays où subsistent des partisans de l'ancien régime et des cellules de l'État islamique. Le déplacement, mené avec des chefs d'entreprise français, portait sur la reconstruction du pays et la place de Paris comme partenaire économique de Damas.",
+      "tickerCat": "Syrie",
+      "tickerText": "Macron en visite historique à Damas : deux explosions près de son hôtel font dix-huit blessés, la visite se poursuit"
+    },
+    {
+      "date": "7 juillet 2026",
+      "cat": "Politique",
+      "catColor": "var(--geo)",
+      "headline": "Marine Le Pen jugée éligible pour 2027 : la cour d'appel réduit sa peine d'inéligibilité",
+      "body": "La cour d'appel de Paris a confirmé, mardi 7 juillet, la culpabilité de Marine Le Pen dans l'affaire des assistants parlementaires du Rassemblement national, tout en allégeant nettement sa peine. L'inéligibilité, fixée à cinq ans en première instance, est ramenée à 45 mois dont 30 avec sursis, la partie ferme ayant déjà été purgée depuis mars 2025, ce qui rouvre la voie à une candidature présidentielle en 2027. La dirigeante est aussi condamnée à trois ans de prison, dont un an ferme aménageable sous bracelet électronique, et à 100 000 euros d'amende. Au journal de 20 heures de TF1, elle a annoncé se pourvoir en cassation et confirmé son intention de concourir.",
+      "tickerCat": "Le Pen",
+      "tickerText": "Marine Le Pen jugée éligible pour 2027 : la cour d'appel allège sa peine d'inéligibilité, la dirigeante se pourvoit en cassation"
+    },
+    {
+      "date": "7 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Canicule : la vigilance orange s'étend à 61 départements, troisième épisode de l'été",
+      "body": "Météo-France a placé 61 départements en vigilance orange canicule mardi 7 juillet, contre seize la veille, alors que la France entre dans le troisième épisode de chaleur de l'été. Les températures atteignent 35 à 38 degrés sur la plupart des régions, jusqu'à 41 sur le grand quart sud-ouest, et les nuits dépassent par endroits 24 degrés sur le pourtour méditerranéen. Cinquante-deux autres départements sont en vigilance jaune. L'épisode ravive un risque élevé de feux de forêt dans un Sud déjà frappé par les incendies, des Pyrénées-Orientales au Gard.",
+      "tickerCat": "Canicule",
+      "tickerText": "Canicule : la vigilance orange étendue à 61 départements, troisième épisode de chaleur de l'été"
+    },
+    {
+      "date": "7 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Tour de France : Mads Pedersen s'impose à Foix, Torstein Træen en jaune",
+      "body": "Le Danois Mads Pedersen a remporté au sprint la quatrième étape du Tour de France, mardi 7 juillet, entre Carcassonne et Foix, longue de 182 kilomètres à travers les contreforts pyrénéens. Le Norvégien Torstein Træen, longtemps à l'avant avec sa formation Uno-X Mobility, endosse le premier maillot jaune de sa carrière. Le Français Alex Baudin conserve le maillot à pois du meilleur grimpeur. Le peloton rallie Pau mercredi, au terme d'une cinquième étape partie de Lannemezan.",
+      "tickerCat": "Cyclisme",
+      "tickerText": "Tour de France : Mads Pedersen gagne à Foix, Torstein Træen endosse son premier maillot jaune"
+    },
+    {
+      "date": "7 juillet 2026",
+      "cat": "Tech",
+      "catColor": "var(--tech)",
+      "headline": "Semi-conducteurs : Samsung annonce un bénéfice record porté par l'IA, mais son action décroche",
+      "body": "Samsung Electronics a annoncé le 7 juillet un bénéfice d'exploitation multiplié par dix-neuf au deuxième trimestre, à environ 89 400 milliards de wons, soit près de 51 milliards d'euros, porté par la demande de puces mémoire pour les centres de données d'intelligence artificielle. Ce résultat préliminaire, le plus élevé jamais enregistré par le groupe, dépasse le précédent record établi par l'américain Nvidia. La Bourse de Séoul a pourtant sanctionné l'annonce, l'action reculant de près de huit pour cent et entraînant l'indice Kospi, sur fond de doute quant à la pérennité des investissements des géants américains du cloud. La spécialisation des fabricants dans les puces les plus rentables tire déjà vers le haut le prix de l'électronique grand public.",
+      "tickerCat": "Semi-conducteurs",
+      "tickerText": "Samsung annonce un bénéfice trimestriel record porté par l'IA et dépasse Nvidia, mais son action chute à Séoul"
+    },
+    {
+      "date": "7 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Zone euro : l'inflation reflue à 2,8 %, la BCE attendue en pause le 23 juillet",
+      "body": "L'inflation de la zone euro est retombée à 2,8 % sur un an en juin, selon Eurostat, après 3,2 % en mai, un reflux porté par la détente des prix de l'énergie une fois passé le choc lié à la guerre au Moyen-Orient. La France affiche l'un des taux les plus bas de l'union monétaire, à 2,0 %, quand la Lituanie culmine à 5,5 %, des écarts qui compliquent la tâche de la Banque centrale européenne. Après avoir relevé ses taux en juin, sa première hausse depuis 2023, l'institution se réunit le 23 juillet. Les marchés n'anticipent plus de nouveau tour de vis, la probabilité d'un relèvement étant retombée autour de dix pour cent.",
+      "tickerCat": "Zone euro",
+      "tickerText": "Inflation en zone euro à 2,8 % en juin, 2,0 % en France : la BCE attendue en pause le 23 juillet"
+    },
+    {
+      "date": "6 juillet 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Le télescope Euclid débusque 31 quasars aux confins de l'Univers primitif",
+      "body": "La mission Euclid de l'Agence spatiale européenne a repéré trente et un quasars nichés dans les premiers âges de l'Univers, dont les deux plus anciens jamais observés, remontant à une époque où le cosmos n'avait que 670 millions d'années. Ces astres, alimentés par des trous noirs supermassifs, offrent une fenêtre rare sur la formation des tout premiers d'entre eux. Pour la première fois, les astronomes disposent d'un véritable recensement de ces quasars primordiaux, longtemps étudiés comme des cas isolés faute d'instruments assez puissants. Cette approche statistique ouvre la voie à des modèles plus robustes de l'Univers naissant.",
+      "tickerCat": "Cosmologie",
+      "tickerText": "Le télescope Euclid identifie 31 quasars primordiaux, dont les deux plus anciens jamais observés"
+    },
+    {
+      "date": "6 juillet 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Avignon fête ses 80 ans en plaçant le coréen au cœur de sa scène",
+      "body": "Le Festival d'Avignon, ouvert le 4 juillet pour sa 80e édition, a choisi le coréen comme langue invitée, après l'anglais, l'espagnol et l'arabe, et confie le rôle d'artiste complice à la chorégraphe cap-verdienne Marlène Monteiro Freitas. La programmation s'écarte de la K-culture grand public pour explorer les formes traditionnelles et politiques de la péninsule, du récit chanté pansori à la danse contemporaine. La fête se tient dans un climat d'inquiétude, alors que les compagnies dénoncent des coupes budgétaires et un recul du soutien public au spectacle vivant. Une enquête récente indique que le nombre moyen de représentations prévues par spectacle a chuté de près de moitié en un an.",
+      "tickerCat": "Avignon",
+      "tickerText": "Le Festival d'Avignon fête ses 80 ans, le coréen en langue invitée, dans un climat de coupes budgétaires"
+    },
     {
       "date": "4 juillet 2026",
       "cat": "Société",
