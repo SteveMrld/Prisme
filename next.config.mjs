@@ -2,6 +2,7 @@
 const nextConfig = {
   async redirects() {
     return [
+      { source: '/bientot', destination: '/', permanent: false },
       { source: '/grands-formats', destination: '/formats', permanent: false },
       { source: '/prismetv', destination: '/tv', permanent: true },
       { source: '/articles/longo', destination: '/entretien/longo', permanent: true },
