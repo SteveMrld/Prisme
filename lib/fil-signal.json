@@ -1,6 +1,114 @@
 {
-  "date_maj": "2026-07-08",
+  "date_maj": "2026-07-13",
   "breves": [
+    {
+      "date": "12 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Qatar : mort de l'ancien émir Hamad ben Khalifa Al-Thani, artisan de la montée en puissance de Doha",
+      "body": "Le Diwan de l'émir a annoncé le dimanche 12 juillet la mort de Hamad ben Khalifa Al-Thani, ancien souverain du Qatar, à l'âge de 74 ans. Arrivé au pouvoir en 1995 à la faveur d'une révolution de palais, il avait hérité d'un petit émirat gazier aux ressources encore modestes qu'il a transformé en puissance diplomatique et financière de premier plan, notamment en lançant la chaîne Al Jazeera en 1996 et en dotant l'État d'un fonds souverain devenu incontournable de Londres à Paris. Son abdication volontaire en 2013 au profit de son fils Tamim avait surpris les chancelleries, dans une région où le pouvoir se transmet rarement de son vivant. Les autorités ont décrété plusieurs jours de deuil national, administrations fermées et drapeaux en berne.",
+      "tickerCat": "Qatar",
+      "tickerText": "Mort de l'ancien émir Hamad ben Khalifa Al-Thani à 74 ans, plusieurs jours de deuil national décrétés à Doha"
+    },
+    {
+      "date": "12 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Ukraine : la Première ministre Ioulia Svyrydenko démissionne, Zelensky annonce un remaniement",
+      "body": "La cheffe du gouvernement ukrainien Ioulia Svyrydenko a présenté sa démission le dimanche 12 juillet, alors que Volodymyr Zelensky annonçait un remaniement d'ampleur de son exécutif. Ce départ intervient dans une phase où Kiev doit conjuguer l'effort de guerre, la pression sur ses finances publiques et les attentes de ses partenaires occidentaux quant à la gouvernance du pays. Le président ukrainien a évoqué la nécessité d'un renouvellement pour affronter une nouvelle année de conflit, la Russie ayant récemment modifié sa tactique de frappes pour viser plus directement la capitale. La recomposition du gouvernement sera scrutée à Bruxelles et à Washington, dont les concours financiers restent déterminants.",
+      "tickerCat": "Ukraine",
+      "tickerText": "La Première ministre Ioulia Svyrydenko démissionne, Zelensky engage un remaniement de son gouvernement"
+    },
+    {
+      "date": "12 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Syrie : le Parlement de transition tient sa première séance sous la présidence d'Ahmed al-Charaa",
+      "body": "Le Parlement de transition syrien a tenu sa toute première séance ce week-end, étape institutionnelle marquante pour le pouvoir dirigé par Ahmed al-Charaa depuis la chute de Bachar al-Assad fin 2024. L'installation de cette assemblée intervient quelques jours après la visite à Damas d'Emmanuel Macron, venu discuter reconstruction et coopération économique. Le nouveau pouvoir cherche à donner des gages de stabilité institutionnelle à des partenaires régionaux et occidentaux encore prudents, dans un pays où subsistent des poches de contestation et des cellules armées. La composition de l'assemblée et l'étendue réelle de ses prérogatives restent au cœur des interrogations sur la trajectoire politique syrienne.",
+      "tickerCat": "Syrie",
+      "tickerText": "Première séance du Parlement de transition syrien sous la présidence d'Ahmed al-Charaa"
+    },
+    {
+      "date": "12 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Venezuela : le bilan du séisme du 24 juin s'alourdit à près de 4 500 morts dans l'État de La Guaira",
+      "body": "Le gouvernement vénézuélien fait désormais état de 4 490 morts et de 16 740 blessés à la suite du séisme du 24 juin, dont les dégâts restent très visibles dans l'État côtier de La Guaira. Des semaines après la catastrophe, des habitants continuent d'arpenter des immeubles éventrés, parmi lesquels des logements du programme social Misión Vivienda censés abriter les ménages les plus précaires. L'ampleur du bilan interroge la qualité du bâti et la préparation du pays face au risque sismique, dans un contexte économique déjà éprouvé. La reconstruction s'annonce longue pour une région densément peuplée et proche de la capitale.",
+      "tickerCat": "Venezuela",
+      "tickerText": "Séisme du 24 juin : le bilan grimpe à 4 490 morts et 16 740 blessés dans l'État de La Guaira"
+    },
+    {
+      "date": "12 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Coupe du monde : les demi-finales fixées, le Maroc dernier représentant africain écarté par la France",
+      "body": "Les quarts de finale du Mondial 2026 se sont achevés le dimanche 12 juillet avec la victoire de l'Argentine sur la Suisse, trois buts à un après prolongation, qui rejoint le dernier carré aux côtés de la France, de l'Espagne et de l'Angleterre. La sélection française, qui avait éliminé le Maroc deux buts à zéro grâce à Kylian Mbappé et Ousmane Dembélé, retrouvera l'Espagne le mardi 14 juillet, tandis que l'Angleterre défiera l'Argentine le lendemain. L'élimination du Maroc, dernier pays africain et arabe en lice, referme un tournoi où les sélections du Sud avaient nourri de fortes attentes. La finale se disputera le 19 juillet au MetLife Stadium, dans la banlieue de New York.",
+      "tickerCat": "Mondial 2026",
+      "tickerText": "Demi-finales fixées : France-Espagne et Angleterre-Argentine, le Maroc écarté par les Bleus"
+    },
+    {
+      "date": "12 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Tour de France : Mathieu van der Poel s'impose au bout de l'échappée, Pogacar solide en jaune",
+      "body": "Le Néerlandais Mathieu van der Poel a remporté la neuvième étape du Tour de France le dimanche 12 juillet, au terme d'une longue échappée récompensée. Au classement général, Tadej Pogacar conserve le maillot jaune qu'il a repris trois jours plus tôt au sommet du Tourmalet, à l'issue d'un raid solitaire de plus de quarante kilomètres lors de la première grande étape pyrénéenne. Le champion du monde devance désormais Jonas Vingegaard de 2 minutes et 42 secondes, un écart déjà conséquent avant les rendez-vous alpestres et le contre-la-montre du 16 juillet. La course rejoindra Paris le 26 juillet.",
+      "tickerCat": "Cyclisme",
+      "tickerText": "Tour de France : Van der Poel gagne la 9e étape, Pogacar garde le maillot jaune devant Vingegaard"
+    },
+    {
+      "date": "11 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Sahel : les économies du Mali, du Burkina Faso et du Niger ont crû de 5,5 % en 2025, selon la BIDC",
+      "body": "Les trois pays de l'Alliance des États du Sahel ont enregistré une croissance globale de 5,5 % en 2025, selon le rapport annuel de la Banque d'investissement et de développement de la CEDEAO. Le Niger tire cette dynamique avec une progression de 6,9 %, portée par la montée en puissance de sa production pétrolière, tandis que le Burkina Faso s'appuie sur la relance de son secteur minier. Ces chiffres nourrissent le récit de résilience économique mis en avant par les régimes issus des coups d'État, alors que la confédération réoriente ses partenariats vers de nouveaux acteurs, la Russie au premier rang. Ils coexistent toutefois avec une insécurité persistante, marquée début juillet par une offensive de groupes armés contre la localité malienne d'Anéfis.",
+      "tickerCat": "Sahel",
+      "tickerText": "Croissance de 5,5 % en 2025 pour les pays de l'AES, le Niger en tête avec 6,9 % selon la BIDC"
+    },
+    {
+      "date": "11 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Namibie : la présidente Nandi-Ndaitwah scelle à Pékin une série d'accords sur les minerais critiques",
+      "body": "Reçue par Xi Jinping à Pékin, la présidente namibienne Netumbo Nandi-Ndaitwah a obtenu plusieurs accords de coopération portant sur les infrastructures, l'énergie, l'agriculture et les minerais critiques, secteurs jugés prioritaires par Windhoek. Riche en uranium et en ressources recherchées pour la transition énergétique, la Namibie s'inscrit dans une compétition mondiale où les puissances industrielles cherchent à sécuriser leur accès aux matières premières stratégiques. L'accord illustre l'approfondissement des liens économiques entre la Chine et l'Afrique australe, à l'heure où plusieurs capitales du continent diversifient leurs partenaires. La question du degré de transformation locale des ressources, et donc de la valeur captée sur place, reste posée.",
+      "tickerCat": "Namibie",
+      "tickerText": "La présidente namibienne signe à Pékin des accords sur les infrastructures et les minerais critiques"
+    },
+    {
+      "date": "10 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Semi-conducteurs : l'entrée en Bourse de SK Hynix à New York lève 26,5 milliards de dollars",
+      "body": "Le fabricant sud-coréen de puces mémoire SK Hynix a réussi son introduction à la Bourse de New York le vendredi 10 juillet, avec des certificats fixés à 149 dollars et une levée d'environ 26,5 milliards de dollars. L'opération traduit l'appétit des investisseurs pour les composants qui alimentent l'essor de l'intelligence artificielle, un engouement qui a propulsé l'action du groupe de plus de 200 % depuis le début de l'année et hissé l'indice coréen KOSPI à des niveaux records. Cette euphorie ravive aussi les interrogations sur des valorisations jugées tendues et sur la solidité de la croissance attendue des bénéfices. Elle confirme le poids décisif des industriels asiatiques dans la chaîne mondiale des semi-conducteurs.",
+      "tickerCat": "Bourse",
+      "tickerText": "SK Hynix lève 26,5 milliards de dollars pour son entrée à Wall Street, portée par la demande d'IA"
+    },
+    {
+      "date": "10 juillet 2026",
+      "cat": "Tech",
+      "catColor": "var(--tech)",
+      "headline": "Intelligence artificielle : Apple attaque OpenAI en justice pour vol de secrets commerciaux",
+      "body": "Apple a déposé le vendredi 10 juillet une plainte visant OpenAI et deux anciens salariés du groupe à la pomme, accusés d'avoir emporté des secrets commerciaux pour accélérer l'arrivée du créateur de ChatGPT sur le marché des produits grand public. Ce contentieux illustre le durcissement de la rivalité entre les géants technologiques à mesure que l'intelligence artificielle se déplace des serveurs vers les appareils du quotidien. Il intervient alors que les valorisations du secteur atteignent des sommets et que les mouvements de talents entre entreprises se multiplient. Aucune des deux sociétés n'a détaillé publiquement la nature précise des informations en cause.",
+      "tickerCat": "IA",
+      "tickerText": "Apple poursuit OpenAI en justice, accusant le créateur de ChatGPT de vol de secrets commerciaux"
+    },
+    {
+      "date": "10 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Mali-Algérie : amorce d'un dégel après plus d'un an de crise, ambassadeur et espaces aériens rétablis",
+      "body": "Le Mali a annoncé le vendredi 10 juillet le retour de son ambassadeur à Alger et la réouverture de son espace aérien aux appareils en provenance ou à destination de l'Algérie, qui a levé le même jour ses propres restrictions. Ce double geste ouvre une phase d'apaisement entre deux voisins dont les relations s'étaient dégradées depuis plus d'un an, sur fond de désaccords sécuritaires au Sahel et d'incidents frontaliers. La reprise de la circulation aérienne et du dialogue diplomatique reste toutefois fragile, tant les divergences de fond sur la gestion des groupes armés du nord demeurent vives. Elle témoigne néanmoins d'une volonté partagée de désescalade dans une région traversée de tensions.",
+      "tickerCat": "Mali-Algérie",
+      "tickerText": "Dégel entre Bamako et Alger : retour de l'ambassadeur malien et réouverture des espaces aériens"
+    },
+    {
+      "date": "10 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Nigeria : les 46 élèves et personnels enlevés en mai dans l'État d'Oyo ont été libérés",
+      "body": "La présidence nigériane a annoncé le vendredi 10 juillet la libération de dizaines d'élèves et de membres du personnel enlevés à la mi-mai dans le sud-ouest du pays. Le rapt, qui avait visé le 15 mai trois écoles de l'État d'Oyo et concerné 46 personnes, avait été attribué par les autorités à des combattants présentés comme liés à Boko Haram. Ces enlèvements de masse en milieu scolaire, longtemps concentrés dans le nord-est et le nord-ouest, illustrent l'extension géographique d'une insécurité qui pèse lourdement sur l'accès à l'éducation. Les circonstances exactes de la libération, et l'éventuel versement d'une rançon, n'ont pas été précisées.",
+      "tickerCat": "Nigeria",
+      "tickerText": "Libération des 46 élèves et personnels enlevés à la mi-mai dans l'État d'Oyo, au sud-ouest du Nigeria"
+    },
     {
       "date": "7 juillet 2026",
       "cat": "Géopolitique",
