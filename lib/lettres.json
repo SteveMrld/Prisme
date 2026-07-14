@@ -1,5 +1,16 @@
 [
   {
+    "slug": "ce-qui-n-a-pas-d-image",
+    "numero": 8,
+    "title": "Ce qui n'a pas d'image",
+    "date": "21 juillet 2026",
+    "dateISO": "2026-07-21",
+    "teaser": "Sur les feux qui embrasent la France et la chaleur qui tue sans bruit, et ce que nous acceptons de nommer catastrophe selon qu'il en reste ou non une image.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "ce-qui-n-a-pas-d-image"
+  },
+  {
     "slug": "le-mot-vole",
     "numero": 7,
     "title": "Le mot volé",
