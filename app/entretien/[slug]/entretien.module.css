@@ -332,8 +332,11 @@
    Le texte d'un SVG se réduit avec le viewBox : sur mobile on remonte les
    tailles en unités viewBox pour compenser la mise à l'échelle. */
 .body :global(figure.fig-nucleaire) {
-  margin: 2.8em 0;
-  padding: 0;
+  margin: 2.4em 0 3.2em;
+  padding: 26px 26px 20px;
+  background: var(--papier);
+  border-top: 2px solid var(--encre);
+  border-bottom: 1px solid var(--bord);
 }
 
 .body :global(.fig-nucleaire .fig-kicker) {
@@ -382,6 +385,11 @@
 .body :global(.fig-nucleaire .fig-source cite) { font-style: italic; }
 
 @media (max-width: 600px) {
+  .body :global(figure.fig-nucleaire) {
+    margin-left: -24px;
+    margin-right: -24px;
+    padding: 22px 18px 16px;
+  }
   .body :global(.fig-nucleaire .fig-titre) { font-size: 18px; }
   .body :global(.fig-nucleaire svg text.val) { font-size: 21px; }
   .body :global(.fig-nucleaire svg text.lab) { font-size: 17px; }
