@@ -100,21 +100,21 @@ export function getHomeInterviewsPartition(): { featured: Interview[]; others: I
   // complète avec les grands entretiens publiés les plus récents (max 2).
   const featured = (pinned.length > 0 ? pinned : publishedFill).slice(0, 2)
   const featuredSlugs = new Set(featured.map((i) => i.slug))
-  const comingPriority = (i: Interview): number => {
-    const future = isFutureDay(i.date)
-    if (i.interviewStatus === 'published' && !future) return 0
-    if (future) return 1
-    return 2
-  }
+  /* Rangée home : d'abord ce qui arrive (parution la plus proche en tête),
+     ensuite les entretiens parus, du plus récent au plus ancien. La rangée
+     annonce la suite avant de proposer les archives. */
+  const isComingRow = (i: Interview): boolean =>
+    i.interviewStatus === 'coming' || isFutureDay(i.date)
+
   const others = all
     .filter((i) => !featuredSlugs.has(i.slug))
     .sort((a, b) => {
-      const pa = comingPriority(a)
-      const pb = comingPriority(b)
-      if (pa !== pb) return pa - pb
+      const ca = isComingRow(a)
+      const cb = isComingRow(b)
+      if (ca !== cb) return ca ? -1 : 1
       const da = new Date(a.date).getTime()
       const db = new Date(b.date).getTime()
-      return pa === 1 ? da - db : db - da
+      return ca ? da - db : db - da
     })
     .slice(0, 12)
 
