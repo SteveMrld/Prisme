@@ -328,6 +328,66 @@
   font-style: italic;
 }
 
+/* ── Figure data-viz (SVG inline, thème clair/sombre via les variables) ──
+   Le texte d'un SVG se réduit avec le viewBox : sur mobile on remonte les
+   tailles en unités viewBox pour compenser la mise à l'échelle. */
+.body :global(figure.fig-nucleaire) {
+  margin: 2.8em 0;
+  padding: 0;
+}
+
+.body :global(.fig-nucleaire .fig-kicker) {
+  font-family: var(--font-serif-reading);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--or-deep);
+  margin: 0 0 6px;
+}
+
+.body :global(.fig-nucleaire .fig-titre) {
+  font-family: var(--font-serif-display);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.28;
+  color: var(--encre);
+  margin: 0 0 18px;
+}
+
+.body :global(.fig-nucleaire svg) {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.body :global(.fig-nucleaire svg text) {
+  font-family: var(--font-serif-reading);
+}
+
+.body :global(.fig-nucleaire svg text.val) { font-size: 15px; font-weight: 700; }
+.body :global(.fig-nucleaire svg text.lab) { font-size: 12.5px; }
+.body :global(.fig-nucleaire svg text.ax)  { font-size: 12.5px; }
+
+.body :global(.fig-nucleaire .fig-source) {
+  font-family: var(--font-serif-reading);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--gris-m);
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--bord);
+}
+
+.body :global(.fig-nucleaire .fig-source cite) { font-style: italic; }
+
+@media (max-width: 600px) {
+  .body :global(.fig-nucleaire .fig-titre) { font-size: 18px; }
+  .body :global(.fig-nucleaire svg text.val) { font-size: 21px; }
+  .body :global(.fig-nucleaire svg text.lab) { font-size: 17px; }
+  .body :global(.fig-nucleaire svg text.ax)  { font-size: 17px; }
+}
+
 .body :global(.interview-translation-pending) {
   background: var(--papier);
   border-left: 3px solid var(--accent);
