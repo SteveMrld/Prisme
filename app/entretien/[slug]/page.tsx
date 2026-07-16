@@ -207,7 +207,7 @@ export default function EntretienPage({
       )}
       <Header />
 
-      <article className={styles.article} data-interview-type={i.interviewType}>
+      <article className={styles.article} data-interview-type={i.interviewType} data-coming={isComing ? 'true' : undefined}>
         <div className={styles.portraitBlock} data-coming={isComing ? 'true' : undefined}>
           <picture>
             <img src={i.image} alt={i.interviewSubject} className={styles.portrait} />

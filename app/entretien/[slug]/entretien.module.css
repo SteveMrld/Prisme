@@ -462,9 +462,22 @@
 /* ── Autres entretiens ── */
 .others {
   max-width: 1080px;
-  margin: 64px auto 80px;
-  padding: 48px 24px 0;
+  margin: 56px auto 80px;
+  padding: 40px 24px 0;
   border-top: 1px solid var(--bord);
+}
+
+/* Page « à venir » : le corps se réduit au chapô et au bloc d'inscription.
+   Les 80px réservés sous un long texte n'ont plus lieu d'être et laissent
+   un vide qui ne se justifie pas. */
+.article[data-coming="true"] {
+  padding-bottom: 24px;
+}
+
+.article[data-coming="true"] + .others,
+.article[data-coming="true"] ~ .others {
+  margin-top: 32px;
+  padding-top: 32px;
 }
 
 .othersTitle {
