@@ -23,7 +23,7 @@
     "interviewRole": "Docteure en physique nucléaire · Maîtresse de conférences au Cnam, responsable nationale des enseignements en génie nucléaire",
     "interviewDeck": "Emmanuelle Galichet est docteure en physique nucléaire et enseignante-chercheuse au Conservatoire national des arts et métiers, où elle dirige l'ensemble des enseignements en génie nucléaire. Réserviste citoyenne de la Marine nationale, Chevalière de l'Ordre national du Mérite.",
     "interviewQuote": "Exporter un réacteur, c'est structurer une relation de dépendance technique et stratégique sur plusieurs décennies.",
-    "featuredOnHome": true
+    "featuredOnHome": false
   },
   {
     "slug": "defense-europeenne",
@@ -286,7 +286,7 @@
     "interviewRole": "Directeur de l’Institut de Longévité · University of Southern California, Los Angeles",
     "interviewDeck": "Valter Longo dirige l’Institut de Longévité de l’Université de Californie du Sud. Auteur du « Régime de Longévité », il est le chercheur le plus cité au monde sur le jeûne thérapeutique et la longévité. Il a fondé L-Nutra en 2009, dont il a reversé l’intégralité de ses parts à des fondations caritatives.",
     "interviewQuote": "La médecine conventionnelle est conventionnelle et ne veut pas changer.",
-    "featuredOnHome": false
+    "featuredOnHome": true
   },
   {
     "slug": "maladie-sans-filet",
