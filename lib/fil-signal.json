@@ -1,6 +1,51 @@
 {
-  "date_maj": "2026-07-13",
+  "date_maj": "2026-07-18",
   "breves": [
+    {
+      "date": "18 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Coupe du monde : l'Espagne et l'Argentine en finale, Deschamps tire sa révérence",
+      "body": "La première Coupe du monde à quarante-huit équipes s'achève le 19 juillet au MetLife Stadium, près de New York, par une finale entre l'Espagne, championne d'Europe, et l'Argentine, tenante du titre portée par Lionel Messi pour ses adieux. La France affronte l'Angleterre le 18 pour la troisième place, dernier match de Didier Deschamps à la tête des Bleus avant l'arrivée annoncée de Zinédine Zidane. Fait notable, les trois pays hôtes, États-Unis, Mexique et Canada, ont tous été éliminés dès les huitièmes de finale, le Maroc sortant le Canada.",
+      "tickerCat": "Mondial 2026",
+      "tickerText": "Finale Espagne-Argentine le 19 juillet, Deschamps quitte les Bleus, les trois pays hôtes éliminés dès les huitièmes"
+    },
+    {
+      "date": "17 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Le Nigeria rapatrie près de 1 500 ressortissants d'Afrique du Sud après des violences xénophobes",
+      "body": "Le Nigeria a achevé le 17 juillet le rapatriement volontaire de 1 490 de ses ressortissants d'Afrique du Sud, à la suite d'une vague d'attaques anti-étrangers. L'opération met en lumière la persistance d'un sentiment xénophobe visant les migrants africains, malgré les condamnations officielles de Pretoria, et ravive les tensions entre deux des plus grandes puissances du continent. Pour beaucoup de rapatriés, ce retour contraint referme un chapitre douloureux et interroge la promesse d'une solidarité panafricaine.",
+      "tickerCat": "Nigeria",
+      "tickerText": "Rapatriement de 1 490 ressortissants d'Afrique du Sud après des violences xénophobes, les tensions montent entre Abuja et Pretoria"
+    },
+    {
+      "date": "17 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "RD Congo : une flambée d'Ebola entravée par l'attaque d'un centre de traitement",
+      "body": "Dans l'est de la République démocratique du Congo, des patients et des soignants ont fui un centre de traitement après l'assaut d'une foule en colère, compromettant les efforts d'endiguement d'une épidémie d'Ebola qui a déjà coûté la vie à trente-six personnes. La défiance des populations envers les dispositifs sanitaires, nourrie par des années de conflit, complique une riposte déjà fragile. La flambée perturbe aussi les tractations autour d'un partenariat minier stratégique soutenu par Washington.",
+      "tickerCat": "RD Congo",
+      "tickerText": "Un centre de traitement Ebola attaqué par une foule, 36 morts, la riposte sanitaire entravée dans l'Est"
+    },
+    {
+      "date": "13 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Espagne : l'incendie d'Almería, le plus meurtrier depuis vingt ans, sur fond de juin record",
+      "body": "Le feu qui a ravagé les environs de Los Gallardos et Bédar, en Andalousie, est devenu l'incendie le plus meurtrier qu'ait connu l'Espagne depuis une vingtaine d'années, la plupart des victimes ayant été surprises en tentant de fuir. Il s'inscrit dans une série de feux qui ont frappé l'Espagne, le Portugal, la France, la Grèce et l'Italie. Selon le service européen Copernicus, juin 2026 a été le mois de juin le plus chaud jamais mesuré en Europe de l'Ouest, à plus de trois degrés au-dessus de la norme, un contexte qui installe durablement le risque incendie.",
+      "tickerCat": "Espagne",
+      "tickerText": "L'incendie d'Almería, le plus meurtrier depuis vingt ans, après le juin le plus chaud jamais mesuré en Europe de l'Ouest"
+    },
+    {
+      "date": "12 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Soudan : le chef des FSR Hemedti condamné à mort par contumace pour génocide au Darfour",
+      "body": "La cour antiterroriste de Port-Soudan a condamné le 12 juillet à la peine capitale par contumace Mohamed Hamdan Dagalo, dit Hemedti, commandant des Forces de soutien rapide, ainsi que quinze autres accusés dont son frère et adjoint Abdelrahim Dagalo. Les juges les ont reconnus coupables de crimes de guerre, de crimes contre l'humanité et de génocide à El-Geneina, au Darfour occidental, notamment pour l'assassinat en juin 2023 du gouverneur Khamis Abbakar. C'est le premier verdict rendu contre la direction des FSR depuis le début de la guerre en avril 2023, un conflit qui a fait plus de 150 000 morts et déplacé près de douze millions de personnes. Le jugement, prononcé par une justice fonctionnant sous l'autorité de l'armée, reste symbolique tant que les condamnés demeurent en fuite.",
+      "tickerCat": "Soudan",
+      "tickerText": "Hemedti et quinze cadres des FSR condamnés à mort par contumace pour le génocide d'El-Geneina, premier verdict contre la direction paramilitaire"
+    },
     {
       "date": "12 juillet 2026",
       "cat": "Géopolitique",
@@ -219,12 +264,30 @@
     },
     {
       "date": "3 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "La Belgique ouvre ses archives minières coloniales sur le Congo, convoitées pour les minerais critiques",
+      "body": "Le musée de Tervuren, près de Bruxelles, s'est engagé à numériser et rendre publiques en cinq ans près de cinq cents mètres d'archives géologiques constituées durant la colonisation du Congo, entre 1885 et 1960. Ces cartes et relevés attisent les convoitises dans la course mondiale au cobalt, au cuivre et au lithium, dont la RD Congo détient plus de la moitié des réserves mondiales de cobalt. Kinshasa réclame le transfert de ces données, tandis que Bruxelles a refusé d'en confier l'exclusivité à la société américaine KoBold Metals, soutenue par Bill Gates et Jeff Bezos.",
+      "tickerCat": "Belgique-Congo",
+      "tickerText": "Ouverture des archives minières coloniales sur le Congo, un enjeu de souveraineté dans la course aux minerais critiques"
+    },
+    {
+      "date": "3 juillet 2026",
       "cat": "Société",
       "catColor": "var(--soc)",
       "headline": "Venezuela : un survivant tiré des décombres huit jours après le séisme",
       "body": "Au Venezuela, un vigile de 43 ans a été extrait vivant des décombres d'un centre commercial effondré, huit jours après les deux séismes qui ont frappé le pays le 24 juin. Selon les autorités, le bilan approche 2 300 morts et plus de 11 000 blessés, et près de 50 000 personnes restent portées disparues. La présidente par intérim, Delcy Rodríguez, est critiquée pour la lenteur des secours, alors que l'aide internationale afflue.",
       "tickerCat": "Venezuela",
       "tickerText": "Venezuela : un survivant tiré des décombres huit jours après le séisme, bilan proche de 2 300 morts"
+    },
+    {
+      "date": "3 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Chine : les ventes de voitures électriques bondissent de 22 % en juin",
+      "body": "Selon l'association chinoise du secteur automobile, les ventes de voitures électriques ont atteint 1,51 million d'unités en juin, en hausse de 22 % sur un an. Les analystes lient cette accélération à la flambée des prix du pétrole provoquée par la guerre au Moyen-Orient, qui pousse un peu plus les ménages chinois vers l'électrique.",
+      "tickerCat": "Chine",
+      "tickerText": "Chine : les ventes de voitures électriques bondissent de 22 % sur un an en juin"
     },
     {
       "date": "2 juillet 2026",
@@ -243,69 +306,6 @@
       "body": "Un feu parti d'Oupia, dans l'Hérault, a parcouru près de 900 hectares en gagnant l'Aude, mobilisant jusqu'à 800 pompiers et contraignant environ 250 habitants à évacuer. Aucune victime civile n'est à déplorer. L'incendie, attisé par la sécheresse et le vent, survient au lendemain d'une canicule record, dans des départements placés en vigilance rouge pour les feux de forêt.",
       "tickerCat": "Climat",
       "tickerText": "Sud de la France : un incendie parcourt 900 hectares entre l'Aude et l'Hérault"
-    },
-    {
-      "date": "3 juillet 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "Chine : les ventes de voitures électriques bondissent de 22 % en juin",
-      "body": "Selon l'association chinoise du secteur automobile, les ventes de voitures électriques ont atteint 1,51 million d'unités en juin, en hausse de 22 % sur un an. Les analystes lient cette accélération à la flambée des prix du pétrole provoquée par la guerre au Moyen-Orient, qui pousse un peu plus les ménages chinois vers l'électrique.",
-      "tickerCat": "Chine",
-      "tickerText": "Chine : les ventes de voitures électriques bondissent de 22 % sur un an en juin"
-    },
-    {
-      "date": "1er juillet 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "Sénégal : l'Assemblée réduit les pouvoirs du président, un référendum annoncé",
-      "body": "L'Assemblée nationale sénégalaise a adopté une révision constitutionnelle qui renforce le Parlement et le Premier ministre au détriment du chef de l'État, sur fond de rupture entre le président Bassirou Diomaye Faye et son ancien Premier ministre Ousmane Sonko, devenu président de l'Assemblée. Le vote, marqué par un boycott de l'opposition et des heurts devant le Parlement, sera soumis à référendum. Le texte crée une Cour constitutionnelle et oblige le gouvernement à informer les députés des accords sur les ressources naturelles.",
-      "tickerCat": "Sénégal",
-      "tickerText": "Sénégal : l'Assemblée réduit les pouvoirs du président, un référendum annoncé"
-    },
-    {
-      "date": "1er juillet 2026",
-      "cat": "Géopolitique",
-      "catColor": "var(--geo)",
-      "headline": "L'Irlande prend la présidence du Conseil de l'Union européenne",
-      "body": "L'Irlande a pris ce 1er juillet la présidence tournante du Conseil de l'Union européenne, pour six mois, succédant à Chypre, sous le mot d'ordre « la force dans l'unité ». Dublin veut faire avancer la compétitivité, la sécurité et le prochain budget pluriannuel de l'Union, et arbitrer sur le numérique entre soutien à l'intelligence artificielle et protection des mineurs en ligne.",
-      "tickerCat": "Union européenne",
-      "tickerText": "L'Irlande prend la présidence du Conseil de l'UE pour six mois, succédant à Chypre"
-    },
-    {
-      "date": "1er juillet 2026",
-      "cat": "Environnement",
-      "catColor": "var(--env)",
-      "headline": "Europe : une vague de chaleur record reflue, une nouvelle déjà annoncée",
-      "body": "La France sort d'un épisode caniculaire de onze jours que Météo-France classe parmi les plus sévères jamais observés, alors que l'Espagne vient de connaître son premier semestre le plus chaud jamais enregistré. Les températures baissent, mais un nouvel épisode pourrait s'installer dès le week-end. Les effets se prolongent sur la santé, l'agriculture et les forêts.",
-      "tickerCat": "Climat",
-      "tickerText": "Europe : la vague de chaleur record reflue, un nouvel épisode déjà annoncé"
-    },
-    {
-      "date": "1er juillet 2026",
-      "cat": "Culture",
-      "catColor": "var(--culture)",
-      "headline": "Un rouleau carbonisé d'Herculanum lu en entier pour la première fois, grâce à l'IA",
-      "body": "Près de deux mille ans après l'éruption du Vésuve, un rouleau de papyrus carbonisé d'Herculanum a été déroulé virtuellement et lu intégralement sans être ouvert, à l'aide d'un synchrotron et de l'intelligence artificielle. Le texte, un traité stoïcien d'éthique, ouvre la voie au déchiffrement de centaines d'autres rouleaux de la seule bibliothèque de l'Antiquité parvenue jusqu'à nous.",
-      "tickerCat": "Culture",
-      "tickerText": "Herculanum : un rouleau carbonisé lu en entier pour la première fois grâce à l'IA"
-    },
-    {
-      "date": "1er juillet 2026",
-      "cat": "Sciences",
-      "catColor": "var(--sciences)",
-      "headline": "Mars a connu un volcanisme profond comparable à celui de la Terre, révèle une étude",
-      "body": "Des chercheurs de l'université d'Oxford ont mis en évidence, dans la revue Nature Astronomy, que Mars a abrité jadis de vastes systèmes magmatiques profonds semblables à ceux de la Terre, alors que la planète est dépourvue de tectonique des plaques. La découverte éclaire les conditions qui rendent une planète rocheuse potentiellement habitable.",
-      "tickerCat": "Sciences",
-      "tickerText": "Étude : Mars a connu un volcanisme profond comparable à celui de la Terre"
-    },
-    {
-      "date": "1er juillet 2026",
-      "cat": "Économie",
-      "catColor": "var(--eco)",
-      "headline": "Énergie : le prix repère du gaz augmente de 7,4 % au 1er juillet",
-      "body": "En France, le prix repère de vente du gaz publié par la Commission de régulation de l'énergie progresse de 7,4 % en moyenne au 1er juillet, portant la facture annuelle type à un nouveau record proche de 1 800 euros. Le même jour, une directive européenne impose aux banques de l'Union de prévenir leurs clients de toute hausse de tarifs au moins deux mois à l'avance.",
-      "tickerCat": "ÉCO",
-      "tickerText": "Gaz : le prix repère grimpe de 7,4 % au 1er juillet en France"
     },
     {
       "date": "29 juin 2026",
@@ -396,6 +396,60 @@
       "body": "Le télescope spatial James-Webb a détecté sur Titan, lune de Saturne, et sur Pluton une signature spectrale qui ne correspond à aucune molécule connue à ce jour. Les équipes scientifiques poursuivent l'analyse des données pour identifier la nature exacte du composé.",
       "tickerCat": "Science",
       "tickerText": "Le télescope James-Webb détecte sur Titan et Pluton une signature qui ne correspond à aucune molécule connue"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Sénégal : l'Assemblée réduit les pouvoirs du président, un référendum annoncé",
+      "body": "L'Assemblée nationale sénégalaise a adopté une révision constitutionnelle qui renforce le Parlement et le Premier ministre au détriment du chef de l'État, sur fond de rupture entre le président Bassirou Diomaye Faye et son ancien Premier ministre Ousmane Sonko, devenu président de l'Assemblée. Le vote, marqué par un boycott de l'opposition et des heurts devant le Parlement, sera soumis à référendum. Le texte crée une Cour constitutionnelle et oblige le gouvernement à informer les députés des accords sur les ressources naturelles.",
+      "tickerCat": "Sénégal",
+      "tickerText": "Sénégal : l'Assemblée réduit les pouvoirs du président, un référendum annoncé"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "L'Irlande prend la présidence du Conseil de l'Union européenne",
+      "body": "L'Irlande a pris ce 1er juillet la présidence tournante du Conseil de l'Union européenne, pour six mois, succédant à Chypre, sous le mot d'ordre « la force dans l'unité ». Dublin veut faire avancer la compétitivité, la sécurité et le prochain budget pluriannuel de l'Union, et arbitrer sur le numérique entre soutien à l'intelligence artificielle et protection des mineurs en ligne.",
+      "tickerCat": "Union européenne",
+      "tickerText": "L'Irlande prend la présidence du Conseil de l'UE pour six mois, succédant à Chypre"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Europe : une vague de chaleur record reflue, une nouvelle déjà annoncée",
+      "body": "La France sort d'un épisode caniculaire de onze jours que Météo-France classe parmi les plus sévères jamais observés, alors que l'Espagne vient de connaître son premier semestre le plus chaud jamais enregistré. Les températures baissent, mais un nouvel épisode pourrait s'installer dès le week-end. Les effets se prolongent sur la santé, l'agriculture et les forêts.",
+      "tickerCat": "Climat",
+      "tickerText": "Europe : la vague de chaleur record reflue, un nouvel épisode déjà annoncé"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Un rouleau carbonisé d'Herculanum lu en entier pour la première fois, grâce à l'IA",
+      "body": "Près de deux mille ans après l'éruption du Vésuve, un rouleau de papyrus carbonisé d'Herculanum a été déroulé virtuellement et lu intégralement sans être ouvert, à l'aide d'un synchrotron et de l'intelligence artificielle. Le texte, un traité stoïcien d'éthique, ouvre la voie au déchiffrement de centaines d'autres rouleaux de la seule bibliothèque de l'Antiquité parvenue jusqu'à nous.",
+      "tickerCat": "Culture",
+      "tickerText": "Herculanum : un rouleau carbonisé lu en entier pour la première fois grâce à l'IA"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Mars a connu un volcanisme profond comparable à celui de la Terre, révèle une étude",
+      "body": "Des chercheurs de l'université d'Oxford ont mis en évidence, dans la revue Nature Astronomy, que Mars a abrité jadis de vastes systèmes magmatiques profonds semblables à ceux de la Terre, alors que la planète est dépourvue de tectonique des plaques. La découverte éclaire les conditions qui rendent une planète rocheuse potentiellement habitable.",
+      "tickerCat": "Sciences",
+      "tickerText": "Étude : Mars a connu un volcanisme profond comparable à celui de la Terre"
+    },
+    {
+      "date": "1er juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Énergie : le prix repère du gaz augmente de 7,4 % au 1er juillet",
+      "body": "En France, le prix repère de vente du gaz publié par la Commission de régulation de l'énergie progresse de 7,4 % en moyenne au 1er juillet, portant la facture annuelle type à un nouveau record proche de 1 800 euros. Le même jour, une directive européenne impose aux banques de l'Union de prévenir leurs clients de toute hausse de tarifs au moins deux mois à l'avance.",
+      "tickerCat": "ÉCO",
+      "tickerText": "Gaz : le prix repère grimpe de 7,4 % au 1er juillet en France"
     }
   ]
 }
