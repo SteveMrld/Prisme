@@ -11,7 +11,13 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara"
+    "imageCredit": "© Soara",
+    "relatedSlugs": [
+      "ceux-qui-nont-pas-cede",
+      "moreno",
+      "societe-du-consentement",
+      "portes"
+    ]
   },
   {
     "slug": "galichet",

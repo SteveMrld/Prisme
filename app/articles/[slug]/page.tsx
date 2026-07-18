@@ -252,13 +252,38 @@ export default async function ArticlePage({ params, searchParams }: { params: { 
     return a
   }
   const _allOthers = (articlesData as any[]).filter(a => a.slug !== params.slug)
+  const _bySlug = (s: string) => _allOthers.find(a => a.slug === s)
   let related: any[]
   if (article.category === 'portrait') {
     related = _shuffle(_allOthers.filter(a => a.category === 'portrait')).slice(0, 10)
+  } else if (Array.isArray(article.relatedSlugs) && article.relatedSlugs.length > 0) {
+    // Curation manuelle : on respecte l'ordre choisi, complété si besoin par la
+    // même catégorie pour toujours afficher quatre cartes.
+    const _picked = article.relatedSlugs.map(_bySlug).filter(Boolean)
+    const _seen = new Set(_picked.map((a: any) => a.slug))
+    const _fill = _shuffle(_allOthers.filter(a => a.category === article.category && a.image && !_seen.has(a.slug)))
+    related = [..._picked, ..._fill].slice(0, 4)
   } else {
-    const _sc = _shuffle(_allOthers.filter(a => a.category === article.category && a.image))
-    const _oc = _shuffle(_allOthers.filter(a => a.category !== article.category && a.image))
-    related = _shuffle([..._sc.slice(0, 2), ..._oc.slice(0, 2)])
+    // Même catégorie en priorité. On ne franchit une autre rubrique que s'il
+    // existe un lien thématique réel via secondaryCategory (dans un sens ou
+    // l'autre), jamais par un tirage au hasard toutes rubriques confondues.
+    const cat = article.category
+    const sec = article.secondaryCategory
+    const _same = _shuffle(_allOthers.filter(a => a.category === cat && a.image))
+    const _linked = _shuffle(_allOthers.filter(a =>
+      a.image && a.category !== cat && (
+        (sec && a.category === sec) ||
+        a.secondaryCategory === cat ||
+        (sec && a.secondaryCategory === sec)
+      )
+    ))
+    const _pool: any[] = []
+    const _seen = new Set<string>()
+    for (const a of [..._same, ..._linked]) {
+      if (!_seen.has(a.slug)) { _seen.add(a.slug); _pool.push(a) }
+      if (_pool.length >= 4) break
+    }
+    related = _pool.slice(0, 4)
   }
 
   const articleJsonLd = buildArticleJsonLd(article, params.slug)
