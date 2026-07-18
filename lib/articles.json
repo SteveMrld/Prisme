@@ -1,5 +1,19 @@
 [
   {
+    "slug": "le-luxe-d-etre-soi",
+    "title": "Le luxe <em>d'être soi</em>",
+    "description": "Ce qui nous rassure, le crédit qu'on honore, le poste qui protège, est souvent ce qui nous éloigne le plus de nous. Sur le prix caché d'une vie où l'on ne se reconnaît plus, et sur ceux qui l'ont fixé.",
+    "image": "/articles/le-luxe-d-etre-soi-cover.jpg",
+    "category": "soc",
+    "date": "2026-07-18",
+    "readTime": "5",
+    "author": "Steve Moradel",
+    "featured": false,
+    "premium": false,
+    "avif": false,
+    "imageCredit": "© Soara"
+  },
+  {
     "slug": "galichet",
     "title": "Emmanuelle Galichet : «Je ne pense pas que la peur du nucléaire ait été irrationnelle»",
     "description": "Le monde vit une relance nucléaire sans précédent depuis Tchernobyl. Une physicienne du Cnam en détaille les ressorts, sans esquiver les déchets, la dépendance à l'uranium importé ni ce que l'exportation des réacteurs installe comme rapport de force.",
