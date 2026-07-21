@@ -2,7 +2,7 @@
   "date_maj": "2026-07-21",
   "breves": [
     {
-      "date": "20 juillet 2026",
+      "date": "21 juillet 2026",
       "cat": "Société",
       "catColor": "var(--soc)",
       "headline": "Coupe du monde : l'Espagne championne du monde, l'Argentine battue en finale",
@@ -11,7 +11,7 @@
       "tickerText": "L'Espagne championne du monde, l'Argentine battue 1-0 après prolongation, la France quatrième après sa défaite face à l'Angleterre"
     },
     {
-      "date": "20 juillet 2026",
+      "date": "21 juillet 2026",
       "cat": "Société",
       "catColor": "var(--soc)",
       "headline": "Tour de France : Pogacar solidement en jaune, Vingegaard contraint à l'abandon",
@@ -20,7 +20,7 @@
       "tickerText": "Tour de France : Pogacar en jaune avec près de cinq minutes d'avance, Vingegaard abandonne, Evenepoel deuxième"
     },
     {
-      "date": "19 juillet 2026",
+      "date": "21 juillet 2026",
       "cat": "Géopolitique",
       "catColor": "var(--geo)",
       "headline": "Cédéao : le Sénégalais Bassirou Diomaye Faye élu président en exercice de l'organisation",
@@ -29,7 +29,7 @@
       "tickerText": "Bassirou Diomaye Faye élu président en exercice de la Cédéao, le bloc ramené à douze membres après le départ du Mali, du Burkina et du Niger"
     },
     {
-      "date": "15 juillet 2026",
+      "date": "21 juillet 2026",
       "cat": "Politique",
       "catColor": "var(--geo)",
       "headline": "Fin de vie : le Parlement adopte le droit à l'aide à mourir, le Conseil constitutionnel saisi",
