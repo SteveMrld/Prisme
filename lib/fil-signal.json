@@ -1,6 +1,42 @@
 {
-  "date_maj": "2026-07-18",
+  "date_maj": "2026-07-21",
   "breves": [
+    {
+      "date": "20 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Coupe du monde : l'Espagne championne du monde, l'Argentine battue en finale",
+      "body": "L'Espagne a remporté la Coupe du monde 2026 en battant l'Argentine un but à zéro après prolongation, dimanche 19 juillet au MetLife Stadium, près de New York, au terme d'une finale longtemps indécise et disputée par une Argentine réduite à dix. La Roja décroche un deuxième titre mondial après 2010 et réédite le doublé Euro-Mondial déjà réussi en 2008 et 2010. La veille à Miami, l'équipe de France de Didier Deschamps, pour son dernier match sur le banc, s'était inclinée face à l'Angleterre six buts à quatre pour la troisième place. Première édition à quarante-huit équipes, le tournoi n'aura vu aucun de ses trois pays hôtes, États-Unis, Mexique et Canada, atteindre les quarts de finale.",
+      "tickerCat": "Mondial 2026",
+      "tickerText": "L'Espagne championne du monde, l'Argentine battue 1-0 après prolongation, la France quatrième après sa défaite face à l'Angleterre"
+    },
+    {
+      "date": "20 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Tour de France : Pogacar solidement en jaune, Vingegaard contraint à l'abandon",
+      "body": "À l'approche de la dernière semaine, le Slovène Tadej Pogacar conforte son maillot jaune avec près de cinq minutes d'avance sur le Belge Remco Evenepoel, désormais deuxième, le Mexicain Isaac del Toro complétant provisoirement le podium. La course a été bouleversée par l'abandon de Jonas Vingegaard, principal rival attendu du tenant du titre, qui laisse le champion du monde en position de force avant les Alpes. Le jeune Français Paul Seixas figure aux avant-postes du classement général. L'arrivée sur les Champs-Élysées est prévue le 26 juillet.",
+      "tickerCat": "Cyclisme",
+      "tickerText": "Tour de France : Pogacar en jaune avec près de cinq minutes d'avance, Vingegaard abandonne, Evenepoel deuxième"
+    },
+    {
+      "date": "19 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Cédéao : le Sénégalais Bassirou Diomaye Faye élu président en exercice de l'organisation",
+      "body": "Réunis en sommet le 19 juillet à Lungi, en Sierra Leone, les chefs d'État de la Communauté économique des États de l'Afrique de l'Ouest ont désigné le président sénégalais Bassirou Diomaye Faye à la présidence tournante de l'organisation, pour un mandat d'un an. Il succède au Sierra-Léonais Julius Maada Bio. Le sommet a aussi nommé le général sénégalais Birame Diop à la tête de la Commission, avec une entrée en fonction prévue le 1er septembre à Abuja. Ce retour du Sénégal aux commandes intervient alors que le bloc, ramené à douze membres après le départ du Mali, du Burkina Faso et du Niger, cherche à préserver son unité et son poids régional.",
+      "tickerCat": "Cédéao",
+      "tickerText": "Bassirou Diomaye Faye élu président en exercice de la Cédéao, le bloc ramené à douze membres après le départ du Mali, du Burkina et du Niger"
+    },
+    {
+      "date": "15 juillet 2026",
+      "cat": "Politique",
+      "catColor": "var(--geo)",
+      "headline": "Fin de vie : le Parlement adopte le droit à l'aide à mourir, le Conseil constitutionnel saisi",
+      "body": "L'Assemblée nationale a adopté définitivement, le 15 juillet, la proposition de loi créant un droit à l'aide à mourir, par 291 voix contre 241 et 29 abstentions, les députés ayant eu le dernier mot après un nouveau rejet du Sénat. Le texte ouvre cette possibilité, sous conditions, à des malades atteints d'une affection grave et incurable. La loi ne sera pas promulguée aussitôt : le Premier ministre Sébastien Lecornu a saisi le Conseil constitutionnel sur trois points, la durée du délai de rétractation, la situation des majeurs protégés et la clause de conscience des établissements. Les Sages ont un mois pour se prononcer.",
+      "tickerCat": "Fin de vie",
+      "tickerText": "Le Parlement adopte le droit à l'aide à mourir, 291 voix contre 241, le Conseil constitutionnel saisi avant promulgation"
+    },
     {
       "date": "18 juillet 2026",
       "cat": "Société",
