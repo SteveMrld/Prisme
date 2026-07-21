@@ -1,5 +1,16 @@
 [
   {
+    "slug": "une-mort-a-soi",
+    "numero": 9,
+    "title": "Une mort à soi",
+    "date": "28 juillet 2026",
+    "dateISO": "2026-07-28",
+    "teaser": "Sur le droit à l'aide à mourir voté en France, et ce que ce débat, vu depuis un monde où l'on meurt encore sans soulagement, révèle de notre manière de penser la mort.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "une-mort-a-soi"
+  },
+  {
     "slug": "ce-qui-n-a-pas-d-image",
     "numero": 8,
     "title": "Ce qui n'a pas d'image",
