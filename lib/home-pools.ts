@@ -86,7 +86,7 @@ export const GF_SECONDARY_1_SLUG = 'terres-rares'
    en mode entièrement automatique. Sa catégorie est retirée des cats
    non-geo tirées au sort dans app/page.tsx pour éviter qu'un autre
    article de la même cat apparaisse juste après. */
-export const HERO_LEAD_SLUG: string | null = 'climatisation'
+export const HERO_LEAD_SLUG: string | null = 'la-guerre-des-moi'
 
 const SANCTUARY = new Set<string>([GF_LEAD_SLUG, GF_SECONDARY_1_SLUG])
 const HERO_PIN = new Set<string>(HERO_LEAD_SLUG ? [HERO_LEAD_SLUG] : [])

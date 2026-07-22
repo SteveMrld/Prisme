@@ -1,6 +1,78 @@
 {
-  "date_maj": "2026-07-21",
+  "date_maj": "2026-07-22",
   "breves": [
+    {
+      "date": "22 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Ukraine : Zelensky limoge son commandant en chef sous la pression de la rue",
+      "body": "Volodymyr Zelensky a annoncé mardi soir le limogeage du commandant en chef des forces armées, Oleksandre Syrsky, remplacé par Mykhaïlo Drapaty, commandant des forces interarmées. La décision suit plusieurs jours de manifestations dans tout le pays, déclenchées par l'éviction le 14 juillet du ministre de la Défense Mykhaïlo Fedorov, perçu comme l'artisan de la modernisation de l'armée et du recours massif aux drones. Syrsky, en poste depuis 2024, avait dirigé la défense de Kiev au début de l'invasion russe. C'est le deuxième recul du président ukrainien face à la pression de la rue.",
+      "tickerCat": "Ukraine",
+      "tickerText": "Zelensky limoge le commandant en chef Oleksandre Syrsky, remplacé par Mykhaïlo Drapaty, après des manifestations dans tout le pays"
+    },
+    {
+      "date": "22 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Moyen-Orient : Washington élargit ses frappes en Iran, le pétrole au plus haut depuis un mois",
+      "body": "Donald Trump a déclaré mardi que les États-Unis n'en avaient pas fini avec l'Iran, alors que l'armée américaine élargit ses frappes au territoire iranien, au-delà de la seule bordure du Golfe, et que Téhéran poursuit ses ripostes contre les alliés régionaux de Washington. Le baril de Brent a gagné plus de deux pour cent pour dépasser quatre-vingt-onze dollars, au plus haut depuis plus d'un mois, et l'Agence internationale de l'énergie s'inquiète pour la sécurité des approvisionnements. Les hostilités avaient repris le 7 juillet autour du détroit d'Ormuz.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "Washington élargit ses frappes en Iran, le Brent dépasse quatre-vingt-onze dollars et l'AIE s'inquiète pour les approvisionnements"
+    },
+    {
+      "date": "22 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Pesticides : la ministre de la Transition écologique démissionne après le vote de la loi agricole",
+      "body": "Monique Barbut a fait savoir qu'elle présenterait sa démission avant le Conseil des ministres de mercredi, quelques heures après l'adoption définitive de la loi d'urgence agricole. La ministre de la Transition écologique s'opposait à la réintroduction dérogatoire de deux pesticides interdits, dont l'acétamipride, de la famille des néonicotinoïdes, ainsi qu'au volet du texte consacré au stockage de l'eau. Reçue près d'une heure à Matignon par Sébastien Lecornu, elle en était ressortie sans commentaire. Sa décision intervient au terme d'un été marqué par les canicules, les incendies et la sécheresse.",
+      "tickerCat": "Pesticides",
+      "tickerText": "Monique Barbut quitte le gouvernement après le vote de la loi agricole réintroduisant l'acétamipride par dérogation"
+    },
+    {
+      "date": "22 juillet 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "Réseaux sociaux : la France en interdit l'accès aux moins de quinze ans",
+      "body": "L'Assemblée nationale a voté mardi à une large majorité, en lecture définitive, le projet de loi interdisant l'accès aux réseaux sociaux aux mineurs de moins de quinze ans, concrétisant un engagement présidentiel. Le texte pose un seuil d'âge contraignant dont la mise en œuvre reposera sur des dispositifs de vérification dont les modalités techniques restent à préciser. L'Australie avait ouvert la voie en 2024 en fermant ces plateformes aux moins de seize ans.",
+      "tickerCat": "Réseaux sociaux",
+      "tickerText": "La France interdit les réseaux sociaux aux moins de quinze ans, un seuil d'âge contraignant voté en lecture définitive"
+    },
+    {
+      "date": "22 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "France : le Parlement clôt sa session sur une série d'adoptions définitives",
+      "body": "Le Parlement a clos sa session mardi en adoptant définitivement une série de textes avant la pause estivale, dans une atmosphère de crise au sein de la majorité. La loi Ripost sur la tranquillité publique, qui durcit les sanctions contre les rodéos urbains et crée deux délits liés aux rave parties, a été votée par 351 voix contre 179. Une proposition de loi consacrée à la montagne a été approuvée au Sénat par 325 voix contre 16, aux côtés de textes sur le sport professionnel et l'immobilier de l'État. Le gouvernement revendique plus de quarante textes promulgués sur l'année parlementaire.",
+      "tickerCat": "Parlement",
+      "tickerText": "Le Parlement clôt sa session, la loi Ripost adoptée par 351 voix contre 179 avant la pause estivale"
+    },
+    {
+      "date": "22 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Marchés : Wall Street rebondit portée par les semi-conducteurs, Washington annonce de nouvelles surtaxes",
+      "body": "La Bourse de New York a terminé en hausse mardi, le Nasdaq gagnant près de un et trois dixièmes pour cent et l'indice des semi-conducteurs plus de cinq pour cent, porté par des résultats d'entreprises meilleurs qu'attendu. Le secteur sortait d'une période de doute sur la rentabilité des investissements colossaux consacrés à l'intelligence artificielle. Washington a par ailleurs annoncé que de nouvelles surtaxes douanières viseraient prochainement une soixantaine d'économies, après une taxe de cinquante pour cent sur une série de produits canadiens. Les résultats d'Intel et d'Alphabet sont attendus cette semaine.",
+      "tickerCat": "Marchés",
+      "tickerText": "Wall Street rebondit avec les semi-conducteurs, Washington annonce de nouvelles surtaxes visant une soixantaine d'économies"
+    },
+    {
+      "date": "22 juillet 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Ebola : l'épidémie de Bundibugyo s'aggrave en République démocratique du Congo",
+      "body": "Le bilan de l'épidémie provoquée par le virus Bundibugyo atteignait 2 344 cas confirmés et 930 décès en République démocratique du Congo au 19 juillet, selon le Centre européen de prévention et de contrôle des maladies, la province de l'Ituri restant de loin la plus touchée. Aucun vaccin ni traitement homologué n'existe contre cette souche, dont le génome diffère de près de trente pour cent de celui du virus Zaïre ciblé par les vaccins disponibles. Le premier essai clinique d'un vaccin visant Bundibugyo a débuté à la mi-juillet, le Serum Institute of India déclarant avoir constitué un stock d'environ six cent vingt mille doses expérimentales. L'épidémie est classée urgence de santé publique de portée internationale depuis le 17 mai.",
+      "tickerCat": "Ebola",
+      "tickerText": "Ebola : 2 344 cas et 930 décès en RDC, premier essai clinique d'un vaccin ciblant la souche Bundibugyo"
+    },
+    {
+      "date": "22 juillet 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Spectacle vivant : l'État débloque dix millions d'euros gelés pour vingt-huit structures",
+      "body": "Les crédits d'État gelés pour vingt-huit structures du spectacle vivant, dans le cadre des économies demandées à chaque ministère, seront finalement versés au second semestre, a indiqué mardi l'entourage de la ministre de la Culture Catherine Pégard. La somme s'élève à dix millions d'euros. L'annonce intervient alors que les professionnels multiplient les appels à l'aide depuis le Festival d'Avignon, qui s'achève le 26 juillet, et réclament que la culture soit portée à un pour cent du budget de l'État. Le gouvernement avait annoncé en avril six milliards d'euros d'économies pour compenser le coût de la guerre au Moyen-Orient.",
+      "tickerCat": "Spectacle vivant",
+      "tickerText": "Dix millions d'euros de crédits gelés finalement versés à vingt-huit structures du spectacle vivant"
+    },
     {
       "date": "21 juillet 2026",
       "cat": "Société",
