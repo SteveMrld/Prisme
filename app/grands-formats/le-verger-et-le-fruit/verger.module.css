@@ -1,0 +1,195 @@
+/* ── Grand format « Le verger et le fruit » ───────────────────────
+   Palette dérivée du récit, pas de l'habillage :
+   or profond  = le donateur de 1998 (Microsoft, Washington)
+   bleu géo    = la Chine, receveuse devenue rivale
+   vert verger = l'Afrique et la métaphore centrale du texte
+   Les trois visualisations partagent ce codage. Une couleur
+   veut dire la même chose d'un bout à l'autre de la page. ── */
+
+.wrap {
+  margin: 56px -40px;
+  border-top: 1.5px solid #DDD9D2;
+  border-bottom: 1.5px solid #DDD9D2;
+  background: #F9F7F3;
+  padding: 40px 40px 36px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    margin: 40px -20px;
+    padding: 28px 20px 24px;
+  }
+}
+
+/* ── Chrome du bloc ── */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #8C6F2E;
+  display: block;
+  margin: 0 0 14px;
+}
+
+.vizTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(21px, 2.6vw, 29px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #111;
+  margin: 0 0 10px;
+}
+
+.vizTitle em {
+  font-style: italic;
+  color: #1A3E6B;
+}
+
+.standfirst {
+  font-family: var(--font-serif-reading);
+  font-size: 15px;
+  line-height: 1.62;
+  color: #4B5563;
+  max-width: 62ch;
+  margin: 0 0 30px;
+}
+
+.source {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #A8A29A;
+  line-height: 1.7;
+  margin: 26px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid #E8E4DC;
+}
+
+/* ── Légende partagée ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 0 0 22px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #6B7280;
+}
+
+.swatch {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+}
+
+/* ── Bandeau de chiffres clés ── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #E8E4DC;
+  border: 1px solid #E8E4DC;
+  margin: 28px 0 0;
+}
+
+@media (max-width: 640px) {
+  .stats { grid-template-columns: 1fr; }
+}
+
+.stat {
+  background: #F9F7F3;
+  padding: 18px 16px;
+}
+
+.statValue {
+  font-family: var(--font-mono);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #1A3E6B;
+  display: block;
+  line-height: 1.1;
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  display: block;
+  margin-top: 7px;
+  line-height: 1.6;
+}
+
+/* ── Grille de capacité (0,6 %) ── */
+.gridWrap {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.gridNote {
+  flex: 1 1 210px;
+  min-width: 190px;
+}
+
+.gridNote p {
+  font-family: var(--font-serif-reading);
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #4B5563;
+  margin: 0 0 14px;
+}
+
+.gridNote strong {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: #1A3E6B;
+}
+
+.dotGrid {
+  flex: 2 1 380px;
+  display: grid;
+  grid-template-columns: repeat(40, 1fr);
+  gap: 2.5px;
+}
+
+@media (max-width: 560px) {
+  .dotGrid { grid-template-columns: repeat(25, 1fr); }
+}
+
+.dot {
+  aspect-ratio: 1;
+  background: #E2DED6;
+  border-radius: 1px;
+}
+
+.dotOn {
+  background: #2D6B4A;
+}
+
+/* Respect strict des préférences de mouvement. */
+@media (prefers-reduced-motion: reduce) {
+  .wrap :global(animate),
+  .wrap :global(animateTransform) {
+    display: none;
+  }
+}

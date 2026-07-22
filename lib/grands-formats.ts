@@ -25,6 +25,7 @@ const CAT_LABELS: Record<string, string> = {
 /* Liste canonique des 11 slugs. L'ordre ici n'a pas d'importance :
    la home applique sortByRecency par score d'âge à chaque chargement. */
 const GRAND_FORMAT_SLUGS: string[] = [
+  'le-verger-et-le-fruit',
   'pollinisation',
   'chambre-ratification',
   'palantir',

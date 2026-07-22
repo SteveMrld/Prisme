@@ -6,14 +6,18 @@
     "image": "/articles/le-verger-et-le-fruit-cover.jpg",
     "category": "geo",
     "date": "2026-07-22",
-    "readTime": "11",
+    "readTime": "13",
     "author": "Steve Moradel",
     "authorRole": "",
     "featured": false,
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "authorBio": null
+    "authorBio": null,
+    "categoryLabel": "Géopolitique",
+    "grandFormat": true,
+    "grandFormatUrl": "/grands-formats/le-verger-et-le-fruit",
+    "customRoute": "/grands-formats/le-verger-et-le-fruit"
   },
   {
     "slug": "le-luxe-d-etre-soi",
