@@ -1,5 +1,21 @@
 [
   {
+    "slug": "le-verger-et-le-fruit",
+    "title": "Le verger <em>et le fruit</em>",
+    "description": "En 1998, Microsoft offrait à la Chine un laboratoire qui allait former ses futurs champions de l’intelligence artificielle. Un quart de siècle plus tard, Pékin tend le même geste vers l’Afrique.",
+    "image": "/articles/le-verger-et-le-fruit-cover.jpg",
+    "category": "geo",
+    "date": "2026-07-22",
+    "readTime": "11",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "featured": false,
+    "premium": false,
+    "avif": false,
+    "imageCredit": "© Soara",
+    "authorBio": null
+  },
+  {
     "slug": "le-luxe-d-etre-soi",
     "title": "Le luxe <em>d'être soi</em>",
     "description": "Ce qui nous rassure, le crédit qu'on honore, le poste qui protège, est souvent ce qui nous éloigne le plus de nous. Sur le prix caché d'une vie où l'on ne se reconnaît plus, et sur ceux qui l'ont fixé.",
