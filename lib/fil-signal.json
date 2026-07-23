@@ -1,6 +1,78 @@
 {
-  "date_maj": "2026-07-22",
+  "date_maj": "2026-07-23",
   "breves": [
+    {
+      "date": "23 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Moyen-Orient : les houthis ouvrent un second front en mer Rouge, Trump menace l'Iran d'une punition militaire majeure",
+      "body": "L'Iran a affirmé jeudi qu'il poursuivrait ses représailles contre les États-Unis tant qu'il serait attaqué, au moment où les rebelles houthis du Yémen ont revendiqué des attaques contre deux pétroliers saoudiens en mer Rouge. Le commandement américain pour le Moyen-Orient a fait état d'une douzième nuit consécutive de frappes sur des cibles militaires iraniennes, dont des moyens navals et des sites de stockage de missiles et de drones. Téhéran dit avoir visé au Koweït des dépôts de munitions et en Jordanie un radar du système antimissile THAAD. L'armée jordanienne a recensé dix missiles et drones tirés vers le royaume en vingt-quatre heures, dont neuf interceptés. Donald Trump a promis sur Truth Social une punition militaire majeure contre l'Iran et les houthis en cas de nouvelle attaque.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "Les houthis attaquent deux pétroliers saoudiens en mer Rouge, Washington frappe l'Iran pour la douzième nuit consécutive"
+    },
+    {
+      "date": "23 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "La BCE laisse ses taux inchangés alors que le Brent repasse au-dessus de cent dollars",
+      "body": "Le Conseil des gouverneurs a décidé jeudi de laisser inchangés les trois taux directeurs de la Banque centrale européenne, dont le taux de dépôt à 2,25 %, après la hausse décidée en juin. L'institution invoque l'incertitude née du retour des hostilités au Moyen-Orient et dit suivre l'intensité et la durée du choc énergétique ainsi que ses effets de second tour. L'inflation en zone euro est retombée à 2,8 % en juin, après un pic à 3,2 % en mai. Sur les marchés, le baril de Brent a repassé la barre des cent dollars et la Bourse de Paris a cédé 1,64 % pour terminer à 8 299,09 points. TotalEnergies, qui a annoncé un doublement de son bénéfice net trimestriel à 5,48 milliards de dollars, a gagné 2,5 %.",
+      "tickerCat": "BCE",
+      "tickerText": "La BCE maintient son taux de dépôt à 2,25 %, le Brent repasse au-dessus de cent dollars et le CAC 40 recule de 1,64 %"
+    },
+    {
+      "date": "23 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Gironde : l'incendie parti de Saumos a parcouru 2 400 hectares, près de 12 000 personnes évacuées",
+      "body": "Un incendie déclaré mercredi sur la commune de Saumos, au nord du bassin d'Arcachon, avait parcouru 2 400 hectares selon l'estimation des sapeurs-pompiers communiquée jeudi. Près de 12 000 habitants et vacanciers ont été évacués par précaution, dont les occupants de six campings et d'un domaine résidentiel situés au nord du cap Ferret. Aucune victime ni habitation détruite n'était recensée à ce stade par les autorités, alors que le front du feu progressait vers Lège-Cap-Ferret dans des conditions qualifiées de défavorables. La Commission européenne a annoncé le déploiement de trois avions bombardiers d'eau. Le système européen d'information sur les feux de forêt recense environ 254 388 hectares brûlés dans l'Union depuis le début de l'année 2026, contre 270 449 hectares à la même date en 2025.",
+      "tickerCat": "Incendies",
+      "tickerText": "L'incendie de Saumos, en Gironde, a parcouru 2 400 hectares et conduit à l'évacuation de près de 12 000 personnes"
+    },
+    {
+      "date": "23 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "RD Congo : l'épidémie d'Ebola dépasse le millier de morts",
+      "body": "L'épidémie provoquée par la souche Bundibugyo du virus Ebola a franchi le seuil des mille morts en République démocratique du Congo, selon les Centres africains de contrôle et de prévention des maladies. Le ministère congolais de la Santé recensait lundi 2 473 cas, et au moins 737 patients étaient hospitalisés ou placés à l'isolement. Déclarée le 15 mai, la flambée progresse plus vite que toutes les précédentes, sans vaccin ni traitement homologué contre cette souche. Les autorités sanitaires relèvent que près de 80 % des nouveaux cas apparaissent en dehors des chaînes de transmission connues, signe que le virus circule au-delà de ce que la surveillance parvient à suivre.",
+      "tickerCat": "Ebola",
+      "tickerText": "L'épidémie d'Ebola en RD Congo dépasse le millier de morts selon Africa CDC, 2 473 cas recensés depuis le 15 mai"
+    },
+    {
+      "date": "23 juillet 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "Google ouvre l'accès aux comptes par vidéo selfie",
+      "body": "Google a lancé jeudi une méthode de connexion reposant sur une courte vidéo du visage, présentée comme une solution de repli lorsque les autres moyens d'accès échouent, en cas de mot de passe oublié ou de perte de l'appareil habituel. La configuration consiste à filmer quelques mouvements de tête guidés afin de capturer plusieurs angles, l'enregistrement servant ensuite de référence pour authentifier les vidéos soumises lors des tentatives ultérieures. L'entreprise dit avoir superposé plusieurs couches de sécurité destinées à écarter les images truquées. Reuters relève que le dispositif soulève des interrogations sur la vie privée, la fonction reposant sur la conservation par Google d'un gabarit du visage de l'utilisateur.",
+      "tickerCat": "Google",
+      "tickerText": "Google lance une connexion par vidéo selfie pour récupérer un compte, avec conservation d'un gabarit du visage"
+    },
+    {
+      "date": "23 juillet 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Starship tente son treizième vol d'essai avec les premiers satellites Starlink de troisième génération",
+      "body": "SpaceX vise une fenêtre de quatre-vingt-dix minutes ouvrant jeudi à 17 h 45 heure du Texas, soit 0 h 45 à Paris dans la nuit de jeudi à vendredi, pour le treizième vol d'essai de Starship depuis Starbase. La première tentative, le 16 juillet, avait été interrompue automatiquement au moment de l'allumage des moteurs. Le vol doit valider l'ascension du propulseur Super Heavy, la séparation des étages, la manœuvre de retour de poussée et un amerrissage contrôlé au large. Il emporte pour la première fois des satellites Starlink de troisième génération, trop volumineux pour être lancés par une Falcon 9. SpaceX a indiqué que la météo restait le principal facteur de surveillance.",
+      "tickerCat": "Espace",
+      "tickerText": "SpaceX vise cette nuit le treizième vol d'essai de Starship, avec les premiers satellites Starlink de troisième génération"
+    },
+    {
+      "date": "23 juillet 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Mostra de Venise : une seule réalisatrice parmi les vingt films en compétition",
+      "body": "La 83e Mostra de Venise a dévoilé jeudi matin la sélection de son édition, qui se tiendra du 2 au 12 septembre. Une seule femme figure parmi les vingt cinéastes en lice pour le Lion d'or, contre six l'an dernier. Ink, de Danny Boyle, ouvrira le festival et concourt également, tandis que Dio Ride, de Giovanni Veronesi, le clôturera hors compétition. La compétition réunit notamment Werner Herzog, Nanni Moretti, Lee Chang-dong, Hirokazu Kore-eda, Martin McDonagh et Florian Zeller. Le jury est présidé par Maggie Gyllenhaal. Les Lions d'or d'honneur pour l'ensemble de la carrière reviennent à George Clooney et à Ellen Burstyn.",
+      "tickerCat": "Venise",
+      "tickerText": "La Mostra de Venise dévoile sa sélection, une seule réalisatrice parmi les vingt films en compétition contre six l'an dernier"
+    },
+    {
+      "date": "23 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Tour de France : Richard Carapaz s'impose seul à Orcières-Merlette, Pogacar conserve le maillot jaune",
+      "body": "L'Équatorien Richard Carapaz a remporté jeudi la 18e étape du Tour de France, 185,2 kilomètres entre Voiron et Orcières-Merlette, en 4 h 26 min 21 s. Parti dans une échappée de six coureurs, il s'est isolé à 3,5 kilomètres du sommet et a devancé de quarante-cinq secondes le Suisse Mauro Schmid et l'Américain Matteo Jorgenson. Tadej Pogacar a conservé le maillot jaune, ses poursuivants au classement général n'ayant pas attaqué. Valentin Paret-Peintre a pris la quatrième place et revient à un point du maillot à pois. Aucun coureur français n'a encore gagné d'étape sur cette édition, à trois jours de l'arrivée à Paris.",
+      "tickerCat": "Tour de France",
+      "tickerText": "Richard Carapaz gagne seul à Orcières-Merlette, Tadej Pogacar conserve le maillot jaune avant l'Alpe d'Huez"
+    },
     {
       "date": "22 juillet 2026",
       "cat": "Géopolitique",
