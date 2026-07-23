@@ -306,13 +306,17 @@
   margin-bottom: 40px;
 }
 
+/* Question : romaine et grasse, dans la police de lecture.
+   L'italique de Playfair est dessiné pour les titres. À la taille du texte
+   courant, ses déliés s'amincissent et la lecture d'un entretien long
+   devient pénible. Le contraste vient désormais de la graisse seule,
+   comme dans les questions-réponses du New York Times. */
 .body :global(p.interview-question) {
-  font-family: var(--font-serif-display);
-  font-size: 19px;
+  font-family: var(--font-serif-reading);
+  font-size: 18px;
   font-weight: 700;
-  font-style: italic;
   color: var(--encre);
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 40px 0 14px;
 }
 
