@@ -3,7 +3,7 @@
     "slug": "le-verger-et-le-fruit",
     "title": "Le verger <em>et le fruit</em>",
     "description": "En 1998, Microsoft offrait à la Chine un laboratoire qui allait former ses futurs champions de l’intelligence artificielle. Un quart de siècle plus tard, Pékin tend le même geste vers l’Afrique.",
-    "image": "/articles/le-verger-et-le-fruit-cover.jpg",
+    "image": "/grands-formats/le-verger-et-le-fruit.jpg",
     "category": "geo",
     "date": "2026-07-22",
     "readTime": "13",
@@ -11,13 +11,13 @@
     "authorRole": "",
     "featured": false,
     "premium": false,
-    "avif": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "authorBio": null,
     "categoryLabel": "Géopolitique",
     "grandFormat": true,
     "grandFormatUrl": "/grands-formats/le-verger-et-le-fruit",
-    "customRoute": "/grands-formats/le-verger-et-le-fruit"
+    "customRoute": "/grands-formats/le-verger-et-le-fruit",
+    "imagePosition": "center 35%"
   },
   {
     "slug": "le-luxe-d-etre-soi",
