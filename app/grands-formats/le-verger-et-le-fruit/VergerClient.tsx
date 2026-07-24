@@ -45,6 +45,71 @@ function useInView<T extends HTMLElement>() {
   return { ref, seen, anim };
 }
 
+
+/* Les libellés des trois visualisations. L'anglais n'est pas une glose
+   du français : les intitulés sont réécrits pour sonner juste dans la
+   langue, pas transposés mot à mot. */
+type Lang = "fr" | "en";
+
+const S = {
+  fr: {
+    f_eyebrow: "Novembre 1998 · Pékin",
+    f_t1: "Six personnes, ", f_t2: "une ligne d’horizon",
+    f_sf: "Une pièce, quelques bureaux, une lampe. Les silhouettes que le laboratoire projette portent aujourd’hui l’industrie chinoise de l’intelligence artificielle.",
+    f_aria: "Le laboratoire Microsoft de Pékin, minuscule au pied d’un mur, projette sept silhouettes monumentales portant les noms de SenseTime, Megvii, Yitu, Horizon Robotics, Baidu, Alibaba Cloud et Sinovation",
+    f_lieu: "Pékin, 1998",
+    f_lab: "MICROSOFT RESEARCH ASIA",
+    f_six: "SIX PERSONNES · KAI-FU LEE",
+    f_src: "Microsoft, communiqué d’ouverture du laboratoire, novembre 1998 · CommonWealth Magazine, mai 2024, d’après une enquête du New York Times, janvier 2024 · hauteurs des silhouettes sans valeur chiffrée",
+
+    r_eyebrow: "2023 — 2026",
+    r_t1: "L’écart, ", r_t2: "et rien d’autre",
+    r_sf: "Chaque bande sombre est la distance qui séparait encore le meilleur modèle chinois du meilleur modèle américain. C’est le vide qu’il faut lire, pas les masses qui l’encadrent.",
+    r_lg1: "Meilleur modèle américain", r_lg2: "Meilleur modèle chinois",
+    r_aria: "Quatre relevés de l’écart entre modèles américains et chinois, de dix-sept à trente et un points en 2023 jusqu’à 2,7 points en mars 2026",
+    r_axe: "ÉCART EN POINTS",
+    r_rows: ["MAI 2023", "JANV. 2024", "FÉVR. 2025", "MARS 2026"],
+    r_vals: ["17,5 à 31,6", "9,3", "1,7", "2,7"],
+    r_src: "Stanford Institute for Human-Centered Artificial Intelligence · AI Index Report 2026 pour le relevé de mars 2026, éditions antérieures du même rapport pour les relevés de 2023 à 2025",
+
+    a_eyebrow: "Le sol sous la graine",
+    a_t1: "Mille braises, ", a_t2: "six allumées",
+    a_sf: "Chaque point vaut un millième de la capacité mondiale de centres de données. Ce qui brûle sur le continent africain tient dans les six points verts, quand le modèle présenté à Shanghai réclame quatre à huit accélérateurs haut de gamme pour une simple mise en service.",
+    a_l1: "De la capacité mondiale de centres de données",
+    a_l2: "Poids du modèle présenté à Shanghai, en précision native",
+    a_l3: "Places de formation promises sur cinq ans, tout le Sud confondu",
+    a_src: "Africa Data Centres Association, rapport économique 2026 · Moonshot AI, South China Morning Post et VentureBeat, juillet 2026 · discours d’ouverture de la World Artificial Intelligence Conference, Shanghai, 17 juillet 2026",
+  },
+  en: {
+    f_eyebrow: "November 1998 · Beijing",
+    f_t1: "Six people, ", f_t2: "one skyline",
+    f_sf: "One room, a few desks, a lamp. The silhouettes the laboratory throws against the wall now carry China’s artificial intelligence industry.",
+    f_aria: "Microsoft’s Beijing laboratory, tiny at the foot of a wall, casts seven monumental silhouettes bearing the names SenseTime, Megvii, Yitu, Horizon Robotics, Baidu, Alibaba Cloud and Sinovation",
+    f_lieu: "Beijing, 1998",
+    f_lab: "MICROSOFT RESEARCH ASIA",
+    f_six: "SIX PEOPLE · KAI-FU LEE",
+    f_src: "Microsoft, laboratory opening announcement, November 1998 · CommonWealth Magazine, May 2024, drawing on a New York Times investigation, January 2024 · silhouette heights carry no numerical value",
+
+    r_eyebrow: "2023 — 2026",
+    r_t1: "The gap, ", r_t2: "and nothing else",
+    r_sf: "Each dark band is the distance that still separated the best Chinese model from the best American one. It is the void that carries the reading, not the masses framing it.",
+    r_lg1: "Best American model", r_lg2: "Best Chinese model",
+    r_aria: "Four readings of the gap between American and Chinese models, from seventeen to thirty-one points in 2023 down to 2.7 points in March 2026",
+    r_axe: "GAP IN POINTS",
+    r_rows: ["MAY 2023", "JAN. 2024", "FEB. 2025", "MARCH 2026"],
+    r_vals: ["17.5 to 31.6", "9.3", "1.7", "2.7"],
+    r_src: "Stanford Institute for Human-Centered Artificial Intelligence · AI Index Report 2026 for the March 2026 reading, earlier editions of the same report for the 2023 to 2025 readings",
+
+    a_eyebrow: "The soil beneath the seed",
+    a_t1: "A thousand embers, ", a_t2: "six alight",
+    a_sf: "Each point stands for one thousandth of the world’s data centre capacity. What burns on the African continent fits into the six green points, while the model unveiled in Shanghai calls for four to eight high-end accelerators just to be brought up and run.",
+    a_l1: "Of the world’s data centre capacity",
+    a_l2: "Weight of the model unveiled in Shanghai, at native precision",
+    a_l3: "Training places promised over five years, across the entire South",
+    a_src: "Africa Data Centres Association, 2026 economic report · Moonshot AI, South China Morning Post and VentureBeat, July 2026 · opening address, World Artificial Intelligence Conference, Shanghai, 17 July 2026",
+  },
+} as const;
+
 /* ══ 1. L'OMBRE DU LABORATOIRE ═════════════════════════════════════
    Un mur en lumière rasante, une lampe au sol, et le laboratoire
    réduit à un rectangle de vingt pixels. Ce qui en est sorti monte en
@@ -61,7 +126,8 @@ const TOURS = [
   { n: "SINOVATION", x: 566, w: 50, h: 182 },
 ];
 
-function Filiation() {
+function Filiation({ lang = "fr" }: { lang?: Lang }) {
+  const t = S[lang];
   const { ref, seen, anim } = useInView<HTMLDivElement>();
   const SOL = 372;
   const LX = 104;
@@ -70,14 +136,12 @@ function Filiation() {
 
   return (
     <div className={styles.nuit} ref={ref}>
-      <span className={styles.eyebrow}>Novembre 1998 · Pékin</span>
+      <span className={styles.eyebrow}>{t.f_eyebrow}</span>
       <h3 className={styles.vizTitle}>
-        Six personnes, <em>une ligne d&rsquo;horizon</em>
+        {t.f_t1}<em>{t.f_t2}</em>
       </h3>
       <p className={styles.standfirst}>
-        Une pièce, quelques bureaux, une lampe. Les silhouettes que le
-        laboratoire projette portent aujourd&rsquo;hui l&rsquo;industrie chinoise
-        de l&rsquo;intelligence artificielle.
+        {t.f_sf}
       </p>
 
       <div className={styles.scroll}>
@@ -86,7 +150,7 @@ function Filiation() {
           width="100%"
           style={{ display: "block", minWidth: 640 }}
           role="img"
-          aria-label="Le laboratoire Microsoft de Pékin, minuscule au pied d'un mur, projette sept silhouettes monumentales portant les noms de SenseTime, Megvii, Yitu, Horizon Robotics, Baidu, Alibaba Cloud et Sinovation"
+          aria-label={t.f_aria}
         >
           <defs>
             <radialGradient id="vf-mur" cx="13%" cy="96%" r="92%">
@@ -184,21 +248,19 @@ function Filiation() {
           <circle cx={LX} cy={LY} r="2.4" fill="#FFF3DC" />
 
           <text x="150" y="404" fill="#C9BFAF" fontFamily="'Playfair Display',Georgia,serif" fontSize="19" fontWeight="700">
-            Pékin, 1998
+            {t.f_lieu}
           </text>
           <text x="150" y="424" fill="#7C7468" fontFamily="'DM Mono',monospace" fontSize="9" letterSpacing="1.6">
-            MICROSOFT RESEARCH ASIA
+            {t.f_lab}
           </text>
           <text x="150" y="440" fill="#6A6359" fontFamily="'DM Mono',monospace" fontSize="9" letterSpacing="1.6">
-            SIX PERSONNES · KAI-FU LEE
+            {t.f_six}
           </text>
         </svg>
       </div>
 
       <p className={styles.source}>
-        Microsoft, communiqué d&rsquo;ouverture du laboratoire, novembre 1998 ·
-        CommonWealth Magazine, mai 2024, d&rsquo;après une enquête du New York
-        Times, janvier 2024 · hauteurs des silhouettes sans valeur chiffrée
+        {t.f_src}
       </p>
     </div>
   );
@@ -219,7 +281,8 @@ const RELEVES: Releve[] = [
   { an: "MARS 2026", v: 2.7, txt: "2,7" },
 ];
 
-function Rattrapage() {
+function Rattrapage({ lang = "fr" }: { lang?: Lang }) {
+  const t = S[lang];
   const { ref, seen, anim } = useInView<HTMLDivElement>();
   const CX = 430;
   const K = 7.6;
@@ -232,24 +295,22 @@ function Rattrapage() {
 
   return (
     <div className={styles.nuit} ref={ref}>
-      <span className={styles.eyebrow}>2023 — 2026</span>
+      <span className={styles.eyebrow}>{t.r_eyebrow}</span>
       <h3 className={styles.vizTitle}>
-        L&rsquo;écart, <em>et rien d&rsquo;autre</em>
+        {t.r_t1}<em>{t.r_t2}</em>
       </h3>
       <p className={styles.standfirst}>
-        Chaque bande sombre est la distance qui séparait encore le meilleur
-        modèle chinois du meilleur modèle américain. C&rsquo;est le vide
-        qu&rsquo;il faut lire, pas les masses qui l&rsquo;encadrent.
+        {t.r_sf}
       </p>
 
       <div className={styles.legend}>
         <span className={styles.legendItem}>
           <span className={styles.swatch} style={{ background: "#D3A05A" }} />
-          Meilleur modèle américain
+          {t.r_lg1}
         </span>
         <span className={styles.legendItem}>
           <span className={styles.swatch} style={{ background: "#7E9BC4" }} />
-          Meilleur modèle chinois
+          {t.r_lg2}
         </span>
       </div>
 
@@ -259,7 +320,7 @@ function Rattrapage() {
           width="100%"
           style={{ display: "block", minWidth: 600 }}
           role="img"
-          aria-label="Quatre relevés de l'écart entre modèles américains et chinois, de dix-sept à trente et un points en 2023 jusqu'à 2,7 points en mars 2026"
+          aria-label={t.r_aria}
         >
           <defs>
             <linearGradient id="vf-or" x1="0" x2="1">
@@ -281,7 +342,7 @@ function Rattrapage() {
             letterSpacing="1.8"
             textAnchor="end"
           >
-            ÉCART EN POINTS
+            {t.r_axe}
           </text>
 
           {RELEVES.map((r, i) => {
@@ -301,7 +362,7 @@ function Rattrapage() {
                   fontSize="9"
                   letterSpacing="1.6"
                 >
-                  {r.an}
+                  {t.r_rows[i]}
                 </text>
 
                 <rect
@@ -383,7 +444,7 @@ function Rattrapage() {
                       fill="freeze"
                     />
                   )}
-                  {r.txt}
+                  {t.r_vals[i]}
                 </text>
               </g>
             );
@@ -392,9 +453,7 @@ function Rattrapage() {
       </div>
 
       <p className={styles.source}>
-        Stanford Institute for Human-Centered Artificial Intelligence · AI Index
-        Report 2026 pour le relevé de mars 2026, éditions antérieures du même
-        rapport pour les relevés de 2023 à 2025
+        {t.r_src}
       </p>
     </div>
   );
@@ -404,20 +463,18 @@ function Rattrapage() {
    Mille points, six allumés. Dans le noir les six rayonnent au lieu
    d'être posés à plat.                                             */
 
-function Asymetrie() {
+function Asymetrie({ lang = "fr" }: { lang?: Lang }) {
+  const t = S[lang];
   const { ref, seen, anim } = useInView<HTMLDivElement>();
 
   return (
     <div className={styles.nuit} ref={ref}>
-      <span className={styles.eyebrow}>Le sol sous la graine</span>
+      <span className={styles.eyebrow}>{t.a_eyebrow}</span>
       <h3 className={styles.vizTitle}>
-        Mille braises, <em>six allumées</em>
+        {t.a_t1}<em>{t.a_t2}</em>
       </h3>
       <p className={styles.standfirst}>
-        Chaque point vaut un millième de la capacité mondiale de centres de
-        données. Ce qui brûle sur le continent africain tient dans les six
-        points verts, quand le modèle présenté à Shanghai réclame quatre à huit
-        accélérateurs haut de gamme pour une simple mise en service.
+        {t.a_sf}
       </p>
 
       <div className={styles.braises} aria-hidden="true">
@@ -443,7 +500,7 @@ function Asymetrie() {
             0,6<small>%</small>
           </span>
           <span className={styles.chL}>
-            De la capacité mondiale de centres de données
+            {t.a_l1}
           </span>
         </div>
         <div className={styles.ch}>
@@ -451,22 +508,19 @@ function Asymetrie() {
             594<small>Go</small>
           </span>
           <span className={styles.chL}>
-            Poids du modèle présenté à Shanghai, en précision native
+            {t.a_l2}
           </span>
         </div>
         <div className={styles.ch}>
           <span className={styles.chV}>5 000</span>
           <span className={styles.chL}>
-            Places de formation promises sur cinq ans, tout le Sud confondu
+            {t.a_l3}
           </span>
         </div>
       </div>
 
       <p className={styles.source}>
-        Africa Data Centres Association, rapport économique 2026 · Moonshot AI,
-        South China Morning Post et VentureBeat, juillet 2026 · discours
-        d&rsquo;ouverture de la World Artificial Intelligence Conference,
-        Shanghai, 17 juillet 2026
+        {t.a_src}
       </p>
     </div>
   );

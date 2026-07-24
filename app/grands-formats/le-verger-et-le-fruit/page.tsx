@@ -1,5 +1,6 @@
 import GrandFormatLayout from "../../../components/GrandFormatLayout";
 import { Filiation, Rattrapage, Asymetrie } from "./VergerClient";
+import VergerEn from "./VergerEn";
 
 export const metadata = {
   title: "Le verger et le fruit",
@@ -10,13 +11,27 @@ export const metadata = {
   },
 };
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams?: { lang?: string };
+}) {
+  const lang = searchParams?.lang === "en" ? "en" : "fr";
+  const base = "/grands-formats/le-verger-et-le-fruit";
+
   return (
     <GrandFormatLayout
       slug="le-verger-et-le-fruit"
       author="Steve Moradel"
       authorRole=""
+      lang={lang}
+      hasEnglish={true}
+      toggleUrl={lang === "en" ? base : `${base}?lang=en`}
     >
+      {lang === "en" ? (
+        <VergerEn />
+      ) : (
+      <>
       <div className="soara-article">
         <p>
           En juillet 2026, à la tribune de la World Artificial Intelligence
@@ -386,6 +401,8 @@ export default function Page() {
           </ul>
         </div>
       </div>
+      </>
+      )}
     </GrandFormatLayout>
   );
 }

@@ -19,7 +19,9 @@
     "customRoute": "/grands-formats/le-verger-et-le-fruit",
     "imagePosition": "center 35%",
     "secondaryCategory": "geo",
-    "secondaryCategoryLabel": "Géopolitique"
+    "secondaryCategoryLabel": "Géopolitique",
+    "titleEn": "The Orchard <em>and the Fruit</em>",
+    "descriptionEn": "In 1998, Microsoft opened a laboratory in Beijing that would train the people who built China’s artificial intelligence industry. A quarter of a century later, Beijing is extending the same gesture toward Africa."
   },
   {
     "slug": "le-luxe-d-etre-soi",
