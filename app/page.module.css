@@ -363,6 +363,7 @@
   max-width: 640px;
 }
 .lettreMardiActions {
+  order: 3;
   margin-top: 6px;
   display: flex;
   flex-direction: column;
@@ -404,6 +405,7 @@
 /* Carte de la derniere lettre : le bloc montre desormais le contenu
    du rendez-vous et non seulement sa promesse. */
 .lettreMardiLast {
+  order: 2;
   display: flex;
   flex-direction: column;
   gap: 7px;
@@ -445,6 +447,14 @@
   text-transform: uppercase;
   color: var(--gris-m);
   margin-top: 2px;
+}
+/* Mobile : promesse, puis la lettre, puis l'appel a inscription.
+   Le bloc texte se laisse traverser pour que l'ordre s'applique. */
+@media (max-width: 899px) {
+  .lettreMardiText { display: contents; }
+  .lettreMardiEyebrow { order: 0; }
+  .lettreMardiTitle { order: 0; }
+  .lettreMardiTeaser { order: 1; }
 }
 @media (min-width: 900px) {
   .lettreMardiLast { flex: 0 0 42%; max-width: 42%; }
