@@ -4,10 +4,15 @@ import Header from './Header'
 import BottomNav from './BottomNav'
 import styles from './GrandsFormatsIndex.module.css'
 
+// ATTENTION : cette liste est écrite en dur et ne lit pas GRAND_FORMAT_SLUGS
+// de lib/grands-formats.ts. Tout grand format ajouté au registre doit être
+// répliqué ici, sinon il n'apparaît pas dans l'onglet. Manquent encore :
+// pollinisation, climatisation, bases-militaires, climat, inegalites.
 // cat = data-cat dérivé du premier mot du libellé visible (cf. audit Étape 0).
 // image = cover réelle de l'article (issue d'articles.json), affichée telle quelle.
 // Si image absent, .thumb / .openImg retombent sur un aplat catColor 12 %.
 const FORMATS = [
+  { slug:'le-verger-et-le-fruit', cat:'tech', title:"Le verger et le fruit",                             category:'Technologie · Géopolitique',  desc:"En 1998, Microsoft offrait à la Chine un laboratoire. Un quart de siècle plus tard, Pékin tend le même geste vers l'Afrique.", image:'/grands-formats/le-verger-et-le-fruit.jpg' },
   { slug:'palantir',              cat:'tech', title:"Palantir. L'ontologie de l'ennemi",                      category:'Tech · Puissance',            desc:"Comment une entreprise de data a vendu à l'État la capacité de penser la menace.",            image:'/grands-formats/palantir/palantir-reseau.jpg' },
   { slug:'chambre-ratification',  cat:'geo',  title:"La chambre de ratification",                              category:'Géopolitique · Pouvoir',      desc:"Comment se décide vraiment une guerre, pas dans les capitales, mais dans les pièces où personne ne regarde.", image:'/grands-formats/chambre-hero.jpg' },
   { slug:'skunkworks',            cat:'tech', title:"Skunk Works · L'usine à l'impossible",                    category:'Tech · Défense',              desc:"Comment Lockheed a inventé l'avion invisible dans un hangar secret en Californie.",            image:'/grands-formats/skunkworks/hangar-1943.jpg' },
