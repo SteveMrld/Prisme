@@ -32,6 +32,29 @@ export default function LettresIndex() {
         {/* Cartouche éditorial : titre, picto en accent, ligne italique,
             cadré de deux filets fins. Sobre, sans aplat ni bannière. */}
         <header className={styles.cartouche}>
+          <svg
+            className={styles.cartoucheCurve}
+            viewBox="0 0 1200 300"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M0,286 C260,268 520,214 760,150 C940,102 1080,58 1200,18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              vectorEffect="non-scaling-stroke"
+            />
+            <path
+              d="M0,300 C280,286 560,240 820,178 C1000,136 1110,102 1200,72"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="0.75"
+              strokeOpacity="0.55"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
           <div className={styles.cartoucheBody}>
             <span className={styles.cartouchePicto} aria-hidden="true">
               <FleuronIcon width={26} height={26} />

@@ -22,12 +22,27 @@
   background: var(--bg);
   border-top: 4px solid var(--bande);
   border-bottom: 1px solid var(--bord);
+  position: relative;
+  overflow: hidden;
+}
+/* Courbe ascendante en filet fin, traverse toute la largeur derriere
+   le texte. Purement decorative, retiree du flux d'accessibilite. */
+.cartoucheCurve {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  color: var(--bande);
+  opacity: 0.22;
 }
 .cartoucheBody {
   max-width: 760px;
   margin: 0 auto;
   padding: 40px 24px 42px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 .cartouchePicto {
   display: inline-flex;
