@@ -133,12 +133,16 @@ export default function Page() {
           paramètres pour les faire tourner sur ses propres machines. Trois noms
           mènent la danse, DeepSeek, qui a secoué le secteur avec un système à
           très bas coût, Qwen, adossé à Alibaba, et Kimi, sorti de la jeune
-          entreprise pékinoise Moonshot. Ce dernier a dévoilé, quelques jours
-          avant le sommet, un modèle de deux mille huit cents milliards de
-          paramètres, le plus vaste jamais publié en accès ouvert, dont les
-          résultats rivalisent avec les meilleurs systèmes fermés américains.
-          Sur cette base, le discours de Shanghai déploie son offre au Sud,
-          enveloppée dans l&rsquo;idée d&rsquo;un bien commun planétaire.
+          entreprise pékinoise Moonshot. Ce dernier a dévoilé la veille de
+          l&rsquo;ouverture du sommet un modèle de deux mille huit cents
+          milliards de paramètres, présenté comme le plus vaste jamais voué à
+          l&rsquo;accès ouvert, dont les résultats rivalisent avec les meilleurs
+          systèmes fermés américains. Au moment où Xi Jinping s&rsquo;exprime, ce
+          modèle ne s&rsquo;atteint que par une interface distante,
+          l&rsquo;entreprise ayant fixé à une dizaine de jours plus tard la
+          publication de ses poids. Sur cette base, le discours de Shanghai
+          déploie son offre au Sud, enveloppée dans l&rsquo;idée d&rsquo;un bien
+          commun planétaire.
         </p>
 
         <h2>
@@ -177,10 +181,11 @@ export default function Page() {
           l&rsquo;architecture, se réentraînent sur des données propres. Ce
           serait donc une graine plutôt qu&rsquo;un fruit. L&rsquo;objection
           porte, à condition d&rsquo;admettre qu&rsquo;une graine réclame un
-          sol. Le modèle brandi à Shanghai compte deux mille huit cents
-          milliards de paramètres, échelle qui place son installation privée
-          hors de portée de la quasi-totalité des institutions du continent.
-          L&rsquo;Afrique héberge 0,6&nbsp;% de la capacité mondiale de centres
+          sol. Le modèle brandi à Shanghai pèse près de six cents gigaoctets
+          dans son format complet et réclame, pour une simple mise en service
+          expérimentale, quatre à huit processeurs graphiques haut de gamme dont
+          l&rsquo;accès est précisément ce que les restrictions américaines
+          rationnent. L&rsquo;Afrique héberge 0,6&nbsp;% de la capacité mondiale de centres
           de données, trois cent soixante mégawatts en service, quand certaines
           régions subissent jusqu&rsquo;à trente-trois coupures de courant par
           mois. Pouvoir télécharger n&rsquo;équivaut pas à pouvoir faire
@@ -225,11 +230,11 @@ export default function Page() {
           industrielle sur vingt ans, d&rsquo;universités installées au sommet
           de sa hiérarchie scientifique, d&rsquo;une base manufacturière et
           d&rsquo;une diaspora qu&rsquo;il pouvait rappeler par décret
-          budgétaire. L&rsquo;Afrique aborde la même question avec cinquante-
-          quatre États, autant de réglementations et des marchés que la zone de
+          budgétaire. L&rsquo;Afrique aborde la même question avec
+          cinquante-quatre États, autant de réglementations et des marchés que la zone de
           libre-échange continentale commence à peine à relier. Cette
-          fragmentation n&rsquo;a rien d&rsquo;un détail d&rsquo;exécution, elle
-          est le cœur du problème, puisqu&rsquo;elle transforme chaque
+          fragmentation pèse sur l&rsquo;issue autant que le niveau technique,
+          puisqu&rsquo;elle transforme chaque
           négociation avec Pékin en discussion bilatérale au rapport de force
           écrasant. Aucun pays du continent, pris isolément, ne pèse ce que
           pesait la Chine face à Microsoft. La leçon de 1998 ne se transpose
@@ -243,19 +248,18 @@ export default function Page() {
           industrielle, une puissance de calcul souveraine, des cursus capables
           de retenir les meilleurs au lieu de les voir partir. Le tableau
           n&rsquo;a pourtant rien d&rsquo;écrit d&rsquo;avance. Une communauté
-          de recherche s&rsquo;est constituée sur le continent sans attendre
-          l&rsquo;autorisation de quiconque. Le principal rassemblement africain
-          consacré à l&rsquo;apprentissage automatique réunit plus d&rsquo;un
-          millier de participants venus de plus de quarante-cinq pays, et il a
-          tenu son édition de Lagos sous le mot d&rsquo;ordre de
+          de recherche s&rsquo;est constituée sur le continent sans attendre que
+          quiconque l&rsquo;y invite. Le principal rassemblement africain
+          consacré à l&rsquo;apprentissage automatique réunit chaque année plus
+          d&rsquo;un millier de participants venus de plus de quarante-cinq pays
+          africains, et son édition nigériane porte pour mot d&rsquo;ordre
           l&rsquo;intelligence souveraine, entendue comme la capacité du
           continent à diriger ses propres systèmes et son avenir scientifique.
-          Le réseau Masakhane y a installé son pôle consacré aux langues
-          africaines, bâti précisément sur des modèles venus de
-          l&rsquo;extérieur et retournés vers des usages que personne
-          d&rsquo;autre ne prendra en charge. Voilà ce que cultiver le verger
-          veut dire à partir du fruit reçu, et ce travail ne demande
-          l&rsquo;autorisation d&rsquo;aucune capitale.
+          Le réseau Masakhane y travaille sur les langues africaines à partir de
+          modèles venus de l&rsquo;extérieur, réorientés vers des usages que
+          personne d&rsquo;autre ne prendra en charge. C&rsquo;est ce travail de
+          reprise qui sépare le verger du fruit, et il se mène déjà, à petite
+          échelle, avec les moyens du bord.
         </p>
 
         <p>
@@ -331,10 +335,14 @@ export default function Page() {
               <span>5</span>
               <span>
                 VentureBeat et South China Morning Post, sur Kimi K3 de Moonshot
-                AI, deux mille huit cents milliards de paramètres, présenté
-                comme le plus vaste modèle ouvert publié à ce jour et positionné
-                face aux meilleurs systèmes propriétaires américains, juillet
-                2026.
+                AI, deux mille huit cents milliards de paramètres, mis en service
+                le 16 juillet 2026 par interface distante et par interface de
+                programmation, l&rsquo;entreprise ayant annoncé la publication
+                des poids complets pour le 27 juillet 2026, soit dix jours après
+                l&rsquo;ouverture du sommet. Volume annoncé du fichier en
+                précision native, environ 594 gigaoctets, et matériel minimal
+                cité pour un usage expérimental, quatre à huit accélérateurs
+                H100.
               </span>
             </li>
             <li>
@@ -368,9 +376,11 @@ export default function Page() {
             <li>
               <span>9</span>
               <span>
-                Deep Learning Indaba, édition 2026 à Lagos sur le thème
-                «&nbsp;Sovereign Intelligence&nbsp;», et lancement du pôle
-                Masakhane consacré aux langues africaines.
+                Deep Learning Indaba, édition nigériane 2026 placée sous le
+                thème «&nbsp;Sovereign Intelligence&nbsp;», fréquentation annuelle
+                supérieure à mille participants venus de plus de quarante-cinq
+                pays africains, et travaux du réseau Masakhane sur les langues
+                africaines.
               </span>
             </li>
           </ul>

@@ -506,8 +506,9 @@ function Rattrapage() {
       </div>
 
       <p className={styles.source}>
-        Stanford Institute for Human-Centered Artificial Intelligence, AI Index
-        Report 2026 · dispersion 2023 mesurée sur MMLU, MMMU, MATH et HumanEval
+        Stanford Institute for Human-Centered Artificial Intelligence · AI Index
+        Report 2026 pour le relevé de mars 2026, éditions antérieures du même
+        rapport pour les relevés de 2023 à 2025
       </p>
     </div>
   );
@@ -532,8 +533,8 @@ function Asymetrie() {
       <p className={styles.standfirst}>
         Chaque carré vaut un millième de la capacité mondiale de centres de
         données. La part hébergée sur le continent africain tient dans les six
-        carrés verts, quand le modèle offert à Shanghai en compte deux mille
-        huit cents milliards de paramètres.
+        carrés verts, quand le modèle présenté à Shanghai réclame quatre à huit
+        accélérateurs haut de gamme pour une simple mise en service.
       </p>
 
       <div className={styles.gridWrap}>
@@ -576,9 +577,9 @@ function Asymetrie() {
           </span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.statValue}>2 800 Md</span>
+          <span className={styles.statValue}>594 Go</span>
           <span className={styles.statLabel}>
-            Paramètres du modèle ouvert présenté à Shanghai
+            Poids du modèle présenté à Shanghai, en précision native
           </span>
         </div>
         <div className={styles.stat}>
@@ -590,9 +591,10 @@ function Asymetrie() {
       </div>
 
       <p className={styles.source}>
-        Africa Data Centres Association, rapport économique 2026 · Moonshot AI et
-        South China Morning Post, juillet 2026 · discours d&rsquo;ouverture de la
-        World Artificial Intelligence Conference, Shanghai, 17 juillet 2026
+        Africa Data Centres Association, rapport économique 2026 · Moonshot AI,
+        South China Morning Post et VentureBeat, juillet 2026 · discours
+        d&rsquo;ouverture de la World Artificial Intelligence Conference,
+        Shanghai, 17 juillet 2026
       </p>
     </div>
   );
