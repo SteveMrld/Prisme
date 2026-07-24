@@ -81,15 +81,20 @@ export function pickByRecency<T extends RecencyItem>(
 export const GF_LEAD_SLUG = 'chambre-ratification'
 export const GF_SECONDARY_1_SLUG = 'terres-rares'
 
-/* HERO_LEAD_SLUG : article epinglé en première position du carrousel
-   hero, hors tirage aléatoire. Mettre à null pour repasser la rotation
-   en mode entièrement automatique. Sa catégorie est retirée des cats
-   non-geo tirées au sort dans app/page.tsx pour éviter qu'un autre
-   article de la même cat apparaisse juste après. */
-export const HERO_LEAD_SLUG: string | null = 'la-guerre-des-moi'
+/* HERO_LEAD_SLUGS : articles épinglés en tête du carrousel hero, dans
+   l'ordre donné, hors tirage aléatoire. Tableau vide pour repasser la
+   rotation en mode entièrement automatique. Leurs catégories sont
+   retirées des cats non-geo tirées au sort dans app/page.tsx pour
+   éviter qu'un autre article de la même rubrique apparaisse juste
+   derrière. Le nombre d'épinglés réduit d'autant les slides tirées au
+   sort, le total du hero restant fixé par HERO_TOTAL. */
+export const HERO_LEAD_SLUGS: string[] = [
+  'le-verger-et-le-fruit',
+  'la-guerre-des-moi',
+]
 
 const SANCTUARY = new Set<string>([GF_LEAD_SLUG, GF_SECONDARY_1_SLUG])
-const HERO_PIN = new Set<string>(HERO_LEAD_SLUG ? [HERO_LEAD_SLUG] : [])
+const HERO_PIN = new Set<string>(HERO_LEAD_SLUGS)
 
 /* Liste des grands formats. Doit rester alignée avec GRAND_FORMAT_SLUGS
    dans app/articles/[slug]/page.tsx. */
@@ -109,7 +114,7 @@ function eligible(a: Article): boolean {
   return true
 }
 
-/* HERO : tous les articles à image hors sanctuaire ET hors HERO_LEAD_SLUG
+/* HERO : tous les articles à image hors sanctuaire ET hors HERO_LEAD_SLUGS
    (qui est injecté à part en position 0 dans app/page.tsx). Les portraits
    sont admis ici mais la sélection dans page.tsx ne les retient pas pour
    le hero (cf. HERO_NON_GEO_CATS). */
