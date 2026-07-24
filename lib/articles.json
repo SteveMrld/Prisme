@@ -41,7 +41,9 @@
       "moreno",
       "societe-du-consentement",
       "portes"
-    ]
+    ],
+    "titleEn": "The luxury of <em>being oneself</em>",
+    "descriptionEn": "A caged migratory bird still knows the route and the hour. We have kept the order to depart and forgotten we were ever given it."
   },
   {
     "slug": "galichet",
@@ -114,7 +116,9 @@
     "authorRole": "",
     "date": "2026-06-20",
     "premium": false,
-    "imageCredit": "Illustration Soara"
+    "imageCredit": "Illustration Soara",
+    "titleEn": "Artificial intelligence: the abundance was an <em>advance</em>",
+    "descriptionEn": "Free intelligence was an advance, and the markets are calling it in. Behind the surge in bills, the law of digital abundance is cracking."
   },
   {
     "slug": "evidence-sans-auteur",
@@ -127,7 +131,9 @@
     "authorRole": "",
     "date": "2026-06-17",
     "premium": false,
-    "imageCredit": "Illustration Soara"
+    "imageCredit": "Illustration Soara",
+    "titleEn": "The obvious has no <em>author</em>",
+    "descriptionEn": "One and one can make ten, and the obvious wavers. From base two to the zero that came from India, a crossing of what we hold to be given without ever having checked it."
   },
   {
     "slug": "sephocle",
@@ -153,7 +159,9 @@
     "interviewDeck": "Née en Martinique, docteure en études germaniques, elle enseigne à Howard depuis les années 1980 et a formé des générations de diplomates. Fondatrice de la Women Ambassadors Foundation, présidente d’IDEAS Inc., elle a connu les Clinton dès 1991 et eu Kamala Harris pour étudiante. Elle observe l’Amérique avec la lucidité de celle qui la connaît de l’intérieur depuis quarante-huit ans.",
     "interviewQuote": "Nous sommes les héritiers d’une chaîne de survivances improbables.",
     "featuredOnHome": false,
-    "date": "2026-09-01"
+    "date": "2026-09-01",
+    "titleEn": "Marilyn Séphocle: &laquo;&#8239;An unfinished freedom&#8239;&raquo;",
+    "descriptionEn": "A Martinican settled in Washington for forty-eight years, a professor at Howard University and founder of the Women Ambassadors Foundation, Marilyn Séphocle looks back on a freedom that was granted rather than won."
   },
   {
     "slug": "descollonges",
@@ -178,7 +186,9 @@
     "interviewSubjectItalic": "Descollonges",
     "interviewRole": "Ingénieure hydrologue · Cofondatrice de Pour une hydrologie régénérative · Autrice d’Eaux vives (Actes Sud)",
     "interviewDeck": "Charlène Descollonges est ingénieure hydrologue, diplômée des Mines et double master en hydrologie. Après cinq années passées à gérer le partage de l’eau dans la fonction publique territoriale, elle a cofondé en 2022 l’association Pour une hydrologie régénérative et publié « Eaux vives » (Actes Sud, 2026). Elle se définit comme une diplomate des eaux et des rivières.",
-    "interviewQuote": "Ce qui nous guide, c’est la vie, pas l’argent ni la croissance."
+    "interviewQuote": "Ce qui nous guide, c’est la vie, pas l’argent ni la croissance.",
+    "titleEn": "Charlène Descollonges: &laquo;&#8239;We are suffering from water amnesia&#8239;&raquo;",
+    "descriptionEn": "Fresh water accounts for less than 3% of the water on Earth, and our societies treat it as an inexhaustible resource. The hydrologist sets out what that forgetting costs."
   },
   {
     "slug": "bousardo",
@@ -234,7 +244,9 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "authorBio": "Agathe Cagé est docteure en science politique et auteure de <em>Classes figées. Comprendre la France empêchée</em>. Elle travaille sur les fractures sociales, les inégalités et les transformations du capitalisme contemporain."
+    "authorBio": "Agathe Cagé est docteure en science politique et auteure de <em>Classes figées. Comprendre la France empêchée</em>. Elle travaille sur les fractures sociales, les inégalités et les transformations du capitalisme contemporain.",
+    "titleEn": "Football, its certainties and its uncertainty",
+    "descriptionEn": "A story in the image of contemporary football as a business, built on powerful geopolitical, marketing and financial certainties, yet still open to a fair amount of chance."
   },
   {
     "slug": "epstein",
@@ -250,7 +262,9 @@
     "featured": true,
     "premium": false,
     "avif": true,
-    "imageCredit": "© Soara"
+    "imageCredit": "© Soara",
+    "titleEn": "Impunity as a system",
+    "descriptionEn": "This is not the story of a man. It is the story of everything that had to work for that man to stay free as long as he did."
   },
   {
     "slug": "portes",
@@ -265,7 +279,9 @@
     "featured": true,
     "premium": false,
     "avif": true,
-    "imageCredit": "© Soara"
+    "imageCredit": "© Soara",
+    "titleEn": "The door we come in by",
+    "descriptionEn": "We think we know people. We think we have seen them, understood them, filed them away. Most of the time we never knew the person. We knew the door we came in by."
   },
   {
     "slug": "langage-ia",
@@ -1277,7 +1293,9 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "authorBio": "Abad Boumsong est essayiste et poète. Ses textes explorent la langue, l'identité et ce que la littérature peut encore dire du monde contemporain."
+    "authorBio": "Abad Boumsong est essayiste et poète. Ses textes explorent la langue, l'identité et ce que la littérature peut encore dire du monde contemporain.",
+    "titleEn": "The war of the SELVES",
+    "descriptionEn": "Humanity's greatest adversary is not in hiding. It walks in broad daylight, greeted and admired, fed by hands that cannot see what they are feeding."
   },
   {
     "slug": "sens-au-travail",
@@ -1293,7 +1311,9 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "authorBio": "Majda Vincent est Directrice des ressources humaines du groupe Adecco. Elle écrit sur les transformations du travail, la santé organisationnelle et le rôle des entreprises face aux mutations contemporaines."
+    "authorBio": "Majda Vincent est Directrice des ressources humaines du groupe Adecco. Elle écrit sur les transformations du travail, la santé organisationnelle et le rôle des entreprises face aux mutations contemporaines.",
+    "titleEn": "Work and its reason for being",
+    "descriptionEn": "In most organisations, meaning at work passes for a luxury, taken up once performance has been secured. That reading is backwards."
   },
   {
     "slug": "quatre-conditions",
@@ -1309,6 +1329,8 @@
     "premium": false,
     "avif": false,
     "imageCredit": "© Soara",
-    "authorBio": "Fatemeh Jailani est co-fondatrice de Starting New, la Coalition politique pour l'entrepreneuriat des nouveaux arrivants, qui a soumis une réponse formelle à la proposition EU Inc. (COM(2026)). Les organisations membres de Starting New incluent Startup Migrants, Forward·Inc, SINGA, Migration Policy Group, et NyföretagarCentrum. Fatemeh siège également au Bureau du Forum européen sur la migration."
+    "authorBio": "Fatemeh Jailani est co-fondatrice de Starting New, la Coalition politique pour l'entrepreneuriat des nouveaux arrivants, qui a soumis une réponse formelle à la proposition EU Inc. (COM(2026)). Les organisations membres de Starting New incluent Startup Migrants, Forward·Inc, SINGA, Migration Policy Group, et NyföretagarCentrum. Fatemeh siège également au Bureau du Forum européen sur la migration.",
+    "titleEn": "The future of European innovation may still hinge on a visa",
+    "descriptionEn": "On what a foreign entrepreneur needs in order to exist in the country that takes them in, and on what Europe does not yet give."
   }
 ]
