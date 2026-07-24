@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import Header from '../components/Header'
 import NewsletterForm from '../components/NewsletterForm'
 import HeroInline from '../components/HeroInline'
+import lettresData from '../lib/lettres.json'
 import PictureImg from '../components/PictureImg'
 import SoaraUnivers from '../components/SoaraUnivers'
 import BibliothequeHome from '../components/BibliothequeHome'
@@ -211,6 +212,11 @@ export default async function HomePage() {
   }
 
   const HERO_ROTATION = heroPicks.map(withCatLabel(nowTs))
+
+  // Derniere lettre du mardi, par numero decroissant, pour la mise en
+  // avant sur la home (le bloc montrait la promesse sans jamais le contenu).
+  const DERNIERE_LETTRE: any | null =
+    (lettresData as any[]).slice().sort((a, b) => b.numero - a.numero)[0] ?? null
 
   // Sous le hero : 3 à gauche, 3 à droite. Triés par score de récence
   // (futur exclu, palier d'âge, shuffle à fraîcheur égale) avec cap
@@ -435,18 +441,28 @@ export default async function HomePage() {
             L'analyse qui manque à votre <em>semaine</em>
           </h2>
           <p className={styles.lettreMardiTeaser}>
-            Une lecture longue chaque mardi matin. Sans algorithme, sans bruit.
+            Une lecture longue chaque mardi matin, écrite à partir de ce que la semaine vient de produire.
           </p>
+          <div className={styles.lettreMardiActions}>
+            <Link href="/lettres" className={styles.lettreMardiCta}>
+              S'inscrire gratuitement →
+            </Link>
+            <Link href="/lettres" className={styles.lettreMardiArchive}>
+              <FleuronIcon width={12} height={12} />
+              <span>Lire les lettres</span>
+            </Link>
+          </div>
         </div>
-        <div className={styles.lettreMardiActions}>
-          <Link href="/lettres" className={styles.lettreMardiCta}>
-            S'inscrire gratuitement →
+        {DERNIERE_LETTRE && (
+          <Link href={`/lettres/${DERNIERE_LETTRE.slug}`} className={styles.lettreMardiLast}>
+            <span className={styles.lettreMardiLastMeta}>
+              Dernière lettre · N° {String(DERNIERE_LETTRE.numero).padStart(2, '0')} · {DERNIERE_LETTRE.date}
+            </span>
+            <span className={styles.lettreMardiLastTitle}>{DERNIERE_LETTRE.title}</span>
+            <span className={styles.lettreMardiLastTeaser}>{DERNIERE_LETTRE.teaser}</span>
+            <span className={styles.lettreMardiLastCta}>Lire la lettre →</span>
           </Link>
-          <Link href="/lettres" className={styles.lettreMardiArchive}>
-            <FleuronIcon width={12} height={12} />
-            <span>Lire les lettres</span>
-          </Link>
-        </div>
+        )}
       </section>
 
       {/* ══════════════════════════════════════

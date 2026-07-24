@@ -310,11 +310,11 @@
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 28px 16px;
-  border-top: 1px solid #0A0A0A;
-  border-bottom: 1px solid #0A0A0A;
+  border-top: 4px solid #581636;
+  border-bottom: 1px solid var(--bord);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
 }
 @media (min-width: 900px) {
   .lettreMardi {
@@ -363,6 +363,7 @@
   max-width: 640px;
 }
 .lettreMardiActions {
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -370,7 +371,7 @@
   flex-shrink: 0;
 }
 @media (min-width: 900px) {
-  .lettreMardiActions { align-items: flex-end; }
+  .lettreMardiActions { align-items: flex-start; }
 }
 .lettreMardiCta {
   font-family: var(--font-ui);
@@ -399,6 +400,55 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 .lettreMardiArchive:hover { color: var(--encre); }
+
+/* Carte de la derniere lettre : le bloc montre desormais le contenu
+   du rendez-vous et non seulement sa promesse. */
+.lettreMardiLast {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 20px 22px;
+  background: var(--papier);
+  border-left: 3px solid #581636;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.lettreMardiLast:hover { background: #F1EDE6; }
+.lettreMardiLastMeta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #581636;
+}
+.lettreMardiLastTitle {
+  font-family: var(--font-serif-display);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--encre);
+}
+.lettreMardiLastTeaser {
+  font-family: var(--font-serif-text);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--gris);
+}
+.lettreMardiLastCta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gris-m);
+  margin-top: 2px;
+}
+@media (min-width: 900px) {
+  .lettreMardiLast { flex: 0 0 42%; max-width: 42%; }
+}
 
 /* ── Zone 1 colonne gauche : mini-liste « À lire aussi »
    entre les articles texte et la citation. Densifie la colonne
