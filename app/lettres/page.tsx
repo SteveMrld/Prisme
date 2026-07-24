@@ -40,18 +40,18 @@ export default function LettresIndex() {
             focusable="false"
           >
             <path
-              d="M0,286 C260,268 520,214 760,150 C940,102 1080,58 1200,18"
+              d="M0,296 C300,288 640,262 900,222 C1040,200 1130,182 1200,166"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.25"
               vectorEffect="non-scaling-stroke"
             />
             <path
-              d="M0,300 C280,286 560,240 820,178 C1000,136 1110,102 1200,72"
+              d="M0,300 C320,294 680,274 940,240 C1070,222 1140,210 1200,198"
               fill="none"
               stroke="currentColor"
               strokeWidth="0.75"
-              strokeOpacity="0.55"
+              strokeOpacity="0.5"
               vectorEffect="non-scaling-stroke"
             />
           </svg>
