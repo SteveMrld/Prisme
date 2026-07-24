@@ -2,23 +2,18 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./verger.module.css";
 
-/* ── Codage couleur constant sur les trois visualisations ──────────
-   OR    : le donateur de 1998 et la frontière américaine
-   BLEU  : la Chine, receveuse devenue rivale
-   VERT  : l'Afrique et le verger                                  */
-const OR = "#8C6F2E";
-const BLEU = "#1A3E6B";
-const VERT = "#2D6B4A";
+/* Les trois blocs prolongent la photographie de couverture : un fond de
+   nuit, une lampe posée bas, des ombres hors de proportion avec les
+   objets qui les projettent. Codage couleur constant :
+     or (#D3A05A)     le donateur de 1998 et la frontière américaine
+     acier (#7E9BC4)  la Chine, receveuse devenue rivale
+     pousse (#8FBE9A) l'Afrique et le verger                          */
 
-/* Révélation au défilement. Les animations SMIL ne sont montées qu'une
-   fois le bloc à l'écran, sinon elles se jouent hors champ.
-
-   Deux drapeaux distincts, et la distinction compte : `seen` commande
-   l'état final du dessin, `anim` commande le montage des balises
-   <animate>. Sous mouvement réduit, `seen` passe à vrai immédiatement
-   et `anim` reste faux, si bien que la visualisation s'affiche
-   complète et fixe. Les confondre rendrait le graphique invisible aux
-   personnes qui ont désactivé les animations. */
+/* Deux drapeaux distincts, et la distinction compte : `seen` commande
+   l'état final du dessin, `anim` le montage des balises <animate>.
+   Sous mouvement réduit, `seen` passe à vrai sans que `anim` suive, si
+   bien que la visualisation s'affiche complète et fixe au lieu de
+   rester invisible. */
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
   const [seen, setSeen] = useState(false);
@@ -41,7 +36,7 @@ function useInView<T extends HTMLElement>() {
           io.disconnect();
         }
       },
-      { rootMargin: "-12% 0px -12% 0px" }
+      { rootMargin: "-10% 0px -10% 0px" }
     );
     io.observe(node);
     return () => io.disconnect();
@@ -50,458 +45,349 @@ function useInView<T extends HTMLElement>() {
   return { ref, seen, anim };
 }
 
-/* ══ 1. LA FILIATION ══════════════════════════════════════════════
-   Le laboratoire de Pékin à gauche, ce qui en est sorti à droite.
-   Les branches passent de l'or au bleu sur leur propre longueur :
-   le trait dit ce que le texte démontre, le don change de mains. */
+/* ══ 1. L'OMBRE DU LABORATOIRE ═════════════════════════════════════
+   Un mur en lumière rasante, une lampe au sol, et le laboratoire
+   réduit à un rectangle de vingt pixels. Ce qui en est sorti monte en
+   ligne d'horizon. Les hauteurs sont libres et ne codent aucune
+   donnée, ce que la légende dit explicitement.                     */
 
-const HERITIERS = [
-  { nom: "SenseTime", note: "Vision par ordinateur" },
-  { nom: "Megvii", note: "Reconnaissance faciale" },
-  { nom: "Yitu", note: "Vision et santé" },
-  { nom: "Horizon Robotics", note: "Puces embarquées" },
-  { nom: "Baidu", note: "Direction de la recherche" },
-  { nom: "Alibaba Cloud", note: "Informatique en nuage" },
-  { nom: "Sinovation", note: "Investissement et modèles" },
+const TOURS = [
+  { n: "SENSETIME", x: 212, w: 56, h: 196 },
+  { n: "MEGVII", x: 276, w: 44, h: 150 },
+  { n: "YITU", x: 328, w: 40, h: 168 },
+  { n: "HORIZON ROBOTICS", x: 376, w: 62, h: 268 },
+  { n: "BAIDU", x: 446, w: 46, h: 158 },
+  { n: "ALIBABA CLOUD", x: 500, w: 58, h: 230 },
+  { n: "SINOVATION", x: 566, w: 50, h: 182 },
 ];
 
 function Filiation() {
   const { ref, seen, anim } = useInView<HTMLDivElement>();
-  const W = 780;
-  const H = 424;
-  const rootX = 214;
-  const rootY = H / 2;
-  const nodeX = 452;
-  const top = 26;
-  const step = (H - top * 2) / (HERITIERS.length - 1);
+  const SOL = 372;
+  const LX = 104;
+  const LY = 356;
+  const EASE = { calcMode: "spline", keyTimes: "0;1", keySplines: "0.22 0 0.12 1" };
 
   return (
-    <div className={styles.wrap} ref={ref}>
+    <div className={styles.nuit} ref={ref}>
       <span className={styles.eyebrow}>Novembre 1998 · Pékin</span>
       <h3 className={styles.vizTitle}>
-        Ce qu&rsquo;un laboratoire <em>a produit</em>
+        Six personnes, <em>une ligne d&rsquo;horizon</em>
       </h3>
       <p className={styles.standfirst}>
-        Six personnes dans une poignée de bureaux. Un quart de siècle plus tard,
-        la quasi-totalité des directions techniques qui comptent dans
-        l&rsquo;intelligence artificielle chinoise sont passées par là.
+        Une pièce, quelques bureaux, une lampe. Les silhouettes que le
+        laboratoire projette portent aujourd&rsquo;hui l&rsquo;industrie chinoise
+        de l&rsquo;intelligence artificielle.
       </p>
 
-      <div style={{ width: "100%", overflowX: "auto" }}>
+      <div className={styles.scroll}>
         <svg
-          viewBox={`0 0 ${W} ${H}`}
+          viewBox="0 0 780 470"
           width="100%"
-          style={{ display: "block", minWidth: 620, overflow: "visible" }}
+          style={{ display: "block", minWidth: 640 }}
           role="img"
-          aria-label="Arbre de filiation du laboratoire Microsoft de Pékin vers sept organisations chinoises"
+          aria-label="Le laboratoire Microsoft de Pékin, minuscule au pied d'un mur, projette sept silhouettes monumentales portant les noms de SenseTime, Megvii, Yitu, Horizon Robotics, Baidu, Alibaba Cloud et Sinovation"
         >
           <defs>
-            <linearGradient id="vf-branche" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%" stopColor={OR} stopOpacity="0.85" />
-              <stop offset="55%" stopColor="#5A5A52" stopOpacity="0.7" />
-              <stop offset="100%" stopColor={BLEU} stopOpacity="0.9" />
-            </linearGradient>
+            <radialGradient id="vf-mur" cx="13%" cy="96%" r="92%">
+              <stop offset="0%" stopColor="#5A4630" />
+              <stop offset="34%" stopColor="#33291D" />
+              <stop offset="72%" stopColor="#1C1814" />
+              <stop offset="100%" stopColor="#141210" />
+            </radialGradient>
+            <radialGradient id="vf-halo">
+              <stop offset="0%" stopColor="#F0B65C" stopOpacity="0.85" />
+              <stop offset="45%" stopColor="#C98A33" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#C98A33" stopOpacity="0" />
+            </radialGradient>
+            {/* Une ombre ne se découpe jamais net. */}
+            <filter id="vf-flou" x="-14%" y="-14%" width="128%" height="128%">
+              <feGaussianBlur stdDeviation="2.4" />
+            </filter>
           </defs>
 
-          {/* Racine */}
-          <rect
-            x="10"
-            y={rootY - 46}
-            width={rootX - 10}
-            height="92"
-            fill="none"
-            stroke={OR}
-            strokeWidth="1.5"
-          />
-          <text
-            x="26"
-            y={rootY - 22}
-            fontFamily="'DM Mono',monospace"
-            fontSize="8.5"
-            letterSpacing="2"
-            fill={OR}
-          >
-            MICROSOFT RESEARCH ASIA
-          </text>
-          <text
-            x="26"
-            y={rootY + 2}
-            fontFamily="'Playfair Display',Georgia,serif"
-            fontSize="21"
-            fontWeight="700"
-            fill="#111"
-          >
-            Pékin, 1998
-          </text>
-          <text
-            x="26"
-            y={rootY + 24}
-            fontFamily="'DM Mono',monospace"
-            fontSize="9"
-            letterSpacing="0.6"
-            fill="#8A857D"
-          >
-            Six personnes · Kai-Fu Lee
-          </text>
+          <rect x="0" y="0" width="780" height={SOL} fill="url(#vf-mur)" />
+          <rect x="0" y={SOL} width="780" height={470 - SOL} fill="#0E0C0B" />
+          <rect x="0" y={SOL - 1} width="780" height="1.2" fill="#3A3025" opacity="0.55" />
 
-          {/* Branches */}
-          {HERITIERS.map((h, i) => {
-            const y = top + i * step;
-            const c1 = rootX + 96;
-            const c2 = nodeX - 96;
-            const d = `M${rootX},${rootY} C${c1},${rootY} ${c2},${y} ${nodeX - 12},${y}`;
-            return (
-              <path
-                key={h.nom}
-                d={d}
-                fill="none"
-                stroke="url(#vf-branche)"
-                strokeWidth="1.4"
-                strokeDasharray="420"
-                strokeDashoffset={seen && !anim ? undefined : 420}
+          <g filter="url(#vf-flou)">
+            {TOURS.map((t, i) => (
+              <rect
+                key={t.n}
+                x={t.x}
+                y={seen && !anim ? SOL - t.h : SOL}
+                width={t.w}
+                height={seen && !anim ? t.h : 0}
+                fill="#0B0A09"
+                fillOpacity="0.9"
               >
                 {anim && (
-                  <animate
-                    attributeName="stroke-dashoffset"
-                    from="420"
-                    to="0"
-                    dur="1.5s"
-                    begin={`${i * 0.13}s`}
-                    fill="freeze"
-                    calcMode="spline"
-                    keyTimes="0;1"
-                    keySplines="0.32 0 0.16 1"
-                  />
+                  <>
+                    <animate
+                      attributeName="height"
+                      from="0"
+                      to={String(t.h)}
+                      dur="2.4s"
+                      begin={`${i * 0.16}s`}
+                      fill="freeze"
+                      {...EASE}
+                    />
+                    <animate
+                      attributeName="y"
+                      from={String(SOL)}
+                      to={String(SOL - t.h)}
+                      dur="2.4s"
+                      begin={`${i * 0.16}s`}
+                      fill="freeze"
+                      {...EASE}
+                    />
+                  </>
                 )}
-              </path>
-            );
-          })}
+              </rect>
+            ))}
+          </g>
 
-          {/* Nœuds */}
-          {HERITIERS.map((h, i) => {
-            const y = top + i * step;
+          {/* Les noms courent à la verticale dans la tranche d'ombre. */}
+          {TOURS.map((t, i) => {
+            const cx = t.x + t.w / 2;
             return (
-              <g key={h.nom} opacity={seen && !anim ? undefined : 0}>
+              <g key={t.n} opacity={seen && !anim ? 1 : 0}>
                 {anim && (
                   <animate
                     attributeName="opacity"
                     from="0"
                     to="1"
-                    dur="0.5s"
-                    begin={`${0.7 + i * 0.13}s`}
+                    dur="0.8s"
+                    begin={`${1.5 + i * 0.16}s`}
                     fill="freeze"
                   />
                 )}
-                <circle cx={nodeX - 6} cy={y} r="3.2" fill={BLEU} />
                 <text
-                  x={nodeX + 10}
-                  y={y - 2}
-                  fontFamily="'Playfair Display',Georgia,serif"
-                  fontSize="15.5"
-                  fontWeight="700"
-                  fill="#111"
-                >
-                  {h.nom}
-                </text>
-                <text
-                  x={nodeX + 10}
-                  y={y + 13}
+                  x={cx}
+                  y={SOL - 16}
+                  fill="#B6AC9C"
                   fontFamily="'DM Mono',monospace"
-                  fontSize="8.5"
-                  letterSpacing="1.4"
-                  fill="#9A9590"
+                  fontSize="9.5"
+                  letterSpacing="2.2"
+                  textAnchor="start"
+                  transform={`rotate(-90 ${cx} ${SOL - 16})`}
                 >
-                  {h.note.toUpperCase()}
+                  {t.n}
                 </text>
               </g>
             );
           })}
+
+          <circle cx={LX} cy={LY} r="118" fill="url(#vf-halo)" />
+          <rect x={LX + 16} y={SOL - 13} width="20" height="13" fill="#0B0A09" />
+          <circle cx={LX} cy={LY} r="5.5" fill="#FBD79A" />
+          <circle cx={LX} cy={LY} r="2.4" fill="#FFF3DC" />
+
+          <text x="150" y="404" fill="#C9BFAF" fontFamily="'Playfair Display',Georgia,serif" fontSize="19" fontWeight="700">
+            Pékin, 1998
+          </text>
+          <text x="150" y="424" fill="#7C7468" fontFamily="'DM Mono',monospace" fontSize="9" letterSpacing="1.6">
+            MICROSOFT RESEARCH ASIA
+          </text>
+          <text x="150" y="440" fill="#6A6359" fontFamily="'DM Mono',monospace" fontSize="9" letterSpacing="1.6">
+            SIX PERSONNES · KAI-FU LEE
+          </text>
         </svg>
       </div>
 
       <p className={styles.source}>
         Microsoft, communiqué d&rsquo;ouverture du laboratoire, novembre 1998 ·
         CommonWealth Magazine, mai 2024, d&rsquo;après une enquête du New York
-        Times, janvier 2024
+        Times, janvier 2024 · hauteurs des silhouettes sans valeur chiffrée
       </p>
     </div>
   );
 }
 
-/* ══ 2. LA COURBE DE RATTRAPAGE ═══════════════════════════════════
-   L'écart mesuré entre le meilleur modèle américain et le meilleur
-   modèle chinois. La bande de 2023 rend visible la dispersion selon
-   les tests, que le point unique masquerait.                      */
+/* ══ 2. L'ÉCART COMME VIDE ═════════════════════════════════════════
+   Quatre relevés. Deux masses se referment l'une vers l'autre et la
+   bande noire qui subsiste entre elles est la donnée. On lit le vide,
+   pas les masses. La fourchette de 2023 se rend par une zone
+   d'incertitude, ce qu'une courbe ne savait pas dire honnêtement.  */
 
-const MESURES = [
-  { t: 2024.04, v: 9.3, label: "JANV. 2024" },
-  { t: 2025.12, v: 1.7, label: "FÉVR. 2025" },
-  { t: 2026.2, v: 2.7, label: "MARS 2026" },
+type Releve = { an: string; v?: number; lo?: number; hi?: number; txt: string };
+
+const RELEVES: Releve[] = [
+  { an: "MAI 2023", lo: 17.5, hi: 31.6, txt: "17,5 à 31,6" },
+  { an: "JANV. 2024", v: 9.3, txt: "9,3" },
+  { an: "FÉVR. 2025", v: 1.7, txt: "1,7" },
+  { an: "MARS 2026", v: 2.7, txt: "2,7" },
 ];
 
 function Rattrapage() {
   const { ref, seen, anim } = useInView<HTMLDivElement>();
-  const W = 780;
-  const H = 316;
-  const m = { t: 26, r: 108, b: 44, l: 46 };
-  const iW = W - m.l - m.r;
-  const iH = H - m.t - m.b;
-  const XMIN = 2023.1;
-  const XMAX = 2026.55;
-  const YMAX = 34;
-
-  const xs = (t: number) => m.l + ((t - XMIN) / (XMAX - XMIN)) * iW;
-  const ys = (v: number) => m.t + iH - (v / YMAX) * iH;
-
-  const bande = { t: 2023.37, lo: 17.5, hi: 31.6 };
-  const pts = MESURES.map((p) => ({ x: xs(p.t), y: ys(p.v) }));
-  const ligne = `M${pts[0].x},${pts[0].y} C${pts[0].x + 78},${pts[0].y} ${
-    pts[1].x - 78
-  },${pts[1].y} ${pts[1].x},${pts[1].y} C${pts[1].x + 32},${pts[1].y} ${
-    pts[2].x - 32
-  },${pts[2].y} ${pts[2].x},${pts[2].y}`;
+  const CX = 430;
+  const K = 7.6;
+  const X0 = 150;
+  const X1 = 742;
+  const ROW0 = 44;
+  const RH = 66;
+  const BH = 30;
+  const EASE = { calcMode: "spline", keyTimes: "0;1", keySplines: "0.3 0 0.15 1" };
 
   return (
-    <div className={styles.wrap} ref={ref}>
-      <span className={styles.eyebrow}>2023 — 2026 · Écart de performance</span>
+    <div className={styles.nuit} ref={ref}>
+      <span className={styles.eyebrow}>2023 — 2026</span>
       <h3 className={styles.vizTitle}>
-        La distance qui <em>s&rsquo;efface</em>
+        L&rsquo;écart, <em>et rien d&rsquo;autre</em>
       </h3>
       <p className={styles.standfirst}>
-        Écart mesuré entre le meilleur modèle américain et le meilleur modèle
-        chinois sur les tests de référence. En 2023, la dispersion selon les
-        épreuves allait de dix-sept à trente et un points. Trois ans plus tard,
-        elle tient dans la marge d&rsquo;erreur.
+        Chaque bande sombre est la distance qui séparait encore le meilleur
+        modèle chinois du meilleur modèle américain. C&rsquo;est le vide
+        qu&rsquo;il faut lire, pas les masses qui l&rsquo;encadrent.
       </p>
 
       <div className={styles.legend}>
         <span className={styles.legendItem}>
-          <span className={styles.swatch} style={{ background: OR }} />
-          Dispersion 2023 selon les tests
+          <span className={styles.swatch} style={{ background: "#D3A05A" }} />
+          Meilleur modèle américain
         </span>
         <span className={styles.legendItem}>
-          <span className={styles.swatch} style={{ background: BLEU }} />
-          Écart mesuré
+          <span className={styles.swatch} style={{ background: "#7E9BC4" }} />
+          Meilleur modèle chinois
         </span>
       </div>
 
-      <div style={{ width: "100%", overflowX: "auto" }}>
+      <div className={styles.scroll}>
         <svg
-          viewBox={`0 0 ${W} ${H}`}
+          viewBox="0 0 780 330"
           width="100%"
-          style={{ display: "block", minWidth: 600, overflow: "visible" }}
+          style={{ display: "block", minWidth: 600 }}
           role="img"
-          aria-label="Courbe de l'écart de performance entre modèles américains et chinois, de plus de dix-sept points en 2023 à 2,7 % en 2026"
+          aria-label="Quatre relevés de l'écart entre modèles américains et chinois, de dix-sept à trente et un points en 2023 jusqu'à 2,7 points en mars 2026"
         >
           <defs>
-            <linearGradient id="vf-aire" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor={BLEU} stopOpacity="0.13" />
-              <stop offset="100%" stopColor={BLEU} stopOpacity="0" />
+            <linearGradient id="vf-or" x1="0" x2="1">
+              <stop offset="0%" stopColor="#7A5A2C" />
+              <stop offset="100%" stopColor="#D3A05A" />
             </linearGradient>
-            <clipPath id="vf-clip">
-              <rect
-                x={m.l - 4}
-                y={m.t - 14}
-                height={iH + 28}
-                width={seen && !anim ? iW + m.r : 0}
-              >
-                {anim && (
-                  <animate
-                    attributeName="width"
-                    from="0"
-                    to={String(iW + m.r)}
-                    dur="2s"
-                    fill="freeze"
-                    calcMode="spline"
-                    keyTimes="0;1"
-                    keySplines="0.36 0 0.18 1"
-                  />
-                )}
-              </rect>
-            </clipPath>
+            <linearGradient id="vf-acier" x1="1" x2="0">
+              <stop offset="0%" stopColor="#43597A" />
+              <stop offset="100%" stopColor="#7E9BC4" />
+            </linearGradient>
           </defs>
 
-          {/* Grille */}
-          {[0, 5, 10, 15, 20, 25, 30].map((v) => (
-            <g key={v}>
-              <line
-                x1={m.l}
-                x2={m.l + iW}
-                y1={ys(v)}
-                y2={ys(v)}
-                stroke={v === 0 ? "#B9B4AB" : "#E8E4DC"}
-                strokeWidth="1"
-                strokeDasharray={v === 0 ? "none" : "3 5"}
-              />
-              <text
-                x={m.l - 7}
-                y={ys(v) + 3.4}
-                textAnchor="end"
-                fontFamily="'DM Mono',monospace"
-                fontSize="9"
-                fill={v === 0 ? "#8A857D" : "#C4BFB6"}
-              >
-                {v}
-              </text>
-            </g>
-          ))}
           <text
-            x={m.l - 7}
-            y={m.t - 10}
+            x={X1}
+            y={ROW0 - 16}
+            fill="#6A645B"
+            fontFamily="'DM Mono',monospace"
+            fontSize="8.5"
+            letterSpacing="1.8"
             textAnchor="end"
-            fontFamily="'DM Mono',monospace"
-            fontSize="8"
-            letterSpacing="1"
-            fill="#9A9590"
           >
-            PTS
+            ÉCART EN POINTS
           </text>
 
-          {/* Années */}
-          {[2023, 2024, 2025, 2026].map((yr) => (
-            <text
-              key={yr}
-              x={xs(yr + 0.5)}
-              y={H - m.b + 18}
-              textAnchor="middle"
-              fontFamily="'DM Mono',monospace"
-              fontSize="9"
-              letterSpacing="0.8"
-              fill="#9A9590"
-            >
-              {yr}
-            </text>
-          ))}
+          {RELEVES.map((r, i) => {
+            const y = ROW0 + i * RH;
+            const dLo = r.lo !== undefined ? (r.lo * K) / 2 : null;
+            const dHi = r.hi !== undefined ? (r.hi * K) / 2 : null;
+            const dFin = r.v !== undefined ? (r.v * K) / 2 : (dHi as number);
+            const ouvert = 6;
 
-          {/* Bande de dispersion 2023 */}
-          <rect
-            x={xs(bande.t) - 11}
-            y={ys(bande.hi)}
-            width="22"
-            height={ys(bande.lo) - ys(bande.hi)}
-            fill={OR}
-            fillOpacity="0.16"
-            stroke={OR}
-            strokeWidth="1.2"
-          />
-          <text
-            x={xs(bande.t) + 20}
-            y={ys(bande.hi) + 4}
-            fontFamily="'DM Mono',monospace"
-            fontSize="9.5"
-            fill={OR}
-          >
-            31,6
-          </text>
-          <text
-            x={xs(bande.t) + 20}
-            y={ys(bande.lo) + 4}
-            fontFamily="'DM Mono',monospace"
-            fontSize="9.5"
-            fill={OR}
-          >
-            17,5
-          </text>
-          <text
-            x={xs(bande.t)}
-            y={ys(bande.hi) - 12}
-            textAnchor="middle"
-            fontFamily="'DM Mono',monospace"
-            fontSize="8"
-            letterSpacing="1.4"
-            fill={OR}
-          >
-            MAI 2023
-          </text>
-
-          <g clipPath="url(#vf-clip)">
-            {/* Raccord approximatif entre la bande et la première mesure */}
-            <path
-              d={`M${xs(bande.t) + 11},${ys((bande.lo + bande.hi) / 2)} L${
-                pts[0].x
-              },${pts[0].y}`}
-              stroke="#B9B4AB"
-              strokeWidth="1"
-              strokeDasharray="2 4"
-              fill="none"
-            />
-            <path
-              d={`${ligne} L${pts[2].x},${ys(0)} L${pts[0].x},${ys(0)} Z`}
-              fill="url(#vf-aire)"
-            />
-            <path d={ligne} fill="none" stroke={BLEU} strokeWidth="2" />
-            {MESURES.map((p, i) => (
-              <g key={p.label}>
-                <circle cx={pts[i].x} cy={pts[i].y} r="4" fill="#F9F7F3" stroke={BLEU} strokeWidth="2" />
+            return (
+              <g key={r.an}>
                 <text
-                  x={pts[i].x}
-                  y={pts[i].y - 14}
-                  textAnchor="middle"
+                  x="0"
+                  y={y + BH / 2 + 3.5}
+                  fill="#6A645B"
                   fontFamily="'DM Mono',monospace"
-                  fontSize="11"
-                  fontWeight="500"
-                  fill={BLEU}
+                  fontSize="9"
+                  letterSpacing="1.6"
                 >
-                  {String(p.v).replace(".", ",")}
+                  {r.an}
                 </text>
-                <text
-                  x={pts[i].x}
-                  y={H - m.b + 32}
-                  textAnchor="middle"
-                  fontFamily="'DM Mono',monospace"
-                  fontSize="7.5"
-                  letterSpacing="1.1"
-                  fill="#B0ABA2"
+
+                <rect
+                  x={X0}
+                  y={y}
+                  width={seen && !anim ? CX - dFin - X0 : CX - X0 - ouvert}
+                  height={BH}
+                  fill="url(#vf-or)"
                 >
-                  {p.label}
+                  {anim && (
+                    <animate
+                      attributeName="width"
+                      from={String(CX - X0 - ouvert)}
+                      to={String(CX - dFin - X0)}
+                      dur="2.1s"
+                      begin={`${i * 0.22}s`}
+                      fill="freeze"
+                      {...EASE}
+                    />
+                  )}
+                </rect>
+
+                <rect
+                  x={seen && !anim ? CX + dFin : CX + ouvert}
+                  y={y}
+                  width={seen && !anim ? X1 - CX - dFin : X1 - CX - ouvert}
+                  height={BH}
+                  fill="url(#vf-acier)"
+                >
+                  {anim && (
+                    <>
+                      <animate
+                        attributeName="x"
+                        from={String(CX + ouvert)}
+                        to={String(CX + dFin)}
+                        dur="2.1s"
+                        begin={`${i * 0.22}s`}
+                        fill="freeze"
+                        {...EASE}
+                      />
+                      <animate
+                        attributeName="width"
+                        from={String(X1 - CX - ouvert)}
+                        to={String(X1 - CX - dFin)}
+                        dur="2.1s"
+                        begin={`${i * 0.22}s`}
+                        fill="freeze"
+                        {...EASE}
+                      />
+                    </>
+                  )}
+                </rect>
+
+                {/* Zone d'incertitude : la fourchette publiée en 2023. */}
+                {dLo !== null && dHi !== null && (
+                  <>
+                    <rect x={CX - dHi} y={y} width={dHi - dLo} height={BH} fill="#D3A05A" fillOpacity="0.13" />
+                    <rect x={CX + dLo} y={y} width={dHi - dLo} height={BH} fill="#7E9BC4" fillOpacity="0.13" />
+                  </>
+                )}
+
+                <text
+                  x={CX}
+                  y={y + BH + 17}
+                  fill="#C9BFAF"
+                  fontFamily="'Playfair Display',Georgia,serif"
+                  fontSize="15"
+                  fontWeight="700"
+                  textAnchor="middle"
+                  opacity={seen && !anim ? 1 : 0}
+                >
+                  {anim && (
+                    <animate
+                      attributeName="opacity"
+                      from="0"
+                      to="1"
+                      dur="0.7s"
+                      begin={`${1.5 + i * 0.22}s`}
+                      fill="freeze"
+                    />
+                  )}
+                  {r.txt}
                 </text>
               </g>
-            ))}
-          </g>
-
-          {/* Annotation de bascule */}
-          <line
-            x1={pts[1].x}
-            x2={pts[1].x}
-            y1={pts[1].y + 10}
-            y2={ys(0) - 4}
-            stroke={BLEU}
-            strokeWidth="1"
-            strokeDasharray="3 4"
-            opacity="0.5"
-          />
-          <text
-            x={pts[1].x + 8}
-            y={ys(0) - 26}
-            fontFamily="'DM Mono',monospace"
-            fontSize="8"
-            letterSpacing="1.2"
-            fill="#6B7280"
-          >
-            UN MODÈLE CHINOIS REJOINT
-          </text>
-          <text
-            x={pts[1].x + 8}
-            y={ys(0) - 15}
-            fontFamily="'DM Mono',monospace"
-            fontSize="8"
-            letterSpacing="1.2"
-            fill="#6B7280"
-          >
-            LE MEILLEUR SYSTÈME AMÉRICAIN
-          </text>
-
-          {/* Repère final */}
-          <text
-            x={m.l + iW + 12}
-            y={ys(2.7) + 4}
-            fontFamily="'DM Mono',monospace"
-            fontSize="9"
-            letterSpacing="1.2"
-            fill={BLEU}
-          >
-            2,7 %
-          </text>
+            );
+          })}
         </svg>
       </div>
 
@@ -514,77 +400,63 @@ function Rattrapage() {
   );
 }
 
-/* ══ 3. L'ASYMÉTRIE ═══════════════════════════════════════════════
-   Mille carrés pour la capacité mondiale de centres de données.
-   Six sont verts. C'est toute la part du continent, et c'est le sol
-   dans lequel la graine offerte est censée pousser.               */
+/* ══ 3. BRAISES ════════════════════════════════════════════════════
+   Mille points, six allumés. Dans le noir les six rayonnent au lieu
+   d'être posés à plat.                                             */
 
 function Asymetrie() {
   const { ref, seen, anim } = useInView<HTMLDivElement>();
-  const total = 1000;
-  const allumes = 6;
 
   return (
-    <div className={styles.wrap} ref={ref}>
+    <div className={styles.nuit} ref={ref}>
       <span className={styles.eyebrow}>Le sol sous la graine</span>
       <h3 className={styles.vizTitle}>
-        Mille carrés, <em>six pour l&rsquo;Afrique</em>
+        Mille braises, <em>six allumées</em>
       </h3>
       <p className={styles.standfirst}>
-        Chaque carré vaut un millième de la capacité mondiale de centres de
-        données. La part hébergée sur le continent africain tient dans les six
-        carrés verts, quand le modèle présenté à Shanghai réclame quatre à huit
+        Chaque point vaut un millième de la capacité mondiale de centres de
+        données. Ce qui brûle sur le continent africain tient dans les six
+        points verts, quand le modèle présenté à Shanghai réclame quatre à huit
         accélérateurs haut de gamme pour une simple mise en service.
       </p>
 
-      <div className={styles.gridWrap}>
-        <div className={styles.dotGrid} aria-hidden="true">
-          {Array.from({ length: total }, (_, i) => (
-            <span
-              key={i}
-              className={`${styles.dot} ${i < allumes && seen ? styles.dotOn : ""}`}
-              style={
-                i < allumes && anim
-                  ? { transition: "background-color .5s ease", transitionDelay: `${i * 90}ms` }
-                  : undefined
-              }
-            />
-          ))}
-        </div>
-        <div className={styles.gridNote}>
-          <p>
-            Télécharger un modèle ne fournit ni les processeurs qui l&rsquo;ont
-            entraîné, ni l&rsquo;électricité qui le fait tourner.
-          </p>
-          <p>
-            <strong>360 MW</strong> en service sur le continent,{" "}
-            <strong>238 MW</strong> en construction, <strong>656 MW</strong>{" "}
-            planifiés.
-          </p>
-          <p>
-            Certaines régions comptent jusqu&rsquo;à <strong>33</strong> coupures
-            de courant par mois, quand un centre de données vise une
-            disponibilité de 99,99 %.
-          </p>
-        </div>
+      <div className={styles.braises} aria-hidden="true">
+        {Array.from({ length: 1000 }, (_, i) => (
+          <span
+            key={i}
+            className={`${styles.br} ${i < 6 && seen ? styles.brOn : ""}`}
+            style={
+              i < 6 && anim
+                ? {
+                    transition: "background-color .6s ease, box-shadow .9s ease",
+                    transitionDelay: `${i * 130}ms`,
+                  }
+                : undefined
+            }
+          />
+        ))}
       </div>
 
-      <div className={styles.stats}>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>0,6 %</span>
-          <span className={styles.statLabel}>
+      <div className={styles.chiffres}>
+        <div className={styles.ch}>
+          <span className={styles.chV}>
+            0,6<small>%</small>
+          </span>
+          <span className={styles.chL}>
             De la capacité mondiale de centres de données
           </span>
         </div>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>594 Go</span>
-          <span className={styles.statLabel}>
+        <div className={styles.ch}>
+          <span className={styles.chV}>
+            594<small>Go</small>
+          </span>
+          <span className={styles.chL}>
             Poids du modèle présenté à Shanghai, en précision native
           </span>
         </div>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>5 000</span>
-          <span className={styles.statLabel}>
+        <div className={styles.ch}>
+          <span className={styles.chV}>5 000</span>
+          <span className={styles.chL}>
             Places de formation promises sur cinq ans, tout le Sud confondu
           </span>
         </div>
