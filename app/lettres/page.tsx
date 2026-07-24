@@ -40,7 +40,10 @@ export default function LettresIndex() {
               La lettre du <em>mardi</em>
             </h1>
             <p className={styles.cartoucheLede}>
-              Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire. C'est le seul rendez-vous où Soara prend l'actualité au moment où elle est encore chaude, avant que les positions ne se figent. La lettre part d'un fait précis pour aller chercher ce qu'il engage, sans s'en tenir au cadre occidental qui organise d'ordinaire le débat.
+              Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire.
+            </p>
+            <p className={styles.cartoucheNote}>
+              C'est le seul rendez-vous où Soara prend l'actualité au moment où elle est encore chaude, avant que les positions ne se figent. La lettre part d'un fait précis pour aller chercher ce qu'il engage, sans s'en tenir au cadre occidental qui organise d'ordinaire le débat.
             </p>
           </div>
         </header>
