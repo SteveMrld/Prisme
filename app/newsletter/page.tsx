@@ -6,13 +6,13 @@ import styles from './newsletter.module.css'
 
 export const metadata = {
   title: 'Newsletter',
-  description: "La newsletter de Soara : chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel. Inscription gratuite.",
+  description: "La newsletter de Soara. Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire. Inscription gratuite.",
   alternates: { canonical: 'https://soara.fr/newsletter' },
   openGraph: {
     type: 'website',
     url: 'https://soara.fr/newsletter',
     title: 'La newsletter de Soara',
-    description: 'Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.',
+    description: 'Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire.',
     siteName: 'Soara',
     locale: 'fr_FR',
     images: [{ url: '/og-soara.jpg', width: 1200, height: 630, alt: 'Soara' }],
@@ -20,7 +20,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'La newsletter de Soara',
-    description: 'Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.',
+    description: 'Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire.',
     images: ['/og-soara.jpg'],
   },
 }
@@ -38,7 +38,7 @@ export default function NewsletterPage() {
             La lettre du <em>mardi</em>
           </h1>
           <p className={styles.lede}>
-            La newsletter de Soara. Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.
+            La newsletter de Soara. Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire.
           </p>
           <div className={styles.form}>
             <NewsletterForm />

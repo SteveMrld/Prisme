@@ -7,13 +7,13 @@ import styles from './lettres.module.css'
 
 export const metadata = {
   title: 'La lettre du mardi',
-  description: "Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel. Les archives consultables de la lettre du mardi de Soara.",
+  description: "Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire. Les archives consultables de la lettre du mardi de Soara.",
   alternates: { canonical: 'https://soara.fr/lettres' },
   openGraph: {
     type: 'website',
     url: 'https://soara.fr/lettres',
     title: 'La lettre du mardi · Soara',
-    description: 'Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.',
+    description: 'Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire.',
     siteName: 'Soara',
     locale: 'fr_FR',
   },
@@ -40,13 +40,17 @@ export default function LettresIndex() {
               La lettre du <em>mardi</em>
             </h1>
             <p className={styles.cartoucheLede}>
-              Chaque mardi, une analyse pour penser la semaine plutôt que la subir, signée Steve Moradel.
+              Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire. C'est le seul rendez-vous où Soara prend l'actualité au moment où elle est encore chaude, avant que les positions ne se figent. La lettre part d'un fait précis pour aller chercher ce qu'il engage, sans s'en tenir au cadre occidental qui organise d'ordinaire le débat.
             </p>
-            <div className={styles.cartoucheForm}>
-              <NewsletterForm />
-            </div>
           </div>
         </header>
+
+        <div className={styles.subscribe}>
+          <div className={styles.subscribeInner}>
+            <span className={styles.subscribeLabel}>Recevoir la lettre chaque mardi</span>
+            <NewsletterForm />
+          </div>
+        </div>
 
         <section className={styles.list}>
           {all.map(l => (

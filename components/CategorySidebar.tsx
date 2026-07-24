@@ -208,7 +208,7 @@ function ModuleNewsletter() {
     <section className={styles.module}>
       <ModuleLabel>La lettre du mardi</ModuleLabel>
       <p className={styles.newsletterCopy}>
-        Chaque mardi, une analyse signée Steve Moradel pour penser la semaine plutôt que la subir.
+        Chaque mardi, une analyse signée Steve Moradel, à partir de ce que la semaine vient de produire.
       </p>
       <Link href="/abonnement" className={styles.newsletterCta}>
         S'abonner gratuitement →
