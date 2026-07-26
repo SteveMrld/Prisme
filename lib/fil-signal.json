@@ -1,6 +1,69 @@
 {
-  "date_maj": "2026-07-23",
+  "date_maj": "2026-07-26",
   "breves": [
+    {
+      "date": "26 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Gironde : l'incendie atteint 42 000 hectares, le trafic ferroviaire coupé vers le Sud-Ouest",
+      "body": "L'incendie parti mercredi de Saumos avait parcouru environ 42 000 hectares dimanche matin, apres une progression de pres de 10 000 hectares dans la nuit, selon France 3 Nouvelle-Aquitaine. Le feu s'orientait vers le sud-est, en direction de Marcheprime et Biganos, cinq communes proches de Bordeaux ayant ete evacuees dans la nuit de samedi a dimanche. Aucun train ne circulait dimanche matin entre Bordeaux et Arcachon, Dax ou Hendaye, plusieurs voies traversant des communes evacuees, et la circulation des TGV etait interrompue sur les axes Bordeaux-Tarbes, Bordeaux-Hendaye et Bordeaux-Arcachon. Selon le meme suivi, plus de 220 000 personnes ont du quitter leur domicile depuis le 22 juillet, un cumul qui inclut des evacuations temporaires. Les fumees ont atteint l'agglomeration bordelaise et etaient perceptibles jusqu'en Franche-Comte.",
+      "tickerCat": "Incendies",
+      "tickerText": "L'incendie de Gironde atteint 42 000 hectares dimanche, le trafic ferroviaire coupe entre Bordeaux, Arcachon et Hendaye"
+    },
+    {
+      "date": "26 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Tour de France : Tadej Pogacar assure un cinquieme sacre sur une derniere etape raccourcie",
+      "body": "Tadej Pogacar (UAE Team Emirates XRG) s'est assure un cinquieme succes au classement general du Tour de France avant la derniere etape, disputee dimanche a Paris. Le Slovene devançait Remco Evenepoel (Red Bull-Bora) de 6 minutes et 26 secondes et le Mexicain Isaac Del Toro de 9 minutes et 42 secondes, le Français Paul Seixas prenant la quatrieme place a 11 minutes et 56 secondes pour son premier Tour, devant Lenny Martinez. L'etape finale, longue de 133 kilometres entre Thoiry et les Champs-Elysees dans son trace initial, a ete ramenee a 89 kilometres au depart de Paris apres la decision du ministere de l'Interieur de redeployer des forces de securite vers les incendies du Sud-Ouest. Le parcours conservait trois passages par la butte Montmartre.",
+      "tickerCat": "Tour de France",
+      "tickerText": "Tadej Pogacar s'assure un cinquieme Tour de France, la derniere etape raccourcie a 89 km a cause des incendies"
+    },
+    {
+      "date": "25 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Gironde : le feu de Saumos progresse vers Bordeaux, cinq communes evacuees samedi soir",
+      "body": "Le feu parti mercredi de Saumos, au nord du bassin d'Arcachon, a continue de progresser samedi vers la metropole bordelaise. La prefete de la Gironde, Sophie Broncas, a decrit un feu qualifie de XXL, capable de sautes d'un kilometre, tandis que le ministre de l'Interieur Laurent Nuñez l'avait presente vendredi comme le plus gros feu de la saison, toujours pas maitrise. La prefecture a ordonne samedi soir l'evacuation de cinq communes supplementaires proches de Bordeaux, dont Marcheprime et Biganos. Plus de 1 200 sapeurs-pompiers etaient engages, appuyes par des moyens aeriens et des renforts venus d'autres regions et de plusieurs pays. Le ministere de l'Interieur a decide le meme jour de redeployer une partie des forces de securite vers les zones sinistrees, ce qui a conduit a raccourcir la derniere etape du Tour de France prevue le lendemain.",
+      "tickerCat": "Incendies",
+      "tickerText": "En Gironde, le feu de Saumos progresse vers Bordeaux, cinq communes supplementaires evacuees samedi soir"
+    },
+    {
+      "date": "25 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Moyen-Orient : les frappes entre Washington et Teheran semblent suspendues, Trump maintient sa menace",
+      "body": "Apres treize jours d'echanges de frappes, les bombardements croises entre les Etats-Unis et l'Iran paraissaient interrompus ce week-end. Depuis le Bureau ovale, Donald Trump a affirme vendredi que des pourparlers etaient en cours et que l'Iran pouvait conclure un accord ou s'exposer a des attaques d'une ampleur bien plus grande. Le conflit rouvert entre les houthis du Yemen et l'Arabie saoudite, reste gele depuis une treve de 2022, a ravive les tensions, les rebelles soutenus par Teheran ayant declare un blocus des ports saoudiens et revendique des attaques contre des petroliers. Selon plusieurs sources citees par la presse israelienne, l'Iran aurait demande aux houthis de bloquer le detroit de Bab al-Mandab en cas de frappe americaine sur ses sites energetiques. Les cours du petrole restaient a des niveaux eleves.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "Les frappes entre Washington et Teheran semblent suspendues apres treize jours, Trump maintient sa menace"
+    },
+    {
+      "date": "25 juillet 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "SpaceX reussit le treizieme vol de Starship et place ses premiers satellites Starlink de troisieme generation",
+      "body": "Le vaisseau Starship a realise, dans la nuit de vendredi a samedi heure de Paris, son treizieme vol d'essai depuis Starbase, au Texas, avec un decollage vendredi en fin d'apres-midi, heure locale. Il s'agissait du deuxieme vol de la version 3 du lanceur, la plus grande et la plus puissante a ce jour. L'etage superieur a deploye vingt satellites Starlink de troisieme generation, les premiers de cette generation a voler, avant un amerrissage que SpaceX a decrit comme le plus doux jamais realise dans l'ocean Indien. La societe a egalement teste le rallumage d'un moteur dans l'espace, manoeuvre necessaire aux futurs vols orbitaux. Deux tentatives precedentes avaient echoue, le 16 juillet en raison d'un arret automatique a l'allumage et la veille du vol pour cause de meteo.",
+      "tickerCat": "Espace",
+      "tickerText": "SpaceX reussit le treizieme vol de Starship et deploie ses premiers satellites Starlink de troisieme generation"
+    },
+    {
+      "date": "25 juillet 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "IA : une coalition d'entreprises technologiques s'elargit contre l'encadrement des modeles ouverts",
+      "body": "Une lettre commune signee vendredi par plus de vingt entreprises, dont Nvidia, Meta, Microsoft et Palantir, a appele les responsables politiques americains a ne pas restreindre les modeles d'intelligence artificielle dits en poids ouverts, dont les parametres sont rendus publics. Les signataires soutiennent que ces modeles elargissent l'acces a l'economie de l'IA, renforcent la concurrence et donnent aux organisations davantage de controle sur les outils qu'elles utilisent. Samedi, la liste s'etait elargie a trente-cinq soutiens selon le decompte publie par Microsoft, contre vingt-cinq dans le document initial de Nvidia, OpenAI ayant rejoint l'initiative. Le debat intervient a l'approche des resultats trimestriels de plusieurs grands acteurs du secteur.",
+      "tickerCat": "IA",
+      "tickerText": "Plus de trente entreprises, dont Nvidia, Meta et Microsoft, s'opposent a l'encadrement des modeles d'IA en poids ouverts"
+    },
+    {
+      "date": "25 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "RD Congo : le bilan de l'epidemie d'Ebola s'alourdit a 1 309 morts",
+      "body": "Le ministere congolais de la Communication et des Medias a fait etat, dans un bilan publie le 25 juillet, de 2 973 cas confirmes d'Ebola et de 1 309 deces, avec 766 patients hospitalises ou places en isolement. Ces chiffres depassent le point de situation de l'Organisation mondiale de la sante date du 20 juillet, qui recensait 2 473 cas et 999 morts en Republique democratique du Congo. Provoquee par la souche Bundibugyo, pour laquelle aucun vaccin ni traitement n'est homologue, la flambee declaree mi-mai progresse dans les provinces de l'est du pays, difficiles d'acces en raison de l'insecurite. Le directeur d'Africa CDC, Jean Kaseya, avait lie mercredi la mortalite au manque de vaccins, de medicaments et de financements.",
+      "tickerCat": "Ebola",
+      "tickerText": "En RD Congo, le ministere de la Communication fait etat de 1 309 morts et 2 973 cas d'Ebola au 25 juillet"
+    },
     {
       "date": "23 juillet 2026",
       "cat": "Géopolitique",
