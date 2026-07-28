@@ -1,6 +1,51 @@
 {
-  "date_maj": "2026-07-26",
+  "date_maj": "2026-07-28",
   "breves": [
+    {
+      "date": "28 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Incendies : Macron juge la situation la plus dure depuis 1945, le feu de Gironde stabilise sans etre fixe",
+      "body": "En deplacement lundi a la cellule de crise du Codis de Bordeaux, Emmanuel Macron a decrit un feu totalement inedit et la situation la plus dure depuis la Seconde Guerre mondiale, evoquant plus de 60 000 hectares brules dans le Sud-Ouest. L'incendie parti pres de Biscarrosse, dans les Landes, etait desormais fixe, tandis qu'en Gironde le feu etait stabilise mais pas fixe apres avoir parcouru plus de 42 000 hectares, selon le ministre de l'Interieur Laurent Nuñez. Un redemarrage avait ete observe lundi apres-midi vers Claouey, sur le bassin d'Arcachon. Les feux de Gironde et des Landes ont mobilise plus de 2 500 sapeurs-pompiers et entraine, en cumul depuis le 22 juillet, l'evacuation d'environ 220 000 personnes.",
+      "tickerCat": "Incendies",
+      "tickerText": "Macron juge la situation la plus dure depuis 1945, le feu de Gironde stabilise sans etre fixe apres 42 000 hectares"
+    },
+    {
+      "date": "28 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Feux de foret : un pompier tue dans le Sud-Est, une nouvelle canicule attendue des mardi",
+      "body": "Un sapeur-pompier volontaire de 38 ans est mort lundi apres la sortie de route du camion-citerne qu'il conduisait au nord d'Arles, dans les Bouches-du-Rhone, a annonce le service departemental d'incendie et de secours. Depuis le debut de l'annee, environ 115 000 hectares ont ete parcourus par les flammes en France, avec plus de 13 000 departs de feu et trente a quarante incendies combattus chaque jour, selon Laurent Nuñez dimanche soir. Une nouvelle vague de chaleur etait attendue des mardi en France et mercredi en Espagne, dans un ete deja marque par des episodes repetes de canicule.",
+      "tickerCat": "Canicule",
+      "tickerText": "Un pompier tue dans les Bouches-du-Rhone, une nouvelle vague de chaleur attendue des mardi en France"
+    },
+    {
+      "date": "28 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Moyen-Orient : la treve de fait entre Washington et Teheran tient, le petrole reflue",
+      "body": "Aucune frappe americaine n'avait ete signalee en Iran depuis vendredi soir, et Teheran affirmait avoir egalement interrompu ses operations, selon le porte-parole de l'armee iranienne Mohammad Akraminia, dont la strategie repose sur la riposte. L'ambassadeur des Etats-Unis a l'Onu, Mike Waltz, a declare que Donald Trump laissait de la place a des negociations tout en n'ayant pas renonce a la menace d'une nouvelle escalade. Sur les marches, les cours du petrole ont recule de plus de 5 % lundi, portes par les espoirs d'un accord entre les deux pays apres treize jours de bombardements croises.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "La treve de fait entre Washington et Teheran tient depuis vendredi, le petrole recule de plus de 5 %"
+    },
+    {
+      "date": "28 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Bourses : ouverture en baisse en Europe sur fond d'inquietudes autour de l'IA et de resultats en rafale",
+      "body": "Les principales places europeennes etaient attendues en repli mardi, dans le sillage d'une chute des valeurs technologiques en Asie liee a des doutes sur l'intelligence artificielle, et a l'ouverture d'une reunion de deux jours de la Reserve federale americaine. D'apres les premieres indications, le CAC 40 devait ceder environ 0,4 % a l'ouverture, lors d'une seance chargee en resultats d'entreprises, avec notamment Safran, Air Liquide, Orange, Kering et EssilorLuxottica. LVMH, numero un mondial du luxe, avait annonce lundi une croissance organique de ses ventes de 3 % au deuxieme trimestre, la clientele americaine compensant le recul de la demande au Moyen-Orient et en Europe attribue a la guerre en Iran.",
+      "tickerCat": "Marchés",
+      "tickerText": "Les Bourses europeennes attendues en baisse mardi, inquietudes sur l'IA et avalanche de resultats d'entreprises"
+    },
+    {
+      "date": "28 juillet 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "IA : l'obligation europeenne d'etiqueter les contenus generes entre en application le 2 aout",
+      "body": "A partir de dimanche 2 aout, l'article 50 du reglement europeen sur l'intelligence artificielle rend obligatoire l'etiquetage des contenus generes ou manipules par IA diffuses dans l'Union, a rappele l'AFP. Les fournisseurs devront rendre ces contenus techniquement identifiables et les organisations qui les publient signaler explicitement les images, sons, videos ou textes de synthese susceptibles de passer pour authentiques. Une exception dite de responsabilite editoriale exempte les contenus relus et assumes par un humain identifie. Les manquements exposent a des amendes pouvant atteindre 15 millions d'euros ou 3 % du chiffre d'affaires mondial, un delai technique courant jusqu'au 2 decembre pour le marquage lisible par machine.",
+      "tickerCat": "IA",
+      "tickerText": "L'obligation europeenne d'etiqueter les contenus generes par IA entre en application le 2 aout"
+    },
     {
       "date": "26 juillet 2026",
       "cat": "Environnement",
