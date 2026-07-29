@@ -61,6 +61,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: '/',
       },
     ],
-    sitemap: 'https://soara.fr/sitemap.xml',
+    sitemap: 'https://www.soara.fr/sitemap.xml',
   }
 }

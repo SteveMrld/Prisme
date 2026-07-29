@@ -7,7 +7,7 @@ const LIST_ID = Number(process.env.BREVO_LIST_ID || '6') // liste "Abonnés Soar
 // (template DOI dédié) puis passés via env vars.
 const DOI_TEMPLATE_ID = Number(process.env.BREVO_DOI_TEMPLATE_ID || '0')
 const DOI_REDIRECT_URL = process.env.BREVO_DOI_REDIRECT_URL
-  || 'https://soara.fr/lettres?confirmed=1'
+  || 'https://www.soara.fr/lettres?confirmed=1'
 
 const RATE_LIMIT_WINDOW_MS = 60 * 1000
 const RATE_LIMIT_MAX = 5

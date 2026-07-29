@@ -6,10 +6,10 @@ import styles from './metaphore.module.css'
 export const metadata = {
   title: 'La Métaphore du Samedi',
   description: "Chaque samedi, une illustration conceptuelle pour comprendre ce que le monde révèle. Une image, une thèse, un texte court. Les archives consultables de La Métaphore du Samedi de Soara.",
-  alternates: { canonical: 'https://soara.fr/metaphore' },
+  alternates: { canonical: 'https://www.soara.fr/metaphore' },
   openGraph: {
     type: 'website',
-    url: 'https://soara.fr/metaphore',
+    url: 'https://www.soara.fr/metaphore',
     title: 'La Métaphore du Samedi · Soara',
     description: "Chaque samedi, une illustration conceptuelle pour comprendre ce que le monde révèle. Une image, une thèse, un texte court.",
     siteName: 'Soara',

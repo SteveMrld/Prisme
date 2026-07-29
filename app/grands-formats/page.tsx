@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import GrandsFormatsIndex from '../../components/GrandsFormatsIndex'
 
-const URL = 'https://soara.fr/grands-formats'
+const URL = 'https://www.soara.fr/grands-formats'
 
 export const metadata: Metadata = {
   title: 'Grands formats',

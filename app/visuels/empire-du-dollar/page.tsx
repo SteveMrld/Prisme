@@ -7,10 +7,10 @@ import styles from '../visuels.module.css'
 export const metadata: Metadata = {
   title: "L'Empire du dollar, Trilogie animée",
   description: "Bretton Woods, pétrodollar, sanctions, BRICS. La trilogie animée Soara en trois actes.",
-  alternates: { canonical: 'https://soara.fr/visuels/empire-du-dollar' },
+  alternates: { canonical: 'https://www.soara.fr/visuels/empire-du-dollar' },
   openGraph: {
     type: 'website',
-    url: 'https://soara.fr/visuels/empire-du-dollar',
+    url: 'https://www.soara.fr/visuels/empire-du-dollar',
     title: "L'Empire du dollar, Trilogie Soara",
     description: "Comment une monnaie nationale est devenue l'étalon de l'économie mondiale. Une trilogie animée en trois actes.",
     siteName: 'Soara',

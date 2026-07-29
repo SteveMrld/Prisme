@@ -9,7 +9,7 @@ import lettres from '../../../lib/lettres.json'
 import articlesData from '../../../lib/articles.json'
 import styles from './lettre.module.css'
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 
 export function generateStaticParams() {
   return (lettres as any[]).map(l => ({ slug: l.slug }))

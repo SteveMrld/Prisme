@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: "L'État insolvable",
   description: "La dette publique mondiale a franchi 100 000 milliards de dollars. Ce n'est pas la dette qui inquiète. C'est ce qu'elle révèle.",
-  alternates: { canonical: 'https://soara.fr/grands-formats/dette-souveraine' },
+  alternates: { canonical: 'https://www.soara.fr/grands-formats/dette-souveraine' },
 };
 
 export default async function Page({ searchParams }: { searchParams?: { lang?: string } }) {

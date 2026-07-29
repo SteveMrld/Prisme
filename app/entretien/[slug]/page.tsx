@@ -12,7 +12,7 @@ import { authorLink } from '../../../lib/authorLinks'
 import { isFutureDay } from '../../../lib/dates'
 import styles from './entretien.module.css'
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 
 export const dynamic = 'force-dynamic'
 

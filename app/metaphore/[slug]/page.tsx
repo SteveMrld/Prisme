@@ -5,7 +5,7 @@ import ShareButton from '../../../components/ShareButton'
 import metaphores from '../../../lib/metaphores.json'
 import styles from './metaphore-detail.module.css'
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 
 type Metaphore = {
   slug: string

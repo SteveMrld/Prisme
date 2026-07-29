@@ -4,7 +4,7 @@ import articlesData from '../../lib/articles.json'
 export const metadata = {
   title: 'Explorer',
   description: 'Parcourez les analyses, portraits et grands formats de Soara.',
-  alternates: { canonical: 'https://soara.fr/explorer' },
+  alternates: { canonical: 'https://www.soara.fr/explorer' },
 }
 
 export default function ExplorerPage() {

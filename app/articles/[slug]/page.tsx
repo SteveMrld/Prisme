@@ -23,7 +23,7 @@ const REDIRECT_TO_GRAND_FORMAT = [
   'terres-rares',
 ]
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 
 const categoryLabels: Record<string, string> = {
   geo: 'Géopolitique', eco: 'Économie', tech: 'Technologie',

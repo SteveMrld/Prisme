@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'Atlas',
   description: 'Cartes interactives, animations, visualisations de données géopolitiques. Atlas Soara.',
-  alternates: { canonical: 'https://soara.fr/visuels' },
+  alternates: { canonical: 'https://www.soara.fr/visuels' },
 }
 
 type AtlasCard = {

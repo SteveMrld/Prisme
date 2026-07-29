@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const URL = 'https://soara.fr/signal-map'
+const URL = 'https://www.soara.fr/signal-map'
 
 export const metadata: Metadata = {
   title: 'Signal Map',

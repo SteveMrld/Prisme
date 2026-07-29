@@ -38,8 +38,8 @@ export default function ShareButton({ title = '', iconOnly = false, className, l
   // domaine de preview ni localhost : seul le chemin de la page change.
   const getUrl = () =>
     typeof window !== 'undefined'
-      ? `https://soara.fr${window.location.pathname}${window.location.search}`
-      : 'https://soara.fr'
+      ? `https://www.soara.fr${window.location.pathname}${window.location.search}`
+      : 'https://www.soara.fr'
   const getTitle = () => title || (typeof document !== 'undefined' ? document.title : '')
 
   const onTrigger = async () => {

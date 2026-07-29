@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: "La fabrique de l'impossible",
   description: "Quatre-vingt ans de Skunk Works : du cirque de Burbank à la détection d'un battement de cœur dans le désert iranien.",
-  alternates: { canonical: 'https://soara.fr/grands-formats/skunkworks' },
+  alternates: { canonical: 'https://www.soara.fr/grands-formats/skunkworks' },
 };
 
 export default async function Page({ searchParams }: { searchParams?: { lang?: string } }) {

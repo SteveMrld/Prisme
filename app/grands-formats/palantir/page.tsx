@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: "Palantir. L'ontologie de l'ennemi",
   description: "Comment une entreprise née d'un coup d'État de salle de réunion est devenue l'infrastructure cognitive des États qui ne la contrôlent pas.",
-  alternates: { canonical: 'https://soara.fr/grands-formats/palantir' },
+  alternates: { canonical: 'https://www.soara.fr/grands-formats/palantir' },
 };
 
 export default async function Page({ searchParams }: { searchParams?: { lang?: string } }) {

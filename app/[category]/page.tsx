@@ -91,7 +91,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { category: string } }) {
   const config = CATEGORIES[params.category]
   if (!config) return {}
-  const url = `https://soara.fr/${params.category}`
+  const url = `https://www.soara.fr/${params.category}`
   return {
     title: config.labelLong,
     description: config.description,

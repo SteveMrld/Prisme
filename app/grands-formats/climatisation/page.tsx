@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: "La chaleur déplacée",
   description: "La climatisation ne fabrique pas de froid : elle déplace de la chaleur, d'une pièce vers la rue, en consommant de l'électricité pour le faire. Anodin dans un salon, ce geste devient un fait énergétique majeur quand des milliards d'appareils s'y mettent en même temps.",
-  alternates: { canonical: 'https://soara.fr/grands-formats/climatisation' },
+  alternates: { canonical: 'https://www.soara.fr/grands-formats/climatisation' },
 }
 
 // ── Styles partagés (tokens du site : Playfair, Source Serif, DM Mono) ──

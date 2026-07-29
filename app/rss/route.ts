@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import articlesData from '../../lib/articles.json'
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 const SITE_NAME = 'Soara'
 const SITE_DESC = "Média d'analyse indépendant : Géopolitique, économie, technologie, société."
 

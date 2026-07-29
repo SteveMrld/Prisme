@@ -7,7 +7,7 @@ import { authorSameAs } from '../../../lib/authorLinks'
 import articlesData from '../../../lib/articles.json'
 import styles from './profil.module.css'
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 
 const CATEGORIE_LABEL: Record<string, string> = {
   tech: 'Technologie',

@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: "La désaffection",
   description: "Confiance en chute libre, évitement croissant, pouvoir médiatique concentré entre quelques mains. Le divorce entre le public occidental et ses médias est structurel. Anatomie d'une rupture.",
-  alternates: { canonical: 'https://soara.fr/grands-formats/medias' },
+  alternates: { canonical: 'https://www.soara.fr/grands-formats/medias' },
 }
 
 export default async function MediasGrandFormat({ searchParams }: { searchParams?: { lang?: string } }) {

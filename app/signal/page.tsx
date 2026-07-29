@@ -19,7 +19,7 @@ const bandDate =
 export const metadata = {
   title: 'Signal',
   description: 'L\'actualité qui compte. Les faits bruts, sans bruit.',
-  alternates: { canonical: 'https://soara.fr/signal' },
+  alternates: { canonical: 'https://www.soara.fr/signal' },
 }
 
 export default function SignalPage() {

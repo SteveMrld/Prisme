@@ -22,7 +22,7 @@ const sourceSerif = Source_Serif_4({
   display: 'swap',
 })
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 
 // JSON-LD NewsMediaOrganization, niveau site. Le type précis indique à Google
 // qu'il s'agit d'un éditeur de presse et non d'une entreprise quelconque, ce

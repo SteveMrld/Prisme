@@ -6,7 +6,7 @@ import styles from './revue.module.css'
 export const metadata = {
   title: 'Revue quotidienne',
   description: 'La revue de presse géopolitique quotidienne de Soara : les faits qui comptent, les sources qui les rapportent.',
-  alternates: { canonical: 'https://soara.fr/revue' },
+  alternates: { canonical: 'https://www.soara.fr/revue' },
 }
 
 const SOURCE_ABBR: Record<string, string> = {

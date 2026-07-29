@@ -7,10 +7,10 @@ import styles from '../visuels.module.css'
 export const metadata: Metadata = {
   title: "La chaleur deplacee, animation pour les reseaux",
   description: "L'animation du cycle de la climatisation et de son paradoxe energetique, deux formats prets pour les reseaux : carre 1:1 et vertical 9:16.",
-  alternates: { canonical: 'https://soara.fr/visuels/climatisation' },
+  alternates: { canonical: 'https://www.soara.fr/visuels/climatisation' },
   openGraph: {
     type: 'video.other',
-    url: 'https://soara.fr/visuels/climatisation',
+    url: 'https://www.soara.fr/visuels/climatisation',
     title: 'La chaleur deplacee, Atlas Soara',
     description: "Le cycle du climatiseur et le paradoxe energetique en animation, deux formats pour TikTok, LinkedIn, Instagram.",
     siteName: 'Soara',

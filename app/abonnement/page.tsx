@@ -6,7 +6,7 @@ import AbonnementClient from './AbonnementClient'
 export const metadata = {
   title: 'S\'abonner',
   description: 'Accédez à l\'intégralité des analyses Soara.',
-  alternates: { canonical: 'https://soara.fr/abonnement' },
+  alternates: { canonical: 'https://www.soara.fr/abonnement' },
   robots: { index: false, follow: true },
 }
 

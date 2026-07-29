@@ -7,7 +7,7 @@ import styles from './contributeurs.module.css'
 export const metadata = {
   title: 'Contributeurs',
   description: 'Les auteurs qui écrivent pour Soara.',
-  alternates: { canonical: 'https://soara.fr/contributeurs' },
+  alternates: { canonical: 'https://www.soara.fr/contributeurs' },
 }
 
 

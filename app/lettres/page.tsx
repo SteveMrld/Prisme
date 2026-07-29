@@ -8,10 +8,10 @@ import styles from './lettres.module.css'
 export const metadata = {
   title: 'La lettre du mardi',
   description: "Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire. Les archives consultables de la lettre du mardi de Soara.",
-  alternates: { canonical: 'https://soara.fr/lettres' },
+  alternates: { canonical: 'https://www.soara.fr/lettres' },
   openGraph: {
     type: 'website',
-    url: 'https://soara.fr/lettres',
+    url: 'https://www.soara.fr/lettres',
     title: 'La lettre du mardi · Soara',
     description: 'Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire.',
     siteName: 'Soara',

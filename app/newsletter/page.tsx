@@ -7,10 +7,10 @@ import styles from './newsletter.module.css'
 export const metadata = {
   title: 'Newsletter',
   description: "La newsletter de Soara. Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire. Inscription gratuite.",
-  alternates: { canonical: 'https://soara.fr/newsletter' },
+  alternates: { canonical: 'https://www.soara.fr/newsletter' },
   openGraph: {
     type: 'website',
-    url: 'https://soara.fr/newsletter',
+    url: 'https://www.soara.fr/newsletter',
     title: 'La newsletter de Soara',
     description: 'Chaque mardi, une analyse signée Steve Moradel, écrite à partir de ce que la semaine vient de produire.',
     siteName: 'Soara',

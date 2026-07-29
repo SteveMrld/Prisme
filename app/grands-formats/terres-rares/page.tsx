@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: "Terres rares : la guerre invisible",
   description: "Du cobalt du Katanga au raffinage de Guangdong, une analyse des flux qui alimentent la transition verte, et la nouvelle géographie de la dépendance mondiale.",
-  alternates: { canonical: 'https://soara.fr/grands-formats/terres-rares' },
+  alternates: { canonical: 'https://www.soara.fr/grands-formats/terres-rares' },
 }
 
 export default async function TerresRaresPage({ searchParams }: { searchParams?: { lang?: string } }) {

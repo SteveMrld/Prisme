@@ -5,7 +5,7 @@ import articlesData from '../lib/articles.json'
 import lettresData from '../lib/lettres.json'
 import { getAllInterviews } from '../lib/interviews'
 
-const BASE_URL = 'https://soara.fr'
+const BASE_URL = 'https://www.soara.fr'
 
 const CATEGORIES = ['geo', 'eco', 'tech', 'env', 'soc', 'culture', 'portraits']
 

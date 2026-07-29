@@ -7,7 +7,7 @@ export const metadata = {
   description:
     "En 1998, Microsoft offrait à la Chine un laboratoire qui allait former ses futurs champions de l'intelligence artificielle. Un quart de siècle plus tard, Pékin tend le même geste vers l'Afrique.",
   alternates: {
-    canonical: "https://soara.fr/grands-formats/le-verger-et-le-fruit",
+    canonical: "https://www.soara.fr/grands-formats/le-verger-et-le-fruit",
   },
 };
 
