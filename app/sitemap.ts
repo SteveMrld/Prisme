@@ -33,7 +33,7 @@ const STATIC_PAGES = [
   { url: '/indicateurs',   priority: 0.7,  changeFrequency: 'daily',   lastModified: new Date()   },
   { url: '/lettres',       priority: 0.9,  changeFrequency: 'weekly',  lastModified: LETTRES_LATEST },
   { url: '/visuels',       priority: 0.8,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
-  { url: '/grands-formats',priority: 0.8,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
+  { url: '/formats',       priority: 0.8,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
   { url: '/signal-map',    priority: 0.7,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
   { url: '/tv',            priority: 0.7,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },
   { url: '/bibliotheque',  priority: 0.6,  changeFrequency: 'weekly',  lastModified: STATIC_REVISED },

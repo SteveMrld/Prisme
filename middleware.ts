@@ -111,5 +111,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  // sitemap.xml et robots.txt sont exclus : ces deux fichiers ne sont lus que
+  // par des robots, jamais par un utilisateur connecté. Les faire passer par
+  // le middleware déclenchait un appel Supabase à chaque requête, latence pure.
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'],
 }
