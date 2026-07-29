@@ -1,6 +1,51 @@
 {
-  "date_maj": "2026-07-28",
+  "date_maj": "2026-07-29",
   "breves": [
+    {
+      "date": "29 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Gironde : au septieme jour, le megafeu de Saumos est maitrise",
+      "body": "L'incendie parti le 22 juillet de Saumos, au nord du bassin d'Arcachon, etait maitrise mercredi matin, au septieme jour, selon France 3 Nouvelle-Aquitaine. Le feu, qui s'etend de la presqu'ile de Lege-Cap-Ferret a Lacanau, a parcouru 42 000 hectares dans le departement, detruit 240 habitations et fait 93 blesses parmi les sapeurs-pompiers, sans victime civile a ce stade. Apres l'evacuation preventive de 4 000 personnes dans les campings et villages-vacances de Lacanau, la prefecture a autorise les habitants d'Eysines, Merignac et du Haillan a regagner leur domicile. Une deuxieme nuit calme a permis de conforter la situation, alors qu'une nouvelle vague de chaleur etait attendue sur le Sud-Ouest.",
+      "tickerCat": "Incendies",
+      "tickerText": "Au septieme jour, le megafeu de Saumos en Gironde est maitrise, apres 42 000 hectares brules et 240 habitations detruites"
+    },
+    {
+      "date": "29 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "La Reserve federale americaine rend sa decision de taux, un statu quo largement attendu",
+      "body": "Le comite de politique monetaire de la Reserve federale americaine devait annoncer sa decision mercredi a 20 heures, heure de Paris, a l'issue d'une reunion de deux jours. La plupart des observateurs anticipaient un maintien du taux directeur dans la fourchette de 3,50 % a 3,75 %, dans un contexte d'inflation restee nettement au-dessus de la cible de 2 % de l'institution. Cette reunion, qui ne s'accompagne pas de nouvelles projections economiques ni du graphique dit dot plot, constitue l'une des premieres echeances majeures depuis l'arrivee de Kevin Warsh a la presidence de la Fed en juin. Une conference de presse etait prevue une demi-heure apres la publication du communique.",
+      "tickerCat": "Fed",
+      "tickerText": "La Reserve federale americaine rend sa decision de taux ce mercredi, un maintien dans la fourchette 3,50-3,75 % largement anticipe"
+    },
+    {
+      "date": "29 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "L'Ouganda declare la fin de son epidemie d'Ebola, la RD Congo toujours frappee",
+      "body": "Le ministre ougandais de la Sante, Chris Baryomunsi, a declare mardi la fin de l'epidemie d'Ebola dans le pays, apres la guerison du dernier patient et l'absence de nouveau cas. Declaree le 15 mai et due a la souche Bundibugyo, la flambee a provoque vingt cas confirmes et deux morts, deux ressortissants congolais, les dix-huit autres malades ayant gueri. Quinze cas provenaient d'une importation depuis la Republique democratique du Congo voisine. Dans ce pays, l'epidemie continuait de s'aggraver, avec plus de 3 200 cas confirmes selon les derniers decomptes, aucun vaccin ni traitement n'etant homologue contre cette souche.",
+      "tickerCat": "Ebola",
+      "tickerText": "L'Ouganda declare la fin de son epidemie d'Ebola, vingt cas et deux morts, alors que la RD Congo reste durement touchee"
+    },
+    {
+      "date": "29 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Le Gabon et la Guinee equatoriale scellent la fin d'un differend frontalier vieux d'un demi-siecle",
+      "body": "Le Gabon et la Guinee equatoriale ont signe mardi, au siege de l'Union africaine a Addis-Abeba, un accord d'engagement conjoint pour appliquer l'arret rendu le 19 mai 2025 par la Cour internationale de justice sur leur differend territorial. La juridiction de l'Onu avait attribue a Malabo la souverainete sur l'ile de Mbanie, une trentaine d'hectares, et les ilots de Cocotiers et Conga, situes dans des eaux reputees riches en petrole et disputes depuis le debut des annees 1970. Le texte fixe la demarcation des frontieres et les mecanismes de suivi, sans rouvrir la question de la souverainete. Signe en marge de la 49e session du Conseil executif de l'organisation panafricaine, l'accord a ete salue par le president de sa Commission, Mahmoud Ali Youssouf, comme une etape vers le reglement pacifique des differends.",
+      "tickerCat": "Union africaine",
+      "tickerText": "Le Gabon et la Guinee equatoriale signent a Addis-Abeba un accord mettant fin a un differend frontalier vieux d'un demi-siecle"
+    },
+    {
+      "date": "29 juillet 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "Resultats de Meta et Microsoft : premier grand test des depenses consacrees a l'IA",
+      "body": "Meta et Microsoft, deux des plus gros investisseurs de la vague d'intelligence artificielle, publiaient leurs resultats trimestriels mercredi apres la cloture de Wall Street. Les investisseurs y cherchaient des signes de rentabilite apres l'envolee des depenses d'infrastructure, dont le montant cumule pour les grands acteurs du secteur etait estime a environ 682 milliards de dollars en 2026 par le cabinet Visible Alpha. Le chiffre d'affaires trimestriel de Meta etait attendu autour de 60 milliards de dollars, la croissance de l'activite cloud Azure constituant le point d'attention chez Microsoft. Les groupes Qualcomm et Arm devaient egalement rendre leurs comptes le meme jour.",
+      "tickerCat": "Tech",
+      "tickerText": "Meta et Microsoft publient leurs resultats ce mercredi, premier grand test de la rentabilite des depenses consacrees a l'IA"
+    },
     {
       "date": "28 juillet 2026",
       "cat": "Environnement",
