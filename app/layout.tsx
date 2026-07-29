@@ -24,15 +24,47 @@ const sourceSerif = Source_Serif_4({
 
 const BASE_URL = 'https://soara.fr'
 
-// JSON-LD Organization, niveau site. sameAs liste les comptes sociaux
-// officiels pour aider Google à relier la marque à ses profils. Le logo pointe
-// sur l'icône 512 (favicon SVG non utilisé par Schema.org qui veut un raster).
+// JSON-LD NewsMediaOrganization, niveau site. Le type précis indique à Google
+// qu'il s'agit d'un éditeur de presse et non d'une entreprise quelconque, ce
+// qui conditionne la reconnaissance de l'entité. L'ISSN et l'éditeur légal
+// sont les identifiants stables qui permettent de rattacher la marque à un
+// enregistrement officiel. sameAs liste les comptes sociaux, chaque URL doit
+// résoudre vers un profil existant sous peine d'affaiblir le rattachement.
 const ORGANIZATION_JSON_LD = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'NewsMediaOrganization',
+  '@id': `${BASE_URL}/#organization`,
   name: 'Soara',
+  alternateName: 'SOARA',
   url: BASE_URL,
-  logo: `${BASE_URL}/icon-512.png`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${BASE_URL}/icon-512.png`,
+    width: 512,
+    height: 512,
+  },
+  issn: '3130-3544',
+  foundingDate: '2026-06-22',
+  inLanguage: ['fr-FR', 'en'],
+  description: 'Média analytique indépendant. Géopolitique, économie, technologie, société, culture, environnement.',
+  publishingPrinciples: `${BASE_URL}/apropos`,
+  founder: {
+    '@type': 'Person',
+    name: 'Steve Moradel',
+  },
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Jabrilia',
+    legalName: 'Jabrilia SASU',
+    identifier: '945399228',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '200 rue de la Croix Nivert',
+    postalCode: '75015',
+    addressLocality: 'Paris',
+    addressCountry: 'FR',
+  },
   sameAs: [
     'https://x.com/soaramedia',
     'https://www.linkedin.com/company/soaramedia/',
@@ -46,10 +78,11 @@ const ORGANIZATION_JSON_LD = {
 const WEBSITE_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${BASE_URL}/#website`,
   name: 'Soara',
   url: BASE_URL,
   inLanguage: 'fr-FR',
-  publisher: { '@type': 'Organization', name: 'Soara', url: BASE_URL },
+  publisher: { '@id': `${BASE_URL}/#organization` },
 }
 
 export const viewport: Viewport = {
