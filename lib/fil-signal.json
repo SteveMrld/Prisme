@@ -1,6 +1,69 @@
 {
-  "date_maj": "2026-07-29",
+  "date_maj": "2026-07-31",
   "breves": [
+    {
+      "date": "31 juillet 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Canicule : vingt-et-un departements en vigilance orange, la Gironde repasse au vert",
+      "body": "Meteo-France a place vingt-et-un departements en vigilance orange canicule pour la journee de vendredi. Les tres fortes chaleurs se concentrent sur le quart sud-est du pays, avec des maximales de 34 a 38 degres et des pointes a 40 degres dans le Var, selon le bulletin de 16 heures. Ailleurs, les temperatures perdent deux a trois degres par rapport a la veille et se situent le plus souvent entre 28 et 32 degres. La Gironde, ou le megafeu parti de Saumos le 22 juillet est desormais stabilise apres avoir parcouru 42 000 hectares, est repassee en vert pour la canicule. L'humidite des sols avait atteint fin juillet un niveau tres bas a l'echelle du pays, superieur en severite aux etes 1976, 2022 et 2025 a la meme date.",
+      "tickerCat": "Canicule",
+      "tickerText": "Vingt-et-un departements en vigilance orange canicule vendredi, jusqu'a 40 degres dans le Var, la Gironde repasse au vert"
+    },
+    {
+      "date": "31 juillet 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Moyen-Orient : les frappes reprennent autour d'Ormuz apres une breve accalmie",
+      "body": "Les bombardements croises entre les Etats-Unis et l'Iran ont repris en milieu de semaine autour du detroit d'Ormuz, apres une pause de quelques jours qui avait fait refluer les cours du petrole. Les Gardiens de la revolution ont affirme avoir frappe trois petroliers tentant de franchir le detroit, selon l'agence Tasnim, tandis que l'armee americaine disait avoir intercepte des missiles iraniens avant de mener avec l'Arabie saoudite une attaque contre des milices pro-iraniennes en Irak. Le detroit, par lequel transitait avant la guerre une part importante du petrole mondial, reste verrouille par Teheran, qui entend en garder le controle. Le baril de Brent, qui avait brievement depasse 100 dollars la semaine precedente avant de retomber autour de 90, restait sensible a chaque annonce. Donald Trump avait estime mardi que les discussions avec Teheran avaient de bonnes chances d'aboutir.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "Les frappes entre Washington et Teheran reprennent autour d'Ormuz apres une breve accalmie, le petrole reste volatil"
+    },
+    {
+      "date": "31 juillet 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "La Fed maintient ses taux, mais le ton de son nouveau president desoriente les marches",
+      "body": "La Reserve federale americaine a laisse mercredi son taux directeur dans la fourchette de 3,50 % a 3,75 %, mais les signaux plus fermes envoyes par son nouveau president, Kevin Warsh, ont sème le trouble. Wall Street a connu sa plus forte baisse depuis le 10 juin, et le rendement de l'emprunt du Tresor a trente ans a atteint son plus haut niveau en dix-neuf ans. Les operateurs estimaient jeudi a 64 % la probabilite d'une hausse des taux d'un quart de point en septembre, selon Reuters. L'indice des prix PCE, suivi de pres par la banque centrale, est toutefois ressorti en baisse a 3,7 % sur un an en juin, contre 4,1 % le mois precedent, et la croissance americaine a ralenti a un rythme annuel de 1,5 % au deuxieme trimestre.",
+      "tickerCat": "Fed",
+      "tickerText": "La Fed maintient ses taux dans la fourchette 3,50-3,75 %, le ton plus ferme de Kevin Warsh fait chuter Wall Street"
+    },
+    {
+      "date": "31 juillet 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "Mali : Amnesty International reclame une enquete sur l'execution presumee de soldats captures",
+      "body": "Dans un rapport publie jeudi, Amnesty International a appele les autorites maliennes a ouvrir une enquete approfondie et independante apres l'execution presumee d'au moins dix-neuf soldats faits prisonniers a la suite d'une embuscade survenue le 18 juillet dans le secteur de Tabrichat, sur l'axe Anefis-Gao, dans le nord du pays. L'organisation dit avoir analyse douze videos diffusees sur les reseaux sociaux pour reconstituer les faits. Trois de ces sequences montreraient au moins dix-neuf militaires marchant dans le desert, les mains derriere la tete. Le nord du Mali reste le theatre d'affrontements entre l'armee, des groupes armes et des combattants djihadistes, dans une zone ou l'acces des observateurs independants demeure tres limite.",
+      "tickerCat": "Mali",
+      "tickerText": "Amnesty International reclame une enquete sur l'execution presumee d'au moins dix-neuf soldats maliens captures en juillet"
+    },
+    {
+      "date": "31 juillet 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Patrimoine mondial : l'UNESCO inscrit vingt-cinq nouveaux sites, dont trois en urgence",
+      "body": "La 48e session du Comite du patrimoine mondial de l'UNESCO, reunie a Busan, en Coree du Sud, jusqu'au 29 juillet, a inscrit vingt-cinq nouveaux biens sur la Liste du patrimoine mondial, dix-neuf culturels, cinq naturels et un mixte, portant le total a 1 273 sites. Trois ont ete retenus selon une procedure d'urgence et places dans le meme temps sur la Liste du patrimoine en peril : le paysage migratoire de Boma-Badingilo au Soudan du Sud, les chateaux du mont Amel au Liban et Sebastia en Palestine. Le Comite a egalement inscrit les six medinas historiques des Comores, temoins de l'architecture swahilie de l'ocean Indien, le village de Sidi Bou Said en Tunisie et les sites de la porcelaine artisanale de Jingdezhen, en Chine. La Liste comptait 1 248 biens repartis dans 170 pays a la veille de la session.",
+      "tickerCat": "UNESCO",
+      "tickerText": "L'UNESCO inscrit vingt-cinq nouveaux sites au patrimoine mondial, dont trois en urgence au Soudan du Sud, au Liban et en Palestine"
+    },
+    {
+      "date": "31 juillet 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Recherche de vie extraterrestre : un premier releve mene avec le telescope ALMA au Chili",
+      "body": "Une astronome de l'universite de Manchester, Louisa Mason, a mene la premiere recherche de signaux d'origine technologique a partir des donnees archivees du reseau ALMA, installe sur le plateau de Chajnantor, dans le desert d'Atacama, au Chili. Plutot que de demander du temps d'observation, elle a reanalyse des mesures collectees pour d'autres travaux, dans des frequences plus elevees que la bande etroite exploree depuis un demi-siecle par les programmes de ce type. Aucun signal artificiel n'a ete detecte, mais l'etude ouvre un domaine de frequences jusque-la delaisse. En appliquant un modele de population stellaire, elle montre aussi que les releves passes ont probablement balaye bien plus d'etoiles que les decomptes ne l'indiquaient. Le travail a ete presente a la reunion nationale d'astronomie de la Royal Astronomical Society et publie dans les Monthly Notices of the Royal Astronomical Society.",
+      "tickerCat": "Espace",
+      "tickerText": "Premiere recherche de signaux extraterrestres menee avec le telescope ALMA au Chili, dans des frequences jusque-la delaissees"
+    },
+    {
+      "date": "31 juillet 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "Resultats : Microsoft rassure sur l'IA, Meta decoit, la question de la rentabilite persiste",
+      "body": "Microsoft a publie des resultats superieurs aux attentes, portes par la croissance de son activite cloud Azure et l'adoption de son assistant Copilot, ce qui a rassure sur le rendement de ses lourds investissements dans l'intelligence artificielle. Le groupe vise un niveau record de depenses d'equipement, de l'ordre de 190 milliards de dollars pour son exercice 2026. Meta a en revanche ete juge plus decevant apres sa propre publication. Ces comptes etaient scrutes alors que les cours de plusieurs geants technologiques ont ete mis sous pression, certains analystes se demandant si l'emballement boursier autour de l'IA touche a sa fin, selon une note de Capital Economics. Apple et Amazon ont egalement rendu leurs comptes cette semaine.",
+      "tickerCat": "Tech",
+      "tickerText": "Microsoft rassure sur l'IA grace au cloud, Meta decoit, la question de la rentabilite des depenses reste posee"
+    },
     {
       "date": "29 juillet 2026",
       "cat": "Environnement",
