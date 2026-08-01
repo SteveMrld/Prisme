@@ -1,6 +1,69 @@
 {
-  "date_maj": "2026-07-31",
+  "date_maj": "2026-08-01",
   "breves": [
+    {
+      "date": "1er août 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "Moyen-Orient : Trump renouvelle ses menaces, la Chine s'engage a armer l'Iran",
+      "body": "Les combats se sont poursuivis autour du detroit d'Ormuz. Les Gardiens de la revolution ont affirme vendredi avoir frappe deux petroliers naviguant sous escorte aerienne americaine dans le detroit, et des dizaines de drones ont vise des groupes rebelles kurdes iraniens. Donald Trump a renouvele ses menaces contre Teheran, qui a mis fin aux negociations indirectes menees au Qatar apres la reprise des frappes. La Chine s'est engagee a livrer a l'Iran des systemes de missiles sol-air portables, l'un de ses plus importants transferts d'armement depuis le debut de la guerre, selon La Libre. Washington a par ailleurs confirme la tenue de nouvelles discussions entre le Liban et Israel debut aout a Rome. Sur les marches, le baril de brut americain est repasse sous 80 dollars.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "Trump renouvelle ses menaces contre l'Iran, la Chine s'engage a lui livrer des missiles sol-air, le brut americain repasse sous 80 dollars"
+    },
+    {
+      "date": "1er août 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Une quatrieme canicule verrouille l'Europe de l'Ouest et la Mediterranee",
+      "body": "Une quatrieme vague de chaleur de la saison s'est installee sur l'Europe, portee par un dome de chaleur centre sur la peninsule Iberique et la France. Les temperatures ont depasse 40 degres dans plusieurs pays, atteignant 43 a 46 degres dans les basses terres d'Espagne et d'Italie, tandis que les Balkans connaissaient une chaleur extreme durable. Le long de la Mediterranee, des villes comme Naples, Barcelone, Rome, Nice ou Athenes enchainaient des nuits dites tropicales, au-dessus de 20 degres, qui accroissent le risque sanitaire pour les personnes vulnerables. Meteo-France avait calcule que la canicule de juin ne devait rien a El Niño et tout au rechauffement climatique. Depuis le debut de l'annee, les incendies ont deja brule dans l'Union une surface superieure a la moyenne annuelle des annees precedentes, selon les donnees europeennes EFFIS.",
+      "tickerCat": "Canicule",
+      "tickerText": "Une quatrieme canicule verrouille l'Europe de l'Ouest et la Mediterranee, jusqu'a 46 degres en Espagne et des nuits tropicales"
+    },
+    {
+      "date": "1er août 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Apple signe un trimestre record pour les derniers comptes de Tim Cook",
+      "body": "Apple a publie un chiffre d'affaires trimestriel record, porte par l'iPhone et gonfle par le remboursement de droits de douane que la Cour supreme americaine avait invalides en fevrier. Sa marge brute a depasse 50 %, malgre une penurie de puces memoire qui pese sur ses couts. Il s'agissait de la derniere publication de Tim Cook a la tete du groupe. Le dirigeant, en poste depuis aout 2011, cedera sa place le 1er septembre a John Ternus, ingenieur qui supervise la conception des produits, et deviendra president du conseil d'administration. En quinze ans, la valorisation d'Apple est passee d'environ 350 milliards de dollars a pres de 5 000 milliards.",
+      "tickerCat": "Apple",
+      "tickerText": "Apple signe un trimestre record pour les derniers comptes de Tim Cook, remplace le 1er septembre par John Ternus"
+    },
+    {
+      "date": "1er août 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "IA : l'obligation europeenne d'etiqueter les contenus generes s'applique a partir de dimanche",
+      "body": "L'article 50 du reglement europeen sur l'intelligence artificielle devient applicable dimanche 2 aout. Les contenus generes ou manipules par IA et diffuses dans l'Union, notamment les images, sons et videos susceptibles de passer pour authentiques, devront etre rendus identifiables comme tels, par un marquage technique a la charge des fournisseurs et une mention explicite a la charge de ceux qui les publient. Une exception de responsabilite editoriale exempte les contenus relus et assumes par un humain identifie. Les manquements exposent a des amendes pouvant atteindre 15 millions d'euros ou 3 % du chiffre d'affaires mondial. C'est la premiere obligation de transparence de cette nature a l'echelle du continent.",
+      "tickerCat": "IA",
+      "tickerText": "L'obligation europeenne d'etiqueter les contenus generes par IA s'applique a partir du 2 aout, sous peine de lourdes amendes"
+    },
+    {
+      "date": "1er août 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "CAN feminine : le Maroc et le Senegal se relancent, l'Afrique du Sud arrache le nul",
+      "body": "La Coupe d'Afrique des nations feminine, organisee au Maroc, a poursuivi sa phase de groupes. Les Lionnes de l'Atlas ont remporte vendredi le derby face a l'Algerie et se sont rapprochees des quarts de finale, tandis que le Senegal a relance sa campagne en battant le Kenya. Dans le groupe B, l'Afrique du Sud, tenante du titre, a arrache le match nul face a la Cote d'Ivoire, deux buts partout, grace a deux realisations de Thembi Kgatlana et Hildah Magaia dans les dernieres minutes apres avoir ete menee de deux buts a la pause. La competition se poursuivait samedi, avec notamment le Burkina Faso oppose a la Tanzanie.",
+      "tickerCat": "CAN féminine",
+      "tickerText": "CAN feminine au Maroc : les Lionnes de l'Atlas gagnent le derby face a l'Algerie, l'Afrique du Sud arrache le nul face a la Cote d'Ivoire"
+    },
+    {
+      "date": "1er août 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "La star sud-africaine Tyla retire Lagos de sa tournee mondiale",
+      "body": "La chanteuse sud-africaine Tyla, laureate d'un Grammy, a retire l'etape de Lagos de son A*POP World Tour, annonce quelques jours plus tot avec des concerts au Cap, a Johannesburg, a New York et a Paris. Le concert nigerian, programme le 22 decembre pendant les festivites de fin d'annee, a disparu du calendrier publie sur le site de l'artiste, sans explication de son equipe. Ce retrait est intervenu apres des appels au boycott lances par des internautes nigerians, sur fond de violences xenophobes visant des etrangers en Afrique du Sud, qui ont ravive les tensions diplomatiques entre Pretoria et Abuja. Les autorites sud-africaines ont fait etat d'au moins quatre ressortissants etrangers tues lors d'attaques recentes.",
+      "tickerCat": "Musique",
+      "tickerText": "La star sud-africaine Tyla retire Lagos de sa tournee mondiale sur fond de boycott et de tensions xenophobes entre Pretoria et Abuja"
+    },
+    {
+      "date": "1er août 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Climat : l'Union africaine appelle le continent a se preparer a un possible super El Niño",
+      "body": "L'Union africaine a appele ses Etats membres a se preparer a un episode climatique d'ampleur exceptionnelle. Selon les projections presentees lors d'un atelier technique reunissant meteorologues et centres climatiques regionaux, un super El Niño pourrait atteindre son intensite maximale entre novembre 2026 et fevrier 2027. Le commissaire de l'organisation charge de l'agriculture et de l'environnement, Moses Vilakati, a mis en garde contre des secheresses severes dans certaines regions et des inondations dans d'autres, avec des consequences directes sur les recoltes, l'eau potable et la production d'electricite hydraulique. Les climatologues avaient annonce en juin la formation du phenomene, susceptible de figurer parmi les plus puissants jamais observes. Le precedent episode de 2023 et 2024 avait plonge une partie de l'Afrique australe dans une grave insecurite alimentaire.",
+      "tickerCat": "Climat",
+      "tickerText": "L'Union africaine appelle a se preparer a un possible super El Niño, dont le pic est attendu entre novembre 2026 et fevrier 2027"
+    },
     {
       "date": "31 juillet 2026",
       "cat": "Environnement",
