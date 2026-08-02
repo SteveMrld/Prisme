@@ -35,7 +35,7 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "relatedSlugs": [
       "ceux-qui-nont-pas-cede",
       "moreno",
@@ -61,7 +61,7 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "interviewType": "classique",
     "interviewStatus": "published",
     "interviewSubject": "Emmanuelle Galichet",
@@ -84,7 +84,7 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "authorBio": "Journaliste, auteur, réalisateur et enseignant à l'ISCPA, Éric Ouzounian est spécialiste des questions culturelles, d'énergie, de géopolitique et de Défense."
   },
   {
@@ -116,7 +116,7 @@
     "authorRole": "",
     "date": "2026-06-20",
     "premium": false,
-    "imageCredit": "Illustration Soara",
+    "imageCredit": "Illustration SOARA",
     "titleEn": "Artificial intelligence: the abundance was an <em>advance</em>",
     "descriptionEn": "Free intelligence was an advance, and the markets are calling it in. Behind the surge in bills, the law of digital abundance is cracking."
   },
@@ -131,7 +131,7 @@
     "authorRole": "",
     "date": "2026-06-17",
     "premium": false,
-    "imageCredit": "Illustration Soara",
+    "imageCredit": "Illustration SOARA",
     "titleEn": "The obvious has no <em>author</em>",
     "descriptionEn": "One and one can make ten, and the obvious wavers. From base two to the zero that came from India, a crossing of what we hold to be given without ever having checked it."
   },
@@ -149,7 +149,7 @@
     "image": "/portraits/sephocle.jpg",
     "featured": false,
     "premium": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "interviewType": "grand",
     "interviewStatus": "coming",
     "interviewIssue": 2,
@@ -178,7 +178,7 @@
     "image": "/portraits/descollonges.jpg",
     "featured": false,
     "premium": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "interviewType": "grand",
     "interviewStatus": "published",
     "interviewIssue": 1,
@@ -243,7 +243,7 @@
     "featured": true,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "authorBio": "Agathe Cagé est docteure en science politique et auteure de <em>Classes figées. Comprendre la France empêchée</em>. Elle travaille sur les fractures sociales, les inégalités et les transformations du capitalisme contemporain.",
     "titleEn": "Football, its certainties and its uncertainty",
     "descriptionEn": "A story in the image of contemporary football as a business, built on powerful geopolitical, marketing and financial certainties, yet still open to a fair amount of chance."
@@ -262,7 +262,7 @@
     "featured": true,
     "premium": false,
     "avif": true,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "titleEn": "Impunity as a system",
     "descriptionEn": "This is not the story of a man. It is the story of everything that had to work for that man to stay free as long as he did."
   },
@@ -279,7 +279,7 @@
     "featured": true,
     "premium": false,
     "avif": true,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "titleEn": "The door we come in by",
     "descriptionEn": "We think we know people. We think we have seen them, understood them, filed them away. Most of the time we never knew the person. We knew the door we came in by."
   },
@@ -296,7 +296,7 @@
     "featured": true,
     "premium": false,
     "avif": true,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "titleEn": "Writing, the Last Territory",
     "descriptionEn": "We are told to train young people in algorithms and strengthen mathematics. This argument is not wrong. But it is incomplete in a way that is not innocent."
   },
@@ -336,7 +336,7 @@
     "featured": false,
     "premium": false,
     "grandFormat": false,
-    "imageCredit": "© USC / Soara",
+    "imageCredit": "© USC / SOARA",
     "titleEn": "Valter Longo: “Free fasting probably does more harm than good”",
     "descriptionEn": "The world’s most cited longevity researcher answers Soara. On fasting, Silicon Valley immortality, the pharmaceutical industry, Calabrian centenarians, and what medicine still refuses to confront.",
     "interviewType": "classique",
@@ -382,7 +382,7 @@
     "featured": true,
     "premium": false,
     "avif": true,
-    "imageCredit": "© DALL-E / Soara",
+    "imageCredit": "© DALL-E / SOARA",
     "titleEn": "The Last Generation",
     "descriptionEn": "We knew a world where thinking took time, where ideas had to be worked through alone. That world is becoming optional. And that is where everything is at stake."
   },
@@ -420,7 +420,8 @@
     "featured": false,
     "premium": true,
     "grandFormatUrl": "/grands-formats/pollinisation",
-    "premiumTeaserParagraphs": 5
+    "premiumTeaserParagraphs": 5,
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "ce-que-nous-laissons-entrer",
@@ -437,7 +438,8 @@
     "titleEn": "The books that will never come",
     "descriptionEn": "On publishing, and on what it says of a civilisation that its books become assets. By Jade Desroses.",
     "avif": true,
-    "authorBio": "Jade Desroses est la fondatrice des <em>Pages de Jade</em>, où elle chronique les livres qui comptent. Ses lectures sont une invitation à penser autrement."
+    "authorBio": "Jade Desroses est la fondatrice des <em>Pages de Jade</em>, où elle chronique les livres qui comptent. Ses lectures sont une invitation à penser autrement.",
+    "imageCredit": "© SOARA"
   },
   {
     "slug": "societe-du-consentement",
@@ -1292,7 +1294,7 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "authorBio": "Abad Boumsong est essayiste et poète. Ses textes explorent la langue, l'identité et ce que la littérature peut encore dire du monde contemporain.",
     "titleEn": "The war of the SELVES",
     "descriptionEn": "Humanity's greatest adversary is not in hiding. It walks in broad daylight, greeted and admired, fed by hands that cannot see what they are feeding."
@@ -1310,7 +1312,7 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "authorBio": "Majda Vincent est Directrice des ressources humaines du groupe Adecco. Elle écrit sur les transformations du travail, la santé organisationnelle et le rôle des entreprises face aux mutations contemporaines.",
     "titleEn": "Work and its reason for being",
     "descriptionEn": "In most organisations, meaning at work passes for a luxury, taken up once performance has been secured. That reading is backwards."
@@ -1328,7 +1330,7 @@
     "featured": false,
     "premium": false,
     "avif": false,
-    "imageCredit": "© Soara",
+    "imageCredit": "© SOARA",
     "authorBio": "Fatemeh Jailani est co-fondatrice de Starting New, la Coalition politique pour l'entrepreneuriat des nouveaux arrivants, qui a soumis une réponse formelle à la proposition EU Inc. (COM(2026)). Les organisations membres de Starting New incluent Startup Migrants, Forward·Inc, SINGA, Migration Policy Group, et NyföretagarCentrum. Fatemeh siège également au Bureau du Forum européen sur la migration.",
     "titleEn": "The future of European innovation may still hinge on a visa",
     "descriptionEn": "On what a foreign entrepreneur needs in order to exist in the country that takes them in, and on what Europe does not yet give."

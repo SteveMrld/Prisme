@@ -192,6 +192,17 @@
   line-height: 0;
 }
 
+.art-hero-credit {
+  font-size: 10px;
+  line-height: 1.4;
+  color: #888;
+  text-align: right;
+  padding: 5px 24px 0;
+  margin: 0;
+  font-style: normal;
+  letter-spacing: 0.2px;
+}
+
 .art-hero-img {
   width: 100%;
   height: clamp(320px, 55vw, 620px);

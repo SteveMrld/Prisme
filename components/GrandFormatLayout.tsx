@@ -81,6 +81,7 @@ export default function GrandFormatLayout({
   const readTime    = rtProp       || article?.readTime    || '12'
   const date        = dateProp     || article?.date        || ''
   const author      = authorProp   || article?.author      || 'Steve Moradel'
+  const imageCredit = (article as any)?.imageCredit || ''
   const imagePosition = article?.imagePosition || 'center 30%'
   const imageHeight = article?.imageHeight ? parseInt(article.imageHeight) : 520
   const authorRole  = roleProp     || article?.authorRole  || ''
@@ -203,19 +204,22 @@ export default function GrandFormatLayout({
       {extractedHero && !isComingByDate ? (
         <div dangerouslySetInnerHTML={{ __html: extractedHero }} />
       ) : image ? (
-        <div
-          className={styles.heroWrap}
-          data-coming={isComingByDate ? 'true' : undefined}
-          style={{height: imageHeight + 'px', maxHeight: 'none'}}
-        >
-          <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
-            style={{
-              objectPosition: imagePosition,
-              height: imageHeight + 'px',
-              objectFit: (article?.imageFit || 'cover') as 'cover' | 'contain',
-              background: article?.imageFit === 'contain' ? '#F8F4EE' : undefined
-            }} />
-        </div>
+        <figure className={styles.heroFigure}>
+          <div
+            className={styles.heroWrap}
+            data-coming={isComingByDate ? 'true' : undefined}
+            style={{height: imageHeight + 'px', maxHeight: 'none'}}
+          >
+            <img src={image} alt={title.replace(/<[^>]+>/g, '')} className={styles.heroImg}
+              style={{
+                objectPosition: imagePosition,
+                height: imageHeight + 'px',
+                objectFit: (article?.imageFit || 'cover') as 'cover' | 'contain',
+                background: article?.imageFit === 'contain' ? '#F8F4EE' : undefined
+              }} />
+          </div>
+          {imageCredit && <figcaption className={styles.imageCredit}>{imageCredit}</figcaption>}
+        </figure>
       ) : null}
 
       {/* ── LAYOUT DESKTOP : article + sidebar ── */}
