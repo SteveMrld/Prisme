@@ -1,5 +1,16 @@
 [
   {
+    "slug": "la-loterie-de-la-naissance",
+    "numero": 11,
+    "title": "La loterie de la naissance",
+    "date": "4 août 2026",
+    "dateISO": "2026-08-04",
+    "teaser": "On dit que Schengen a effacé les frontières. Il a surtout distribué, selon le lieu de naissance, le droit très inégal de les franchir.",
+    "auteur": "Steve Moradel",
+    "auteurRole": "Directeur de la rédaction",
+    "content": "la-loterie-de-la-naissance"
+  },
+  {
     "slug": "la-majorite-numerique",
     "numero": 10,
     "title": "Réseaux sociaux : la France ferme la porte, la Silicon Valley et Pékin gardent la clé",
