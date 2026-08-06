@@ -1,5 +1,20 @@
 [
   {
+    "slug": "trop-tot-pour-savoir-trop-tard-pour-agir",
+    "title": "Trop tôt pour savoir, <em>trop tard pour agir</em>",
+    "description": "L'intelligence artificielle occupe déjà des positions d'où l'on ne la retire pas sans interrompre des services en fonctionnement. Sur les rares cas où une société a su freiner une technologie, et sur les conditions qui l'ont permis.",
+    "image": "/articles/trop-tot-pour-savoir-trop-tard-pour-agir-cover.jpg",
+    "category": "tech",
+    "date": "2026-08-06",
+    "readTime": "13",
+    "author": "Steve Moradel",
+    "authorRole": "",
+    "featured": true,
+    "premium": false,
+    "imageCredit": "© SOARA",
+    "categoryLabel": "Technologie"
+  },
+  {
     "slug": "le-verger-et-le-fruit",
     "title": "Le verger <em>et le fruit</em>",
     "description": "En 1998, Microsoft offrait à la Chine un laboratoire qui allait former ses futurs champions de l’intelligence artificielle. Un quart de siècle plus tard, Pékin tend le même geste vers l’Afrique.",

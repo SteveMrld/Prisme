@@ -89,6 +89,7 @@ export const GF_SECONDARY_1_SLUG = 'terres-rares'
    derrière. Le nombre d'épinglés réduit d'autant les slides tirées au
    sort, le total du hero restant fixé par HERO_TOTAL. */
 export const HERO_LEAD_SLUGS: string[] = [
+  'trop-tot-pour-savoir-trop-tard-pour-agir',
   'le-verger-et-le-fruit',
   'la-guerre-des-moi',
 ]
