@@ -90,7 +90,7 @@ export const GF_SECONDARY_1_SLUG = 'terres-rares'
    sort, le total du hero restant fixé par HERO_TOTAL. */
 export const HERO_LEAD_SLUGS: string[] = [
   'trop-tot-pour-savoir-trop-tard-pour-agir',
-  'le-verger-et-le-fruit',
+  'sens-au-travail',
   'la-guerre-des-moi',
 ]
 
