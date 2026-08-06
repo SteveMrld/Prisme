@@ -2092,7 +2092,7 @@ sup {
   font-weight: 700 !important;
   color: #111 !important;
   letter-spacing: -0.02em !important;
-  margin: 52px 0 20px !important;
+  margin: 36px 0 16px !important;
   line-height: 1.2 !important;
 }
 
@@ -2137,7 +2137,7 @@ sup {
   font-weight: 700 !important;
   color: #111 !important;
   letter-spacing: -0.02em !important;
-  margin: 52px 0 20px !important;
+  margin: 36px 0 16px !important;
   line-height: 1.2 !important;
 }
 .soara-article h3 {
@@ -2145,7 +2145,7 @@ sup {
   font-size: clamp(18px, 2vw, 24px) !important;
   font-weight: 700 !important;
   color: #111 !important;
-  margin: 40px 0 16px !important;
+  margin: 30px 0 14px !important;
   line-height: 1.25 !important;
 }
 .soara-article p {

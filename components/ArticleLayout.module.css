@@ -161,8 +161,8 @@
   font-weight: 400;
   font-style: italic;
   color: var(--encre);
-  margin-bottom: 0.5em;
-  margin-top: 2.2em;
+  margin-bottom: 16px;
+  margin-top: 36px;
 }
 
 .footer {
