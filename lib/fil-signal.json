@@ -1,6 +1,69 @@
 {
-  "date_maj": "2026-08-01",
+  "date_maj": "2026-08-07",
   "breves": [
+    {
+      "date": "7 août 2026",
+      "cat": "Géopolitique",
+      "catColor": "var(--geo)",
+      "headline": "L'Arabie saoudite, le Pakistan et la Turquie signent un pacte de defense mutuelle",
+      "body": "L'Arabie saoudite, le Pakistan et la Turquie devaient signer vendredi a Djeddah un accord de defense mutuelle, selon des sources proches de l'armee et du gouvernement saoudiens citees par l'AFP. Le prince heritier Mohammed ben Salmane, le president turc Recep Tayyip Erdogan et le Premier ministre pakistanais Shehbaz Sharif etaient attendus dans la ville portuaire, sur fond de guerre au Moyen-Orient. Cet accord rapproche trois puissances regionales, dont la seule dotee de l'arme nucleaire dans le monde musulman. Il intervient alors que l'Iran a affirme s'etre entendu avec le sultanat d'Oman sur un nouvel itineraire de navigation dans le detroit d'Ormuz, verrouille depuis debut juillet, toute reouverture restant suspendue aux decisions de Washington, qui maintient un blocus des ports iraniens.",
+      "tickerCat": "Moyen-Orient",
+      "tickerText": "L'Arabie saoudite, le Pakistan et la Turquie signent a Djeddah un pacte de defense mutuelle sur fond de guerre au Moyen-Orient"
+    },
+    {
+      "date": "7 août 2026",
+      "cat": "Économie",
+      "catColor": "var(--eco)",
+      "headline": "Etats-Unis : le rapport sur l'emploi de juillet, test majeur pour la Reserve federale",
+      "body": "Le rapport mensuel sur l'emploi americain, publie ce vendredi par le Bureau of Labor Statistics, etait l'un des plus scrutes de l'ete. Les economistes tablaient sur environ 83 000 creations de postes en juillet et un taux de chomage stable a 4,2 %, apres un mois de juin decevant, marque par 57 000 creations seulement et par une revision a la baisse de 74 000 emplois sur avril et mai. Le chiffre devait peser sur les anticipations de la Reserve federale, dont le nouveau president Kevin Warsh a laisse entrevoir un possible resserrement en septembre. Sur les autres marches, le baril de brut americain se maintenait autour de 79 dollars, soutenu par les espoirs d'une reouverture du detroit d'Ormuz.",
+      "tickerCat": "Emploi",
+      "tickerText": "Le rapport sur l'emploi americain de juillet, attendu autour de 83 000 creations, constitue un test majeur pour la Reserve federale"
+    },
+    {
+      "date": "7 août 2026",
+      "cat": "Environnement",
+      "catColor": "var(--env)",
+      "headline": "Incendies : l'Europe se dirige vers sa pire annee, la secheresse va s'aggraver",
+      "body": "L'Europe se dirige vers la pire annee d'incendies jamais enregistree, avec plus de 430 000 hectares deja brules dans l'Union depuis janvier, au-dessus de la moyenne annuelle des annees precedentes. L'Espagne, qui a depasse 200 000 hectares, soit le double de sa moyenne historique, a declare pour la premiere fois l'etat d'urgence national face aux feux, le Portugal placant plusieurs communes en alerte maximale. Selon l'observatoire europeen Copernicus, les feux de 2026 ont deja rejete un volume record de dioxyde de carbone a l'echelle de l'Union. Des precipitations inferieures a la normale etaient attendues cette semaine, avec le deficit le plus marque de la France aux Balkans en passant par les Alpes, ce qui laissait craindre une aggravation de la secheresse et du risque de feux.",
+      "tickerCat": "Incendies",
+      "tickerText": "L'Europe se dirige vers sa pire annee d'incendies, plus de 430 000 hectares brules et une secheresse qui va s'aggraver"
+    },
+    {
+      "date": "7 août 2026",
+      "cat": "Sciences",
+      "catColor": "var(--sciences)",
+      "headline": "Ebola : un vaccin a ARN messager entre en essai contre la souche qui frappe la RD Congo",
+      "body": "Un vaccin a ARN messager ciblant la souche Bundibugyo du virus Ebola, responsable de l'epidemie qui frappe la Republique democratique du Congo, a commence a etre teste au Canada et au Royaume-Uni, selon La Presse. Il n'existe a ce jour aucun vaccin ni traitement homologue contre cette souche, et c'est la premiere fois depuis la pandemie de Covid-19 qu'une procedure d'urgence est engagee pour un vaccin a ARN messager. L'epidemie declaree mi-mai en RD Congo avait deja fait plus de 1 300 morts pour pres de 3 000 cas selon les autorites congolaises, tandis que l'Ouganda voisin avait annonce fin juillet la fin de sa propre flambee. La souche Bundibugyo echappe au vaccin existant, conçu contre la souche Zaire.",
+      "tickerCat": "Ebola",
+      "tickerText": "Un vaccin a ARN messager contre la souche d'Ebola qui frappe la RD Congo entre en essai au Canada et au Royaume-Uni"
+    },
+    {
+      "date": "7 août 2026",
+      "cat": "Technologie",
+      "catColor": "var(--tech)",
+      "headline": "IA : les valeurs de semi-conducteurs asiatiques cedent sur des doutes de rentabilite",
+      "body": "Les actions des fabricants de puces et de memoires asiatiques ont nettement recule en fin de semaine, les investisseurs s'interrogeant sur le rendement des sommes colossales englouties dans l'intelligence artificielle. A Seoul, l'indice Kospi a perdu environ 2 %, plombe par SK Hynix, en repli de plus de 5 %, tandis qu'a Tokyo le fabricant de memoires Kioxia cedait pres de 10 % et que le Nikkei reculait de plus de 1 %. Les geants americains du secteur, dont les depenses d'equipement cumulees pour 2026 se comptent en centaines de milliards de dollars, avaient rassure sur la demande sans dissiper les craintes d'un emballement. Le doute portait moins sur l'adoption de l'IA que sur le moment ou ces investissements produiront des benefices durables.",
+      "tickerCat": "IA",
+      "tickerText": "Les valeurs de semi-conducteurs asiatiques cedent, SK Hynix et Kioxia en tete, sur fond de doutes sur la rentabilite de l'IA"
+    },
+    {
+      "date": "7 août 2026",
+      "cat": "Société",
+      "catColor": "var(--soc)",
+      "headline": "CAN feminine : la phase de groupes s'acheve, place aux quarts de finale au Maroc",
+      "body": "La Coupe d'Afrique des nations feminine, organisee au Maroc jusqu'au 16 aout, a acheve jeudi sa phase de groupes et entrait ce week-end dans les quarts de finale. Elargie a seize equipes pour la premiere fois, la competition met en jeu une dotation portee a deux millions de dollars pour les vainqueurs et des places qualificatives pour la Coupe du monde 2027. Le pays hote, qui accueille le tournoi pour la troisieme fois consecutive, a investi de longue date dans le football feminin et ses infrastructures. La couverture televisee, diffusee dans plus de quatre-vingts pays, a atteint une audience inedite pour une edition de l'epreuve.",
+      "tickerCat": "CAN féminine",
+      "tickerText": "La CAN feminine acheve sa phase de groupes et entre dans les quarts de finale au Maroc, avec une dotation record"
+    },
+    {
+      "date": "7 août 2026",
+      "cat": "Culture",
+      "catColor": "var(--culture)",
+      "headline": "Le Festival interceltique de Lorient reunit les nations celtes jusqu'au 9 aout",
+      "body": "La 55e edition du Festival interceltique de Lorient se poursuit jusqu'au 9 aout, faisant de la ville bretonne la capitale des cultures celtiques. Musiciens et danseurs venus d'Irlande, d'Ecosse, du pays de Galles, de Galice et d'ailleurs se succedent pendant dix jours de concerts, de fest-noz et de spectacles. La Grande Parade des nations celtes, en debut de festival, avait reuni quelque 3 500 artistes devant plus de 80 000 spectateurs. Ne dans les annees 1970, l'evenement est devenu l'un des plus grands rassemblements de musique de France et fait dialoguer traditions et creations contemporaines autour d'un patrimoine partage par plusieurs pays.",
+      "tickerCat": "Musique",
+      "tickerText": "Le Festival interceltique de Lorient reunit les nations celtes jusqu'au 9 aout, l'un des plus grands rassemblements musicaux de France"
+    },
     {
       "date": "1er août 2026",
       "cat": "Géopolitique",
