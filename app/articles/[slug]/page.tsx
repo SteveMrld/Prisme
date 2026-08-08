@@ -6,6 +6,7 @@ import AdSlot from '../../../components/AdSlot'
 import articlesData from '../../../lib/articles.json'
 import { authorLink } from '../../../lib/authorLinks'
 import { createClient } from '../../../lib/supabase-server'
+import { SWG_PRODUCT_ID } from '../../../lib/swg'
 import fs from 'fs'
 import path from 'path'
 
@@ -137,6 +138,22 @@ function buildArticleJsonLd(article: any, slug: string) {
       logo: { '@type': 'ImageObject', url: `${BASE_URL}/icon-512.png` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    // Contenu payant : Google exige isAccessibleForFree + hasPart pour indexer
+    // un article derrière paywall sans le traiter comme du cloaking, et isPartOf
+    // pour rattacher l'article au forfait Reader Revenue Manager.
+    isAccessibleForFree: !article.premium,
+    ...(article.premium ? {
+      hasPart: {
+        '@type': 'WebPageElement',
+        isAccessibleForFree: false,
+        cssSelector: '.paywall',
+      },
+      isPartOf: {
+        '@type': ['CreativeWork', 'Product'],
+        name: 'Soara',
+        productID: SWG_PRODUCT_ID,
+      },
+    } : {}),
   }
 }
 

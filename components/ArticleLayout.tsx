@@ -6,6 +6,7 @@ import BackButton from './BackButton'
 import Header from './Header'
 import NewsletterForm from './NewsletterForm'
 import AbonnementCard from './AbonnementCard'
+import SwgSubscribe from './SwgSubscribe'
 import styles from './ArticleLayout.module.css'
 import { ReadingProgress, ReadingTimeCounter, ScrollDepth, StickyReadingHeader } from './ArticleAnimations'
 import { formatReadTime } from '../lib/format'
@@ -301,7 +302,7 @@ export default function ArticleLayout({
       <div className={`${hasInternalHeader ? styles.articleBodyFull : styles.articleBody}${showDropCap ? ' has-drop-cap' : ''}`}>
         {isPremiumContent ? (
           <div className={styles.paywallWrap}>
-            <div className={styles.paywallContent}>
+            <div className={`${styles.paywallContent} paywall`}>
               <div className="soara-article" dangerouslySetInnerHTML={{ __html: content }} />
               <div className={styles.paywallGradient} />
             </div>
@@ -310,6 +311,7 @@ export default function ArticleLayout({
               <h3 className={styles.paywallTitle}>Continuez la lecture</h3>
               <p className={styles.paywallDesc}>Accédez à l'intégralité de cet article et à tous les grands formats Soara.</p>
               <a href="/abonnement" className={styles.paywallCta}>S&apos;abonner, dès 9,99€/mois</a>
+              <SwgSubscribe />
               <a href="/connexion" className={styles.paywallLogin}>Déjà abonné&nbsp;? Se connecter</a>
             </div>
           </div>
