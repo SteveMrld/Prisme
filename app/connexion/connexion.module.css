@@ -167,3 +167,48 @@
 @media (max-width: 480px) {
   .card { padding: 36px 24px; }
 }
+
+.google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  background: var(--blanc);
+  border: 1px solid var(--bord);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--encre);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
+}
+
+.google:hover:not(:disabled) { border-color: var(--encre); background: var(--papier); }
+.google:disabled { opacity: 0.5; cursor: default; }
+
+.googleIcon { width: 17px; height: 17px; flex-shrink: 0; }
+
+.separator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -4px 0;
+}
+
+.separator::before, .separator::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bord);
+}
+
+.separator span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gris-l);
+}
